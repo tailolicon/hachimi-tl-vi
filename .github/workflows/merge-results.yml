@@ -57,8 +57,7 @@ jobs:
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add localized_data index.json work/translation_progress.json work/merged work/claims work/merge_diagnostics.json 2>/dev/null || true
-          git add -u
+          git add -A
           git commit -m "Merge completed parallel translation batches"
           for attempt in 1 2 3; do
             if git push origin HEAD:main; then

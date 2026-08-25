@@ -3,8 +3,13 @@ name: Publish Hachimi release branch
 on:
   push:
     branches: [main]
-    paths-ignore:
-      - "work/parallel/**"
+    paths:
+      - "localized_data/**"
+      - "index_base.json"
+      - "src/hachimi_tl_vi/indexer.py"
+      - "src/hachimi_tl_vi/blake3_fallback.py"
+      - "pyproject.toml"
+      - ".github/workflows/release.yml"
   workflow_dispatch:
 
 permissions:

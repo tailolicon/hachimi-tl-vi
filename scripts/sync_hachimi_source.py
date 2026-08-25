@@ -13,11 +13,11 @@ SOURCE_LANGUAGE = "zh-CN"
 SOURCE_LICENSE = "CC BY-NC-SA 4.0"
 
 DICT_KINDS = {
-    "localize_dict.json": "ui",
+    "localize_dict.json": "localize",
     "text_data_dict.json": "text_data",
-    "character_system_text_dict.json": "character_system",
-    "race_jikkyo_comment_dict.json": "race_comment",
-    "race_jikkyo_message_dict.json": "race_message",
+    "character_system_text_dict.json": "character_system_text",
+    "race_jikkyo_comment_dict.json": "race_jikkyo_comment",
+    "race_jikkyo_message_dict.json": "race_jikkyo_message",
     "hashed_dict.json": "hashed",
 }
 TRANSLATABLE_KEYS = {
@@ -26,8 +26,27 @@ TRANSLATABLE_KEYS = {
 LIST_TEXT_KEYS = {"choice_data_list", "choices", "colored_text_info_list"}
 SKIP_KEYS = {"hash", "bundle_hash", "asset_hash", "path", "cue_id", "id", "voice_id", "clip_length", "start_time"}
 PRIORITY = {
-    "ui": 0, "text_data": 1, "character_system": 2, "race_comment": 3, "race_message": 4,
-    "hashed": 5, "lyrics": 6, "home": 7, "story": 8, "race_story": 9, "asset": 10,
+    "localize": 0,
+    "text_data": 1,
+    "character_system_text": 2,
+    "race_jikkyo_comment": 3,
+    "race_jikkyo_message": 4,
+    "hashed": 5,
+    "lyrics": 6,
+    "home": 7,
+    "story": 8,
+    "race_story": 9,
+    "asset": 10,
+}
+QUEUE_KINDS = {
+    "localize",
+    "text_data",
+    "character_system_text",
+    "race_jikkyo_comment",
+    "race_jikkyo_message",
+    "hashed",
+    "lyrics",
+    "asset",
 }
 
 
@@ -64,14 +83,10 @@ def make_record(*, rel: str, path: list[Any], source_text: str, kind: str, sourc
     return {
         "uid": uid,
         "kind": kind,
-        "source_language": SOURCE_LANGUAGE,
         "source_text": source_text,
         "source_fingerprint": sha256_text(source_text),
-        "source_repo": SOURCE_REPO,
-        "source_commit": source_commit,
         "source_path": rel,
         "json_path": path,
-        "json_pointer": pointer(path),
     }
 
 
@@ -152,13 +167,18 @@ def write_batches(records: list[dict[str, Any]], out_dir: Path, batch_size: int,
     out_dir.mkdir(parents=True, exist_ok=True)
     for old in out_dir.glob("batch-*.json"):
         old.unlink()
-    batch_count = (len(records) + batch_size - 1) // batch_size if records else 0
+    queued = [r for r in records if r["kind"] in QUEUE_KINDS]
+    batch_count = (len(queued) + batch_size - 1) // batch_size if queued else 0
     for idx in range(batch_count):
-        chunk = records[idx * batch_size:(idx + 1) * batch_size]
+        chunk = queued[idx * batch_size:(idx + 1) * batch_size]
         payload = {
-            "schema_version": 1, "batch": idx + 1, "batch_count": batch_count,
-            "source_repo": SOURCE_REPO, "source_commit": source_commit,
-            "source_language": SOURCE_LANGUAGE, "entries": chunk,
+            "schema_version": 1,
+            "batch": idx + 1,
+            "batch_count": batch_count,
+            "source_repo": SOURCE_REPO,
+            "source_commit": source_commit,
+            "source_language": SOURCE_LANGUAGE,
+            "entries": chunk,
         }
         (out_dir / f"batch-{idx + 1:05d}.json").write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     by_kind = Counter(r["kind"] for r in records)
@@ -175,7 +195,11 @@ def write_batches(records: list[dict[str, Any]], out_dir: Path, batch_size: int,
         "total_batches": batch_count,
         "total_entries": len(records),
         "total_source_chars": total_chars,
+        "queued_entries": len(queued),
+        "queued_source_chars": sum(len(r["source_text"]) for r in queued),
+        "deferred_entries": len(records) - len(queued),
         "by_kind": dict(sorted(by_kind.items())),
+        "queued_kinds": sorted(QUEUE_KINDS),
         "files": file_counts,
         "next_batch": "batch-00001.json" if batch_count else None,
     }

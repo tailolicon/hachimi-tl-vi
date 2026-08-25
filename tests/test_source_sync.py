@@ -21,18 +21,21 @@ def test_collect_and_batch(tmp_path):
     out = tmp_path / "out"
     records, counts = mod.collect(upstream, "abc123")
     assert len(records) == 4
-    assert records[0]["kind"] == "ui"
-    assert all(r["source_commit"] == "abc123" for r in records)
+    assert records[0]["kind"] == "localize"
+    assert sum(r["kind"] == "story" for r in records) == 2
     manifest = mod.write_batches(records, out, 2, "abc123", counts)
-    assert manifest["total_batches"] == 2
+    assert manifest["total_batches"] == 1
     assert manifest["total_entries"] == 4
+    assert manifest["queued_entries"] == 2
+    assert manifest["deferred_entries"] == 2
     b1 = json.loads((out / "batch-00001.json").read_text(encoding="utf-8"))
     assert len(b1["entries"]) == 2
+    assert b1["source_commit"] == "abc123"
     assert (out / "progress.template.json").exists()
 
 
 def test_uid_stable_when_text_changes():
-    a = mod.make_record(rel="localize_dict.json", path=["1"], source_text="开始", kind="ui", source_commit="a")
-    b = mod.make_record(rel="localize_dict.json", path=["1"], source_text="开始游戏", kind="ui", source_commit="b")
+    a = mod.make_record(rel="localize_dict.json", path=["1"], source_text="开始", kind="localize", source_commit="a")
+    b = mod.make_record(rel="localize_dict.json", path=["1"], source_text="开始游戏", kind="localize", source_commit="b")
     assert a["uid"] == b["uid"]
     assert a["source_fingerprint"] != b["source_fingerprint"]

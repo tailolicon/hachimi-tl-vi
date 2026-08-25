@@ -29,7 +29,7 @@ Pipeline hiện có các lớp chính của Hachimi:
 ```powershell
 py -3.11 -m venv .venv
 .\.venv\Scripts\Activate.ps1
-python -m pip install -e "[dev]"
+python -m pip install -e ".[dev]"
 ```
 
 Linux:
@@ -37,7 +37,7 @@ Linux:
 ```bash
 python3.11 -m venv .venv
 source .venv/bin/activate
-python -m pip install -e '[dev]'
+python -m pip install -e '.[dev]'
 ```
 
 ## 1. Lấy dữ liệu JP

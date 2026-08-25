@@ -1,0 +1,40 @@
+name: Publish Hachimi release branch
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: python -m pip install -e ".[dev]"
+      - run: pytest -q
+      - run: tlvi --db /tmp/tlvi.db validate
+      - run: tlvi --db /tmp/tlvi.db index
+      - name: Build release branch
+        shell: bash
+        run: |
+          set -euo pipefail
+          tmp="$(mktemp -d)"
+          cp -a localized_data "$tmp/localized_data"
+          cp index.json "$tmp/index.json"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout --orphan _release_build
+          git rm -rf . >/dev/null 2>&1 || true
+          cp -a "$tmp/localized_data" ./localized_data
+          cp "$tmp/index.json" ./index.json
+          git add localized_data index.json
+          git commit -m "Publish translation data"
+          git push --force origin HEAD:release

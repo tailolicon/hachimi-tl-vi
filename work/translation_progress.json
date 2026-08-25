@@ -1,5 +1,5 @@
 {
-  "schema_version": 3,
+  "schema_version": 4,
   "source_repo": "Hachimi-Hachimi/tl-zh-cn",
   "source_branch": "dev",
   "source_commit": "67f8551f77807292cebd2b20b2c752b652393835",
@@ -16,15 +16,9 @@
   "deferred_entries": 1027265,
   "batch_size": 80,
   "queue_total_batches": 1645,
-  "translated_batches": [
-    1
-  ],
-  "reviewed_batches": [
-    1
-  ],
-  "qa_passed_batches": [
-    1
-  ],
+  "translated_batches": [1],
+  "reviewed_batches": [1],
+  "qa_passed_batches": [1],
   "translated_entries": 80,
   "next_batch": 2,
   "parallel_mode": true,
@@ -44,7 +38,14 @@
     "completion_path_pattern": "work/completions/batch-{batch:05d}/{claim_id}.json",
     "merged_path_pattern": "work/merged/batch-{batch:05d}.json",
     "workers_edit_localized_data": false,
-    "workers_edit_progress": false
+    "workers_edit_progress": false,
+    "worker_loop_after_completion": true,
+    "one_active_batch_per_worker": true,
+    "stop_only_when": [
+      "session_or_tool_limit_approaching",
+      "no_assignable_batch_remaining",
+      "blocking_source_or_repository_inconsistency"
+    ]
   },
-  "notes": "Parallel worker mode. Batch 1 is already translated and represented by a legacy merged marker. Batches 2-1643 are safe dictionary-only parallel assignments on the pinned source snapshot. Tail batches are reserved for later asset-specific handling. Story/home remain deferred to a separate context-aware deduplicated phase."
+  "notes": "Continuous parallel worker mode. Batch 1 is already translated and represented by a legacy merged marker. Batches 2-1643 are safe dictionary-only parallel assignments on the pinned source snapshot. Each worker owns one active batch at a time, but after completing it must immediately claim another available batch and continue while capacity remains. Tail batches are reserved for later asset-specific handling. Story/home remain deferred to a separate context-aware deduplicated phase."
 }

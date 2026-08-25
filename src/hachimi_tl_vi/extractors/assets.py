@@ -33,7 +33,8 @@ def _json_path_uid(path: list[Any]) -> str:
 
 
 def _is_lyrics_doc(doc: Any, rel: str) -> bool:
-    return "/lyrics/" in f"/{rel.replace('\\', '/').lower()}" and isinstance(doc, dict)
+    normalized = rel.replace("\\", "/").lower()
+    return "/lyrics/" in f"/{normalized}" and isinstance(doc, dict)
 
 
 def _story_context(doc: dict[str, Any], block_index: int) -> dict[str, Any]:

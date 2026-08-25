@@ -3,6 +3,8 @@ name: Publish Hachimi release branch
 on:
   push:
     branches: [main]
+    paths-ignore:
+      - "work/parallel/**"
   workflow_dispatch:
 
 permissions:

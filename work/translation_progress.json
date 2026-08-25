@@ -1,39 +1,14 @@
 {
-  "schema_version": 2,
+  "schema_version": 3,
+  "mode": "parallel_leased_shards",
+  "authoritative_state": "work/parallel_state.json",
+  "protocol": "PARALLEL_TRANSLATION.md",
+  "single_session_cursor_deprecated": true,
   "source_repo": "Hachimi-Hachimi/tl-zh-cn",
-  "source_branch": "dev",
   "source_commit": "67f8551f77807292cebd2b20b2c752b652393835",
   "source_language": "zh-CN",
   "target_language": "vi",
-  "source_batch_branch": "source-zhcn",
-  "source_batch_manifest": "work/source_batches/manifest.json",
-  "source_batch_path_pattern": "work/source_batches/batch-{batch:05d}.json",
-  "source_total_entries": 1158825,
-  "source_total_chars": 16542363,
-  "queued_entries": 131560,
-  "queued_source_chars": 2468909,
-  "deferred_entries": 1027265,
-  "batch_size": 80,
-  "queue_total_batches": 1645,
-  "translated_batches": [1],
-  "reviewed_batches": [1],
-  "qa_passed_batches": [1],
-  "translated_entries": 80,
-  "next_batch": 2,
-  "translation_passes": [
-    "semantic_translation",
-    "terminology_consistency",
-    "placeholder_and_markup_qa"
-  ],
-  "next_session_contract": {
-    "read_first": [
-      "NEXT_SESSION.md",
-      "work/translation_progress.json"
-    ],
-    "fetch_batch_from_branch": "source-zhcn",
-    "write_translations_to_branch": "main",
-    "do_not_translate_deferred_story_home_in_this_queue": true,
-    "after_success": "Append batch number to translated_batches/reviewed_batches/qa_passed_batches, increment translated_entries by the batch entry count, and set next_batch to the next unfinished batch."
-  },
-  "notes": "UI/MDB and other queued kinds are prioritized. Story/home corpus is deferred to a separate context-aware deduplicated phase. Batch 1 preserved placeholders, color tags, and newline counts with zero structural QA errors."
+  "legacy_completed_batches": [1],
+  "legacy_completed_entries": 80,
+  "note": "Do not claim work using a global next_batch value. Parallel workers use isolated claim/result/completed files under the current epoch. The aggregator merges completed shards into localized_data."
 }

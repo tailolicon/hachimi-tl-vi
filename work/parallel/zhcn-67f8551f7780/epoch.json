@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "epoch": "zhcn-67f8551f7780",
+  "source_repo": "Hachimi-Hachimi/tl-zh-cn",
+  "source_branch_at_sync": "dev",
+  "source_language": "zh-CN",
+  "target_language": "vi",
+  "source_commit": "67f8551f77807292cebd2b20b2c752b652393835",
+  "source_queue_git_commit": "ba3815ed06a2a9bb3fddb38a6e1ea7ca64506da2",
+  "source_batch_pattern": "work/source_batches/batch-{batch:05d}.json",
+  "source_batch_size": 80,
+  "task_size": 20,
+  "checkpoint_every_entries": 5,
+  "lease_minutes": 45,
+  "first_parallel_batch": 2,
+  "queue_total_batches": 1645,
+  "queued_entries": 131560,
+  "queued_source_chars": 2468909,
+  "legacy_completed_batches": [1],
+  "legacy_completed_entries": 80,
+  "task_id_pattern": "batch-{batch:05d}-s{shard:02d}",
+  "group_rule": "group = b + zero_pad(floor(batch / 100), 4)",
+  "roots": {
+    "claims": "work/parallel/zhcn-67f8551f7780/claims",
+    "results": "work/parallel/zhcn-67f8551f7780/results",
+    "completed": "work/parallel/zhcn-67f8551f7780/completed",
+    "aggregated": "work/parallel/zhcn-67f8551f7780/aggregated"
+  },
+  "translation_passes": [
+    "semantic_translation",
+    "vietnamese_fluency_and_terminology_review",
+    "placeholder_markup_newline_qa"
+  ],
+  "notes": "This epoch is pinned. Daily source syncs may move source-zhcn, but workers must fetch batches using source_queue_git_commit above. Batch 1 was completed before parallelization and must not be claimed."
+}

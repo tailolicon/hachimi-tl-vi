@@ -61,7 +61,10 @@
     48,
     49,
     50,
-    51
+    51,
+    52,
+    53,
+    54
   ],
   "reviewed_batches": [
     1,
@@ -108,7 +111,10 @@
     48,
     49,
     50,
-    51
+    51,
+    52,
+    53,
+    54
   ],
   "qa_passed_batches": [
     1,
@@ -155,9 +161,12 @@
     48,
     49,
     50,
-    51
+    51,
+    52,
+    53,
+    54
   ],
-  "translated_entries": 3600,
+  "translated_entries": 3840,
   "next_batch": 27,
   "parallel_mode": true,
   "translation_passes": [
@@ -184,7 +193,7 @@
       "no_assignable_batch_remaining",
       "blocking_source_or_repository_inconsistency"
     ],
-    "completed_batches": 45
+    "completed_batches": 48
   },
   "notes": "Continuous parallel worker mode. Batch 1 is already translated and represented by a legacy merged marker. Batches 2-1643 are safe dictionary-only parallel assignments on the pinned source snapshot. Each worker owns one active batch at a time, but after completing it must immediately claim another available batch and continue while capacity remains. Tail batches are reserved for later asset-specific handling. Story/home remain deferred to a separate context-aware deduplicated phase."
 }

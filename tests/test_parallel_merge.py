@@ -1,4 +1,17 @@
-from scripts.merge_parallel_results import _set_path, _validate_and_complete
+from importlib.util import module_from_spec, spec_from_file_location
+from pathlib import Path
+
+
+_SPEC = spec_from_file_location(
+    "merge_parallel_results",
+    Path(__file__).resolve().parents[1] / "scripts" / "merge_parallel_results.py",
+)
+assert _SPEC is not None and _SPEC.loader is not None
+_MOD = module_from_spec(_SPEC)
+_SPEC.loader.exec_module(_MOD)
+
+_set_path = _MOD._set_path
+_validate_and_complete = _MOD._validate_and_complete
 
 
 SOURCE_REF = "snapshot-sha"

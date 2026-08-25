@@ -1,0 +1,71 @@
+name: Sync recent Hachimi source
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/sync_hachimi_source.py"
+      - ".github/workflows/sync-source.yml"
+      - "SOURCE_ATTRIBUTION.md"
+  workflow_dispatch:
+  schedule:
+    - cron: "17 18 * * *"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sync-zhcn-source
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Clone current JP-server Simplified Chinese source
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf /tmp/tl-zh-cn
+          git clone --depth 1 --branch dev https://github.com/Hachimi-Hachimi/tl-zh-cn.git /tmp/tl-zh-cn
+          git -C /tmp/tl-zh-cn rev-parse HEAD > /tmp/source_commit.txt
+      - name: Normalize source into stable translation batches
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf /tmp/source_batches
+          python scripts/sync_hachimi_source.py \
+            --upstream-root /tmp/tl-zh-cn \
+            --out /tmp/source_batches \
+            --source-commit "$(cat /tmp/source_commit.txt)" \
+            --batch-size 80
+      - name: Publish source checkpoint branch
+        shell: bash
+        run: |
+          set -euo pipefail
+          source_sha="$(cat /tmp/source_commit.txt)"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if git ls-remote --exit-code --heads origin source-zhcn >/dev/null 2>&1; then
+            git fetch origin source-zhcn
+            git checkout -B source-zhcn origin/source-zhcn
+          else
+            git checkout -b source-zhcn
+          fi
+          rm -rf work/source_batches
+          mkdir -p work/source_batches
+          cp -a /tmp/source_batches/. work/source_batches/
+          printf '%s\n' "$source_sha" > work/SOURCE_COMMIT
+          git add work/source_batches work/SOURCE_COMMIT
+          if git diff --cached --quiet; then
+            echo "Source snapshot is unchanged."
+            exit 0
+          fi
+          git commit -m "Sync zh-CN source ${source_sha:0:12}"
+          git push origin source-zhcn

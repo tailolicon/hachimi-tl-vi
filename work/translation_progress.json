@@ -1,14 +1,50 @@
 {
   "schema_version": 3,
-  "mode": "parallel_leased_shards",
-  "authoritative_state": "work/parallel_state.json",
-  "protocol": "PARALLEL_TRANSLATION.md",
-  "single_session_cursor_deprecated": true,
   "source_repo": "Hachimi-Hachimi/tl-zh-cn",
+  "source_branch": "dev",
   "source_commit": "67f8551f77807292cebd2b20b2c752b652393835",
   "source_language": "zh-CN",
   "target_language": "vi",
-  "legacy_completed_batches": [1],
-  "legacy_completed_entries": 80,
-  "note": "Do not claim work using a global next_batch value. Parallel workers use isolated claim/result/completed files under the current epoch. The aggregator merges completed shards into localized_data."
+  "source_batch_branch": "source-zhcn",
+  "source_batch_ref": "ba3815ed06a2a9bb3fddb38a6e1ea7ca64506da2",
+  "source_batch_manifest": "work/source_batches/manifest.json",
+  "source_batch_path_pattern": "work/source_batches/batch-{batch:05d}.json",
+  "source_total_entries": 1158825,
+  "source_total_chars": 16542363,
+  "queued_entries": 131560,
+  "queued_source_chars": 2468909,
+  "deferred_entries": 1027265,
+  "batch_size": 80,
+  "queue_total_batches": 1645,
+  "translated_batches": [
+    1
+  ],
+  "reviewed_batches": [
+    1
+  ],
+  "qa_passed_batches": [
+    1
+  ],
+  "translated_entries": 80,
+  "next_batch": 2,
+  "parallel_mode": true,
+  "translation_passes": [
+    "semantic_translation",
+    "terminology_consistency",
+    "placeholder_and_markup_qa"
+  ],
+  "parallel_state": {
+    "next_unmerged_batch": 2,
+    "assign_from_batch": 2,
+    "assign_through_batch": 1643,
+    "result_part_size": 10,
+    "claim_ttl_minutes": 45,
+    "claims_path_pattern": "work/claims/batch-{batch:05d}.json",
+    "results_path_pattern": "work/results/batch-{batch:05d}/{claim_id}/part-{part:03d}.json",
+    "completion_path_pattern": "work/completions/batch-{batch:05d}/{claim_id}.json",
+    "merged_path_pattern": "work/merged/batch-{batch:05d}.json",
+    "workers_edit_localized_data": false,
+    "workers_edit_progress": false
+  },
+  "notes": "Parallel worker mode. Batch 1 is already translated and represented by a legacy merged marker. Batches 2-1643 are safe dictionary-only parallel assignments on the pinned source snapshot. Tail batches are reserved for later asset-specific handling. Story/home remain deferred to a separate context-aware deduplicated phase."
 }

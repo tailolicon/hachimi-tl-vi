@@ -92,9 +92,11 @@ def _source_batch(source_ref: str, batch: int) -> dict[str, Any]:
 
 def _validate_and_complete(
     source: dict[str, Any],
+    source_ref: str,
     result_payloads: list[dict[str, Any]],
 ) -> tuple[dict[str, str] | None, list[str], set[str]]:
-    errors: list[str] = []
+    diagnostics: list[str] = []
+    blocking_errors: list[str] = []
     source_commit = source.get("source_commit")
     source_entries = source.get("entries", [])
     source_by_uid = {e["uid"]: e for e in source_entries if isinstance(e, dict) and "uid" in e}
@@ -102,45 +104,57 @@ def _validate_and_complete(
     claims: set[str] = set()
 
     for payload in result_payloads:
+        result_path = payload.get("_result_path")
         claim_id = str(payload.get("claim_id", "unknown"))
-        claims.add(claim_id)
         if payload.get("source_commit") != source_commit:
-            errors.append(f"{payload.get('_result_path')}:source_commit_mismatch")
+            diagnostics.append(f"{result_path}:ignored_source_commit_mismatch")
             continue
+        if payload.get("source_batch_ref") != source_ref:
+            diagnostics.append(f"{result_path}:ignored_source_ref_mismatch")
+            continue
+
+        claims.add(claim_id)
         for item in payload.get("translations", []):
             if not isinstance(item, dict):
+                diagnostics.append(f"{result_path}:ignored_non_object_translation")
                 continue
             uid = item.get("uid")
             target = item.get("target_text")
             fingerprint = item.get("source_fingerprint")
             if uid not in source_by_uid or not isinstance(target, str):
-                errors.append(f"{payload.get('_result_path')}:unknown_or_invalid_uid:{uid}")
+                diagnostics.append(f"{result_path}:ignored_unknown_or_invalid_uid:{uid}")
                 continue
             source_entry = source_by_uid[uid]
             if fingerprint != source_entry.get("source_fingerprint"):
-                errors.append(f"{payload.get('_result_path')}:fingerprint_mismatch:{uid}")
+                diagnostics.append(f"{result_path}:ignored_fingerprint_mismatch:{uid}")
                 continue
             qa = qa_pair(source_entry.get("source_text", ""), target)
             if qa["problems"]:
-                errors.append(
-                    f"{payload.get('_result_path')}:qa:{uid}:{','.join(qa['problems'])}"
+                diagnostics.append(
+                    f"{result_path}:ignored_qa:{uid}:{','.join(qa['problems'])}"
                 )
                 continue
             candidates[uid].add(target)
 
     resolved: dict[str, str] = {}
+    missing: list[str] = []
     for uid in source_by_uid:
         values = candidates.get(uid, set())
         if not values:
+            missing.append(uid)
             continue
         if len(values) > 1:
-            errors.append(f"translation_conflict:{uid}")
+            blocking_errors.append(f"translation_conflict:{uid}")
             continue
         resolved[uid] = next(iter(values))
 
-    if errors or len(resolved) != len(source_by_uid):
-        return None, errors, claims
-    return resolved, errors, claims
+    if missing:
+        diagnostics.append(f"missing_uids:{len(missing)}")
+    diagnostics.extend(blocking_errors)
+
+    if missing or blocking_errors:
+        return None, diagnostics, claims
+    return resolved, diagnostics, claims
 
 
 def _apply_batch(
@@ -185,10 +199,11 @@ def main() -> int:
         if marker.exists():
             continue
         source = _source_batch(args.source_ref, batch)
-        resolved, errors, claims = _validate_and_complete(source, results[batch])
+        resolved, batch_diagnostics, claims = _validate_and_complete(
+            source, args.source_ref, results[batch]
+        )
         if resolved is None:
-            if errors:
-                diagnostics[str(batch)] = errors
+            diagnostics[str(batch)] = batch_diagnostics
             continue
         _apply_batch(args.localized_root, source, resolved)
         marker_payload = {

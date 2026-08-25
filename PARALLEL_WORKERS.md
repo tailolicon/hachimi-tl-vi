@@ -6,17 +6,20 @@ This repository is designed so many independent ChatGPT sessions can translate i
 
 Workers **never edit `localized_data/` or `work/translation_progress.json` directly**.
 
-Workers only:
+Each worker runs a loop and owns at most one active batch at a time:
 
-1. claim one batch,
-2. translate missing entries,
-3. persist results in small parts under a unique claim ID,
-4. heartbeat the claim,
-5. create a completion marker when the batch is fully covered.
+1. atomically claim one available batch,
+2. resume valid persisted partial results for that batch,
+3. translate only missing entries,
+4. persist QA-passed results every 10 entries under a unique claim ID,
+5. heartbeat the claim after every persisted part,
+6. create a completion marker when the batch is fully covered,
+7. immediately scan for and claim another available batch,
+8. repeat until the session/tool limit is approaching, no assignable batch remains, or a blocking repository/source inconsistency is found.
 
-GitHub Actions is the only actor that merges completed batches into `localized_data/` and advances canonical progress.
+Do **not** wait for the merge workflow before claiming the next batch. GitHub Actions is the only actor that merges completed batches into `localized_data/` and advances canonical progress.
 
-This prevents cross-session file conflicts and makes partial work durable.
+This prevents cross-session file conflicts, makes partial work durable, and lets a healthy session complete multiple batches rather than stopping after one.
 
 ## Read these files first
 
@@ -28,26 +31,26 @@ Every new worker session must read:
 The progress file pins the exact source snapshot with:
 
 - `source_commit`: upstream `Hachimi-Hachimi/tl-zh-cn` commit
-- `source_batch_ref`: exact commit in this repository that contains the immutable source batches
+- `source_batch_ref`: exact commit in this repository containing immutable source batches
 - `source_batch_path_pattern`
 
-Do not silently switch to the latest `source-zhcn` branch head. Use `source_batch_ref`.
+Do not silently switch to the latest `source-zhcn` branch head. Always use `source_batch_ref`.
 
 ## Claiming a batch
 
-Start scanning from `parallel_state.next_unmerged_batch`.
+At the start of every loop iteration, re-read `work/translation_progress.json` from `main`, then scan from `parallel_state.next_unmerged_batch`.
 
 For each candidate batch `N`:
 
 1. If `work/merged/batch-{N:05d}.json` exists, skip it.
-2. If `N > parallel_state.assign_through_batch`, stop. Tail batches beyond this boundary are reserved for a later asset-specific phase.
+2. If `N > parallel_state.assign_through_batch`, stop scanning. Tail batches are reserved for later asset-specific handling.
 3. Check `work/claims/batch-{N:05d}.json`.
 4. If no claim exists, atomically create it on `main`.
 5. If another worker created it first, the create will fail; try the next batch.
 6. If the claim exists and has not expired, try the next batch.
 7. If the claim is expired, replace it using its current blob SHA. If that update races and fails, try the next batch.
 
-Use a unique claim ID such as:
+Use a new unique claim ID for every batch claimed by the session, for example:
 
 `chatgpt-20260825T163000Z-a1b2c3`
 
@@ -77,7 +80,7 @@ Source path:
 
 `work/source_batches/batch-{N:05d}.json`
 
-Verify all of these before translating:
+Verify before translating:
 
 - batch number is `N`
 - batch `source_commit` equals progress `source_commit`
@@ -91,11 +94,9 @@ Before translating, inspect all existing result files under:
 
 `work/results/batch-{N:05d}/`
 
-They may belong to previous claim IDs from sessions that died.
+They may belong to previous claim IDs from sessions that died. Build a set of already persisted valid UIDs and translate only source UIDs that are still missing.
 
-Build a set of already persisted UIDs. Translate only source UIDs that do not yet have a valid persisted result.
-
-A new worker is allowed to finish a batch started by an expired/dead worker.
+A new worker may finish a batch started by an expired/dead worker.
 
 ## Persist every 10 entries
 
@@ -127,15 +128,13 @@ Result schema:
 }
 ```
 
-After the part is safely committed, heartbeat the claim by extending its expiry.
+After the part is safely committed, heartbeat the claim by extending its expiry. If the session dies after that, the committed part remains usable. At most the current uncommitted 10-entry part is lost.
 
-If the session dies after that, the committed part remains usable. At most the current uncommitted 10-entry part is lost.
+If the session/tool budget appears nearly exhausted, prioritize persisting the current QA-passed partial part and heartbeat rather than starting a new 10-entry chunk.
 
 ## Translation requirements
 
-Translate Simplified Chinese to natural Vietnamese.
-
-Do not use UmaTL English text as AI input.
+Translate Simplified Chinese to natural Vietnamese. Do not use UmaTL English text as AI input.
 
 Preserve runtime syntax exactly:
 
@@ -160,7 +159,7 @@ Before persisting a part, verify each source/target pair:
 - JSON escaping is valid
 - terminology is consistent
 
-## Completing a batch
+## Completing a batch and continuing
 
 When valid result files across all attempts cover every UID in the source batch, create:
 
@@ -178,17 +177,11 @@ Example:
 }
 ```
 
+After this marker is safely committed, **do not stop just because the batch is complete**. Return to the claiming procedure, use a fresh claim ID, and claim another available batch. Continue this loop while there is enough session/tool capacity to make useful progress.
+
 Do not edit `localized_data/` yourself.
 
-The `Merge parallel translation results` workflow will:
-
-1. collect all result parts for the batch, including parts from earlier dead attempts,
-2. verify fingerprints, source snapshot, placeholders, markup and newlines,
-3. refuse conflicting translations instead of guessing,
-4. merge a fully covered batch into `localized_data/`,
-5. create `work/merged/batch-{N:05d}.json`,
-6. update `work/translation_progress.json`,
-7. regenerate/validate the Hachimi data through normal CI.
+The `Merge parallel translation results` workflow will collect result parts, verify source/fingerprints/runtime syntax, refuse conflicts, merge fully covered batches into `localized_data/`, create `work/merged/` markers, update canonical progress, and trigger normal validation/release.
 
 ## Failure recovery
 
@@ -204,14 +197,12 @@ If two attempts produce different translations for the same UID, auto-merge stop
 
 ## Recommended parallelism
 
-Run one batch per ChatGPT session.
+A session owns one active batch at a time, but may complete **multiple batches sequentially** during its lifetime.
 
-Because claims are atomic, you can launch many sessions with the same prompt. They will self-assign different available batches.
-
-A practical starting point is 10-20 concurrent sessions. Increase only if GitHub API/Actions throughput remains healthy.
+Because claims are atomic, launch many sessions with the same prompt; they self-assign different available batches. A practical starting point is 10-20 concurrent sessions. Increase only if GitHub API/Actions throughput remains healthy.
 
 ## Prompt for every worker session
 
 Use the same prompt in every new session:
 
-> Continue `tailolicon/hachimi-tl-vi` as a parallel translation worker. Do not rely on chat history. Read `PARALLEL_WORKERS.md` and `work/translation_progress.json` from `main`. Atomically claim one available batch, using the pinned `source_batch_ref`. Resume any persisted partial results for that batch, translate only missing entries from zh-CN to Vietnamese, and persist QA-passed results every 10 entries under `work/results`. Heartbeat the claim after each persisted part. When all source UIDs are covered, create the completion marker. Never edit `localized_data` or canonical progress directly; the merge workflow owns those. Continue until your claimed batch is complete or the session/tool limit prevents further work.
+> Continue `tailolicon/hachimi-tl-vi` as a parallel translation worker. Do not rely on chat history. Read `PARALLEL_WORKERS.md` and `work/translation_progress.json` from `main`. Repeatedly atomically claim one available batch at a time using the pinned `source_batch_ref`. For each claimed batch, resume valid persisted partial results, translate only missing entries from zh-CN to Vietnamese, persist QA-passed results every 10 entries under `work/results`, and heartbeat the claim after every persisted part. When all source UIDs are covered, create the completion marker, then immediately claim another available batch and continue. Never edit `localized_data` or canonical progress directly; the merge workflow owns those. Keep working until the session/tool limit is approaching, no assignable batch remains, or a blocking source/repository inconsistency prevents safe continuation. Before stopping, persist any QA-passed partial work already completed.

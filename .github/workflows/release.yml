@@ -58,6 +58,12 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git checkout --orphan _release_build
           git rm -rf . >/dev/null 2>&1 || true
+
+          # The downloaded font bundles are untracked on main. Remove the old
+          # working-tree directory before restoring the staged release payload,
+          # otherwise cp would create localized_data/localized_data/.
+          rm -rf localized_data index.json meta.json
+
           cp -a "$tmp/localized_data" ./localized_data
           cp "$tmp/index.json" ./index.json
           cp "$tmp/meta.json" ./meta.json

@@ -1,0 +1,57 @@
+name: Sync parallel curation plan
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "glossary/speech_review_queue.json"
+      - "glossary/terminology_review_queue.json"
+      - "scripts/build_parallel_curation_plan.py"
+      - ".github/workflows/sync-curation-plan.yml"
+  schedule:
+    - cron: "23 5 * * *"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sync-parallel-curation-plan
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Refresh main
+        run: git pull --ff-only origin main
+      - name: Build or extend active plan
+        run: python scripts/build_parallel_curation_plan.py
+      - name: Commit plan when changed
+        shell: bash
+        run: |
+          set -euo pipefail
+          git add work/curation/active_plan.json work/curation/plans
+          if git diff --cached --quiet; then
+            echo "Curation plan already current."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Sync parallel curation plan"
+          for attempt in 1 2 3 4 5; do
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+            git pull --rebase origin main
+            sleep $((attempt * 2))
+          done
+          echo "Could not publish curation plan safely." >&2
+          exit 1

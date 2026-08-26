@@ -131,6 +131,16 @@ def compact_term_registry(
     }
 
 
+def compact_observed_term_memory(
+    entries: Sequence[SourceEntry], observed: dict[str, Any]
+) -> dict[str, Any]:
+    return {
+        "schema_version": observed.get("schema_version"),
+        "policy": observed.get("policy", {}),
+        "terms": select_relevant_terms(entries, observed, include_core=False),
+    }
+
+
 def compact_character_registry(
     entries: Sequence[SourceEntry], characters: dict[str, Any]
 ) -> dict[str, Any]:

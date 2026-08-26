@@ -8,6 +8,7 @@ from ..context_registry import (
     compact_character_registry,
     compact_observed_term_memory,
     compact_speech_bible,
+    compact_speech_evidence,
     compact_term_registry,
 )
 from ..model import SourceEntry
@@ -40,6 +41,7 @@ def build_messages(entries: Sequence[SourceEntry], glossary_dir: str | Path = "g
     observed_terms_full = load_json(glossary_dir / "observed_terms.json", {})
     characters_full = load_json(glossary_dir / "characters.json", {})
     speech_bible_full = load_json(glossary_dir / "speech_bible.json", {})
+    speech_evidence_full = load_json(glossary_dir / "speech_evidence.json", {})
     style = load_json(glossary_dir / "style_rules.json", {})
     game_context = load_json(glossary_dir / "game_context.json", {})
     source_languages = sorted({infer_source_language(e) for e in entries})
@@ -49,10 +51,16 @@ def build_messages(entries: Sequence[SourceEntry], glossary_dir: str | Path = "g
     term_registry = compact_term_registry(entries, term_registry_full)
     observed_terms = compact_observed_term_memory(entries, observed_terms_full)
     characters = compact_character_registry(entries, characters_full)
+    selected_characters = characters.get("characters", {})
     speech_bible = compact_speech_bible(
         entries,
         speech_bible_full,
-        selected_characters=characters.get("characters", {}),
+        selected_characters=selected_characters,
+    )
+    speech_evidence = compact_speech_evidence(
+        entries,
+        speech_evidence_full,
+        selected_characters=selected_characters,
     )
 
     system = """Bạn là bộ dịch tiếng Việt chuyên cho Uma Musume Pretty Derby (server JP) và Hachimi Edge.
@@ -65,7 +73,7 @@ QUY TẮC BẮT BUỘC:
 4. `term_registry` là canonical. Thuật ngữ `locked` phải dùng đúng `target_vi` và có ưu tiên cao nhất.
 5. `observed_terminology` là memory học từ entity đã được merge. Với source entity trùng chính xác và không mâu thuẫn với locked rule, tái sử dụng `target_vi` để các batch sau không đổi cách dịch.
 6. Character registry trong payload đã được lọc theo batch nhưng là canonical: nếu có mapping thì bắt buộc dùng canonical thay vì dịch nghĩa tên zh-CN.
-7. `speech_bible` chỉ chứa profile liên quan đến batch. Dùng nó để giữ register, nhịp và cá tính; nhưng wording/source scene luôn có ưu tiên cao hơn profile tổng quát.
+7. Thứ tự ưu tiên giọng nhân vật là: source wording + scene context > `speech_bible` curated > `speech_evidence` > style rule chung. `speech_evidence` chỉ là thống kê corpus để bảo toàn nhịp/punctuation, KHÔNG phải bằng chứng personality, quan hệ, dialect hay đại từ cố định.
 8. Không ép một cặp đại từ tiếng Việt cố định cho nhân vật. Xưng hô phải dựa trên quan hệ, tuổi/seniority, scene và self-reference thực sự có trong source. Nếu source tự xưng bằng tên riêng (ví dụ Rice/Turbo), đừng tự đổi thành 'tôi'.
 9. Phân biệt Stamina stat (スタミナ/耐力 = Thể lực) với training energy (体力 = Năng lượng).
 10. Dùng cố định các running-style label Nige / Senko / Sashi / Oikomi / Dai Nige theo registry.
@@ -84,6 +92,7 @@ QUY TẮC BẮT BUỘC:
         "legacy_terminology": terminology,
         "character_rules": characters,
         "speech_bible": speech_bible,
+        "speech_evidence": speech_evidence,
         "style_rules": style,
         "items": [
             {

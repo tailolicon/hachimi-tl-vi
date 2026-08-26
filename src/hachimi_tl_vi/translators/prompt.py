@@ -4,6 +4,7 @@ import json
 from pathlib import Path
 from typing import Sequence, Any
 
+from ..context_registry import compact_character_registry, compact_term_registry
 from ..model import SourceEntry
 
 
@@ -30,11 +31,17 @@ def infer_source_language(entry: SourceEntry) -> str:
 def build_messages(entries: Sequence[SourceEntry], glossary_dir: str | Path = "glossary") -> list[dict[str, str]]:
     glossary_dir = Path(glossary_dir)
     terminology = load_json(glossary_dir / "terminology.json", {})
-    term_registry = load_json(glossary_dir / "term_registry.json", {})
-    characters = load_json(glossary_dir / "characters.json", {})
+    term_registry_full = load_json(glossary_dir / "term_registry.json", {})
+    characters_full = load_json(glossary_dir / "characters.json", {})
     style = load_json(glossary_dir / "style_rules.json", {})
     game_context = load_json(glossary_dir / "game_context.json", {})
     source_languages = sorted({infer_source_language(e) for e in entries})
+
+    # The canonical registries may grow to thousands of records. Inject only the
+    # core concepts plus records actually mentioned in this batch so parallel
+    # workers stay deterministic without wasting context tokens.
+    term_registry = compact_term_registry(entries, term_registry_full)
+    characters = compact_character_registry(entries, characters_full)
 
     system = """Bạn là bộ dịch tiếng Việt chuyên cho Uma Musume Pretty Derby (server JP) và Hachimi Edge.
 Nguồn có thể là tiếng Nhật hoặc bản zh-CN mới của nội dung server JP. Khi nguồn là zh-CN, hãy dùng nó như semantic bridge; tên riêng phải theo registry/canonical game context, KHÔNG dịch nghĩa tên nhân vật/ngựa tiếng Trung sang tiếng Việt.
@@ -44,12 +51,13 @@ QUY TẮC BẮT BUỘC:
 2. Giữ NGUYÊN mọi placeholder/template/tag/markup/runtime token, ví dụ {0}, {name}, <color=...>, </color>, $(), %s và mã máy.
 3. Không tự bịa lore, quan hệ, cơ chế hoặc tên riêng. Khi mơ hồ, dùng game context + entry context.
 4. Tôn trọng term registry. Thuật ngữ locked phải dùng đúng target_vi.
-5. Phân biệt Stamina stat (スタミナ/耐力 = Thể lực) với training energy (体力 = Năng lượng).
-6. Dùng cố định các running-style label Nige / Senko / Sashi / Oikomi / Dai Nige theo registry.
-7. Với hội thoại, giữ cá tính nhân vật và quan hệ xưng hô; không san phẳng mọi nhân vật về cùng một giọng.
-8. Với UI/skill/race, ưu tiên ngắn gọn, rõ nghĩa và chính xác cơ chế.
-9. Nếu tên/thuật ngữ chưa có registry, không tự tạo bản dịch canonical mới. Dùng dạng nhận diện an toàn nhất.
-10. Đầu ra PHẢI là JSON thuần theo schema: {\"translations\":[{\"id\":\"...\",\"text\":\"...\"}]}. Không markdown, không code fence, không trường thừa.
+5. Character registry trong payload đã được lọc theo batch nhưng là canonical: nếu có mapping thì bắt buộc dùng canonical thay vì dịch nghĩa tên zh-CN.
+6. Phân biệt Stamina stat (スタミナ/耐力 = Thể lực) với training energy (体力 = Năng lượng).
+7. Dùng cố định các running-style label Nige / Senko / Sashi / Oikomi / Dai Nige theo registry.
+8. Với hội thoại, giữ cá tính nhân vật và quan hệ xưng hô; không san phẳng mọi nhân vật về cùng một giọng.
+9. Với UI/skill/race, ưu tiên ngắn gọn, rõ nghĩa và chính xác cơ chế.
+10. Nếu tên/thuật ngữ chưa có registry, không tự tạo bản dịch canonical mới. Dùng dạng nhận diện an toàn nhất và không dịch literal tên riêng tiếng Trung.
+11. Đầu ra PHẢI là JSON thuần theo schema: {\"translations\":[{\"id\":\"...\",\"text\":\"...\"}]}. Không markdown, không code fence, không trường thừa.
 """
 
     payload = {

@@ -81,3 +81,48 @@ def test_locked_term_is_not_actionable_and_unknown_character_is_identity_review(
     locked = next(row for row in result["all_candidates"] if row["source_zh_cn"] == "技能")
     assert locked["status"] == "canonical_locked"
     assert locked["canonical_target_vi"] == "Kỹ năng"
+
+
+def test_explicit_defer_and_ignore_are_removed_from_actionable_queue():
+    generated = {
+        "total": 3,
+        "candidates": [
+            candidate("skill_name", "延后术语"),
+            candidate("support_card_title", "装饰短语", "76", "2"),
+            candidate("race_name", "待处理比赛", "32", "3"),
+        ],
+    }
+    reviews = {
+        "decisions": [
+            {"decision_id": "defer-1", "action": "defer", "source_zh_cn": "延后术语"},
+            {"decision_id": "ignore-1", "action": "ignore", "source_zh_cn": "装饰短语"},
+        ]
+    }
+
+    result = build_queue(generated, {}, {"terms": []}, {"characters": {}}, reviews)
+    actionable_sources = {row["source_zh_cn"] for row in result["review_queue"]}
+    assert "延后术语" not in actionable_sources
+    assert "装饰短语" not in actionable_sources
+    assert "待处理比赛" in actionable_sources
+    deferred = next(row for row in result["all_candidates"] if row["source_zh_cn"] == "延后术语")
+    ignored = next(row for row in result["all_candidates"] if row["source_zh_cn"] == "装饰短语")
+    assert deferred["status"] == "reviewed_deferred"
+    assert ignored["status"] == "reviewed_ignored"
+    assert result["summary"]["explicit_review_decisions"] == 2
+
+
+def test_explicit_lock_stays_high_priority_until_registry_application():
+    generated = {"total": 1, "candidates": [candidate("skill_name", "弧线教授")]}
+    reviews = {
+        "decisions": [
+            {
+                "decision_id": "lock-curve",
+                "action": "lock",
+                "source_zh_cn": "弧线教授",
+                "target_vi": "Giáo sư Đường cong",
+            }
+        ]
+    }
+    result = build_queue(generated, {}, {"terms": []}, {"characters": {}}, reviews)
+    assert result["review_queue"][0]["status"] == "pending_lock_application"
+    assert result["review_queue"][0]["review_decision"]["decision_id"] == "lock-curve"

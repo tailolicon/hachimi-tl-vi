@@ -11,6 +11,7 @@ DEFAULT_CANDIDATES = ROOT / "glossary/generated_candidates.json"
 DEFAULT_OBSERVED = ROOT / "glossary/observed_terms.json"
 DEFAULT_REGISTRY = ROOT / "glossary/term_registry.json"
 DEFAULT_CHARACTERS = ROOT / "glossary/characters.json"
+DEFAULT_REVIEWS = ROOT / "glossary/terminology_reviews.json"
 DEFAULT_OUTPUT = ROOT / "glossary/terminology_review_queue.json"
 
 KIND_PRIORITY = {
@@ -74,6 +75,24 @@ def character_aliases(characters: dict[str, Any]) -> set[str]:
     return result
 
 
+def review_decisions(reviews: dict[str, Any]) -> dict[str, dict[str, Any]]:
+    result: dict[str, dict[str, Any]] = {}
+    raw = reviews.get("decisions", [])
+    if not isinstance(raw, list):
+        return result
+    for decision in raw:
+        if not isinstance(decision, dict):
+            continue
+        source = str(decision.get("source_zh_cn") or "").strip()
+        action = str(decision.get("action") or "").strip().lower()
+        if not source or action not in {"lock", "defer", "ignore"}:
+            continue
+        # A source should have one effective explicit review decision. If a later
+        # decision supersedes an earlier one, the ledger order is authoritative.
+        result[source] = decision
+    return result
+
+
 def best_kind(kinds: set[str]) -> str:
     if not kinds:
         return "unknown"
@@ -85,6 +104,7 @@ def build_queue(
     observed: dict[str, Any],
     registry: dict[str, Any],
     characters: dict[str, Any],
+    reviews: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     locked_aliases: dict[str, dict[str, Any]] = {}
     for term in registry.get("terms", []):
@@ -115,6 +135,7 @@ def build_queue(
         if source:
             conflict_map[source] = conflict
 
+    decisions = review_decisions(reviews or {})
     char_aliases = character_aliases(characters)
 
     grouped: dict[str, dict[str, Any]] = {}
@@ -157,11 +178,27 @@ def build_queue(
         locked = locked_aliases.get(source)
         conflict = conflict_map.get(source)
         memory = observed_map.get(source)
+        decision = decisions.get(source)
+        decision_action = str(decision.get("action") or "").strip().lower() if decision else None
 
         if locked:
             status = "canonical_locked"
             priority = 0
             reason = "Already covered by locked term_registry."
+        elif decision_action == "defer":
+            status = "reviewed_deferred"
+            priority = 0
+            reason = "Explicit review decision deferred canonical normalization."
+        elif decision_action == "ignore":
+            status = "reviewed_ignored"
+            priority = 0
+            reason = "Explicit review decision says this candidate should not become canonical terminology."
+        elif decision_action == "lock":
+            # Normally apply_terminology_reviews.py runs before this builder, so
+            # an unapplied lock means something prevented registry promotion.
+            status = "pending_lock_application"
+            priority = 12000 + base
+            reason = "Explicit lock decision exists but the canonical registry does not contain it yet."
         elif conflict:
             status = "conflict_review"
             priority = 10000 + base
@@ -206,6 +243,12 @@ def build_queue(
             output["observed_term_id"] = memory.get("id")
         if conflict:
             output["conflicting_targets_vi"] = conflict.get("targets_vi", [])
+        if decision:
+            output["review_decision"] = {
+                "decision_id": decision.get("decision_id"),
+                "action": decision_action,
+                "target_vi": decision.get("target_vi"),
+            }
         queue.append(output)
         status_counts[status] += 1
 
@@ -217,17 +260,14 @@ def build_queue(
         )
     )
 
-    actionable = [
-        row
-        for row in queue
-        if row["status"]
-        in {
-            "conflict_review",
-            "character_identity_review",
-            "promotion_candidate",
-            "needs_translation_review",
-        }
-    ]
+    actionable_statuses = {
+        "pending_lock_application",
+        "conflict_review",
+        "character_identity_review",
+        "promotion_candidate",
+        "needs_translation_review",
+    }
+    actionable = [row for row in queue if row["status"] in actionable_statuses]
     return {
         "schema_version": 1,
         "source_repo": generated.get("source_repo"),
@@ -235,8 +275,9 @@ def build_queue(
         "policy": {
             "status": "review_only",
             "rule": "This queue ranks review work. It is never injected into translation prompts and never locks terms automatically.",
-            "priority_order": "conflicts > unresolved character identities > observed promotion candidates > untranslated skill/race/scenario/support entities.",
+            "priority_order": "unapplied explicit locks > conflicts > unresolved character identities > observed promotion candidates > untranslated skill/race/scenario/support entities.",
             "character_rule": "Known character names are handled by characters.json and must not be semantic-calqued into Vietnamese.",
+            "decision_rule": "Explicit defer/ignore decisions are removed from actionable work; explicit lock decisions remain actionable until the canonical registry contains them.",
         },
         "summary": {
             "unique_candidate_sources": len(queue),
@@ -244,6 +285,7 @@ def build_queue(
             "generated_candidate_records": int(generated.get("total", len(candidates)) or 0),
             "observed_unique_terms": int(observed.get("observed_count", len(observed_map)) or 0),
             "observed_conflicts": int(observed.get("conflict_count", len(conflict_map)) or 0),
+            "explicit_review_decisions": len(decisions),
             "status_counts": dict(sorted(status_counts.items())),
         },
         "review_queue": actionable,
@@ -257,6 +299,7 @@ def main() -> int:
     parser.add_argument("--observed", type=Path, default=DEFAULT_OBSERVED)
     parser.add_argument("--registry", type=Path, default=DEFAULT_REGISTRY)
     parser.add_argument("--characters", type=Path, default=DEFAULT_CHARACTERS)
+    parser.add_argument("--reviews", type=Path, default=DEFAULT_REVIEWS)
     parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
     args = parser.parse_args()
 
@@ -264,10 +307,11 @@ def main() -> int:
     observed = read_json(args.observed, {}) or {}
     registry = read_json(args.registry, {}) or {}
     characters = read_json(args.characters, {}) or {}
-    if not all(isinstance(value, dict) for value in (generated, observed, registry, characters)):
+    reviews = read_json(args.reviews, {}) or {}
+    if not all(isinstance(value, dict) for value in (generated, observed, registry, characters, reviews)):
         raise SystemExit("all terminology review inputs must be JSON objects")
 
-    queue = build_queue(generated, observed, registry, characters)
+    queue = build_queue(generated, observed, registry, characters, reviews)
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(queue, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     summary = queue["summary"]
@@ -275,7 +319,8 @@ def main() -> int:
         f"candidate_records={summary['generated_candidate_records']} "
         f"unique_sources={summary['unique_candidate_sources']} "
         f"actionable={summary['actionable']} "
-        f"conflicts={summary['observed_conflicts']}"
+        f"conflicts={summary['observed_conflicts']} "
+        f"decisions={summary['explicit_review_decisions']}"
     )
     return 0
 

@@ -10,10 +10,13 @@ on:
       - "glossary/characters.json"
       - "glossary/speech_bible.json"
       - "scripts/extract_speaker_samples.py"
+      - "scripts/build_speech_evidence_profiles.py"
       - "scripts/build_speech_review_queue.py"
       - "src/hachimi_tl_vi/context_registry.py"
       - "src/hachimi_tl_vi/translators/prompt.py"
       - "tests/test_speech_context.py"
+      - "tests/test_context_registry.py"
+      - "tests/test_prompt_context.py"
       - ".github/workflows/sync-speech-context.yml"
 
 permissions:
@@ -69,6 +72,9 @@ jobs:
             --max-samples 12 \
             --max-unmatched 200
 
+      - name: Build conservative speech fallback profiles
+        run: python scripts/build_speech_evidence_profiles.py
+
       - name: Build speech review queue
         run: python scripts/build_speech_review_queue.py
 
@@ -81,7 +87,7 @@ jobs:
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add glossary/speech_samples.json glossary/speech_review_queue.json
+          git add glossary/speech_samples.json glossary/speech_evidence.json glossary/speech_review_queue.json
           if git diff --cached --quiet; then
             echo "Speech context is already current."
             exit 0

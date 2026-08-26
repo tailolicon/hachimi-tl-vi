@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from hachimi_tl_vi.context_registry import (
     compact_character_registry,
+    compact_observed_term_memory,
     select_relevant_characters,
     select_relevant_terms,
 )
@@ -65,3 +66,17 @@ def test_context_fields_can_select_character():
     )
     compact = compact_character_registry([source], registry)
     assert compact["characters"]["1007"]["canonical"] == "Gold Ship"
+
+
+def test_observed_memory_injects_only_exactly_relevant_entities():
+    observed = {
+        "schema_version": 1,
+        "policy": {"priority": "locked wins"},
+        "terms": [
+            {"id": "observed:1", "zh_cn": ["弧线教授"], "target_vi": "Giáo sư Đường cong"},
+            {"id": "observed:2", "zh_cn": ["日本德比"], "target_vi": "Japan Derby"},
+        ],
+    }
+    compact = compact_observed_term_memory([entry("获得技能：弧线教授")], observed)
+    assert [term["id"] for term in compact["terms"]] == ["observed:1"]
+    assert compact["terms"][0]["target_vi"] == "Giáo sư Đường cong"

@@ -18,13 +18,31 @@ Mọi worker song song phải đọc cùng context trong repo thay vì tự nghi
 
 - `GAME_CONTEXT.md` — world/game/translation bible
 - `glossary/term_registry.json` — thuật ngữ JP ↔ zh-CN ↔ VI đã review/lock
-- `glossary/characters.json` — canonical character identity + alias + speech/relationship rules
+- `glossary/observed_terms.json` — exact terminology memory học từ các entity đã merge; không tự coi là canonical
+- `glossary/terminology_review_queue.json` — queue ưu tiên conflict/promotion/new entity
+- `glossary/terminology_reviews.json` — ledger quyết định `lock` / `defer` / `ignore`
+- `glossary/characters.json` — canonical character identity + JP/zh-CN alias
+- `glossary/speech_bible.json` — speech profile đã curate để giữ register/nhịp/cá tính
+- `glossary/speech_samples.json` — mẫu hội thoại + thống kê từ exact pinned snapshot, chỉ dùng làm evidence review
+- `glossary/speech_review_queue.json` — queue các nhân vật chưa có speech profile
 - `glossary/style_rules.json` — luật theo UI/skill/story/race/lyrics
 - `glossary/generated_candidates.json` — candidate race/skill/support/scenario để review, **không phải canonical glossary**
 
-Character registry và terminology candidates được tự sync từ snapshot đang pin. Prompt chỉ inject core terms + entity thật sự xuất hiện trong batch, nên registry có thể lớn mà không làm mọi request phình context.
+Character registry, terminology candidates và speech evidence đều bám exact `source_commit` trong `work/translation_progress.json`. Prompt chỉ inject core terms + observed term + character/speech profile thật sự liên quan đến batch, nên các registry có thể lớn mà không làm mọi request phình context.
 
 Xem chi tiết tại `CONTEXT_MAINTENANCE.md` và `PARALLEL_WORKERS.md`.
+
+## Trạng thái context bootstrap 2026
+
+Ở snapshot đang pin:
+
+- 142 structured character identities; 141 có game ID đã resolve và 1 identity giữ stable slug vì chưa có ID đáng tin.
+- 5.584 terminology candidate records, gom thành 5.179 source entity duy nhất.
+- Speech sampler đã quét 18.299 asset JSON và 440.394 dialogue block.
+- 330.719 dialogue block map được về 141 character identities; 0 ambiguous alias và 0 invalid JSON trong lần scan hiện tại.
+- Speech Bible hiện có seed curated profiles; các nhân vật còn lại được ưu tiên trong `speech_review_queue.json` theo lượng dialogue evidence.
+
+Các con số này là snapshot-derived và sẽ được workflow sinh lại khi pinned source thay đổi.
 
 ## Hỗ trợ
 
@@ -35,14 +53,15 @@ Pipeline hiện có các lớp chính của Hachimi:
 - `master.mdb`: `text_data`, `character_system_text`, `race_jikkyo_comment`, `race_jikkyo_message`
 - asset JSON Hachimi: story, home dialogue, race story, lyrics và các field text phổ biến
 - Translation Memory SQLite
-- shared game context + terminology/character registry
+- shared game context + canonical/observed terminology
+- canonical character registry + batch-filtered Character Speech Bible
 - relevance-filtered AI prompt context
 - dịch batch qua API OpenAI-compatible
 - QA placeholder/tag/newline
 - parallel worker claims + persisted results + merge workflow
 - compile `localized_data/`
 - tạo `index.json` với BLAKE3 cho updater của Hachimi
-- GitHub Actions validate, context sync và tạo nhánh `release`
+- GitHub Actions validate, source/context/speech sync và tạo nhánh `release`
 
 ## Cài môi trường
 
@@ -133,12 +152,29 @@ Kết quả là `localized_data/` + `index.json` tương thích translation repo
 
 ## Context maintenance
 
+Sinh/sync identity và terminology review data:
+
 ```bash
 python scripts/sync_context_registry.py
 python scripts/extract_context_candidates.py
+python scripts/build_observed_term_memory.py
+python scripts/apply_terminology_reviews.py --check
+python scripts/apply_terminology_reviews.py
+python scripts/build_terminology_review_queue.py
 ```
 
-GitHub Actions cũng chạy context sync định kỳ, nhưng luôn đọc exact `source_commit` từ `work/translation_progress.json`; nó không tự đổi corpus đang được các worker dịch.
+`apply_terminology_reviews.py` chỉ promote các quyết định `action=lock` đã được ghi rõ trong `glossary/terminology_reviews.json`. Nếu alias đã bị khóa sang một target khác, script dừng với lỗi thay vì ghi đè. `defer` và `ignore` không sửa canonical registry.
+
+Speech evidence/review:
+
+```bash
+python scripts/extract_speaker_samples.py --upstream-root PATH_TO_PINNED_SOURCE --source-commit PINNED_SHA
+python scripts/build_speech_review_queue.py
+```
+
+`glossary/speech_samples.json` chỉ là evidence. Chỉ `glossary/speech_bible.json` mới được inject làm speech guidance, và source scene luôn có ưu tiên cao hơn profile tổng quát.
+
+GitHub Actions chạy context/speech sync định kỳ nhưng luôn đọc exact pinned source; chúng không tự đổi corpus đang được các worker dịch và không sửa claim/result/canonical progress của worker.
 
 ## Repo selector của Hachimi
 
@@ -148,4 +184,4 @@ https://raw.githubusercontent.com/tailolicon/hachimi-tl-vi/release/index.json
 
 ## Trạng thái kỹ thuật
 
-Pipeline đang bootstrap từ corpus JP-server zh-CN 2026 và có thể migrate dần sang JP trực tiếp khi có snapshot mới tương đương. Extraction và translation được tách rời để game update/extractor mới không làm mất Translation Memory hoặc kết quả đã review.
+Pipeline đang bootstrap từ corpus JP-server zh-CN 2026 và có thể migrate dần sang JP trực tiếp khi có snapshot mới tương đương. Extraction, evidence, translation, review và canonical locking được tách rời để game update/extractor mới không làm mất Translation Memory hoặc kết quả đã review.

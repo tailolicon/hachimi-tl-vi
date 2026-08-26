@@ -1,0 +1,66 @@
+name: Sync UI review plan
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "localized_data/localize_dict.json"
+      - "UI_REVIEW.md"
+      - "UI_TRANSLATION_RULES.md"
+      - "glossary/ui_short_forms.json"
+      - "glossary/ui_overrides.json"
+      - "scripts/build_ui_review_plan.py"
+      - "scripts/ui_review_common.py"
+      - ".github/workflows/sync-ui-review-plan.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sync-ui-review-plan
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Build and publish a UI review plan safely
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            git checkout -B ui-review-plan origin/main
+
+            source_ref="$(python - <<'PY'
+          import json
+          from pathlib import Path
+          state = json.loads(Path('work/parallel_state.json').read_text())
+          epoch = json.loads(Path(state['current_epoch_metadata']).read_text())
+          print(epoch['source_queue_git_commit'])
+          PY
+            )"
+            git fetch origin "$source_ref"
+
+            python scripts/build_ui_review_plan.py --repo-root . --batch-size 20
+            git add work/ui_review
+            if git diff --cached --quiet; then
+              echo "UI review plan is already current or an active plan is still in progress."
+              exit 0
+            fi
+            git commit -m "UI review: sync active plan"
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+            sleep $((attempt * 2))
+          done
+
+          echo "Failed to publish UI review plan after retries" >&2
+          exit 1

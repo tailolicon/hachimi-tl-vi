@@ -1,0 +1,72 @@
+name: Merge UI review results
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "work/ui_review/completions/**"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: merge-ui-review
+  cancel-in-progress: false
+
+jobs:
+  merge:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: python -m pip install -e ".[dev]"
+      - name: Merge completed UI reviews against latest main
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            git checkout -B ui-review-merge origin/main
+
+            source_ref="$(python - <<'PY'
+          import json
+          from pathlib import Path
+          state = json.loads(Path('work/parallel_state.json').read_text())
+          epoch = json.loads(Path(state['current_epoch_metadata']).read_text())
+          print(epoch['source_queue_git_commit'])
+          PY
+            )"
+            git fetch origin "$source_ref"
+
+            python scripts/merge_ui_review.py --repo-root .
+            python scripts/apply_ui_overrides.py --repo-root .
+            pytest -q
+            tlvi --db /tmp/tlvi-ui-review.db validate
+            tlvi --db /tmp/tlvi-ui-review.db index
+
+            # If this completed the active plan, immediately create the next
+            # delta plan (or mark UI review idle). Otherwise this is a no-op.
+            python scripts/build_ui_review_plan.py --repo-root . --batch-size 20
+
+            git add localized_data index.json glossary/ui_overrides.json work/ui_review
+            if git diff --cached --quiet; then
+              echo "No new completed UI review work to merge."
+              exit 0
+            fi
+            git commit -m "Merge reviewed Vietnamese UI labels"
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+            sleep $((attempt * 2))
+          done
+
+          echo "Failed to merge UI review results after retries" >&2
+          exit 1

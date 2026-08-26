@@ -1,16 +1,44 @@
 {
+  "schema_version": 2,
   "global": [
     "Dịch tự nhiên sang tiếng Việt, không dịch word-by-word.",
-    "Giữ nguyên placeholder, markup, tag, mã màu và biến template.",
-    "Không tự thêm giải thích ngoài văn bản dịch.",
-    "Tên riêng phải nhất quán với glossary.",
-    "Hội thoại ưu tiên giọng nói tự nhiên và giữ cá tính nhân vật."
+    "Giữ nguyên placeholder, markup, tag, mã màu, runtime token và biến template.",
+    "Không tự thêm giải thích hoặc translator note vào text game.",
+    "Tên riêng và thuật ngữ đã khóa phải nhất quán với term_registry.json.",
+    "Nguồn zh-CN chỉ là semantic bridge: không dịch nghĩa tên nhân vật/ngựa tiếng Trung sang tiếng Việt.",
+    "Phân biệt stat Stamina/耐力 = Thể lực với energy gauge 体力 = Năng lượng.",
+    "Hội thoại ưu tiên giọng nói tự nhiên, quan hệ xưng hô và cá tính nhân vật.",
+    "Khi context không đủ, chọn cách diễn đạt trung tính thay vì bịa quan hệ hoặc lore."
   ],
   "kinds": {
-    "skill": ["Ngắn gọn, chính xác cơ chế, ưu tiên thuật ngữ thống nhất."],
-    "ui": ["Ngắn, dễ đọc trên nút/menu; tránh dài hơn nguồn quá mức."],
-    "story": ["Giữ sắc thái, quan hệ xưng hô, nhịp câu và cảm xúc."],
-    "lyrics": ["Ưu tiên nghĩa và nhịp tự nhiên; không buộc gieo vần nếu làm sai nghĩa."],
-    "race": ["Nhanh, rõ, mang phong cách bình luận thể thao."]
+    "skill": [
+      "Ngắn gọn, chính xác cơ chế; điều kiện kích hoạt và lối chạy/cự ly phải rõ.",
+      "Không thay đổi số, phần trăm, thời lượng hoặc runtime token."
+    ],
+    "ui": [
+      "Ngắn, dễ đọc trên nút/menu; tránh dài hơn nguồn quá mức.",
+      "Cùng một control/system term phải dùng cùng một nhãn."
+    ],
+    "text_data": [
+      "Xác định xem chuỗi là UI, system, item, skill, race hay story-like text trước khi chọn sắc thái."
+    ],
+    "character_system_text": [
+      "Giữ speaker voice và quan hệ xưng hô; ưu tiên character profile + scene context."
+    ],
+    "story": [
+      "Giữ sắc thái, quan hệ xưng hô, nhịp câu và cảm xúc; duy trì continuity với dòng trước/sau."
+    ],
+    "lyrics": [
+      "Ưu tiên nghĩa và nhịp tự nhiên; không buộc gieo vần nếu làm sai nghĩa."
+    ],
+    "race": [
+      "Nhanh, rõ, mang phong cách bình luận thể thao; không suy diễn sai vị trí/trạng thái cuộc đua."
+    ],
+    "race_jikkyo_comment": [
+      "Bình luận thể thao ngắn, giàu động lực nhưng chính xác trạng thái."
+    ],
+    "race_jikkyo_message": [
+      "Thông điệp đua rõ, ngắn, nhất quán thuật ngữ."
+    ]
   }
 }

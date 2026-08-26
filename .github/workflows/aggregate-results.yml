@@ -62,6 +62,11 @@ jobs:
             exit 0
           fi
           git commit -m "Aggregate completed translation shards"
+          if [[ -n "$(git status --porcelain)" ]]; then
+            echo "Unexpected working tree changes before rebase:" >&2
+            git status --short >&2
+            exit 1
+          fi
           for attempt in 1 2 3 4 5; do
             git fetch origin main
             if git rebase origin/main && git push origin HEAD:main; then

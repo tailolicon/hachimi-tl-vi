@@ -9,11 +9,16 @@ on:
     paths:
       - "scripts/sync_context_registry.py"
       - "scripts/extract_context_candidates.py"
+      - "scripts/build_terminology_review_queue.py"
+      - "src/hachimi_tl_vi/context_categories.py"
       - "src/hachimi_tl_vi/context_registry.py"
       - "src/hachimi_tl_vi/translators/prompt.py"
+      - "glossary/term_registry.json"
+      - "glossary/observed_terms.json"
       - "tests/test_context_registry.py"
       - "tests/test_context_sync.py"
       - "tests/test_prompt_context.py"
+      - "tests/test_terminology_review.py"
       - "pyproject.toml"
       - ".github/workflows/sync-context.yml"
 
@@ -46,6 +51,9 @@ jobs:
       - name: Extract terminology candidates
         run: python scripts/extract_context_candidates.py
 
+      - name: Build terminology review queue
+        run: python scripts/build_terminology_review_queue.py
+
       - name: Test context pipeline
         run: pytest -q
 
@@ -55,7 +63,10 @@ jobs:
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add glossary/characters.json glossary/generated_candidates.json
+          git add \
+            glossary/characters.json \
+            glossary/generated_candidates.json \
+            glossary/terminology_review_queue.json
           if git diff --cached --quiet; then
             echo "Context is already current."
             exit 0

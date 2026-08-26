@@ -21,6 +21,7 @@ def test_prompt_loads_shared_game_context(tmp_path: Path):
     (glossary / "observed_terms.json").write_text("{}", encoding="utf-8")
     (glossary / "characters.json").write_text("{}", encoding="utf-8")
     (glossary / "speech_bible.json").write_text("{}", encoding="utf-8")
+    (glossary / "speech_evidence.json").write_text("{}", encoding="utf-8")
     (glossary / "style_rules.json").write_text("{}", encoding="utf-8")
 
     entry = SourceEntry(uid="zhcn:test", kind="text_data", source_text="速度", locator={})
@@ -33,7 +34,7 @@ def test_prompt_loads_shared_game_context(tmp_path: Path):
     assert payload["items"][0]["source_language"] == "zh-CN"
 
 
-def test_prompt_injects_only_relevant_character_speech_profile(tmp_path: Path):
+def test_prompt_injects_only_relevant_character_speech_guidance(tmp_path: Path):
     glossary = tmp_path / "glossary"
     glossary.mkdir()
     (glossary / "game_context.json").write_text("{}", encoding="utf-8")
@@ -57,8 +58,19 @@ def test_prompt_injects_only_relevant_character_speech_profile(tmp_path: Path):
         json.dumps(
             {
                 "profiles": {
-                    "1007": {"canonical": "Gold Ship", "register": ["hỗn loạn"]},
-                    "1001": {"canonical": "Special Week", "register": ["chân thành"]},
+                    "1007": {"canonical": "Gold Ship", "register": ["hỗn loạn"]}
+                }
+            },
+            ensure_ascii=False,
+        ),
+        encoding="utf-8",
+    )
+    (glossary / "speech_evidence.json").write_text(
+        json.dumps(
+            {
+                "profiles": {
+                    "1001": {"canonical": "Special Week", "status": "evidence_only"},
+                    "1007": {"canonical": "Gold Ship", "status": "evidence_only_should_not_matter"},
                 }
             },
             ensure_ascii=False,
@@ -66,15 +78,29 @@ def test_prompt_injects_only_relevant_character_speech_profile(tmp_path: Path):
         encoding="utf-8",
     )
 
-    entry = SourceEntry(
-        uid="zhcn:test",
+    gold = SourceEntry(
+        uid="zhcn:gold",
         kind="story",
         source_text="走吧！",
         locator={},
         context={"speaker": "黄金船", "source_language": "zh-CN"},
     )
-    messages = build_messages([entry], glossary)
+    messages = build_messages([gold], glossary)
     payload = json.loads(messages[1]["content"])
     assert list(payload["character_rules"]["characters"]) == ["1007"]
     assert list(payload["speech_bible"]["profiles"]) == ["1007"]
     assert payload["speech_bible"]["profiles"]["1007"]["register"] == ["hỗn loạn"]
+    assert list(payload["speech_evidence"]["profiles"]) == ["1007"]
+
+    special = SourceEntry(
+        uid="zhcn:special",
+        kind="story",
+        source_text="加油！",
+        locator={},
+        context={"speaker": "特别周", "source_language": "zh-CN"},
+    )
+    messages = build_messages([special], glossary)
+    payload = json.loads(messages[1]["content"])
+    assert payload["speech_bible"]["profiles"] == {}
+    assert list(payload["speech_evidence"]["profiles"]) == ["1001"]
+    assert payload["speech_evidence"]["profiles"]["1001"]["status"] == "evidence_only"

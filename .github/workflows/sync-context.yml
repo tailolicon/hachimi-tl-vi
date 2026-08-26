@@ -62,6 +62,11 @@ jobs:
           fi
           git commit -m "Sync translation context from pinned source"
 
+          # Tests/validators may leave disposable working-tree changes. The only
+          # publishable files were explicitly staged above, so clean everything
+          # else before rebasing on fast-moving worker commits.
+          git reset --hard HEAD
+
           # Translation workers write claims/results frequently. Rebase on their
           # latest commits and retry instead of force-pushing or overwriting work.
           for attempt in 1 2 3 4 5; do

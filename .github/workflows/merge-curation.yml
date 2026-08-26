@@ -30,7 +30,7 @@ jobs:
       - name: Refresh main
         run: git pull --ff-only origin main
       - name: Merge completed curation batches
-        run: python scripts/merge_parallel_curation.py
+        run: python scripts/merge_parallel_curation.py --max-batches 2
       - name: Validate and apply explicit terminology decisions
         shell: bash
         run: |

@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "purpose": "Canonical compact UI overrides. Key overrides win over worker output; exact replacements clean up known legacy labels.",
+  "key_overrides": [
+    {
+      "file": "localize_dict.json",
+      "path": ["Menu0004"],
+      "text": "Tủ cúp",
+      "reason": "Fixed-size main menu tile."
+    },
+    {
+      "file": "localize_dict.json",
+      "path": ["Menu0008"],
+      "text": "Điểm thành tích",
+      "reason": "Keep the evaluation-point meaning while fitting the main menu tile."
+    },
+    {
+      "file": "localize_dict.json",
+      "path": ["Menu0129"],
+      "text": "Danh hiệu",
+      "reason": "Translate the title menu label; source was leaking through."
+    },
+    {
+      "file": "localize_dict.json",
+      "path": ["Menu213001"],
+      "text": "Hồ sơ\nTrainer",
+      "reason": "Preserve the source newline but remove the long slash compound."
+    },
+    {
+      "file": "localize_dict.json",
+      "path": ["Menu424001"],
+      "text": "Vật phẩm / Đổi",
+      "reason": "Compact item/exchange menu label."
+    }
+  ],
+  "exact_replacements": [
+    {"files": ["localize_dict.json"], "from": "Phòng trưng bày cúp", "to": "Tủ cúp", "reason": "Legacy overflow label."},
+    {"files": ["localize_dict.json"], "from": "Thành tích thực tế", "to": "Điểm thành tích", "reason": "Legacy awkward/long label."},
+    {"files": ["localize_dict.json"], "from": "Hồ sơ/\nDanh thiếp Trainer", "to": "Hồ sơ\nTrainer", "reason": "Legacy three-line menu overflow."},
+    {"files": ["localize_dict.json"], "from": "Hồ sơ/Danh thiếp Trainer", "to": "Hồ sơ Trainer", "reason": "Legacy compact-menu overflow variant."},
+    {"files": ["localize_dict.json"], "from": "Vật phẩm/Chuyển đổi", "to": "Vật phẩm / Đổi", "reason": "Legacy compact-menu overflow."},
+    {"files": ["localize_dict.json"], "from": "Kho phần thưởng", "to": "Kho quà", "reason": "Compact gacha header button."},
+    {"files": ["localize_dict.json"], "from": "Chi tiết Support Card", "to": "Chi tiết thẻ", "reason": "Compact gacha header button."},
+    {"files": ["localize_dict.json"], "from": "Đặt lại mỗi ngày lúc 5 giờ", "to": "Làm mới lúc 5:00", "reason": "Small gacha reset note."},
+    {"files": ["localize_dict.json"], "from": "1 ngày 1 lần", "to": "1 lần/ngày", "reason": "Small gacha limit label."},
+    {"files": ["localize_dict.json"], "from": "Điểm đổi Thẻ hỗ trợ", "to": "Điểm đổi thẻ", "reason": "Compact exchange-points label."},
+    {"files": ["localize_dict.json"], "from": "Lịch sử Gacha", "to": "Lịch sử", "reason": "Context already identifies Gacha."},
+    {"files": ["localize_dict.json"], "from": "Danh bạ Uma Musume", "to": "Danh bạ Uma", "reason": "Compact main-menu tile."},
+    {"files": ["localize_dict.json"], "from": "Đi dạo cùng Uma Musume", "to": "Dạo cùng Uma", "reason": "Compact main-menu tile."},
+    {"files": ["localize_dict.json"], "from": "Năng lực Trainer", "to": "Năng lực", "reason": "Context already identifies Trainer section."},
+    {"files": ["localize_dict.json"], "from": "衣装変更", "to": "Đổi trang phục", "reason": "Prevent untranslated source leakage in main menu."},
+    {"files": ["localize_dict.json"], "from": "称号", "to": "Danh hiệu", "reason": "Prevent untranslated source leakage in main menu."},
+    {"files": ["localize_dict.json"], "from": "1コマ", "to": "1-koma", "reason": "Use the established compact label instead of raw Japanese."}
+  ]
+}

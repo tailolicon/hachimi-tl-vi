@@ -41,6 +41,8 @@ jobs:
         run: python -m pip install -e "."
       - name: Validate and aggregate completed shards
         run: python scripts/aggregate_parallel_results.py --repo-root .
+      - name: Apply reviewed compact UI overrides
+        run: python scripts/apply_ui_overrides.py --repo-root .
       - name: Validate Hachimi output and regenerate index
         shell: bash
         run: |
@@ -78,13 +80,34 @@ jobs:
           set -euo pipefail
           git fetch origin main
           git checkout -B _publish_main origin/main
+
+          # Reapply reviewed UI labels after any just-merged worker output.
+          python scripts/apply_ui_overrides.py --repo-root .
+
+          # Keep the aggregate publisher equivalent to release.yml so it never
+          # overwrites the release branch without the Vietnamese font bundles.
+          source_commit="53d1a948dbf3eb105e57ff95ad8562e2961b8d1c"
+          base="https://raw.githubusercontent.com/Shigure-Ruiseki/hachimi-tl-vi/${source_commit}/localized_data"
+          curl --fail --location --retry 3 --retry-delay 2 \
+            "$base/includes_android" -o localized_data/includes_android
+          curl --fail --location --retry 3 --retry-delay 2 \
+            "$base/includes_win" -o localized_data/includes_win
+          test -s localized_data/includes_android
+          test -s localized_data/includes_win
+
+          tlvi --db /tmp/tlvi-parallel-release.db validate
+          tlvi --db /tmp/tlvi-parallel-release.db index
+
           tmp="$(mktemp -d)"
           cp -a localized_data "$tmp/localized_data"
           cp index.json "$tmp/index.json"
+          cp meta.json "$tmp/meta.json"
           git checkout --orphan _parallel_release_build
           git rm -rf . >/dev/null 2>&1 || true
+          rm -rf localized_data index.json meta.json
           cp -a "$tmp/localized_data" ./localized_data
           cp "$tmp/index.json" ./index.json
-          git add localized_data index.json
+          cp "$tmp/meta.json" ./meta.json
+          git add localized_data index.json meta.json
           git commit -m "Publish aggregated Vietnamese translation"
           git push --force origin HEAD:release

@@ -19,7 +19,7 @@ When the source is zh-CN, treat it as a **semantic bridge**, not the canonical s
 
 ## Translation layers
 
-1. **UI/system** — compact, immediately understandable, stable terminology.
+1. **UI/system** — compact, immediately understandable, stable terminology. Fixed-size UI must also follow `UI_TRANSLATION_RULES.md`, `glossary/ui_short_forms.json`, and reviewed overrides in `glossary/ui_overrides.json`; visual fit is part of correctness.
 2. **Training/career (育成)** — distinguish stats, energy, motivation, training, support-card mechanics, scenario mechanics, conditions and objectives.
 3. **Skills/effects** — mechanical meaning has priority; preserve trigger conditions, distance/style restrictions, numbers and runtime tokens exactly.
 4. **Race commentary** — concise, energetic Vietnamese sports commentary; never alter race state.
@@ -65,6 +65,8 @@ Preserve exactly when present:
 
 Never add translator notes to game text.
 
+For fixed-size UI, do not insert extra newlines to rescue a long translation. Keep the source newline count and shorten the label instead. A reviewed entry in `glossary/ui_overrides.json` is authoritative over generated worker wording for that UI key.
+
 ## Worker behavior
 
 Before translating any batch, read:
@@ -75,5 +77,7 @@ Before translating any batch, read:
 4. `glossary/term_registry.json`
 5. `glossary/characters.json`
 6. `glossary/style_rules.json`
+7. `UI_TRANSLATION_RULES.md`
+8. `glossary/ui_short_forms.json`
 
 Do not rely on a worker's private chat history or on memory of the game when repository context conflicts with it. External research is a fallback for an unresolved entity, not a substitute for the shared registry.

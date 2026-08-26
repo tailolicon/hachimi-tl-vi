@@ -7,8 +7,12 @@ on:
       - "localized_data/**"
       - "index_base.json"
       - "meta.json"
+      - "glossary/ui_overrides.json"
+      - "glossary/ui_short_forms.json"
       - "src/hachimi_tl_vi/indexer.py"
       - "src/hachimi_tl_vi/blake3_fallback.py"
+      - "src/hachimi_tl_vi/ui_policy.py"
+      - "scripts/apply_ui_overrides.py"
       - "pyproject.toml"
       - ".github/workflows/release.yml"
   workflow_dispatch:
@@ -28,6 +32,9 @@ jobs:
           python-version: "3.11"
       - run: python -m pip install -e ".[dev]"
       - run: pytest -q
+
+      - name: Apply reviewed compact UI overrides
+        run: python scripts/apply_ui_overrides.py --repo-root .
 
       # Hachimi loads replacement fonts from a platform-specific Unity AssetBundle.
       # Pin the known-working Vietnamese community bundles so releases are reproducible.

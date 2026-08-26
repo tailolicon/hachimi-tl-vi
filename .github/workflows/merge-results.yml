@@ -46,6 +46,11 @@ jobs:
         run: |
           set -euo pipefail
           python scripts/build_observed_term_memory.py
+      - name: Refresh terminology review queue
+        shell: bash
+        run: |
+          set -euo pipefail
+          python scripts/build_terminology_review_queue.py
       - name: Validate merged translation
         shell: bash
         run: |

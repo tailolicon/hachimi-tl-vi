@@ -9,6 +9,7 @@ on:
     paths:
       - "scripts/sync_context_registry.py"
       - "scripts/extract_context_candidates.py"
+      - "scripts/build_observed_term_memory.py"
       - "scripts/build_terminology_review_queue.py"
       - "scripts/apply_terminology_reviews.py"
       - "src/hachimi_tl_vi/context_categories.py"
@@ -54,6 +55,9 @@ jobs:
       - name: Extract terminology candidates
         run: python scripts/extract_context_candidates.py
 
+      - name: Refresh observed entity terminology
+        run: python scripts/build_observed_term_memory.py
+
       - name: Apply explicit reviewed terminology locks
         run: python scripts/apply_terminology_reviews.py
 
@@ -72,6 +76,7 @@ jobs:
           git add \
             glossary/characters.json \
             glossary/generated_candidates.json \
+            glossary/observed_terms.json \
             glossary/term_registry.json \
             glossary/terminology_review_queue.json
           if git diff --cached --quiet; then

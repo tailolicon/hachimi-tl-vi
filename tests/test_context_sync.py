@@ -46,7 +46,47 @@ def test_character_sync_joins_by_game_id_and_preserves_manual_rules():
     assert result["characters"]["1068"]["zh_cn"] == ["北部玄驹"]
     assert result["characters"]["1068"]["speech_rules"] == ["Giọng sáng, năng động."]
     assert result["characters"]["1068"]["relationships"] == {"trainer": "tin cậy"}
+    assert result["characters"]["1068"]["identity_status"] == "verified_game_id"
     assert result["unresolved_source_characters"] == {"9001": "骏川手纲"}
+
+
+def test_null_game_ids_are_represented_without_guessing_and_verified_override_can_join():
+    progress = {
+        "source_repo": "example/source",
+        "source_commit": "abc123",
+        "source_language": "zh-CN",
+    }
+    uma_data = {
+        "generatedAt": "2026-07-25T00:00:00Z",
+        "characters": [
+            {
+                "gameId": None,
+                "nameEn": "Titleholder",
+                "nameJp": "タイトルホルダー",
+                "nameInternal": "titleholder",
+            },
+            {
+                "gameId": None,
+                "nameEn": "Samson Big",
+                "nameJp": "サムソンビッグ",
+                "nameInternal": "samsonbig",
+            },
+        ],
+    }
+    source = {"6": {"1148": "领衔", "9999": "未知角色"}}
+
+    result = build_registry(progress, uma_data, source, {})
+    assert result["characters"]["1148"]["canonical"] == "Titleholder"
+    assert result["characters"]["1148"]["zh_cn"] == ["领衔"]
+    assert result["characters"]["1148"]["identity_status"] == "verified_game_id_override"
+    assert result["characters"]["slug:samsonbig"]["canonical"] == "Samson Big"
+    assert result["characters"]["slug:samsonbig"]["identity_status"] == "structured_without_game_id"
+    assert "game_id" not in result["characters"]["slug:samsonbig"]
+    assert result["generated"]["structured_count"] == 2
+    assert result["generated"]["resolved_game_id_count"] == 1
+    assert result["generated"]["structured_without_game_id_count"] == 1
+    assert result["generated"]["zh_alias_matches"] == 1
+    assert result["unresolved_source_characters"] == {"9999": "未知角色"}
 
 
 def test_candidate_extractor_uses_known_text_data_categories_and_scenarios():

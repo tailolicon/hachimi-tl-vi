@@ -7,8 +7,10 @@ from collections import Counter, defaultdict
 from pathlib import Path
 from typing import Any, Iterable
 
-from scripts.sync_hachimi_source import SOURCE_LANGUAGE, SOURCE_REPO, kind_for_asset
+from hachimi_tl_vi.context_categories import asset_kind_for_path
 
+SOURCE_REPO = "Hachimi-Hachimi/tl-zh-cn"
+SOURCE_LANGUAGE = "zh-CN"
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_CHARACTERS = ROOT / "glossary/characters.json"
 DEFAULT_OUTPUT = ROOT / "glossary/speech_samples.json"
@@ -163,7 +165,7 @@ def build_samples(
 
     for file in sorted(assets.rglob("*.json")):
         rel = file.relative_to(localized).as_posix()
-        kind = kind_for_asset(rel)
+        kind = asset_kind_for_path(rel)
         if kind not in {"story", "home", "race_story", "asset"}:
             continue
         files_scanned += 1

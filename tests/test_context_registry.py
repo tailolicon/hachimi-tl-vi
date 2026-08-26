@@ -3,6 +3,7 @@ from __future__ import annotations
 from hachimi_tl_vi.context_registry import (
     compact_character_registry,
     compact_observed_term_memory,
+    compact_speech_bible,
     select_relevant_characters,
     select_relevant_terms,
 )
@@ -66,6 +67,33 @@ def test_context_fields_can_select_character():
     )
     compact = compact_character_registry([source], registry)
     assert compact["characters"]["1007"]["canonical"] == "Gold Ship"
+
+
+def test_speech_bible_uses_selected_character_ids():
+    source = SourceEntry(
+        uid="zhcn:test",
+        kind="story",
+        source_text="走吧！",
+        locator={},
+        context={"speaker": "黄金船"},
+    )
+    selected_characters = {
+        "1007": {
+            "canonical": "Gold Ship",
+            "zh_cn": ["黄金船"],
+        }
+    }
+    bible = {
+        "schema_version": 1,
+        "policy": {"pronouns": "contextual"},
+        "profiles": {
+            "1007": {"canonical": "Gold Ship", "register": ["hỗn loạn"]},
+            "1001": {"canonical": "Special Week", "register": ["chân thành"]},
+        },
+    }
+    compact = compact_speech_bible([source], bible, selected_characters)
+    assert list(compact["profiles"]) == ["1007"]
+    assert compact["profiles"]["1007"]["register"] == ["hỗn loạn"]
 
 
 def test_observed_memory_injects_only_exactly_relevant_entities():

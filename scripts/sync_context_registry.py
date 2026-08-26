@@ -14,6 +14,20 @@ DEFAULT_UMA_URL = (
     "src/data/generated/umapyoiCharacters.json"
 )
 
+# Some very new structured-roster records can temporarily lack gameId even
+# after their JP identity is public. Overrides are allowed only when the ID and
+# identity are independently cross-checked. Never infer IDs from sequence/order.
+VERIFIED_GAME_ID_OVERRIDES: dict[str, dict[str, Any]] = {
+    "titleholder": {
+        "game_id": 1148,
+        "identity_status": "verified_game_id_override",
+        "evidence": [
+            "Pinned 2026 zh-CN text_data category 6 maps game ID 1148 to 领衔.",
+            "Hong Kong Jockey Club horse-name records map TITLEHOLDER / タイトルホルダー to 領銜.",
+        ],
+    }
+}
+
 DEFAULT_RULES = [
     "Tên Uma Musume là tên riêng; không dịch nghĩa tên tiếng Trung sang tiếng Việt.",
     "Ưu tiên canonical Roman-letter name khi mapping chắc chắn.",
@@ -56,13 +70,21 @@ def existing_records(data: dict[str, Any]) -> list[dict[str, Any]]:
 
 
 def find_existing(
-    records: list[dict[str, Any]], game_id: int, canonical: str, name_jp: str, zh_name: str | None
+    records: list[dict[str, Any]],
+    game_id: int | None,
+    canonical: str,
+    name_jp: str,
+    zh_name: str | None,
+    name_internal: str,
 ) -> dict[str, Any]:
-    gid = str(game_id)
+    if game_id is not None:
+        gid = str(game_id)
+        for record in records:
+            if str(record.get("game_id", "")) == gid:
+                return record
     for record in records:
-        if str(record.get("game_id", "")) == gid:
+        if name_internal and str(record.get("name_internal", "")).casefold() == name_internal.casefold():
             return record
-    for record in records:
         if canonical and str(record.get("canonical", "")).casefold() == canonical.casefold():
             return record
         if name_jp and name_jp in merge_list(record.get("ja")):
@@ -70,6 +92,21 @@ def find_existing(
         if zh_name and zh_name in merge_list(record.get("zh_cn")):
             return record
     return {}
+
+
+def resolved_game_id(source: dict[str, Any]) -> tuple[int | None, str, list[str]]:
+    raw = source.get("gameId")
+    if raw is not None:
+        return int(raw), "verified_game_id", []
+    name_internal = str(source.get("nameInternal") or "").strip().casefold()
+    override = VERIFIED_GAME_ID_OVERRIDES.get(name_internal)
+    if override:
+        return (
+            int(override["game_id"]),
+            str(override.get("identity_status", "verified_game_id_override")),
+            [str(x) for x in override.get("evidence", [])],
+        )
+    return None, "structured_without_game_id", []
 
 
 def build_registry(
@@ -85,23 +122,41 @@ def build_registry(
     old_records = existing_records(existing)
     generated: dict[str, dict[str, Any]] = {}
     matched_ids: set[str] = set()
+    resolved_ids = 0
+    without_game_id = 0
 
     for source in uma_data.get("characters", []):
-        if not isinstance(source, dict) or source.get("gameId") is None:
+        if not isinstance(source, dict):
             continue
-        game_id = int(source["gameId"])
-        gid = str(game_id)
         canonical = str(source.get("nameEn") or "").strip()
         name_jp = str(source.get("nameJp") or "").strip()
-        zh_name = str(zh_names.get(gid) or "").strip() or None
-        previous = find_existing(old_records, game_id, canonical, name_jp, zh_name)
+        name_internal = str(source.get("nameInternal") or "").strip()
+        if not any((canonical, name_jp, name_internal)):
+            continue
+
+        game_id, identity_status, identity_evidence = resolved_game_id(source)
+        gid = str(game_id) if game_id is not None else ""
+        zh_name = str(zh_names.get(gid) or "").strip() or None if gid else None
+        previous = find_existing(
+            old_records, game_id, canonical, name_jp, zh_name, name_internal
+        )
+
+        if game_id is not None:
+            key = gid
+            resolved_ids += 1
+        else:
+            stable_slug = name_internal or canonical.casefold().replace(" ", "-")
+            key = f"slug:{stable_slug}"
+            without_game_id += 1
 
         record: dict[str, Any] = {
             "game_id": game_id,
+            "identity_status": identity_status,
+            "identity_evidence": identity_evidence,
             "canonical": canonical,
             "ja": merge_list([name_jp] if name_jp else [], previous.get("ja")),
             "zh_cn": merge_list([zh_name] if zh_name else [], previous.get("zh_cn")),
-            "name_internal": source.get("nameInternal"),
+            "name_internal": name_internal or previous.get("name_internal"),
             "preferred_url": source.get("preferredUrl"),
             "official_link": source.get("officialLink"),
             "role": previous.get("role", "umamusume"),
@@ -117,18 +172,21 @@ def build_registry(
         ):
             if manual_key in previous:
                 record[manual_key] = previous[manual_key]
-        generated[gid] = {k: v for k, v in record.items() if v not in (None, "", [], {})}
-        if zh_name:
+        generated[key] = {k: v for k, v in record.items() if v not in (None, "", [], {})}
+        if game_id is not None and zh_name:
             matched_ids.add(gid)
 
     unresolved = {
         str(game_id): str(name)
-        for game_id, name in sorted(zh_names.items(), key=lambda kv: int(kv[0]) if str(kv[0]).isdigit() else 10**12)
-        if str(game_id) not in generated and str(name).strip()
+        for game_id, name in sorted(
+            zh_names.items(),
+            key=lambda kv: int(kv[0]) if str(kv[0]).isdigit() else 10**12,
+        )
+        if str(game_id) not in matched_ids and str(name).strip()
     }
 
     return {
-        "schema_version": 3,
+        "schema_version": 4,
         "generated": {
             "source_commit": progress.get("source_commit"),
             "source_repo": progress.get("source_repo"),
@@ -136,11 +194,17 @@ def build_registry(
             "structured_character_source": DEFAULT_UMA_URL,
             "structured_generated_at": uma_data.get("generatedAt"),
             "structured_count": len(generated),
+            "resolved_game_id_count": resolved_ids,
+            "structured_without_game_id_count": without_game_id,
             "zh_alias_matches": len(matched_ids),
             "unresolved_source_count": len(unresolved),
-            "policy": "Names/IDs only; long third-party profile prose is intentionally not copied into this registry.",
+            "policy": "Names/IDs only; long third-party profile prose is intentionally not copied. Missing IDs are never guessed; null-ID records use stable slug keys.",
         },
-        "default_rules": existing.get("default_rules", DEFAULT_RULES) if isinstance(existing, dict) else DEFAULT_RULES,
+        "default_rules": (
+            existing.get("default_rules", DEFAULT_RULES)
+            if isinstance(existing, dict)
+            else DEFAULT_RULES
+        ),
         "characters": generated,
         "unresolved_source_characters": unresolved,
     }
@@ -179,10 +243,13 @@ def main() -> int:
         json.dumps(registry, ensure_ascii=False, indent=2, sort_keys=False) + "\n",
         encoding="utf-8",
     )
+    meta = registry["generated"]
     print(
-        f"characters={registry['generated']['structured_count']} "
-        f"zh_alias_matches={registry['generated']['zh_alias_matches']} "
-        f"unresolved={registry['generated']['unresolved_source_count']}"
+        f"characters={meta['structured_count']} "
+        f"resolved_game_ids={meta['resolved_game_id_count']} "
+        f"no_game_id={meta['structured_without_game_id_count']} "
+        f"zh_alias_matches={meta['zh_alias_matches']} "
+        f"unresolved={meta['unresolved_source_count']}"
     )
     return 0
 

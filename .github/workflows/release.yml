@@ -28,6 +28,22 @@ jobs:
           python-version: "3.11"
       - run: python -m pip install -e ".[dev]"
       - run: pytest -q
+
+      # Hachimi loads replacement fonts from a platform-specific Unity AssetBundle.
+      # Pin the known-working Vietnamese community bundles so releases are reproducible.
+      - name: Fetch Vietnamese game font bundles
+        shell: bash
+        run: |
+          set -euo pipefail
+          source_commit="53d1a948dbf3eb105e57ff95ad8562e2961b8d1c"
+          base="https://raw.githubusercontent.com/Shigure-Ruiseki/hachimi-tl-vi/${source_commit}/localized_data"
+          curl --fail --location --retry 3 --retry-delay 2 \
+            "$base/includes_android" -o localized_data/includes_android
+          curl --fail --location --retry 3 --retry-delay 2 \
+            "$base/includes_win" -o localized_data/includes_win
+          test -s localized_data/includes_android
+          test -s localized_data/includes_win
+
       - run: tlvi --db /tmp/tlvi.db validate
       - run: tlvi --db /tmp/tlvi.db index
       - name: Build release branch

@@ -123,18 +123,18 @@ def select_relevant_characters(
 
 def select_relevant_speech_profiles(
     entries: Sequence[SourceEntry],
-    speech_bible: dict[str, Any],
+    speech_data: dict[str, Any],
     selected_characters: dict[str, dict[str, Any]] | None = None,
 ) -> dict[str, dict[str, Any]]:
-    """Select only speech profiles relevant to a batch.
+    """Select speech guidance relevant to a batch.
 
     Character IDs are the primary join key. A canonical-name fallback is kept so
-    a curated profile can still be used if the character registry is temporarily
-    behind a newly added profile.
+    curated or evidence-only guidance can still be used if the character registry
+    temporarily trails a newly added profile.
     """
     haystack = batch_haystack(entries)
     selected_ids = set(selected_characters or {})
-    raw = speech_bible.get("profiles", {})
+    raw = speech_data.get("profiles", {})
     if not isinstance(raw, dict):
         return {}
     selected: dict[str, dict[str, Any]] = {}
@@ -177,15 +177,31 @@ def compact_character_registry(
     }
 
 
+def _compact_speech_data(
+    entries: Sequence[SourceEntry],
+    speech_data: dict[str, Any],
+    selected_characters: dict[str, dict[str, Any]] | None = None,
+) -> dict[str, Any]:
+    return {
+        "schema_version": speech_data.get("schema_version"),
+        "policy": speech_data.get("policy", {}),
+        "profiles": select_relevant_speech_profiles(
+            entries, speech_data, selected_characters=selected_characters
+        ),
+    }
+
+
 def compact_speech_bible(
     entries: Sequence[SourceEntry],
     speech_bible: dict[str, Any],
     selected_characters: dict[str, dict[str, Any]] | None = None,
 ) -> dict[str, Any]:
-    return {
-        "schema_version": speech_bible.get("schema_version"),
-        "policy": speech_bible.get("policy", {}),
-        "profiles": select_relevant_speech_profiles(
-            entries, speech_bible, selected_characters=selected_characters
-        ),
-    }
+    return _compact_speech_data(entries, speech_bible, selected_characters)
+
+
+def compact_speech_evidence(
+    entries: Sequence[SourceEntry],
+    speech_evidence: dict[str, Any],
+    selected_characters: dict[str, dict[str, Any]] | None = None,
+) -> dict[str, Any]:
+    return _compact_speech_data(entries, speech_evidence, selected_characters)

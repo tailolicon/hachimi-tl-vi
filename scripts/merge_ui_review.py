@@ -7,7 +7,10 @@ from pathlib import Path
 from typing import Any
 
 from hachimi_tl_vi.parallel import structural_qa
-from ui_review_common import load_json, text_fingerprint, utc_now, visual_width, write_json
+try:  # importable both as `python scripts/...` and from pytest
+    from scripts.ui_review_common import load_json, text_fingerprint, utc_now, visual_width, write_json
+except ModuleNotFoundError:
+    from ui_review_common import load_json, text_fingerprint, utc_now, visual_width, write_json  # type: ignore[no-redef]
 
 _ALLOWED_ACTIONS = {"keep", "revise", "defer"}
 _ALLOWED_CONFIDENCE = {"high", "medium", "low"}

@@ -5,7 +5,10 @@ from datetime import datetime, timezone
 import json
 from pathlib import Path
 
-from ui_review_common import load_json, parse_utc
+try:  # importable both as `python scripts/...` and from pytest
+    from scripts.ui_review_common import load_json, parse_utc
+except ModuleNotFoundError:
+    from ui_review_common import load_json, parse_utc  # type: ignore[no-redef]
 
 
 def reap(repo_root: Path) -> dict[str, object]:

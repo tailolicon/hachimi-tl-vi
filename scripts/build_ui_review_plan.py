@@ -7,16 +7,30 @@ from pathlib import Path
 import subprocess
 from typing import Any
 
-from ui_review_common import (
-    is_review_candidate,
-    load_json,
-    risk_flags,
-    risk_score,
-    text_fingerprint,
-    utc_now,
-    visual_width,
-    write_json,
-)
+try:  # importable both as `python scripts/...` and from pytest
+    from scripts.ui_review_common import (
+        is_review_candidate,
+        load_json,
+        risk_flags,
+        risk_score,
+        text_fingerprint,
+        utc_now,
+        visual_width,
+        write_json,
+    )
+except ModuleNotFoundError:
+    from ui_review_common import (  # type: ignore[no-redef]
+        is_review_candidate,
+        load_json,
+        risk_flags,
+        risk_score,
+        text_fingerprint,
+        utc_now,
+        visual_width,
+        write_json,
+    )
+
+UI_REVIEW_POLICY_VERSION = 2
 
 
 def git_show_json(repo_root: Path, ref: str, path: str) -> Any:
@@ -130,7 +144,7 @@ def build_plan(repo_root: Path, batch_size: int) -> dict[str, Any]:
         json.dumps(localized, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode("utf-8")
     ).hexdigest()
     source_commit = str(epoch["source_commit"])
-    plan_id = f"ui-{source_commit[:12]}-{localize_hash[:12]}"
+    plan_id = f"ui-p{UI_REVIEW_POLICY_VERSION}-{source_commit[:12]}-{localize_hash[:12]}"
 
     if not candidates:
         write_json(
@@ -138,6 +152,7 @@ def build_plan(repo_root: Path, batch_size: int) -> dict[str, Any]:
             {
                 "schema_version": 1,
                 "status": "idle",
+                "policy_version": UI_REVIEW_POLICY_VERSION,
                 "plan_id": None,
                 "plan_path": None,
                 "generated_at": utc_now(),
@@ -152,6 +167,9 @@ def build_plan(repo_root: Path, batch_size: int) -> dict[str, Any]:
 
     batches: list[dict[str, Any]] = []
     batch_dir = ui_root / "batches" / plan_id
+    if batch_dir.exists():
+        for old_batch in batch_dir.glob("*.json"):
+            old_batch.unlink()
     for offset in range(0, len(candidates), batch_size):
         index = offset // batch_size + 1
         batch_id = f"{plan_id}-b{index:04d}"
@@ -161,6 +179,7 @@ def build_plan(repo_root: Path, batch_size: int) -> dict[str, Any]:
             repo_root / rel_path,
             {
                 "schema_version": 1,
+                "policy_version": UI_REVIEW_POLICY_VERSION,
                 "plan_id": plan_id,
                 "batch_id": batch_id,
                 "source_commit": source_commit,
@@ -182,6 +201,7 @@ def build_plan(repo_root: Path, batch_size: int) -> dict[str, Any]:
         repo_root / plan_rel,
         {
             "schema_version": 1,
+            "policy_version": UI_REVIEW_POLICY_VERSION,
             "plan_id": plan_id,
             "generated_at": utc_now(),
             "lease_minutes": 45,
@@ -201,6 +221,7 @@ def build_plan(repo_root: Path, batch_size: int) -> dict[str, Any]:
         {
             "schema_version": 1,
             "status": "active",
+            "policy_version": UI_REVIEW_POLICY_VERSION,
             "plan_id": plan_id,
             "plan_path": plan_rel.as_posix(),
             "generated_at": utc_now(),
@@ -215,6 +236,7 @@ def build_plan(repo_root: Path, batch_size: int) -> dict[str, Any]:
     return {
         "status": "active",
         "changed": True,
+        "policy_version": UI_REVIEW_POLICY_VERSION,
         "plan_id": plan_id,
         "candidate_count": len(candidates),
         "batch_count": len(batches),

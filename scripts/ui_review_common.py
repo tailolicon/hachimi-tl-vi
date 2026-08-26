@@ -12,7 +12,7 @@ _BRACE_RE = re.compile(r"\{[^{}\r\n]+\}")
 _PRINTF_RE = re.compile(r"%(?:\d+\$)?[-+0 #]*\d*(?:\.\d+)?[sdif]")
 _RUNTIME_RE = re.compile(r"\$\([^)]*\)|\$[A-Za-z_][A-Za-z0-9_]*")
 _CJK_RE = re.compile(r"[\u3040-\u30ff\u3400-\u4dbf\u4e00-\u9fff]")
-_SENTENCE_END_RE = re.compile(r"[。！？.!?]$")
+_LETTER_SLASH_RE = re.compile(r"[^\W\d_]\s*/\s*[^\W\d_]", re.UNICODE)
 
 
 def load_json(path: Path, default: Any | None = None) -> Any:
@@ -77,7 +77,7 @@ def risk_flags(source: str, target: str) -> list[str]:
     budget = max(5.0, source_w * 1.55 + 0.5)
     if target_w > budget:
         flags.append("overflow_risk")
-    if "/" in target or "／" in target:
+    if _LETTER_SLASH_RE.search(target):
         flags.append("slash_compound")
     if contains_cjk(target):
         flags.append("source_script_leakage")
@@ -94,26 +94,36 @@ def risk_flags(source: str, target: str) -> list[str]:
 
 
 def is_review_candidate(source: str, target: str) -> bool:
+    """Return only likely fixed-size UI labels/controls, not general localize prose."""
     if not isinstance(source, str) or not isinstance(target, str):
         return False
     if not source.strip() or not target.strip() or source == target:
         return False
     if source.count("\n") > 1 or target.count("\n") > 2:
         return False
+
     source_visible = _visible_text(source).strip()
     target_visible = _visible_text(target).strip()
     if not source_visible or not target_visible:
         return False
 
-    # localize_dict contains both fixed UI and prose. Keep the automatic queue
-    # conservative; workers can still defer ambiguous controls.
-    source_w = visual_width(source)
-    target_w = visual_width(target)
-    short_shape = source_w <= 22.0 or target_w <= 24.0
-    sentence_like = len(source_visible) > 14 and bool(_SENTENCE_END_RE.search(source_visible))
-    if sentence_like and not risk_flags(source, target):
+    # Strong prose signals. The UI pipeline deliberately leaves body/help/story
+    # wording to normal translation QA rather than shortening it as a label.
+    if any(mark in source_visible for mark in ("。", "！", "？", "，")):
         return False
-    return short_shape
+    if source_visible.startswith(("・", "※", "●", "■")):
+        return False
+
+    # Japanese/Chinese fixed controls are typically very compact. Keeping this
+    # threshold strict is preferable to reviewing thousands of system sentences.
+    if visual_width(source) > 12.0:
+        return False
+    if len(source_visible.replace("\n", "")) > 24:
+        return False
+
+    # If the target added multiple lines to a one-line source, that is itself a
+    # layout regression worth reviewing, so do not exclude it here.
+    return True
 
 
 def risk_score(source: str, target: str) -> int:

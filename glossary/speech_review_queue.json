@@ -1,15 +1,18 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "source_commit": "67f8551f77807292cebd2b20b2c752b652393835",
   "policy": {
-    "purpose": "Prioritize human/AI-assisted curation of compact speech profiles; this queue is not prompt guidance.",
+    "purpose": "Prioritize curation of strong character speech profiles while tracking conservative evidence-only fallback coverage.",
     "review_rule": "Use source dialogue evidence plus reliable character information. Do not infer fixed pronouns, dialect, hierarchy, or relationships from punctuation statistics alone.",
-    "completion": "A character is covered only when speech_bible.json contains a reviewed profile for the same character key."
+    "completion": "Curated coverage means speech_bible.json has a reviewed profile. Runtime guidance coverage may also use lower-priority speech_evidence.json until curation is finished."
   },
   "summary": {
     "character_count": 142,
-    "covered_profiles": 23,
-    "needs_review": 119,
+    "curated_profiles": 23,
+    "evidence_fallback_profiles": 119,
+    "runtime_guidance_coverage": 142,
+    "runtime_guidance_missing": 0,
+    "needs_curated_review": 119,
     "characters_with_dialogue_samples": 141,
     "unmatched_speaker_count": 200
   },
@@ -25,9 +28,10 @@
         "目白多伯"
       ],
       "identity_status": "verified_game_id",
-      "status": "needs_review",
+      "status": "needs_curated_review",
       "priority": 3797,
       "dialogue_count": 3697,
+      "has_evidence_profile": true,
       "signals": {
         "avg_chars_per_line": 20.62,
         "exclamation_per_100_lines": 41.71,
@@ -37,7 +41,8 @@
       "source_speakers": [
         "目白多伯"
       ],
-      "sample_count": 12
+      "sample_count": 12,
+      "evidence_status": "evidence_only"
     },
     {
       "character_key": "1032",
@@ -50,9 +55,10 @@
         "爱丽速子"
       ],
       "identity_status": "verified_game_id",
-      "status": "needs_review",
+      "status": "needs_curated_review",
       "priority": 3749,
       "dialogue_count": 3649,
+      "has_evidence_profile": true,
       "signals": {
         "avg_chars_per_line": 26.83,
         "exclamation_per_100_lines": 56.97,
@@ -63,7 +69,8 @@
         "アグネスタキオン",
         "爱丽速子"
       ],
-      "sample_count": 12
+      "sample_count": 12,
+      "evidence_status": "evidence_only"
     },
     {
       "character_key": "1023",
@@ -76,9 +83,10 @@
         "琵琶晨光"
       ],
       "identity_status": "verified_game_id",
-      "status": "needs_review",
+      "status": "needs_curated_review",
       "priority": 3708,
       "dialogue_count": 3608,
+      "has_evidence_profile": true,
       "signals": {
         "avg_chars_per_line": 23.17,
         "exclamation_per_100_lines": 26.88,
@@ -89,7 +97,8 @@
         "ビワハヤヒデ",
         "琵琶晨光"
       ],
-      "sample_count": 12
+      "sample_count": 12,
+      "evidence_status": "evidence_only"
     },
     {
       "character_key": "1077",
@@ -102,9 +111,10 @@
         "成田路"
       ],
       "identity_status": "verified_game_id",
-      "status": "needs_review",
+      "status": "needs_curated_review",
       "priority": 3674,
       "dialogue_count": 3574,
+      "has_evidence_profile": true,
       "signals": {
         "avg_chars_per_line": 22.95,
         "exclamation_per_100_lines": 81.28,
@@ -115,7 +125,8 @@
         "ナリタトップロード",
         "成田路"
       ],
-      "sample_count": 12
+      "sample_count": 12,
+      "evidence_status": "evidence_only"
     },
     {
       "character_key": "1132",
@@ -128,9 +139,10 @@
         "唯独爱你"
       ],
       "identity_status": "verified_game_id",
-      "status": "needs_review",
+      "status": "needs_curated_review",
       "priority": 3621,
       "dialogue_count": 3521,
+      "has_evidence_profile": true,
       "signals": {
         "avg_chars_per_line": 22.9,
         "exclamation_per_100_lines": 55.55,
@@ -140,7 +152,8 @@
       "source_speakers": [
         "唯独爱你"
       ],
-      "sample_count": 12
+      "sample_count": 12,
+      "evidence_status": "evidence_only"
     },
     {
       "character_key": "1064",
@@ -153,9 +166,10 @@
         "目白善信"
       ],
       "identity_status": "verified_game_id",
-      "status": "needs_review",
+      "status": "needs_curated_review",
       "priority": 3594,
       "dialogue_count": 3494,
+      "has_evidence_profile": true,
       "signals": {
         "avg_chars_per_line": 22.77,
         "exclamation_per_100_lines": 95.42,
@@ -165,7 +179,8 @@
       "source_speakers": [
         "目白善信"
       ],
-      "sample_count": 12
+      "sample_count": 12,
+      "evidence_status": "evidence_only"
     },
     {
       "character_key": "1072",
@@ -178,9 +193,10 @@
         "八重无敌"
       ],
       "identity_status": "verified_game_id",
-      "status": "needs_review",
+      "status": "needs_curated_review",
       "priority": 3562,
       "dialogue_count": 3462,
+      "has_evidence_profile": true,
       "signals": {
         "avg_chars_per_line": 21.22,
         "exclamation_per_100_lines": 63.66,
@@ -190,7 +206,8 @@
       "source_speakers": [
         "八重无敌"
       ],
-      "sample_count": 12
+      "sample_count": 12,
+      "evidence_status": "evidence_only"
     },
     {
       "character_key": "1036",
@@ -203,9 +220,10 @@
         "空中神宫"
       ],
       "identity_status": "verified_game_id",
-      "status": "needs_review",
+      "status": "needs_curated_review",
       "priority": 3541,
       "dialogue_count": 3441,
+      "has_evidence_profile": true,
       "signals": {
         "avg_chars_per_line": 19.77,
         "exclamation_per_100_lines": 17.76,
@@ -216,7 +234,8 @@
         "エアシャカール",
         "空中神宫"
       ],
-      "sample_count": 12
+      "sample_count": 12,
+      "evidence_status": "evidence_only"
     },
     {
       "character_key": "1022",
@@ -229,9 +248,10 @@
         "美妙姿势"
       ],
       "identity_status": "verified_game_id",
-      "status": "needs_review",
+      "status": "needs_curated_review",
       "priority": 3534,
       "dialogue_count": 3434,
+      "has_evidence_profile": true,
       "signals": {
         "avg_chars_per_line": 24.07,
         "exclamation_per_100_lines": 61.74,
@@ -241,7 +261,8 @@
       "source_speakers": [
         "美妙姿势"
       ],
-      "sample_count": 12
+      "sample_count": 12,
+      "evidence_status": "evidence_only"
     },
     {
       "character_key": "1021",
@@ -254,9 +275,10 @@
         "玉藻十字"
       ],
       "identity_status": "verified_game_id",
-      "status": "needs_review",
+      "status": "needs_curated_review",
       "priority": 3530,
       "dialogue_count": 3430,
+      "has_evidence_profile": true,
       "signals": {
         "avg_chars_per_line": 24.3,
         "exclamation_per_100_lines": 98.63,
@@ -266,7 +288,8 @@
       "source_speakers": [
         "玉藻十字"
       ],
-      "sample_count": 12
+      "sample_count": 12,
+      "evidence_status": "evidence_only"
     },
     {
       "character_key": "1020",
@@ -279,9 +302,10 @@
         "青云天空"
       ],
       "identity_status": "verified_game_id",
-      "status": "needs_review",
+      "status": "needs_curated_review",
       "priority": 3519,
       "dialogue_count": 3419,
+      "has_evidence_profile": true,
       "signals": {
         "avg_chars_per_line": 20.1,
         "exclamation_per_100_lines": 26.26,
@@ -291,7 +315,8 @@
       "source_speakers": [
         "青云天空"
       ],
-      "sample_count": 12
+      "sample_count": 12,
+      "evidence_status": "evidence_only"
     },
     {
       "character_key": "1014",
@@ -304,9 +329,10 @@
         "神鹰"
       ],
       "identity_status": "verified_game_id",
-      "status": "needs_review",
+      "status": "needs_curated_review",
       "priority": 3517,
       "dialogue_count": 3417,
+      "has_evidence_profile": true,
       "signals": {
         "avg_chars_per_line": 22.97,
         "exclamation_per_100_lines": 152.79,
@@ -317,7 +343,8 @@
         "エルコンドルパサー",
         "神鹰"
       ],
-      "sample_count": 12
+      "sample_count": 12,
+      "evidence_status": "evidence_only"
     },
     {
       "character_key": "1071",
@@ -330,9 +357,10 @@
         "目白阿尔丹"
       ],
       "identity_status": "verified_game_id",
-      "status": "needs_review",
+      "status": "needs_curated_review",
       "priority": 3472,
       "dialogue_count": 3372,
+      "has_evidence_profile": true,
       "signals": {
         "avg_chars_per_line": 22.52,
         "exclamation_per_100_lines": 17.35,
@@ -343,7 +371,8 @@
         "メジロアルダン",
         "目白阿尔丹"
       ],
-      "sample_count": 12
+      "sample_count": 12,
+      "evidence_status": "evidence_only"
     },
     {
       "character_key": "1035",
@@ -356,9 +385,10 @@
         "胜利奖券"
       ],
       "identity_status": "verified_game_id",
-      "status": "needs_review",
+      "status": "needs_curated_review",
       "priority": 3464,
       "dialogue_count": 3364,
+      "has_evidence_profile": true,
       "signals": {
         "avg_chars_per_line": 22.16,
         "exclamation_per_100_lines": 223.84,
@@ -368,7 +398,8 @@
       "source_speakers": [
         "胜利奖券"
       ],
-      "sample_count": 12
+      "sample_count": 12,
+      "evidence_status": "evidence_only"
     },
     {
       "character_key": "1089",
@@ -381,9 +412,10 @@
         "高尚骏逸"
       ],
       "identity_status": "verified_game_id",
-      "status": "needs_review",
+      "status": "needs_curated_review",
       "priority": 3461,
       "dialogue_count": 3361,
+      "has_evidence_profile": true,
       "signals": {
         "avg_chars_per_line": 19.75,
         "exclamation_per_100_lines": 36.33,
@@ -393,7 +425,8 @@
       "source_speakers": [
         "高尚骏逸"
       ],
-      "sample_count": 12
+      "sample_count": 12,
+      "evidence_status": "evidence_only"
     },
     {
       "character_key": "1016",
@@ -406,9 +439,10 @@
         "成田白仁"
       ],
       "identity_status": "verified_game_id",
-      "status": "needs_review",
+      "status": "needs_curated_review",
       "priority": 3437,
       "dialogue_count": 3337,
+      "has_evidence_profile": true,
       "signals": {
         "avg_chars_per_line": 15.47,
         "exclamation_per_100_lines": 17.98,
@@ -419,7 +453,8 @@
         "ナリタブライアン",
         "成田白仁"
       ],
-      "sample_count": 12
+      "sample_count": 12,
+      "evidence_status": "evidence_only"
     },
     {
       "character_key": "1051",
@@ -432,9 +467,10 @@
         "西野花"
       ],
       "identity_status": "verified_game_id",
-      "status": "needs_review",
+      "status": "needs_curated_review",
       "priority": 3419,
       "dialogue_count": 3319,
+      "has_evidence_profile": true,
       "signals": {
         "avg_chars_per_line": 19.9,
         "exclamation_per_100_lines": 56.37,
@@ -444,7 +480,8 @@
       "source_speakers": [
         "西野花"
       ],
-      "sample_count": 12
+      "sample_count": 12,
+      "evidence_status": "evidence_only"
     },
     {
       "character_key": "1033",
@@ -457,9 +494,10 @@
         "爱慕织姬"
       ],
       "identity_status": "verified_game_id",
-      "status": "needs_review",
+      "status": "needs_curated_review",
       "priority": 3410,
       "dialogue_count": 3310,
+      "has_evidence_profile": true,
       "signals": {
         "avg_chars_per_line": 16.73,
         "exclamation_per_100_lines": 13.63,
@@ -470,7 +508,8 @@
         "アドマイヤベガ",
         "爱慕织姬"
       ],
-      "sample_count": 12
+      "sample_count": 12,
+      "evidence_status": "evidence_only"
     },
     {
       "character_key": "1038",
@@ -483,9 +522,10 @@
         "真机伶"
       ],
       "identity_status": "verified_game_id",
-      "status": "needs_review",
+      "status": "needs_curated_review",
       "priority": 3388,
       "dialogue_count": 3288,
+      "has_evidence_profile": true,
       "signals": {
         "avg_chars_per_line": 22.21,
         "exclamation_per_100_lines": 39.02,
@@ -496,7 +536,8 @@
         "カレンチャン",
         "真机伶"
       ],
-      "sample_count": 12
+      "sample_count": 12,
+      "evidence_status": "evidence_only"
     },
     {
       "character_key": "1027",
@@ -509,9 +550,10 @@
         "目白赖恩"
       ],
       "identity_status": "verified_game_id",
-      "status": "needs_review",
+      "status": "needs_curated_review",
       "priority": 3362,
       "dialogue_count": 3262,
+      "has_evidence_profile": true,
       "signals": {
         "avg_chars_per_line": 21.64,
         "exclamation_per_100_lines": 86.7,
@@ -521,7 +563,8 @@
       "source_speakers": [
         "目白赖恩"
       ],
-      "sample_count": 12
+      "sample_count": 12,
+      "evidence_status": "evidence_only"
     },
     {
       "character_key": "1026",
@@ -534,9 +577,10 @@
         "美浦波旁"
       ],
       "identity_status": "verified_game_id",
-      "status": "needs_review",
+      "status": "needs_curated_review",
       "priority": 3347,
       "dialogue_count": 3247,
+      "has_evidence_profile": true,
       "signals": {
         "avg_chars_per_line": 20.92,
         "exclamation_per_100_lines": 8.1,
@@ -547,7 +591,8 @@
         "ミホノブルボン",
         "美浦波旁"
       ],
-      "sample_count": 12
+      "sample_count": 12,
+      "evidence_status": "evidence_only"
     },
     {
       "character_key": "1048",
@@ -560,9 +605,10 @@
         "东瀛佐敦"
       ],
       "identity_status": "verified_game_id",
-      "status": "needs_review",
+      "status": "needs_curated_review",
       "priority": 3341,
       "dialogue_count": 3241,
+      "has_evidence_profile": true,
       "signals": {
         "avg_chars_per_line": 19.96,
         "exclamation_per_100_lines": 69.7,
@@ -573,7 +619,8 @@
         "トーセンジョーダン",
         "东瀛佐敦"
       ],
-      "sample_count": 12
+      "sample_count": 12,
+      "evidence_status": "evidence_only"
     },
     {
       "character_key": "1110",
@@ -586,9 +633,10 @@
         "西沙里奥"
       ],
       "identity_status": "verified_game_id",
-      "status": "needs_review",
+      "status": "needs_curated_review",
       "priority": 3336,
       "dialogue_count": 3236,
+      "has_evidence_profile": true,
       "signals": {
         "avg_chars_per_line": 21.78,
         "exclamation_per_100_lines": 29.82,
@@ -598,7 +646,8 @@
       "source_speakers": [
         "西沙里奥"
       ],
-      "sample_count": 12
+      "sample_count": 12,
+      "evidence_status": "evidence_only"
     },
     {
       "character_key": "1058",
@@ -611,9 +660,10 @@
         "名将怒涛"
       ],
       "identity_status": "verified_game_id",
-      "status": "needs_review",
+      "status": "needs_curated_review",
       "priority": 3335,
       "dialogue_count": 3235,
+      "has_evidence_profile": true,
       "signals": {
         "avg_chars_per_line": 23.28,
         "exclamation_per_100_lines": 86.4,
@@ -624,7 +674,8 @@
         "メイショウドトウ",
         "名将怒涛"
       ],
-      "sample_count": 12
+      "sample_count": 12,
+      "evidence_status": "evidence_only"
     },
     {
       "character_key": "1004",
@@ -637,9 +688,10 @@
         "丸善斯基"
       ],
       "identity_status": "verified_game_id",
-      "status": "needs_review",
+      "status": "needs_curated_review",
       "priority": 3329,
       "dialogue_count": 3229,
+      "has_evidence_profile": true,
       "signals": {
         "avg_chars_per_line": 22.16,
         "exclamation_per_100_lines": 66.46,
@@ -649,7 +701,8 @@
       "source_speakers": [
         "丸善斯基"
       ],
-      "sample_count": 12
+      "sample_count": 12,
+      "evidence_status": "evidence_only"
     },
     {
       "character_key": "1024",
@@ -662,9 +715,10 @@
         "摩耶重炮"
       ],
       "identity_status": "verified_game_id",
-      "status": "needs_review",
+      "status": "needs_curated_review",
       "priority": 3282,
       "dialogue_count": 3182,
+      "has_evidence_profile": true,
       "signals": {
         "avg_chars_per_line": 20.17,
         "exclamation_per_100_lines": 105.53,
@@ -674,7 +728,8 @@
       "source_speakers": [
         "摩耶重炮"
       ],
-      "sample_count": 12
+      "sample_count": 12,
+      "evidence_status": "evidence_only"
     },
     {
       "character_key": "1041",
@@ -687,9 +742,10 @@
         "樱花进王"
       ],
       "identity_status": "verified_game_id",
-      "status": "needs_review",
+      "status": "needs_curated_review",
       "priority": 3265,
       "dialogue_count": 3165,
+      "has_evidence_profile": true,
       "signals": {
         "avg_chars_per_line": 22.5,
         "exclamation_per_100_lines": 189.73,
@@ -700,7 +756,8 @@
         "サクラバクシンオー",
         "樱花进王"
       ],
-      "sample_count": 12
+      "sample_count": 12,
+      "evidence_status": "evidence_only"
     },
     {
       "character_key": "1005",
@@ -713,9 +770,10 @@
         "富士奇石"
       ],
       "identity_status": "verified_game_id",
-      "status": "needs_review",
+      "status": "needs_curated_review",
       "priority": 3257,
       "dialogue_count": 3157,
+      "has_evidence_profile": true,
       "signals": {
         "avg_chars_per_line": 23.59,
         "exclamation_per_100_lines": 45.42,
@@ -725,7 +783,8 @@
       "source_speakers": [
         "富士奇石"
       ],
-      "sample_count": 12
+      "sample_count": 12,
+      "evidence_status": "evidence_only"
     },
     {
       "character_key": "1009",
@@ -738,9 +797,10 @@
         "大和赤骥"
       ],
       "identity_status": "verified_game_id",
-      "status": "needs_review",
+      "status": "needs_curated_review",
       "priority": 3227,
       "dialogue_count": 3127,
+      "has_evidence_profile": true,
       "signals": {
         "avg_chars_per_line": 21.12,
         "exclamation_per_100_lines": 74.35,
@@ -751,7 +811,8 @@
         "ダイワスカーレット",
         "大和赤骥"
       ],
-      "sample_count": 12
+      "sample_count": 12,
+      "evidence_status": "evidence_only"
     },
     {
       "character_key": "1012",
@@ -764,9 +825,10 @@
         "菱亚马逊"
       ],
       "identity_status": "verified_game_id",
-      "status": "needs_review",
+      "status": "needs_curated_review",
       "priority": 3202,
       "dialogue_count": 3102,
+      "has_evidence_profile": true,
       "signals": {
         "avg_chars_per_line": 22.62,
         "exclamation_per_100_lines": 98.48,
@@ -776,7 +838,8 @@
       "source_speakers": [
         "菱亚马逊"
       ],
-      "sample_count": 12
+      "sample_count": 12,
+      "evidence_status": "evidence_only"
     },
     {
       "character_key": "1040",
@@ -789,9 +852,10 @@
         "黄金城市"
       ],
       "identity_status": "verified_game_id",
-      "status": "needs_review",
+      "status": "needs_curated_review",
       "priority": 3200,
       "dialogue_count": 3100,
+      "has_evidence_profile": true,
       "signals": {
         "avg_chars_per_line": 20.06,
         "exclamation_per_100_lines": 25.52,
@@ -801,7 +865,8 @@
       "source_speakers": [
         "黄金城市"
       ],
-      "sample_count": 12
+      "sample_count": 12,
+      "evidence_status": "evidence_only"
     },
     {
       "character_key": "1029",
@@ -814,9 +879,10 @@
         "雪之美人"
       ],
       "identity_status": "verified_game_id",
-      "status": "needs_review",
+      "status": "needs_curated_review",
       "priority": 3149,
       "dialogue_count": 3049,
+      "has_evidence_profile": true,
       "signals": {
         "avg_chars_per_line": 21.26,
         "exclamation_per_100_lines": 90.82,
@@ -826,7 +892,8 @@
       "source_speakers": [
         "雪之美人"
       ],
-      "sample_count": 12
+      "sample_count": 12,
+      "evidence_status": "evidence_only"
     },
     {
       "character_key": "1037",
@@ -839,9 +906,10 @@
         "荣进闪耀"
       ],
       "identity_status": "verified_game_id",
-      "status": "needs_review",
+      "status": "needs_curated_review",
       "priority": 3135,
       "dialogue_count": 3035,
+      "has_evidence_profile": true,
       "signals": {
         "avg_chars_per_line": 22.96,
         "exclamation_per_100_lines": 13.97,
@@ -852,7 +920,8 @@
         "エイシンフラッシュ",
         "荣进闪耀"
       ],
-      "sample_count": 12
+      "sample_count": 12,
+      "evidence_status": "evidence_only"
     },
     {
       "character_key": "1031",
@@ -865,9 +934,10 @@
         "艾尼斯风神"
       ],
       "identity_status": "verified_game_id",
-      "status": "needs_review",
+      "status": "needs_curated_review",
       "priority": 3110,
       "dialogue_count": 3010,
+      "has_evidence_profile": true,
       "signals": {
         "avg_chars_per_line": 21.93,
         "exclamation_per_100_lines": 79.27,
@@ -877,7 +947,8 @@
       "source_speakers": [
         "艾尼斯风神"
       ],
-      "sample_count": 12
+      "sample_count": 12,
+      "evidence_status": "evidence_only"
     },
     {
       "character_key": "1133",
@@ -890,9 +961,10 @@
         "创世驹"
       ],
       "identity_status": "verified_game_id",
-      "status": "needs_review",
+      "status": "needs_curated_review",
       "priority": 3035,
       "dialogue_count": 2935,
+      "has_evidence_profile": true,
       "signals": {
         "avg_chars_per_line": 22.44,
         "exclamation_per_100_lines": 43.99,
@@ -902,7 +974,8 @@
       "source_speakers": [
         "创世驹"
       ],
-      "sample_count": 12
+      "sample_count": 12,
+      "evidence_status": "evidence_only"
     },
     {
       "character_key": "1099",
@@ -915,9 +988,10 @@
         "北港火山"
       ],
       "identity_status": "verified_game_id",
-      "status": "needs_review",
+      "status": "needs_curated_review",
       "priority": 3029,
       "dialogue_count": 2929,
+      "has_evidence_profile": true,
       "signals": {
         "avg_chars_per_line": 22.59,
         "exclamation_per_100_lines": 77.57,
@@ -928,7 +1002,8 @@
         "ホッコータルマエ",
         "北港火山"
       ],
-      "sample_count": 12
+      "sample_count": 12,
+      "evidence_status": "evidence_only"
     },
     {
       "character_key": "1053",
@@ -941,9 +1016,10 @@
         "青竹回忆"
       ],
       "identity_status": "verified_game_id",
-      "status": "needs_review",
+      "status": "needs_curated_review",
       "priority": 3014,
       "dialogue_count": 2914,
+      "has_evidence_profile": true,
       "signals": {
         "avg_chars_per_line": 24.26,
         "exclamation_per_100_lines": 203.81,
@@ -954,7 +1030,8 @@
         "バンブーメモリー",
         "青竹回忆"
       ],
-      "sample_count": 12
+      "sample_count": 12,
+      "evidence_status": "evidence_only"
     },
     {
       "character_key": "1019",
@@ -967,9 +1044,10 @@
         "爱丽数码"
       ],
       "identity_status": "verified_game_id",
-      "status": "needs_review",
+      "status": "needs_curated_review",
       "priority": 3005,
       "dialogue_count": 2905,
+      "has_evidence_profile": true,
       "signals": {
         "avg_chars_per_line": 28.73,
         "exclamation_per_100_lines": 148.88,
@@ -980,7 +1058,8 @@
         "アグネスデジタル",
         "爱丽数码"
       ],
-      "sample_count": 12
+      "sample_count": 12,
+      "evidence_status": "evidence_only"
     },
     {
       "character_key": "1136",
@@ -993,9 +1072,10 @@
         "红色梦想"
       ],
       "identity_status": "verified_game_id",
-      "status": "needs_review",
+      "status": "needs_curated_review",
       "priority": 2993,
       "dialogue_count": 2893,
+      "has_evidence_profile": true,
       "signals": {
         "avg_chars_per_line": 25.37,
         "exclamation_per_100_lines": 47.18,
@@ -1005,7 +1085,8 @@
       "source_speakers": [
         "红色梦想"
       ],
-      "sample_count": 12
+      "sample_count": 12,
+      "evidence_status": "evidence_only"
     },
     {
       "character_key": "1044",
@@ -1018,9 +1099,10 @@
         "东商变革"
       ],
       "identity_status": "verified_game_id",
-      "status": "needs_review",
+      "status": "needs_curated_review",
       "priority": 2981,
       "dialogue_count": 2881,
+      "has_evidence_profile": true,
       "signals": {
         "avg_chars_per_line": 21.86,
         "exclamation_per_100_lines": 133.77,
@@ -1031,7 +1113,8 @@
         "スイープトウショウ",
         "东商变革"
       ],
-      "sample_count": 12
+      "sample_count": 12,
+      "evidence_status": "evidence_only"
     },
     {
       "character_key": "1050",
@@ -1044,9 +1127,10 @@
         "成田大进"
       ],
       "identity_status": "verified_game_id",
-      "status": "needs_review",
+      "status": "needs_curated_review",
       "priority": 2967,
       "dialogue_count": 2867,
+      "has_evidence_profile": true,
       "signals": {
         "avg_chars_per_line": 17.86,
         "exclamation_per_100_lines": 41.79,
@@ -1056,7 +1140,8 @@
       "source_speakers": [
         "成田大进"
       ],
-      "sample_count": 12
+      "sample_count": 12,
+      "evidence_status": "evidence_only"
     },
     {
       "character_key": "1011",
@@ -1069,9 +1154,10 @@
         "草上飞"
       ],
       "identity_status": "verified_game_id",
-      "status": "needs_review",
+      "status": "needs_curated_review",
       "priority": 2959,
       "dialogue_count": 2859,
+      "has_evidence_profile": true,
       "signals": {
         "avg_chars_per_line": 21.05,
         "exclamation_per_100_lines": 8.18,
@@ -1082,7 +1168,8 @@
         "グラスワンダー",
         "草上飞"
       ],
-      "sample_count": 12
+      "sample_count": 12,
+      "evidence_status": "evidence_only"
     },
     {
       "character_key": "1056",
@@ -1095,9 +1182,10 @@
         "待兼福来"
       ],
       "identity_status": "verified_game_id",
-      "status": "needs_review",
+      "status": "needs_curated_review",
       "priority": 2950,
       "dialogue_count": 2850,
+      "has_evidence_profile": true,
       "signals": {
         "avg_chars_per_line": 25.72,
         "exclamation_per_100_lines": 136.98,
@@ -1107,7 +1195,8 @@
       "source_speakers": [
         "待兼福来"
       ],
-      "sample_count": 12
+      "sample_count": 12,
+      "evidence_status": "evidence_only"
     },
     {
       "character_key": "1088",
@@ -1120,9 +1209,10 @@
         "里见皇冠"
       ],
       "identity_status": "verified_game_id",
-      "status": "needs_review",
+      "status": "needs_curated_review",
       "priority": 2942,
       "dialogue_count": 2842,
+      "has_evidence_profile": true,
       "signals": {
         "avg_chars_per_line": 22.64,
         "exclamation_per_100_lines": 52.74,
@@ -1132,7 +1222,8 @@
       "source_speakers": [
         "里见皇冠"
       ],
-      "sample_count": 12
+      "sample_count": 12,
+      "evidence_status": "evidence_only"
     },
     {
       "character_key": "1039",
@@ -1145,9 +1236,10 @@
         "川上公主"
       ],
       "identity_status": "verified_game_id",
-      "status": "needs_review",
+      "status": "needs_curated_review",
       "priority": 2927,
       "dialogue_count": 2827,
+      "has_evidence_profile": true,
       "signals": {
         "avg_chars_per_line": 22.65,
         "exclamation_per_100_lines": 131.8,
@@ -1158,7 +1250,8 @@
         "カワカミプリンセス",
         "川上公主"
       ],
-      "sample_count": 12
+      "sample_count": 12,
+      "evidence_status": "evidence_only"
     },
     {
       "character_key": "1091",
@@ -1171,9 +1264,10 @@
         "强击"
       ],
       "identity_status": "verified_game_id",
-      "status": "needs_review",
+      "status": "needs_curated_review",
       "priority": 2922,
       "dialogue_count": 2822,
+      "has_evidence_profile": true,
       "signals": {
         "avg_chars_per_line": 17.88,
         "exclamation_per_100_lines": 81.72,
@@ -1183,7 +1277,8 @@
       "source_speakers": [
         "强击"
       ],
-      "sample_count": 12
+      "sample_count": 12,
+      "evidence_status": "evidence_only"
     },
     {
       "character_key": "1134",
@@ -1196,9 +1291,10 @@
         "机伶金花"
       ],
       "identity_status": "verified_game_id",
-      "status": "needs_review",
+      "status": "needs_curated_review",
       "priority": 2907,
       "dialogue_count": 2807,
+      "has_evidence_profile": true,
       "signals": {
         "avg_chars_per_line": 22.35,
         "exclamation_per_100_lines": 19.56,
@@ -1208,7 +1304,8 @@
       "source_speakers": [
         "机伶金花"
       ],
-      "sample_count": 12
+      "sample_count": 12,
+      "evidence_status": "evidence_only"
     },
     {
       "character_key": "1010",
@@ -1221,9 +1318,10 @@
         "大树快车"
       ],
       "identity_status": "verified_game_id",
-      "status": "needs_review",
+      "status": "needs_curated_review",
       "priority": 2870,
       "dialogue_count": 2770,
+      "has_evidence_profile": true,
       "signals": {
         "avg_chars_per_line": 23.54,
         "exclamation_per_100_lines": 161.81,
@@ -1233,7 +1331,8 @@
       "source_speakers": [
         "大树快车"
       ],
-      "sample_count": 12
+      "sample_count": 12,
+      "evidence_status": "evidence_only"
     },
     {
       "character_key": "1104",
@@ -1246,9 +1345,10 @@
         "葛城王牌"
       ],
       "identity_status": "verified_game_id",
-      "status": "needs_review",
+      "status": "needs_curated_review",
       "priority": 2864,
       "dialogue_count": 2764,
+      "has_evidence_profile": true,
       "signals": {
         "avg_chars_per_line": 21.17,
         "exclamation_per_100_lines": 122.43,
@@ -1258,7 +1358,8 @@
       "source_speakers": [
         "葛城王牌"
       ],
-      "sample_count": 12
+      "sample_count": 12,
+      "evidence_status": "evidence_only"
     },
     {
       "character_key": "1083",
@@ -1271,9 +1372,10 @@
         "吉兆"
       ],
       "identity_status": "verified_game_id",
-      "status": "needs_review",
+      "status": "needs_curated_review",
       "priority": 2804,
       "dialogue_count": 2704,
+      "has_evidence_profile": true,
       "signals": {
         "avg_chars_per_line": 17.74,
         "exclamation_per_100_lines": 5.4,
@@ -1284,7 +1386,8 @@
         "シンボリクリスエス",
         "吉兆"
       ],
-      "sample_count": 12
+      "sample_count": 12,
+      "evidence_status": "evidence_only"
     },
     {
       "character_key": "1062",
@@ -1297,9 +1400,10 @@
         "待兼诗歌剧"
       ],
       "identity_status": "verified_game_id",
-      "status": "needs_review",
+      "status": "needs_curated_review",
       "priority": 2799,
       "dialogue_count": 2699,
+      "has_evidence_profile": true,
       "signals": {
         "avg_chars_per_line": 22.27,
         "exclamation_per_100_lines": 103.04,
@@ -1309,7 +1413,8 @@
       "source_speakers": [
         "待兼诗歌剧"
       ],
-      "sample_count": 12
+      "sample_count": 12,
+      "evidence_status": "evidence_only"
     },
     {
       "character_key": "1076",
@@ -1322,9 +1427,10 @@
         "樱花桂冠"
       ],
       "identity_status": "verified_game_id",
-      "status": "needs_review",
+      "status": "needs_curated_review",
       "priority": 2787,
       "dialogue_count": 2687,
+      "has_evidence_profile": true,
       "signals": {
         "avg_chars_per_line": 21.67,
         "exclamation_per_100_lines": 50.99,
@@ -1335,7 +1441,8 @@
         "サクラローレル",
         "樱花桂冠"
       ],
-      "sample_count": 12
+      "sample_count": 12,
+      "evidence_status": "evidence_only"
     },
     {
       "character_key": "1084",
@@ -1348,9 +1455,10 @@
         "谷野美酒"
       ],
       "identity_status": "verified_game_id",
-      "status": "needs_review",
+      "status": "needs_curated_review",
       "priority": 2753,
       "dialogue_count": 2653,
+      "has_evidence_profile": true,
       "signals": {
         "avg_chars_per_line": 25.01,
         "exclamation_per_100_lines": 96.8,
@@ -1361,7 +1469,8 @@
         "タニノギムレット",
         "谷野美酒"
       ],
-      "sample_count": 12
+      "sample_count": 12,
+      "evidence_status": "evidence_only"
     },
     {
       "character_key": "1113",
@@ -1374,9 +1483,10 @@
         "房一潘多拉"
       ],
       "identity_status": "verified_game_id",
-      "status": "needs_review",
+      "status": "needs_curated_review",
       "priority": 2734,
       "dialogue_count": 2634,
+      "has_evidence_profile": true,
       "signals": {
         "avg_chars_per_line": 20.18,
         "exclamation_per_100_lines": 90.09,
@@ -1386,7 +1496,8 @@
       "source_speakers": [
         "房一潘多拉"
       ],
-      "sample_count": 12
+      "sample_count": 12,
+      "evidence_status": "evidence_only"
     },
     {
       "character_key": "1057",
@@ -1399,9 +1510,10 @@
         "千明代表"
       ],
       "identity_status": "verified_game_id",
-      "status": "needs_review",
+      "status": "needs_curated_review",
       "priority": 2726,
       "dialogue_count": 2626,
+      "has_evidence_profile": true,
       "signals": {
         "avg_chars_per_line": 20.98,
         "exclamation_per_100_lines": 35.22,
@@ -1411,7 +1523,8 @@
       "source_speakers": [
         "千明代表"
       ],
-      "sample_count": 12
+      "sample_count": 12,
+      "evidence_status": "evidence_only"
     },
     {
       "character_key": "1106",
@@ -1424,9 +1537,10 @@
         "菱钻奇宝"
       ],
       "identity_status": "verified_game_id",
-      "status": "needs_review",
+      "status": "needs_curated_review",
       "priority": 2680,
       "dialogue_count": 2580,
+      "has_evidence_profile": true,
       "signals": {
         "avg_chars_per_line": 22.55,
         "exclamation_per_100_lines": 44.38,
@@ -1436,7 +1550,8 @@
       "source_speakers": [
         "菱钻奇宝"
       ],
-      "sample_count": 12
+      "sample_count": 12,
+      "evidence_status": "evidence_only"
     },
     {
       "character_key": "1118",
@@ -1449,9 +1564,10 @@
         "爱慕律动"
       ],
       "identity_status": "verified_game_id",
-      "status": "needs_review",
+      "status": "needs_curated_review",
       "priority": 2673,
       "dialogue_count": 2573,
+      "has_evidence_profile": true,
       "signals": {
         "avg_chars_per_line": 16.74,
         "exclamation_per_100_lines": 20.6,
@@ -1461,7 +1577,8 @@
       "source_speakers": [
         "爱慕律动"
       ],
-      "sample_count": 12
+      "sample_count": 12,
+      "evidence_status": "evidence_only"
     },
     {
       "character_key": "1034",
@@ -1474,9 +1591,10 @@
         "稻荷一"
       ],
       "identity_status": "verified_game_id",
-      "status": "needs_review",
+      "status": "needs_curated_review",
       "priority": 2656,
       "dialogue_count": 2556,
+      "has_evidence_profile": true,
       "signals": {
         "avg_chars_per_line": 23.18,
         "exclamation_per_100_lines": 108.8,
@@ -1486,7 +1604,8 @@
       "source_speakers": [
         "稻荷一"
       ],
-      "sample_count": 12
+      "sample_count": 12,
+      "evidence_status": "evidence_only"
     },
     {
       "character_key": "1098",
@@ -1499,9 +1618,10 @@
         "小林历奇"
       ],
       "identity_status": "verified_game_id",
-      "status": "needs_review",
+      "status": "needs_curated_review",
       "priority": 2649,
       "dialogue_count": 2549,
+      "has_evidence_profile": true,
       "signals": {
         "avg_chars_per_line": 25.9,
         "exclamation_per_100_lines": 86.98,
@@ -1512,7 +1632,8 @@
         "コパノリッキー",
         "小林历奇"
       ],
-      "sample_count": 12
+      "sample_count": 12,
+      "evidence_status": "evidence_only"
     },
     {
       "character_key": "1112",
@@ -1525,9 +1646,10 @@
         "勇敢之心"
       ],
       "identity_status": "verified_game_id",
-      "status": "needs_review",
+      "status": "needs_curated_review",
       "priority": 2639,
       "dialogue_count": 2539,
+      "has_evidence_profile": true,
       "signals": {
         "avg_chars_per_line": 24.3,
         "exclamation_per_100_lines": 69.0,
@@ -1537,7 +1659,8 @@
       "source_speakers": [
         "勇敢之心"
       ],
-      "sample_count": 12
+      "sample_count": 12,
+      "evidence_status": "evidence_only"
     },
     {
       "character_key": "1025",
@@ -1550,9 +1673,10 @@
         "曼城茶座"
       ],
       "identity_status": "verified_game_id",
-      "status": "needs_review",
+      "status": "needs_curated_review",
       "priority": 2626,
       "dialogue_count": 2526,
+      "has_evidence_profile": true,
       "signals": {
         "avg_chars_per_line": 20.76,
         "exclamation_per_100_lines": 6.45,
@@ -1563,7 +1687,8 @@
         "マンハッタンカフェ",
         "曼城茶座"
       ],
-      "sample_count": 12
+      "sample_count": 12,
+      "evidence_status": "evidence_only"
     },
     {
       "character_key": "1042",
@@ -1576,9 +1701,10 @@
         "采珠"
       ],
       "identity_status": "verified_game_id",
-      "status": "needs_review",
+      "status": "needs_curated_review",
       "priority": 2613,
       "dialogue_count": 2513,
+      "has_evidence_profile": true,
       "signals": {
         "avg_chars_per_line": 27.49,
         "exclamation_per_100_lines": 108.0,
@@ -1589,7 +1715,8 @@
         "シーキングザパール",
         "采珠"
       ],
-      "sample_count": 12
+      "sample_count": 12,
+      "evidence_status": "evidence_only"
     },
     {
       "character_key": "1085",
@@ -1602,9 +1729,10 @@
         "第一红宝石"
       ],
       "identity_status": "verified_game_id",
-      "status": "needs_review",
+      "status": "needs_curated_review",
       "priority": 2563,
       "dialogue_count": 2463,
+      "has_evidence_profile": true,
       "signals": {
         "avg_chars_per_line": 16.9,
         "exclamation_per_100_lines": 6.01,
@@ -1614,7 +1742,8 @@
       "source_speakers": [
         "第一红宝石"
       ],
-      "sample_count": 12
+      "sample_count": 12,
+      "evidence_status": "evidence_only"
     },
     {
       "character_key": "1087",
@@ -1627,9 +1756,10 @@
         "真弓快车"
       ],
       "identity_status": "verified_game_id",
-      "status": "needs_review",
+      "status": "needs_curated_review",
       "priority": 2561,
       "dialogue_count": 2461,
+      "has_evidence_profile": true,
       "signals": {
         "avg_chars_per_line": 21.13,
         "exclamation_per_100_lines": 14.18,
@@ -1640,7 +1770,8 @@
         "アストンマーチャン",
         "真弓快车"
       ],
-      "sample_count": 12
+      "sample_count": 12,
+      "evidence_status": "evidence_only"
     },
     {
       "character_key": "1129",
@@ -1653,9 +1784,10 @@
         "杏目"
       ],
       "identity_status": "verified_game_id",
-      "status": "needs_review",
+      "status": "needs_curated_review",
       "priority": 2560,
       "dialogue_count": 2460,
+      "has_evidence_profile": true,
       "signals": {
         "avg_chars_per_line": 19.86,
         "exclamation_per_100_lines": 88.98,
@@ -1665,7 +1797,8 @@
       "source_speakers": [
         "杏目"
       ],
-      "sample_count": 12
+      "sample_count": 12,
+      "evidence_status": "evidence_only"
     },
     {
       "character_key": "1074",
@@ -1678,9 +1811,10 @@
         "目白光明"
       ],
       "identity_status": "verified_game_id",
-      "status": "needs_review",
+      "status": "needs_curated_review",
       "priority": 2552,
       "dialogue_count": 2452,
+      "has_evidence_profile": true,
       "signals": {
         "avg_chars_per_line": 22.92,
         "exclamation_per_100_lines": 12.97,
@@ -1691,7 +1825,8 @@
         "メジロブライト",
         "目白光明"
       ],
-      "sample_count": 12
+      "sample_count": 12,
+      "evidence_status": "evidence_only"
     },
     {
       "character_key": "1028",
@@ -1704,9 +1839,10 @@
         "菱曙"
       ],
       "identity_status": "verified_game_id",
-      "status": "needs_review",
+      "status": "needs_curated_review",
       "priority": 2491,
       "dialogue_count": 2391,
+      "has_evidence_profile": true,
       "signals": {
         "avg_chars_per_line": 21.23,
         "exclamation_per_100_lines": 82.6,
@@ -1716,7 +1852,8 @@
       "source_speakers": [
         "菱曙"
       ],
-      "sample_count": 12
+      "sample_count": 12,
+      "evidence_status": "evidence_only"
     },
     {
       "character_key": "1131",
@@ -1729,9 +1866,10 @@
         "放声欢呼"
       ],
       "identity_status": "verified_game_id",
-      "status": "needs_review",
+      "status": "needs_curated_review",
       "priority": 2468,
       "dialogue_count": 2368,
+      "has_evidence_profile": true,
       "signals": {
         "avg_chars_per_line": 20.72,
         "exclamation_per_100_lines": 117.99,
@@ -1741,7 +1879,8 @@
       "source_speakers": [
         "放声欢呼"
       ],
-      "sample_count": 12
+      "sample_count": 12,
+      "evidence_status": "evidence_only"
     },
     {
       "character_key": "1055",
@@ -1754,9 +1893,10 @@
         "美丽周日"
       ],
       "identity_status": "verified_game_id",
-      "status": "needs_review",
+      "status": "needs_curated_review",
       "priority": 2424,
       "dialogue_count": 2324,
+      "has_evidence_profile": true,
       "signals": {
         "avg_chars_per_line": 23.11,
         "exclamation_per_100_lines": 96.21,
@@ -1766,7 +1906,8 @@
       "source_speakers": [
         "美丽周日"
       ],
-      "sample_count": 12
+      "sample_count": 12,
+      "evidence_status": "evidence_only"
     },
     {
       "character_key": "1043",
@@ -1779,9 +1920,10 @@
         "新光风"
       ],
       "identity_status": "verified_game_id",
-      "status": "needs_review",
+      "status": "needs_curated_review",
       "priority": 2400,
       "dialogue_count": 2300,
+      "has_evidence_profile": true,
       "signals": {
         "avg_chars_per_line": 21.57,
         "exclamation_per_100_lines": 156.04,
@@ -1791,7 +1933,8 @@
       "source_speakers": [
         "新光风"
       ],
-      "sample_count": 12
+      "sample_count": 12,
+      "evidence_status": "evidence_only"
     },
     {
       "character_key": "1049",
@@ -1804,9 +1947,10 @@
         "中山庆典"
       ],
       "identity_status": "verified_game_id",
-      "status": "needs_review",
+      "status": "needs_curated_review",
       "priority": 2392,
       "dialogue_count": 2292,
+      "has_evidence_profile": true,
       "signals": {
         "avg_chars_per_line": 21.63,
         "exclamation_per_100_lines": 28.62,
@@ -1817,7 +1961,8 @@
         "ナカヤマフェスタ",
         "中山庆典"
       ],
-      "sample_count": 12
+      "sample_count": 12,
+      "evidence_status": "evidence_only"
     },
     {
       "character_key": "1105",
@@ -1830,9 +1975,10 @@
         "新宇宙"
       ],
       "identity_status": "verified_game_id",
-      "status": "needs_review",
+      "status": "needs_curated_review",
       "priority": 2362,
       "dialogue_count": 2262,
+      "has_evidence_profile": true,
       "signals": {
         "avg_chars_per_line": 21.7,
         "exclamation_per_100_lines": 4.69,
@@ -1842,7 +1988,8 @@
       "source_speakers": [
         "新宇宙"
       ],
-      "sample_count": 12
+      "sample_count": 12,
+      "evidence_status": "evidence_only"
     },
     {
       "character_key": "1100",
@@ -1855,9 +2002,10 @@
         "奇锐骏"
       ],
       "identity_status": "verified_game_id",
-      "status": "needs_review",
+      "status": "needs_curated_review",
       "priority": 2339,
       "dialogue_count": 2239,
+      "has_evidence_profile": true,
       "signals": {
         "avg_chars_per_line": 22.27,
         "exclamation_per_100_lines": 21.04,
@@ -1867,7 +2015,8 @@
       "source_speakers": [
         "奇锐骏"
       ],
-      "sample_count": 12
+      "sample_count": 12,
+      "evidence_status": "evidence_only"
     },
     {
       "character_key": "1137",
@@ -1880,9 +2029,10 @@
         "神业"
       ],
       "identity_status": "verified_game_id",
-      "status": "needs_review",
+      "status": "needs_curated_review",
       "priority": 2276,
       "dialogue_count": 2176,
+      "has_evidence_profile": true,
       "signals": {
         "avg_chars_per_line": 21.76,
         "exclamation_per_100_lines": 116.54,
@@ -1892,7 +2042,8 @@
       "source_speakers": [
         "神业"
       ],
-      "sample_count": 12
+      "sample_count": 12,
+      "evidence_status": "evidence_only"
     },
     {
       "character_key": "1070",
@@ -1905,9 +2056,10 @@
         "天狼星象征"
       ],
       "identity_status": "verified_game_id",
-      "status": "needs_review",
+      "status": "needs_curated_review",
       "priority": 2271,
       "dialogue_count": 2171,
+      "has_evidence_profile": true,
       "signals": {
         "avg_chars_per_line": 20.27,
         "exclamation_per_100_lines": 18.24,
@@ -1917,7 +2069,8 @@
       "source_speakers": [
         "天狼星象征"
       ],
-      "sample_count": 12
+      "sample_count": 12,
+      "evidence_status": "evidence_only"
     },
     {
       "character_key": "1078",
@@ -1930,9 +2083,10 @@
         "也文摄辉"
       ],
       "identity_status": "verified_game_id",
-      "status": "needs_review",
+      "status": "needs_curated_review",
       "priority": 2269,
       "dialogue_count": 2169,
+      "has_evidence_profile": true,
       "signals": {
         "avg_chars_per_line": 20.79,
         "exclamation_per_100_lines": 11.02,
@@ -1942,7 +2096,8 @@
       "source_speakers": [
         "也文摄辉"
       ],
-      "sample_count": 12
+      "sample_count": 12,
+      "evidence_status": "evidence_only"
     },
     {
       "character_key": "1119",
@@ -1955,9 +2110,10 @@
         "梦之旅"
       ],
       "identity_status": "verified_game_id",
-      "status": "needs_review",
+      "status": "needs_curated_review",
       "priority": 2247,
       "dialogue_count": 2147,
+      "has_evidence_profile": true,
       "signals": {
         "avg_chars_per_line": 24.08,
         "exclamation_per_100_lines": 2.89,
@@ -1968,7 +2124,8 @@
         "ドリームジャーニー",
         "梦之旅"
       ],
-      "sample_count": 12
+      "sample_count": 12,
+      "evidence_status": "evidence_only"
     },
     {
       "character_key": "1114",
@@ -1981,9 +2138,10 @@
         "迷人景致"
       ],
       "identity_status": "verified_game_id",
-      "status": "needs_review",
+      "status": "needs_curated_review",
       "priority": 2242,
       "dialogue_count": 2142,
+      "has_evidence_profile": true,
       "signals": {
         "avg_chars_per_line": 20.1,
         "exclamation_per_100_lines": 61.06,
@@ -1994,7 +2152,8 @@
         "ブエナビスタ",
         "迷人景致"
       ],
-      "sample_count": 12
+      "sample_count": 12,
+      "evidence_status": "evidence_only"
     },
     {
       "character_key": "1097",
@@ -2007,9 +2166,10 @@
         "爱如往昔"
       ],
       "identity_status": "verified_game_id",
-      "status": "needs_review",
+      "status": "needs_curated_review",
       "priority": 2125,
       "dialogue_count": 2025,
+      "has_evidence_profile": true,
       "signals": {
         "avg_chars_per_line": 17.0,
         "exclamation_per_100_lines": 31.75,
@@ -2019,7 +2179,8 @@
       "source_speakers": [
         "爱如往昔"
       ],
-      "sample_count": 12
+      "sample_count": 12,
+      "evidence_status": "evidence_only"
     },
     {
       "character_key": "1130",
@@ -2032,9 +2193,10 @@
         "旺紫丁"
       ],
       "identity_status": "verified_game_id",
-      "status": "needs_review",
+      "status": "needs_curated_review",
       "priority": 1931,
       "dialogue_count": 1831,
+      "has_evidence_profile": true,
       "signals": {
         "avg_chars_per_line": 21.74,
         "exclamation_per_100_lines": 57.4,
@@ -2044,7 +2206,8 @@
       "source_speakers": [
         "旺紫丁"
       ],
-      "sample_count": 12
+      "sample_count": 12,
+      "evidence_status": "evidence_only"
     },
     {
       "character_key": "1143",
@@ -2057,9 +2220,10 @@
         "比萨胜驹"
       ],
       "identity_status": "verified_game_id",
-      "status": "needs_review",
+      "status": "needs_curated_review",
       "priority": 1521,
       "dialogue_count": 1421,
+      "has_evidence_profile": true,
       "signals": {
         "avg_chars_per_line": 19.65,
         "exclamation_per_100_lines": 22.52,
@@ -2069,7 +2233,8 @@
       "source_speakers": [
         "比萨胜驹"
       ],
-      "sample_count": 12
+      "sample_count": 12,
+      "evidence_status": "evidence_only"
     },
     {
       "character_key": "1063",
@@ -2082,9 +2247,10 @@
         "生野狄杜斯"
       ],
       "identity_status": "verified_game_id",
-      "status": "needs_review",
+      "status": "needs_curated_review",
       "priority": 1310,
       "dialogue_count": 1210,
+      "has_evidence_profile": true,
       "signals": {
         "avg_chars_per_line": 25.05,
         "exclamation_per_100_lines": 18.35,
@@ -2094,7 +2260,8 @@
       "source_speakers": [
         "生野狄杜斯"
       ],
-      "sample_count": 12
+      "sample_count": 12,
+      "evidence_status": "evidence_only"
     },
     {
       "character_key": "1054",
@@ -2107,9 +2274,10 @@
         "微光飞驹"
       ],
       "identity_status": "verified_game_id",
-      "status": "needs_review",
+      "status": "needs_curated_review",
       "priority": 1140,
       "dialogue_count": 1040,
+      "has_evidence_profile": true,
       "signals": {
         "avg_chars_per_line": 22.45,
         "exclamation_per_100_lines": 147.12,
@@ -2119,7 +2287,8 @@
       "source_speakers": [
         "微光飞驹"
       ],
-      "sample_count": 12
+      "sample_count": 12,
+      "evidence_status": "evidence_only"
     },
     {
       "character_key": "1093",
@@ -2132,9 +2301,10 @@
         "凯斯奇迹"
       ],
       "identity_status": "verified_game_id",
-      "status": "needs_review",
+      "status": "needs_curated_review",
       "priority": 956,
       "dialogue_count": 856,
+      "has_evidence_profile": true,
       "signals": {
         "avg_chars_per_line": 19.64,
         "exclamation_per_100_lines": 24.88,
@@ -2144,7 +2314,8 @@
       "source_speakers": [
         "凯斯奇迹"
       ],
-      "sample_count": 12
+      "sample_count": 12,
+      "evidence_status": "evidence_only"
     },
     {
       "character_key": "1094",
@@ -2157,9 +2328,10 @@
         "森林宝穴"
       ],
       "identity_status": "verified_game_id",
-      "status": "needs_review",
+      "status": "needs_curated_review",
       "priority": 859,
       "dialogue_count": 759,
+      "has_evidence_profile": true,
       "signals": {
         "avg_chars_per_line": 24.31,
         "exclamation_per_100_lines": 129.25,
@@ -2170,7 +2342,8 @@
         "ジャングルポケット",
         "森林宝穴"
       ],
-      "sample_count": 12
+      "sample_count": 12,
+      "evidence_status": "evidence_only"
     },
     {
       "character_key": "1073",
@@ -2183,9 +2356,10 @@
         "鹤丸刚志"
       ],
       "identity_status": "verified_game_id",
-      "status": "needs_review",
+      "status": "needs_curated_review",
       "priority": 765,
       "dialogue_count": 665,
+      "has_evidence_profile": true,
       "signals": {
         "avg_chars_per_line": 25.14,
         "exclamation_per_100_lines": 150.83,
@@ -2196,7 +2370,8 @@
         "ツルマルツヨシ",
         "鹤丸刚志"
       ],
-      "sample_count": 12
+      "sample_count": 12,
+      "evidence_status": "evidence_only"
     },
     {
       "character_key": "1108",
@@ -2209,9 +2384,10 @@
         "大鸣大放"
       ],
       "identity_status": "verified_game_id",
-      "status": "needs_review",
+      "status": "needs_curated_review",
       "priority": 743,
       "dialogue_count": 643,
+      "has_evidence_profile": true,
       "signals": {
         "avg_chars_per_line": 19.41,
         "exclamation_per_100_lines": 16.33,
@@ -2221,7 +2397,8 @@
       "source_speakers": [
         "大鸣大放"
       ],
-      "sample_count": 12
+      "sample_count": 12,
+      "evidence_status": "evidence_only"
     },
     {
       "character_key": "1090",
@@ -2234,9 +2411,10 @@
         "极峰"
       ],
       "identity_status": "verified_game_id",
-      "status": "needs_review",
+      "status": "needs_curated_review",
       "priority": 708,
       "dialogue_count": 608,
+      "has_evidence_profile": true,
       "signals": {
         "avg_chars_per_line": 18.87,
         "exclamation_per_100_lines": 26.48,
@@ -2246,7 +2424,8 @@
       "source_speakers": [
         "极峰"
       ],
-      "sample_count": 12
+      "sample_count": 12,
+      "evidence_status": "evidence_only"
     },
     {
       "character_key": "1086",
@@ -2259,9 +2438,10 @@
         "目白高峰"
       ],
       "identity_status": "verified_game_id",
-      "status": "needs_review",
+      "status": "needs_curated_review",
       "priority": 680,
       "dialogue_count": 580,
+      "has_evidence_profile": true,
       "signals": {
         "avg_chars_per_line": 15.94,
         "exclamation_per_100_lines": 4.66,
@@ -2271,7 +2451,8 @@
       "source_speakers": [
         "目白高峰"
       ],
-      "sample_count": 12
+      "sample_count": 12,
+      "evidence_status": "evidence_only"
     },
     {
       "character_key": "1107",
@@ -2284,9 +2465,10 @@
         "跳舞城"
       ],
       "identity_status": "verified_game_id",
-      "status": "needs_review",
+      "status": "needs_curated_review",
       "priority": 651,
       "dialogue_count": 551,
+      "has_evidence_profile": true,
       "signals": {
         "avg_chars_per_line": 26.56,
         "exclamation_per_100_lines": 132.12,
@@ -2297,7 +2479,8 @@
         "タップダンスシチー",
         "跳舞城"
       ],
-      "sample_count": 12
+      "sample_count": 12,
+      "evidence_status": "evidence_only"
     },
     {
       "character_key": "1111",
@@ -2310,9 +2493,10 @@
         "空中救主"
       ],
       "identity_status": "verified_game_id",
-      "status": "needs_review",
+      "status": "needs_curated_review",
       "priority": 609,
       "dialogue_count": 509,
+      "has_evidence_profile": true,
       "signals": {
         "avg_chars_per_line": 21.55,
         "exclamation_per_100_lines": 30.45,
@@ -2322,7 +2506,8 @@
       "source_speakers": [
         "空中救主"
       ],
-      "sample_count": 12
+      "sample_count": 12,
+      "evidence_status": "evidence_only"
     },
     {
       "character_key": "1145",
@@ -2335,9 +2520,10 @@
         "统治地位"
       ],
       "identity_status": "verified_game_id",
-      "status": "needs_review",
+      "status": "needs_curated_review",
       "priority": 527,
       "dialogue_count": 427,
+      "has_evidence_profile": true,
       "signals": {
         "avg_chars_per_line": 31.33,
         "exclamation_per_100_lines": 62.53,
@@ -2347,7 +2533,8 @@
       "source_speakers": [
         "统治地位"
       ],
-      "sample_count": 12
+      "sample_count": 12,
+      "evidence_status": "evidence_only"
     },
     {
       "character_key": "1138",
@@ -2360,9 +2547,10 @@
         "青春永驻"
       ],
       "identity_status": "verified_game_id",
-      "status": "needs_review",
+      "status": "needs_curated_review",
       "priority": 493,
       "dialogue_count": 393,
+      "has_evidence_profile": true,
       "signals": {
         "avg_chars_per_line": 29.17,
         "exclamation_per_100_lines": 62.09,
@@ -2372,7 +2560,8 @@
       "source_speakers": [
         "青春永驻"
       ],
-      "sample_count": 12
+      "sample_count": 12,
+      "evidence_status": "evidence_only"
     },
     {
       "character_key": "1092",
@@ -2385,9 +2574,10 @@
         "烈焰快驹"
       ],
       "identity_status": "verified_game_id",
-      "status": "needs_review",
+      "status": "needs_curated_review",
       "priority": 489,
       "dialogue_count": 389,
+      "has_evidence_profile": true,
       "signals": {
         "avg_chars_per_line": 26.48,
         "exclamation_per_100_lines": 91.26,
@@ -2397,7 +2587,8 @@
       "source_speakers": [
         "烈焰快驹"
       ],
-      "sample_count": 12
+      "sample_count": 12,
+      "evidence_status": "evidence_only"
     },
     {
       "character_key": "1135",
@@ -2410,9 +2601,10 @@
         "黄金旅程"
       ],
       "identity_status": "verified_game_id",
-      "status": "needs_review",
+      "status": "needs_curated_review",
       "priority": 447,
       "dialogue_count": 347,
+      "has_evidence_profile": true,
       "signals": {
         "avg_chars_per_line": 24.87,
         "exclamation_per_100_lines": 22.48,
@@ -2423,7 +2615,8 @@
         "ステイゴールド",
         "黄金旅程"
       ],
-      "sample_count": 12
+      "sample_count": 12,
+      "evidence_status": "evidence_only"
     },
     {
       "character_key": "1115",
@@ -2436,9 +2629,10 @@
         "黄金巨匠"
       ],
       "identity_status": "verified_game_id",
-      "status": "needs_review",
+      "status": "needs_curated_review",
       "priority": 445,
       "dialogue_count": 345,
+      "has_evidence_profile": true,
       "signals": {
         "avg_chars_per_line": 16.35,
         "exclamation_per_100_lines": 10.43,
@@ -2449,7 +2643,8 @@
         "オルフェーヴル",
         "黄金巨匠"
       ],
-      "sample_count": 12
+      "sample_count": 12,
+      "evidence_status": "evidence_only"
     },
     {
       "character_key": "1128",
@@ -2462,9 +2657,10 @@
         "防爆装束"
       ],
       "identity_status": "verified_game_id",
-      "status": "needs_review",
+      "status": "needs_curated_review",
       "priority": 442,
       "dialogue_count": 342,
+      "has_evidence_profile": true,
       "signals": {
         "avg_chars_per_line": 24.76,
         "exclamation_per_100_lines": 174.56,
@@ -2474,7 +2670,8 @@
       "source_speakers": [
         "防爆装束"
       ],
-      "sample_count": 12
+      "sample_count": 12,
+      "evidence_status": "evidence_only"
     },
     {
       "character_key": "1081",
@@ -2487,9 +2684,10 @@
         "希望之城"
       ],
       "identity_status": "verified_game_id",
-      "status": "needs_review",
+      "status": "needs_curated_review",
       "priority": 433,
       "dialogue_count": 333,
+      "has_evidence_profile": true,
       "signals": {
         "avg_chars_per_line": 21.07,
         "exclamation_per_100_lines": 108.11,
@@ -2499,7 +2697,8 @@
       "source_speakers": [
         "希望之城"
       ],
-      "sample_count": 12
+      "sample_count": 12,
+      "evidence_status": "evidence_only"
     },
     {
       "character_key": "1140",
@@ -2512,9 +2711,10 @@
         "洛林军歌"
       ],
       "identity_status": "verified_game_id",
-      "status": "needs_review",
+      "status": "needs_curated_review",
       "priority": 431,
       "dialogue_count": 331,
+      "has_evidence_profile": true,
       "signals": {
         "avg_chars_per_line": 24.13,
         "exclamation_per_100_lines": 77.64,
@@ -2524,7 +2724,8 @@
       "source_speakers": [
         "洛林军歌"
       ],
-      "sample_count": 12
+      "sample_count": 12,
+      "evidence_status": "evidence_only"
     },
     {
       "character_key": "1103",
@@ -2537,9 +2738,10 @@
         "莱斯莱斯"
       ],
       "identity_status": "verified_game_id",
-      "status": "needs_review",
+      "status": "needs_curated_review",
       "priority": 421,
       "dialogue_count": 321,
+      "has_evidence_profile": true,
       "signals": {
         "avg_chars_per_line": 30.32,
         "exclamation_per_100_lines": 84.42,
@@ -2550,7 +2752,8 @@
         "ロイスアンドロイス",
         "莱斯莱斯"
       ],
-      "sample_count": 12
+      "sample_count": 12,
+      "evidence_status": "evidence_only"
     },
     {
       "character_key": "1141",
@@ -2563,9 +2766,10 @@
         "神威启示"
       ],
       "identity_status": "verified_game_id",
-      "status": "needs_review",
+      "status": "needs_curated_review",
       "priority": 411,
       "dialogue_count": 311,
+      "has_evidence_profile": true,
       "signals": {
         "avg_chars_per_line": 27.36,
         "exclamation_per_100_lines": 221.86,
@@ -2575,7 +2779,8 @@
       "source_speakers": [
         "神威启示"
       ],
-      "sample_count": 12
+      "sample_count": 12,
+      "evidence_status": "evidence_only"
     },
     {
       "character_key": "1080",
@@ -2588,9 +2793,10 @@
         "创升"
       ],
       "identity_status": "verified_game_id",
-      "status": "needs_review",
+      "status": "needs_curated_review",
       "priority": 393,
       "dialogue_count": 293,
+      "has_evidence_profile": true,
       "signals": {
         "avg_chars_per_line": 27.11,
         "exclamation_per_100_lines": 42.66,
@@ -2600,7 +2806,8 @@
       "source_speakers": [
         "创升"
       ],
-      "sample_count": 12
+      "sample_count": 12,
+      "evidence_status": "evidence_only"
     },
     {
       "character_key": "1121",
@@ -2613,9 +2820,10 @@
         "多旺达"
       ],
       "identity_status": "verified_game_id",
-      "status": "needs_review",
+      "status": "needs_curated_review",
       "priority": 382,
       "dialogue_count": 282,
+      "has_evidence_profile": true,
       "signals": {
         "avg_chars_per_line": 24.58,
         "exclamation_per_100_lines": 59.57,
@@ -2625,7 +2833,8 @@
       "source_speakers": [
         "多旺达"
       ],
-      "sample_count": 12
+      "sample_count": 12,
+      "evidence_status": "evidence_only"
     },
     {
       "character_key": "1075",
@@ -2638,9 +2847,10 @@
         "谋勇兼备"
       ],
       "identity_status": "verified_game_id",
-      "status": "needs_review",
+      "status": "needs_curated_review",
       "priority": 379,
       "dialogue_count": 279,
+      "has_evidence_profile": true,
       "signals": {
         "avg_chars_per_line": 25.54,
         "exclamation_per_100_lines": 55.91,
@@ -2650,7 +2860,8 @@
       "source_speakers": [
         "谋勇兼备"
       ],
-      "sample_count": 12
+      "sample_count": 12,
+      "evidence_status": "evidence_only"
     },
     {
       "character_key": "1120",
@@ -2663,9 +2874,10 @@
         "金镇之光"
       ],
       "identity_status": "verified_game_id",
-      "status": "needs_review",
+      "status": "needs_curated_review",
       "priority": 377,
       "dialogue_count": 277,
+      "has_evidence_profile": true,
       "signals": {
         "avg_chars_per_line": 26.94,
         "exclamation_per_100_lines": 101.08,
@@ -2675,7 +2887,8 @@
       "source_speakers": [
         "金镇之光"
       ],
-      "sample_count": 12
+      "sample_count": 12,
+      "evidence_status": "evidence_only"
     },
     {
       "character_key": "1082",
@@ -2688,9 +2901,10 @@
         "北方飞翔"
       ],
       "identity_status": "verified_game_id",
-      "status": "needs_review",
+      "status": "needs_curated_review",
       "priority": 353,
       "dialogue_count": 253,
+      "has_evidence_profile": true,
       "signals": {
         "avg_chars_per_line": 29.74,
         "exclamation_per_100_lines": 64.03,
@@ -2700,7 +2914,8 @@
       "source_speakers": [
         "北方飞翔"
       ],
-      "sample_count": 12
+      "sample_count": 12,
+      "evidence_status": "evidence_only"
     },
     {
       "character_key": "1079",
@@ -2713,9 +2928,10 @@
         "狂怒乐章"
       ],
       "identity_status": "verified_game_id",
-      "status": "needs_review",
+      "status": "needs_curated_review",
       "priority": 345,
       "dialogue_count": 245,
+      "has_evidence_profile": true,
       "signals": {
         "avg_chars_per_line": 23.78,
         "exclamation_per_100_lines": 37.55,
@@ -2725,7 +2941,8 @@
       "source_speakers": [
         "狂怒乐章"
       ],
-      "sample_count": 12
+      "sample_count": 12,
+      "evidence_status": "evidence_only"
     },
     {
       "character_key": "1116",
@@ -2738,9 +2955,10 @@
         "贵妇人"
       ],
       "identity_status": "verified_game_id",
-      "status": "needs_review",
+      "status": "needs_curated_review",
       "priority": 309,
       "dialogue_count": 209,
+      "has_evidence_profile": true,
       "signals": {
         "avg_chars_per_line": 20.85,
         "exclamation_per_100_lines": 10.53,
@@ -2750,7 +2968,8 @@
       "source_speakers": [
         "贵妇人"
       ],
-      "sample_count": 12
+      "sample_count": 12,
+      "evidence_status": "evidence_only"
     },
     {
       "character_key": "1096",
@@ -2763,9 +2982,10 @@
         "莫名其妙"
       ],
       "identity_status": "verified_game_id",
-      "status": "needs_review",
+      "status": "needs_curated_review",
       "priority": 264,
       "dialogue_count": 164,
+      "has_evidence_profile": true,
       "signals": {
         "avg_chars_per_line": 28.23,
         "exclamation_per_100_lines": 139.63,
@@ -2775,7 +2995,8 @@
       "source_speakers": [
         "莫名其妙"
       ],
-      "sample_count": 12
+      "sample_count": 12,
+      "evidence_status": "evidence_only"
     },
     {
       "character_key": "1102",
@@ -2788,9 +3009,10 @@
         "万籁争鸣"
       ],
       "identity_status": "verified_game_id",
-      "status": "needs_review",
+      "status": "needs_curated_review",
       "priority": 260,
       "dialogue_count": 160,
+      "has_evidence_profile": true,
       "signals": {
         "avg_chars_per_line": 33.52,
         "exclamation_per_100_lines": 118.75,
@@ -2800,7 +3022,8 @@
       "source_speakers": [
         "万籁争鸣"
       ],
-      "sample_count": 12
+      "sample_count": 12,
+      "evidence_status": "evidence_only"
     },
     {
       "character_key": "1144",
@@ -2813,9 +3036,10 @@
         "玫瑰帝国"
       ],
       "identity_status": "verified_game_id",
-      "status": "needs_review",
+      "status": "needs_curated_review",
       "priority": 258,
       "dialogue_count": 158,
+      "has_evidence_profile": true,
       "signals": {
         "avg_chars_per_line": 21.87,
         "exclamation_per_100_lines": 10.76,
@@ -2825,7 +3049,8 @@
       "source_speakers": [
         "玫瑰帝国"
       ],
-      "sample_count": 12
+      "sample_count": 12,
+      "evidence_status": "evidence_only"
     },
     {
       "character_key": "1117",
@@ -2838,9 +3063,10 @@
         "凯旋芭蕾"
       ],
       "identity_status": "verified_game_id",
-      "status": "needs_review",
+      "status": "needs_curated_review",
       "priority": 249,
       "dialogue_count": 149,
+      "has_evidence_profile": true,
       "signals": {
         "avg_chars_per_line": 27.98,
         "exclamation_per_100_lines": 65.77,
@@ -2850,7 +3076,8 @@
       "source_speakers": [
         "凯旋芭蕾"
       ],
-      "sample_count": 12
+      "sample_count": 12,
+      "evidence_status": "evidence_only"
     },
     {
       "character_key": "1127",
@@ -2863,9 +3090,10 @@
         "超常骏骥"
       ],
       "identity_status": "verified_game_id",
-      "status": "needs_review",
+      "status": "needs_curated_review",
       "priority": 224,
       "dialogue_count": 124,
+      "has_evidence_profile": true,
       "signals": {
         "avg_chars_per_line": 29.0,
         "exclamation_per_100_lines": 165.32,
@@ -2875,7 +3103,8 @@
       "source_speakers": [
         "超常骏骥"
       ],
-      "sample_count": 12
+      "sample_count": 12,
+      "evidence_status": "evidence_only"
     },
     {
       "character_key": "1124",
@@ -2888,9 +3117,10 @@
         "吹波糖"
       ],
       "identity_status": "verified_game_id",
-      "status": "needs_review",
+      "status": "needs_curated_review",
       "priority": 187,
       "dialogue_count": 87,
+      "has_evidence_profile": true,
       "signals": {
         "avg_chars_per_line": 25.07,
         "exclamation_per_100_lines": 88.51,
@@ -2900,7 +3130,8 @@
       "source_speakers": [
         "吹波糖"
       ],
-      "sample_count": 12
+      "sample_count": 12,
+      "evidence_status": "evidence_only"
     },
     {
       "character_key": "1095",
@@ -2913,9 +3144,10 @@
         "信念"
       ],
       "identity_status": "verified_game_id",
-      "status": "needs_review",
+      "status": "needs_curated_review",
       "priority": 170,
       "dialogue_count": 70,
+      "has_evidence_profile": true,
       "signals": {
         "avg_chars_per_line": 20.13,
         "exclamation_per_100_lines": 18.57,
@@ -2925,7 +3157,8 @@
       "source_speakers": [
         "信念"
       ],
-      "sample_count": 12
+      "sample_count": 12,
+      "evidence_status": "evidence_only"
     },
     {
       "character_key": "1148",
@@ -2938,9 +3171,10 @@
         "领衔"
       ],
       "identity_status": "verified_game_id_override",
-      "status": "needs_review",
+      "status": "needs_curated_review",
       "priority": 133,
       "dialogue_count": 33,
+      "has_evidence_profile": true,
       "signals": {
         "avg_chars_per_line": 25.0,
         "exclamation_per_100_lines": 51.52,
@@ -2950,7 +3184,8 @@
       "source_speakers": [
         "领衔"
       ],
-      "sample_count": 12
+      "sample_count": 12,
+      "evidence_status": "evidence_only"
     },
     {
       "character_key": "1142",
@@ -2963,9 +3198,10 @@
         "标志名驹"
       ],
       "identity_status": "verified_game_id",
-      "status": "needs_review",
+      "status": "needs_curated_review",
       "priority": 119,
       "dialogue_count": 19,
+      "has_evidence_profile": true,
       "signals": {
         "avg_chars_per_line": 29.58,
         "exclamation_per_100_lines": 0.0,
@@ -2975,7 +3211,8 @@
       "source_speakers": [
         "标志名驹"
       ],
-      "sample_count": 12
+      "sample_count": 12,
+      "evidence_status": "evidence_only"
     },
     {
       "character_key": "1126",
@@ -2988,9 +3225,10 @@
         "樱花千岁王"
       ],
       "identity_status": "verified_game_id",
-      "status": "needs_review",
+      "status": "needs_curated_review",
       "priority": 101,
       "dialogue_count": 1,
+      "has_evidence_profile": true,
       "signals": {
         "avg_chars_per_line": 36.0,
         "exclamation_per_100_lines": 0.0,
@@ -3000,7 +3238,8 @@
       "source_speakers": [
         "樱花千岁王"
       ],
-      "sample_count": 1
+      "sample_count": 1,
+      "evidence_status": "evidence_only"
     },
     {
       "character_key": "slug:samsonbig",
@@ -3011,9 +3250,11 @@
       ],
       "zh_cn": [],
       "identity_status": "structured_without_game_id",
-      "status": "needs_review",
+      "status": "needs_curated_review",
       "priority": 100,
-      "dialogue_count": 0
+      "dialogue_count": 0,
+      "has_evidence_profile": true,
+      "evidence_status": "identity_only_no_dialogue_evidence"
     },
     {
       "character_key": "1018",
@@ -3026,9 +3267,10 @@
         "气槽"
       ],
       "identity_status": "verified_game_id",
-      "status": "covered",
+      "status": "curated",
       "priority": 0,
       "dialogue_count": 4300,
+      "has_evidence_profile": false,
       "signals": {
         "avg_chars_per_line": 22.22,
         "exclamation_per_100_lines": 21.65,
@@ -3052,9 +3294,10 @@
         "大拓太阳神"
       ],
       "identity_status": "verified_game_id",
-      "status": "covered",
+      "status": "curated",
       "priority": 0,
       "dialogue_count": 3945,
+      "has_evidence_profile": false,
       "signals": {
         "avg_chars_per_line": 20.26,
         "exclamation_per_100_lines": 167.83,
@@ -3079,9 +3322,10 @@
         "黄金船"
       ],
       "identity_status": "verified_game_id",
-      "status": "covered",
+      "status": "curated",
       "priority": 0,
       "dialogue_count": 3024,
+      "has_evidence_profile": false,
       "signals": {
         "avg_chars_per_line": 24.91,
         "exclamation_per_100_lines": 148.08,
@@ -3106,9 +3350,10 @@
         "春丽"
       ],
       "identity_status": "verified_game_id",
-      "status": "covered",
+      "status": "curated",
       "priority": 0,
       "dialogue_count": 2290,
+      "has_evidence_profile": false,
       "signals": {
         "avg_chars_per_line": 20.23,
         "exclamation_per_100_lines": 154.1,
@@ -3133,9 +3378,10 @@
         "圣王光环"
       ],
       "identity_status": "verified_game_id",
-      "status": "covered",
+      "status": "curated",
       "priority": 0,
       "dialogue_count": 3713,
+      "has_evidence_profile": false,
       "signals": {
         "avg_chars_per_line": 21.83,
         "exclamation_per_100_lines": 75.63,
@@ -3159,9 +3405,10 @@
         "北部玄驹"
       ],
       "identity_status": "verified_game_id",
-      "status": "covered",
+      "status": "curated",
       "priority": 0,
       "dialogue_count": 3607,
+      "has_evidence_profile": false,
       "signals": {
         "avg_chars_per_line": 23.16,
         "exclamation_per_100_lines": 115.72,
@@ -3185,9 +3432,10 @@
         "目白麦昆"
       ],
       "identity_status": "verified_game_id",
-      "status": "covered",
+      "status": "curated",
       "priority": 0,
       "dialogue_count": 4413,
+      "has_evidence_profile": false,
       "signals": {
         "avg_chars_per_line": 22.46,
         "exclamation_per_100_lines": 40.09,
@@ -3212,9 +3460,10 @@
         "优秀素质"
       ],
       "identity_status": "verified_game_id",
-      "status": "covered",
+      "status": "curated",
       "priority": 0,
       "dialogue_count": 4169,
+      "has_evidence_profile": false,
       "signals": {
         "avg_chars_per_line": 21.79,
         "exclamation_per_100_lines": 46.01,
@@ -3238,9 +3487,10 @@
         "小栗帽"
       ],
       "identity_status": "verified_game_id",
-      "status": "covered",
+      "status": "curated",
       "priority": 0,
       "dialogue_count": 3012,
+      "has_evidence_profile": false,
       "signals": {
         "avg_chars_per_line": 19.77,
         "exclamation_per_100_lines": 26.16,
@@ -3264,9 +3514,10 @@
         "莱茵力量"
       ],
       "identity_status": "verified_game_id",
-      "status": "covered",
+      "status": "curated",
       "priority": 0,
       "dialogue_count": 4010,
+      "has_evidence_profile": false,
       "signals": {
         "avg_chars_per_line": 20.67,
         "exclamation_per_100_lines": 101.47,
@@ -3290,9 +3541,10 @@
         "米浴"
       ],
       "identity_status": "verified_game_id",
-      "status": "covered",
+      "status": "curated",
       "priority": 0,
       "dialogue_count": 4001,
+      "has_evidence_profile": false,
       "signals": {
         "avg_chars_per_line": 18.88,
         "exclamation_per_100_lines": 63.11,
@@ -3317,9 +3569,10 @@
         "樱花千代王"
       ],
       "identity_status": "verified_game_id",
-      "status": "covered",
+      "status": "curated",
       "priority": 0,
       "dialogue_count": 3749,
+      "has_evidence_profile": false,
       "signals": {
         "avg_chars_per_line": 23.35,
         "exclamation_per_100_lines": 87.14,
@@ -3343,9 +3596,10 @@
         "里见光钻"
       ],
       "identity_status": "verified_game_id",
-      "status": "covered",
+      "status": "curated",
       "priority": 0,
       "dialogue_count": 3587,
+      "has_evidence_profile": false,
       "signals": {
         "avg_chars_per_line": 23.25,
         "exclamation_per_100_lines": 62.84,
@@ -3370,9 +3624,10 @@
         "无声铃鹿"
       ],
       "identity_status": "verified_game_id",
-      "status": "covered",
+      "status": "curated",
       "priority": 0,
       "dialogue_count": 3598,
+      "has_evidence_profile": false,
       "signals": {
         "avg_chars_per_line": 17.78,
         "exclamation_per_100_lines": 14.31,
@@ -3397,9 +3652,10 @@
         "醒目飞鹰"
       ],
       "identity_status": "verified_game_id",
-      "status": "covered",
+      "status": "curated",
       "priority": 0,
       "dialogue_count": 4060,
+      "has_evidence_profile": false,
       "signals": {
         "avg_chars_per_line": 22.78,
         "exclamation_per_100_lines": 94.73,
@@ -3424,9 +3680,10 @@
         "特别周"
       ],
       "identity_status": "verified_game_id",
-      "status": "covered",
+      "status": "curated",
       "priority": 0,
       "dialogue_count": 4884,
+      "has_evidence_profile": false,
       "signals": {
         "avg_chars_per_line": 20.82,
         "exclamation_per_100_lines": 114.39,
@@ -3451,9 +3708,10 @@
         "超级溪流"
       ],
       "identity_status": "verified_game_id",
-      "status": "covered",
+      "status": "curated",
       "priority": 0,
       "dialogue_count": 2300,
+      "has_evidence_profile": false,
       "signals": {
         "avg_chars_per_line": 19.93,
         "exclamation_per_100_lines": 17.09,
@@ -3477,9 +3735,10 @@
         "鲁道夫象征"
       ],
       "identity_status": "verified_game_id",
-      "status": "covered",
+      "status": "curated",
       "priority": 0,
       "dialogue_count": 4526,
+      "has_evidence_profile": false,
       "signals": {
         "avg_chars_per_line": 23.51,
         "exclamation_per_100_lines": 9.41,
@@ -3504,9 +3763,10 @@
         "好歌剧"
       ],
       "identity_status": "verified_game_id",
-      "status": "covered",
+      "status": "curated",
       "priority": 0,
       "dialogue_count": 4075,
+      "has_evidence_profile": false,
       "signals": {
         "avg_chars_per_line": 25.4,
         "exclamation_per_100_lines": 99.44,
@@ -3532,9 +3792,10 @@
         "东海帝皇"
       ],
       "identity_status": "verified_game_id",
-      "status": "covered",
+      "status": "curated",
       "priority": 0,
       "dialogue_count": 4013,
+      "has_evidence_profile": false,
       "signals": {
         "avg_chars_per_line": 21.29,
         "exclamation_per_100_lines": 107.55,
@@ -3559,9 +3820,10 @@
         "双涡轮"
       ],
       "identity_status": "verified_game_id",
-      "status": "covered",
+      "status": "curated",
       "priority": 0,
       "dialogue_count": 2281,
+      "has_evidence_profile": false,
       "signals": {
         "avg_chars_per_line": 20.64,
         "exclamation_per_100_lines": 195.84,
@@ -3585,9 +3847,10 @@
         "伏特加"
       ],
       "identity_status": "verified_game_id",
-      "status": "covered",
+      "status": "curated",
       "priority": 0,
       "dialogue_count": 3801,
+      "has_evidence_profile": false,
       "signals": {
         "avg_chars_per_line": 21.91,
         "exclamation_per_100_lines": 101.32,
@@ -3612,9 +3875,10 @@
         "荒漠英雄"
       ],
       "identity_status": "verified_game_id",
-      "status": "covered",
+      "status": "curated",
       "priority": 0,
       "dialogue_count": 3926,
+      "has_evidence_profile": false,
       "signals": {
         "avg_chars_per_line": 23.34,
         "exclamation_per_100_lines": 65.79,

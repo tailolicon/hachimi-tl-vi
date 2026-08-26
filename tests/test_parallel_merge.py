@@ -12,6 +12,7 @@ _SPEC.loader.exec_module(_MOD)
 
 _set_path = _MOD._set_path
 _validate_and_complete = _MOD._validate_and_complete
+_recover_runtime_newlines = _MOD._recover_runtime_newlines
 
 
 SOURCE_REF = "snapshot-sha"
@@ -89,3 +90,48 @@ def test_conflicting_valid_translations_block_merge():
     )
     assert resolved is None
     assert "translation_conflict:u1" in diagnostics
+
+
+def test_recover_runtime_newline_only_for_exact_legacy_decode():
+    source = "第一行\\n第二行"
+    target = "Dòng một\nDòng hai"
+    assert _recover_runtime_newlines(source, target) == "Dòng một\\nDòng hai"
+
+    # Do not touch genuine source newlines or ambiguous newline-count changes.
+    assert _recover_runtime_newlines("第一行\n第二行", target) is None
+    assert _recover_runtime_newlines(source, "Một\nHai\nBa") is None
+
+
+def test_complete_batch_recovers_decoded_runtime_newline_without_retranslation():
+    source = {
+        "source_commit": "upstream-sha",
+        "entries": [
+            {
+                "uid": "runtime-newline",
+                "source_text": "佩服！　两人的关系\\n是多么的理想啊……！！",
+                "source_fingerprint": "runtime-fp",
+                "source_path": "text_data_dict.json",
+                "json_path": ["139", "1"],
+            }
+        ],
+    }
+    result = payload(
+        "legacy",
+        [
+            tr(
+                "runtime-newline",
+                "runtime-fp",
+                "Khâm phục quá!　Mối quan hệ của hai người\nthật lý tưởng biết bao……!!",
+            )
+        ],
+    )
+
+    resolved, diagnostics, claims = _validate_and_complete(
+        source, SOURCE_REF, [result]
+    )
+
+    assert resolved == {
+        "runtime-newline": "Khâm phục quá!　Mối quan hệ của hai người\\nthật lý tưởng biết bao……!!"
+    }
+    assert claims == {"legacy"}
+    assert any("recovered_runtime_newline:runtime-newline" in item for item in diagnostics)

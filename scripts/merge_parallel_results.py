@@ -70,6 +70,31 @@ def _set_path(doc: Any, path: list[Any], value: str) -> None:
         raise TypeError(f"cannot assign into {type(node).__name__}")
 
 
+def _recover_runtime_newlines(source: str, target: str) -> str | None:
+    """Recover the legacy worker bug that decoded literal ``\\n`` into real newlines.
+
+    Recovery is deliberately narrow: the source must contain no real newlines, and the
+    target's real-newline count must exactly account for the source's missing literal
+    runtime-newline tokens. This preserves every translated character while restoring
+    only the escaped runtime structure that was present in the pinned source.
+    """
+    if source.count("\n") != 0:
+        return None
+
+    source_runtime = source.count("\\n")
+    target_runtime = target.count("\\n")
+    target_real = target.count("\n")
+    if target_real == 0:
+        return None
+    if target_runtime + target_real != source_runtime:
+        return None
+
+    recovered = target.replace("\n", "\\n")
+    if recovered.count("\\n") != source_runtime or recovered.count("\n") != 0:
+        return None
+    return recovered
+
+
 def _collect_results(results_root: Path) -> dict[int, list[dict[str, Any]]]:
     by_batch: dict[int, list[dict[str, Any]]] = defaultdict(list)
     if not results_root.exists():
@@ -128,7 +153,18 @@ def _validate_and_complete(
             if fingerprint != source_entry.get("source_fingerprint"):
                 diagnostics.append(f"{result_path}:ignored_fingerprint_mismatch:{uid}")
                 continue
-            qa = qa_pair(source_entry.get("source_text", ""), target)
+
+            source_text = source_entry.get("source_text", "")
+            qa = qa_pair(source_text, target)
+            if qa["problems"] == ["newline_count_changed"]:
+                recovered = _recover_runtime_newlines(source_text, target)
+                if recovered is not None:
+                    recovered_qa = qa_pair(source_text, recovered)
+                    if not recovered_qa["problems"]:
+                        target = recovered
+                        qa = recovered_qa
+                        diagnostics.append(f"{result_path}:recovered_runtime_newline:{uid}")
+
             if qa["problems"]:
                 diagnostics.append(
                     f"{result_path}:ignored_qa:{uid}:{','.join(qa['problems'])}"

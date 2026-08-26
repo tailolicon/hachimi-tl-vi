@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "policy": {
+    "purpose": "Human/AI-assisted review decisions for promoting terminology into the canonical locked registry.",
+    "safety": "Nothing in terminology_review_queue.json is locked automatically. Only explicit action=lock decisions in this file may modify term_registry.json.",
+    "conflicts": "Applying a lock must fail if any locked alias already maps to a different Vietnamese target or if the requested term ID conflicts with an existing locked concept.",
+    "actions": {
+      "lock": "Promote an explicitly reviewed mapping into term_registry.json.",
+      "defer": "Record that the item was reviewed but should remain unresolved for now; no registry write.",
+      "ignore": "Record that the candidate should not become canonical terminology; no registry write."
+    }
+  },
+  "decisions": []
+}

@@ -11,7 +11,9 @@ _TAG_RE = re.compile(r"<[^<>\r\n]+>")
 _BRACE_RE = re.compile(r"\{[^{}\r\n]+\}")
 _PRINTF_RE = re.compile(r"%(?:\d+\$)?[-+0 #]*\d*(?:\.\d+)?[sdif]")
 _RUNTIME_RE = re.compile(r"\$\([^)]*\)|\$[A-Za-z_][A-Za-z0-9_]*")
-_CJK_RE = re.compile(r"[\u3040-\u30ff\u3400-\u4dbf\u4e00-\u9fff]")
+# Exclude Japanese punctuation such as U+30FB KATAKANA MIDDLE DOT. We want
+# actual kana/hanzi leakage, not punctuation intentionally preserved by source.
+_CJK_RE = re.compile(r"[\u3041-\u3096\u30a1-\u30fa\u30fd-\u30ff\u3400-\u4dbf\u4e00-\u9fff]")
 _LETTER_SLASH_RE = re.compile(r"[^\W\d_]\s*/\s*[^\W\d_]", re.UNICODE)
 
 

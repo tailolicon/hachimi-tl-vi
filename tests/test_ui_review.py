@@ -16,6 +16,11 @@ def test_placeholder_date_slash_is_not_a_slash_compound():
     assert "slash_compound" not in flags
 
 
+def test_katakana_middle_dot_is_not_source_script_leakage():
+    flags = risk_flags("实况・解说", "Tường thuật・bình luận")
+    assert "source_script_leakage" not in flags
+
+
 def test_short_changed_localize_is_review_candidate():
     assert is_review_candidate("奖杯陈列室", "Phòng trưng bày cúp") is True
 

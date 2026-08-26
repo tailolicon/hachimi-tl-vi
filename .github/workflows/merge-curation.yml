@@ -1,0 +1,73 @@
+name: Merge parallel curation results
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "work/curation/completions/**"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: parallel-curation-merge-main
+  cancel-in-progress: false
+
+jobs:
+  merge:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install project
+        run: python -m pip install -e ".[dev]"
+      - name: Refresh main
+        run: git pull --ff-only origin main
+      - name: Merge completed curation batches
+        run: python scripts/merge_parallel_curation.py
+      - name: Validate and apply explicit terminology decisions
+        shell: bash
+        run: |
+          set -euo pipefail
+          python scripts/apply_terminology_reviews.py --check
+          python scripts/apply_terminology_reviews.py
+      - name: Rebuild review queues
+        shell: bash
+        run: |
+          set -euo pipefail
+          python scripts/build_terminology_review_queue.py
+          python scripts/build_speech_review_queue.py
+      - name: Validate context pipeline
+        shell: bash
+        run: |
+          set -euo pipefail
+          pytest -q tests/test_context_registry.py tests/test_prompt_context.py tests/test_speech_context.py tests/test_parallel_curation.py
+          tlvi --db /tmp/tlvi.db validate
+      - name: Commit canonical curation merge
+        shell: bash
+        run: |
+          set -euo pipefail
+          if git diff --quiet && git diff --cached --quiet; then
+            echo "No completed curation batch ready to merge."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add glossary/speech_bible.json glossary/terminology_reviews.json glossary/term_registry.json \
+            glossary/speech_review_queue.json glossary/terminology_review_queue.json work/curation/merged
+          git commit -m "Merge completed parallel curation batches"
+          for attempt in 1 2 3 4 5; do
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+            git pull --rebase origin main
+            sleep $((attempt * 2))
+          done
+          echo "Could not publish curation merge safely." >&2
+          exit 1

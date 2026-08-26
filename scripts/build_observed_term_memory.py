@@ -7,7 +7,7 @@ from pathlib import Path
 from typing import Any
 from urllib.request import Request, urlopen
 
-from scripts.extract_context_candidates import CATEGORY_KINDS
+from hachimi_tl_vi.context_categories import CATEGORY_KINDS
 
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_PROGRESS = ROOT / "work/translation_progress.json"

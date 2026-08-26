@@ -1,28 +1,48 @@
 # hachimi-tl-vi
 
-Pipeline **JP → VI bằng AI** cho Hachimi Edge, thiết kế để làm nguồn dịch tiếng Việt độc lập cho UM:PD bản JP.
+Pipeline dịch tiếng Việt độc lập cho **Uma Musume Pretty Derby JP** trên Hachimi Edge.
+
+Mục tiêu dài hạn là ưu tiên **JP → VI** trực tiếp. Để bootstrap với dữ liệu đủ mới trong 2026, dự án hiện dùng snapshot Hachimi zh-CN của **server JP** làm semantic bridge, được pin theo commit để mọi worker dịch cùng một corpus bất biến.
 
 ## Nguyên tắc dữ liệu
 
-- Đầu vào AI của dự án là **text tiếng Nhật gốc** do người dùng tự trích xuất từ bản game của mình hoặc nguồn mà họ có quyền sử dụng.
+- Ưu tiên text tiếng Nhật gốc khi có snapshot đủ mới và có thể sử dụng phù hợp.
+- Bootstrap hiện tại dùng `Hachimi-Hachimi/tl-zh-cn` đã pin; provenance/điều kiện nguồn được ghi trong `SOURCE_ATTRIBUTION.md`.
 - Không dùng bản dịch tiếng Anh của UmaTL làm corpus/đầu vào cho AI.
-- Code/tooling trong repo dùng MIT. Dữ liệu phát sinh từ game không mặc nhiên thuộc MIT.
+- Với zh-CN, tên riêng không được dịch literal sang tiếng Việt; phải resolve qua character/term registry.
+- Code/tooling trong repo dùng MIT. Dữ liệu game và material phái sinh không mặc nhiên thuộc MIT.
+
+## Shared game context cho mọi worker
+
+Mọi worker song song phải đọc cùng context trong repo thay vì tự nghiên cứu lại từ đầu:
+
+- `GAME_CONTEXT.md` — world/game/translation bible
+- `glossary/term_registry.json` — thuật ngữ JP ↔ zh-CN ↔ VI đã review/lock
+- `glossary/characters.json` — canonical character identity + alias + speech/relationship rules
+- `glossary/style_rules.json` — luật theo UI/skill/story/race/lyrics
+- `glossary/generated_candidates.json` — candidate race/skill/support/scenario để review, **không phải canonical glossary**
+
+Character registry và terminology candidates được tự sync từ snapshot đang pin. Prompt chỉ inject core terms + entity thật sự xuất hiện trong batch, nên registry có thể lớn mà không làm mọi request phình context.
+
+Xem chi tiết tại `CONTEXT_MAINTENANCE.md` và `PARALLEL_WORKERS.md`.
 
 ## Hỗ trợ
 
 Pipeline hiện có các lớp chính của Hachimi:
 
 - UI: `localize_dict.json`
-- fallback UI: `hashed_dict.json` (compiler đã hỗ trợ; importer chuyên dụng sẽ được thêm khi có dump nguồn)
+- fallback UI: `hashed_dict.json`
 - `master.mdb`: `text_data`, `character_system_text`, `race_jikkyo_comment`, `race_jikkyo_message`
 - asset JSON Hachimi: story, home dialogue, race story, lyrics và các field text phổ biến
 - Translation Memory SQLite
-- glossary + style rules
+- shared game context + terminology/character registry
+- relevance-filtered AI prompt context
 - dịch batch qua API OpenAI-compatible
 - QA placeholder/tag/newline
+- parallel worker claims + persisted results + merge workflow
 - compile `localized_data/`
 - tạo `index.json` với BLAKE3 cho updater của Hachimi
-- GitHub Actions test/validate và tạo nhánh `release`
+- GitHub Actions validate, context sync và tạo nhánh `release`
 
 ## Cài môi trường
 
@@ -40,7 +60,7 @@ source .venv/bin/activate
 python -m pip install -e '.[dev]'
 ```
 
-## 1. Lấy dữ liệu JP
+## Dữ liệu JP trực tiếp
 
 ### master.mdb
 
@@ -58,7 +78,7 @@ tlvi import-mdb "C:/Users/you/AppData/LocalLow/Cygames/umamusume/master/master.m
 
 ### UI/localize
 
-Trong Hachimi Edge bật **Translator mode**, dùng chức năng dump localize dict, sau đó:
+Trong Hachimi Edge bật Translator mode, dump localize dict, sau đó:
 
 ```bash
 tlvi import-localize "C:/path/to/localize_dump.json"
@@ -66,7 +86,7 @@ tlvi import-localize "C:/path/to/localize_dump.json"
 
 ### Story / Home / Race story / Lyrics
 
-Trích xuất asset thành Hachimi-compatible JSON bằng tool phù hợp rồi đặt vào một thư mục giữ nguyên internal path, ví dụ:
+Giữ Hachimi-compatible internal path, ví dụ:
 
 ```text
 jp_assets/
@@ -75,15 +95,13 @@ jp_assets/
 └─ lyrics/m1001_lyrics.json
 ```
 
-Sau đó:
+Import:
 
 ```bash
 tlvi import-assets jp_assets
 ```
 
-## 2. Cấu hình model AI
-
-Sao chép `.env.example` hoặc đặt biến môi trường:
+## Cấu hình model AI
 
 ```powershell
 $env:TLVI_API_BASE="https://api.openai.com/v1"
@@ -91,31 +109,19 @@ $env:TLVI_API_KEY="..."
 $env:TLVI_MODEL="gpt-5.6"
 ```
 
-Có thể dùng endpoint OpenAI-compatible khác (OpenRouter, gateway nội bộ, vLLM/Ollama-compatible, v.v.).
+Có thể dùng endpoint OpenAI-compatible khác.
 
-## 3. Dịch
-
-Dịch thử 100 chuỗi:
+## Dịch local pipeline
 
 ```bash
 tlvi translate --limit 100 --batch-size 20
-```
-
-Dịch riêng story:
-
-```bash
 tlvi translate --kind story --limit 500
-```
-
-Xem tiến độ:
-
-```bash
 tlvi status
 ```
 
-Translation Memory dùng fingerprint của text + context. Khi game update, chuỗi không đổi sẽ **không bị dịch lại**; chuỗi mới/thay đổi trở thành pending.
+Translation Memory dùng fingerprint của text + context. Khi source update, chuỗi không đổi không phải dịch lại; chuỗi mới/thay đổi trở thành pending.
 
-## 4. Compile và kiểm tra
+## Compile và kiểm tra
 
 ```bash
 tlvi compile
@@ -123,27 +129,18 @@ tlvi validate
 tlvi index
 ```
 
-Kết quả là `localized_data/` + `index.json` tương thích cơ chế translation repo của Hachimi Edge.
+Kết quả là `localized_data/` + `index.json` tương thích translation repo của Hachimi Edge.
 
-## 5. Cập nhật sau patch game
-
-Quy trình định kỳ:
+## Context maintenance
 
 ```bash
-tlvi import-mdb PATH_TO_NEW_MASTER_MDB
-tlvi import-localize PATH_TO_NEW_LOCALIZE_DUMP
-tlvi import-assets PATH_TO_NEW_EXTRACTED_ASSETS
-tlvi translate
-tlvi compile
-tlvi validate
-tlvi index
+python scripts/sync_context_registry.py
+python scripts/extract_context_candidates.py
 ```
 
-Các entry cũ có cùng fingerprint được tái sử dụng tự động.
+GitHub Actions cũng chạy context sync định kỳ, nhưng luôn đọc exact `source_commit` từ `work/translation_progress.json`; nó không tự đổi corpus đang được các worker dịch.
 
 ## Repo selector của Hachimi
-
-Entry đề xuất nằm ở `docs/meta-entry.json`. Sau khi repo GitHub tồn tại và nhánh `release` được publish, URL index sẽ là:
 
 ```text
 https://raw.githubusercontent.com/tailolicon/hachimi-tl-vi/release/index.json
@@ -151,4 +148,4 @@ https://raw.githubusercontent.com/tailolicon/hachimi-tl-vi/release/index.json
 
 ## Trạng thái kỹ thuật
 
-Đây là nền tảng chạy được cho corpus JP. Để có **100% game tiếng Việt**, cần trích xuất toàn bộ asset JP sau mỗi patch; kể từ update JP 2025-09-24, story asset/meta đã thay đổi nên phần extraction nên dựa vào tool hiện hành hỗ trợ format mới. Pipeline này cố ý tách extraction khỏi translation để có thể đổi extractor mà không mất Translation Memory.
+Pipeline đang bootstrap từ corpus JP-server zh-CN 2026 và có thể migrate dần sang JP trực tiếp khi có snapshot mới tương đương. Extraction và translation được tách rời để game update/extractor mới không làm mất Translation Memory hoặc kết quả đã review.

@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from scripts.build_observed_term_memory import build_memory
 from scripts.extract_context_candidates import extract
 from scripts.sync_context_registry import build_registry
 
@@ -105,3 +106,21 @@ def test_candidate_extractor_uses_known_text_data_categories_and_scenarios():
     assert "support_card_full_name" in kinds
     assert "scenario_name" in kinds
     assert counts["skill_name"] == 1
+
+
+def test_observed_memory_keeps_consistent_mapping_and_quarantines_conflicts():
+    source = {
+        "47": {"1": "弧线教授", "2": "弧线教授", "3": "集中力"},
+        "32": {"10": "日本德比", "11": "日本德比"},
+    }
+    target = {
+        "47": {"1": "Giáo sư Đường cong", "2": "Giáo sư Đường cong", "3": "Tập trung"},
+        "32": {"10": "Japan Derby", "11": "Derby Nhật Bản"},
+    }
+    memory = build_memory(source, target)
+    mapping = {term["zh_cn"][0]: term["target_vi"] for term in memory["terms"]}
+    assert mapping["弧线教授"] == "Giáo sư Đường cong"
+    assert mapping["集中力"] == "Tập trung"
+    assert "日本德比" not in mapping
+    assert memory["conflict_count"] == 1
+    assert memory["conflicts"][0]["source_zh_cn"] == "日本德比"

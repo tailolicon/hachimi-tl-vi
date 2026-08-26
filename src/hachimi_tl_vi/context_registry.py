@@ -121,6 +121,32 @@ def select_relevant_characters(
     return selected
 
 
+def select_relevant_speech_profiles(
+    entries: Sequence[SourceEntry],
+    speech_bible: dict[str, Any],
+    selected_characters: dict[str, dict[str, Any]] | None = None,
+) -> dict[str, dict[str, Any]]:
+    """Select only speech profiles relevant to a batch.
+
+    Character IDs are the primary join key. A canonical-name fallback is kept so
+    a curated profile can still be used if the character registry is temporarily
+    behind a newly added profile.
+    """
+    haystack = batch_haystack(entries)
+    selected_ids = set(selected_characters or {})
+    raw = speech_bible.get("profiles", {})
+    if not isinstance(raw, dict):
+        return {}
+    selected: dict[str, dict[str, Any]] = {}
+    for key, profile in raw.items():
+        if not isinstance(profile, dict):
+            continue
+        canonical = str(profile.get("canonical") or "").strip()
+        if str(key) in selected_ids or (canonical and canonical in haystack):
+            selected[str(key)] = profile
+    return selected
+
+
 def compact_term_registry(
     entries: Sequence[SourceEntry], registry: dict[str, Any]
 ) -> dict[str, Any]:
@@ -148,4 +174,18 @@ def compact_character_registry(
         "schema_version": characters.get("schema_version"),
         "default_rules": characters.get("default_rules", []),
         "characters": select_relevant_characters(entries, characters),
+    }
+
+
+def compact_speech_bible(
+    entries: Sequence[SourceEntry],
+    speech_bible: dict[str, Any],
+    selected_characters: dict[str, dict[str, Any]] | None = None,
+) -> dict[str, Any]:
+    return {
+        "schema_version": speech_bible.get("schema_version"),
+        "policy": speech_bible.get("policy", {}),
+        "profiles": select_relevant_speech_profiles(
+            entries, speech_bible, selected_characters=selected_characters
+        ),
     }

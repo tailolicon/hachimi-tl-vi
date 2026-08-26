@@ -5,8 +5,9 @@
   "policy": {
     "status": "review_only",
     "rule": "This queue ranks review work. It is never injected into translation prompts and never locks terms automatically.",
-    "priority_order": "conflicts > unresolved character identities > observed promotion candidates > untranslated skill/race/scenario/support entities.",
-    "character_rule": "Known character names are handled by characters.json and must not be semantic-calqued into Vietnamese."
+    "priority_order": "unapplied explicit locks > conflicts > unresolved character identities > observed promotion candidates > untranslated skill/race/scenario/support entities.",
+    "character_rule": "Known character names are handled by characters.json and must not be semantic-calqued into Vietnamese.",
+    "decision_rule": "Explicit defer/ignore decisions are removed from actionable work; explicit lock decisions remain actionable until the canonical registry contains them."
   },
   "summary": {
     "unique_candidate_sources": 4662,
@@ -14,6 +15,7 @@
     "generated_candidate_records": 5584,
     "observed_unique_terms": 0,
     "observed_conflicts": 0,
+    "explicit_review_decisions": 0,
     "status_counts": {
       "canonical_locked": 1,
       "character_identity_review": 30,

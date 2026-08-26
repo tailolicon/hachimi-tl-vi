@@ -1,0 +1,105 @@
+name: Sync character speech context
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "47 4 * * *"
+  push:
+    branches: [main]
+    paths:
+      - "glossary/characters.json"
+      - "glossary/speech_bible.json"
+      - "scripts/extract_speaker_samples.py"
+      - "scripts/build_speech_review_queue.py"
+      - "src/hachimi_tl_vi/context_registry.py"
+      - "src/hachimi_tl_vi/translators/prompt.py"
+      - "tests/test_speech_context.py"
+      - ".github/workflows/sync-speech-context.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sync-character-speech-context
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install project
+        run: python -m pip install -e ".[dev]"
+
+      - name: Checkout exactly pinned source corpus
+        shell: bash
+        run: |
+          set -euo pipefail
+          readarray -t source_meta < <(python - <<'PY'
+          import json
+          p = json.load(open("work/translation_progress.json", encoding="utf-8"))
+          print(p["source_repo"])
+          print(p["source_commit"])
+          PY
+          )
+          source_repo="${source_meta[0]}"
+          source_commit="${source_meta[1]}"
+          rm -rf /tmp/tlvi-speech-source
+          git init /tmp/tlvi-speech-source
+          git -C /tmp/tlvi-speech-source remote add origin "https://github.com/${source_repo}.git"
+          git -C /tmp/tlvi-speech-source fetch --depth 1 origin "$source_commit"
+          git -C /tmp/tlvi-speech-source checkout --detach FETCH_HEAD
+          printf '%s\n' "$source_commit" > /tmp/speech_source_commit.txt
+
+      - name: Extract bounded dialogue evidence
+        shell: bash
+        run: |
+          set -euo pipefail
+          python scripts/extract_speaker_samples.py \
+            --upstream-root /tmp/tlvi-speech-source \
+            --source-commit "$(cat /tmp/speech_source_commit.txt)" \
+            --max-samples 12 \
+            --max-unmatched 200
+
+      - name: Build speech review queue
+        run: python scripts/build_speech_review_queue.py
+
+      - name: Test speech context pipeline
+        run: pytest -q tests/test_speech_context.py tests/test_context_registry.py tests/test_prompt_context.py
+
+      - name: Commit generated speech evidence if changed
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add glossary/speech_samples.json glossary/speech_review_queue.json
+          if git diff --cached --quiet; then
+            echo "Speech context is already current."
+            exit 0
+          fi
+          git commit -m "Sync character speech evidence from pinned source"
+          git reset --hard HEAD
+
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            if git rebase origin/main; then
+              if git push origin HEAD:main; then
+                exit 0
+              fi
+            else
+              git rebase --abort || true
+            fi
+            echo "Concurrent main update; retry $attempt/5"
+            sleep $((attempt * 3))
+          done
+          echo "Could not publish speech evidence without a safe fast-forward." >&2
+          exit 1

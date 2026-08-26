@@ -41,6 +41,11 @@ jobs:
           PY
           )"
           python scripts/merge_parallel_results.py --source-ref "$source_ref"
+      - name: Refresh observed entity terminology
+        shell: bash
+        run: |
+          set -euo pipefail
+          python scripts/build_observed_term_memory.py
       - name: Validate merged translation
         shell: bash
         run: |

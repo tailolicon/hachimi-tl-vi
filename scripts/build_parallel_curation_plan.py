@@ -19,7 +19,10 @@ TERM_BATCH_SIZE = 20
 def read_json(path: Path, default: Any = None) -> Any:
     if not path.exists():
         return default
-    return json.loads(path.read_text(encoding="utf-8"))
+    text = path.read_text(encoding="utf-8").strip()
+    if not text:
+        return default
+    return json.loads(text)
 
 
 def utc_now() -> str:

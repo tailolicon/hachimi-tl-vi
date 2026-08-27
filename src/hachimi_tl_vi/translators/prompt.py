@@ -39,6 +39,7 @@ def build_messages(entries: Sequence[SourceEntry], glossary_dir: str | Path = "g
     terminology = load_json(glossary_dir / "terminology.json", {})
     term_registry_full = load_json(glossary_dir / "term_registry.json", {})
     player_facing_terms = load_json(glossary_dir / "ui_community_terms.json", {})
+    skill_name_style = load_json(glossary_dir / "skill_name_style.json", {})
     observed_terms_full = load_json(glossary_dir / "observed_terms.json", {})
     characters_full = load_json(glossary_dir / "characters.json", {})
     speech_bible_full = load_json(glossary_dir / "speech_bible.json", {})
@@ -72,18 +73,20 @@ QUY TẮC BẮT BUỘC:
 2. Giữ NGUYÊN mọi placeholder/template/tag/markup/runtime token, ví dụ {0}, {name}, <color=...>, </color>, $(), %s và mã máy.
 3. Không tự bịa lore, quan hệ, cơ chế hoặc tên riêng. Khi mơ hồ, dùng game context + entry context.
 4. `player_facing_terminology` là lớp ưu tiên CAO NHẤT cho common gameplay/UI terms và named mechanic/event được liệt kê. Khi nó xung đột với một mapping Việt hóa cũ trong `term_registry`, dùng accepted English/Romanized form trong `player_facing_terminology`.
-5. Với các concept không bị rule 4 override, `term_registry` là canonical. Thuật ngữ `locked` phải dùng đúng `target_vi`.
-6. `observed_terminology` là memory học từ entity đã được merge. Với source entity trùng chính xác và không mâu thuẫn với player-facing/locked rule, tái sử dụng `target_vi` để các batch sau không đổi cách dịch.
-7. Character registry trong payload đã được lọc theo batch nhưng là canonical: nếu có mapping thì bắt buộc dùng canonical thay vì dịch nghĩa tên zh-CN.
-8. Thứ tự ưu tiên giọng nhân vật là: source wording + scene context > `speech_bible` curated > `speech_evidence` > style rule chung. `speech_evidence` chỉ là thống kê corpus để bảo toàn nhịp/punctuation, KHÔNG phải bằng chứng personality, quan hệ, dialect hay đại từ cố định.
-9. Không ép một cặp đại từ tiếng Việt cố định cho nhân vật. Xưng hô phải dựa trên quan hệ, tuổi/seniority, scene và self-reference thực sự có trong source. Nếu source tự xưng bằng tên riêng (ví dụ Rice/Turbo), đừng tự đổi thành 'tôi'.
-10. Common EN-version gameplay terms phải giữ English/Romanized theo `player_facing_terminology`: ví dụ Trainer, Speed, Stamina, Power, Guts, Wit, Aptitude, Turf, Dirt, Sprint, Mile, Medium, Long, Style, Front Runner/Pace Chaser/Late Surger/End Closer và compact alias khi UI chật.
-11. Phân biệt Stamina stat với training energy gauge. Không dịch Stamina thành 'Thể lực' chỉ vì term_registry cũ còn mapping đó; cũng không tự đổi energy gauge thành Stamina.
-12. Generic category label dùng English: Skill, Unique Skill, Evolution Skill. Nhưng TÊN RIÊNG của từng skill phải Việt hóa như tên kỹ năng game: ưu tiên Hán-Việt nếu tự nhiên và có khí chất; nếu không thì dùng tên Việt ngắn, giàu hình ảnh, kiểu localization skill của game thương mại/LoL. Không biến tên skill thành câu mô tả dài.
-13. Với hội thoại, giữ cá tính nhân vật và quan hệ xưng hô; không san phẳng mọi nhân vật về cùng một giọng.
-14. Với UI/skill/race, ưu tiên ngắn gọn, rõ nghĩa, đúng player-facing terminology và chính xác cơ chế.
-15. Nếu tên/thuật ngữ chưa có registry hoặc observed memory, không tự tạo bản dịch canonical mới. Dùng dạng nhận diện an toàn nhất; với named mechanic chưa rõ, giữ/verify thay vì semantic-calque từ zh-CN.
-16. Đầu ra PHẢI là JSON thuần theo schema: {\"translations\":[{\"id\":\"...\",\"text\":\"...\"}]}. Không markdown, không code fence, không trường thừa.
+5. Với TÊN RIÊNG của skill, áp dụng `skill_name_style`. Exact `canonical_examples` trong file này được ưu tiên hơn một skill-name target cũ xung đột trong `term_registry`. Với skill chưa có exact example, dùng nhịp cô đọng của tên zh-CN làm naming-style reference và dùng JP/registry để bảo toàn hình tượng, wordplay, proper noun và phân biệt nghĩa.
+6. Với các concept không bị rule 4-5 override, `term_registry` là canonical. Thuật ngữ `locked` phải dùng đúng `target_vi`.
+7. `observed_terminology` là memory học từ entity đã được merge. Với source entity trùng chính xác và không mâu thuẫn với player-facing/skill-name/locked rule, tái sử dụng `target_vi` để các batch sau không đổi cách dịch.
+8. Character registry trong payload đã được lọc theo batch nhưng là canonical: nếu có mapping thì bắt buộc dùng canonical thay vì dịch nghĩa tên zh-CN.
+9. Thứ tự ưu tiên giọng nhân vật là: source wording + scene context > `speech_bible` curated > `speech_evidence` > style rule chung. `speech_evidence` chỉ là thống kê corpus để bảo toàn nhịp/punctuation, KHÔNG phải bằng chứng personality, quan hệ, dialect hay đại từ cố định.
+10. Không ép một cặp đại từ tiếng Việt cố định cho nhân vật. Xưng hô phải dựa trên quan hệ, tuổi/seniority, scene và self-reference thực sự có trong source. Nếu source tự xưng bằng tên riêng (ví dụ Rice/Turbo), đừng tự đổi thành 'tôi'.
+11. Common EN-version gameplay terms phải giữ English/Romanized theo `player_facing_terminology`: ví dụ Trainer, Speed, Stamina, Power, Guts, Wit, Aptitude, Turf, Dirt, Sprint, Mile, Medium, Long, Style, Front Runner/Pace Chaser/Late Surger/End Closer và compact alias khi UI chật.
+12. Phân biệt Stamina stat với training energy gauge. Không dịch Stamina thành 'Thể lực' chỉ vì term_registry cũ còn mapping đó; cũng không tự đổi energy gauge thành Stamina.
+13. Generic category label dùng English: Skill, Unique Skill, Evolution Skill. TÊN RIÊNG của từng skill thì Việt hóa theo `skill_name_style`: thường nhắm 2-4 đơn vị/từ trọng tâm khi nguồn ngắn, ưu tiên Hán-Việt nếu tự nhiên, giữ gimmick của tên gốc và không biến tên thành câu mô tả. Ví dụ exact policy: 弧线教授 -> Giáo Sư Cung Tuyến, 强攻策 -> Cường Công Kế.
+14. Khi dịch tên skill từ zh-CN, học cấu trúc cô đọng của bản Trung (ví dụ 弯道加速○) thay vì kéo dài giải nghĩa; nhưng nếu zh-CN che mất reference/wordplay/proper noun thì phải dùng JP/registry để sửa. Không dùng UmaTL English translation text làm input.
+15. Với hội thoại, giữ cá tính nhân vật và quan hệ xưng hô; không san phẳng mọi nhân vật về cùng một giọng.
+16. Với UI/skill/race, ưu tiên ngắn gọn, rõ nghĩa, đúng player-facing terminology và chính xác cơ chế.
+17. Nếu tên/thuật ngữ chưa có registry hoặc observed memory, không tự tạo bản dịch canonical mới. Dùng dạng nhận diện an toàn nhất; với named mechanic hoặc skill-name nuance chưa rõ, giữ/verify/defer thay vì semantic-calque bừa từ zh-CN.
+18. Đầu ra PHẢI là JSON thuần theo schema: {\"translations\":[{\"id\":\"...\",\"text\":\"...\"}]}. Không markdown, không code fence, không trường thừa.
 """
 
     payload = {
@@ -91,6 +94,7 @@ QUY TẮC BẮT BUỘC:
         "source_languages": source_languages,
         "game_context": game_context,
         "player_facing_terminology": player_facing_terms,
+        "skill_name_style": skill_name_style,
         "term_registry": term_registry,
         "observed_terminology": observed_terms,
         "legacy_terminology": terminology,

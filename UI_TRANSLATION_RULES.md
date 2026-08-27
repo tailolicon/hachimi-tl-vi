@@ -4,7 +4,40 @@ This file is mandatory context for any worker translating `localize_dict.json` o
 
 ## Goal
 
-A translation is not acceptable merely because it is semantically correct. It must also fit the control it is rendered in. For fixed-size UI, **semantic clarity + visual fit** outrank literal completeness.
+A UI translation passes only when it satisfies **all three**:
+
+1. it conveys the correct meaning;
+2. it uses the correct Uma Musume player-facing terminology for named mechanics/events/modes;
+3. it fits the fixed control.
+
+Semantic readability alone is not enough.
+
+## Game-language rule
+
+Do not assume a Chinese source term should be semantically calqued into Vietnamese. Chinese often describes or localizes a mechanic whose player-facing name is conventionally kept in Japanese/English/Romanized form.
+
+Before translating or keeping a named mechanic/event/mode:
+
+1. check locked `glossary/term_registry.json`;
+2. check `glossary/ui_community_terms.json`;
+3. use established official/player-facing terminology;
+4. only translate generically when the concept is genuinely generic.
+
+Current Vietnamese output is never evidence of correctness.
+
+Examples:
+
+| Source concept | Reject | Preferred |
+| --- | --- | --- |
+| 英雄量表 / ヒーローゲージ | Thanh Anh hùng | **Hero Gauge** |
+| 英雄技能 / ヒーロースキル | Kỹ năng Anh hùng | **Hero Skill** |
+| 英雄联盟赛 / リーグオブヒーローズ | Liên minh Anh hùng / Hero League | **League of Heroes**, compact **LoH** |
+| 主要阶段 / メインステージ | Giai đoạn chính when used as the named LoH stage | **Main Stage** |
+| 特别阶段 / エクストラステージ | Giai đoạn đặc biệt when used as the named LoH stage | **Extra Stage** |
+
+Do not generalize these examples to unrelated generic uses of words such as “main”, “hero”, or “league”; use the source/key context and the matched term metadata.
+
+If the repository does not identify an unfamiliar named mechanic, do not invent a Vietnamese canonical label. Verify with official/player-guide evidence or defer.
 
 ## Label levels
 
@@ -14,7 +47,7 @@ Use the shortest level that still makes sense in context:
 2. **Compact** — normal buttons, tabs, menu tiles.
 3. **Micro** — very small chips, counters, bottom navigation, narrow header buttons.
 
-Canonical full/compact/micro forms live in `glossary/ui_short_forms.json`.
+Canonical full/compact/micro forms live in `glossary/ui_short_forms.json`. Named game terms that should remain player-facing live in `glossary/ui_community_terms.json`.
 
 ## Hard writing rules
 
@@ -22,11 +55,12 @@ Canonical full/compact/micro forms live in `glossary/ui_short_forms.json`.
 - Do not stack synonyms with `/` just to preserve every source nuance.
 - Do not repeat context already visible in the screen. On a Gacha screen, `Lịch sử` is better than `Lịch sử Gacha`.
 - Keep `Uma Musume` in prose, but `Uma` is allowed in cramped labels.
+- Preserve canonical mechanic/event names even when surrounding grammar is shortened.
 - Preserve placeholders, tags, runtime tokens, and the source newline count.
 - Never insert a new newline just to rescue an overlong translation. Shorten the wording instead.
 - If the source already has one newline, each translated line must independently fit its side of the control.
 - Avoid verbose helper words such as `thực tế`, `chức năng`, `dành cho`, `được dùng để`, or duplicated nouns when a compact label is clear.
-- Prefer natural Vietnamese nouns/verbs: `Đổi`, `Kho quà`, `Tủ cúp`, `Danh hiệu`, `Lịch sử`.
+- Prefer natural Vietnamese nouns/verbs for generic UI: `Đổi`, `Kho quà`, `Tủ cúp`, `Danh hiệu`, `Lịch sử`.
 - A compact label may omit information that is already unambiguous from the icon, section header, or current screen, but must not change the action or game mechanic.
 
 ## Visual-width budget
@@ -66,28 +100,38 @@ When layout metadata is known, use these targets:
 - dialog title: <= ~12 visual units;
 - description/body copy: prioritize natural Vietnamese; compact-label rules do not apply.
 
+A canonical mechanic name may exceed a generic micro-label ideal. In that case shorten surrounding grammar or use an explicitly accepted compact alias such as `LoH`; do not replace the mechanic with an invented Vietnamese calque merely to save width.
+
 ## Canonical overrides
 
-`glossary/ui_overrides.json` contains reviewed key-level and legacy exact-text fixes. The release/aggregation pipeline reapplies these after worker output, so a later batch cannot accidentally regress a reviewed screen.
+`glossary/ui_overrides.json` contains key-level and legacy exact-text fixes.
 
-Do not delete or expand an override without screenshot evidence that the replacement fits better.
+Policy-v2 UI-review-generated overrides are considered **untrusted during the policy-v3 reset**. The application layer skips an override whose reason identifies it as `Reviewed by UI pipeline ui-p2-...` until a v3 review either:
+
+- revises that key, replacing the override, or
+- explicitly keeps/reconfirms it, promoting the override to v3.
+
+Manual/non-v2 overrides remain active.
 
 ## Worker QA before persisting
 
 For every short `localize` entry:
 
 1. identify whether it is a label/action rather than prose;
-2. consult `glossary/ui_short_forms.json`;
-3. compare visual width to the source line;
-4. remove redundant context and slash compounds;
-5. ensure the source newline count is unchanged;
-6. prefer the shortest natural Vietnamese wording that preserves the action/mechanic.
+2. identify any named mechanic/event/mode/resource/stage;
+3. consult `term_registry.json` and `ui_community_terms.json`;
+4. reject semantic calques of named mechanics when an accepted player-facing name exists;
+5. consult `ui_short_forms.json`;
+6. compare visual width to the source line;
+7. remove redundant context and slash compounds;
+8. ensure the source newline count is unchanged;
+9. prefer the shortest natural wording that preserves both action and canonical mechanic.
 
-If uncertain between a literal long label and a compact clear label, choose the compact clear label.
+If uncertain between a literal translated mechanic and an established player-facing game term, use the established game term. If the established term itself is uncertain, defer instead of inventing one.
 
 ## Screenshot QA
 
-A release-quality UI pass should check at least Home, Menu, Gacha, Training, Support/Card details, Shop/Exchange, Missions, Race entry, Profile, and common dialogs on Android and Windows.
+A release-quality UI pass should check at least Home, Menu, Gacha, Training, Support/Card details, Shop/Exchange, Missions, Race entry, Profile, League of Heroes, Champions Meeting, and common dialogs on Android and Windows.
 
 Reject a UI string when it:
 
@@ -96,6 +140,5 @@ Reject a UI string when it:
 - wraps to an extra line not present in the source;
 - clips Vietnamese diacritics;
 - becomes visibly smaller than neighboring labels because best-fit had to shrink it too far;
-- leaves raw Chinese/Japanese that is supposed to be translated.
-
-When a screenshot exposes a recurring fixed-control problem, add a reviewed override instead of repeatedly hand-fixing generated output.
+- leaves raw Chinese/Japanese that is supposed to be translated;
+- uses an invented Vietnamese name for a mechanic/event the player community recognizes by another canonical/player-facing term.

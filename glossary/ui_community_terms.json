@@ -1,0 +1,165 @@
+{
+  "schema_version": 1,
+  "policy_version": 3,
+  "purpose": "Seed registry for player-facing Uma Musume UI terminology that must not be mechanically calqued from Chinese/Japanese during UI review.",
+  "precedence": [
+    "locked matching entry in glossary/term_registry.json",
+    "accepted form in this file",
+    "official in-game English/Romanized term or strongly established player shorthand",
+    "generic Vietnamese translation only when the concept is not a named game term"
+  ],
+  "rules": [
+    "Current Vietnamese output is not evidence that a game term is correct.",
+    "When require_accepted is true and a source alias matches, keep/revise decisions must preserve one accepted or compact form.",
+    "Forbidden forms are known misleading/noncanonical calques and must not survive keep/revise.",
+    "If an unfamiliar named mechanic is not covered here or by term_registry, verify it or defer instead of inventing a Vietnamese canonical term."
+  ],
+  "terms": [
+    {
+      "id": "event.league_of_heroes",
+      "category": "event",
+      "source_aliases": [
+        "リーグオブヒーローズ",
+        "英雄联盟赛"
+      ],
+      "preferred": "League of Heroes",
+      "compact": [
+        "LoH"
+      ],
+      "accepted": [
+        "League of Heroes"
+      ],
+      "forbidden": [
+        "Liên minh Anh hùng",
+        "Hero League"
+      ],
+      "require_accepted": true,
+      "basis": "Official/player-facing event name; LoH is established shorthand."
+    },
+    {
+      "id": "event.loh.hero_skill",
+      "category": "mechanic",
+      "key_prefixes": [
+        "Heroes"
+      ],
+      "source_aliases": [
+        "ヒーロースキル",
+        "英雄技能"
+      ],
+      "preferred": "Hero Skill",
+      "compact": [],
+      "accepted": [
+        "Hero Skill"
+      ],
+      "forbidden": [
+        "Kỹ năng Anh hùng"
+      ],
+      "require_accepted": true,
+      "basis": "Named League of Heroes mechanic; preserve the player-facing mechanic name."
+    },
+    {
+      "id": "event.loh.hero_gauge",
+      "category": "mechanic",
+      "key_prefixes": [
+        "Heroes"
+      ],
+      "source_aliases": [
+        "ヒーローゲージ",
+        "英雄量表"
+      ],
+      "preferred": "Hero Gauge",
+      "compact": [],
+      "accepted": [
+        "Hero Gauge"
+      ],
+      "forbidden": [
+        "Thanh Anh hùng",
+        "Thước Anh hùng"
+      ],
+      "require_accepted": true,
+      "basis": "Named League of Heroes gauge; do not translate the Chinese descriptor literally."
+    },
+    {
+      "id": "event.loh.main_stage",
+      "category": "stage",
+      "key_prefixes": [
+        "Heroes"
+      ],
+      "source_aliases": [
+        "メインステージ",
+        "主要阶段"
+      ],
+      "preferred": "Main Stage",
+      "compact": [],
+      "accepted": [
+        "Main Stage"
+      ],
+      "forbidden": [
+        "Giai đoạn chính"
+      ],
+      "require_accepted": true,
+      "basis": "Named League of Heroes stage."
+    },
+    {
+      "id": "event.loh.extra_stage",
+      "category": "stage",
+      "key_prefixes": [
+        "Heroes"
+      ],
+      "source_aliases": [
+        "エクストラステージ",
+        "特别阶段"
+      ],
+      "preferred": "Extra Stage",
+      "compact": [],
+      "accepted": [
+        "Extra Stage"
+      ],
+      "forbidden": [
+        "Giai đoạn đặc biệt"
+      ],
+      "require_accepted": true,
+      "basis": "Named League of Heroes stage."
+    },
+    {
+      "id": "event.loh.league_score",
+      "category": "mechanic",
+      "key_prefixes": [
+        "Heroes"
+      ],
+      "source_aliases": [
+        "リーグスコア",
+        "联赛得分"
+      ],
+      "preferred": "League Score",
+      "compact": [],
+      "accepted": [
+        "League Score"
+      ],
+      "forbidden": [
+        "Điểm giải đấu"
+      ],
+      "require_accepted": true,
+      "basis": "Named score used by League of Heroes UI."
+    },
+    {
+      "id": "event.loh.uma_like",
+      "category": "mechanic",
+      "key_prefixes": [
+        "Heroes"
+      ],
+      "source_aliases": [
+        "ウマいね！",
+        "马赞"
+      ],
+      "preferred": "Uma Like!",
+      "compact": [],
+      "accepted": [
+        "Uma Like!"
+      ],
+      "forbidden": [],
+      "require_accepted": true,
+      "basis": "Player-facing feature name already used as a retained game term in the patch."
+    }
+  ]
+}

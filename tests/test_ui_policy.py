@@ -63,3 +63,37 @@ def test_apply_ui_overrides_supports_key_and_exact_replacements(tmp_path: Path) 
     assert report["total_changes"] == 2
     assert data["Menu0004"] == "Tủ cúp"
     assert data["Other"] == "Lịch sử"
+
+
+def test_policy_v3_skips_unreconfirmed_v2_ui_review_override(tmp_path: Path) -> None:
+    (tmp_path / "glossary").mkdir()
+    (tmp_path / "localized_data").mkdir()
+    (tmp_path / "glossary" / "ui_overrides.json").write_text(
+        json.dumps(
+            {
+                "schema_version": 1,
+                "key_overrides": [
+                    {
+                        "file": "localize_dict.json",
+                        "path": ["Heroes511003"],
+                        "text": "Chi tiết Thanh Anh hùng",
+                        "reason": "Reviewed by UI pipeline ui-p2-old-b0001: old semantic calque"
+                    }
+                ],
+                "exact_replacements": []
+            },
+            ensure_ascii=False
+        ),
+        encoding="utf-8"
+    )
+    (tmp_path / "localized_data" / "localize_dict.json").write_text(
+        json.dumps({"Heroes511003": "Chi tiết Hero Gauge"}, ensure_ascii=False),
+        encoding="utf-8"
+    )
+
+    report = apply_ui_overrides(tmp_path)
+    data = json.loads((tmp_path / "localized_data" / "localize_dict.json").read_text(encoding="utf-8"))
+
+    assert report["total_changes"] == 0
+    assert data["Heroes511003"] == "Chi tiết Hero Gauge"
+    assert report["skipped_superseded_ui_review_overrides"]

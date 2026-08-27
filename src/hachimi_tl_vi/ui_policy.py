@@ -20,6 +20,7 @@ _CJK_RANGES = (
     (0x4E00, 0x9FFF),
     (0xF900, 0xFAFF),
 )
+_SUPERSEDED_UI_REVIEW_REASON = "Reviewed by UI pipeline ui-p2-"
 
 
 def _is_cjk(char: str) -> bool:
@@ -152,6 +153,11 @@ def _replace_exact(node: Any, old: str, new: str) -> int:
     return count
 
 
+def _is_superseded_ui_review_override(item: dict[str, Any]) -> bool:
+    """Policy-v2 UI-review overrides must be reconfirmed under policy v3."""
+    return _SUPERSEDED_UI_REVIEW_REASON in str(item.get("reason", ""))
+
+
 def apply_ui_overrides(repo_root: Path, *, write: bool = True) -> dict[str, Any]:
     repo_root = repo_root.resolve()
     policy_path = repo_root / "glossary" / "ui_overrides.json"
@@ -163,6 +169,7 @@ def apply_ui_overrides(repo_root: Path, *, write: bool = True) -> dict[str, Any]
     key_changes = 0
     exact_changes = 0
     missing_keys: list[str] = []
+    skipped_superseded_ui_review_overrides: list[str] = []
 
     def get_doc(filename: str) -> Any:
         if filename not in docs:
@@ -170,6 +177,11 @@ def apply_ui_overrides(repo_root: Path, *, write: bool = True) -> dict[str, Any]
         return docs[filename]
 
     for item in policy.get("key_overrides", []):
+        if _is_superseded_ui_review_override(item):
+            skipped_superseded_ui_review_overrides.append(
+                f"{item.get('file')}:{item.get('path')!r}"
+            )
+            continue
         filename = str(item["file"])
         path = list(item["path"])
         text = str(item["text"])
@@ -208,5 +220,6 @@ def apply_ui_overrides(repo_root: Path, *, write: bool = True) -> dict[str, Any]
         "exact_changes": exact_changes,
         "total_changes": key_changes + exact_changes,
         "missing_keys": missing_keys,
+        "skipped_superseded_ui_review_overrides": skipped_superseded_ui_review_overrides,
         "write": write,
     }

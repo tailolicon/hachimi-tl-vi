@@ -6,6 +6,7 @@ import json
 from pathlib import Path
 from typing import Any
 
+import apply_terminology_reviews as term_apply
 import merge_parallel_curation as core
 
 FAILURE_ROOT = core.WORK_ROOT / "merge_failures"
@@ -74,7 +75,8 @@ def drain(*, active_path: Path = core.DEFAULT_ACTIVE, max_batches: int | None = 
     batches = core.batch_index(plan)
     speech_bible = core.read_json(core.DEFAULT_SPEECH_BIBLE, {}) or {}
     reviews = core.read_json(core.DEFAULT_TERM_REVIEWS, {}) or {}
-    if not isinstance(speech_bible, dict) or not isinstance(reviews, dict):
+    registry = core.read_json(term_apply.DEFAULT_REGISTRY, {}) or {}
+    if not isinstance(speech_bible, dict) or not isinstance(reviews, dict) or not isinstance(registry, dict):
         raise ValueError("canonical curation files must be JSON objects")
 
     stats = {
@@ -156,7 +158,13 @@ def drain(*, active_path: Path = core.DEFAULT_ACTIVE, max_batches: int | None = 
                     claim_id=claim_id,
                     worker_id=worker_id,
                 )
+                # A structurally valid worker result may still contradict an
+                # already-locked canonical alias. Preflight the complete review
+                # state against an in-memory registry before accepting this batch.
+                # This keeps one bad decision from blocking every later batch.
+                updated_registry, _ = term_apply.apply_reviews(registry, candidate)
                 reviews = candidate
+                registry = updated_registry
                 stats["terminology_decisions"] += added
             else:
                 raise ValueError(f"{batch_id}: unsupported curation batch kind {kind!r}")

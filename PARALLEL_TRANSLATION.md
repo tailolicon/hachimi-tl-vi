@@ -10,6 +10,19 @@ This is the canonical protocol for running many ChatGPT translation sessions at 
 
 Do not use `work/translation_progress.json.next_batch` as a lock or global cursor. The old single-session cursor is deprecated.
 
+## Retrospective review gate
+
+Before choosing or claiming **any** new translation shard, inspect `work/parallel_state.json.translation_review_gate`.
+
+If `translation_review_gate.enabled` is `true` or `claims_allowed` is `false`:
+
+- DO NOT create a new translation claim;
+- DO NOT take over an expired translation claim;
+- DO NOT start translating an unclaimed shard;
+- switch to `TRANSLATION_REVIEW.md` and claim retrospective review work instead.
+
+The gate exists so all already merged Vietnamese translations can be re-reviewed against the completed speech and terminology context before translation resumes. Existing translation progress is preserved. The gate is cleared automatically only after every canonical entry has a resolved `keep` or `revise` decision; `defer` remains unresolved.
+
 ## Architecture
 
 The source queue is immutable for an epoch. Workers never translate from the moving `source-zhcn` branch directly. They fetch source batches from the exact `source_queue_git_commit` pinned in the epoch metadata.
@@ -35,22 +48,23 @@ Do not reuse another live worker id.
 
 ## Choosing work
 
-Workers may choose tasks in any order. This is intentional so many sessions can spread out instead of all racing for the lowest batch.
+Workers may choose tasks in any order only when the retrospective review gate is open. This is intentional so many sessions can spread out instead of all racing for the lowest batch.
 
-1. Use the current epoch's `first_parallel_batch` through `queue_total_batches`.
-2. Pick a candidate batch and shard. A deterministic spread is recommended: hash the worker id and use it as a starting offset, then probe forward.
-3. Fetch the pinned source batch from:
+1. Re-check `translation_review_gate`; stop here if it is enabled.
+2. Use the current epoch's `first_parallel_batch` through `queue_total_batches`.
+3. Pick a candidate batch and shard. A deterministic spread is recommended: hash the worker id and use it as a starting offset, then probe forward.
+4. Fetch the pinned source batch from:
    `work/source_batches/batch-{batch:05d}.json`
    using the epoch's exact `source_queue_git_commit` as the Git ref.
-4. Compute the shard slice:
+5. Compute the shard slice:
    `start = shard * task_size`
    `end = min(start + task_size, len(batch.entries))`
    If `start >= len(batch.entries)`, the shard does not exist; choose another task.
-5. Skip any batch listed in `legacy_completed_batches`.
+6. Skip any batch listed in `legacy_completed_batches`.
 
 ## Atomic claim / lease
 
-Before translating, claim the task by creating its claim file on `main`.
+Before translating, re-check the retrospective review gate, then claim the task by creating its claim file on `main`.
 
 A new claim must contain at least:
 
@@ -77,7 +91,7 @@ If a claim already exists:
 
 - if a completion marker exists, the task is done; skip it;
 - if the claim is active and its lease has not expired, skip it;
-- if the lease has expired, another worker may take over by updating the claim with a new worker id and lease. Use the current claim blob SHA so GitHub provides optimistic concurrency; if the update conflicts, another worker won the takeover and you must skip it.
+- if the lease has expired, another worker may take over by updating the claim with a new worker id and lease, but only if the retrospective review gate is open. Use the current claim blob SHA so GitHub provides optimistic concurrency; if the update conflicts, another worker won the takeover and you must skip it.
 
 Before taking over an expired task, fetch its result file. If it contains partial translations, resume from the first missing entry instead of retranslating saved work.
 
@@ -152,7 +166,7 @@ A task is complete only when every source entry in its shard has one reviewed ta
 1. Save the result file with `status: "complete"` and the full shard translations.
 2. Create the completion marker file. It must identify the result path, worker, epoch, source commits, entry count, completion timestamp, and set `qa_passed: true`.
 3. Update the claim to `status: "complete"` if possible. If the session dies after step 2, the completion marker is authoritative and another worker will still skip the task.
-4. Claim another task if session time remains.
+4. Claim another task only if the retrospective review gate is still open and session time remains.
 
 Do not mutate any shared global cursor after completion.
 

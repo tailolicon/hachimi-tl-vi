@@ -6,7 +6,7 @@ This is a dedicated retrospective UI-quality pipeline. It is independent from tr
 
 Review **already translated fixed-size UI text** in `localized_data/localize_dict.json` for two independent quality gates:
 
-1. **game-language correctness** — common gameplay labels and named mechanic/event/mode/resource names must match the repository's player-facing terminology; do not invent Vietnamese semantic calques from Chinese wording;
+1. **game-language correctness** — common gameplay labels and named mechanic/event/mode/resource names must match the repository's player-facing terminology; individual skill names must match the approved skill-title policy instead of being mechanically expanded from Chinese;
 2. **visual correctness** — labels must fit their controls without clipping, excessive best-fit shrinking, awkward wrapping, redundant wording, slash compounds, or untranslated JP/zh leakage.
 
 A string is not QA-passed merely because its Vietnamese meaning is understandable.
@@ -19,7 +19,7 @@ Do not use this pipeline for story dialogue, character dialogue, lyrics, race co
 
 Old v2 claims/results/completions must not be reused as authority. The merge pipeline marks unmerged pre-v3 completions as `superseded` instead of applying them.
 
-The active v3 plan is also bound to a terminology snapshot hash. When `term_registry.json`, `ui_community_terms.json`, or `ui_short_forms.json` changes, the previous terminology context is no longer authoritative and a fresh plan is generated.
+The active v3 plan is also bound to a terminology snapshot hash. When `term_registry.json`, `ui_community_terms.json`, `skill_name_style.json`, or `ui_short_forms.json` changes, the previous terminology context is no longer authoritative and a fresh plan is generated.
 
 ## Mandatory context
 
@@ -28,14 +28,15 @@ Before claiming work, read from `main`:
 1. `UI_REVIEW.md`
 2. `UI_TRANSLATION_RULES.md`
 3. `glossary/ui_community_terms.json`
-4. `glossary/term_registry.json`
-5. `glossary/ui_short_forms.json`
-6. `glossary/ui_overrides.json`
-7. `glossary/style_rules.json`
-8. `GAME_CONTEXT.md`
-9. `work/ui_review/active_plan.json`
-10. the active plan referenced by it
-11. the specific batch file referenced by that plan
+4. `glossary/skill_name_style.json`
+5. `glossary/term_registry.json`
+6. `glossary/ui_short_forms.json`
+7. `glossary/ui_overrides.json`
+8. `glossary/style_rules.json`
+9. `GAME_CONTEXT.md`
+10. `work/ui_review/active_plan.json`
+11. the active plan referenced by it
+12. the specific batch file referenced by that plan
 
 Repository state overrides chat history and model priors.
 
@@ -43,24 +44,28 @@ Repository state overrides chat history and model priors.
 
 Treat the current Vietnamese text as a **hypothesis**, never as evidence that a term is correct.
 
-Before choosing `keep` or `revise`, identify whether the source contains a common gameplay label, named game mechanic, event, mode, stage, gauge, resource, Skill category, race format, or other player-facing proper term.
+Before choosing `keep` or `revise`, identify whether the source contains a common gameplay label, named game mechanic, event, mode, stage, gauge, resource, Skill category, individual skill name, race format, or other player-facing proper term.
 
 Use this precedence:
 
-1. an accepted player-facing form in `glossary/ui_community_terms.json` for a matching concept;
-2. a locked matching entry in `glossary/term_registry.json` only when the concept is not overridden by layer 1;
-3. an official in-game English/Romanized term or strongly established Uma Musume player shorthand;
-4. a natural Vietnamese translation only when the concept is genuinely generic.
+1. an accepted player-facing form in `glossary/ui_community_terms.json` for a matching common gameplay/UI concept;
+2. for an **individual skill name**, an exact canonical example in `glossary/skill_name_style.json` intentionally overrides an older conflicting skill-name target;
+3. a locked matching entry in `glossary/term_registry.json` only when the concept is not overridden by layers 1-2;
+4. an official in-game English/Romanized term or strongly established Uma Musume player shorthand for common gameplay/mechanics;
+5. the skill-title naming policy in `skill_name_style.json` for an unresolved individual skill name, using zh-CN as the compact naming-style reference and JP as the semantic/reference guard;
+6. a natural Vietnamese translation only when the concept is genuinely generic.
 
-This precedence is intentional: `ui_community_terms.json` currently overrides several older locked Vietnamese mappings while the canonical registry is being migrated.
+This precedence is intentional: `ui_community_terms.json` currently overrides several older locked Vietnamese gameplay mappings while the canonical registry is being migrated, and `skill_name_style.json` carries a small reviewed set of skill-title overrides where older wording does not match the approved naming style.
 
 Common EN-version gameplay labels such as `Trainer`, `Speed`, `Stamina`, `Power`, `Guts`, `Wit`, `Aptitude`, `Turf`, `Dirt`, `Sprint`, `Mile`, `Medium`, `Long`, `Style`, and the EN running-style labels must not be translated back into Vietnamese when matched by the player-facing registry.
 
-Generic category labels `Skill`, `Unique Skill`, and `Evolution Skill` also stay English. This does **not** mean the proper name of an individual skill should stay English; individual skill names follow the Vietnamese/Hán-Việt game-skill naming policy in `glossary/style_rules.json`.
+Generic category labels `Skill`, `Unique Skill`, and `Evolution Skill` also stay English. This does **not** mean the proper name of an individual skill should stay English. Individual skill names follow `glossary/skill_name_style.json`: learn from the concise zh-CN title rhythm, prefer a short natural Hán-Việt/Vietnamese ability name, preserve JP motif/wordplay/proper nouns, and never expand the title into an effect sentence.
+
+Examples already approved by the skill-title policy include `弧线教授 → Giáo Sư Cung Tuyến`, `弯道加速○ → Gia Tốc Khúc Cua○`, and `强攻策 → Cường Công Kế`.
 
 Do **not** mechanically translate a named mechanic from Chinese. Examples of prohibited regressions include `英雄量表 -> Thanh Anh hùng` and `英雄技能 -> Kỹ năng Anh hùng` when the player-facing mechanic is `Hero Gauge` / `Hero Skill`.
 
-If a named mechanic is unfamiliar and the repository does not resolve it, research reliable official/player-guide evidence when tools are available. If the evidence is still weak, use `defer`; do not invent a canonical Vietnamese term.
+If a named mechanic or individual skill title is unfamiliar and the repository does not resolve it, research reliable official/player-guide/JP evidence when tools are available. If the evidence is still weak, use `defer`; do not invent a canonical Vietnamese term.
 
 For any batch item whose `community_terms` array is non-empty, a `keep` or `revise` decision must include a non-empty `terminology_basis`. The merge validator also rejects known forbidden calques and requires an accepted player-facing form when the matched term says `require_accepted: true`.
 
@@ -72,6 +77,7 @@ UI review workers **never edit**:
 - `glossary/ui_overrides.json`
 - `glossary/ui_short_forms.json`
 - `glossary/ui_community_terms.json`
+- `glossary/skill_name_style.json`
 - `glossary/term_registry.json`
 - `work/ui_review/reviewed_index.json`
 - translation progress, translation results, or curation canonical files
@@ -134,7 +140,8 @@ Follow `UI_TRANSLATION_RULES.md`. In particular:
 - preserve the source newline count and all runtime syntax;
 - a translation that protrudes, clips, wraps to an extra line, or forces extreme shrinking is not QA-passed;
 - do not shorten so aggressively that the game action or mechanic changes meaning;
-- never save width by translating a player-facing English mechanic/stat/style label into Vietnamese.
+- never save width by translating a player-facing English mechanic/stat/style label into Vietnamese;
+- for an individual skill title, shorten according to the approved skill-title style rather than replacing the title with an effect description.
 
 Automatic `risk_flags` are hints, not verdicts. `community_calque_risk` and `community_term_mismatch` are high-priority semantic warnings.
 
@@ -145,6 +152,7 @@ A revision must:
 - be non-empty natural player-facing Vietnamese/UI language;
 - preserve placeholders, printf tokens, markup tags, escaped runtime tokens, and source newline count;
 - preserve canonical English/Romanized game terms and accepted community-facing mechanic names;
+- preserve canonical skill-title examples and the skill-name style when the item is an individual skill name;
 - be at least as clear in the current UI context;
 - normally be no wider than the current text and preferably fit the budget in `UI_TRANSLATION_RULES.md`;
 - use canonical compact forms where applicable;
@@ -191,6 +199,7 @@ Before completion verify:
 - every `current_fingerprint` exactly matches the batch item;
 - every matched `community_terms` item has terminology checked before `keep`/`revise`;
 - no known forbidden calque survives a `keep`/`revise`;
+- no exact canonical skill-title override is replaced by an older conflicting wording;
 - no revision changes placeholders/tags/newline structure;
 - no revision expands a reviewed compact label without evidence;
 - no story/prose rewriting was introduced.

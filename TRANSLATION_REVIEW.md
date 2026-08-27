@@ -1,194 +1,144 @@
 # Parallel translation review workers
 
-This is the canonical retrospective quality gate for **already merged Vietnamese translations**.
+This is the canonical retrospective QA protocol for translations already merged into Vietnamese.
 
-It is separate from speech/terminology curation and from fixed-size `UI_REVIEW.md`. Speech/terminology provide context; UI review remains the specialist visual-fit pass. Translation review decides whether the translated text itself is faithful, natural, game-correct, and structurally safe.
+The objective is high-quality review with **minimal startup context**. Do not bulk-read glossary, speech, character, or plan files unless the current batch actually needs them.
 
-## Gate semantics
+## Gate
 
 `work/parallel_state.json.translation_review_gate` is authoritative.
 
-When `translation_review_gate.enabled` is `true`:
+While `enabled: true`:
 
-- translation workers MUST NOT create or take over new translation claims;
-- existing merged translation progress is not reset or subtracted;
-- workers should use this protocol instead;
-- the gate remains closed while any current canonical entry is unreviewed or `defer`.
+- do not create or take over normal translation claims;
+- review already merged translations only;
+- existing translation progress is unchanged;
+- `defer` is unresolved and keeps the gate closed.
 
-`defer` is intentionally **not** a pass. Deferred entries are re-enqueued by the next review plan and continue blocking new translation work.
+The gate opens only when every canonical entry in review scope has a current `keep` or `revise` decision.
 
-The plan builder opens the gate whenever unresolved canonical translations exist and clears it only when all entries represented by `work/merged/*.json` have a current `keep` or `revise` decision under the active review policy/context.
+## Fast worker startup
 
-## Scope
-
-The review source of truth is the intersection of:
-
-1. canonical merged markers in `work/merged/batch-*.json`;
-2. the immutable source batch/ref recorded by each marker;
-3. the current target text in `localized_data/**`.
-
-This means the initial baseline reviews every canonical translation already completed. It does **not** change the translation percentage and does not count untranslated queue entries.
-
-A completed-but-not-yet-aggregated translation is picked up by a later delta review plan after it becomes canonical.
-
-## Mandatory context
-
-Before claiming a batch, read from `main`:
+Read only these from `main` before claiming:
 
 1. `TRANSLATION_REVIEW.md`
-2. `GAME_CONTEXT.md`
-3. `glossary/term_registry.json`
-4. `glossary/ui_community_terms.json`
-5. `glossary/skill_name_style.json`
-6. `glossary/style_rules.json`
-7. `glossary/characters.json`
-8. `glossary/speech_bible.json`
-9. `glossary/speech_samples.json`
-10. `glossary/speech_evidence.json`
-11. `work/translation_review/active_plan.json`
-12. the referenced active plan
-13. the specific batch file
+2. `work/parallel_state.json`
+3. `work/translation_review/active_plan.json`
 
-Repository state overrides chat history and model priors. The current Vietnamese target is a hypothesis, not evidence that its wording is correct.
+Do **not** read the full plan file by default.
+Do **not** pre-read `GAME_CONTEXT.md`, `term_registry.json`, `ui_community_terms.json`, `skill_name_style.json`, `characters.json`, or any speech file.
 
-## Quality gates
+After selecting a candidate batch, read exactly that one batch file. A normal worker therefore starts with three small control files plus one 20-entry batch.
 
-Review every assigned item for all of the following.
+Repository state overrides chat history and model priors. Current Vietnamese text is a hypothesis, not evidence that it is correct.
 
-### 1. Meaning fidelity
+## Choosing a batch without reading the full plan
 
-- Preserve the actual source meaning, subject/object relation, polarity, conditions, quantities, and intent.
-- Reject omissions, additions, over-explanations, and plausible-sounding rewrites that are not supported by the source.
-- Names and proper nouns are identities, not opportunities for semantic calques.
-- If zh-CN wording is ambiguous and repository context does not resolve it, use `defer`.
+`active_plan.json` provides `plan_id`, `batch_count`, `lease_minutes`, and a short `priority_batch_ids` list.
 
-### 2. Natural Vietnamese
+1. Try `priority_batch_ids` in order. For each id, skip it if `work/translation_review/merged/<batch_id>.json` exists or a live claim exists at `work/translation_review/claims/<batch_id>.json`.
+2. If the priority head is busy, spread workers deterministically: hash your unique worker id, map it to `1..batch_count`, then probe forward cyclically.
+3. Batch files are deterministic:
+   `work/translation_review/batches/<plan_id>/<plan_id>-bNNNN.json`.
+4. Atomically create one claim. Never overwrite another live claim.
 
-- The result must read like shipped Vietnamese game text, not word-by-word machine translation.
-- Prefer concise, idiomatic phrasing appropriate to the text type.
-- Do not “polish” so aggressively that gameplay meaning changes.
-- Avoid unnatural Chinese syntax, redundant subjects, literal classifier wording, and dictionary-like compounds.
+There is no need to load `work/translation_review/plans/<plan_id>.json` during normal work.
 
-### 3. Game terminology and named concepts
+## Context already embedded in each batch
 
-Use this precedence:
+Each item already contains source/current text, fingerprints, source path, structural identity, risk flags, and where applicable:
 
-1. accepted player-facing forms in `glossary/ui_community_terms.json`;
-2. exact canonical individual-skill examples in `glossary/skill_name_style.json`;
-3. locked matching entries in `glossary/term_registry.json` unless overridden by 1-2;
-4. established official/player-facing English/Romanized Uma Musume terminology;
+- `locked_terms`
+- `community_terms`
+- `skill_name_canonical`
+
+Treat these embedded fields as the normal terminology context for that item. They are generated from the current policy snapshot.
+
+If `community_terms` contains accepted/forbidden forms and a basis, **do not reopen the whole community-term registry just to confirm the same data**.
+If `skill_name_canonical` is present, use that exact mapping without rereading the whole skill-style file.
+If `locked_terms` is present, use the embedded matching locked terms unless a higher-precedence embedded community/skill rule overrides them.
+
+## Lazy context: fetch only when needed
+
+Open extra repository context only for an item that cannot be safely judged from the batch itself.
+
+### Unknown game mechanic / unresolved terminology
+
+Only then search targeted records in:
+
+- `glossary/ui_community_terms.json`
+- `glossary/term_registry.json`
+- `glossary/skill_name_style.json`
+- `GAME_CONTEXT.md`
+
+Search for the exact source term/name. Do not read every file end-to-end.
+
+Terminology precedence:
+
+1. embedded/player-facing `community_terms`;
+2. embedded exact `skill_name_canonical`;
+3. locked registry terms not overridden by 1-2;
+4. established official/player-facing English or Romanized Uma Musume terminology;
 5. natural Vietnamese only for genuinely generic concepts.
 
-Never mechanically calque an unfamiliar named mechanic from Chinese. If the repository does not resolve it and reliable evidence is unavailable, `defer`.
+Examples: `Speed`, `Stamina`, `Power`, `Guts`, `Wit`, generic `Skill`, `Hero Gauge`, `Hero Skill`, `League of Heroes` stay in their approved player-facing forms when matched.
 
-For any item carrying `locked_terms`, `community_terms`, or `skill_name_canonical`, `keep`/`revise` requires `terminology_basis`. The merge validator rejects known forbidden calques, missing required player-facing forms, locked-term regressions, and conflicting exact skill-title examples.
+### Proper name
 
-### 4. Character identity and voice
+Only if identity is uncertain, search the exact source alias in `glossary/characters.json`. Do not load the entire character registry preemptively. Never semantically translate a Chinese character/racehorse proper name.
 
-When an item is attributable to a character or speaker:
+### Character dialogue / voice
 
-- use `characters.json` for identity/name handling;
-- use `speech_bible.json`, `speech_samples.json`, and `speech_evidence.json` for voice, register, pronouns, politeness, quirks, and relationship evidence;
-- do not invent a speech rule when the speaker/context is not identifiable;
-- optionally record `speech_basis` in the decision when voice evidence materially affected the judgment.
+Only when an item is clearly attributable to a speaker **and voice affects the decision**, search the relevant speaker/relationship record in:
 
-A generic one-size-fits-all `tôi/bạn` voice is not acceptable when repository evidence says otherwise.
+- `glossary/speech_bible.json`
+- `glossary/speech_samples.json`
+- `glossary/speech_evidence.json`
+- `glossary/characters.json`
 
-### 5. Structural integrity
+Use targeted search for that speaker/name. Do not read all speech profiles for ordinary system/UI/skill text.
 
-Any revision must preserve exactly:
+If the speaker cannot be identified reliably and the current wording depends on speaker-specific pronouns/register, use `defer` rather than loading unrelated context or inventing a rule.
 
-- placeholders;
-- printf tokens;
-- runtime/rich-text tags;
-- escaped runtime sequences;
-- newline count/structure.
+## Review gates
 
-The merge validator runs structural QA before accepting a revision.
+For every assigned item check:
 
-### 6. UI boundary
+1. **Meaning** — no changed subject/object, polarity, condition, quantity, implication, omission, or unsupported addition.
+2. **Natural Vietnamese** — shipped-game quality, not Chinese word order or dictionary glosses.
+3. **Terminology** — obey embedded/current player-facing terminology and individual-skill naming policy.
+4. **Identity/voice** — only when applicable; use lazy targeted context above.
+5. **Structure** — revisions preserve placeholders, printf tokens, tags, escaped runtime tokens, and newline structure exactly.
 
-Translation review may fix semantic/terminology/naturalness problems in UI strings. It does not replace the fixed-control visual-fit pipeline in `UI_REVIEW.md`; clipping, width budgets, control type, and compact-layout decisions belong there.
-
-## Atomic claiming
-
-Read `work/translation_review/active_plan.json`. Work is assignable only when `status` is `active`.
-
-Scan the referenced plan's batches in listed order. The plan is risk-prioritized while each batch preserves nearby source context.
-
-A batch is available when:
-
-- `work/translation_review/merged/<batch_id>.json` does not exist; and
-- no live claim exists at `work/translation_review/claims/<batch_id>.json`.
-
-Atomically create exactly one claim:
-
-`work/translation_review/claims/<batch_id>.json`
-
-Example:
-
-```json
-{
-  "schema_version": 1,
-  "plan_id": "tr-p1-...",
-  "batch_id": "tr-p1-...-b0001",
-  "claim_id": "tr-sol-20260827T160000Z-a1b2c3",
-  "worker_id": "ChatGPT",
-  "claimed_at": "2026-08-27T16:00:00Z",
-  "heartbeat_at": "2026-08-27T16:00:00Z",
-  "expires_at": "2026-08-27T16:45:00Z"
-}
-```
-
-Never overwrite another live claim. Expired claims may be taken over using optimistic concurrency. Heartbeat only your own claim.
+Translation review may repair semantic/naturalness issues in UI text, but fixed-control width/clipping belongs to `UI_REVIEW.md`.
 
 ## Decisions
 
-Every item must receive exactly one:
+Every and only every assigned UID gets exactly one action:
 
-- `keep` — the current target passes all applicable gates;
-- `revise` — provide a corrected target;
-- `defer` — evidence/context is insufficient; this remains unresolved and continues blocking the global gate.
+- `keep` — current text passes all applicable gates;
+- `revise` — provide a confident correction;
+- `defer` — evidence is insufficient; remains unresolved.
 
-Low-confidence corrections must `defer`, not `revise`.
+Low-confidence correction => `defer`, never guess.
+
+For `keep`/`revise`, if the item has `locked_terms`, `community_terms`, or `skill_name_canonical`, include non-empty `terminology_basis`.
+
+## Claim
+
+Create:
+
+`work/translation_review/claims/<batch_id>.json`
+
+with exact active `plan_id`/`batch_id`, unique `claim_id`, worker id, UTC timestamps, and `expires_at` using `lease_minutes` from `active_plan.json`.
+
+Heartbeat only your own claim.
+
+## Result
 
 Write:
 
 `work/translation_review/results/<batch_id>/<claim_id>.json`
-
-Example:
-
-```json
-{
-  "schema_version": 1,
-  "plan_id": "tr-p1-...",
-  "batch_id": "tr-p1-...-b0001",
-  "claim_id": "...",
-  "worker_id": "ChatGPT",
-  "reviewed_at": "...",
-  "decisions": [
-    {
-      "uid": "zhcn:...",
-      "current_fingerprint": "...",
-      "action": "revise",
-      "proposed_text": "Hero Gauge",
-      "reason": "Current target is a literal calque of a named game mechanic.",
-      "terminology_basis": "ui_community_terms:event.loh.hero_gauge",
-      "confidence": "high"
-    }
-  ]
-}
-```
-
-`reason` is required for every action. For `keep`, a concise reason such as `Faithful, natural, terminology and structure pass.` is sufficient. Omit `proposed_text` for `keep`/`defer`.
-
-Before completion verify that decisions cover all and only assigned UIDs exactly once.
-
-## Completion
-
-After the result is committed, create:
-
-`work/translation_review/completions/<batch_id>/<claim_id>.json`
 
 ```json
 {
@@ -197,39 +147,53 @@ After the result is committed, create:
   "batch_id": "...",
   "claim_id": "...",
   "worker_id": "ChatGPT",
-  "result_path": "work/translation_review/results/<batch_id>/<claim_id>.json",
-  "completed_at": "..."
+  "reviewed_at": "...",
+  "decisions": [
+    {
+      "uid": "zhcn:...",
+      "current_fingerprint": "...",
+      "action": "keep|revise|defer",
+      "proposed_text": "only for revise",
+      "reason": "...",
+      "terminology_basis": "when applicable",
+      "speech_basis": "when applicable",
+      "confidence": "high|medium|low"
+    }
+  ]
 }
 ```
 
-`.github/workflows/merge-translation-review.yml` validates decisions against the immutable plan and latest canonical target.
+Cover all and only batch UIDs exactly once. Omit `proposed_text` for keep/defer.
 
-- changed target fingerprint -> whole batch is closed as `stale` and re-enters a later plan;
-- changed review context/policy -> completion is `superseded`;
-- `keep`/`revise` -> resolved in `reviewed_index.json`;
-- `defer` -> recorded but deliberately re-enqueued.
+## Completion
 
-After a plan is fully merged, the workflow immediately builds the next delta plan. Only an idle plan with zero unresolved entries clears `translation_review_gate` and re-enables translation claims.
+Only after the result is saved, create:
+
+`work/translation_review/completions/<batch_id>/<claim_id>.json`
+
+with `plan_id`, `batch_id`, `claim_id`, `worker_id`, exact `result_path`, and UTC `completed_at`.
+
+The merge workflow validates fingerprint freshness, terminology, skill-title constraints, and structural QA. Stale/context-old work is not applied.
 
 ## Ownership
 
-Review workers never edit:
+Review workers edit only their own claim/result/completion (and their own claim heartbeat).
 
-- `localized_data/**`;
-- `work/merged/**`;
-- `work/translation_progress.json`;
-- canonical glossary/speech files;
-- `work/translation_review/reviewed_index.json`;
-- `work/parallel_state.json`.
+Never directly edit:
 
-Workers only write their own claim, result, heartbeat, and completion marker. The merge/sync workflows own canonical revisions, review index, plans, and gate state.
+- `localized_data/**`
+- `work/merged/**`
+- `work/translation_progress.json`
+- `work/parallel_state.json`
+- `work/translation_review/reviewed_index.json`
+- canonical glossary/speech files
 
 ## Continuous loop
 
-After completing a review batch:
+After each completion:
 
-1. re-read `work/translation_review/active_plan.json` from `main`;
-2. claim the next available review batch;
-3. continue while capacity remains.
-
-Do not switch to new translation shards while the gate is enabled.
+1. re-read only `work/translation_review/active_plan.json` and `work/parallel_state.json`;
+2. if the plan changed, use the new plan id;
+3. claim another available batch using `priority_batch_ids`, then hashed fallback;
+4. do not reread this protocol unless its policy/version changed;
+5. stop when the gate clears or no useful capacity remains.

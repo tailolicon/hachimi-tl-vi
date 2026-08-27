@@ -18,6 +18,7 @@ try:
         load_skill_examples,
         locked_term_matches,
         risk_metadata,
+        suppress_overridden_locked_terms,
         text_fingerprint,
         utc_now,
         write_json,
@@ -33,12 +34,13 @@ except ModuleNotFoundError:
         load_skill_examples,
         locked_term_matches,
         risk_metadata,
+        suppress_overridden_locked_terms,
         text_fingerprint,
         utc_now,
         write_json,
     )
 
-TRANSLATION_REVIEW_POLICY_VERSION = 1
+TRANSLATION_REVIEW_POLICY_VERSION = 2
 
 
 def git_show_json(repo_root: Path, ref: str, path: str) -> Any:
@@ -194,8 +196,9 @@ def build_plan(repo_root: Path, batch_size: int) -> dict[str, Any]:
                 continue
 
             key = str(json_path[0]) if source_file == "localize_dict.json" and len(json_path) == 1 else None
-            locked = locked_term_matches(source, current, locked_terms)
             community = community_term_matches(key, source, current, community_terms)
+            locked = locked_term_matches(source, current, locked_terms)
+            locked = suppress_overridden_locked_terms(locked, community)
             skill = skill_examples.get(source)
             flags, score = risk_metadata(source, current, locked, community, skill)
             candidates.append({
@@ -300,6 +303,7 @@ def build_plan(repo_root: Path, batch_size: int) -> dict[str, Any]:
     write_json(repo_root / plan_rel, {
         **common,
         "batch_size": batch_size,
+        "supersedes_policy_versions": [1],
         "batches": batches,
         "decision_actions": ["keep", "revise", "defer"],
         "protocol": "TRANSLATION_REVIEW.md",

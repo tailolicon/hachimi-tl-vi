@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from copy import deepcopy
 import json
 from pathlib import Path
 from typing import Sequence, Any
@@ -34,6 +35,67 @@ def infer_source_language(entry: SourceEntry) -> str:
     return "ja"
 
 
+def _strings(value: Any) -> list[str]:
+    if isinstance(value, str):
+        return [value]
+    if isinstance(value, list):
+        return [str(item) for item in value if str(item)]
+    return []
+
+
+def apply_skill_name_style_overrides(
+    term_registry_full: dict[str, Any], skill_name_style: dict[str, Any]
+) -> dict[str, Any]:
+    """Return a prompt-only registry view with reviewed skill-title overrides applied.
+
+    Canonical registry migration is owned by the curation/maintenance pipeline, but
+    translation workers must not receive an obsolete locked skill title alongside
+    an exact approved replacement from skill_name_style.json. This overlay keeps
+    the checked-out canonical file untouched while making prompt precedence
+    deterministic for exact reviewed examples.
+    """
+    registry = deepcopy(term_registry_full)
+    terms = registry.get("terms")
+    examples = skill_name_style.get("canonical_examples")
+    if not isinstance(terms, list) or not isinstance(examples, list):
+        return registry
+
+    alias_to_example: dict[str, dict[str, Any]] = {}
+    for raw_example in examples:
+        if not isinstance(raw_example, dict):
+            continue
+        target = raw_example.get("target_vi")
+        if not isinstance(target, str) or not target.strip():
+            continue
+        aliases: list[str] = []
+        source_zh_cn = raw_example.get("source_zh_cn")
+        if isinstance(source_zh_cn, str) and source_zh_cn:
+            aliases.append(source_zh_cn)
+        for field in ("ja", "zh_tw", "source_aliases"):
+            aliases.extend(_strings(raw_example.get(field)))
+        for alias in aliases:
+            alias_to_example[alias] = raw_example
+
+    policy_version = int(skill_name_style.get("policy_version", 0))
+    for term in terms:
+        if not isinstance(term, dict):
+            continue
+        aliases: list[str] = []
+        for field in ("zh_cn", "ja", "zh_tw", "source_aliases"):
+            aliases.extend(_strings(term.get(field)))
+        matched_alias = next((alias for alias in aliases if alias in alias_to_example), None)
+        if matched_alias is None:
+            continue
+        example = alias_to_example[matched_alias]
+        term["target_vi"] = str(example["target_vi"])
+        term["skill_name_style_override"] = {
+            "source": "glossary/skill_name_style.json",
+            "policy_version": policy_version,
+            "matched_alias": matched_alias,
+        }
+    return registry
+
+
 def build_messages(entries: Sequence[SourceEntry], glossary_dir: str | Path = "glossary") -> list[dict[str, str]]:
     glossary_dir = Path(glossary_dir)
     terminology = load_json(glossary_dir / "terminology.json", {})
@@ -49,8 +111,11 @@ def build_messages(entries: Sequence[SourceEntry], glossary_dir: str | Path = "g
     source_languages = sorted({infer_source_language(e) for e in entries})
 
     # Canonical and learned registries can grow to thousands of records. Inject
-    # only core concepts plus records actually mentioned in this batch.
-    term_registry = compact_term_registry(entries, term_registry_full)
+    # only core concepts plus records actually mentioned in this batch. Exact
+    # reviewed skill-title examples are overlaid before compaction so workers do
+    # not receive an obsolete locked title that conflicts with the new policy.
+    effective_term_registry = apply_skill_name_style_overrides(term_registry_full, skill_name_style)
+    term_registry = compact_term_registry(entries, effective_term_registry)
     observed_terms = compact_observed_term_memory(entries, observed_terms_full)
     characters = compact_character_registry(entries, characters_full)
     selected_characters = characters.get("characters", {})
@@ -73,7 +138,7 @@ QUY TẮC BẮT BUỘC:
 2. Giữ NGUYÊN mọi placeholder/template/tag/markup/runtime token, ví dụ {0}, {name}, <color=...>, </color>, $(), %s và mã máy.
 3. Không tự bịa lore, quan hệ, cơ chế hoặc tên riêng. Khi mơ hồ, dùng game context + entry context.
 4. `player_facing_terminology` là lớp ưu tiên CAO NHẤT cho common gameplay/UI terms và named mechanic/event được liệt kê. Khi nó xung đột với một mapping Việt hóa cũ trong `term_registry`, dùng accepted English/Romanized form trong `player_facing_terminology`.
-5. Với TÊN RIÊNG của skill, áp dụng `skill_name_style`. Exact `canonical_examples` trong file này được ưu tiên hơn một skill-name target cũ xung đột trong `term_registry`. Với skill chưa có exact example, dùng nhịp cô đọng của tên zh-CN làm naming-style reference và dùng JP/registry để bảo toàn hình tượng, wordplay, proper noun và phân biệt nghĩa.
+5. Với TÊN RIÊNG của skill, áp dụng `skill_name_style`. Exact `canonical_examples` trong file này được ưu tiên hơn một skill-name target cũ xung đột trong `term_registry`. Bản `term_registry` trong payload đã được overlay các exact example này để không còn đưa cho bạn target cũ mâu thuẫn. Với skill chưa có exact example, dùng nhịp cô đọng của tên zh-CN làm naming-style reference và dùng JP/registry để bảo toàn hình tượng, wordplay, proper noun và phân biệt nghĩa.
 6. Với các concept không bị rule 4-5 override, `term_registry` là canonical. Thuật ngữ `locked` phải dùng đúng `target_vi`.
 7. `observed_terminology` là memory học từ entity đã được merge. Với source entity trùng chính xác và không mâu thuẫn với player-facing/skill-name/locked rule, tái sử dụng `target_vi` để các batch sau không đổi cách dịch.
 8. Character registry trong payload đã được lọc theo batch nhưng là canonical: nếu có mapping thì bắt buộc dùng canonical thay vì dịch nghĩa tên zh-CN.

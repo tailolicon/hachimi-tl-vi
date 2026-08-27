@@ -15,9 +15,13 @@ on:
     branches: [main]
     paths:
       - "scripts/build_progress_dashboard.py"
+      - "scripts/build_progress_dashboard_v2.py"
       - ".github/workflows/update-progress-dashboard.yml"
       - "work/translation_progress.json"
+      - "work/merged/**"
       - "work/completions/**"
+      - "work/parallel_state.json"
+      - "work/parallel/**"
       - "work/curation/completions/**"
       - "work/curation/merged/**"
       - "work/ui_review/completions/**"
@@ -41,9 +45,13 @@ jobs:
           sparse-checkout-cone-mode: false
           sparse-checkout: |
             scripts/build_progress_dashboard.py
+            scripts/build_progress_dashboard_v2.py
             work/translation_progress.json
+            work/parallel_state.json
+            work/merged/
             work/claims/
             work/completions/
+            work/parallel/
             work/curation/
             work/ui_review/
 
@@ -51,13 +59,13 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Build read-only progress snapshot
+      - name: Build artifact-reconciled progress snapshot
         shell: bash
         run: |
           set -euo pipefail
-          python -m py_compile scripts/build_progress_dashboard.py
+          python -m py_compile scripts/build_progress_dashboard.py scripts/build_progress_dashboard_v2.py
           rm -rf "$RUNNER_TEMP/progress-dashboard"
-          python scripts/build_progress_dashboard.py \
+          python scripts/build_progress_dashboard_v2.py \
             --repo-root . \
             --output-dir "$RUNNER_TEMP/progress-dashboard"
 

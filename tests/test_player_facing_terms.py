@@ -4,7 +4,7 @@ import json
 from pathlib import Path
 
 from hachimi_tl_vi.model import SourceEntry
-from hachimi_tl_vi.translators.prompt import build_messages
+from hachimi_tl_vi.translators.prompt import apply_skill_name_style_overrides, build_messages
 from scripts.build_ui_review_plan import _term_risk, community_term_matches, terminology_snapshot_hash
 
 
@@ -89,6 +89,27 @@ def test_skill_style_exact_examples_are_reviewed_overrides() -> None:
     assert canonical["弯道巧者○"] == "Xảo Thủ Khúc Cua○"
     assert canonical["强攻策"] == "Cường Công Kế"
     assert "older conflicting skill-name target" in policy["precedence"][0]
+
+
+def test_prompt_registry_overlay_removes_conflicting_old_skill_lock() -> None:
+    old_registry = {
+        "schema_version": 2,
+        "terms": [
+            {
+                "id": "skill.corner_professor",
+                "category": "skill_name",
+                "zh_cn": ["弧线教授"],
+                "ja": ["弧線のプロフェッサー"],
+                "target_vi": "Giáo sư đường cong",
+                "locked": True,
+            }
+        ],
+    }
+    effective = apply_skill_name_style_overrides(old_registry, _skill_style())
+    term = effective["terms"][0]
+    assert term["target_vi"] == "Giáo Sư Cung Tuyến"
+    assert term["skill_name_style_override"]["source"] == "glossary/skill_name_style.json"
+    assert old_registry["terms"][0]["target_vi"] == "Giáo sư đường cong"
 
 
 def test_skill_style_changes_ui_terminology_snapshot() -> None:

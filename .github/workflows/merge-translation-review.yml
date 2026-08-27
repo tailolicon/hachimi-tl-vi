@@ -1,0 +1,65 @@
+name: Merge translation review results
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "work/translation_review/completions/**"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: merge-translation-review
+  cancel-in-progress: false
+
+jobs:
+  merge:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Reset to latest main
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin main
+          git checkout -B translation-review-merge origin/main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: python -m pip install -e ".[dev]"
+      - name: Merge completed retrospective reviews
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            git checkout -B translation-review-merge origin/main
+
+            python scripts/merge_translation_review.py --repo-root .
+            pytest -q
+            tlvi --db /tmp/tlvi-translation-review.db validate
+            tlvi --db /tmp/tlvi-translation-review.db index
+
+            python scripts/build_translation_review_plan.py --repo-root . --batch-size 20
+
+            git add localized_data index.json work/translation_review work/parallel_state.json
+            if git diff --cached --quiet; then
+              echo "No new completed translation review work to merge."
+              exit 0
+            fi
+            git commit -m "Merge retrospective translation review"
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+            sleep $((attempt * 2))
+          done
+
+          echo "Failed to merge translation review results after retries" >&2
+          exit 1

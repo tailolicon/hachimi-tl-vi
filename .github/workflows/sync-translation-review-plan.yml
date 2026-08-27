@@ -1,0 +1,68 @@
+name: Sync translation review plan
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "localized_data/**"
+      - "work/merged/**"
+      - "work/translation_review/reviewed_index.json"
+      - "work/translation_review/merged/**"
+      - "TRANSLATION_REVIEW.md"
+      - "GAME_CONTEXT.md"
+      - "glossary/characters.json"
+      - "glossary/speech_bible.json"
+      - "glossary/speech_samples.json"
+      - "glossary/speech_evidence.json"
+      - "glossary/term_registry.json"
+      - "glossary/ui_community_terms.json"
+      - "glossary/skill_name_style.json"
+      - "glossary/style_rules.json"
+      - "scripts/build_translation_review_plan.py"
+      - "scripts/translation_review_common.py"
+      - ".github/workflows/sync-translation-review-plan.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sync-translation-review-plan
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Build and publish retrospective translation review plan
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            git checkout -B translation-review-plan origin/main
+
+            python scripts/build_translation_review_plan.py --repo-root . --batch-size 20
+            git add work/translation_review work/parallel_state.json
+            if git diff --cached --quiet; then
+              echo "Translation review plan/gate is already current."
+              exit 0
+            fi
+            git commit -m "Translation review: sync active plan"
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+            sleep $((attempt * 2))
+          done
+
+          echo "Failed to publish translation review plan after retries" >&2
+          exit 1

@@ -22,6 +22,7 @@ UI_REVIEW_POLICY_VERSION = 3
 _TERM_PATHS = (
     "glossary/term_registry.json",
     "glossary/ui_community_terms.json",
+    "glossary/skill_name_style.json",
     "glossary/ui_short_forms.json",
 )
 

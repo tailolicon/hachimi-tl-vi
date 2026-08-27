@@ -16,6 +16,12 @@ on:
     paths:
       - "scripts/build_progress_dashboard.py"
       - ".github/workflows/update-progress-dashboard.yml"
+      - "work/translation_progress.json"
+      - "work/completions/**"
+      - "work/curation/completions/**"
+      - "work/curation/merged/**"
+      - "work/ui_review/completions/**"
+      - "work/ui_review/merged/**"
 
 permissions:
   contents: write
@@ -26,7 +32,6 @@ concurrency:
 
 jobs:
   publish:
-    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -38,6 +43,7 @@ jobs:
             scripts/build_progress_dashboard.py
             work/translation_progress.json
             work/claims/
+            work/completions/
             work/curation/
             work/ui_review/
 

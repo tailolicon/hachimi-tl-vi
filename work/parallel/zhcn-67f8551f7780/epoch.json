@@ -1,5 +1,5 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "epoch": "zhcn-67f8551f7780",
   "source_repo": "Hachimi-Hachimi/tl-zh-cn",
   "source_branch_at_sync": "dev",
@@ -12,12 +12,30 @@
   "task_size": 20,
   "checkpoint_every_entries": 5,
   "lease_minutes": 45,
-  "first_parallel_batch": 2,
+  "first_parallel_batch": 233,
   "queue_total_batches": 1645,
   "queued_entries": 131560,
   "queued_source_chars": 2468909,
-  "legacy_completed_batches": [1],
-  "legacy_completed_entries": 80,
+  "legacy_completed_batches": [
+    1,
+    234,
+    235,
+    236,
+    239,
+    240,
+    241,
+    242,
+    244,
+    245,
+    246,
+    247,
+    248
+  ],
+  "legacy_completed_entries": 19520,
+  "legacy_reconciliation": {
+    "basis": "work/merged artifact markers on main",
+    "note": "Batches 1-232 were fully merged before the parallel start point. Additional fully merged legacy batches at/after 233 are listed explicitly. Missing legacy batches 233, 237, 238 and 243 remain eligible for shard translation."
+  },
   "task_id_pattern": "batch-{batch:05d}-s{shard:02d}",
   "group_rule": "group = b + zero_pad(floor(batch / 100), 4)",
   "roots": {
@@ -31,5 +49,5 @@
     "vietnamese_fluency_and_terminology_review",
     "placeholder_markup_newline_qa"
   ],
-  "notes": "This epoch is pinned. Daily source syncs may move source-zhcn, but workers must fetch batches using source_queue_git_commit above. Batch 1 was completed before parallelization and must not be claimed."
+  "notes": "This epoch is pinned. Daily source syncs may move source-zhcn, but workers must fetch batches using source_queue_git_commit above. The legacy baseline was reconciled after legacy workers continued beyond the epoch's original creation; workers must start at first_parallel_batch and skip every batch in legacy_completed_batches."
 }

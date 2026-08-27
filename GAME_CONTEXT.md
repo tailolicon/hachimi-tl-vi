@@ -19,23 +19,26 @@ When the source is zh-CN, treat it as a **semantic bridge**, not the canonical s
 
 Chinese gameplay labels are also not permission to create Vietnamese semantic calques for terms that players conventionally keep in English/Romanized form. For those concepts, `glossary/ui_community_terms.json` is the player-facing terminology layer.
 
+**Individual skill names are the deliberate exception in style handling:** when a zh-CN skill title is available, use its compact title structure as the primary naming-style reference, while using the Japanese title/registry as the semantic guard for motifs, proper nouns, puns and distinctions. The exact rules and reviewed examples live in `glossary/skill_name_style.json`.
+
 ## Terminology precedence
 
 Use this precedence when sources disagree:
 
 1. a matching accepted form in `glossary/ui_community_terms.json` for player-facing common gameplay/UI terms or named mechanics/events;
-2. a locked entry in `glossary/term_registry.json` for concepts not overridden by layer 1;
-3. accepted observed terminology that does not conflict with 1-2;
-4. official/player-established naming when the shared registries do not yet cover the concept;
-5. generic Vietnamese translation only for genuinely generic text.
+2. for an **individual skill name**, an exact canonical example in `glossary/skill_name_style.json` intentionally overrides an older conflicting skill-name target;
+3. a locked entry in `glossary/term_registry.json` for concepts not overridden by layers 1-2;
+4. accepted observed terminology that does not conflict with 1-3;
+5. official/player-established naming when the shared registries do not yet cover the concept;
+6. generic Vietnamese translation only for genuinely generic text.
 
-`ui_community_terms.json` intentionally overrides several older Vietnamese mappings in `term_registry.json` while the canonical registry is migrated. Do not use an old locked Vietnamese target when a matching player-facing entry explicitly says to preserve English/Romanized terminology.
+`ui_community_terms.json` intentionally overrides several older Vietnamese mappings in `term_registry.json` while the canonical registry is migrated. `skill_name_style.json` similarly carries a small set of reviewed skill-title overrides where the old canonical wording does not match the approved naming style. Do not use an old target as evidence that the old style is preferred when one of these higher-precedence layers explicitly supersedes it.
 
 ## Translation layers
 
 1. **UI/system** — compact, immediately understandable, stable player-facing terminology. Fixed-size UI must also follow `UI_TRANSLATION_RULES.md`, `glossary/ui_short_forms.json`, `glossary/ui_community_terms.json`, and reviewed overrides in `glossary/ui_overrides.json`; visual fit is part of correctness.
 2. **Training/career (育成)** — distinguish stats, energy, motivation, training, support-card mechanics, Scenario mechanics, Condition and objectives.
-3. **Skills/effects** — distinguish the generic gameplay category (`Skill`, `Unique Skill`, `Evolution Skill`) from the **individual skill name**. Mechanical meaning has priority in descriptions; preserve trigger conditions, Distance/Style restrictions, numbers and runtime tokens exactly.
+3. **Skills/effects** — distinguish the generic gameplay category (`Skill`, `Unique Skill`, `Evolution Skill`) from the **individual skill name**. Individual names follow `glossary/skill_name_style.json`; mechanical meaning has priority in descriptions, with trigger conditions, Distance/Style restrictions, numbers and runtime tokens preserved exactly.
 4. **Race commentary** — concise, energetic Vietnamese sports commentary; never alter race state.
 5. **Character/home/story/event** — preserve speaker personality, relationship, emotional subtext and continuity across adjacent lines.
 6. **Lyrics** — preserve meaning and voice; natural rhythm is desirable but never at the expense of a materially different meaning.
@@ -68,12 +71,20 @@ The keep-English rule above applies to common gameplay terminology and Skill **c
 
 For an individual skill name:
 
-- localize it into a concise Vietnamese game-skill title;
-- prefer a natural Hán-Việt rendering when it is evocative, intelligible, and faithful to the image/meaning of the original;
+- follow `glossary/skill_name_style.json`;
+- when zh-CN is available, learn from its **short title rhythm** instead of expanding it into explanatory Vietnamese;
+- use JP/registry evidence to preserve proper nouns, puns, title/role imagery and distinctions the Chinese rendering may flatten;
+- usually aim for roughly **2–4 meaningful title units** when the source itself is compact; this is a style target, not a hard word-count rule;
+- prefer a natural Hán-Việt rendering when it is evocative, intelligible, and faithful;
 - if a Hán-Việt rendering is stiff or opaque, choose a short, polished Vietnamese localization with the same kind of punch as commercial game/LoL skill naming;
+- preserve a distinctive gimmick rather than normalizing it away: e.g. `弧线教授 / 弧線のプロフェッサー` is **Giáo Sư Cung Tuyến**, retaining the Professor image;
+- compact mechanical families should also look like ability names rather than prose, e.g. `弯道加速○ → Gia Tốc Khúc Cua○`;
+- preserve `○`, `×`, `◎`, `☆`, placeholders, markup and runtime symbols exactly;
 - avoid literal machine-like noun piles and avoid turning a skill name into a sentence explaining its effect;
 - preserve proper nouns, references, puns, or indispensable foreign wording when translating them would destroy the reference;
 - keep mechanical details in the skill description exact even when the skill title is localized creatively.
+
+Reviewed exact examples currently include `弧线教授 → Giáo Sư Cung Tuyến`, the graded `弯道加速/回复/巧者` families, and `强攻策 → Cường Công Kế`. Illustrative examples in the style file are guidance only until their JP identity/nuance is verified.
 
 The goal is a name that sounds like a real ability name in a professionally localized game, not a dictionary gloss.
 
@@ -118,10 +129,11 @@ Before translating any batch, read:
 2. `work/translation_progress.json`
 3. `GAME_CONTEXT.md`
 4. `glossary/ui_community_terms.json`
-5. `glossary/term_registry.json`
-6. `glossary/characters.json`
-7. `glossary/style_rules.json`
-8. `UI_TRANSLATION_RULES.md`
-9. `glossary/ui_short_forms.json`
+5. `glossary/skill_name_style.json`
+6. `glossary/term_registry.json`
+7. `glossary/characters.json`
+8. `glossary/style_rules.json`
+9. `UI_TRANSLATION_RULES.md`
+10. `glossary/ui_short_forms.json`
 
 Do not rely on a worker's private chat history or on memory of the game when repository context conflicts with it. External research is a fallback for an unresolved entity, not a substitute for the shared registry.

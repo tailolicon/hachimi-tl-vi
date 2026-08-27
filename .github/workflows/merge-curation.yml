@@ -10,6 +10,7 @@ on:
       - "work/curation/completions/**"
       - "work/curation/merged/**"
       - "scripts/prepare_curation_merge.py"
+      - "scripts/drain_curation_backlog.py"
       - ".github/workflows/merge-curation.yml"
 
 permissions:
@@ -36,8 +37,8 @@ jobs:
         run: git pull --ff-only origin main
       - name: Recover completed claim ownership
         run: python scripts/prepare_curation_merge.py
-      - name: Merge completed curation batches
-        run: python scripts/merge_parallel_curation.py --max-batches 50
+      - name: Drain valid completed curation batches
+        run: python scripts/drain_curation_backlog.py --max-batches 50
       - name: Validate and apply explicit terminology decisions
         shell: bash
         run: |
@@ -68,7 +69,7 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add glossary/speech_bible.json glossary/terminology_reviews.json glossary/term_registry.json \
             glossary/speech_review_queue.json glossary/terminology_review_queue.json \
-            work/curation/merged work/curation/claims work/curation/completions
+            work/curation/merged work/curation/merge_failures work/curation/claims work/curation/completions
           git commit -m "Merge completed parallel curation batches"
           for attempt in 1 2 3 4 5; do
             if git push origin HEAD:main; then

@@ -1,0 +1,333 @@
+from __future__ import annotations
+
+import argparse
+from collections import Counter
+import json
+from pathlib import Path
+from typing import Any
+
+from hachimi_tl_vi.parallel import set_json_path, structural_qa
+
+try:
+    from scripts.translation_review_common import (
+        contains_any,
+        context_snapshot_hash,
+        get_json_path,
+        load_json,
+        normalize,
+        text_fingerprint,
+        utc_now,
+        write_json,
+    )
+except ModuleNotFoundError:
+    from translation_review_common import (  # type: ignore[no-redef]
+        contains_any,
+        context_snapshot_hash,
+        get_json_path,
+        load_json,
+        normalize,
+        text_fingerprint,
+        utc_now,
+        write_json,
+    )
+
+CURRENT_POLICY_VERSION = 1
+_ALLOWED_ACTIONS = {"keep", "revise", "defer"}
+_ALLOWED_CONFIDENCE = {"high", "medium", "low"}
+
+
+def _load_batch(repo_root: Path, plan_id: str, batch_id: str) -> tuple[dict[str, Any], dict[str, Any]]:
+    plan_path = repo_root / "work/translation_review/plans" / f"{plan_id}.json"
+    plan = load_json(plan_path)
+    if plan.get("plan_id") != plan_id:
+        raise ValueError(f"plan_id mismatch in {plan_path}")
+    meta = next((item for item in plan.get("batches", []) if item.get("batch_id") == batch_id), None)
+    if meta is None:
+        raise ValueError(f"batch {batch_id} is not assigned by plan {plan_id}")
+    batch = load_json(repo_root / str(meta["batch_path"]))
+    if batch.get("plan_id") != plan_id or batch.get("batch_id") != batch_id:
+        raise ValueError(f"batch metadata mismatch for {batch_id}")
+    return plan, batch
+
+
+def _validate_terms(item: dict[str, Any], candidate: str, decision: dict[str, Any], errors: list[str]) -> None:
+    term_sensitive = bool(item.get("locked_terms") or item.get("community_terms") or item.get("skill_name_canonical"))
+    if term_sensitive:
+        basis = decision.get("terminology_basis")
+        if not isinstance(basis, str) or not basis.strip():
+            errors.append(f"{item['uid']}: terminology_basis is required")
+
+    for term in item.get("locked_terms", []):
+        expected = str(term.get("target_vi", ""))
+        if expected and not contains_any(candidate, [expected]):
+            errors.append(f"{item['uid']}: locked term {term.get('id')} requires {expected!r}")
+
+    for term in item.get("community_terms", []):
+        forbidden = [str(v) for v in term.get("forbidden", []) if str(v)]
+        accepted = [str(v) for v in term.get("accepted", []) if str(v)]
+        if forbidden and contains_any(candidate, forbidden):
+            errors.append(f"{item['uid']}: forbidden wording survives for {term.get('id')}")
+        if bool(term.get("require_accepted", True)) and accepted and not contains_any(candidate, accepted):
+            errors.append(f"{item['uid']}: accepted player-facing form required for {term.get('id')}")
+
+    skill = item.get("skill_name_canonical")
+    if isinstance(skill, dict):
+        expected = str(skill.get("target_vi", "")).strip()
+        if expected and normalize(candidate) != normalize(expected):
+            errors.append(f"{item['uid']}: canonical skill title must be {expected!r}")
+
+
+def _validate_result(
+    completion: dict[str, Any],
+    result: dict[str, Any],
+    batch: dict[str, Any],
+) -> tuple[list[dict[str, Any]], list[str]]:
+    errors: list[str] = []
+    for field in ("plan_id", "batch_id", "claim_id", "worker_id"):
+        if result.get(field) != completion.get(field):
+            errors.append(f"result/completion {field} mismatch")
+
+    assigned = {str(item["uid"]): item for item in batch.get("items", [])}
+    decisions = result.get("decisions")
+    if not isinstance(decisions, list):
+        return [], errors + ["decisions must be a list"]
+
+    by_uid: dict[str, dict[str, Any]] = {}
+    for decision in decisions:
+        uid = str(decision.get("uid", ""))
+        if not uid:
+            errors.append("decision missing uid")
+            continue
+        if uid in by_uid:
+            errors.append(f"duplicate decision for {uid}")
+        by_uid[uid] = decision
+
+    if set(by_uid) != set(assigned):
+        missing = sorted(set(assigned) - set(by_uid))
+        extra = sorted(set(by_uid) - set(assigned))
+        if missing:
+            errors.append(f"missing decisions: {missing}")
+        if extra:
+            errors.append(f"unassigned decisions: {extra}")
+
+    normalized: list[dict[str, Any]] = []
+    for uid, item in assigned.items():
+        decision = by_uid.get(uid)
+        if decision is None:
+            continue
+        if decision.get("current_fingerprint") != item.get("current_fingerprint"):
+            errors.append(f"{uid}: current_fingerprint does not match batch")
+
+        action = str(decision.get("action", ""))
+        confidence = str(decision.get("confidence", ""))
+        reason = decision.get("reason")
+        if action not in _ALLOWED_ACTIONS:
+            errors.append(f"{uid}: invalid action {action!r}")
+            continue
+        if confidence not in _ALLOWED_CONFIDENCE:
+            errors.append(f"{uid}: invalid confidence {confidence!r}")
+        if not isinstance(reason, str) or not reason.strip():
+            errors.append(f"{uid}: reason is required")
+        if action == "revise" and confidence == "low":
+            errors.append(f"{uid}: low-confidence revisions must defer")
+
+        proposed = decision.get("proposed_text")
+        candidate = str(item.get("current_text", ""))
+        if action == "revise":
+            if not isinstance(proposed, str) or not proposed.strip():
+                errors.append(f"{uid}: revise requires proposed_text")
+            else:
+                candidate = proposed
+                qa = structural_qa(str(item.get("source_text", "")), proposed)
+                if not qa["passed"]:
+                    errors.append(f"{uid}: structural QA failed: {', '.join(qa['errors'])}")
+        elif proposed is not None:
+            errors.append(f"{uid}: proposed_text is only allowed for revise")
+
+        if action in {"keep", "revise"}:
+            _validate_terms(item, candidate, decision, errors)
+
+        normalized.append({
+            "uid": uid,
+            "action": action,
+            "confidence": confidence,
+            "reason": reason,
+            "proposed_text": proposed,
+            "terminology_basis": decision.get("terminology_basis"),
+            "speech_basis": decision.get("speech_basis"),
+            "item": item,
+        })
+    return normalized, errors
+
+
+def _current_text(repo_root: Path, docs: dict[str, Any], item: dict[str, Any]) -> str | None:
+    source_path = str(item["source_path"])
+    if source_path not in docs:
+        path = repo_root / "localized_data" / source_path
+        if not path.exists():
+            return None
+        docs[source_path] = load_json(path)
+    try:
+        current = get_json_path(docs[source_path], item["json_path"])
+    except (KeyError, IndexError, TypeError):
+        return None
+    return current if isinstance(current, str) else None
+
+
+def merge(repo_root: Path) -> dict[str, Any]:
+    review_root = repo_root / "work/translation_review"
+    reviewed_path = review_root / "reviewed_index.json"
+    reviewed = load_json(
+        reviewed_path,
+        {"schema_version": 1, "policy_version": CURRENT_POLICY_VERSION, "entries": {}},
+    )
+    reviewed_entries = reviewed.setdefault("entries", {})
+    current_context_hash = context_snapshot_hash(repo_root)
+    docs: dict[str, Any] = {}
+    dirty_docs: set[str] = set()
+
+    report: dict[str, Any] = {
+        "schema_version": 1,
+        "policy_version": CURRENT_POLICY_VERSION,
+        "generated_at": utc_now(),
+        "merged_batches": [],
+        "stale_batches": [],
+        "superseded_batches": [],
+        "already_merged": [],
+        "counts": {"keep": 0, "revise": 0, "defer": 0},
+        "revised_uids": [],
+        "unresolved_defer_uids": [],
+    }
+
+    completion_paths = (
+        sorted((review_root / "completions").glob("*/*.json"))
+        if (review_root / "completions").exists()
+        else []
+    )
+    for completion_path in completion_paths:
+        completion = load_json(completion_path)
+        batch_id = str(completion.get("batch_id", ""))
+        plan_id = str(completion.get("plan_id", ""))
+        claim_id = str(completion.get("claim_id", ""))
+        if not batch_id or not plan_id or not claim_id:
+            raise ValueError(f"invalid completion marker: {completion_path}")
+
+        merged_path = review_root / "merged" / f"{batch_id}.json"
+        if merged_path.exists():
+            report["already_merged"].append(batch_id)
+            continue
+
+        plan, batch = _load_batch(repo_root, plan_id, batch_id)
+        if (
+            int(plan.get("policy_version", 0)) != CURRENT_POLICY_VERSION
+            or str(plan.get("context_snapshot_sha256", "")) != current_context_hash
+        ):
+            reason = (
+                "legacy_policy"
+                if int(plan.get("policy_version", 0)) != CURRENT_POLICY_VERSION
+                else "review_context_changed"
+            )
+            write_json(merged_path, {
+                "schema_version": 1,
+                "status": "superseded",
+                "plan_id": plan_id,
+                "batch_id": batch_id,
+                "claim_id": claim_id,
+                "merged_at": utc_now(),
+                "superseded_reason": reason,
+            })
+            report["superseded_batches"].append({"batch_id": batch_id, "reason": reason})
+            continue
+
+        expected_result = Path("work/translation_review/results") / batch_id / f"{claim_id}.json"
+        if completion.get("result_path") != expected_result.as_posix():
+            raise ValueError(f"{batch_id}: completion result_path mismatch")
+        result = load_json(repo_root / expected_result)
+        decisions, errors = _validate_result(completion, result, batch)
+        if errors:
+            raise ValueError(f"{batch_id}: " + "; ".join(errors))
+
+        stale: list[str] = []
+        for decision in decisions:
+            current = _current_text(repo_root, docs, decision["item"])
+            if current is None or text_fingerprint(current) != decision["item"]["current_fingerprint"]:
+                stale.append(decision["uid"])
+        if stale:
+            write_json(merged_path, {
+                "schema_version": 1,
+                "status": "stale",
+                "plan_id": plan_id,
+                "batch_id": batch_id,
+                "claim_id": claim_id,
+                "merged_at": utc_now(),
+                "stale_uids": stale,
+            })
+            report["stale_batches"].append({"batch_id": batch_id, "uids": stale})
+            continue
+
+        counts: Counter[str] = Counter()
+        for decision in decisions:
+            item = decision["item"]
+            uid = decision["uid"]
+            action = decision["action"]
+            final_text = str(item["current_text"])
+            if action == "revise":
+                final_text = str(decision["proposed_text"])
+                source_path = str(item["source_path"])
+                set_json_path(docs[source_path], item["json_path"], final_text)
+                dirty_docs.add(source_path)
+                report["revised_uids"].append(uid)
+            elif action == "defer":
+                report["unresolved_defer_uids"].append(uid)
+
+            reviewed_entries[uid] = {
+                "source_path": item["source_path"],
+                "json_path": item["json_path"],
+                "source_fingerprint": item["source_fingerprint"],
+                "current_fingerprint": text_fingerprint(final_text),
+                "text": final_text,
+                "action": action,
+                "confidence": decision["confidence"],
+                "terminology_basis": decision.get("terminology_basis"),
+                "speech_basis": decision.get("speech_basis"),
+                "context_snapshot_sha256": current_context_hash,
+                "policy_version": int(plan["policy_version"]),
+                "plan_id": plan_id,
+                "batch_id": batch_id,
+                "reviewed_at": utc_now(),
+            }
+            counts[action] += 1
+            report["counts"][action] += 1
+
+        write_json(merged_path, {
+            "schema_version": 1,
+            "status": "merged",
+            "policy_version": int(plan["policy_version"]),
+            "plan_id": plan_id,
+            "batch_id": batch_id,
+            "claim_id": claim_id,
+            "worker_id": completion.get("worker_id"),
+            "merged_at": utc_now(),
+            "counts": dict(counts),
+            "gate_resolved_items": counts["keep"] + counts["revise"],
+            "deferred_items": counts["defer"],
+        })
+        report["merged_batches"].append(batch_id)
+
+    for source_path in sorted(dirty_docs):
+        write_json(repo_root / "localized_data" / source_path, docs[source_path])
+    write_json(reviewed_path, reviewed)
+    write_json(review_root / "merge_report.json", report)
+    return report
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(description="Validate and merge retrospective translation-review results.")
+    parser.add_argument("--repo-root", type=Path, default=Path("."))
+    args = parser.parse_args()
+    print(json.dumps(merge(args.repo_root.resolve()), ensure_ascii=False, indent=2))
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

@@ -5,7 +5,7 @@ from pathlib import Path
 
 from hachimi_tl_vi.model import SourceEntry
 from hachimi_tl_vi.translators.prompt import build_messages
-from scripts.build_ui_review_plan import _term_risk, community_term_matches
+from scripts.build_ui_review_plan import _term_risk, community_term_matches, terminology_snapshot_hash
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -14,6 +14,10 @@ ROOT = Path(__file__).resolve().parents[1]
 def _terms():
     payload = json.loads((ROOT / "glossary/ui_community_terms.json").read_text(encoding="utf-8"))
     return payload["terms"]
+
+
+def _skill_style():
+    return json.loads((ROOT / "glossary/skill_name_style.json").read_text(encoding="utf-8"))
 
 
 def test_common_en_terms_override_old_vietnamese_calques_for_ui_review() -> None:
@@ -36,7 +40,7 @@ def test_common_en_terms_override_old_vietnamese_calques_for_ui_review() -> None
         assert score > 0
 
 
-def test_translation_prompt_injects_player_facing_terminology_before_term_registry() -> None:
+def test_translation_prompt_injects_player_and_skill_name_policies() -> None:
     entry = SourceEntry(
         uid="zhcn:policy-test",
         kind="ui",
@@ -47,19 +51,55 @@ def test_translation_prompt_injects_player_facing_terminology_before_term_regist
     messages = build_messages([entry], glossary_dir=ROOT / "glossary")
     payload = json.loads(messages[1]["content"])
     assert "player_facing_terminology" in payload
+    assert "skill_name_style" in payload
     assert any(
         term.get("id") == "common.stat.speed" and term.get("preferred") == "Speed"
         for term in payload["player_facing_terminology"]["terms"]
     )
+    canonical = {
+        item["source_zh_cn"]: item["target_vi"]
+        for item in payload["skill_name_style"]["canonical_examples"]
+    }
+    assert canonical["弧线教授"] == "Giáo Sư Cung Tuyến"
+    assert canonical["强攻策"] == "Cường Công Kế"
     system = messages[0]["content"]
     assert "player_facing_terminology" in system
-    assert "ưu tiên CAO NHẤT" in system
+    assert "skill_name_style" in system
+    assert "弧线教授 -> Giáo Sư Cung Tuyến" in system
 
 
-def test_skill_policy_keeps_category_english_but_localizes_individual_skill_names() -> None:
+def test_skill_policy_follows_compact_chinese_title_rhythm() -> None:
     style = json.loads((ROOT / "glossary/style_rules.json").read_text(encoding="utf-8"))
     rules = "\n".join(style["kinds"]["skill"])
     assert "Skill, Unique Skill, Evolution Skill" in rules
-    assert "Tên RIÊNG của skill phải được Việt hóa" in rules
+    assert "skill_name_style.json" in rules
+    assert "2-4" in rules
     assert "Hán-Việt" in rules
     assert "LoL" in rules
+    assert "Giáo Sư" in rules
+    assert "Cường Công Kế" in rules
+
+
+def test_skill_style_exact_examples_are_reviewed_overrides() -> None:
+    policy = _skill_style()
+    canonical = {item["source_zh_cn"]: item["target_vi"] for item in policy["canonical_examples"]}
+    assert canonical["弧线教授"] == "Giáo Sư Cung Tuyến"
+    assert canonical["弯道加速○"] == "Gia Tốc Khúc Cua○"
+    assert canonical["弯道回复○"] == "Hồi Phục Khúc Cua○"
+    assert canonical["弯道巧者○"] == "Xảo Thủ Khúc Cua○"
+    assert canonical["强攻策"] == "Cường Công Kế"
+    assert "older conflicting skill-name target" in policy["precedence"][0]
+
+
+def test_skill_style_changes_ui_terminology_snapshot() -> None:
+    # The builder hashes the policy file, so changing approved skill-title policy
+    # supersedes a plan that was reviewed against an older terminology snapshot.
+    before = terminology_snapshot_hash(ROOT)
+    skill_path = ROOT / "glossary/skill_name_style.json"
+    original = skill_path.read_text(encoding="utf-8")
+    try:
+        skill_path.write_text(original + "\n", encoding="utf-8")
+        after = terminology_snapshot_hash(ROOT)
+    finally:
+        skill_path.write_text(original, encoding="utf-8")
+    assert before != after

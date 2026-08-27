@@ -31,7 +31,7 @@ except ModuleNotFoundError:
         write_json,
     )
 
-CURRENT_POLICY_VERSION = 2
+CURRENT_POLICY_VERSION = 3
 _ALLOWED_ACTIONS = {"keep", "revise", "defer"}
 _ALLOWED_CONFIDENCE = {"high", "medium", "low"}
 

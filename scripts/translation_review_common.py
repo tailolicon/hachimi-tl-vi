@@ -7,7 +7,8 @@ from pathlib import Path
 import re
 from typing import Any
 
-_CJK_RE = re.compile(r"[\u3040-\u30ff\u3400-\u4dbf\u4e00-\u9fff]")
+# Letters/ideographs only; do not classify JP punctuation such as U+30FB middle dot as leakage.
+_CJK_RE = re.compile(r"[\u3041-\u3096\u30a1-\u30fa\u3400-\u4dbf\u4e00-\u9fff]")
 
 CONTEXT_PATHS = (
     "GAME_CONTEXT.md",
@@ -103,12 +104,14 @@ def locked_term_matches(source: str, target: str, terms: list[dict[str, Any]]) -
     result: list[dict[str, Any]] = []
     for term in terms:
         aliases = [str(v) for v in term.get("zh_cn", []) if str(v)]
-        if not any(_alias_matches(source, alias) for alias in aliases):
+        matched_aliases = [alias for alias in aliases if _alias_matches(source, alias)]
+        if not matched_aliases:
             continue
         expected = str(term["target_vi"])
         result.append({
             "id": str(term.get("id", "")),
             "target_vi": expected,
+            "matched_aliases": matched_aliases,
             "present": contains_any(target, [expected]),
         })
     return result
@@ -131,7 +134,8 @@ def community_term_matches(
         if prefixes and (key is None or not any(key.startswith(prefix) for prefix in prefixes)):
             continue
         aliases = [str(v) for v in term.get("source_aliases", []) if str(v)]
-        if not any(_alias_matches(source, alias) for alias in aliases):
+        matched_aliases = [alias for alias in aliases if _alias_matches(source, alias)]
+        if not matched_aliases:
             continue
         accepted = list(dict.fromkeys(
             [str(v) for v in term.get("accepted", []) if str(v)]
@@ -143,12 +147,36 @@ def community_term_matches(
             "preferred": str(term.get("preferred", "")),
             "accepted": accepted,
             "forbidden": forbidden,
+            "matched_aliases": matched_aliases,
             "accepted_present": contains_any(target, accepted),
             "forbidden_present": contains_any(target, forbidden),
             "require_accepted": bool(term.get("require_accepted", True)),
             "basis": str(term.get("basis", "")),
         })
     return result
+
+
+def suppress_overridden_locked_terms(
+    locked_terms: list[dict[str, Any]],
+    community_terms: list[dict[str, Any]],
+) -> list[dict[str, Any]]:
+    """Apply documented precedence: player-facing community terms override older locked mappings.
+
+    We only suppress a locked match when both layers matched at least one identical source alias,
+    so unrelated concepts appearing in the same sentence remain independently enforced.
+    """
+    community_aliases = {
+        str(alias)
+        for term in community_terms
+        for alias in term.get("matched_aliases", [])
+        if str(alias)
+    }
+    if not community_aliases:
+        return locked_terms
+    return [
+        term for term in locked_terms
+        if community_aliases.isdisjoint({str(alias) for alias in term.get("matched_aliases", []) if str(alias)})
+    ]
 
 
 def load_skill_examples(repo_root: Path) -> dict[str, dict[str, Any]]:

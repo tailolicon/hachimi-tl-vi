@@ -69,7 +69,7 @@ def record_failure(
     )
 
 
-def drain(*, active_path: Path = core.DEFAULT_ACTIVE, max_batches: int | None = None) -> dict[str, int]:
+def drain(*, active_path: Path = core.DEFAULT_ACTIVE, max_batches: int | None = None) -> dict[str, Any]:
     active, plan, _ = core.load_active_plan(active_path)
     plan_id = str(active["plan_id"])
     batches = core.batch_index(plan)
@@ -79,12 +79,14 @@ def drain(*, active_path: Path = core.DEFAULT_ACTIVE, max_batches: int | None = 
     if not isinstance(speech_bible, dict) or not isinstance(reviews, dict) or not isinstance(registry, dict):
         raise ValueError("canonical curation files must be JSON objects")
 
-    stats = {
+    stats: dict[str, Any] = {
         "batches": 0,
         "speech_profiles": 0,
         "terminology_decisions": 0,
         "failed_batches": 0,
+        "failed_batch_ids": [],
         "previous_failures_skipped": 0,
+        "previous_failure_batch_ids": [],
         "not_ready": 0,
     }
 
@@ -126,6 +128,7 @@ def drain(*, active_path: Path = core.DEFAULT_ACTIVE, max_batches: int | None = 
             result_path=result_path,
         ):
             stats["previous_failures_skipped"] += 1
+            stats["previous_failure_batch_ids"].append(batch_id)
             continue
 
         worker_id = str(claim.get("worker_id") or (result.get("worker_id") if isinstance(result, dict) else "") or "unknown")
@@ -180,6 +183,7 @@ def drain(*, active_path: Path = core.DEFAULT_ACTIVE, max_batches: int | None = 
                 error=exc,
             )
             stats["failed_batches"] += 1
+            stats["failed_batch_ids"].append(batch_id)
             continue
 
         core.write_json(

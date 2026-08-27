@@ -4,7 +4,7 @@ from __future__ import annotations
 import math
 import re
 from collections import defaultdict
-from datetime import datetime, timezone
+from datetime import datetime
 from pathlib import Path
 
 import build_progress_dashboard as legacy
@@ -187,10 +187,15 @@ def translation(root: Path, now: datetime):
         warnings.append(
             f"translation_progress.translated_entries={metadata_done} differs from artifact-derived canonical_entries={canonical_entries}"
         )
-    epoch_legacy = {int(x) for x in (epoch.get("legacy_completed_batches") or [])}
-    if epoch and epoch_legacy != merged_batches:
+    first_parallel = int(epoch.get("first_parallel_batch") or 1)
+    explicit_legacy = {int(x) for x in (epoch.get("legacy_completed_batches") or [])}
+    effective_epoch_legacy = set(range(1, max(first_parallel, 1))) | explicit_legacy
+    if epoch and effective_epoch_legacy != merged_batches:
+        missing = sorted(merged_batches - effective_epoch_legacy)
+        stale = sorted(effective_epoch_legacy - merged_batches)
         warnings.append(
-            f"parallel epoch legacy_completed_batches has {len(epoch_legacy)} batch(es), but work/merged has {len(merged_batches)}"
+            "parallel epoch legacy baseline differs from work/merged"
+            f" (missing={missing[:8]}, stale={stale[:8]})"
         )
 
     return {

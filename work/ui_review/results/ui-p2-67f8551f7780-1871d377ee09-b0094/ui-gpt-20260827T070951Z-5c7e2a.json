@@ -1,0 +1,181 @@
+{
+  "schema_version": 1,
+  "plan_id": "ui-p2-67f8551f7780-1871d377ee09",
+  "batch_id": "ui-p2-67f8551f7780-1871d377ee09-b0094",
+  "claim_id": "ui-gpt-20260827T070951Z-5c7e2a",
+  "worker_id": "ChatGPT",
+  "reviewed_at": "2026-08-27T07:13:50Z",
+  "decisions": [
+    {
+      "key": "Gallery400114",
+      "current_fingerprint": "9521755b71f9c978bcfa93b7dbf286618812097a742d6a5324dfd53cb0885310",
+      "action": "revise",
+      "proposed_text": "Chọn thoại",
+      "control_type": "unknown",
+      "reason": "The current label is wider than necessary; 'Chọn thoại' preserves the dialogue-selection meaning in a compact Gallery label.",
+      "confidence": "medium"
+    },
+    {
+      "key": "Gallery419001",
+      "current_fingerprint": "d489597c180a3b159526765b048154c14085b1e8ba836f22c0fec16f546ac993",
+      "action": "defer",
+      "control_type": "unknown",
+      "reason": "The exact Gallery meaning of 演出 and the control context are unclear; a shorter form could incorrectly narrow it to a cutscene or animation.",
+      "confidence": "low"
+    },
+    {
+      "key": "Gallery511001",
+      "current_fingerprint": "29e41f44d3fa519039099a2fe5f91521574db9e30fabccd114441c8c8e5acb65",
+      "action": "revise",
+      "proposed_text": "{1}/{0}",
+      "control_type": "short_system_label",
+      "reason": "A numeric day/month form is natural in compact Vietnamese UI and preserves both placeholders while substantially reducing width.",
+      "confidence": "high"
+    },
+    {
+      "key": "Gallery511003",
+      "current_fingerprint": "c23d86d37cd29542a630bad02b860b42066c6ae88b190db42e9c5a0b97a1613c",
+      "action": "revise",
+      "proposed_text": "Không có thoại thường",
+      "control_type": "short_system_label",
+      "reason": "The current empty-state label is overly wide; 'thoại' is a natural compact form here and keeps the normal-dialogue meaning.",
+      "confidence": "medium"
+    },
+    {
+      "key": "Gallery511004",
+      "current_fingerprint": "df226f260b431b6b2c5ecf872a77b318f1f7808663d97af777d9c5995545730d",
+      "action": "revise",
+      "proposed_text": "Không có thoại sinh nhật",
+      "control_type": "short_system_label",
+      "reason": "The current empty-state label is overly wide; shortening 'hội thoại' to 'thoại' preserves the birthday-dialogue meaning.",
+      "confidence": "medium"
+    },
+    {
+      "key": "Gallery600001",
+      "current_fingerprint": "896028c3b9b1ebc08829efbb0feaf3fface3a1733d59a4c6c31906ceb6fe9fa8",
+      "action": "defer",
+      "control_type": "unknown",
+      "reason": "It is unclear whether 通用 distinguishes a specific generic/common category from other random modes; dropping it without layout context could change the mode meaning.",
+      "confidence": "low"
+    },
+    {
+      "key": "Gallery600002",
+      "current_fingerprint": "0fdd9082ddeae9bef0088a688cb92319cd976096c5e9f46034f32dcd50418c88",
+      "action": "defer",
+      "control_type": "unknown",
+      "reason": "The exact role of 资料 in this Gallery label is uncertain; safely shortening it requires knowing whether this is data, a record, or a category title.",
+      "confidence": "low"
+    },
+    {
+      "key": "Gallery600003",
+      "current_fingerprint": "b7af313e8d7f8be8ab1f9b741be98f8f1dbf3a6850d969017a5584b9d80fcbc0",
+      "action": "revise",
+      "proposed_text": "Phát riêng lẻ",
+      "control_type": "setting_label",
+      "reason": "This compact playback-mode label naturally expresses non-continuous playback and is much narrower than the current negative construction.",
+      "confidence": "medium"
+    },
+    {
+      "key": "Gallery600004",
+      "current_fingerprint": "ebe1830b1025a7a5280c4967a4a17a4ae211b05c959eb18c9a079f0e33ced0dd",
+      "action": "defer",
+      "control_type": "setting_label",
+      "reason": "The source combines recommendation and continuous playback; without neighboring controls, shortening either concept risks changing the playback mode.",
+      "confidence": "low"
+    },
+    {
+      "key": "Gallery600005",
+      "current_fingerprint": "5308b6d0b0e61ac3b4b47c5964526396015b9b8041110cfa5657c9ced827c670",
+      "action": "revise",
+      "proposed_text": "Chọn rồi phát tiếp",
+      "control_type": "setting_label",
+      "reason": "The shorter wording keeps the select-then-continue-playback action while removing the wide repeated 'liên tục' phrase.",
+      "confidence": "medium"
+    },
+    {
+      "key": "Gallery600016",
+      "current_fingerprint": "c519c607c618188df72eddbc865513080d9044b309bead187ba6b18ca65c8813",
+      "action": "revise",
+      "proposed_text": "Sự kiện khả dụng",
+      "control_type": "header",
+      "reason": "The current phrase is literal and wide; 'Sự kiện khả dụng' is a compact natural header for events available to play.",
+      "confidence": "medium"
+    },
+    {
+      "key": "Gallery600017",
+      "current_fingerprint": "d540a0e33e9d24c4ca03bacf7b0c59a3024e3822919d5930c3379d5653954135",
+      "action": "defer",
+      "control_type": "unknown",
+      "reason": "It is unclear whether this is a status, confirmation, or selection label; removing tense or the event noun could alter its function.",
+      "confidence": "low"
+    },
+    {
+      "key": "Gallery600018",
+      "current_fingerprint": "ded10dc852cb9062a7aa29e4710c153bc25911aae70fb0b4ed11c403b60d8c57",
+      "action": "revise",
+      "proposed_text": "Chỉ phát mục này",
+      "control_type": "normal_button",
+      "reason": "The Gallery context supplies the event/list-item object, so 'mục này' preserves the single-item playback action with less width.",
+      "confidence": "medium"
+    },
+    {
+      "key": "Heroes408000",
+      "current_fingerprint": "9c1df0a5828237f3b8121b66fee6c77a8fc5b6f977ac965c1022acecaf7c52d4",
+      "action": "keep",
+      "control_type": "header",
+      "reason": "This is the existing proper event title; changing or translating a proper name solely for width is not justified by the available UI evidence.",
+      "confidence": "high"
+    },
+    {
+      "key": "Heroes408001",
+      "current_fingerprint": "c5d297f5ea4d9a4d1a1fd8f31b638ac02f581696205b042ee045bb53fe0a7e52",
+      "action": "defer",
+      "control_type": "tab",
+      "reason": "The phase concept is clear, but the repository does not establish a canonical compact stage name; changing it in UI review could introduce terminology rather than only fix layout.",
+      "confidence": "low"
+    },
+    {
+      "key": "Heroes408002",
+      "current_fingerprint": "f970a757d3b148d591141de1df0691323764103042937f421e1853c8c71b897d",
+      "action": "defer",
+      "control_type": "tab",
+      "reason": "The phase concept is clear, but the repository does not establish a canonical compact stage name; changing it in UI review could introduce terminology rather than only fix layout.",
+      "confidence": "low"
+    },
+    {
+      "key": "Heroes408003",
+      "current_fingerprint": "3b174ece512f4ffbba2234ca4414d9c6251dbdf49f6355be1dc1b0499a8acd91",
+      "action": "keep",
+      "control_type": "short_system_label",
+      "reason": "'Thanh Anh hùng' is natural and semantically precise for the event gauge; there is no clearly safer compact term that preserves the mechanic.",
+      "confidence": "high"
+    },
+    {
+      "key": "Heroes408006",
+      "current_fingerprint": "5877bc8ec4beeeaa91dda0013abf0d45350c1b8b0da87a974ba10848f0136130",
+      "action": "revise",
+      "proposed_text": "Chi tiết",
+      "control_type": "tab",
+      "reason": "Inside the League of Heroes event screen, 'sự kiện' is redundant context; 'Chi tiết' is a clear compact navigation label.",
+      "confidence": "high"
+    },
+    {
+      "key": "Heroes408008",
+      "current_fingerprint": "8ba93c8f1e7d2b3d59ebdb7cdc1ba7e7aff38e870b8eed9fef380f645134c0f5",
+      "action": "revise",
+      "proposed_text": "Dữ liệu dự thi",
+      "control_type": "tab",
+      "reason": "'Dự thi' is a more compact and natural competition term than the current generic 'tham gia' while preserving participation-data meaning.",
+      "confidence": "high"
+    },
+    {
+      "key": "Heroes408009",
+      "current_fingerprint": "c0084a6cdb47f87dba5af6080f41b9d1672c3abfb5db983d0e663214ff857755",
+      "action": "revise",
+      "proposed_text": "Còn {0} ngày",
+      "control_type": "short_system_label",
+      "reason": "The event screen already supplies what the countdown is for; the compact form preserves the remaining-day meaning and the placeholder exactly.",
+      "confidence": "high"
+    }
+  ]
+}

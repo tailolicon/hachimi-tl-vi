@@ -1,0 +1,111 @@
+{
+  "schema_version": 1,
+  "policy_version": 1,
+  "purpose": "Canonical naming-style policy for individual Uma Musume skill names in Vietnamese. Follow the compact title rhythm of the zh-CN source while preserving Japanese meaning, motifs, proper nouns, symbols, and gameplay identity.",
+  "scope": {
+    "applies_to": [
+      "individual skill names",
+      "unique/evolution skill proper names",
+      "graded skill-family names"
+    ],
+    "does_not_apply_to": [
+      "Skill/Unique Skill/Evolution Skill category labels",
+      "skill descriptions/effects",
+      "generic gameplay terminology"
+    ]
+  },
+  "precedence": [
+    "Exact source match in canonical_examples below overrides an older conflicting skill-name target from term_registry.json.",
+    "For other individual skill names, verified newer canonical registry mapping wins.",
+    "Otherwise use this naming policy with the zh-CN title as the primary compression/style reference and JP wording as the semantic/reference guard when available.",
+    "If zh-CN and JP imply materially different imagery, wordplay, or proper-noun treatment and the conflict cannot be resolved confidently, defer instead of inventing a permanent title."
+  ],
+  "source_strategy": [
+    "When zh-CN is available, learn from how it compresses the skill into a short title; do not mechanically translate every character.",
+    "Use Japanese wording/aliases to protect the original motif, role/title gimmick, proper noun, pun, and semantic distinction.",
+    "Do not use UmaTL English translation text as AI input.",
+    "The zh-CN title is a naming/style guide, not authority for character/racehorse proper nouns."
+  ],
+  "naming_rules": [
+    "Aim for roughly 2-4 meaningful Vietnamese/Han-Viet units for compact source titles when natural; do not pad the title with explanatory words.",
+    "Prefer concise Han-Viet compounds when they are intelligible, evocative, and faithful; use polished Vietnamese when Han-Viet would be stiff or opaque.",
+    "Mechanical/common skill families should read like compact ability labels, not prose: action or property + context is usually enough.",
+    "Rare, gold, unique, evolution, or stylized names may be more literary, but should still sound like a commercial-game ability name rather than a dictionary gloss.",
+    "Preserve a distinctive title/role gimmick when it is part of the identity. Example: 教授 should remain Giáo Sư in 弧线教授 instead of being flattened to Bậc Thầy.",
+    "Preserve grade/symbol markers exactly, including ○, ×, ◎, ☆ and runtime/markup tokens.",
+    "Do not prepend generic words such as Kỹ năng/Skill to an individual skill name unless the source itself names that category.",
+    "Do not rewrite a skill name into a sentence describing its effect. Mechanical precision belongs in the description.",
+    "In skill descriptions, keep player-facing gameplay terms such as Speed, Stamina, Power, Guts, Wit, Turf, Dirt, Distance and Style labels according to ui_community_terms.json."
+  ],
+  "capitalization": "Use Vietnamese game-title capitalization for canonical skill titles: capitalize meaningful title words consistently; preserve source symbols.",
+  "canonical_examples": [
+    {
+      "source_zh_cn": "弧线教授",
+      "ja": ["弧線のプロフェッサー"],
+      "target_vi": "Giáo Sư Cung Tuyến",
+      "note": "Preserve the Professor gimmick; use Cung Tuyến for the compact curvature image."
+    },
+    {
+      "source_zh_cn": "弯道加速○",
+      "ja": ["コーナー加速○"],
+      "target_vi": "Gia Tốc Khúc Cua○",
+      "note": "Compact mechanical family; preserve ○."
+    },
+    {
+      "source_zh_cn": "弯道加速×",
+      "ja": ["コーナー加速×"],
+      "target_vi": "Gia Tốc Khúc Cua×",
+      "note": "Pair with the ○ variant; preserve ×."
+    },
+    {
+      "source_zh_cn": "弯道回复○",
+      "ja": ["コーナー回復○"],
+      "target_vi": "Hồi Phục Khúc Cua○",
+      "note": "Compact mechanical family; preserve ○."
+    },
+    {
+      "source_zh_cn": "弯道回复×",
+      "ja": ["コーナー回復×"],
+      "target_vi": "Hồi Phục Khúc Cua×",
+      "note": "Pair with the ○ variant; preserve ×."
+    },
+    {
+      "source_zh_cn": "弯道巧者○",
+      "ja": ["コーナー巧者○"],
+      "target_vi": "Xảo Thủ Khúc Cua○",
+      "note": "Use a short ability-title rendering instead of explanatory prose; preserve ○."
+    },
+    {
+      "source_zh_cn": "弯道巧者×",
+      "ja": ["コーナー巧者×"],
+      "target_vi": "Xảo Thủ Khúc Cua×",
+      "note": "Pair with the ○ variant; preserve ×."
+    },
+    {
+      "source_zh_cn": "强攻策",
+      "ja": ["強攻策"],
+      "target_vi": "Cường Công Kế",
+      "note": "Mirror the terse tactical title structure of the Chinese/Japanese name."
+    }
+  ],
+  "illustrative_examples": [
+    {
+      "source_zh_cn": "强者的证明",
+      "candidate_vi": "Chứng Minh Cường Giả",
+      "status": "style_example_only",
+      "note": "Illustrates concise Han-Viet title rhythm; verify exact JP title before locking."
+    },
+    {
+      "source_zh_cn": "引领潮流☆",
+      "candidate_vi": "Tiên Phong Trào Lưu☆",
+      "status": "style_example_only",
+      "note": "Illustrates keeping the source symbol and compact title rhythm; verify JP nuance before locking."
+    },
+    {
+      "source_zh_cn": "当机立断",
+      "candidate_vi": "Đương Cơ Lập Đoạn",
+      "status": "style_example_only",
+      "note": "Illustrates an idiomatic Han-Viet option; exact JP distinction must be verified before canonization."
+    }
+  ]
+}

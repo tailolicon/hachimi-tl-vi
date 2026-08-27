@@ -6,7 +6,7 @@ import json
 from pathlib import Path
 from typing import Any
 
-from scripts import merge_parallel_curation as core
+import merge_parallel_curation as core
 
 FAILURE_ROOT = core.WORK_ROOT / "merge_failures"
 

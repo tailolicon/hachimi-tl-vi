@@ -13,6 +13,7 @@ except ModuleNotFoundError:
     from scripts import build_progress_dashboard as legacy
 
 
+_legacy_markdown = legacy.markdown
 _BATCH_RE = re.compile(r"batch-(\d+)$")
 _TASK_RE = re.compile(r"batch-(\d+)-s(\d+)$")
 
@@ -231,7 +232,7 @@ def translation(root: Path, now: datetime):
 
 
 def markdown(data):
-    text = legacy.markdown(data)
+    text = _legacy_markdown(data)
     warnings = data.get("translation", {}).get("warnings") or []
     if not warnings:
         return text

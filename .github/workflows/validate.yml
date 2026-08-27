@@ -10,6 +10,9 @@ on:
       - "work/ui_review/claims/**"
       - "work/ui_review/results/**"
       - "work/ui_review/completions/**"
+      - "work/translation_review/claims/**"
+      - "work/translation_review/results/**"
+      - "work/translation_review/completions/**"
   pull_request:
   workflow_dispatch:
 
@@ -25,7 +28,7 @@ jobs:
         with:
           python-version: "3.11"
       - run: python -m pip install -e ".[dev]"
-      - run: python -m py_compile scripts/ui_review_common.py scripts/build_ui_review_plan.py scripts/merge_ui_review.py scripts/reap_ui_review_claims.py
+      - run: python -m py_compile scripts/ui_review_common.py scripts/build_ui_review_plan.py scripts/merge_ui_review.py scripts/reap_ui_review_claims.py scripts/translation_review_common.py scripts/build_translation_review_plan.py scripts/merge_translation_review.py scripts/reap_translation_review_claims.py
       - run: pytest -q
       - run: tlvi --db /tmp/tlvi.db validate
       - run: tlvi --db /tmp/tlvi.db index --out /tmp/index.json

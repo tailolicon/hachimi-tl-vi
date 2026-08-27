@@ -10,12 +10,13 @@ from typing import Any
 # Letters/ideographs only; do not classify JP punctuation such as U+30FB middle dot as leakage.
 _CJK_RE = re.compile(r"[\u3041-\u3096\u30a1-\u30fa\u3400-\u4dbf\u4e00-\u9fff]")
 
+# Only files that deterministically define the normal review policy belong in the
+# global plan snapshot. Character/speech evidence is intentionally lazy and
+# targeted per item; changing one profile must not invalidate 19k unrelated
+# system/UI/skill review decisions.
 CONTEXT_PATHS = (
+    "TRANSLATION_REVIEW.md",
     "GAME_CONTEXT.md",
-    "glossary/characters.json",
-    "glossary/speech_bible.json",
-    "glossary/speech_samples.json",
-    "glossary/speech_evidence.json",
     "glossary/term_registry.json",
     "glossary/ui_community_terms.json",
     "glossary/skill_name_style.json",

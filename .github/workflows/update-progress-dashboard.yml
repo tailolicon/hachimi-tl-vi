@@ -1,0 +1,64 @@
+name: Update progress dashboard
+
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/build_progress_dashboard.py"
+      - ".github/workflows/update-progress-dashboard.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: progress-dashboard
+  cancel-in-progress: true
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            scripts/build_progress_dashboard.py
+            work/translation_progress.json
+            work/claims/
+            work/curation/
+            work/ui_review/
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Build read-only progress snapshot
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m py_compile scripts/build_progress_dashboard.py
+          rm -rf "$RUNNER_TEMP/progress-dashboard"
+          python scripts/build_progress_dashboard.py \
+            --repo-root . \
+            --output-dir "$RUNNER_TEMP/progress-dashboard"
+
+      - name: Publish isolated status branch
+        shell: bash
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          cd "$RUNNER_TEMP/progress-dashboard"
+          git init
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add README.md progress.json index.html .nojekyll
+          git commit -m "Update translation progress dashboard"
+          git branch -M status
+          git remote add origin "https://github.com/${GITHUB_REPOSITORY}.git"
+          auth="$(printf 'x-access-token:%s' "$GITHUB_TOKEN" | base64 -w0)"
+          git -c http.extraheader="AUTHORIZATION: basic $auth" push --force origin HEAD:refs/heads/status

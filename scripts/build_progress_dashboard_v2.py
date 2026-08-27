@@ -7,7 +7,10 @@ from collections import defaultdict
 from datetime import datetime
 from pathlib import Path
 
-import build_progress_dashboard as legacy
+try:
+    import build_progress_dashboard as legacy
+except ModuleNotFoundError:
+    from scripts import build_progress_dashboard as legacy
 
 
 _BATCH_RE = re.compile(r"batch-(\d+)$")

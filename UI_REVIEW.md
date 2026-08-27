@@ -6,7 +6,7 @@ This is a dedicated retrospective UI-quality pipeline. It is independent from tr
 
 Review **already translated fixed-size UI text** in `localized_data/localize_dict.json` for two independent quality gates:
 
-1. **game-language correctness** — mechanic/event/mode/resource names must match the repository's locked terminology or the established player-facing Uma Musume term; do not invent Vietnamese semantic calques from Chinese wording;
+1. **game-language correctness** — common gameplay labels and named mechanic/event/mode/resource names must match the repository's player-facing terminology; do not invent Vietnamese semantic calques from Chinese wording;
 2. **visual correctness** — labels must fit their controls without clipping, excessive best-fit shrinking, awkward wrapping, redundant wording, slash compounds, or untranslated JP/zh leakage.
 
 A string is not QA-passed merely because its Vietnamese meaning is understandable.
@@ -19,14 +19,16 @@ Do not use this pipeline for story dialogue, character dialogue, lyrics, race co
 
 Old v2 claims/results/completions must not be reused as authority. The merge pipeline marks unmerged pre-v3 completions as `superseded` instead of applying them.
 
+The active v3 plan is also bound to a terminology snapshot hash. When `term_registry.json`, `ui_community_terms.json`, or `ui_short_forms.json` changes, the previous terminology context is no longer authoritative and a fresh plan is generated.
+
 ## Mandatory context
 
 Before claiming work, read from `main`:
 
 1. `UI_REVIEW.md`
 2. `UI_TRANSLATION_RULES.md`
-3. `glossary/term_registry.json`
-4. `glossary/ui_community_terms.json`
+3. `glossary/ui_community_terms.json`
+4. `glossary/term_registry.json`
 5. `glossary/ui_short_forms.json`
 6. `glossary/ui_overrides.json`
 7. `glossary/style_rules.json`
@@ -41,14 +43,20 @@ Repository state overrides chat history and model priors.
 
 Treat the current Vietnamese text as a **hypothesis**, never as evidence that a term is correct.
 
-Before choosing `keep` or `revise`, identify whether the source contains a named game mechanic, event, mode, stage, gauge, resource, skill family, race format, or other player-facing proper term.
+Before choosing `keep` or `revise`, identify whether the source contains a common gameplay label, named game mechanic, event, mode, stage, gauge, resource, Skill category, race format, or other player-facing proper term.
 
 Use this precedence:
 
-1. a locked matching entry in `glossary/term_registry.json`;
-2. an accepted player-facing form in `glossary/ui_community_terms.json`;
+1. an accepted player-facing form in `glossary/ui_community_terms.json` for a matching concept;
+2. a locked matching entry in `glossary/term_registry.json` only when the concept is not overridden by layer 1;
 3. an official in-game English/Romanized term or strongly established Uma Musume player shorthand;
 4. a natural Vietnamese translation only when the concept is genuinely generic.
+
+This precedence is intentional: `ui_community_terms.json` currently overrides several older locked Vietnamese mappings while the canonical registry is being migrated.
+
+Common EN-version gameplay labels such as `Trainer`, `Speed`, `Stamina`, `Power`, `Guts`, `Wit`, `Aptitude`, `Turf`, `Dirt`, `Sprint`, `Mile`, `Medium`, `Long`, `Style`, and the EN running-style labels must not be translated back into Vietnamese when matched by the player-facing registry.
+
+Generic category labels `Skill`, `Unique Skill`, and `Evolution Skill` also stay English. This does **not** mean the proper name of an individual skill should stay English; individual skill names follow the Vietnamese/Hán-Việt game-skill naming policy in `glossary/style_rules.json`.
 
 Do **not** mechanically translate a named mechanic from Chinese. Examples of prohibited regressions include `英雄量表 -> Thanh Anh hùng` and `英雄技能 -> Kỹ năng Anh hùng` when the player-facing mechanic is `Hero Gauge` / `Hero Skill`.
 
@@ -125,7 +133,8 @@ Follow `UI_TRANSLATION_RULES.md`. In particular:
 - do not add a newline merely to rescue a long translation;
 - preserve the source newline count and all runtime syntax;
 - a translation that protrudes, clips, wraps to an extra line, or forces extreme shrinking is not QA-passed;
-- do not shorten so aggressively that the game action or mechanic changes meaning.
+- do not shorten so aggressively that the game action or mechanic changes meaning;
+- never save width by translating a player-facing English mechanic/stat/style label into Vietnamese.
 
 Automatic `risk_flags` are hints, not verdicts. `community_calque_risk` and `community_term_mismatch` are high-priority semantic warnings.
 
@@ -135,7 +144,7 @@ A revision must:
 
 - be non-empty natural player-facing Vietnamese/UI language;
 - preserve placeholders, printf tokens, markup tags, escaped runtime tokens, and source newline count;
-- preserve canonical game terms and accepted community-facing mechanic names;
+- preserve canonical English/Romanized game terms and accepted community-facing mechanic names;
 - be at least as clear in the current UI context;
 - normally be no wider than the current text and preferably fit the budget in `UI_TRANSLATION_RULES.md`;
 - use canonical compact forms where applicable;

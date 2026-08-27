@@ -40,7 +40,8 @@ except ModuleNotFoundError:
         write_json,
     )
 
-TRANSLATION_REVIEW_POLICY_VERSION = 2
+TRANSLATION_REVIEW_POLICY_VERSION = 3
+PRIORITY_HEAD_SIZE = 64
 
 
 def git_show_json(repo_root: Path, ref: str, path: str) -> Any:
@@ -275,6 +276,7 @@ def build_plan(repo_root: Path, batch_size: int) -> dict[str, Any]:
             "batch_id": batch_id,
             "context_snapshot_sha256": context_hash,
             "review_generation": "retrospective-canonical-full-review",
+            "context_mode": "embedded-first-lazy-extra",
             "items": items,
         })
         batches.append({
@@ -286,6 +288,7 @@ def build_plan(repo_root: Path, batch_size: int) -> dict[str, Any]:
         })
 
     batches.sort(key=lambda item: (-int(item["risk_score"]), int(item["source_batches"][0]), str(item["batch_id"])))
+    priority_batch_ids = [str(item["batch_id"]) for item in batches[:PRIORITY_HEAD_SIZE]]
     plan_rel = Path("work/translation_review/plans") / f"{plan_id}.json"
     common = {
         "schema_version": 1,
@@ -299,17 +302,27 @@ def build_plan(repo_root: Path, batch_size: int) -> dict[str, Any]:
         "batch_count": len(batches),
         "canonical_merged_batch_count": len(merged_markers),
         "review_generation": "retrospective-canonical-full-review",
+        "worker_context_mode": "embedded-first-lazy-extra",
     }
     write_json(repo_root / plan_rel, {
         **common,
         "batch_size": batch_size,
-        "supersedes_policy_versions": [1],
+        "supersedes_policy_versions": [1, 2],
         "batches": batches,
         "decision_actions": ["keep", "revise", "defer"],
         "protocol": "TRANSLATION_REVIEW.md",
         "defer_policy": "defer remains unresolved and keeps the translation gate closed",
     })
-    write_json(active_path, {**common, "status": "active", "plan_path": plan_rel.as_posix()})
+    write_json(active_path, {
+        **common,
+        "status": "active",
+        "plan_path": plan_rel.as_posix(),
+        "batch_size": batch_size,
+        "batch_path_pattern": f"work/translation_review/batches/{plan_id}/{plan_id}-b{{index:04d}}.json",
+        "priority_batch_ids": priority_batch_ids,
+        "priority_head_size": len(priority_batch_ids),
+        "worker_note": "Normal workers do not need to read plan_path; use priority_batch_ids then hashed numeric fallback.",
+    })
     _set_gate(
         repo_root,
         enabled=True,
@@ -325,6 +338,7 @@ def build_plan(repo_root: Path, batch_size: int) -> dict[str, Any]:
         "candidate_count": len(candidates),
         "batch_count": len(batches),
         "canonical_merged_batch_count": len(merged_markers),
+        "priority_head_size": len(priority_batch_ids),
         "context_snapshot_sha256": context_hash,
     }
 

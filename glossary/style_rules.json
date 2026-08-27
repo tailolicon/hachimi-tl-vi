@@ -1,23 +1,32 @@
 {
-  "schema_version": 3,
+  "schema_version": 4,
   "global": [
     "Dịch tự nhiên sang tiếng Việt, không dịch word-by-word.",
     "Giữ nguyên placeholder, markup, tag, mã màu, runtime token và biến template.",
     "Không tự thêm giải thích hoặc translator note vào text game.",
-    "Tên riêng và thuật ngữ đã khóa phải nhất quán với term_registry.json.",
+    "glossary/ui_community_terms.json là lớp player-facing terminology ưu tiên cao cho các gameplay/UI term được liệt kê; khi file này xung đột với mapping cũ trong term_registry.json, dùng accepted English/Romanized form trong ui_community_terms.json.",
+    "Các thuật ngữ gameplay thông dụng theo EN version như Trainer, Speed, Stamina, Power, Guts, Wit, Aptitude, Turf, Dirt, Sprint, Mile, Medium, Long, Style và các running-style label phải giữ nguyên English/Romanized theo registry player-facing.",
+    "Tên riêng và thuật ngữ không bị player-facing policy override vẫn phải nhất quán với term_registry.json.",
     "Nguồn zh-CN chỉ là semantic bridge: không dịch nghĩa tên nhân vật/ngựa tiếng Trung sang tiếng Việt.",
-    "Phân biệt stat Stamina/耐力 = Thể lực với energy gauge 体力 = Năng lượng.",
+    "Phân biệt stat Stamina với training energy gauge; không dùng một từ để nhập hai cơ chế khác nhau.",
     "Hội thoại ưu tiên giọng nói tự nhiên, quan hệ xưng hô và cá tính nhân vật.",
     "Khi context không đủ, chọn cách diễn đạt trung tính thay vì bịa quan hệ hoặc lore.",
-    "Với UI cố định, semantic clarity + visual fit quan trọng hơn việc giữ đủ mọi từ của nguồn; tuân thủ UI_TRANSLATION_RULES.md và glossary/ui_short_forms.json."
+    "Với UI cố định, semantic clarity + player-facing terminology + visual fit đều là điều kiện bắt buộc; tuân thủ UI_TRANSLATION_RULES.md và glossary/ui_short_forms.json."
   ],
   "kinds": {
     "skill": [
-      "Ngắn gọn, chính xác cơ chế; điều kiện kích hoạt và lối chạy/cự ly phải rõ.",
-      "Không thay đổi số, phần trăm, thời lượng hoặc runtime token."
+      "Generic category labels giữ English theo player-facing registry: Skill, Unique Skill, Evolution Skill.",
+      "Tên RIÊNG của skill phải được Việt hóa như một tên kỹ năng game thương mại, không giữ nguyên English chỉ vì category label là Skill.",
+      "Ưu tiên tên Hán-Việt khi Hán-Việt tự nhiên, gọn, có khí chất và đúng hình tượng của tên gốc; không ép Hán-Việt nếu tạo thành cụm khó hiểu hoặc sai sắc thái.",
+      "Nếu Hán-Việt không đẹp, dùng tên Việt hóa sáng tạo, ngắn và giàu hình ảnh theo phong cách localization skill của game như LoL: nghe như tên chiêu thức, không như câu mô tả cơ chế.",
+      "Tên skill thường nên ngắn khoảng 2-6 âm tiết/từ trọng tâm khi có thể; tránh các bản dịch literal dài kiểu 'kỹ năng giúp tăng...' hoặc chuỗi danh từ máy móc.",
+      "Giữ proper noun, reference, wordplay hoặc tên riêng trong skill khi việc dịch sẽ phá ý nghĩa; khi cần có thể pha tên riêng với phần Việt hóa.",
+      "Phần mô tả/effect của skill vẫn ưu tiên chính xác cơ chế; điều kiện kích hoạt, Style/Distance restriction, số, phần trăm, thời lượng và runtime token phải giữ đúng.",
+      "Không được đổi tên mechanic English đã khóa trong mô tả skill thành bản dịch tiếng Việt chỉ để câu thuần Việt hơn."
     ],
     "ui": [
       "Nút, tab và menu tile ưu tiên 1-3 từ ngắn; không nhồi đủ nghĩa nếu context/icon đã làm rõ.",
+      "Trước khi rút gọn, xác định player-facing term trong glossary/ui_community_terms.json; không được rút gọn bằng cách dịch mechanic English sang tiếng Việt.",
       "Không ghép nhiều cách gọi bằng dấu / chỉ để giữ đủ sắc thái nguồn; chọn một nhãn tự nhiên và gọn.",
       "Không tự thêm newline để cứu chuỗi dài; giữ đúng số newline của nguồn và rút gọn câu chữ.",
       "Với label ngắn, kiểm tra visual-width budget trong UI_TRANSLATION_RULES.md thay vì chỉ đếm ký tự.",
@@ -25,7 +34,8 @@
       "Cùng một control/system term phải dùng cùng một nhãn và không được ghi đè các key đã review trong glossary/ui_overrides.json."
     ],
     "text_data": [
-      "Xác định xem chuỗi là UI, system, item, skill, race hay story-like text trước khi chọn sắc thái."
+      "Xác định xem chuỗi là UI, system, item, skill name, skill description, race hay story-like text trước khi chọn sắc thái.",
+      "Nếu chuỗi là tên skill, áp dụng skill-name localization policy thay vì policy giữ English cho common gameplay terms."
     ],
     "character_system_text": [
       "Giữ speaker voice và quan hệ xưng hô; ưu tiên character profile + scene context."
@@ -37,7 +47,8 @@
       "Ưu tiên nghĩa và nhịp tự nhiên; không buộc gieo vần nếu làm sai nghĩa."
     ],
     "race": [
-      "Nhanh, rõ, mang phong cách bình luận thể thao; không suy diễn sai vị trí/trạng thái cuộc đua."
+      "Nhanh, rõ, mang phong cách bình luận thể thao; không suy diễn sai vị trí/trạng thái cuộc đua.",
+      "Các common race terms đã khóa theo EN version như Turf, Dirt, Sprint, Mile, Medium, Long và running Style phải giữ English/Romanized theo player-facing registry."
     ],
     "race_jikkyo_comment": [
       "Bình luận thể thao ngắn, giàu động lực nhưng chính xác trạng thái."

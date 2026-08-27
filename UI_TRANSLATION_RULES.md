@@ -7,37 +7,60 @@ This file is mandatory context for any worker translating `localize_dict.json` o
 A UI translation passes only when it satisfies **all three**:
 
 1. it conveys the correct meaning;
-2. it uses the correct Uma Musume player-facing terminology for named mechanics/events/modes;
+2. it uses the correct Uma Musume player-facing terminology for common gameplay labels and named mechanics/events/modes;
 3. it fits the fixed control.
 
 Semantic readability alone is not enough.
 
-## Game-language rule
+## Player-facing terminology rule
 
-Do not assume a Chinese source term should be semantically calqued into Vietnamese. Chinese often describes or localizes a mechanic whose player-facing name is conventionally kept in Japanese/English/Romanized form.
+Do not assume a Japanese/Chinese source term should be semantically calqued into Vietnamese. The project intentionally keeps many common gameplay labels in their EN-version/player-facing form.
 
-Before translating or keeping a named mechanic/event/mode:
+Before translating or keeping a gameplay/system label:
 
-1. check locked `glossary/term_registry.json`;
-2. check `glossary/ui_community_terms.json`;
-3. use established official/player-facing terminology;
-4. only translate generically when the concept is genuinely generic.
+1. check `glossary/ui_community_terms.json` first;
+2. if it matches, use an accepted English/Romanized form from that file even when an older `term_registry.json` entry still contains a Vietnamese target;
+3. otherwise check locked `glossary/term_registry.json`;
+4. use established official/player-facing terminology for unresolved named systems;
+5. translate generically only when the concept is genuinely generic.
 
 Current Vietnamese output is never evidence of correctness.
+
+### Common EN terms
+
+The current player-facing reference includes terms such as `Trainer`, `Speed`, `Stamina`, `Power`, `Guts`, `Wit`, `Aptitude`, `Rating`, `Condition`, `Legacy`, `Guest Legacy`, `Inspiration`, `Spark`, `Scenario`, `Track`, `Turf`, `Dirt`, `Distance`, `Sprint`, `Mile`, `Medium`, `Long`, `Style`, `Front Runner`, `Pace Chaser`, `Late Surger`, `End Closer`, `Skill`, `Unique Skill`, and `Evolution Skill`.
 
 Examples:
 
 | Source concept | Reject | Preferred |
 | --- | --- | --- |
+| スピード / 速度 | Tốc độ | **Speed** |
+| スタミナ / 耐力 | Thể lực | **Stamina** |
+| 根性 / 毅力 | Ý chí | **Guts** |
+| 賢さ / 智力 | Trí tuệ | **Wit** |
+| 芝 / 草地 | Sân cỏ | **Turf** |
+| 短距離 / 短距离 | Cự ly ngắn | **Sprint** |
+| 中距離 / 中距离 | Cự ly trung bình | **Medium** |
+| 長距離 / 长距离 | Cự ly dài | **Long** |
+| 逃げ / 领跑 | Nige | **Front Runner**, compact **Front** |
+| 先行 | Senko | **Pace Chaser**, compact **Pace** |
+| 差し / 差行 | Sashi | **Late Surger**, compact **Late** |
+| 追込 / 追马 | Oikomi | **End Closer**, compact **End** |
 | 英雄量表 / ヒーローゲージ | Thanh Anh hùng | **Hero Gauge** |
 | 英雄技能 / ヒーロースキル | Kỹ năng Anh hùng | **Hero Skill** |
 | 英雄联盟赛 / リーグオブヒーローズ | Liên minh Anh hùng / Hero League | **League of Heroes**, compact **LoH** |
 | 主要阶段 / メインステージ | Giai đoạn chính when used as the named LoH stage | **Main Stage** |
 | 特别阶段 / エクストラステージ | Giai đoạn đặc biệt when used as the named LoH stage | **Extra Stage** |
 
-Do not generalize these examples to unrelated generic uses of words such as “main”, “hero”, or “league”; use the source/key context and the matched term metadata.
+Do not generalize a matched game term to unrelated generic prose. Use source/key/context and registry metadata.
 
-If the repository does not identify an unfamiliar named mechanic, do not invent a Vietnamese canonical label. Verify with official/player-guide evidence or defer.
+If the repository does not identify an unfamiliar named mechanic, do not invent a Vietnamese canonical label. Verify it or defer.
+
+## Skill category vs skill name
+
+`Skill`, `Unique Skill`, and `Evolution Skill` are gameplay category labels and stay English.
+
+The **proper name of an individual skill is different**: it should normally be localized into a concise Vietnamese/Hán-Việt ability name according to `glossary/style_rules.json`. Do not keep an individual skill name in English merely because the word `Skill` itself stays English, and do not turn a skill name into a long effect description.
 
 ## Label levels
 
@@ -47,7 +70,7 @@ Use the shortest level that still makes sense in context:
 2. **Compact** — normal buttons, tabs, menu tiles.
 3. **Micro** — very small chips, counters, bottom navigation, narrow header buttons.
 
-Canonical full/compact/micro forms live in `glossary/ui_short_forms.json`. Named game terms that should remain player-facing live in `glossary/ui_community_terms.json`.
+Canonical full/compact/micro forms live in `glossary/ui_short_forms.json`. Named/common gameplay terms that should remain player-facing live in `glossary/ui_community_terms.json`.
 
 ## Hard writing rules
 
@@ -55,13 +78,13 @@ Canonical full/compact/micro forms live in `glossary/ui_short_forms.json`. Named
 - Do not stack synonyms with `/` just to preserve every source nuance.
 - Do not repeat context already visible in the screen. On a Gacha screen, `Lịch sử` is better than `Lịch sử Gacha`.
 - Keep `Uma Musume` in prose, but `Uma` is allowed in cramped labels.
-- Preserve canonical mechanic/event names even when surrounding grammar is shortened.
+- Preserve canonical English/Romanized gameplay terms even when surrounding grammar is shortened.
 - Preserve placeholders, tags, runtime tokens, and the source newline count.
 - Never insert a new newline just to rescue an overlong translation. Shorten the wording instead.
 - If the source already has one newline, each translated line must independently fit its side of the control.
 - Avoid verbose helper words such as `thực tế`, `chức năng`, `dành cho`, `được dùng để`, or duplicated nouns when a compact label is clear.
-- Prefer natural Vietnamese nouns/verbs for generic UI: `Đổi`, `Kho quà`, `Tủ cúp`, `Danh hiệu`, `Lịch sử`.
-- A compact label may omit information that is already unambiguous from the icon, section header, or current screen, but must not change the action or game mechanic.
+- Prefer natural Vietnamese nouns/verbs for genuinely generic UI: `Đổi`, `Kho quà`, `Tủ cúp`, `Danh hiệu`, `Lịch sử`.
+- A compact label may omit information already unambiguous from icon/header/screen, but must not change the action or mechanic.
 
 ## Visual-width budget
 
@@ -77,7 +100,7 @@ For a source line up to roughly 8 CJK-width units, aim for:
 
 This is a heuristic, not permission to fill the entire budget. Shorter is usually better.
 
-Examples:
+Examples of generic compacting:
 
 | Source concept | Bad | Preferred |
 | --- | --- | --- |
@@ -100,34 +123,32 @@ When layout metadata is known, use these targets:
 - dialog title: <= ~12 visual units;
 - description/body copy: prioritize natural Vietnamese; compact-label rules do not apply.
 
-A canonical mechanic name may exceed a generic micro-label ideal. In that case shorten surrounding grammar or use an explicitly accepted compact alias such as `LoH`; do not replace the mechanic with an invented Vietnamese calque merely to save width.
+A canonical gameplay name may exceed a generic micro-label ideal. Shorten surrounding grammar or use an explicitly accepted compact alias (`LoH`, `Front`, `Pace`, `Late`, etc.); do not translate the mechanic into Vietnamese merely to save width.
 
 ## Canonical overrides
 
 `glossary/ui_overrides.json` contains key-level and legacy exact-text fixes.
 
-Policy-v2 UI-review-generated overrides are considered **untrusted during the policy-v3 reset**. The application layer skips an override whose reason identifies it as `Reviewed by UI pipeline ui-p2-...` until a v3 review either:
+Policy-v2 UI-review-generated overrides are considered **untrusted during the policy-v3 reset**. The application layer skips an override whose reason identifies it as `Reviewed by UI pipeline ui-p2-...` until a current review either revises or reconfirms that key.
 
-- revises that key, replacing the override, or
-- explicitly keeps/reconfirms it, promoting the override to v3.
-
-Manual/non-v2 overrides remain active.
+Manual/non-v2 overrides remain active unless they conflict with a newer explicit player-facing terminology policy; such conflicts must be reviewed, not silently trusted.
 
 ## Worker QA before persisting
 
 For every short `localize` entry:
 
 1. identify whether it is a label/action rather than prose;
-2. identify any named mechanic/event/mode/resource/stage;
-3. consult `term_registry.json` and `ui_community_terms.json`;
-4. reject semantic calques of named mechanics when an accepted player-facing name exists;
-5. consult `ui_short_forms.json`;
-6. compare visual width to the source line;
-7. remove redundant context and slash compounds;
-8. ensure the source newline count is unchanged;
-9. prefer the shortest natural wording that preserves both action and canonical mechanic.
+2. identify any common gameplay term or named mechanic/event/mode/resource/stage;
+3. consult `ui_community_terms.json` **before** conflicting legacy term mappings;
+4. reject Vietnamese calques when an accepted player-facing English/Romanized form exists;
+5. if this is an individual skill name, apply the skill-name localization policy instead of the generic keep-English rule;
+6. consult `ui_short_forms.json`;
+7. compare visual width to the source line;
+8. remove redundant context and slash compounds;
+9. ensure source newline count is unchanged;
+10. prefer the shortest natural wording that preserves action and canonical terminology.
 
-If uncertain between a literal translated mechanic and an established player-facing game term, use the established game term. If the established term itself is uncertain, defer instead of inventing one.
+If the established term itself is uncertain, defer instead of inventing one.
 
 ## Screenshot QA
 
@@ -141,4 +162,6 @@ Reject a UI string when it:
 - clips Vietnamese diacritics;
 - becomes visibly smaller than neighboring labels because best-fit had to shrink it too far;
 - leaves raw Chinese/Japanese that is supposed to be translated;
-- uses an invented Vietnamese name for a mechanic/event the player community recognizes by another canonical/player-facing term.
+- translates a known EN-version gameplay term into Vietnamese against the player-facing registry;
+- keeps an individual skill name as a bland untranslated English title when a proper localized Vietnamese/Hán-Việt skill name is expected;
+- invents a Vietnamese name for a mechanic/event the player community recognizes by another canonical/player-facing term.

@@ -5,6 +5,17 @@
   "current_epoch": "zhcn-67f8551f7780",
   "current_epoch_metadata": "work/parallel/zhcn-67f8551f7780/epoch.json",
   "shared_cursor_deprecated": true,
-  "worker_rule": "Workers claim isolated shards and write only task-local result files. They never advance a shared next_batch cursor and never write localized_data directly.",
-  "aggregation_workflow": ".github/workflows/aggregate-results.yml"
+  "worker_rule": "Workers claim isolated shards and write only task-local result files. They never advance a shared next_batch cursor and never write localized_data directly. New translation claims are forbidden while translation_review_gate.enabled is true.",
+  "aggregation_workflow": ".github/workflows/aggregate-results.yml",
+  "translation_review_gate": {
+    "enabled": true,
+    "policy_version": 1,
+    "claims_allowed": false,
+    "active_plan_id": null,
+    "unresolved_entries": 19520,
+    "protocol": "TRANSLATION_REVIEW.md",
+    "reason": "Review every already merged translation before accepting new translation claims.",
+    "activated_at": "2026-08-27T09:00:00Z",
+    "updated_at": "2026-08-27T09:00:00Z"
+  }
 }

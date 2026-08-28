@@ -13,6 +13,12 @@ if old not in text:
     raise RuntimeError("regex_once staging anchor missing")
 text = text.replace(old, new, 1)
 
+old_signature_patch = '    "    bridge_hash: str,\\n    item_context_hash: str | None,\\n) -> bool:\\n",\n'
+new_signature_patch = '    "    bridge_hash: str,\\n    item_context_hash: str | None = None,\\n) -> bool:\\n",\n'
+if old_signature_patch not in text:
+    raise RuntimeError("item_context default staging anchor missing")
+text = text.replace(old_signature_patch, new_signature_patch, 1)
+
 pattern = r'text = read\("tests/test_translation_guard.py"\).*?(?=# Remove the temporary workflow hook)'
 test_block = '''
 
@@ -74,7 +80,7 @@ stager.write_text(updated, encoding="utf-8", newline="\n")
 
 workflow_path = ROOT / ".github/workflows/sync-translation-review-plan.yml"
 workflow = workflow_path.read_text(encoding="utf-8")
-workflow = workflow.replace("# canonical-maintenance-retry-3\n", "")
+workflow = re.sub(r"^# canonical-maintenance-retry-\d+\n", "", workflow, flags=re.M)
 workflow = workflow.replace("            python scripts/fix_condition_hardening_stager.py\n", "")
 workflow_path.write_text(workflow, encoding="utf-8", newline="\n")
 Path(__file__).unlink()

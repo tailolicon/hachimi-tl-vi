@@ -96,6 +96,29 @@ def apply_skill_name_style_overrides(
     return registry
 
 
+def merge_source_bridge_configs(manual: dict[str, Any], generated: dict[str, Any]) -> dict[str, Any]:
+    """Merge hand-authored bridge terms with conservative curation-mined risks."""
+    manual = manual if isinstance(manual, dict) else {}
+    generated = generated if isinstance(generated, dict) else {}
+    result = deepcopy(manual)
+    result["terms"] = [item for item in manual.get("terms", []) if isinstance(item, dict)]
+
+    risks: list[dict[str, Any]] = []
+    seen: set[tuple[str, ...]] = set()
+    for payload in (manual, generated):
+        for risk in payload.get("untrusted_sources", []):
+            if not isinstance(risk, dict):
+                continue
+            aliases = tuple(sorted(value.strip() for value in _strings(risk.get("zh_cn_exact")) if value.strip()))
+            if not aliases or aliases in seen:
+                continue
+            seen.add(aliases)
+            risks.append(risk)
+    result["untrusted_sources"] = risks
+    result["generated_summary"] = generated.get("summary", {})
+    return result
+
+
 def compact_source_bridge_rules(
     entries: Sequence[SourceEntry], source_bridge_full: dict[str, Any]
 ) -> dict[str, Any]:
@@ -146,7 +169,9 @@ def build_messages(entries: Sequence[SourceEntry], glossary_dir: str | Path = "g
     terminology = load_json(glossary_dir / "terminology.json", {})
     term_registry_full = load_json(glossary_dir / "term_registry.json", {})
     player_facing_terms = load_json(glossary_dir / "ui_community_terms.json", {})
-    source_bridge_full = load_json(glossary_dir / "source_bridge_terms.json", {})
+    source_bridge_manual = load_json(glossary_dir / "source_bridge_terms.json", {})
+    source_bridge_generated = load_json(glossary_dir / "source_bridge_risks.generated.json", {})
+    source_bridge_full = merge_source_bridge_configs(source_bridge_manual, source_bridge_generated)
     skill_name_style = load_json(glossary_dir / "skill_name_style.json", {})
     observed_terms_full = load_json(glossary_dir / "observed_terms.json", {})
     characters_full = load_json(glossary_dir / "characters.json", {})
@@ -185,7 +210,7 @@ QUY TẮC BẮT BUỘC:
 2. Giữ NGUYÊN mọi placeholder/template/tag/markup/runtime token, ví dụ {0}, {name}, <color=...>, </color>, $(), %s và mã máy.
 3. Không tự bịa lore, quan hệ, cơ chế hoặc tên riêng. Khi mơ hồ, dùng game context + entry context.
 4. `player_facing_terminology` là lớp ưu tiên CAO NHẤT cho common gameplay/UI terms và named mechanic/event được liệt kê. Khi nó xung đột với một mapping Việt hóa cũ trong `term_registry`, dùng accepted English/Romanized form trong `player_facing_terminology`.
-5. Khi source là zh-CN, `source_bridge_terminology` là lớp bảo vệ bắt buộc chống dịch literal từ bản Trung. Nếu entry khớp `terms`, phải dùng một `accepted` player-facing form và tuyệt đối tránh `forbidden` calque (ví dụ 金币 -> Monies, 蹄铁 -> Cleat/Cleats, không phải xu/móng ngựa). Nếu entry khớp `untrusted_sources`, zh-CN đã biết là làm mất hoặc đổi nghĩa/hình tượng của JP: không được dịch nguyên chữ Trung; phải dùng bằng chứng JP/canonical context, và nếu chưa đủ bằng chứng thì giữ/defer an toàn thay vì đoán.
+5. Khi source là zh-CN, `source_bridge_terminology` là lớp bảo vệ bắt buộc chống dịch literal từ bản Trung. Nếu entry khớp `terms`, phải dùng một `accepted` player-facing form và tuyệt đối tránh `forbidden` calque (ví dụ 金币 -> Monies, 蹄铁 -> Cleat/Cleats, không phải xu/móng ngựa). Nếu entry khớp `untrusted_sources`, zh-CN đã biết là làm mất hoặc đổi nghĩa/hình tượng của JP: không được dịch nguyên chữ Trung; phải dùng bằng chứng JP/canonical context, và nếu chưa đủ bằng chứng thì giữ/defer an toàn thay vì đoán. Các risk tự sinh chỉ được promote từ curation evidence đã ghi rõ source zh-CN là lossy/interpretive; hãy coi `evidence` đi kèm là lý do bắt buộc phải kiểm tra JP.
 6. Với TÊN RIÊNG của skill, áp dụng `skill_name_style`. Exact `canonical_examples` trong file này được ưu tiên hơn một skill-name target cũ xung đột trong `term_registry`. Bản `term_registry` trong payload đã được overlay các exact example này để không còn đưa cho bạn target cũ mâu thuẫn. Với skill chưa có exact example, dùng nhịp cô đọng của tên zh-CN làm naming-style reference và dùng JP/registry để bảo toàn hình tượng, wordplay, proper noun và phân biệt nghĩa.
 7. Với các concept không bị rule 4-6 override, `term_registry` là canonical. Thuật ngữ `locked` phải dùng đúng `target_vi`.
 8. `observed_terminology` là memory học từ entity đã được merge. Với source entity trùng chính xác và không mâu thuẫn với player-facing/source-bridge/skill-name/locked rule, tái sử dụng `target_vi` để các batch sau không đổi cách dịch.

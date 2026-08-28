@@ -40,6 +40,11 @@ def test_strong_lossy_defer_is_promoted_but_generic_ambiguity_is_not(tmp_path: P
                 "note": "Several natural Vietnamese renderings are plausible; defer until a stable convention is chosen.",
             },
             {
+                "source_zh_cn": "Entertainer",
+                "action": "defer",
+                "note": "JP is エンターテイナー; the source replaces the katakana title with English, so a permanent Vietnamese mapping needs an explicit localization decision.",
+            },
+            {
                 "source_zh_cn": "锁定例",
                 "action": "lock",
                 "target_vi": "Ví dụ",
@@ -52,8 +57,8 @@ def test_strong_lossy_defer_is_promoted_but_generic_ambiguity_is_not(tmp_path: P
     sources = [item["zh_cn_exact"][0] for item in output["untrusted_sources"]]
 
     assert sources == ["一线曙光"]
-    assert output["summary"]["scanned_decisions"] == 3
-    assert output["summary"]["deferred_decisions"] == 2
+    assert output["summary"]["scanned_decisions"] == 4
+    assert output["summary"]["deferred_decisions"] == 3
     assert output["summary"]["strong_evidence_decisions"] == 1
 
 
@@ -118,8 +123,10 @@ def test_evidence_is_deduplicated_and_output_is_deterministic(tmp_path: Path) ->
     assert len(first["untrusted_sources"][0]["evidence"]) == 1
 
 
-def test_classifier_does_not_promote_plain_uncertainty() -> None:
+def test_classifier_excludes_plain_uncertainty_and_script_only_rewrites() -> None:
     assert is_confirmed_lossy_note("The source shifts the nuance from A to B; defer.")
+    assert is_confirmed_lossy_note("The source replaces the specific arabesque image with a generic tune.")
     assert is_confirmed_lossy_note("Pinned skill is JP X. The zh-CN title is not title-equivalent.")
+    assert not is_confirmed_lossy_note("The source replaces the katakana title with English.")
     assert not is_confirmed_lossy_note("The exact Japanese title was not verified strongly enough; defer.")
     assert not is_confirmed_lossy_note("Several Vietnamese renderings are plausible.")

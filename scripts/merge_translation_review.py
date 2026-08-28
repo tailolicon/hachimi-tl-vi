@@ -121,10 +121,12 @@ def _validate_result(
     completion: dict[str, Any],
     result: dict[str, Any],
     batch: dict[str, Any],
-    bridge_term_rules: list[dict[str, Any]],
-    bridge_risk_rules: list[dict[str, Any]],
-    bridge_hash: str,
+    bridge_term_rules: list[dict[str, Any]] | None = None,
+    bridge_risk_rules: list[dict[str, Any]] | None = None,
+    bridge_hash: str = "",
 ) -> tuple[list[dict[str, Any]], list[str]]:
+    bridge_term_rules = bridge_term_rules or []
+    bridge_risk_rules = bridge_risk_rules or []
     errors: list[str] = []
     for field in ("plan_id", "batch_id", "claim_id", "worker_id"):
         if result.get(field) != completion.get(field):

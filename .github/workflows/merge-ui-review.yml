@@ -5,6 +5,11 @@ on:
     branches: [main]
     paths:
       - "work/ui_review/completions/**"
+      - "scripts/build_translation_regression_memory.py"
+      - "tests/test_translation_regression_memory.py"
+      - "tests/test_translation_regression_prompt.py"
+      - "tests/test_translation_guard.py"
+      - ".github/workflows/merge-ui-review.yml"
   workflow_dispatch:
 
 permissions:
@@ -63,6 +68,7 @@ jobs:
 
             python scripts/merge_ui_review.py --repo-root .
             python scripts/apply_ui_overrides.py --repo-root .
+            python scripts/build_translation_regression_memory.py --repo-root .
             pytest -q
             tlvi --db /tmp/tlvi-ui-review.db validate
             tlvi --db /tmp/tlvi-ui-review.db index
@@ -71,9 +77,9 @@ jobs:
             # delta plan (or mark UI review idle). Otherwise this is a no-op.
             python scripts/build_ui_review_plan.py --repo-root . --batch-size 20
 
-            git add localized_data index.json glossary/ui_overrides.json work/ui_review
+            git add localized_data index.json glossary/ui_overrides.json glossary/translation_regressions.generated.json work/ui_review
             if git diff --cached --quiet; then
-              echo "No new completed UI review work to merge."
+              echo "No new completed UI review work or regression memory changes to merge."
               exit 0
             fi
             git commit -m "Merge reviewed Vietnamese UI labels"

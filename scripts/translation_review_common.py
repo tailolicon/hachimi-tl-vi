@@ -17,7 +17,7 @@ _NUMBER_RE = re.compile(r"(?<![\w{])\d+(?:\.\d+)?%?")
 # targeted per item; changing one profile must not invalidate 19k unrelated
 # system/UI/skill review decisions.
 #
-# source_bridge_terms.json is deliberately NOT included here. It is versioned by
+# Source-bridge files are deliberately NOT included here. They are versioned by
 # source_bridge_policy_hash() and applied item-by-item so a new bridge safeguard
 # reopens only entries that actually match it instead of invalidating all 19k.
 CONTEXT_PATHS = (
@@ -29,6 +29,8 @@ CONTEXT_PATHS = (
     "glossary/style_rules.json",
 )
 SOURCE_BRIDGE_PATH = "glossary/source_bridge_terms.json"
+SOURCE_BRIDGE_GENERATED_PATH = "glossary/source_bridge_risks.generated.json"
+SOURCE_BRIDGE_PATHS = (SOURCE_BRIDGE_PATH, SOURCE_BRIDGE_GENERATED_PATH)
 
 
 def load_json(path: Path, default: Any = None) -> Any:
@@ -70,8 +72,14 @@ def context_snapshot_hash(repo_root: Path) -> str:
 
 
 def source_bridge_policy_hash(repo_root: Path) -> str:
-    path = repo_root / SOURCE_BRIDGE_PATH
-    return hashlib.sha256(path.read_bytes() if path.exists() else b"").hexdigest()
+    digest = hashlib.sha256()
+    for rel in SOURCE_BRIDGE_PATHS:
+        digest.update(rel.encode("utf-8") + b"\0")
+        path = repo_root / rel
+        if path.exists():
+            digest.update(path.read_bytes())
+        digest.update(b"\0")
+    return digest.hexdigest()
 
 
 def get_json_path(document: Any, path: list[Any]) -> Any:
@@ -170,8 +178,32 @@ def community_term_matches(
 
 
 def load_source_bridge_config(repo_root: Path) -> dict[str, Any]:
-    payload = load_json(repo_root / SOURCE_BRIDGE_PATH, {"terms": [], "untrusted_sources": []})
-    return payload if isinstance(payload, dict) else {"terms": [], "untrusted_sources": []}
+    manual = load_json(repo_root / SOURCE_BRIDGE_PATH, {"terms": [], "untrusted_sources": []})
+    generated = load_json(repo_root / SOURCE_BRIDGE_GENERATED_PATH, {"untrusted_sources": []})
+    if not isinstance(manual, dict):
+        manual = {"terms": [], "untrusted_sources": []}
+    if not isinstance(generated, dict):
+        generated = {"untrusted_sources": []}
+
+    untrusted: list[dict[str, Any]] = []
+    seen_alias_sets: set[tuple[str, ...]] = set()
+    for payload in (manual, generated):
+        for risk in payload.get("untrusted_sources", []):
+            if not isinstance(risk, dict):
+                continue
+            aliases = tuple(sorted(str(v).strip() for v in risk.get("zh_cn_exact", []) if str(v).strip()))
+            if not aliases or aliases in seen_alias_sets:
+                continue
+            seen_alias_sets.add(aliases)
+            untrusted.append(risk)
+
+    return {
+        "schema_version": manual.get("schema_version", 1),
+        "policy": manual.get("policy", {}),
+        "terms": [item for item in manual.get("terms", []) if isinstance(item, dict)],
+        "untrusted_sources": untrusted,
+        "generated_summary": generated.get("summary", {}),
+    }
 
 
 def source_bridge_term_matches(
@@ -220,6 +252,7 @@ def source_bridge_risk_matches(source: str, risks: list[dict[str, Any]]) -> list
             "ja": [str(v) for v in risk.get("ja", []) if str(v)],
             "mode": str(risk.get("mode", "defer_until_canonical")),
             "note": str(risk.get("note", "")),
+            "evidence": [item for item in risk.get("evidence", []) if isinstance(item, dict)],
         })
     return result
 

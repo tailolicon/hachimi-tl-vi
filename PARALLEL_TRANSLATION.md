@@ -1,80 +1,85 @@
 # Parallel translation worker protocol
 
-This is the canonical protocol for running many ChatGPT translation sessions at the same time.
+This is the canonical protocol for translating untranslated source shards after retrospective review gates allow new translation work.
 
-## Read these first
+It is optimized for stateless ChatGPT workers with a hard 25-minute session, rolling leases, crash-safe checkpoints, and immediate handoff.
 
-1. `work/parallel_state.json` on `main`.
-2. The current epoch metadata referenced by `current_epoch_metadata`.
-3. This file.
-4. `glossary/ui_community_terms.json`.
-5. `glossary/source_bridge_terms.json`.
-6. `glossary/source_bridge_risks.generated.json`.
-7. `glossary/translation_regressions.generated.json` for the UIDs/source strings in the shard.
-8. Relevant compact entries from `glossary/term_registry.json`, `glossary/characters.json`, and `glossary/skill_name_style.json`.
+Repository state on `main` overrides chat history, private memory, and model priors.
 
-Do not use `work/translation_progress.json.next_batch` as a lock or global cursor. The old single-session cursor is deprecated.
+## Priority gate
 
-The regression and source-bridge files are not optional background reading. They are persistent QA memory from errors already discovered in earlier Vietnamese versions, retrospective translation review, and UI review. A future worker must not reintroduce a rejected translation simply because the current zh-CN source makes the old mistake look plausible again.
+Always read `work/parallel_state.json` first.
 
-## Retrospective review gate
+If `translation_review_gate.enabled == true` or `claims_allowed == false`:
 
-Before choosing or claiming **any** new translation shard, inspect `work/parallel_state.json.translation_review_gate`.
+- do not create or take over normal translation claims;
+- do not translate an unclaimed shard;
+- switch immediately to `TRANSLATION_REVIEW.md`.
 
-If `translation_review_gate.enabled` is `true` or `claims_allowed` is `false`:
+Only translate new content after the retrospective translation gate has cleared. Orchestration may also prioritize unfinished UI audit before new translation according to `WORKER_25MIN.md`.
 
-- DO NOT create a new translation claim;
-- DO NOT take over an expired translation claim;
-- DO NOT start translating an unclaimed shard;
-- switch to `TRANSLATION_REVIEW.md` and claim retrospective review work instead.
+## 25-minute session policy
 
-The gate exists so all already merged Vietnamese translations can be re-reviewed against the completed speech and terminology context before translation resumes. Existing translation progress is preserved. The gate is cleared automatically only after every canonical entry has a resolved `keep` or `revise` decision; `defer` remains unresolved.
+Read the shared file referenced by `work/parallel_state.json.worker_session_policy`.
 
-## Architecture
+For ChatGPT workers, its rolling lease overrides any longer legacy lease in epoch metadata. Use the shorter effective lease.
 
-The source queue is immutable for an epoch. Workers never translate from the moving `source-zhcn` branch directly. They fetch source batches from the exact `source_queue_git_commit` pinned in the epoch metadata.
+Required behavior:
 
-A source batch normally contains 80 entries. A parallel task is a 20-entry shard of that batch. A normal batch therefore has four tasks: `s00`, `s01`, `s02`, and `s03`.
+- checkpoint after every configured number of translated entries or heartbeat interval, whichever comes first;
+- save result first, then heartbeat/refresh the claim;
+- do not acquire a new task after `stop_new_batch_after_minutes`;
+- start handoff by `handoff_start_minutes`;
+- if incomplete, save partial work and mark only your own claim `released` with a pointer to the result;
+- never intentionally leave an active claim when the session ends.
 
-Worker output is append-only/isolated by task:
+## Fast startup
 
-- claims: `work/parallel/<epoch>/claims/<group>/<task-id>.json`
-- partial/final results: `work/parallel/<epoch>/results/<group>/<task-id>.json`
-- completion markers: `work/parallel/<epoch>/completed/<group>/<task-id>.json`
-- aggregator markers: `work/parallel/<epoch>/aggregated/<group>/<task-id>.json`
+Read only:
 
-`<group>` is `bNNNN`, where `NNNN = floor(batch / 100)` zero-padded to four digits. Example: batch 2 uses `b0000`; batch 237 uses `b0002`.
+1. `work/parallel_state.json`
+2. `work/worker_session_policy.json`
+3. current epoch metadata referenced by `current_epoch_metadata`
+4. this protocol only if not already supplied/current
+5. exactly one pinned source batch for the selected task
+6. only the relevant glossary/regression records for that shard
 
-## Worker identity
+Do not bulk-read all glossary, character, speech, or regression files.
 
-At the start of a fresh session, create a unique worker id such as:
+## Immutable source epoch
 
-`sol-20260825T1630Z-a1b2`
+Workers never translate from moving `source-zhcn` directly.
 
-Do not reuse another live worker id.
+Use the exact `source_queue_git_commit` pinned in epoch metadata and fetch:
+
+`work/source_batches/batch-{batch:05d}.json`
+
+A source batch normally contains 80 entries. A parallel task is a 20-entry shard (`s00`..`s03`).
+
+Task-local roots are defined by epoch metadata:
+
+- claims
+- results
+- completed
+- aggregated
+
+Workers never write `localized_data/**` directly.
 
 ## Choosing work
 
-Workers may choose tasks in any order only when the retrospective review gate is open. This is intentional so many sessions can spread out instead of all racing for the lowest batch.
+After confirming the gate is open:
 
-1. Re-check `translation_review_gate`; stop here if it is enabled.
-2. Use the current epoch's `first_parallel_batch` through `queue_total_batches`.
-3. Pick a candidate batch and shard. A deterministic spread is recommended: hash the worker id and use it as a starting offset, then probe forward.
-4. Fetch the pinned source batch from:
-   `work/source_batches/batch-{batch:05d}.json`
-   using the epoch's exact `source_queue_git_commit` as the Git ref.
-5. Compute the shard slice:
-   `start = shard * task_size`
-   `end = min(start + task_size, len(batch.entries))`
-   If `start >= len(batch.entries)`, the shard does not exist; choose another task.
-6. Skip any batch listed in `legacy_completed_batches`.
-7. Before translating, look up the shard's UIDs and exact source strings in `translation_regressions.generated.json`, source-bridge registries, player-facing terminology, canonical skill examples, and verified character mappings. Only relevant records need to be loaded into working context.
+1. use `first_parallel_batch..queue_total_batches`;
+2. skip `legacy_completed_batches`;
+3. hash the unique worker id to spread workers across candidate batches/shards;
+4. skip any task with authoritative completion/aggregation markers;
+5. inspect claims only for candidate tasks;
+6. prefer released/expired tasks with useful partial results over untouched tasks of similar priority;
+7. fetch the exact pinned source batch only after choosing a candidate.
 
-## Atomic claim / lease
+## Atomic claim and takeover
 
-Before translating, re-check the retrospective review gate, then claim the task by creating its claim file on `main`.
-
-A new claim must contain at least:
+Claim file schema includes at least:
 
 ```json
 {
@@ -83,7 +88,7 @@ A new claim must contain at least:
   "task_id": "batch-00002-s00",
   "batch": 2,
   "shard": 0,
-  "worker_id": "sol-...",
+  "worker_id": "sol-<unique>",
   "source_commit": "...",
   "source_queue_git_commit": "...",
   "claimed_at": "UTC ISO-8601",
@@ -93,136 +98,180 @@ A new claim must contain at least:
 }
 ```
 
-Creating a claim file is the lock. If creation fails because another session created it first, do not overwrite it blindly; inspect it and choose another task.
+Fresh claim creation is the lock. If creation races, choose another task.
 
-If a claim already exists:
+If a claim exists:
 
-- if a completion marker exists, the task is done; skip it;
-- if the claim is active and its lease has not expired, skip it;
-- if the lease has expired, another worker may take over by updating the claim with a new worker id and lease, but only if the retrospective review gate is open. Use the current claim blob SHA so GitHub provides optimistic concurrency; if the update conflicts, another worker won the takeover and you must skip it.
+- authoritative completion marker => task done;
+- non-expired `active` => busy;
+- `released` => immediately takeover-eligible;
+- expired => takeover-eligible.
 
-Before taking over an expired task, fetch its result file. If it contains partial translations, resume from the first missing entry instead of retranslating saved work.
+Takeover uses the current claim blob SHA for optimistic concurrency. Preserve/fetch `partial_result_path` before replacing a released claim. If update conflicts, another worker won.
 
-Default lease length is defined in epoch metadata. Refresh the lease after each saved checkpoint.
+## Partial result and resume
 
-## Result file and crash-safe checkpoints
+The normal translation result file is already task-stable rather than claim-scoped:
 
-A worker NEVER writes directly to `localized_data/` while translating. It writes only its own task result file.
+`work/parallel/<epoch>/results/<group>/<task-id>.json`
 
-Result schema:
+This makes handoff cheap.
 
-```json
-{
-  "schema_version": 1,
-  "epoch": "zhcn-...",
-  "task_id": "batch-00002-s00",
-  "batch": 2,
-  "shard": 0,
-  "shard_start": 0,
-  "shard_end_exclusive": 20,
-  "source_commit": "...",
-  "source_queue_git_commit": "...",
-  "worker_id": "sol-...",
-  "status": "partial",
-  "translated_count": 5,
-  "entries": [
-    {
-      "entry_index": 0,
-      "uid": "...",
-      "kind": "localize",
-      "source_text": "...",
-      "source_fingerprint": "...",
-      "source_path": "localize_dict.json",
-      "json_path": ["..."],
-      "target_text": "...",
-      "reviewed": true
-    }
-  ],
-  "updated_at": "UTC ISO-8601"
-}
-```
+Partial schema includes `status: "partial"`, `translated_count`, and completed entries.
 
-Save the result file after every `checkpoint_every_entries` newly translated entries (currently 5). Save the result FIRST, then refresh the claim heartbeat/lease. This ordering ensures that if a session dies between writes, translated text is still preserved.
+A successor must:
 
-If a result file already exists, update it using its current blob SHA. Never replace already saved target text unless you are deliberately correcting it during review.
+1. load the existing result if present;
+2. verify each saved entry against the pinned batch UID/source fingerprint/index;
+3. preserve valid reviewed targets;
+4. discard invalid/stale/unassigned entries;
+5. resume from the first missing entry instead of translating saved work again.
 
-## Translation rules
+Never replace valid saved target text unless deliberately correcting it before completion.
 
-Translate `source_text` from Simplified Chinese (`zh-CN`) into natural Vietnamese.
+## Checkpoint loop
 
-For every entry:
+Save after every epoch `checkpoint_every_entries` or shared heartbeat interval, whichever comes first.
 
-- preserve placeholders exactly (`{0}`, `{1}`, `%s`, `%d`, etc.);
-- preserve rich-text/runtime tags exactly (`<color=...>`, `</color>`, etc.);
-- preserve intended newline count/structure;
-- preserve escaped runtime sequences;
-- preserve every numeric token/value unless the source structure itself explicitly changes how it is rendered;
-- keep names, IDs, URLs and service/product names unchanged unless localization is genuinely required;
-- verified character names must use `characters.json` canonical Roman-letter names; never translate their zh-CN semantic meaning;
-- player-facing terms in `ui_community_terms.json` must use accepted/compact forms and must not use listed forbidden calques;
-- locked canonical terms must use their reviewed target unless a documented higher-priority player-facing rule overrides the same source alias;
-- source-bridge terms must use accepted forms and avoid forbidden calques such as `金币 -> xu` or `蹄铁 -> móng ngựa`;
-- an exact source in `source_bridge_risks.generated.json`/manual untrusted rules must not be guessed from zh-CN. Use exact JP/canonical evidence; if no canonical answer exists, do not invent one;
-- for a matching entry in `translation_regressions.generated.json`, never output any prior `rejected_targets`. The reviewed `approved_target` is strong guidance when source identity/context remains compatible;
-- when a regression entry contains `ui_review` in `origins`, treat its `ui_contexts` (`key`, `control_type`, `risk_flags`) as evidence that the old wording was rejected in real player-facing UI. Preserve the reviewed compactness/control fit instead of recreating a longer semantically equivalent form;
-- exact canonical skill examples in `skill_name_style.json` are exact-title requirements;
-- keep terminology consistent with repository glossary and already reviewed Vietnamese strings;
-- do not translate keys, hashes, JSON paths, filenames or locator metadata;
-- do not use UmaTL English text as AI input.
+Ordering is mandatory:
 
-Use at least these passes before completion:
+1. write/update the partial result;
+2. only after it is durable, refresh your own claim heartbeat and effective rolling lease;
+3. continue translating.
+
+This guarantees that a worker crash after a heartbeat cannot hide unpersisted translation work.
+
+## Context and regression lookup
+
+Before translating the shard, load only matching/relevant records for its UIDs/source strings from:
+
+- `glossary/translation_regressions.generated.json`
+- `glossary/ui_community_terms.json`
+- `glossary/source_bridge_terms.json`
+- `glossary/source_bridge_risks.generated.json`
+- `glossary/term_registry.json`
+- `glossary/characters.json`
+- `glossary/skill_name_style.json`
+
+Use speech context only when a specific dialogue item actually requires it.
+
+## Persistent error memory
+
+`translation_regressions.generated.json` contains accepted corrections from retrospective translation review and UI review.
+
+For matching identity:
+
+- never output any `rejected_targets`;
+- use the newest `approved_target` as strong reviewed guidance when context remains compatible;
+- if `origins` contains `ui_review`, inspect `ui_contexts` (`key`, `control_type`, `risk_flags`) so future translations do not recreate wording rejected for real UI fit;
+- higher-priority current canonical/player-facing/source-bridge policy may supersede older approved wording.
+
+The merge firewall is authoritative. Do not work around `known_bad_regression` or deterministic QA failures.
+
+## Source-bridge safety
+
+zh-CN is a semantic bridge, not canonical truth.
+
+Examples of mandatory anti-calque rules when matched:
+
+- `金币` => approved `Monies`, not `xu`/literal gold-money wording;
+- `蹄铁` => approved `Cleat/Cleats`, not `móng ngựa`.
+
+If an exact source is marked untrusted/lossy, use JP/canonical evidence. If unresolved, do not invent a canonical translation.
+
+## Terminology precedence
+
+When applicable:
+
+1. current player-facing/community terminology;
+2. exact canonical individual-Skill mapping;
+3. source-bridge/canonical correction;
+4. reviewed regression/context memory;
+5. locked registry term not overridden above;
+6. established official English/Romanized Uma Musume terminology;
+7. natural Vietnamese for genuinely generic concepts.
+
+Common approved game-facing labels such as `Trainer`, `Speed`, `Stamina`, `Power`, `Guts`, `Wit`, `Skill`, `Unique Skill`, `Evolution Skill`, `Turf`, `Dirt`, `Sprint`, `Mile`, `Medium`, `Long` stay in approved forms when matched.
+
+Verified character names use canonical Roman-letter names. Never semantically translate the Chinese name.
+
+## Semantic QA
+
+For every entry preserve/check:
+
+- subject/object;
+- polarity and negation;
+- can/cannot, already/not-yet, presence/absence;
+- conditions;
+- upper/lower bounds and comparisons;
+- increase/decrease direction;
+- all numeric tokens/values;
+- mechanic relationships and implications;
+- no unsupported addition or omission.
+
+Fluent Vietnamese with changed mechanics is wrong.
+
+## Structural QA
+
+Preserve exactly:
+
+- placeholders (`{0}`, `{1}`, `{name}`...);
+- printf/runtime/template tokens;
+- markup tags;
+- escaped sequences;
+- IDs/URLs when applicable;
+- intended newline structure;
+- numeric values.
+
+## Required review passes
+
+Before marking an entry reviewed:
 
 1. semantic translation;
-2. Vietnamese fluency/terminology review;
-3. regression review against previously rejected translation and UI wording plus source-bridge risks;
+2. Vietnamese fluency/terminology;
+3. regression/source-bridge review;
 4. placeholder/markup/newline/numeric QA.
-
-A fluent sentence is not enough to mark `reviewed: true`. If it repeats a known rejected translation/UI wording or violates a deterministic canonical rule, it is invalid.
-
-## Persistent quality firewall
-
-`scripts/aggregate_parallel_results.py` applies `hachimi_tl_vi.translation_guard.TranslationQualityGuard` before any completed shard can touch `localized_data/`. The legacy merge path applies the same guard.
-
-The firewall hard-blocks deterministic regressions including:
-
-- previously rejected exact translations for the same reviewed source identity, including wording rejected by UI review;
-- player-facing forbidden wording or missing required accepted forms;
-- locked canonical-term violations not superseded by a higher-priority rule;
-- source-bridge forbidden calques;
-- unresolved known-lossy exact zh-CN source titles;
-- exact canonical skill-title mismatches;
-- verified character-name semantic translations;
-- numeric-token changes.
-
-Do not try to work around the firewall. Fix the translation or, for an unresolved bridge risk, curate a canonical JP-backed rule first.
 
 ## Completing a task
 
-A task is complete only when every source entry in its shard has one reviewed target entry and structural + persistent regression QA passes.
+A task is complete only when every source entry in the shard has one reviewed target and structural + persistent QA passes.
 
-1. Save the result file with `status: "complete"` and the full shard translations.
-2. Create the completion marker file. It must identify the result path, worker, epoch, source commits, entry count, completion timestamp, and set `qa_passed: true`.
-3. Update the claim to `status: "complete"` if possible. If the session dies after step 2, the completion marker is authoritative and another worker will still skip the task.
-4. Claim another task only if the retrospective review gate is still open and session time remains.
+1. save result with `status: "complete"` and full shard entries;
+2. create completion marker with exact task/result/source metadata and `qa_passed: true`;
+3. optionally mark your claim `status: "complete"`;
+4. re-read live gate/state before acquiring more work.
 
-Do not mutate any shared global cursor after completion.
+Completion marker is authoritative.
+
+## Session-end handoff
+
+At `handoff_start_minutes`, stop optional research and new task acquisition.
+
+If current task is incomplete:
+
+1. save latest partial result;
+2. update only your own claim to `status: "released"`;
+3. include `released_at`, `partial_result_path`, and `translated_count`;
+4. commit/push the release;
+5. stop.
+
+A successor may atomically take over the released claim immediately and continue from the stable task result. It does not wait for the old lease expiry.
 
 ## Aggregation
 
-Workers do not merge their own results into Hachimi output. `.github/workflows/aggregate-results.yml` periodically scans completion markers, independently validates each result against the pinned source batch, applies the persistent regression/canonical quality firewall, applies valid completed tasks to `localized_data/`, regenerates `index.json`, and publishes the `release` branch.
+`.github/workflows/aggregate-results.yml` independently validates completed task results against the pinned source batch and persistent quality guard, applies valid work to `localized_data/`, rebuilds `index.json`, and publishes release output.
 
-This separation is what makes many simultaneous workers safe. A worker crash cannot lose already checkpointed translations, two workers cannot overwrite the same output file while translating, and a known bad translation cannot re-enter `localized_data/` merely because a future worker repeats it.
+Workers never merge their own translation directly.
 
 ## Learning from review
 
-Every accepted retrospective translation `revise` **and every accepted UI-review `revise`** is mined by `scripts/build_translation_regression_memory.py` into the unified `glossary/translation_regressions.generated.json`. Both review merge workflows rebuild this file automatically.
+Accepted translation-review and UI-review `revise` decisions are automatically mined into unified regression memory. `keep`, unresolved `defer`, low-confidence, and auto-deferred proposals are not promoted as hard rejected targets.
 
-UI-derived entries retain `ui_contexts` containing the reviewed key, control type, and risk flags such as overflow/verbose/wide-label risk. This means the system remembers not only semantic mistakes but also wording that was rejected because it did not fit the actual player-facing control.
+## Continuous loop
 
-Therefore the prevention layer is cumulative: once a concrete target has been reviewed as wrong, future translation prompts receive that rejected form when relevant and both current aggregation paths reject it if it appears again. `keep`, unresolved `defer`, low-confidence changes, and auto-deferred proposals are not promoted into hard regression memory. If a later accepted review intentionally restores an older form, the newest accepted decision wins and the restored form is removed from the hard-rejected set.
+After completion:
 
-## Source updates
-
-`source-zhcn` may continue syncing every day. That must not change the source underneath an active epoch. Workers always use the epoch's pinned `source_queue_git_commit`.
-
-A newer upstream snapshot should create/reconcile a new epoch and use source fingerprints to carry forward unchanged translations. Never silently repoint an existing epoch to a moving source branch.
+1. re-read `work/parallel_state.json`;
+2. if retrospective gate re-closes, stop translation and switch protocol;
+3. if elapsed session time is before `stop_new_batch_after_minutes`, claim another available/resumable shard;
+4. otherwise end cleanly without acquiring more work.

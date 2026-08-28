@@ -1,0 +1,49 @@
+name: Deploy human audit viewer
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "tools/human_audit_viewer/**"
+      - ".github/workflows/deploy-human-audit-viewer.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: human-audit-viewer-pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+        with:
+          enablement: true
+
+      - name: Prepare viewer site
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p _site
+          cp -a tools/human_audit_viewer/. _site/
+          touch _site/.nojekyll
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

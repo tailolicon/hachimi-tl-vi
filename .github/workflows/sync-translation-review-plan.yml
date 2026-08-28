@@ -19,6 +19,7 @@ on:
       - "glossary/canonical_findings.json"
       - "scripts/enforce_player_facing_canon.py"
       - "scripts/harden_skill_inheritance_canon.py"
+      - "scripts/harden_race_canon.py"
       - "scripts/build_translation_review_plan.py"
       - "scripts/translation_review_common.py"
       - "scripts/canonical_findings.py"
@@ -31,6 +32,8 @@ on:
       - "tests/test_translation_guard.py"
       - "tests/test_condition_reference_hardening.py"
       - "tests/test_skill_inheritance_hardening.py"
+      - "tests/test_race_hardening.py"
+      - "tests/test_review_gate_idempotence.py"
       - ".github/workflows/sync-translation-review-plan.yml"
   workflow_dispatch:
 
@@ -64,18 +67,20 @@ jobs:
 
             python scripts/enforce_player_facing_canon.py
             python scripts/harden_skill_inheritance_canon.py
+            python scripts/harden_race_canon.py
             python scripts/canonical_findings.py --repo-root . --refresh
             python -m pip install -e ".[dev]"
             pytest -q
             python scripts/build_translation_review_plan.py --repo-root . --batch-size 20
 
-            # Keep the open translation-review gate's human-readable reason stable
-            # across both first-plan generation and active-plan reuse. Then ignore
-            # lifecycle timestamp-only churn so an otherwise-current sync is a no-op.
+            # Keep the open translation-review gate's semantic state byte-stable
+            # when the active plan is unchanged. The builder owns the canonical
+            # reason; this normalization only restores lifecycle timestamps.
             python - <<'PY'
           import json
           import subprocess
           from pathlib import Path
+          from scripts.build_translation_review_plan import normalize_gate_state_for_noop
 
           path = Path("work/parallel_state.json")
           before = json.loads(subprocess.check_output(
@@ -83,27 +88,10 @@ jobs:
               encoding="utf-8",
           ))
           after = json.loads(path.read_text(encoding="utf-8"))
-
-          gate = after.get("translation_review_gate")
-          if isinstance(gate, dict) and bool(gate.get("enabled")):
-              gate["reason"] = "Retrospective translation review is incomplete; new translation claims are paused."
+          normalized = normalize_gate_state_for_noop(after, before)
+          if normalized != after:
               path.write_text(
-                  json.dumps(after, ensure_ascii=False, indent=2) + "\n",
-                  encoding="utf-8",
-              )
-
-          def without_gate_timestamps(payload):
-              clone = json.loads(json.dumps(payload))
-              gate = clone.get("translation_review_gate")
-              if isinstance(gate, dict):
-                  gate.pop("updated_at", None)
-                  gate.pop("activated_at", None)
-                  gate.pop("cleared_at", None)
-              return clone
-
-          if before != after and without_gate_timestamps(before) == without_gate_timestamps(after):
-              path.write_text(
-                  json.dumps(before, ensure_ascii=False, indent=2) + "\n",
+                  json.dumps(normalized, ensure_ascii=False, indent=2) + "\n",
                   encoding="utf-8",
               )
               print("Ignored timestamp-only translation review gate churn.")
@@ -118,12 +106,15 @@ jobs:
               glossary/canonical_findings.json \
               scripts/enforce_player_facing_canon.py \
               scripts/harden_skill_inheritance_canon.py \
+              scripts/harden_race_canon.py \
               scripts/canonical_findings.py \
               scripts/translation_review_common.py \
               scripts/build_translation_review_plan.py \
               scripts/merge_translation_review.py \
               scripts/merge_parallel_results.py \
               scripts/aggregate_parallel_results.py \
+              tests/test_race_hardening.py \
+              tests/test_review_gate_idempotence.py \
               src/hachimi_tl_vi/translation_guard.py \
               src/hachimi_tl_vi/context_categories.py \
               work/translation_review \

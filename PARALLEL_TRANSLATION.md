@@ -15,7 +15,7 @@ This is the canonical protocol for running many ChatGPT translation sessions at 
 
 Do not use `work/translation_progress.json.next_batch` as a lock or global cursor. The old single-session cursor is deprecated.
 
-The regression and source-bridge files are not optional background reading. They are persistent QA memory from errors already discovered in earlier Vietnamese versions/reviews. A future worker must not reintroduce a rejected translation simply because the current zh-CN source makes the old mistake look plausible again.
+The regression and source-bridge files are not optional background reading. They are persistent QA memory from errors already discovered in earlier Vietnamese versions, retrospective translation review, and UI review. A future worker must not reintroduce a rejected translation simply because the current zh-CN source makes the old mistake look plausible again.
 
 ## Retrospective review gate
 
@@ -164,6 +164,7 @@ For every entry:
 - source-bridge terms must use accepted forms and avoid forbidden calques such as `金币 -> xu` or `蹄铁 -> móng ngựa`;
 - an exact source in `source_bridge_risks.generated.json`/manual untrusted rules must not be guessed from zh-CN. Use exact JP/canonical evidence; if no canonical answer exists, do not invent one;
 - for a matching entry in `translation_regressions.generated.json`, never output any prior `rejected_targets`. The reviewed `approved_target` is strong guidance when source identity/context remains compatible;
+- when a regression entry contains `ui_review` in `origins`, treat its `ui_contexts` (`key`, `control_type`, `risk_flags`) as evidence that the old wording was rejected in real player-facing UI. Preserve the reviewed compactness/control fit instead of recreating a longer semantically equivalent form;
 - exact canonical skill examples in `skill_name_style.json` are exact-title requirements;
 - keep terminology consistent with repository glossary and already reviewed Vietnamese strings;
 - do not translate keys, hashes, JSON paths, filenames or locator metadata;
@@ -173,10 +174,10 @@ Use at least these passes before completion:
 
 1. semantic translation;
 2. Vietnamese fluency/terminology review;
-3. regression review against previously rejected translations and source-bridge risks;
+3. regression review against previously rejected translation and UI wording plus source-bridge risks;
 4. placeholder/markup/newline/numeric QA.
 
-A fluent sentence is not enough to mark `reviewed: true`. If it repeats a known rejected translation or violates a deterministic canonical rule, it is invalid.
+A fluent sentence is not enough to mark `reviewed: true`. If it repeats a known rejected translation/UI wording or violates a deterministic canonical rule, it is invalid.
 
 ## Persistent quality firewall
 
@@ -184,7 +185,7 @@ A fluent sentence is not enough to mark `reviewed: true`. If it repeats a known 
 
 The firewall hard-blocks deterministic regressions including:
 
-- previously rejected exact translations for the same reviewed source identity;
+- previously rejected exact translations for the same reviewed source identity, including wording rejected by UI review;
 - player-facing forbidden wording or missing required accepted forms;
 - locked canonical-term violations not superseded by a higher-priority rule;
 - source-bridge forbidden calques;
@@ -214,9 +215,11 @@ This separation is what makes many simultaneous workers safe. A worker crash can
 
 ## Learning from review
 
-Every accepted retrospective `revise` decision is mined by `scripts/build_translation_regression_memory.py` into `glossary/translation_regressions.generated.json`. The review merge workflow rebuilds this file automatically.
+Every accepted retrospective translation `revise` **and every accepted UI-review `revise`** is mined by `scripts/build_translation_regression_memory.py` into the unified `glossary/translation_regressions.generated.json`. Both review merge workflows rebuild this file automatically.
 
-Therefore the prevention layer is cumulative: once a concrete target has been reviewed as wrong, future translation prompts receive that rejected form when relevant and both current aggregation paths will reject it if it appears again. `keep`, unresolved `defer`, low-confidence changes, and auto-deferred proposals are not promoted into hard regression memory.
+UI-derived entries retain `ui_contexts` containing the reviewed key, control type, and risk flags such as overflow/verbose/wide-label risk. This means the system remembers not only semantic mistakes but also wording that was rejected because it did not fit the actual player-facing control.
+
+Therefore the prevention layer is cumulative: once a concrete target has been reviewed as wrong, future translation prompts receive that rejected form when relevant and both current aggregation paths reject it if it appears again. `keep`, unresolved `defer`, low-confidence changes, and auto-deferred proposals are not promoted into hard regression memory. If a later accepted review intentionally restores an older form, the newest accepted decision wins and the restored form is removed from the hard-rejected set.
 
 ## Source updates
 

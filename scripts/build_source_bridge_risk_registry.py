@@ -13,17 +13,21 @@ DEFAULT_REGISTRY = ROOT / "glossary/term_registry.json"
 DEFAULT_SKILL_STYLE = ROOT / "glossary/skill_name_style.json"
 DEFAULT_OUTPUT = ROOT / "glossary/source_bridge_risks.generated.json"
 
-# Intentionally conservative. These patterns only promote evidence where the
-# curation note explicitly says the zh-CN bridge changed/lost/reframed JP
-# meaning or imagery. Generic "translation is ambiguous" defers are excluded.
+# Intentionally conservative. These patterns promote evidence where the curation
+# note explicitly identifies semantic/image/voice loss or a source form that is
+# unsafe to canonicalize without JP. Plain script conversion (e.g. katakana ->
+# equivalent English spelling) is not enough on its own.
 _STRONG_RISK_PATTERNS = (
     re.compile(r"\bzh-cn\b.*\bnot (?:a )?literal title match\b", re.I),
     re.compile(r"\bzh-cn\b.*\bnot title-equivalent\b", re.I),
-    re.compile(r"\bzh-cn\b.*\b(?:changes?|replaces?|reframes?|reshapes?|omits?|flattens?)\b", re.I),
+    re.compile(r"\bzh-cn\b.*\b(?:changes?|reframes?|reshapes?|omits?|flattens?)\b", re.I),
+    re.compile(r"\bzh-cn\b.*\breplaces?\b.*\b(?:image|meaning|nuance|wording|reference|gimmick|proper[- ]?name|styl(?:e|ization))\b", re.I),
     re.compile(r"\bzh-cn\b.*\b(?:interpretive|lossy)\b", re.I),
-    re.compile(r"\bchinese bridge\b.*\b(?:interpretive|lossy|reshape|changes?|replaces?|reframes?|omits?)\b", re.I),
+    re.compile(r"\bchinese bridge\b.*\b(?:interpretive|lossy|reshape|changes?|reframes?|omits?|flattens?)\b", re.I),
+    re.compile(r"\bchinese bridge\b.*\bsemantically replaces?\b", re.I),
     re.compile(r"\binterpretive chinese rendering\b", re.I),
-    re.compile(r"\bsource (?:shifts|replaces|reframes|changes|reshapes|omits|flattens)\b", re.I),
+    re.compile(r"\bsource (?:shifts|reframes|changes|reshapes|omits|flattens)\b", re.I),
+    re.compile(r"\bsource replaces?\b.*\b(?:image|meaning|nuance|wording|reference|gimmick|proper[- ]?name|styl(?:e|ization))\b", re.I),
     re.compile(r"\bnot title-equivalent\b", re.I),
     re.compile(r"\bdo not canonize a chinese-derived\b", re.I),
     re.compile(r"\bliteral vietnamese rendering would risk\b", re.I),
@@ -123,20 +127,22 @@ def build_registry(
             "mode": "defer_until_canonical",
             "evidence": evidence,
             "note": (
-                "Curation evidence explicitly flags this zh-CN source as lossy or interpretive relative to JP. "
-                "Do not preserve a literal zh-CN-derived Vietnamese title; use canonical JP-backed evidence or defer."
+                "Curation evidence flags this zh-CN source as semantically lossy/interpretive or unsafe to "
+                "canonicalize without JP-backed evidence. Do not preserve a literal zh-CN-derived Vietnamese "
+                "title; use canonical JP-backed evidence or defer."
             ),
         })
 
     return {
         "schema_version": 1,
-        "classification_version": 1,
+        "classification_version": 2,
         "generated_from": "work/curation/results/term-*/*.json",
         "policy": {
-            "scope": "Confirmed lossy zh-CN bridge evidence only.",
+            "scope": "Strong zh-CN bridge-risk evidence only; script-only conversions are excluded.",
             "promotion_rule": (
-                "Only deferred curation decisions whose note explicitly states that zh-CN changed, lost, replaced, "
-                "reframed, reshaped, omitted, flattened, or interpretively rendered JP meaning/imagery are promoted."
+                "Promote deferred curation decisions only when notes identify semantic/image/voice loss, "
+                "non-equivalent/interpretive bridge wording, Chinese-derived proper-name/wordplay risk, or an "
+                "explicit need for JP evidence. Equivalent script conversion alone is not promoted."
             ),
             "canonical_exclusion": (
                 "Sources already covered by a locked term_registry target or exact skill_name_style canonical example "

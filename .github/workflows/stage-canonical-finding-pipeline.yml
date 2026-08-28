@@ -39,6 +39,30 @@ jobs:
             git clean -fd
 
             python scripts/stage_canonical_finding_pipeline.py
+
+            # Migration compatibility: the stager adds the new helper to
+            # translation_review_common.py and wires its call site. Ensure the
+            # builder imports it explicitly before validating the generated tree.
+            python - <<'PY'
+          from pathlib import Path
+
+          path = Path("scripts/build_translation_review_plan.py")
+          text = path.read_text(encoding="utf-8")
+          marker = "from typing import Any\n"
+          addition = '''from typing import Any
+
+try:
+    from scripts.translation_review_common import load_canonical_findings
+except ModuleNotFoundError:
+    from translation_review_common import load_canonical_findings  # type: ignore[no-redef]
+'''
+          if "from scripts.translation_review_common import load_canonical_findings" not in text:
+              if marker not in text:
+                  raise SystemExit("builder import marker missing")
+              text = text.replace(marker, addition, 1)
+              path.write_text(text, encoding="utf-8", newline="\n")
+          PY
+
             python scripts/canonical_findings.py --repo-root . --refresh
             python scripts/build_terminology_review_queue.py
             python -m pip install -e ".[dev]"

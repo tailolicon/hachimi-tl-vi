@@ -17,6 +17,7 @@ on:
       - "glossary/skill_name_style.json"
       - "glossary/style_rules.json"
       - "scripts/enforce_player_facing_canon.py"
+      - "scripts/harden_skill_inheritance_canon.py"
       - "scripts/build_translation_review_plan.py"
       - "scripts/translation_review_common.py"
       - "scripts/merge_translation_review.py"
@@ -27,6 +28,7 @@ on:
       - "tests/test_translation_review.py"
       - "tests/test_translation_guard.py"
       - "tests/test_condition_reference_hardening.py"
+      - "tests/test_skill_inheritance_hardening.py"
       - ".github/workflows/sync-translation-review-plan.yml"
   workflow_dispatch:
 
@@ -59,6 +61,7 @@ jobs:
             git checkout -B translation-review-plan origin/main
 
             python scripts/enforce_player_facing_canon.py
+            python scripts/harden_skill_inheritance_canon.py
             python -m pip install -e ".[dev]"
             pytest -q
             python scripts/build_translation_review_plan.py --repo-root . --batch-size 20
@@ -102,6 +105,7 @@ jobs:
               glossary/source_bridge_terms.json \
               glossary/translation_audit_policy.json \
               scripts/enforce_player_facing_canon.py \
+              scripts/harden_skill_inheritance_canon.py \
               scripts/translation_review_common.py \
               scripts/build_translation_review_plan.py \
               scripts/merge_translation_review.py \

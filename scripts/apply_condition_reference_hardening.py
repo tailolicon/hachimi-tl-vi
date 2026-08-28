@@ -6,24 +6,11 @@ ROOT = Path(__file__).resolve().parents[1]
 PATH = ROOT / "scripts/enforce_player_facing_canon.py"
 text = PATH.read_text(encoding="utf-8")
 
-helper_anchor = '''CONDITION_CONTEXT = {
-    "invalidation_scope": "item",
-    "source_paths": ["text_data_dict.json"],
-    "json_path_prefixes": [["142"]],
-    "match_mode": "exact",
-}
-
-
-def load_json'''
-helper_replacement = '''CONDITION_CONTEXT = {
-    "invalidation_scope": "item",
-    "source_paths": ["text_data_dict.json"],
-    "json_path_prefixes": [["142"]],
-    "match_mode": "exact",
-}
-
-
-def quoted_condition_aliases(values: list[str]) -> list[str]:
+if "def quoted_condition_aliases(" not in text:
+    marker = "def load_json(path: Path, default: Any) -> Any:"
+    if marker not in text:
+        raise RuntimeError("load_json insertion marker missing")
+    helper = '''def quoted_condition_aliases(values: list[str]) -> list[str]:
     """Aliases safe outside the Condition-name table because the source explicitly quotes the name."""
     result: list[str] = []
     for value in values:
@@ -34,10 +21,8 @@ def quoted_condition_aliases(values: list[str]) -> list[str]:
     return result
 
 
-def load_json'''
-if helper_anchor not in text:
-    raise RuntimeError("condition helper anchor missing")
-text = text.replace(helper_anchor, helper_replacement, 1)
+'''
+    text = text.replace(marker, helper + marker, 1)
 
 community_anchor = '''            **CONDITION_CONTEXT,
         })
@@ -60,9 +45,10 @@ community_replacement = '''            **CONDITION_CONTEXT,
         })
     for spec in MOOD_LEVELS:
         records.append({'''
-if community_anchor not in text:
-    raise RuntimeError("community Condition anchor missing")
-text = text.replace(community_anchor, community_replacement, 1)
+if '"id": "common." + spec["id"] + ".reference"' not in text:
+    if community_anchor not in text:
+        raise RuntimeError("community Condition anchor missing")
+    text = text.replace(community_anchor, community_replacement, 1)
 
 bridge_anchor = '''            "note": spec["note"] + " The zh-CN semantic label is not authoritative outside this guarded Condition slot.",
         })
@@ -83,9 +69,10 @@ bridge_replacement = '''            "note": spec["note"] + " The zh-CN semantic 
         })
     for spec in MOOD_LEVELS:
         upsert_by_id(terms, {'''
-if bridge_anchor not in text:
-    raise RuntimeError("source-bridge Condition anchor missing")
-text = text.replace(bridge_anchor, bridge_replacement, 1)
+if '"id": spec["id"] + ".reference"' not in text:
+    if bridge_anchor not in text:
+        raise RuntimeError("source-bridge Condition anchor missing")
+    text = text.replace(bridge_anchor, bridge_replacement, 1)
 
 PATH.write_text(text, encoding="utf-8", newline="\n")
 print("quoted Condition reference hardening applied")

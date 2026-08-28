@@ -7,7 +7,11 @@ import re
 from typing import Any
 
 
-_NUMBER_RE = re.compile(r"(?<![\w{])\d+(?:\.\d+)?%?")
+# Do not use \w here: in Python it includes CJK letters, which made a value in
+# strings such as 最多60个 disappear from the source-side comparison. We only
+# suppress numbers embedded in ASCII identifiers/placeholders while allowing
+# normal CJK-adjacent gameplay values.
+_NUMBER_RE = re.compile(r"(?<![A-Za-z0-9_{])\d+(?:\.\d+)?%?")
 
 
 def _load_json(path: Path, default: Any) -> Any:

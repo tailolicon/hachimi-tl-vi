@@ -98,7 +98,7 @@ def _set_gate(
     write_json(path, state)
 
 
-def _active_incomplete(repo_root: Path, context_hash: str) -> dict[str, Any] | None:
+def _active_incomplete(repo_root: Path, context_hash: str, bridge_hash: str) -> dict[str, Any] | None:
     active_path = repo_root / "work/translation_review/active_plan.json"
     if not active_path.exists():
         return None
@@ -108,6 +108,8 @@ def _active_incomplete(repo_root: Path, context_hash: str) -> dict[str, Any] | N
     if int(active.get("policy_version", 0)) != TRANSLATION_REVIEW_POLICY_VERSION:
         return None
     if str(active.get("context_snapshot_sha256", "")) != context_hash:
+        return None
+    if str(active.get("source_bridge_policy_sha256", "")) != bridge_hash:
         return None
     plan_path = active.get("plan_path")
     if not plan_path:
@@ -168,7 +170,7 @@ def build_plan(repo_root: Path, batch_size: int) -> dict[str, Any]:
     review_root = repo_root / "work/translation_review"
     context_hash = context_snapshot_hash(repo_root)
     bridge_hash = source_bridge_policy_hash(repo_root)
-    active = _active_incomplete(repo_root, context_hash)
+    active = _active_incomplete(repo_root, context_hash, bridge_hash)
     if active is not None:
         _set_gate(
             repo_root,
@@ -370,7 +372,7 @@ def build_plan(repo_root: Path, batch_size: int) -> dict[str, Any]:
         "decision_actions": ["keep", "revise", "defer"],
         "protocol": "TRANSLATION_REVIEW.md",
         "defer_policy": "defer remains unresolved and keeps the translation gate closed",
-        "source_bridge_policy": "glossary/source_bridge_terms.json is enforced item-by-item; lossy bridge sources defer until canonicalized",
+        "source_bridge_policy": "Manual bridge terms plus generated curation-backed lossy-source risks are enforced item-by-item; unresolved lossy bridge sources defer until canonicalized.",
     })
     write_json(active_path, {
         **common,

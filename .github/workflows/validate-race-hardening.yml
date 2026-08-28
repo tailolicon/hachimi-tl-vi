@@ -23,6 +23,29 @@ jobs:
         run: python scripts/race_stage_tmp.py
       - run: python -m py_compile scripts/harden_race_canon.py scripts/build_translation_review_plan.py scripts/race_inventory_tmp.py scripts/race_inventory_compact_tmp.py
       - run: pytest -q
+      - name: Hardener idempotence and review-plan rebuild
+        shell: bash
+        run: |
+          set -euo pipefail
+          cp glossary/term_registry.json /tmp/term_registry.once.json
+          cp glossary/ui_community_terms.json /tmp/ui_community.once.json
+          cp glossary/source_bridge_terms.json /tmp/source_bridge.once.json
+          python scripts/harden_race_canon.py
+          diff -u /tmp/term_registry.once.json glossary/term_registry.json
+          diff -u /tmp/ui_community.once.json glossary/ui_community_terms.json
+          diff -u /tmp/source_bridge.once.json glossary/source_bridge_terms.json
+          python scripts/build_translation_review_plan.py --repo-root . --batch-size 20
+          cp work/parallel_state.json /tmp/parallel.once.json
+          python scripts/build_translation_review_plan.py --repo-root . --batch-size 20
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from scripts.build_translation_review_plan import normalize_gate_state_for_noop
+          before = json.loads(Path('/tmp/parallel.once.json').read_text())
+          after = json.loads(Path('work/parallel_state.json').read_text())
+          assert normalize_gate_state_for_noop(after, before) == before
+          PY
+          git diff --check
       - name: Build deterministic race inventory
         run: |
           python scripts/race_inventory_tmp.py
@@ -33,7 +56,16 @@ jobs:
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add scripts/build_translation_review_plan.py tests/test_race_hardening.py glossary/term_registry.json glossary/ui_community_terms.json glossary/source_bridge_terms.json work/tmp_race_*.json
+          git add \
+            scripts/harden_race_canon.py \
+            scripts/build_translation_review_plan.py \
+            tests/test_race_hardening.py \
+            tests/test_review_gate_idempotence.py \
+            glossary/term_registry.json \
+            glossary/ui_community_terms.json \
+            glossary/source_bridge_terms.json \
+            .github/workflows/sync-translation-review-plan.yml \
+            work/tmp_race_*.json
           if git diff --cached --quiet; then
             echo "Race staging already current."
             exit 0

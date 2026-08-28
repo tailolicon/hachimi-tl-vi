@@ -1,0 +1,37 @@
+name: Cleanup canonical finding temporary branches
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/cleanup-canonical-finding-temp-branches.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Delete temporary finalization branches
+        shell: bash
+        run: |
+          set -euo pipefail
+          for branch in \
+            canonical-finding-finalize-20260828 \
+            canonical-finding-finalize-20260828-2 \
+            canonical-finding-finalize-20260828-3 \
+            canonical-finding-finalize-20260828-4 \
+            canonical-finding-finalize-20260828-5 \
+            canonical-finding-finalize-20260828-6 \
+            canonical-finding-finalize-20260828-7 \
+            canonical-finding-finalize-20260828-8
+          do
+            if git ls-remote --exit-code --heads origin "$branch" >/dev/null 2>&1; then
+              git push origin --delete "$branch"
+            fi
+          done

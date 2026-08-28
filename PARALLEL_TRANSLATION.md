@@ -7,8 +7,15 @@ This is the canonical protocol for running many ChatGPT translation sessions at 
 1. `work/parallel_state.json` on `main`.
 2. The current epoch metadata referenced by `current_epoch_metadata`.
 3. This file.
+4. `glossary/ui_community_terms.json`.
+5. `glossary/source_bridge_terms.json`.
+6. `glossary/source_bridge_risks.generated.json`.
+7. `glossary/translation_regressions.generated.json` for the UIDs/source strings in the shard.
+8. Relevant compact entries from `glossary/term_registry.json`, `glossary/characters.json`, and `glossary/skill_name_style.json`.
 
 Do not use `work/translation_progress.json.next_batch` as a lock or global cursor. The old single-session cursor is deprecated.
+
+The regression and source-bridge files are not optional background reading. They are persistent QA memory from errors already discovered in earlier Vietnamese versions/reviews. A future worker must not reintroduce a rejected translation simply because the current zh-CN source makes the old mistake look plausible again.
 
 ## Retrospective review gate
 
@@ -61,6 +68,7 @@ Workers may choose tasks in any order only when the retrospective review gate is
    `end = min(start + task_size, len(batch.entries))`
    If `start >= len(batch.entries)`, the shard does not exist; choose another task.
 6. Skip any batch listed in `legacy_completed_batches`.
+7. Before translating, look up the shard's UIDs and exact source strings in `translation_regressions.generated.json`, source-bridge registries, player-facing terminology, canonical skill examples, and verified character mappings. Only relevant records need to be loaded into working context.
 
 ## Atomic claim / lease
 
@@ -148,7 +156,15 @@ For every entry:
 - preserve rich-text/runtime tags exactly (`<color=...>`, `</color>`, etc.);
 - preserve intended newline count/structure;
 - preserve escaped runtime sequences;
+- preserve every numeric token/value unless the source structure itself explicitly changes how it is rendered;
 - keep names, IDs, URLs and service/product names unchanged unless localization is genuinely required;
+- verified character names must use `characters.json` canonical Roman-letter names; never translate their zh-CN semantic meaning;
+- player-facing terms in `ui_community_terms.json` must use accepted/compact forms and must not use listed forbidden calques;
+- locked canonical terms must use their reviewed target unless a documented higher-priority player-facing rule overrides the same source alias;
+- source-bridge terms must use accepted forms and avoid forbidden calques such as `金币 -> xu` or `蹄铁 -> móng ngựa`;
+- an exact source in `source_bridge_risks.generated.json`/manual untrusted rules must not be guessed from zh-CN. Use exact JP/canonical evidence; if no canonical answer exists, do not invent one;
+- for a matching entry in `translation_regressions.generated.json`, never output any prior `rejected_targets`. The reviewed `approved_target` is strong guidance when source identity/context remains compatible;
+- exact canonical skill examples in `skill_name_style.json` are exact-title requirements;
 - keep terminology consistent with repository glossary and already reviewed Vietnamese strings;
 - do not translate keys, hashes, JSON paths, filenames or locator metadata;
 - do not use UmaTL English text as AI input.
@@ -157,11 +173,31 @@ Use at least these passes before completion:
 
 1. semantic translation;
 2. Vietnamese fluency/terminology review;
-3. placeholder/markup/newline QA.
+3. regression review against previously rejected translations and source-bridge risks;
+4. placeholder/markup/newline/numeric QA.
+
+A fluent sentence is not enough to mark `reviewed: true`. If it repeats a known rejected translation or violates a deterministic canonical rule, it is invalid.
+
+## Persistent quality firewall
+
+`scripts/aggregate_parallel_results.py` applies `hachimi_tl_vi.translation_guard.TranslationQualityGuard` before any completed shard can touch `localized_data/`. The legacy merge path applies the same guard.
+
+The firewall hard-blocks deterministic regressions including:
+
+- previously rejected exact translations for the same reviewed source identity;
+- player-facing forbidden wording or missing required accepted forms;
+- locked canonical-term violations not superseded by a higher-priority rule;
+- source-bridge forbidden calques;
+- unresolved known-lossy exact zh-CN source titles;
+- exact canonical skill-title mismatches;
+- verified character-name semantic translations;
+- numeric-token changes.
+
+Do not try to work around the firewall. Fix the translation or, for an unresolved bridge risk, curate a canonical JP-backed rule first.
 
 ## Completing a task
 
-A task is complete only when every source entry in its shard has one reviewed target entry and structural QA passes.
+A task is complete only when every source entry in its shard has one reviewed target entry and structural + persistent regression QA passes.
 
 1. Save the result file with `status: "complete"` and the full shard translations.
 2. Create the completion marker file. It must identify the result path, worker, epoch, source commits, entry count, completion timestamp, and set `qa_passed: true`.
@@ -172,9 +208,15 @@ Do not mutate any shared global cursor after completion.
 
 ## Aggregation
 
-Workers do not merge their own results into Hachimi output. `.github/workflows/aggregate-results.yml` periodically scans completion markers, independently validates each result against the pinned source batch, applies valid completed tasks to `localized_data/`, regenerates `index.json`, and publishes the `release` branch.
+Workers do not merge their own results into Hachimi output. `.github/workflows/aggregate-results.yml` periodically scans completion markers, independently validates each result against the pinned source batch, applies the persistent regression/canonical quality firewall, applies valid completed tasks to `localized_data/`, regenerates `index.json`, and publishes the `release` branch.
 
-This separation is what makes many simultaneous workers safe. A worker crash cannot lose already checkpointed translations, and two workers cannot overwrite the same output file while translating.
+This separation is what makes many simultaneous workers safe. A worker crash cannot lose already checkpointed translations, two workers cannot overwrite the same output file while translating, and a known bad translation cannot re-enter `localized_data/` merely because a future worker repeats it.
+
+## Learning from review
+
+Every accepted retrospective `revise` decision is mined by `scripts/build_translation_regression_memory.py` into `glossary/translation_regressions.generated.json`. The review merge workflow rebuilds this file automatically.
+
+Therefore the prevention layer is cumulative: once a concrete target has been reviewed as wrong, future translation prompts receive that rejected form when relevant and both current aggregation paths will reject it if it appears again. `keep`, unresolved `defer`, low-confidence changes, and auto-deferred proposals are not promoted into hard regression memory.
 
 ## Source updates
 

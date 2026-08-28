@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "policy_version": 4,
+  "policy_version": 5,
   "purpose": "Authoritative player-facing Uma Musume terminology for common gameplay/UI labels and named mechanics. For listed concepts, preserve the accepted English/Romanized player term instead of mechanically translating it into Vietnamese.",
   "reference_note": "The common EN terminology set was updated from a Vietnamese community reference supplied by the project owner. Individual skill NAMES are handled separately by style_rules.json and should normally be localized into concise Vietnamese/Han-Viet game-style titles.",
   "precedence": [
@@ -22,76 +22,160 @@
     {
       "id": "common.trainer",
       "category": "role",
-      "source_aliases": ["トレーナー", "训练员"],
+      "source_aliases": [
+        "トレーナー",
+        "训练员"
+      ],
       "preferred": "Trainer",
       "compact": [],
-      "accepted": ["Trainer"],
-      "forbidden": ["Huấn luyện viên"],
+      "accepted": [
+        "Trainer"
+      ],
+      "forbidden": [
+        "Huấn luyện viên"
+      ],
       "require_accepted": true,
       "basis": "Common EN-version player terminology."
     },
     {
+      "id": "common.support_card",
+      "category": "system",
+      "source_aliases": [
+        "サポートカード",
+        "支援卡"
+      ],
+      "preferred": "Support Card",
+      "compact": [],
+      "accepted": [
+        "Support Card"
+      ],
+      "forbidden": [
+        "Thẻ hỗ trợ"
+      ],
+      "require_accepted": true,
+      "basis": "Common player-facing Uma Musume term; preserve Support Card in English."
+    },
+    {
+      "id": "common.state.mood",
+      "category": "state",
+      "source_aliases": [
+        "やる気",
+        "干劲"
+      ],
+      "preferred": "Mood",
+      "compact": [],
+      "accepted": [
+        "Mood"
+      ],
+      "forbidden": [
+        "Tinh thần",
+        "Hứng khởi"
+      ],
+      "require_accepted": true,
+      "basis": "Common player-facing Uma Musume state term; Mood/Mood Effect is the established terminology."
+    },
+    {
       "id": "common.stat.speed",
       "category": "stat",
-      "source_aliases": ["スピード", "速度"],
+      "source_aliases": [
+        "スピード",
+        "速度"
+      ],
       "preferred": "Speed",
       "compact": [],
-      "accepted": ["Speed"],
-      "forbidden": ["Tốc độ"],
+      "accepted": [
+        "Speed"
+      ],
+      "forbidden": [
+        "Tốc độ"
+      ],
       "require_accepted": true,
       "basis": "Common EN-version stat label."
     },
     {
       "id": "common.stat.stamina",
       "category": "stat",
-      "source_aliases": ["スタミナ", "耐力"],
+      "source_aliases": [
+        "スタミナ",
+        "耐力"
+      ],
       "preferred": "Stamina",
       "compact": [],
-      "accepted": ["Stamina"],
-      "forbidden": ["Thể lực"],
+      "accepted": [
+        "Stamina"
+      ],
+      "forbidden": [
+        "Thể lực"
+      ],
       "require_accepted": true,
       "basis": "Common EN-version stat label; distinct from the training energy gauge."
     },
     {
       "id": "common.stat.power",
       "category": "stat",
-      "source_aliases": ["パワー", "力量"],
+      "source_aliases": [
+        "パワー",
+        "力量"
+      ],
       "preferred": "Power",
       "compact": [],
-      "accepted": ["Power"],
-      "forbidden": ["Sức mạnh"],
+      "accepted": [
+        "Power"
+      ],
+      "forbidden": [
+        "Sức mạnh"
+      ],
       "require_accepted": true,
       "basis": "Common EN-version stat label."
     },
     {
       "id": "common.stat.guts",
       "category": "stat",
-      "source_aliases": ["根性", "毅力"],
+      "source_aliases": [
+        "根性",
+        "毅力"
+      ],
       "preferred": "Guts",
       "compact": [],
-      "accepted": ["Guts"],
-      "forbidden": ["Ý chí"],
+      "accepted": [
+        "Guts"
+      ],
+      "forbidden": [
+        "Ý chí"
+      ],
       "require_accepted": true,
       "basis": "Common EN-version stat label."
     },
     {
       "id": "common.stat.wit",
       "category": "stat",
-      "source_aliases": ["賢さ", "智力"],
+      "source_aliases": [
+        "賢さ",
+        "智力"
+      ],
       "preferred": "Wit",
       "compact": [],
-      "accepted": ["Wit"],
-      "forbidden": ["Trí tuệ"],
+      "accepted": [
+        "Wit"
+      ],
+      "forbidden": [
+        "Trí tuệ"
+      ],
       "require_accepted": true,
       "basis": "Common EN-version stat label."
     },
     {
       "id": "common.aptitude",
       "category": "system",
-      "source_aliases": ["適性", "适性"],
+      "source_aliases": [
+        "適性",
+        "适性"
+      ],
       "preferred": "Aptitude",
       "compact": [],
-      "accepted": ["Aptitude"],
+      "accepted": [
+        "Aptitude"
+      ],
       "forbidden": [],
       "require_accepted": true,
       "basis": "Common EN-version system term."
@@ -102,7 +186,9 @@
       "source_aliases": [],
       "preferred": "Rating",
       "compact": [],
-      "accepted": ["Rating"],
+      "accepted": [
+        "Rating"
+      ],
       "forbidden": [],
       "require_accepted": true,
       "basis": "Reference EN term; source aliases intentionally left empty until context-safe matching is curated."
@@ -113,7 +199,9 @@
       "source_aliases": [],
       "preferred": "Condition",
       "compact": [],
-      "accepted": ["Condition"],
+      "accepted": [
+        "Condition"
+      ],
       "forbidden": [],
       "require_accepted": true,
       "basis": "Reference EN term; avoid conflating it with Motivation or other status systems."
@@ -124,7 +212,9 @@
       "source_aliases": [],
       "preferred": "Legacy",
       "compact": [],
-      "accepted": ["Legacy"],
+      "accepted": [
+        "Legacy"
+      ],
       "forbidden": [],
       "require_accepted": true,
       "basis": "Reference EN term for the Legacy/Veteran Umamusume context."
@@ -135,7 +225,9 @@
       "source_aliases": [],
       "preferred": "Guest Legacy",
       "compact": [],
-      "accepted": ["Guest Legacy"],
+      "accepted": [
+        "Guest Legacy"
+      ],
       "forbidden": [],
       "require_accepted": true,
       "basis": "Reference EN term."
@@ -146,7 +238,9 @@
       "source_aliases": [],
       "preferred": "Inspiration",
       "compact": [],
-      "accepted": ["Inspiration"],
+      "accepted": [
+        "Inspiration"
+      ],
       "forbidden": [],
       "require_accepted": true,
       "basis": "Reference EN term for Inspiration/Inspiration Event."
@@ -157,7 +251,9 @@
       "source_aliases": [],
       "preferred": "Spark",
       "compact": [],
-      "accepted": ["Spark"],
+      "accepted": [
+        "Spark"
+      ],
       "forbidden": [],
       "require_accepted": true,
       "basis": "Reference EN term for Spark/Inspiration context."
@@ -168,7 +264,9 @@
       "source_aliases": [],
       "preferred": "Scenario",
       "compact": [],
-      "accepted": ["Scenario"],
+      "accepted": [
+        "Scenario"
+      ],
       "forbidden": [],
       "require_accepted": true,
       "basis": "Reference EN term; generic story-script uses must be distinguished by context."
@@ -179,7 +277,9 @@
       "source_aliases": [],
       "preferred": "Track",
       "compact": [],
-      "accepted": ["Track"],
+      "accepted": [
+        "Track"
+      ],
       "forbidden": [],
       "require_accepted": true,
       "basis": "Reference EN race term."
@@ -187,21 +287,33 @@
     {
       "id": "common.surface.turf",
       "category": "race_surface",
-      "source_aliases": ["芝", "草地"],
+      "source_aliases": [
+        "芝",
+        "草地"
+      ],
       "preferred": "Turf",
       "compact": [],
-      "accepted": ["Turf"],
-      "forbidden": ["Sân cỏ"],
+      "accepted": [
+        "Turf"
+      ],
+      "forbidden": [
+        "Sân cỏ"
+      ],
       "require_accepted": true,
       "basis": "Common EN-version surface label."
     },
     {
       "id": "common.surface.dirt",
       "category": "race_surface",
-      "source_aliases": ["ダート", "泥地"],
+      "source_aliases": [
+        "ダート",
+        "泥地"
+      ],
       "preferred": "Dirt",
       "compact": [],
-      "accepted": ["Dirt"],
+      "accepted": [
+        "Dirt"
+      ],
       "forbidden": [],
       "require_accepted": true,
       "basis": "Common EN-version surface label."
@@ -212,7 +324,9 @@
       "source_aliases": [],
       "preferred": "Distance",
       "compact": [],
-      "accepted": ["Distance"],
+      "accepted": [
+        "Distance"
+      ],
       "forbidden": [],
       "require_accepted": true,
       "basis": "Reference EN category label; source aliases omitted to avoid matching unrelated countdown/distance prose."
@@ -220,21 +334,33 @@
     {
       "id": "common.distance.sprint",
       "category": "distance",
-      "source_aliases": ["短距離", "短距离"],
+      "source_aliases": [
+        "短距離",
+        "短距离"
+      ],
       "preferred": "Sprint",
       "compact": [],
-      "accepted": ["Sprint"],
-      "forbidden": ["Cự ly ngắn"],
+      "accepted": [
+        "Sprint"
+      ],
+      "forbidden": [
+        "Cự ly ngắn"
+      ],
       "require_accepted": true,
       "basis": "Common EN-version distance class."
     },
     {
       "id": "common.distance.mile",
       "category": "distance",
-      "source_aliases": ["マイル", "英里"],
+      "source_aliases": [
+        "マイル",
+        "英里"
+      ],
       "preferred": "Mile",
       "compact": [],
-      "accepted": ["Mile"],
+      "accepted": [
+        "Mile"
+      ],
       "forbidden": [],
       "require_accepted": true,
       "basis": "Common EN-version distance class."
@@ -242,192 +368,336 @@
     {
       "id": "common.distance.medium",
       "category": "distance",
-      "source_aliases": ["中距離", "中距离"],
+      "source_aliases": [
+        "中距離",
+        "中距离"
+      ],
       "preferred": "Medium",
       "compact": [],
-      "accepted": ["Medium"],
-      "forbidden": ["Cự ly trung bình"],
+      "accepted": [
+        "Medium"
+      ],
+      "forbidden": [
+        "Cự ly trung bình"
+      ],
       "require_accepted": true,
       "basis": "Common EN-version distance class."
     },
     {
       "id": "common.distance.long",
       "category": "distance",
-      "source_aliases": ["長距離", "长距离"],
+      "source_aliases": [
+        "長距離",
+        "长距离"
+      ],
       "preferred": "Long",
       "compact": [],
-      "accepted": ["Long"],
-      "forbidden": ["Cự ly dài"],
+      "accepted": [
+        "Long"
+      ],
+      "forbidden": [
+        "Cự ly dài"
+      ],
       "require_accepted": true,
       "basis": "Common EN-version distance class."
     },
     {
       "id": "common.style",
       "category": "running_style",
-      "source_aliases": ["脚質", "跑法"],
+      "source_aliases": [
+        "脚質",
+        "跑法"
+      ],
       "preferred": "Style",
       "compact": [],
-      "accepted": ["Style"],
-      "forbidden": ["Lối chạy"],
+      "accepted": [
+        "Style"
+      ],
+      "forbidden": [
+        "Lối chạy"
+      ],
       "require_accepted": true,
       "basis": "Common EN-version category label."
     },
     {
       "id": "common.style.front_runner",
       "category": "running_style",
-      "source_aliases": ["逃げ", "领跑"],
+      "source_aliases": [
+        "逃げ",
+        "领跑"
+      ],
       "preferred": "Front Runner",
-      "compact": ["Front"],
-      "accepted": ["Front Runner"],
-      "forbidden": ["Nige"],
+      "compact": [
+        "Front"
+      ],
+      "accepted": [
+        "Front Runner"
+      ],
+      "forbidden": [
+        "Nige"
+      ],
       "require_accepted": true,
       "basis": "Common EN-version running-style label; Front is acceptable in cramped UI."
     },
     {
       "id": "common.style.pace_chaser",
       "category": "running_style",
-      "source_aliases": ["先行"],
+      "source_aliases": [
+        "先行"
+      ],
       "preferred": "Pace Chaser",
-      "compact": ["Pace"],
-      "accepted": ["Pace Chaser"],
-      "forbidden": ["Senko"],
+      "compact": [
+        "Pace"
+      ],
+      "accepted": [
+        "Pace Chaser"
+      ],
+      "forbidden": [
+        "Senko"
+      ],
       "require_accepted": true,
       "basis": "Common EN-version running-style label; Pace is acceptable in cramped UI."
     },
     {
       "id": "common.style.late_surger",
       "category": "running_style",
-      "source_aliases": ["差し", "差行"],
+      "source_aliases": [
+        "差し",
+        "差行"
+      ],
       "preferred": "Late Surger",
-      "compact": ["Late"],
-      "accepted": ["Late Surger"],
-      "forbidden": ["Sashi"],
+      "compact": [
+        "Late"
+      ],
+      "accepted": [
+        "Late Surger"
+      ],
+      "forbidden": [
+        "Sashi"
+      ],
       "require_accepted": true,
       "basis": "Common EN-version running-style label; Late is acceptable in cramped UI."
     },
     {
       "id": "common.style.end_closer",
       "category": "running_style",
-      "source_aliases": ["追込", "追い込み", "追赶", "追马"],
+      "source_aliases": [
+        "追込",
+        "追い込み",
+        "追赶",
+        "追马"
+      ],
       "preferred": "End Closer",
-      "compact": ["End"],
-      "accepted": ["End Closer"],
-      "forbidden": ["Oikomi"],
+      "compact": [
+        "End"
+      ],
+      "accepted": [
+        "End Closer"
+      ],
+      "forbidden": [
+        "Oikomi"
+      ],
       "require_accepted": true,
       "basis": "Common EN-version running-style label; End is acceptable in cramped UI."
     },
     {
       "id": "common.skill.generic",
       "category": "skill_category",
-      "source_aliases": ["スキル", "技能"],
+      "source_aliases": [
+        "スキル",
+        "技能"
+      ],
       "preferred": "Skill",
       "compact": [],
-      "accepted": ["Skill"],
-      "forbidden": ["Kỹ năng"],
+      "accepted": [
+        "Skill"
+      ],
+      "forbidden": [
+        "Kỹ năng"
+      ],
       "require_accepted": true,
       "basis": "Generic gameplay label stays English. This does not mean individual skill names stay English."
     },
     {
       "id": "common.skill.unique",
       "category": "skill_category",
-      "source_aliases": ["固有スキル", "固有技能"],
+      "source_aliases": [
+        "固有スキル",
+        "固有技能"
+      ],
       "preferred": "Unique Skill",
       "compact": [],
-      "accepted": ["Unique Skill"],
-      "forbidden": ["Kỹ năng Độc nhất", "Kỹ năng độc nhất"],
+      "accepted": [
+        "Unique Skill"
+      ],
+      "forbidden": [
+        "Kỹ năng Độc nhất",
+        "Kỹ năng độc nhất"
+      ],
       "require_accepted": true,
       "basis": "Generic gameplay category label stays English."
     },
     {
       "id": "common.skill.evolution",
       "category": "skill_category",
-      "source_aliases": ["進化スキル", "进化技能"],
+      "source_aliases": [
+        "進化スキル",
+        "进化技能"
+      ],
       "preferred": "Evolution Skill",
       "compact": [],
-      "accepted": ["Evolution Skill"],
-      "forbidden": ["Kỹ năng Tiến hóa", "Kỹ năng tiến hóa"],
+      "accepted": [
+        "Evolution Skill"
+      ],
+      "forbidden": [
+        "Kỹ năng Tiến hóa",
+        "Kỹ năng tiến hóa"
+      ],
       "require_accepted": true,
       "basis": "Generic gameplay category label stays English."
     },
     {
       "id": "event.league_of_heroes",
       "category": "event",
-      "source_aliases": ["リーグオブヒーローズ", "英雄联盟赛"],
+      "source_aliases": [
+        "リーグオブヒーローズ",
+        "英雄联盟赛"
+      ],
       "preferred": "League of Heroes",
-      "compact": ["LoH"],
-      "accepted": ["League of Heroes"],
-      "forbidden": ["Liên minh Anh hùng", "Hero League"],
+      "compact": [
+        "LoH"
+      ],
+      "accepted": [
+        "League of Heroes"
+      ],
+      "forbidden": [
+        "Liên minh Anh hùng",
+        "Hero League"
+      ],
       "require_accepted": true,
       "basis": "Official/player-facing event name; LoH is established shorthand."
     },
     {
       "id": "event.loh.hero_skill",
       "category": "mechanic",
-      "key_prefixes": ["Heroes"],
-      "source_aliases": ["ヒーロースキル", "英雄技能"],
+      "key_prefixes": [
+        "Heroes"
+      ],
+      "source_aliases": [
+        "ヒーロースキル",
+        "英雄技能"
+      ],
       "preferred": "Hero Skill",
       "compact": [],
-      "accepted": ["Hero Skill"],
-      "forbidden": ["Kỹ năng Anh hùng"],
+      "accepted": [
+        "Hero Skill"
+      ],
+      "forbidden": [
+        "Kỹ năng Anh hùng"
+      ],
       "require_accepted": true,
       "basis": "Named League of Heroes mechanic."
     },
     {
       "id": "event.loh.hero_gauge",
       "category": "mechanic",
-      "key_prefixes": ["Heroes"],
-      "source_aliases": ["ヒーローゲージ", "英雄量表"],
+      "key_prefixes": [
+        "Heroes"
+      ],
+      "source_aliases": [
+        "ヒーローゲージ",
+        "英雄量表"
+      ],
       "preferred": "Hero Gauge",
       "compact": [],
-      "accepted": ["Hero Gauge"],
-      "forbidden": ["Thanh Anh hùng", "Thước Anh hùng"],
+      "accepted": [
+        "Hero Gauge"
+      ],
+      "forbidden": [
+        "Thanh Anh hùng",
+        "Thước Anh hùng"
+      ],
       "require_accepted": true,
       "basis": "Named League of Heroes gauge."
     },
     {
       "id": "event.loh.main_stage",
       "category": "stage",
-      "key_prefixes": ["Heroes"],
-      "source_aliases": ["メインステージ", "主要阶段"],
+      "key_prefixes": [
+        "Heroes"
+      ],
+      "source_aliases": [
+        "メインステージ",
+        "主要阶段"
+      ],
       "preferred": "Main Stage",
       "compact": [],
-      "accepted": ["Main Stage"],
-      "forbidden": ["Giai đoạn chính"],
+      "accepted": [
+        "Main Stage"
+      ],
+      "forbidden": [
+        "Giai đoạn chính"
+      ],
       "require_accepted": true,
       "basis": "Named League of Heroes stage."
     },
     {
       "id": "event.loh.extra_stage",
       "category": "stage",
-      "key_prefixes": ["Heroes"],
-      "source_aliases": ["エクストラステージ", "特别阶段"],
+      "key_prefixes": [
+        "Heroes"
+      ],
+      "source_aliases": [
+        "エクストラステージ",
+        "特别阶段"
+      ],
       "preferred": "Extra Stage",
       "compact": [],
-      "accepted": ["Extra Stage"],
-      "forbidden": ["Giai đoạn đặc biệt"],
+      "accepted": [
+        "Extra Stage"
+      ],
+      "forbidden": [
+        "Giai đoạn đặc biệt"
+      ],
       "require_accepted": true,
       "basis": "Named League of Heroes stage."
     },
     {
       "id": "event.loh.league_score",
       "category": "mechanic",
-      "key_prefixes": ["Heroes"],
-      "source_aliases": ["リーグスコア", "联赛得分"],
+      "key_prefixes": [
+        "Heroes"
+      ],
+      "source_aliases": [
+        "リーグスコア",
+        "联赛得分"
+      ],
       "preferred": "League Score",
       "compact": [],
-      "accepted": ["League Score"],
-      "forbidden": ["Điểm giải đấu"],
+      "accepted": [
+        "League Score"
+      ],
+      "forbidden": [
+        "Điểm giải đấu"
+      ],
       "require_accepted": true,
       "basis": "Named score used by League of Heroes UI."
     },
     {
       "id": "event.loh.uma_like",
       "category": "mechanic",
-      "key_prefixes": ["Heroes"],
-      "source_aliases": ["ウマいね！", "马赞"],
+      "key_prefixes": [
+        "Heroes"
+      ],
+      "source_aliases": [
+        "ウマいね！",
+        "马赞"
+      ],
       "preferred": "Uma Like!",
       "compact": [],
-      "accepted": ["Uma Like!"],
+      "accepted": [
+        "Uma Like!"
+      ],
       "forbidden": [],
       "require_accepted": true,
       "basis": "Player-facing feature name."

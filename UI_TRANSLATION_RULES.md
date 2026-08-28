@@ -28,7 +28,7 @@ Current Vietnamese output is never evidence of correctness.
 
 ### Common EN terms
 
-The current player-facing reference includes terms such as `Trainer`, `Speed`, `Stamina`, `Power`, `Guts`, `Wit`, `Aptitude`, `Rating`, `Condition`, `Legacy`, `Guest Legacy`, `Inspiration`, `Spark`, `Scenario`, `Track`, `Turf`, `Dirt`, `Distance`, `Sprint`, `Mile`, `Medium`, `Long`, `Style`, `Front Runner`, `Pace Chaser`, `Late Surger`, `End Closer`, `Skill`, `Unique Skill`, and `Evolution Skill`.
+The current player-facing reference includes terms such as `Trainer`, `Support Card`, `Mood`, `Speed`, `Stamina`, `Power`, `Guts`, `Wit`, `Aptitude`, `Rating`, `Condition`, `Legacy`, `Guest Legacy`, `Inspiration`, `Spark`, `Scenario`, `Track`, `Turf`, `Dirt`, `Distance`, `Sprint`, `Mile`, `Medium`, `Long`, `Style`, `Front Runner`, `Pace Chaser`, `Late Surger`, `End Closer`, `Skill`, `Unique Skill`, and `Evolution Skill`.
 
 Examples:
 
@@ -38,6 +38,8 @@ Examples:
 | スタミナ / 耐力 | Thể lực | **Stamina** |
 | 根性 / 毅力 | Ý chí | **Guts** |
 | 賢さ / 智力 | Trí tuệ | **Wit** |
+| やる気 / 干劲 | Tinh thần / Hứng khởi | **Mood** |
+| サポートカード / 支援卡 | Thẻ hỗ trợ | **Support Card** |
 | 芝 / 草地 | Sân cỏ | **Turf** |
 | 短距離 / 短距离 | Cự ly ngắn | **Sprint** |
 | 中距離 / 中距离 | Cự ly trung bình | **Medium** |

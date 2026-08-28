@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "policy": {
+    "purpose": "Protect Vietnamese review from literal or lossy zh-CN localization bridges when the game/worldbuilding uses a canonical player-facing concept.",
+    "scope": "Applied by translation review in addition to the normal term registry. This file is intentionally item-scoped and is not part of the global context hash, so adding a bridge rule only reopens matching entries.",
+    "resolved_rule": "A bridge-sensitive keep is resolved only when the accepted player-facing form is present and confidence is high.",
+    "untrusted_rule": "Known lossy zh-CN source titles stay deferred until a canonical Vietnamese rendering is curated from JP evidence."
+  },
+  "terms": [
+    {
+      "id": "currency.monies",
+      "category": "currency",
+      "ja": [
+        "マニー"
+      ],
+      "zh_cn": [
+        "金币"
+      ],
+      "preferred": "Monies",
+      "accepted": [
+        "Monies"
+      ],
+      "forbidden": [
+        "xu",
+        "tiền vàng",
+        "đồng vàng"
+      ],
+      "require_accepted": true,
+      "note": "金币 is the zh-CN localization bridge for the game's Monies currency. Do not literalize it as coins/gold coins in Vietnamese."
+    },
+    {
+      "id": "resource.cleat",
+      "category": "resource",
+      "ja": [
+        "蹄鉄"
+      ],
+      "zh_cn": [
+        "蹄铁"
+      ],
+      "preferred": "Cleat",
+      "accepted": [
+        "Cleat",
+        "Cleats"
+      ],
+      "forbidden": [
+        "móng ngựa"
+      ],
+      "require_accepted": true,
+      "note": "Player-facing Uma Musume terminology uses Cleat/Cleats for this resource. Avoid the literal horse-world calque 'móng ngựa'."
+    }
+  ],
+  "untrusted_sources": [
+    {
+      "id": "bridge.skill.dekoboko_nail",
+      "zh_cn_exact": [
+        "凹凸马蹄"
+      ],
+      "ja": [
+        "凸凹ネイル"
+      ],
+      "mode": "defer_until_canonical",
+      "note": "The zh-CN title changes the JP image ネイル (nail) into a horseshoe image; do not translate the zh-CN wording literally."
+    },
+    {
+      "id": "bridge.skill.frontline_target",
+      "zh_cn_exact": [
+        "前行"
+      ],
+      "ja": [
+        "前列狙い"
+      ],
+      "mode": "defer_until_canonical",
+      "note": "The zh-CN title is lossy: JP means targeting/aiming for the front positions rather than merely 'moving forward'."
+    }
+  ]
+}

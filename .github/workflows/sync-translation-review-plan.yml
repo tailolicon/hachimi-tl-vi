@@ -53,48 +53,41 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          git fetch origin main
-          git checkout -B translation-review-plan origin/main
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            git checkout -B translation-review-plan origin/main
 
-          python scripts/fix_condition_hardening_stager.py
-          python - <<'PY'
-          from pathlib import Path
-          path = Path("scripts/apply_condition_mood_hardening.py")
-          text = path.read_text(encoding="utf-8")
-          marker = "# Remove the temporary workflow hook and this script from the commit produced by the running workflow."
-          if marker in text:
-              text = text.split(marker, 1)[0].rstrip() + "\nprint('condition/mood hardening patch applied')\n"
-          path.write_text(text, encoding="utf-8", newline="\n")
-          PY
-          python scripts/apply_condition_mood_hardening.py
-          python scripts/enforce_player_facing_canon.py
-          python -m pip install -e ".[dev]"
-          pytest -q
-          python scripts/build_translation_review_plan.py --repo-root . --batch-size 20
+            python scripts/enforce_player_facing_canon.py
+            python -m pip install -e ".[dev]"
+            pytest -q
+            python scripts/build_translation_review_plan.py --repo-root . --batch-size 20
 
-          git add \
-            TRANSLATION_REVIEW.md \
-            glossary/term_registry.json \
-            glossary/ui_community_terms.json \
-            glossary/source_bridge_terms.json \
-            glossary/translation_audit_policy.json \
-            scripts/enforce_player_facing_canon.py \
-            scripts/translation_review_common.py \
-            scripts/build_translation_review_plan.py \
-            scripts/merge_translation_review.py \
-            scripts/merge_parallel_results.py \
-            scripts/aggregate_parallel_results.py \
-            src/hachimi_tl_vi/translation_guard.py \
-            src/hachimi_tl_vi/context_categories.py \
-            tests/test_translation_review.py \
-            tests/test_translation_guard.py \
-            work/translation_review \
-            work/parallel_state.json
-          git add -A scripts/fix_condition_hardening_stager.py scripts/apply_condition_mood_hardening.py
+            git add \
+              TRANSLATION_REVIEW.md \
+              glossary/term_registry.json \
+              glossary/ui_community_terms.json \
+              glossary/source_bridge_terms.json \
+              glossary/translation_audit_policy.json \
+              scripts/enforce_player_facing_canon.py \
+              scripts/translation_review_common.py \
+              scripts/build_translation_review_plan.py \
+              scripts/merge_translation_review.py \
+              scripts/merge_parallel_results.py \
+              scripts/aggregate_parallel_results.py \
+              src/hachimi_tl_vi/translation_guard.py \
+              src/hachimi_tl_vi/context_categories.py \
+              work/translation_review \
+              work/parallel_state.json
+            if git diff --cached --quiet; then
+              echo "Canonical terminology and translation review plan/gate are already current."
+              exit 0
+            fi
+            git commit -m "Translation review: enforce canon and sync active plan"
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+            sleep $((attempt * 2))
+          done
 
-          if git diff --cached --quiet; then
-            echo "ERROR: hardening produced no canonical diff" >&2
-            exit 2
-          fi
-          git commit -m "Canonical hardening: named conditions and mood levels"
-          git push origin HEAD:main
+          echo "Failed to publish canonical terminology/review plan after retries" >&2
+          exit 1

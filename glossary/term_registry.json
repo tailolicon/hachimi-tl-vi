@@ -27703,12 +27703,10 @@
       "ja": [
         "因子"
       ],
-      "zh_cn": [
-        "因子"
-      ],
+      "zh_cn": [],
       "target_vi": "Spark",
-      "locked": true,
-      "note": "Inheritance/Legacy system term. Use Spark/Sparks rather than Nhân tố."
+      "locked": false,
+      "note": "Umbrella Spark vocabulary record only. zh-CN 因子 is intentionally not matched globally; use the item-scoped legacy.spark.* records for proven inheritance/Spark contexts."
     },
     {
       "id": "condition.night_owl",
@@ -28192,6 +28190,92 @@
         "Race0634"
       ],
       "match_mode": "exact"
+    },
+    {
+      "id": "legacy.spark.inheritance_description",
+      "category": "legacy",
+      "ja": [
+        "因子"
+      ],
+      "zh_cn": [
+        "因子"
+      ],
+      "target_vi": "Spark",
+      "locked": true,
+      "source_paths": [
+        "text_data_dict.json"
+      ],
+      "json_path_prefixes": [
+        [
+          "172"
+        ]
+      ],
+      "match_mode": "contains",
+      "invalidation_scope": "item",
+      "note": "text_data category 172 is the pinned inheritance-description table. In this category 因子 is the Uma Musume Spark mechanic (stats, aptitudes, Skill-related inheritance), not generic factor/cause prose."
+    },
+    {
+      "id": "legacy.spark.localize_ui",
+      "category": "legacy",
+      "ja": [
+        "因子"
+      ],
+      "zh_cn": [
+        "因子"
+      ],
+      "target_vi": "Spark",
+      "locked": true,
+      "source_paths": [
+        "localize_dict.json"
+      ],
+      "match_mode": "contains",
+      "invalidation_scope": "item",
+      "note": "Current localize_dict 因子 occurrences are player-facing Spark/Legacy UI (FactorResearch, SingleMode, Outgame inheritance screens). The rule is source-path scoped so story/assets using generic factor language do not match."
+    },
+    {
+      "id": "skill.hint_level.singlemode0358",
+      "category": "skill",
+      "ja": [
+        "ヒントLv"
+      ],
+      "zh_cn": [
+        "灵感等级"
+      ],
+      "target_vi": "Hint Lv",
+      "locked": true,
+      "source_paths": [
+        "localize_dict.json"
+      ],
+      "key_exact": [
+        "SingleMode0358"
+      ],
+      "match_mode": "contains",
+      "invalidation_scope": "item",
+      "note": "SingleMode0358 is the Skill Hint level UI. Do not generalize plain 灵感/提示 to Hint because those words also occur as ordinary inspiration/advice."
+    },
+    {
+      "id": "legacy.affinity.outgame034x",
+      "category": "legacy",
+      "ja": [
+        "相性"
+      ],
+      "zh_cn": [
+        "相性"
+      ],
+      "target_vi": "Affinity",
+      "locked": true,
+      "source_paths": [
+        "localize_dict.json"
+      ],
+      "key_exact": [
+        "Outgame0343",
+        "Outgame0345",
+        "Outgame0346",
+        "Outgame0347"
+      ],
+      "match_mode": "contains",
+      "invalidation_scope": "item",
+      "note": "These exact Legacy UI slots are the Affinity bonus/◎/〇/△ labels. Scope is deliberately narrow; ordinary compatibility prose is not forced to the English system label."
     }
   ]
 }

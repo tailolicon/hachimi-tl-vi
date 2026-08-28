@@ -251,9 +251,7 @@
     {
       "id": "common.spark",
       "category": "legacy",
-      "source_aliases": [
-        "因子"
-      ],
+      "source_aliases": [],
       "preferred": "Spark",
       "compact": [],
       "accepted": [
@@ -264,7 +262,7 @@
         "Nhân tố"
       ],
       "require_accepted": true,
-      "basis": "Established Legacy/Inheritance terminology; Sparks pass stats, aptitudes, and Skill Hints."
+      "basis": "Umbrella Spark vocabulary only. 因子 must not match globally because zh-CN can also use the word for a generic factor/cause. Item-scoped Spark records below carry the actual enforcement."
     },
     {
       "id": "common.scenario",
@@ -754,10 +752,12 @@
       ],
       "forbidden": [
         "Điểm kỹ năng",
+        "điểm kỹ năng",
+        "điểm Skill",
         "Pt kỹ năng"
       ],
       "require_accepted": true,
-      "basis": "Established player-facing terminology; UI may use Skill Pt while prose may use Skill Points."
+      "basis": "Established player-facing resource terminology. UI may display Skill Pt; grammatical/plural prose may use Skill Pts or Skill Points. Generic points outside the full source aliases do not match this rule."
     },
     {
       "id": "common.skill_hint",
@@ -775,10 +775,12 @@
       ],
       "forbidden": [
         "Gợi ý Skill",
-        "Gợi ý kỹ năng"
+        "Gợi ý kỹ năng",
+        "Cảm hứng Skill",
+        "Cảm hứng kỹ năng"
       ],
       "require_accepted": true,
-      "basis": "Established player-facing terminology for skill hints."
+      "basis": "Skill Hint is a gameplay concept. Only the full Skill-Hint compounds are canonical aliases here; bare 提示/灵感/启示 remain ordinary language unless a narrower context rule proves otherwise."
     },
     {
       "id": "common.style.runaway",
@@ -1743,6 +1745,115 @@
       "basis": "Smart Falcon Condition family. Require the established Fan Promise concept while preserving the region; punctuation/region spelling may be resolved by the reviewer from the exact label. Outside the Condition-name table, match only an explicitly quoted occurrence of the exact source alias.",
       "invalidation_scope": "item",
       "match_mode": "contains"
+    },
+    {
+      "id": "common.spark.inheritance_description",
+      "source_aliases": [
+        "因子"
+      ],
+      "preferred": "Spark",
+      "accepted": [
+        "Spark",
+        "Sparks"
+      ],
+      "compact": [],
+      "forbidden": [
+        "Nhân tố",
+        "nhân tố",
+        "Factor",
+        "factor"
+      ],
+      "require_accepted": true,
+      "match_mode": "contains",
+      "invalidation_scope": "item",
+      "source_paths": [
+        "text_data_dict.json"
+      ],
+      "json_path_prefixes": [
+        [
+          "172"
+        ]
+      ],
+      "basis": "Pinned text_data category 172 is inheritance-description content; 因子 there is the Spark mechanic. Item scope prevents unrelated review IDs from reopening."
+    },
+    {
+      "id": "common.spark.localize_ui",
+      "source_aliases": [
+        "因子"
+      ],
+      "preferred": "Spark",
+      "accepted": [
+        "Spark",
+        "Sparks"
+      ],
+      "compact": [],
+      "forbidden": [
+        "Nhân tố",
+        "nhân tố",
+        "Factor",
+        "factor"
+      ],
+      "require_accepted": true,
+      "match_mode": "contains",
+      "invalidation_scope": "item",
+      "source_paths": [
+        "localize_dict.json"
+      ],
+      "basis": "Observed localize_dict occurrences are Spark/Legacy UI. Story/assets are intentionally outside this source-path guard."
+    },
+    {
+      "id": "common.skill_hint.level.singlemode0358",
+      "source_aliases": [
+        "灵感等级"
+      ],
+      "preferred": "Hint Lv",
+      "accepted": [
+        "Hint Lv"
+      ],
+      "compact": [],
+      "forbidden": [
+        "Lv gợi ý",
+        "Cấp gợi ý",
+        "Lv cảm hứng",
+        "Cấp cảm hứng"
+      ],
+      "require_accepted": true,
+      "source_paths": [
+        "localize_dict.json"
+      ],
+      "key_exact": [
+        "SingleMode0358"
+      ],
+      "match_mode": "contains",
+      "invalidation_scope": "item",
+      "basis": "Exact observed Skill Hint-level UI. Bare 灵感 is deliberately not an alias because it can mean ordinary inspiration."
+    },
+    {
+      "id": "common.legacy.affinity.outgame034x",
+      "source_aliases": [
+        "相性"
+      ],
+      "preferred": "Affinity",
+      "accepted": [
+        "Affinity"
+      ],
+      "compact": [],
+      "forbidden": [
+        "Tương thích"
+      ],
+      "require_accepted": true,
+      "source_paths": [
+        "localize_dict.json"
+      ],
+      "key_exact": [
+        "Outgame0343",
+        "Outgame0345",
+        "Outgame0346",
+        "Outgame0347"
+      ],
+      "match_mode": "contains",
+      "invalidation_scope": "item",
+      "basis": "Global Legacy UI uses Affinity for the compatibility indicator. These exact zh-CN UI keys are the bonus and ◎/〇/△ Affinity labels; no global 相性 replacement is introduced."
     }
   ]
 }

@@ -12,14 +12,20 @@ on:
       - "GAME_CONTEXT.md"
       - "glossary/term_registry.json"
       - "glossary/ui_community_terms.json"
+      - "glossary/source_bridge_terms.json"
       - "glossary/translation_audit_policy.json"
       - "glossary/skill_name_style.json"
       - "glossary/style_rules.json"
       - "scripts/enforce_player_facing_canon.py"
       - "scripts/build_translation_review_plan.py"
       - "scripts/translation_review_common.py"
+      - "scripts/merge_translation_review.py"
+      - "scripts/merge_parallel_results.py"
+      - "scripts/aggregate_parallel_results.py"
       - "src/hachimi_tl_vi/translation_guard.py"
       - "src/hachimi_tl_vi/context_categories.py"
+      - "tests/test_translation_review.py"
+      - "tests/test_translation_guard.py"
       - ".github/workflows/sync-translation-review-plan.yml"
   workflow_dispatch:
 
@@ -51,6 +57,7 @@ jobs:
             git fetch origin main
             git checkout -B translation-review-plan origin/main
 
+            python scripts/apply_condition_mood_hardening.py
             python scripts/enforce_player_facing_canon.py
             python -m pip install -e ".[dev]"
             pytest -q
@@ -60,17 +67,27 @@ jobs:
               TRANSLATION_REVIEW.md \
               glossary/term_registry.json \
               glossary/ui_community_terms.json \
+              glossary/source_bridge_terms.json \
               glossary/translation_audit_policy.json \
+              scripts/enforce_player_facing_canon.py \
               scripts/translation_review_common.py \
+              scripts/build_translation_review_plan.py \
+              scripts/merge_translation_review.py \
+              scripts/merge_parallel_results.py \
+              scripts/aggregate_parallel_results.py \
               src/hachimi_tl_vi/translation_guard.py \
               src/hachimi_tl_vi/context_categories.py \
+              tests/test_translation_review.py \
+              tests/test_translation_guard.py \
+              .github/workflows/sync-translation-review-plan.yml \
               work/translation_review \
               work/parallel_state.json
+            git add -A scripts/apply_condition_mood_hardening.py
             if git diff --cached --quiet; then
               echo "Canonical terminology and translation review plan/gate are already current."
               exit 0
             fi
-            git commit -m "Translation review: enforce canon and sync active plan"
+            git commit -m "Canonical hardening: named conditions and mood levels"
             if git push origin HEAD:main; then
               exit 0
             fi

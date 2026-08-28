@@ -57,6 +57,7 @@ jobs:
             git fetch origin main
             git checkout -B translation-review-plan origin/main
 
+            python scripts/fix_condition_hardening_stager.py
             python scripts/apply_condition_mood_hardening.py
             python scripts/enforce_player_facing_canon.py
             python -m pip install -e ".[dev]"
@@ -82,7 +83,7 @@ jobs:
               .github/workflows/sync-translation-review-plan.yml \
               work/translation_review \
               work/parallel_state.json
-            git add -A scripts/apply_condition_mood_hardening.py
+            git add -A scripts/apply_condition_mood_hardening.py scripts/fix_condition_hardening_stager.py
             if git diff --cached --quiet; then
               echo "Canonical terminology and translation review plan/gate are already current."
               exit 0

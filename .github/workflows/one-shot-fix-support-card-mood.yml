@@ -1,0 +1,156 @@
+name: One-shot canonical Support Card and Mood repair
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/one-shot-fix-support-card-mood.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: one-shot-support-card-mood-repair
+  cancel-in-progress: false
+
+jobs:
+  repair:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Repair canonical player-facing terminology
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          import json
+
+          root = Path('.')
+
+          def read_json(path):
+              return json.loads(path.read_text(encoding='utf-8'))
+
+          def write_json(path, value):
+              path.write_text(json.dumps(value, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+
+          # Fix the legacy canonical registry itself so non-UI and future workers
+          # do not inherit stale Vietnamese calques.
+          registry_path = root / 'glossary/term_registry.json'
+          registry = read_json(registry_path)
+          expected = {
+              'system.support_card': ('Support Card', 'Player-facing Uma Musume term; keep Support Card in English.'),
+              'state.motivation': ('Mood', 'Player-facing Uma Musume state term; やる気/干劲 maps to Mood.'),
+          }
+          found = set()
+          for term in registry.get('terms', []):
+              term_id = term.get('id')
+              if term_id in expected:
+                  target, note = expected[term_id]
+                  term['target_vi'] = target
+                  term['locked'] = True
+                  term['note'] = note
+                  found.add(term_id)
+          missing = set(expected) - found
+          if missing:
+              raise SystemExit(f'missing canonical term ids: {sorted(missing)}')
+          write_json(registry_path, registry)
+
+          # Add explicit authoritative player-facing overrides and regression
+          # rejection forms. This layer outranks legacy locked mappings in review.
+          community_path = root / 'glossary/ui_community_terms.json'
+          community = read_json(community_path)
+          community['policy_version'] = max(int(community.get('policy_version', 0)), 5)
+          new_terms = [
+              {
+                  'id': 'common.support_card',
+                  'category': 'system',
+                  'source_aliases': ['サポートカード', '支援卡'],
+                  'preferred': 'Support Card',
+                  'compact': [],
+                  'accepted': ['Support Card'],
+                  'forbidden': ['Thẻ hỗ trợ'],
+                  'require_accepted': True,
+                  'basis': 'Common player-facing Uma Musume term; preserve Support Card in English.'
+              },
+              {
+                  'id': 'common.state.mood',
+                  'category': 'state',
+                  'source_aliases': ['やる気', '干劲'],
+                  'preferred': 'Mood',
+                  'compact': [],
+                  'accepted': ['Mood'],
+                  'forbidden': ['Tinh thần', 'Hứng khởi'],
+                  'require_accepted': True,
+                  'basis': 'Common player-facing Uma Musume state term; Mood/Mood Effect is the established terminology.'
+              },
+          ]
+          terms = [t for t in community.get('terms', []) if t.get('id') not in {x['id'] for x in new_terms}]
+          insert_at = next((i + 1 for i, t in enumerate(terms) if t.get('id') == 'common.trainer'), 0)
+          terms[insert_at:insert_at] = new_terms
+          community['terms'] = terms
+          write_json(community_path, community)
+
+          # Remove stale UI short forms that can reintroduce the Vietnamese calque.
+          short_path = root / 'glossary/ui_short_forms.json'
+          short = read_json(short_path)
+          for term in short.get('terms', []):
+              concept = term.get('concept')
+              if concept == 'support_card':
+                  term.update(full='Support Card', compact='Support Card', micro='Card')
+              elif concept == 'support_card_details':
+                  term.update(full='Chi tiết Support Card', compact='Chi tiết', micro='Chi tiết')
+              elif concept == 'support_exchange_points':
+                  term.update(full='Điểm đổi Support Card', compact='Điểm đổi', micro='Điểm')
+          write_json(short_path, short)
+
+          # Make the human-facing UI policy explicit too.
+          rules_path = root / 'UI_TRANSLATION_RULES.md'
+          rules = rules_path.read_text(encoding='utf-8')
+          old = '`Trainer`, `Speed`, `Stamina`, `Power`, `Guts`, `Wit`, `Aptitude`'
+          new = '`Trainer`, `Support Card`, `Mood`, `Speed`, `Stamina`, `Power`, `Guts`, `Wit`, `Aptitude`'
+          if old in rules:
+              rules = rules.replace(old, new, 1)
+          anchor = '| 賢さ / 智力 | Trí tuệ | **Wit** |\n'
+          rows = '| やる気 / 干劲 | Tinh thần / Hứng khởi | **Mood** |\n| サポートカード / 支援卡 | Thẻ hỗ trợ | **Support Card** |\n'
+          if rows not in rules:
+              if anchor not in rules:
+                  raise SystemExit('UI terminology table anchor not found')
+              rules = rules.replace(anchor, anchor + rows, 1)
+          rules_path.write_text(rules, encoding='utf-8')
+
+          # Sanity checks.
+          assert any(t.get('id') == 'system.support_card' and t.get('target_vi') == 'Support Card' for t in registry['terms'])
+          assert any(t.get('id') == 'state.motivation' and t.get('target_vi') == 'Mood' for t in registry['terms'])
+          assert any(t.get('id') == 'common.support_card' and 'Support Card' in t.get('accepted', []) for t in community['terms'])
+          assert any(t.get('id') == 'common.state.mood' and 'Mood' in t.get('accepted', []) for t in community['terms'])
+          PY
+
+          python -m json.tool glossary/term_registry.json >/dev/null
+          python -m json.tool glossary/ui_community_terms.json >/dev/null
+          python -m json.tool glossary/ui_short_forms.json >/dev/null
+
+      - name: Publish repair and remove one-shot workflow
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm .github/workflows/one-shot-fix-support-card-mood.yml
+          git add glossary/term_registry.json glossary/ui_community_terms.json glossary/ui_short_forms.json UI_TRANSLATION_RULES.md
+          git commit -m "Fix Support Card and Mood terminology"
+          for attempt in 1 2 3 4 5; do
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+            git pull --rebase origin main
+            sleep $((attempt * 2))
+          done
+          echo "Could not publish canonical terminology repair safely." >&2
+          exit 1

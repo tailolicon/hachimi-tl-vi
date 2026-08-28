@@ -48,10 +48,10 @@ jobs:
             python scripts/build_translation_review_plan.py --repo-root . --batch-size 20
             git diff --check
 
-            rm -f scripts/stage_canonical_finding_pipeline.py
-            rm -f scripts/fix_canonical_finding_stage_import.py
-            rm -f .github/workflows/stage-canonical-finding-pipeline.yml
-
+            # GitHub Actions GITHUB_TOKEN cannot publish workflow-file changes.
+            # Stage only permanent code/data/docs here; workflow wiring and
+            # temporary-stager cleanup are published atomically by the
+            # connected GitHub maintainer after this validated commit lands.
             git add \
               TRANSLATION_REVIEW.md \
               CONTEXT_MAINTENANCE.md \
@@ -63,14 +63,7 @@ jobs:
               scripts/merge_translation_review.py \
               scripts/build_terminology_review_queue.py \
               tests/test_canonical_findings.py \
-              tests/test_terminology_review.py \
-              .github/workflows/merge-translation-review.yml \
-              .github/workflows/sync-translation-review-plan.yml \
-              .github/workflows/sync-context.yml
-            git add -A \
-              scripts/stage_canonical_finding_pipeline.py \
-              scripts/fix_canonical_finding_stage_import.py \
-              .github/workflows/stage-canonical-finding-pipeline.yml
+              tests/test_terminology_review.py
 
             git commit -m "Translation review: add canonical-first finding pipeline"
             if git push origin HEAD:main; then

@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "policy_version": 1,
+  "session_minutes": 25,
+  "rolling_lease_minutes": 12,
+  "heartbeat_every_minutes": 6,
+  "checkpoint_every_decisions": 5,
+  "stop_new_batch_after_minutes": 18,
+  "handoff_start_minutes": 22,
+  "claim_statuses": ["active", "released", "complete"],
+  "effective_lease_rule": "For ChatGPT workers, use the shorter of this rolling_lease_minutes and any longer lease advertised by an active review plan or translation epoch. Refresh only after durable checkpoint save.",
+  "released_claim_rule": "A released claim is immediately takeover-eligible. The successor must atomically replace it using the current blob SHA, preserving the prior partial_result_path as handoff evidence before assigning a new claim_id.",
+  "partial_checkpoint_rule": "Save a partial result after every checkpoint_every_decisions completed items or heartbeat_every_minutes, whichever comes first. Save result first, then refresh the claim.",
+  "session_end_rule": "Start handoff by handoff_start_minutes. If incomplete, save partial result then mark only your own claim released with partial_result_path and completed_count. Do not intentionally leave an active claim at session end.",
+  "throughput_rule": "A worker may claim another batch only before stop_new_batch_after_minutes. Prefer continuing from a released/expired partial batch over starting untouched work when both have similar priority."
+}

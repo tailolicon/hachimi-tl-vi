@@ -85,6 +85,39 @@ def _validate_terms(item: dict[str, Any], candidate: str, decision: dict[str, An
             errors.append(f"{item['uid']}: canonical skill title must be {expected!r}")
 
 
+def _embedded_term_defer_reasons(
+    item: dict[str, Any],
+    candidate: str,
+    decision: dict[str, Any],
+) -> list[str]:
+    reasons: list[str] = []
+    term_sensitive = bool(item.get("locked_terms") or item.get("community_terms") or item.get("skill_name_canonical"))
+    if term_sensitive:
+        basis = decision.get("terminology_basis")
+        if not isinstance(basis, str) or not basis.strip():
+            reasons.append("missing_terminology_basis")
+
+    for term in item.get("locked_terms", []):
+        expected = str(term.get("target_vi", ""))
+        if expected and not contains_any(candidate, [expected]):
+            reasons.append("locked_term_mismatch")
+
+    for term in item.get("community_terms", []):
+        forbidden = [str(v) for v in term.get("forbidden", []) if str(v)]
+        accepted = [str(v) for v in term.get("accepted", []) if str(v)]
+        if forbidden and contains_any(candidate, forbidden):
+            reasons.append("community_forbidden_wording")
+        if bool(term.get("require_accepted", True)) and accepted and not contains_any(candidate, accepted):
+            reasons.append("community_term_mismatch")
+
+    skill = item.get("skill_name_canonical")
+    if isinstance(skill, dict):
+        expected = str(skill.get("target_vi", "")).strip()
+        if expected and normalize(candidate) != normalize(expected):
+            reasons.append("canonical_skill_name_mismatch")
+    return list(dict.fromkeys(reasons))
+
+
 def _bridge_auto_defer_reasons(
     item: dict[str, Any],
     candidate: str,
@@ -124,6 +157,7 @@ def _validate_result(
     bridge_term_rules: list[dict[str, Any]] | None = None,
     bridge_risk_rules: list[dict[str, Any]] | None = None,
     bridge_hash: str = "",
+    defer_term_conflicts: bool = False,
 ) -> tuple[list[dict[str, Any]], list[str]]:
     bridge_term_rules = bridge_term_rules or []
     bridge_risk_rules = bridge_risk_rules or []
@@ -174,7 +208,10 @@ def _validate_result(
         if not isinstance(reason, str) or not reason.strip():
             errors.append(f"{uid}: reason is required")
         if action == "revise" and confidence == "low":
-            errors.append(f"{uid}: low-confidence revisions must defer")
+            if defer_term_conflicts:
+                action = "defer"
+            else:
+                errors.append(f"{uid}: low-confidence revisions must defer")
 
         proposed = decision.get("proposed_text")
         candidate = str(item.get("current_text", ""))
@@ -183,7 +220,7 @@ def _validate_result(
                 errors.append(f"{uid}: revise requires proposed_text")
             else:
                 candidate = proposed
-        elif proposed is not None:
+        elif proposed is not None and str(decision.get("action", "")) != "revise":
             errors.append(f"{uid}: proposed_text is only allowed for revise")
 
         qa = structural_qa(str(item.get("source_text", "")), candidate)
@@ -200,6 +237,8 @@ def _validate_result(
             bridge_risk_rules,
         )
         auto_defer.extend(bridge_defer)
+        if defer_term_conflicts and action in {"keep", "revise"}:
+            auto_defer.extend(_embedded_term_defer_reasons(item, candidate, decision))
         auto_defer = list(dict.fromkeys(auto_defer))
         normalized_action = "defer" if auto_defer and action in {"keep", "revise"} else action
 
@@ -209,7 +248,7 @@ def _validate_result(
         normalized.append({
             "uid": uid,
             "action": normalized_action,
-            "submitted_action": action,
+            "submitted_action": str(decision.get("action", "")),
             "confidence": confidence,
             "reason": reason,
             "proposed_text": proposed,
@@ -320,6 +359,7 @@ def merge(repo_root: Path) -> dict[str, Any]:
             bridge_term_rules,
             bridge_risk_rules,
             bridge_hash,
+            defer_term_conflicts=True,
         )
         if errors:
             raise ValueError(f"{batch_id}: " + "; ".join(errors))

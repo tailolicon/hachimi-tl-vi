@@ -1,0 +1,38 @@
+name: Validate race hardening
+
+on:
+  push:
+    branches: [canonical-race-hardening-20260828]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: python -m pip install -e ".[dev]"
+      - run: pytest -q
+      - run: python -m py_compile scripts/race_inventory_tmp.py
+      - name: Build deterministic race inventory
+        run: python scripts/race_inventory_tmp.py
+      - name: Publish branch-only inventory
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add work/tmp_race_*.json
+          if git diff --cached --quiet; then
+            echo "Race inventory already current."
+            exit 0
+          fi
+          git commit -m "TEMP: refresh race inventory"
+          git push origin HEAD:canonical-race-hardening-20260828

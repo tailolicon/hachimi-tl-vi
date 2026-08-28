@@ -6,6 +6,7 @@ on:
     paths:
       - "work/translation_review/completions/**"
       - "scripts/translation_review_common.py"
+      - "scripts/canonical_findings.py"
       - "scripts/build_translation_review_plan.py"
       - "scripts/merge_translation_review.py"
       - "scripts/build_translation_regression_memory.py"
@@ -14,6 +15,7 @@ on:
       - "glossary/source_bridge_terms.json"
       - "glossary/source_bridge_risks.generated.json"
       - "glossary/translation_regressions.generated.json"
+      - "glossary/canonical_findings.json"
       - "tests/test_translation_review_source_bridge.py"
       - ".github/workflows/merge-translation-review.yml"
   workflow_dispatch:
@@ -55,13 +57,15 @@ jobs:
 
             python scripts/merge_translation_review.py --repo-root .
             python scripts/build_translation_regression_memory.py --repo-root .
+            python scripts/canonical_findings.py --repo-root . --refresh
+            python scripts/build_terminology_review_queue.py
             pytest -q
             tlvi --db /tmp/tlvi-translation-review.db validate
             tlvi --db /tmp/tlvi-translation-review.db index
 
             python scripts/build_translation_review_plan.py --repo-root . --batch-size 20
 
-            git add localized_data index.json glossary/translation_regressions.generated.json work/translation_review work/parallel_state.json
+            git add localized_data index.json glossary/translation_regressions.generated.json glossary/canonical_findings.json glossary/terminology_review_queue.json work/translation_review work/parallel_state.json
             if git diff --cached --quiet; then
               echo "No new completed translation review work or regression memory changes to merge."
               exit 0

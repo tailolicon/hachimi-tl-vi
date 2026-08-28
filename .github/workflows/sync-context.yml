@@ -11,6 +11,7 @@ on:
       - "scripts/extract_context_candidates.py"
       - "scripts/build_observed_term_memory.py"
       - "scripts/build_terminology_review_queue.py"
+      - "scripts/canonical_findings.py"
       - "scripts/build_source_bridge_risk_registry.py"
       - "scripts/apply_terminology_reviews.py"
       - "src/hachimi_tl_vi/context_categories.py"
@@ -19,6 +20,7 @@ on:
       - "glossary/term_registry.json"
       - "glossary/observed_terms.json"
       - "glossary/terminology_reviews.json"
+      - "glossary/canonical_findings.json"
       - "glossary/source_bridge_terms.json"
       - "tests/test_context_registry.py"
       - "tests/test_context_sync.py"
@@ -68,6 +70,9 @@ jobs:
       - name: Build source-bridge risk registry
         run: python scripts/build_source_bridge_risk_registry.py
 
+      - name: Refresh worker-reported canonical findings
+        run: python scripts/canonical_findings.py --repo-root . --refresh
+
       - name: Build terminology review queue
         run: python scripts/build_terminology_review_queue.py
 
@@ -85,6 +90,7 @@ jobs:
             glossary/generated_candidates.json \
             glossary/observed_terms.json \
             glossary/term_registry.json \
+            glossary/canonical_findings.json \
             glossary/terminology_review_queue.json \
             glossary/source_bridge_risks.generated.json
           if git diff --cached --quiet; then

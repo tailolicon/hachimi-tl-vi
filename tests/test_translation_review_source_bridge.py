@@ -20,6 +20,10 @@ def _bridge_rules():
     return config["terms"], config["untrusted_sources"]
 
 
+def _by_id(matches):
+    return {match["id"]: match for match in matches}
+
+
 def test_monies_rejects_literal_coin_translation() -> None:
     terms, _ = _bridge_rules()
     matches = source_bridge_term_matches("金币不足", "Không đủ xu", terms)
@@ -37,28 +41,62 @@ def test_monies_accepts_player_facing_term() -> None:
     assert matches[0]["forbidden_present"] is False
 
 
+def test_support_card_rejects_vietnamese_calque() -> None:
+    terms, _ = _bridge_rules()
+    matches = _by_id(source_bridge_term_matches("支援卡", "Thẻ hỗ trợ", terms))
+    support = matches["system.support_card"]
+    assert support["accepted_present"] is False
+    assert support["forbidden_present"] is True
+
+
+def test_support_card_accepts_player_facing_term() -> None:
+    terms, _ = _bridge_rules()
+    matches = _by_id(source_bridge_term_matches("支援卡", "Support Card", terms))
+    support = matches["system.support_card"]
+    assert support["accepted_present"] is True
+    assert support["forbidden_present"] is False
+
+
+def test_mood_rejects_old_vietnamese_terms() -> None:
+    terms, _ = _bridge_rules()
+    for target in ("Tinh thần", "Hứng khởi"):
+        matches = _by_id(source_bridge_term_matches("干劲", target, terms))
+        mood = matches["state.mood"]
+        assert mood["accepted_present"] is False
+        assert mood["forbidden_present"] is True
+
+
+def test_mood_accepts_player_facing_term() -> None:
+    terms, _ = _bridge_rules()
+    matches = _by_id(source_bridge_term_matches("干劲", "Mood", terms))
+    mood = matches["state.mood"]
+    assert mood["accepted_present"] is True
+    assert mood["forbidden_present"] is False
+
+
 def test_cleat_rejects_horse_world_calque() -> None:
     terms, _ = _bridge_rules()
-    matches = source_bridge_term_matches(
+    matches = _by_id(source_bridge_term_matches(
         "通过转换支援卡\n获得了以下的蹄铁",
         "Khi chuyển đổi Thẻ Hỗ trợ\nđã nhận được các Móng ngựa sau",
         terms,
-    )
-    assert len(matches) == 1
-    assert matches[0]["id"] == "resource.cleat"
-    assert matches[0]["accepted_present"] is False
-    assert matches[0]["forbidden_present"] is True
+    ))
+    assert {"resource.cleat", "system.support_card"} <= set(matches)
+    cleat = matches["resource.cleat"]
+    assert cleat["accepted_present"] is False
+    assert cleat["forbidden_present"] is True
 
 
 def test_cleat_accepts_player_facing_term() -> None:
     terms, _ = _bridge_rules()
-    matches = source_bridge_term_matches(
+    matches = _by_id(source_bridge_term_matches(
         "通过转换支援卡\n获得了以下的蹄铁",
-        "Khi chuyển đổi Thẻ Hỗ trợ\nđã nhận được các Cleats sau",
+        "Khi chuyển đổi Support Card\nđã nhận được các Cleats sau",
         terms,
-    )
-    assert len(matches) == 1
-    assert matches[0]["accepted_present"] is True
+    ))
+    assert {"resource.cleat", "system.support_card"} <= set(matches)
+    assert matches["resource.cleat"]["accepted_present"] is True
+    assert matches["system.support_card"]["accepted_present"] is True
 
 
 def test_known_lossy_zhcn_title_is_untrusted() -> None:

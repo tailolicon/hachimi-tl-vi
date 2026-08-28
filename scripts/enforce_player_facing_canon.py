@@ -168,6 +168,17 @@ CONDITION_CONTEXT = {
     "match_mode": "exact",
 }
 
+def quoted_condition_aliases(values: list[str]) -> list[str]:
+    """Aliases safe outside the Condition-name table because the source explicitly quotes the name."""
+    result: list[str] = []
+    for value in values:
+        for left, right in (("「", "」"), ("“", "”"), ("『", "』"), ('"', '"')):
+            alias = f"{left}{value}{right}"
+            if alias not in result:
+                result.append(alias)
+    return result
+
+
 def load_json(path: Path, default: Any) -> Any:
     if not path.exists():
         return default
@@ -439,6 +450,19 @@ def update_community(repo_root: Path) -> bool:
             "basis": spec["note"],
             **CONDITION_CONTEXT,
         })
+        records.append({
+            "id": "common." + spec["id"] + ".reference",
+            "category": "condition_reference",
+            "source_aliases": quoted_condition_aliases(spec["zh_cn"]),
+            "preferred": spec["target"],
+            "compact": [],
+            "accepted": [spec["target"]],
+            "forbidden": spec["forbidden"],
+            "require_accepted": True,
+            "basis": spec["note"] + " Outside the Condition-name table, match only an explicitly quoted occurrence of the exact source alias.",
+            "invalidation_scope": "item",
+            "match_mode": "contains",
+        })
     for spec in MOOD_LEVELS:
         records.append({
             "id": "common." + spec["id"],
@@ -496,6 +520,17 @@ def update_source_bridge(repo_root: Path) -> bool:
             "json_path_prefixes": [["142"]],
             "match_mode": "exact",
             "note": spec["note"] + " The zh-CN semantic label is not authoritative outside this guarded Condition slot.",
+        })
+        upsert_by_id(terms, {
+            "id": spec["id"] + ".reference",
+            "ja": [],
+            "zh_cn": quoted_condition_aliases(spec["zh_cn"]),
+            "preferred": spec["target"],
+            "accepted": [spec["target"]],
+            "forbidden": spec["forbidden"],
+            "require_accepted": True,
+            "match_mode": "contains",
+            "note": spec["note"] + " Explicitly quoted source aliases are safe named-Condition references outside category 142; unquoted prose remains outside this rule.",
         })
     for spec in MOOD_LEVELS:
         upsert_by_id(terms, {

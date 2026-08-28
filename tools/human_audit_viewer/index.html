@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark light">
+  <title>Human Audit Viewer — hachimi-tl-vi</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <div class="eyebrow">tailolicon/hachimi-tl-vi</div>
+      <h1>Human Audit Viewer</h1>
+      <p class="subtitle">Đọc source → bản Việt hiện tại → canonical context, rồi ghi audit thủ công ngay trong browser.</p>
+    </div>
+    <div class="top-actions">
+      <button id="reloadPlanBtn" class="button primary">↻ Tải plan mới nhất</button>
+      <button id="settingsBtn" class="button">⚙ Nguồn dữ liệu</button>
+    </div>
+  </header>
+
+  <main class="app-shell">
+    <section id="statusPanel" class="panel status-panel">
+      <div class="status-grid">
+        <div><span class="label">Plan</span><strong id="planId">—</strong></div>
+        <div><span class="label">Corpus</span><strong id="candidateCount">—</strong></div>
+        <div><span class="label">Batch</span><strong id="batchCount">—</strong></div>
+        <div><span class="label">Audit local</span><strong id="annotationProgress">0 / 0</strong></div>
+      </div>
+      <div id="planWarning" class="banner warning hidden"></div>
+      <div class="banner info">
+        <strong>Lưu ý:</strong> “Bản Việt hiện tại” chỉ là baseline đang được retrospective review; không đồng nghĩa đã được chấp nhận.
+      </div>
+    </section>
+
+    <section class="panel toolbar">
+      <div class="toolbar-row">
+        <label class="field grow">
+          <span>Tìm kiếm</span>
+          <input id="searchInput" type="search" placeholder="source, bản Việt, UID, locator, term, risk…">
+        </label>
+        <label class="field">
+          <span>Nhóm</span>
+          <select id="categoryFilter">
+            <option value="">Tất cả</option>
+          </select>
+        </label>
+        <label class="field">
+          <span>Verdict</span>
+          <select id="verdictFilter">
+            <option value="">Tất cả</option>
+            <option value="unreviewed">Chưa audit</option>
+            <option value="ok">OK</option>
+            <option value="issue">Có lỗi</option>
+            <option value="check">Cần kiểm tra</option>
+          </select>
+        </label>
+        <label class="field">
+          <span>Risk</span>
+          <select id="riskFilter">
+            <option value="">Tất cả</option>
+            <option value="has-risk">Có risk</option>
+            <option value="high-risk">Risk ≥ 10</option>
+            <option value="term-risk">Terminology</option>
+            <option value="bridge-risk">Source bridge</option>
+            <option value="structure-risk">Numeric/structure</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="toolbar-row compact">
+        <div class="batch-nav">
+          <button id="prevBatchBtn" class="button">← Batch trước</button>
+          <label class="field inline">
+            <span>Batch #</span>
+            <input id="batchNumberInput" type="number" min="1" value="1">
+          </label>
+          <button id="goBatchBtn" class="button">Đi</button>
+          <button id="nextBatchBtn" class="button">Batch sau →</button>
+        </div>
+        <div class="load-actions">
+          <span id="loadedInfo" class="muted">0 batch đã tải</span>
+          <button id="loadAllBtn" class="button">Tải toàn bộ corpus</button>
+          <button id="cancelLoadBtn" class="button danger hidden">Dừng</button>
+        </div>
+      </div>
+
+      <div id="globalLoadProgressWrap" class="progress-wrap hidden">
+        <div class="progress-track"><div id="globalLoadProgress" class="progress-bar"></div></div>
+        <span id="globalLoadLabel">0%</span>
+      </div>
+    </section>
+
+    <section class="panel summary-panel">
+      <div class="summary-left">
+        <strong id="visibleCount">0</strong>
+        <span>entry đang hiển thị</span>
+        <span class="separator">•</span>
+        <span id="scopeLabel">scope: batch hiện tại</span>
+      </div>
+      <div class="summary-actions">
+        <button id="exportJsonBtn" class="button">Export JSON</button>
+        <button id="exportCsvBtn" class="button">Export CSV</button>
+        <button id="exportIssuesBtn" class="button">Export lỗi .md</button>
+        <label class="button file-button">
+          Import audit
+          <input id="importInput" type="file" accept=".json,application/json">
+        </label>
+      </div>
+    </section>
+
+    <section id="entryList" class="entry-list"></section>
+
+    <section id="emptyState" class="panel empty-state hidden">
+      <h2>Không có entry phù hợp</h2>
+      <p>Thử bỏ bớt filter, đổi batch, hoặc tải toàn bộ corpus để tìm kiếm toàn cục.</p>
+    </section>
+  </main>
+
+  <dialog id="settingsDialog" class="settings-dialog">
+    <form method="dialog">
+      <div class="dialog-head">
+        <div>
+          <div class="eyebrow">Data source</div>
+          <h2>Nguồn dữ liệu repo</h2>
+        </div>
+        <button class="icon-button" value="cancel" aria-label="Đóng">✕</button>
+      </div>
+      <p class="muted">
+        Khi chạy bằng static server từ repo, dùng local root để xem snapshot checkout hiện tại.
+        Nếu mở viewer ở nơi khác, dùng GitHub Raw để luôn đọc <code>main</code>.
+      </p>
+      <label class="field">
+        <span>Base URL</span>
+        <input id="dataRootInput" type="text" spellcheck="false">
+      </label>
+      <div class="preset-row">
+        <button id="useLocalBtn" type="button" class="button">Local repo (../../)</button>
+        <button id="useGithubBtn" type="button" class="button">GitHub Raw main</button>
+      </div>
+      <div class="dialog-actions">
+        <button value="cancel" class="button">Hủy</button>
+        <button id="saveSettingsBtn" value="default" class="button primary">Lưu & tải lại</button>
+      </div>
+    </form>
+  </dialog>
+
+  <template id="entryTemplate">
+    <article class="entry-card">
+      <div class="entry-head">
+        <div class="entry-titleline">
+          <span class="entry-number"></span>
+          <span class="badge category-badge"></span>
+          <span class="badge risk-badge"></span>
+          <span class="badge verdict-badge"></span>
+        </div>
+        <div class="entry-meta"></div>
+      </div>
+
+      <div class="translation-grid">
+        <section class="text-pane">
+          <div class="pane-head">
+            <span>Source</span>
+            <button class="copy-source ghost-button" type="button">Copy</button>
+          </div>
+          <pre class="source-text"></pre>
+        </section>
+        <section class="text-pane current-pane">
+          <div class="pane-head">
+            <span>Bản Việt hiện tại</span>
+            <button class="copy-current ghost-button" type="button">Copy</button>
+          </div>
+          <pre class="current-text"></pre>
+        </section>
+      </div>
+
+      <details class="context-details">
+        <summary>Canonical / risk context</summary>
+        <div class="context-body"></div>
+      </details>
+
+      <section class="audit-box">
+        <div class="verdict-row">
+          <button type="button" data-verdict="ok" class="verdict-button ok">✓ OK</button>
+          <button type="button" data-verdict="issue" class="verdict-button issue">✕ Có lỗi</button>
+          <button type="button" data-verdict="check" class="verdict-button check">? Cần kiểm tra</button>
+          <button type="button" data-verdict="unreviewed" class="verdict-button clear">↺ Bỏ đánh dấu</button>
+        </div>
+
+        <div class="issue-tags">
+          <label><input type="checkbox" value="meaning"> Sai nghĩa</label>
+          <label><input type="checkbox" value="term"> Sai thuật ngữ</label>
+          <label><input type="checkbox" value="proper_name"> Sai tên riêng</label>
+          <label><input type="checkbox" value="naturalness"> Cứng / không tự nhiên</label>
+          <label><input type="checkbox" value="structure"> Sai số / cấu trúc</label>
+          <label><input type="checkbox" value="source_bridge"> Lỗi source bridge</label>
+          <label><input type="checkbox" value="other"> Khác</label>
+        </div>
+
+        <div class="audit-input-grid">
+          <label class="field">
+            <span>Ghi chú audit</span>
+            <textarea class="audit-note" rows="3" placeholder="Ví dụ: Condition phải dùng Night Owl; Power không được dịch là Sức mạnh…"></textarea>
+          </label>
+          <label class="field">
+            <span>Bản sửa đề xuất (không bắt buộc)</span>
+            <textarea class="audit-proposal" rows="3" placeholder="Nhập bản Việt bạn muốn nếu đã chắc chắn."></textarea>
+          </label>
+        </div>
+        <div class="saved-indicator">Tự lưu trong browser</div>
+      </section>
+
+      <details class="raw-details">
+        <summary>Raw item JSON</summary>
+        <pre class="raw-json"></pre>
+      </details>
+    </article>
+  </template>
+
+  <script src="./app.js" defer></script>
+</body>
+</html>

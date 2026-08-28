@@ -12,10 +12,14 @@ on:
       - "GAME_CONTEXT.md"
       - "glossary/term_registry.json"
       - "glossary/ui_community_terms.json"
+      - "glossary/translation_audit_policy.json"
       - "glossary/skill_name_style.json"
       - "glossary/style_rules.json"
+      - "scripts/enforce_player_facing_canon.py"
       - "scripts/build_translation_review_plan.py"
       - "scripts/translation_review_common.py"
+      - "src/hachimi_tl_vi/translation_guard.py"
+      - "src/hachimi_tl_vi/context_categories.py"
       - ".github/workflows/sync-translation-review-plan.yml"
   workflow_dispatch:
 
@@ -36,7 +40,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-      - name: Build and publish retrospective translation review plan
+      - name: Enforce canon and publish retrospective translation review plan
         shell: bash
         run: |
           set -euo pipefail
@@ -47,18 +51,31 @@ jobs:
             git fetch origin main
             git checkout -B translation-review-plan origin/main
 
+            python scripts/enforce_player_facing_canon.py
+            python -m pip install -e ".[dev]"
+            pytest -q
             python scripts/build_translation_review_plan.py --repo-root . --batch-size 20
-            git add work/translation_review work/parallel_state.json
+
+            git add \
+              TRANSLATION_REVIEW.md \
+              glossary/term_registry.json \
+              glossary/ui_community_terms.json \
+              glossary/translation_audit_policy.json \
+              scripts/translation_review_common.py \
+              src/hachimi_tl_vi/translation_guard.py \
+              src/hachimi_tl_vi/context_categories.py \
+              work/translation_review \
+              work/parallel_state.json
             if git diff --cached --quiet; then
-              echo "Translation review plan/gate is already current."
+              echo "Canonical terminology and translation review plan/gate are already current."
               exit 0
             fi
-            git commit -m "Translation review: sync active plan"
+            git commit -m "Translation review: enforce canon and sync active plan"
             if git push origin HEAD:main; then
               exit 0
             fi
             sleep $((attempt * 2))
           done
 
-          echo "Failed to publish translation review plan after retries" >&2
+          echo "Failed to publish canonical terminology/review plan after retries" >&2
           exit 1

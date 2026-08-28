@@ -14,8 +14,7 @@ if old not in text:
 text = text.replace(old, new, 1)
 
 pattern = r'text = read\("tests/test_translation_guard.py"\).*?(?=# Remove the temporary workflow hook)'
-replacement = r'''text = read("tests/test_translation_guard.py")
-append = r'''
+test_block = '''
 
 
 def test_guard_named_condition_is_path_scoped(tmp_path: Path) -> None:
@@ -61,11 +60,13 @@ def test_guard_named_condition_is_path_scoped(tmp_path: Path) -> None:
         json_path=["143", "1"],
     ) == []
 '''
-if "test_guard_named_condition_is_path_scoped" not in text:
-    text = text.rstrip() + append + "\n"
-write("tests/test_translation_guard.py", text)
-
-'''
+replacement = (
+    'text = read("tests/test_translation_guard.py")\n'
+    + "append = " + repr(test_block) + "\n"
+    + 'if "test_guard_named_condition_is_path_scoped" not in text:\n'
+    + '    text = text.rstrip() + append + "\\n"\n'
+    + 'write("tests/test_translation_guard.py", text)\n\n'
+)
 updated, count = re.subn(pattern, lambda _match: replacement, text, count=1, flags=re.S)
 if count != 1:
     raise RuntimeError(f"guard-test staging replacement count={count}")

@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from collections import Counter
 from datetime import datetime, timezone
 import hashlib
 import json
@@ -9,11 +10,16 @@ from typing import Any
 
 # Letters/ideographs only; do not classify JP punctuation such as U+30FB middle dot as leakage.
 _CJK_RE = re.compile(r"[\u3041-\u3096\u30a1-\u30fa\u3400-\u4dbf\u4e00-\u9fff]")
+_NUMBER_RE = re.compile(r"(?<![\w{])\d+(?:\.\d+)?%?")
 
 # Only files that deterministically define the normal review policy belong in the
 # global plan snapshot. Character/speech evidence is intentionally lazy and
 # targeted per item; changing one profile must not invalidate 19k unrelated
 # system/UI/skill review decisions.
+#
+# source_bridge_terms.json is deliberately NOT included here. It is versioned by
+# source_bridge_policy_hash() and applied item-by-item so a new bridge safeguard
+# reopens only entries that actually match it instead of invalidating all 19k.
 CONTEXT_PATHS = (
     "TRANSLATION_REVIEW.md",
     "GAME_CONTEXT.md",
@@ -22,6 +28,7 @@ CONTEXT_PATHS = (
     "glossary/skill_name_style.json",
     "glossary/style_rules.json",
 )
+SOURCE_BRIDGE_PATH = "glossary/source_bridge_terms.json"
 
 
 def load_json(path: Path, default: Any = None) -> Any:
@@ -60,6 +67,11 @@ def context_snapshot_hash(repo_root: Path) -> str:
             digest.update(path.read_bytes())
         digest.update(b"\0")
     return digest.hexdigest()
+
+
+def source_bridge_policy_hash(repo_root: Path) -> str:
+    path = repo_root / SOURCE_BRIDGE_PATH
+    return hashlib.sha256(path.read_bytes() if path.exists() else b"").hexdigest()
 
 
 def get_json_path(document: Any, path: list[Any]) -> Any:
@@ -157,6 +169,61 @@ def community_term_matches(
     return result
 
 
+def load_source_bridge_config(repo_root: Path) -> dict[str, Any]:
+    payload = load_json(repo_root / SOURCE_BRIDGE_PATH, {"terms": [], "untrusted_sources": []})
+    return payload if isinstance(payload, dict) else {"terms": [], "untrusted_sources": []}
+
+
+def source_bridge_term_matches(
+    source: str,
+    target: str,
+    terms: list[dict[str, Any]],
+) -> list[dict[str, Any]]:
+    result: list[dict[str, Any]] = []
+    for term in terms:
+        if not isinstance(term, dict):
+            continue
+        aliases = [str(v) for v in term.get("zh_cn", []) if str(v)]
+        matched_aliases = [alias for alias in aliases if _alias_matches(source, alias)]
+        if not matched_aliases:
+            continue
+        accepted = [str(v) for v in term.get("accepted", []) if str(v)]
+        forbidden = [str(v) for v in term.get("forbidden", []) if str(v)]
+        result.append({
+            "id": str(term.get("id", "")),
+            "preferred": str(term.get("preferred", "")),
+            "accepted": accepted,
+            "forbidden": forbidden,
+            "matched_aliases": matched_aliases,
+            "accepted_present": contains_any(target, accepted),
+            "forbidden_present": contains_any(target, forbidden),
+            "require_accepted": bool(term.get("require_accepted", True)),
+            "ja": [str(v) for v in term.get("ja", []) if str(v)],
+            "note": str(term.get("note", "")),
+        })
+    return result
+
+
+def source_bridge_risk_matches(source: str, risks: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    stripped = source.strip()
+    result: list[dict[str, Any]] = []
+    for risk in risks:
+        if not isinstance(risk, dict):
+            continue
+        aliases = [str(v).strip() for v in risk.get("zh_cn_exact", []) if str(v).strip()]
+        matched_aliases = [alias for alias in aliases if stripped == alias]
+        if not matched_aliases:
+            continue
+        result.append({
+            "id": str(risk.get("id", "")),
+            "matched_aliases": matched_aliases,
+            "ja": [str(v) for v in risk.get("ja", []) if str(v)],
+            "mode": str(risk.get("mode", "defer_until_canonical")),
+            "note": str(risk.get("note", "")),
+        })
+    return result
+
+
 def suppress_overridden_locked_terms(
     locked_terms: list[dict[str, Any]],
     community_terms: list[dict[str, Any]],
@@ -198,12 +265,40 @@ def load_skill_examples(repo_root: Path) -> dict[str, dict[str, Any]]:
     return result
 
 
+def semantic_guard_flags(source: str, target: str) -> list[str]:
+    """Conservative semantic tripwires that only prioritize review; they never auto-rewrite text."""
+    flags: list[str] = []
+    source_numbers = Counter(_NUMBER_RE.findall(source))
+    target_numbers = Counter(_NUMBER_RE.findall(target))
+    if source_numbers != target_numbers:
+        flags.append("numeric_token_mismatch")
+
+    normalized_target = normalize(target)
+    semantic_pairs = (
+        (("不能", "无法", "不可", "不可以"), ("không thể", "không được"), "negation_capability_risk"),
+        (("还未", "尚未", "未"), ("chưa",), "not_yet_risk"),
+        (("没有", "无"), ("không có", "không còn"), "absence_risk"),
+        (("以上",), ("trở lên", "ít nhất", "từ"), "lower_bound_risk"),
+        (("以下",), ("trở xuống", "không quá", "tối đa"), "upper_bound_risk"),
+        (("以内",), ("trong vòng", "không quá", "tối đa"), "within_limit_risk"),
+        (("超过",), ("vượt", "hơn"), "exceeds_risk"),
+        (("增加", "提升", "提高"), ("tăng",), "increase_direction_risk"),
+        (("减少", "降低", "下降"), ("giảm",), "decrease_direction_risk"),
+    )
+    for source_markers, target_markers, flag in semantic_pairs:
+        if any(marker in source for marker in source_markers) and not any(marker in normalized_target for marker in target_markers):
+            flags.append(flag)
+    return flags
+
+
 def risk_metadata(
     source: str,
     target: str,
     locked_terms: list[dict[str, Any]],
     community_terms: list[dict[str, Any]],
     skill_example: dict[str, Any] | None,
+    source_bridge_terms: list[dict[str, Any]] | None = None,
+    source_bridge_risks: list[dict[str, Any]] | None = None,
 ) -> tuple[list[str], int]:
     flags: list[str] = []
     score = 0
@@ -236,4 +331,23 @@ def risk_metadata(
     if skill_example is not None and normalize(target) != normalize(str(skill_example["target_vi"])):
         flags.append("canonical_skill_name_mismatch")
         score += 10
+
+    bridge_terms = source_bridge_terms or []
+    bridge_risks = source_bridge_risks or []
+    if bridge_terms:
+        flags.append("source_bridge_term")
+        score += 3
+    if any(item.get("forbidden_present") for item in bridge_terms):
+        flags.append("source_bridge_calque_risk")
+        score += 12
+    if any(item.get("require_accepted", True) and item.get("accepted") and not item.get("accepted_present") for item in bridge_terms):
+        flags.append("source_bridge_term_mismatch")
+        score += 10
+    if bridge_risks:
+        flags.append("source_bridge_untrusted")
+        score += 14
+
+    semantic_flags = semantic_guard_flags(source, target)
+    flags.extend(flag for flag in semantic_flags if flag not in flags)
+    score += 5 * len(semantic_flags)
     return flags, score

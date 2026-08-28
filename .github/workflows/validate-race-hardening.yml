@@ -20,9 +20,11 @@ jobs:
           python-version: "3.11"
       - run: python -m pip install -e ".[dev]"
       - run: pytest -q
-      - run: python -m py_compile scripts/race_inventory_tmp.py
+      - run: python -m py_compile scripts/race_inventory_tmp.py scripts/race_inventory_compact_tmp.py
       - name: Build deterministic race inventory
-        run: python scripts/race_inventory_tmp.py
+        run: |
+          python scripts/race_inventory_tmp.py
+          python scripts/race_inventory_compact_tmp.py
       - name: Publish branch-only inventory
         shell: bash
         run: |

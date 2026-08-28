@@ -1,3 +1,4 @@
+import json
 from pathlib import Path
 
 from scripts.build_translation_review_plan import _prior_is_resolved
@@ -140,6 +141,46 @@ def test_old_bridge_sensitive_review_is_reopened_selectively() -> None:
         bridge_sensitive=False,
         bridge_hash=bridge_hash,
     )
+
+
+def test_source_bridge_hash_ignores_generated_summary_and_evidence_churn(tmp_path: Path) -> None:
+    glossary = tmp_path / "glossary"
+    glossary.mkdir()
+    (glossary / "source_bridge_terms.json").write_text(
+        json.dumps({"terms": [], "untrusted_sources": []}, ensure_ascii=False),
+        encoding="utf-8",
+    )
+    generated_path = glossary / "source_bridge_risks.generated.json"
+    generated = {
+        "summary": {"scanned_decisions": 100},
+        "untrusted_sources": [
+            {
+                "id": "curation.bridge.test",
+                "zh_cn_exact": ["一线曙光"],
+                "mode": "defer_until_canonical",
+                "evidence": [{"note": "first evidence"}],
+            }
+        ],
+    }
+    generated_path.write_text(json.dumps(generated, ensure_ascii=False), encoding="utf-8")
+    first = source_bridge_policy_hash(tmp_path)
+
+    generated["summary"]["scanned_decisions"] = 999
+    generated["untrusted_sources"][0]["evidence"] = [{"note": "new duplicate evidence"}]
+    generated_path.write_text(json.dumps(generated, ensure_ascii=False), encoding="utf-8")
+    second = source_bridge_policy_hash(tmp_path)
+    assert second == first
+
+    generated["untrusted_sources"].append(
+        {
+            "id": "curation.bridge.new",
+            "zh_cn_exact": ["一跃而上"],
+            "mode": "defer_until_canonical",
+        }
+    )
+    generated_path.write_text(json.dumps(generated, ensure_ascii=False), encoding="utf-8")
+    third = source_bridge_policy_hash(tmp_path)
+    assert third != first
 
 
 def test_semantic_guards_flag_numbers_and_direction() -> None:

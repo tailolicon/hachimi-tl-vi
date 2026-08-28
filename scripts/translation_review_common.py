@@ -72,14 +72,48 @@ def context_snapshot_hash(repo_root: Path) -> str:
 
 
 def source_bridge_policy_hash(repo_root: Path) -> str:
-    digest = hashlib.sha256()
-    for rel in SOURCE_BRIDGE_PATHS:
-        digest.update(rel.encode("utf-8") + b"\0")
-        path = repo_root / rel
-        if path.exists():
-            digest.update(path.read_bytes())
-        digest.update(b"\0")
-    return digest.hexdigest()
+    """Hash only effective bridge enforcement, not generated audit bookkeeping.
+
+    The generated registry's summary/evidence can grow when curation workers add
+    duplicate or unrelated notes. Those changes should not invalidate active
+    review plans. A hash change is reserved for an actual manual rule change or
+    for adding/removing/changing an automatically enforced untrusted source.
+    """
+    manual = load_json(repo_root / SOURCE_BRIDGE_PATH, {}) or {}
+    generated = load_json(repo_root / SOURCE_BRIDGE_GENERATED_PATH, {}) or {}
+    if not isinstance(manual, dict):
+        manual = {}
+    if not isinstance(generated, dict):
+        generated = {}
+
+    generated_untrusted: list[dict[str, Any]] = []
+    for risk in generated.get("untrusted_sources", []):
+        if not isinstance(risk, dict):
+            continue
+        aliases = sorted(str(value).strip() for value in risk.get("zh_cn_exact", []) if str(value).strip())
+        if not aliases:
+            continue
+        generated_untrusted.append({
+            "id": str(risk.get("id", "")),
+            "zh_cn_exact": aliases,
+            "mode": str(risk.get("mode", "defer_until_canonical")),
+        })
+    generated_untrusted.sort(key=lambda item: (tuple(item["zh_cn_exact"]), item["id"], item["mode"]))
+
+    semantic = {
+        "manual_terms": [item for item in manual.get("terms", []) if isinstance(item, dict)],
+        "manual_untrusted_sources": [
+            item for item in manual.get("untrusted_sources", []) if isinstance(item, dict)
+        ],
+        "generated_untrusted_sources": generated_untrusted,
+    }
+    encoded = json.dumps(
+        semantic,
+        ensure_ascii=False,
+        sort_keys=True,
+        separators=(",", ":"),
+    ).encode("utf-8")
+    return hashlib.sha256(encoded).hexdigest()
 
 
 def get_json_path(document: Any, path: list[Any]) -> Any:

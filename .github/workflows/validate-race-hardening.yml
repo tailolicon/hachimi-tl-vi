@@ -19,22 +19,24 @@ jobs:
         with:
           python-version: "3.11"
       - run: python -m pip install -e ".[dev]"
+      - name: Stage permanent hardening outputs
+        run: python scripts/race_stage_tmp.py
+      - run: python -m py_compile scripts/harden_race_canon.py scripts/build_translation_review_plan.py scripts/race_inventory_tmp.py scripts/race_inventory_compact_tmp.py
       - run: pytest -q
-      - run: python -m py_compile scripts/race_inventory_tmp.py scripts/race_inventory_compact_tmp.py
       - name: Build deterministic race inventory
         run: |
           python scripts/race_inventory_tmp.py
           python scripts/race_inventory_compact_tmp.py
-      - name: Publish branch-only inventory
+      - name: Publish staged branch state
         shell: bash
         run: |
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add work/tmp_race_*.json
+          git add scripts/build_translation_review_plan.py tests/test_race_hardening.py glossary/term_registry.json glossary/ui_community_terms.json glossary/source_bridge_terms.json work/tmp_race_*.json
           if git diff --cached --quiet; then
-            echo "Race inventory already current."
+            echo "Race staging already current."
             exit 0
           fi
-          git commit -m "TEMP: refresh race inventory"
+          git commit -m "Race hardening: stage canonical outputs"
           git push origin HEAD:canonical-race-hardening-20260828

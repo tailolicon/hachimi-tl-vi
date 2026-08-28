@@ -9,6 +9,11 @@ from typing import Any
 from hachimi_tl_vi.parallel import set_json_path, structural_qa
 
 try:
+    from scripts.canonical_findings import active_findings, finding_matches_item, merge_worker_findings, normalize_worker_finding, refresh_canonical_resolutions
+except ModuleNotFoundError:
+    from canonical_findings import active_findings, finding_matches_item, merge_worker_findings, normalize_worker_finding, refresh_canonical_resolutions  # type: ignore[no-redef]
+
+try:
     from scripts.translation_review_common import (
         contains_any,
         context_snapshot_hash,
@@ -216,6 +221,12 @@ def _validate_result(
             errors.append(f"{uid}: invalid confidence {confidence!r}")
         if not isinstance(reason, str) or not reason.strip():
             errors.append(f"{uid}: reason is required")
+        canonical_finding = None
+        if decision.get("canonical_finding") is not None:
+            try:
+                canonical_finding = normalize_worker_finding(decision.get("canonical_finding"), item)
+            except ValueError as exc:
+                errors.append(f"{uid}: {exc}")
         if action == "revise" and confidence == "low":
             if defer_term_conflicts:
                 action = "defer"
@@ -263,6 +274,7 @@ def _validate_result(
             "proposed_text": proposed,
             "terminology_basis": decision.get("terminology_basis"),
             "speech_basis": decision.get("speech_basis"),
+            "canonical_finding": canonical_finding,
             "auto_defer_reasons": auto_defer,
             "source_bridge_terms": dynamic_bridge_terms,
             "source_bridge_risks": dynamic_bridge_risks,
@@ -286,6 +298,26 @@ def _current_text(repo_root: Path, docs: dict[str, Any], item: dict[str, Any]) -
     return current if isinstance(current, str) else None
 
 
+def _defer_for_open_findings(decisions: list[dict[str, Any]], findings: list[dict[str, Any]]) -> None:
+    if not findings:
+        return
+    for decision in decisions:
+        if decision.get("action") not in {"keep", "revise"}:
+            continue
+        item = decision["item"]
+        matches = [finding for finding in findings if finding_matches_item(
+            finding, key=item.get("key"), source=str(item.get("source_text", "")),
+            source_path=item.get("source_path"), json_path=item.get("json_path"),
+        )]
+        if not matches:
+            continue
+        decision["action"] = "defer"
+        reasons = decision.setdefault("auto_defer_reasons", [])
+        if "open_canonical_finding" not in reasons:
+            reasons.append("open_canonical_finding")
+        decision["canonical_findings"] = [str(row.get("finding_id") or "") for row in matches]
+
+
 def merge(repo_root: Path) -> dict[str, Any]:
     review_root = repo_root / "work/translation_review"
     reviewed_path = review_root / "reviewed_index.json"
@@ -302,6 +334,10 @@ def merge(repo_root: Path) -> dict[str, Any]:
     bridge_risk_rules = [item for item in bridge_config.get("untrusted_sources", []) if isinstance(item, dict)]
     docs: dict[str, Any] = {}
     dirty_docs: set[str] = set()
+    findings_path = repo_root / "glossary/canonical_findings.json"
+    findings_ledger = load_json(findings_path, {"schema_version": 1, "findings": []}) or {"schema_version": 1, "findings": []}
+    findings_ledger = refresh_canonical_resolutions(repo_root, findings_ledger)
+    runtime_findings = active_findings(findings_ledger)
 
     report: dict[str, Any] = {
         "schema_version": 1,
@@ -316,6 +352,7 @@ def merge(repo_root: Path) -> dict[str, Any]:
         "revised_uids": [],
         "unresolved_defer_uids": [],
         "auto_deferred": [],
+        "canonical_findings_reported": [],
     }
 
     completion_paths = (
@@ -375,6 +412,25 @@ def merge(repo_root: Path) -> dict[str, Any]:
         )
         if errors:
             raise ValueError(f"{batch_id}: " + "; ".join(errors))
+
+        batch_finding_reports: list[dict[str, Any]] = []
+        for decision in decisions:
+            finding = decision.get("canonical_finding")
+            if not isinstance(finding, dict):
+                continue
+            item = decision["item"]
+            batch_finding_reports.append({
+                "finding": finding, "uid": decision["uid"], "plan_id": plan_id, "batch_id": batch_id,
+                "claim_id": claim_id, "worker_id": completion.get("worker_id"), "source_path": item.get("source_path"),
+                "json_path": item.get("json_path"), "source_text": item.get("source_text"), "current_text": item.get("current_text"),
+                "proposed_text": decision.get("proposed_text"), "reported_at": result.get("reviewed_at") or completion.get("completed_at") or utc_now(),
+            })
+        if batch_finding_reports:
+            findings_ledger = merge_worker_findings(findings_ledger, batch_finding_reports)
+            findings_ledger = refresh_canonical_resolutions(repo_root, findings_ledger)
+            runtime_findings = active_findings(findings_ledger)
+            report["canonical_findings_reported"].extend(sorted({str(row["finding"].get("finding_id") or "") for row in batch_finding_reports}))
+        _defer_for_open_findings(decisions, runtime_findings)
 
         stale: list[str] = []
         for decision in decisions:
@@ -463,6 +519,8 @@ def merge(repo_root: Path) -> dict[str, Any]:
 
     for source_path in sorted(dirty_docs):
         write_json(repo_root / "localized_data" / source_path, docs[source_path])
+    findings_ledger = refresh_canonical_resolutions(repo_root, findings_ledger)
+    write_json(findings_path, findings_ledger)
     write_json(reviewed_path, reviewed)
     write_json(review_root / "merge_report.json", report)
     return report

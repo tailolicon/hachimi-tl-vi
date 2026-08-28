@@ -111,6 +111,16 @@ def test_explicit_defer_and_ignore_are_removed_from_actionable_queue():
     assert result["summary"]["explicit_review_decisions"] == 2
 
 
+def test_worker_canonical_finding_is_actionable_even_with_conflicting_locked_term():
+    generated = {"total": 1, "candidates": [candidate("race_name", "相性")]}
+    registry = {"terms": [{"id": "legacy.bad", "zh_cn": ["相性"], "target_vi": "Tương thích", "locked": True}]}
+    findings = {"findings": [{"finding_id": "cf-affinity", "status": "open", "source_zh_cn": "相性", "match_mode": "exact", "source_paths": ["localize_dict.json"], "suggested_targets_vi": ["Affinity"], "canonical_resolution": None, "review_resolution": None, "evidence_count": 2}]}
+    result = build_queue(generated, {}, registry, {"characters": {}}, {}, findings)
+    row = result["review_queue"][0]
+    assert row["status"] == "canonical_finding_review"
+    assert row["canonical_findings"][0]["finding_id"] == "cf-affinity"
+
+
 def test_explicit_lock_stays_high_priority_until_registry_application():
     generated = {"total": 1, "candidates": [candidate("skill_name", "弧线教授")]}
     reviews = {

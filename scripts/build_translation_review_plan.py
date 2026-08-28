@@ -8,12 +8,21 @@ import subprocess
 from typing import Any
 
 try:
+    from scripts.translation_review_common import canonical_finding_matches, load_canonical_findings
+except ModuleNotFoundError:
+    from translation_review_common import canonical_finding_matches, load_canonical_findings  # type: ignore[no-redef]
+
+try:
     from scripts.translation_review_common import (
+        canonical_finding_matches,
+        canonical_finding_matches,
         community_term_matches,
         context_snapshot_hash,
         item_scoped_context_hash,
         item_scoped_policy_hash,
         get_json_path,
+        load_canonical_findings,
+        load_canonical_findings,
         load_community_terms,
         load_json,
         load_locked_terms,
@@ -206,6 +215,7 @@ def build_plan(repo_root: Path, batch_size: int) -> dict[str, Any]:
     reviewed_entries = reviewed.setdefault("entries", {})
     locked_terms = load_locked_terms(repo_root)
     community_terms = load_community_terms(repo_root)
+    canonical_findings = load_canonical_findings(repo_root)
     skill_examples = load_skill_examples(repo_root)
     bridge_config = load_source_bridge_config(repo_root)
     bridge_term_rules = [item for item in bridge_config.get("terms", []) if isinstance(item, dict)]
@@ -252,6 +262,9 @@ def build_plan(repo_root: Path, batch_size: int) -> dict[str, Any]:
                 source, current, bridge_term_rules, key=key, source_path=source_file, json_path=json_path
             )
             bridge_risks = source_bridge_risk_matches(source, bridge_risk_rules)
+            finding_matches = canonical_finding_matches(
+                key, source, canonical_findings, source_path=source_file, json_path=json_path
+            )
             bridge_sensitive = bool(bridge_terms or bridge_risks)
             item_context_hash = item_scoped_context_hash(
                 key=key,
@@ -260,6 +273,7 @@ def build_plan(repo_root: Path, batch_size: int) -> dict[str, Any]:
                 json_path=json_path,
                 locked_terms=locked_terms,
                 community_terms=community_terms,
+                canonical_findings=finding_matches,
             )
 
             prior = reviewed_entries.get(uid)
@@ -283,6 +297,9 @@ def build_plan(repo_root: Path, batch_size: int) -> dict[str, Any]:
                 bridge_terms,
                 bridge_risks,
             )
+            if finding_matches:
+                flags = list(dict.fromkeys([*flags, "canonical_finding"]))
+                score += 40
             candidates.append({
                 "uid": uid,
                 "source_batch": batch_number,
@@ -303,6 +320,7 @@ def build_plan(repo_root: Path, batch_size: int) -> dict[str, Any]:
                 "source_bridge_terms": bridge_terms,
                 "source_bridge_risks": bridge_risks,
                 "source_bridge_policy_sha256": bridge_hash if bridge_sensitive else None,
+                "canonical_findings": finding_matches,
                 "item_context_sha256": item_context_hash,
             })
 

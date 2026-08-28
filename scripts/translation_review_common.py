@@ -8,6 +8,11 @@ from pathlib import Path
 import re
 from typing import Any
 
+try:
+    from scripts.canonical_findings import active_findings, finding_matches_item, finding_semantic_view
+except ModuleNotFoundError:
+    from canonical_findings import active_findings, finding_matches_item, finding_semantic_view  # type: ignore[no-redef]
+
 # Letters/ideographs only; do not classify JP punctuation such as U+30FB middle dot as leakage.
 _CJK_RE = re.compile(r"[\u3041-\u3096\u30a1-\u30fa\u3400-\u4dbf\u4e00-\u9fff]")
 _NUMBER_RE = re.compile(r"(?<![\w{])\d+(?:\.\d+)?%?")
@@ -32,6 +37,7 @@ CONTEXT_PATHS = (
 SOURCE_BRIDGE_PATH = "glossary/source_bridge_terms.json"
 SOURCE_BRIDGE_GENERATED_PATH = "glossary/source_bridge_risks.generated.json"
 SOURCE_BRIDGE_PATHS = (SOURCE_BRIDGE_PATH, SOURCE_BRIDGE_GENERATED_PATH)
+CANONICAL_FINDINGS_PATH = "glossary/canonical_findings.json"
 
 
 def load_json(path: Path, default: Any = None) -> Any:
@@ -99,6 +105,11 @@ def item_scoped_policy_hash(repo_root: Path) -> str:
             ],
             key=lambda term: str(term.get("id", "")),
         )
+    finding_payload = load_json(repo_root / CANONICAL_FINDINGS_PATH, {}) or {}
+    semantic[CANONICAL_FINDINGS_PATH] = sorted(
+        [finding_semantic_view(finding) for finding in active_findings(finding_payload)],
+        key=lambda finding: str(finding.get("finding_id", "")),
+    )
     encoded = json.dumps(semantic, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode("utf-8")
     return hashlib.sha256(encoded).hexdigest()
 
@@ -235,6 +246,7 @@ def item_scoped_context_hash(
     json_path: list[Any] | None,
     locked_terms: list[dict[str, Any]],
     community_terms: list[dict[str, Any]],
+    canonical_findings: list[dict[str, Any]] | None = None,
 ) -> str | None:
     matched: list[dict[str, Any]] = []
     for layer, terms, alias_field in (
@@ -250,6 +262,8 @@ def item_scoped_context_hash(
             if not _matched_aliases(source, aliases, term):
                 continue
             matched.append({"layer": layer, "term": term})
+    for finding in canonical_findings or []:
+        matched.append({"layer": "canonical_finding", "term": finding_semantic_view(finding)})
     if not matched:
         return None
     matched.sort(key=lambda item: (item["layer"], str(item["term"].get("id", ""))))
@@ -338,6 +352,27 @@ def community_term_matches(
         })
     return result
 
+
+def load_canonical_findings(repo_root: Path) -> list[dict[str, Any]]:
+    payload = load_json(repo_root / CANONICAL_FINDINGS_PATH, {"findings": []}) or {}
+    return active_findings(payload if isinstance(payload, dict) else {})
+
+
+def canonical_finding_matches(
+    key: str | None,
+    source: str,
+    findings: list[dict[str, Any]],
+    *,
+    source_path: str | None = None,
+    json_path: list[Any] | None = None,
+) -> list[dict[str, Any]]:
+    result: list[dict[str, Any]] = []
+    for finding in findings:
+        if finding_matches_item(
+            finding, key=key, source=source, source_path=source_path, json_path=json_path
+        ):
+            result.append(finding_semantic_view(finding))
+    return result
 
 def load_source_bridge_config(repo_root: Path) -> dict[str, Any]:
     manual = load_json(repo_root / SOURCE_BRIDGE_PATH, {"terms": [], "untrusted_sources": []})

@@ -6,15 +6,22 @@ from collections import defaultdict
 from pathlib import Path
 from typing import Any
 
+try:
+    from scripts.canonical_findings import active_findings
+except ModuleNotFoundError:
+    from canonical_findings import active_findings  # type: ignore[no-redef]
+
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_CANDIDATES = ROOT / "glossary/generated_candidates.json"
 DEFAULT_OBSERVED = ROOT / "glossary/observed_terms.json"
 DEFAULT_REGISTRY = ROOT / "glossary/term_registry.json"
 DEFAULT_CHARACTERS = ROOT / "glossary/characters.json"
 DEFAULT_REVIEWS = ROOT / "glossary/terminology_reviews.json"
+DEFAULT_FINDINGS = ROOT / "glossary/canonical_findings.json"
 DEFAULT_OUTPUT = ROOT / "glossary/terminology_review_queue.json"
 
 KIND_PRIORITY = {
+    "canonical_finding": 950,
     "skill_name": 900,
     "race_name": 850,
     "race_display_name": 825,
@@ -105,6 +112,7 @@ def build_queue(
     registry: dict[str, Any],
     characters: dict[str, Any],
     reviews: dict[str, Any] | None = None,
+    findings: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     locked_aliases: dict[str, dict[str, Any]] = {}
     for term in registry.get("terms", []):
@@ -169,6 +177,15 @@ def build_queue(
         if candidate_id and candidate_id not in row["candidate_ids"]:
             row["candidate_ids"].append(candidate_id)
 
+    finding_map: dict[str, list[dict[str, Any]]] = defaultdict(list)
+    for finding in active_findings(findings or {}):
+        source = str(finding.get("source_zh_cn") or "").strip()
+        if not source:
+            continue
+        row = grouped.setdefault(source, {"source_zh_cn": source, "kinds": set(), "locators": [], "candidate_ids": []})
+        row["kinds"].add("canonical_finding")
+        finding_map[source].append(finding)
+
     queue: list[dict[str, Any]] = []
     status_counts: dict[str, int] = defaultdict(int)
     for source, grouped_row in grouped.items():
@@ -181,11 +198,9 @@ def build_queue(
         decision = decisions.get(source)
         decision_action = str(decision.get("action") or "").strip().lower() if decision else None
 
-        if locked:
-            status = "canonical_locked"
-            priority = 0
-            reason = "Already covered by locked term_registry."
-        elif decision_action == "defer":
+        finding_rows = finding_map.get(source, [])
+
+        if decision_action == "defer":
             status = "reviewed_deferred"
             priority = 0
             reason = "Explicit review decision deferred canonical normalization."
@@ -197,8 +212,16 @@ def build_queue(
             # Normally apply_terminology_reviews.py runs before this builder, so
             # an unapplied lock means something prevented registry promotion.
             status = "pending_lock_application"
-            priority = 12000 + base
+            priority = 17000 + base
             reason = "Explicit lock decision exists but the canonical registry does not contain it yet."
+        elif finding_rows:
+            status = "canonical_finding_review"
+            priority = 15000 + base
+            reason = "A translation-review worker reported a systemic canonical finding; resolve it before matching entries are accepted."
+        elif locked:
+            status = "canonical_locked"
+            priority = 0
+            reason = "Already covered by locked term_registry."
         elif conflict:
             status = "conflict_review"
             priority = 10000 + base
@@ -249,6 +272,12 @@ def build_queue(
                 "action": decision_action,
                 "target_vi": decision.get("target_vi"),
             }
+        if finding_rows:
+            output["canonical_findings"] = [{
+                "finding_id": row.get("finding_id"), "suggested_targets_vi": row.get("suggested_targets_vi", []),
+                "concepts": row.get("concepts", []), "confidence_levels": row.get("confidence_levels", []),
+                "evidence_count": row.get("evidence_count", 0),
+            } for row in finding_rows]
         queue.append(output)
         status_counts[status] += 1
 
@@ -262,6 +291,7 @@ def build_queue(
 
     actionable_statuses = {
         "pending_lock_application",
+        "canonical_finding_review",
         "conflict_review",
         "character_identity_review",
         "promotion_candidate",
@@ -275,7 +305,7 @@ def build_queue(
         "policy": {
             "status": "review_only",
             "rule": "This queue ranks review work. It is never injected into translation prompts and never locks terms automatically.",
-            "priority_order": "unapplied explicit locks > conflicts > unresolved character identities > observed promotion candidates > untranslated skill/race/scenario/support entities.",
+            "priority_order": "unapplied explicit locks > worker-reported canonical findings > conflicts > unresolved character identities > observed promotion candidates > untranslated skill/race/scenario/support entities.",
             "character_rule": "Known character names are handled by characters.json and must not be semantic-calqued into Vietnamese.",
             "decision_rule": "Explicit defer/ignore decisions are removed from actionable work; explicit lock decisions remain actionable until the canonical registry contains them.",
         },
@@ -286,6 +316,7 @@ def build_queue(
             "observed_unique_terms": int(observed.get("observed_count", len(observed_map)) or 0),
             "observed_conflicts": int(observed.get("conflict_count", len(conflict_map)) or 0),
             "explicit_review_decisions": len(decisions),
+            "open_canonical_findings": sum(len(rows) for rows in finding_map.values()),
             "status_counts": dict(sorted(status_counts.items())),
         },
         "review_queue": actionable,
@@ -300,6 +331,7 @@ def main() -> int:
     parser.add_argument("--registry", type=Path, default=DEFAULT_REGISTRY)
     parser.add_argument("--characters", type=Path, default=DEFAULT_CHARACTERS)
     parser.add_argument("--reviews", type=Path, default=DEFAULT_REVIEWS)
+    parser.add_argument("--findings", type=Path, default=DEFAULT_FINDINGS)
     parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
     args = parser.parse_args()
 
@@ -308,10 +340,11 @@ def main() -> int:
     registry = read_json(args.registry, {}) or {}
     characters = read_json(args.characters, {}) or {}
     reviews = read_json(args.reviews, {}) or {}
-    if not all(isinstance(value, dict) for value in (generated, observed, registry, characters, reviews)):
+    findings = read_json(args.findings, {}) or {}
+    if not all(isinstance(value, dict) for value in (generated, observed, registry, characters, reviews, findings)):
         raise SystemExit("all terminology review inputs must be JSON objects")
 
-    queue = build_queue(generated, observed, registry, characters, reviews)
+    queue = build_queue(generated, observed, registry, characters, reviews, findings)
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(queue, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     summary = queue["summary"]

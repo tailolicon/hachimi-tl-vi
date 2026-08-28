@@ -143,6 +143,7 @@ Each translation-review batch already contains source/current text, fingerprints
 - `skill_name_canonical`
 - `source_bridge_terms`
 - `source_bridge_risks`
+- `canonical_findings` — open systemic findings that block matching entries until canonical context is resolved
 
 Use embedded data first. Do not reopen a full registry just to reconfirm information already embedded in the batch.
 
@@ -190,6 +191,28 @@ Low-confidence correction means `defer`, never guess.
 
 For `keep`/`revise`, if the item has `locked_terms`, `community_terms`, or `skill_name_canonical`, include non-empty `terminology_basis`.
 
+## Canonical-first discovery
+
+If an item reveals a reusable/systemic terminology, proper-name, source-bridge, context-rule, or system-label problem that is not already safely canonicalized, do not establish a one-off translation and move on. Attach a `canonical_finding` to the decision and normally `defer` the item until canonical maintenance resolves it.
+
+```json
+"canonical_finding": {
+  "kind": "terminology|proper_name|source_bridge|context_rule|system_label",
+  "source_zh_cn": "相性",
+  "suggested_target_vi": "Affinity",
+  "concept": "Legacy Affinity",
+  "match_mode": "contains",
+  "scope": "source_path",
+  "reason": "Repeated player-facing concept needs one canonical label.",
+  "confidence": "high"
+}
+```
+
+Use the smallest alias that actually identifies the concept. Default to exact matching; use `contains` only for a clearly reusable concept. Prefer `scope=auto`; broaden to `source_path` only with strong evidence. Omit `suggested_target_vi` rather than guess. Isolated naturalness fixes are not canonical findings.
+
+The merge pipeline deduplicates findings into `glossary/canonical_findings.json`. That ledger is evidence, not canonical. Open findings are item-scoped blocking context, are pushed near the top of the terminology-review queue, and normalize matching `keep`/`revise` decisions to `defer`. When matching canonical context lands, resolution refresh unblocks the finding and affected entries reopen under the new canonical context. Explicit `ignore` unblocks; explicit `defer` remains blocking.
+
+
 ## Checkpoint loop
 
 Work sequentially through the batch.
@@ -225,6 +248,7 @@ When all assigned UIDs are decided, write:
       "reason": "...",
       "terminology_basis": "when applicable",
       "speech_basis": "when applicable",
+      "canonical_finding": "optional systemic finding object",
       "confidence": "high|medium|low"
     }
   ]
@@ -283,6 +307,7 @@ Never directly edit:
 - `work/parallel_state.json`
 - `work/translation_review/reviewed_index.json`
 - canonical glossary/speech files
+- `glossary/canonical_findings.json` directly (findings travel through the worker result and merge centrally)
 
 ## Continuous loop
 

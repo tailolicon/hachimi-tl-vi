@@ -11,6 +11,7 @@ The context registry is shared infrastructure for every translation worker. Chat
 - `glossary/generated_candidates.json` — discovery inventory for race/skill/support/scenario/name entities. **Not canonical** until reviewed.
 - `glossary/terminology_review_queue.json` — ranked review work built from candidates + observed memory + canonical registry.
 - `glossary/terminology_reviews.json` — explicit `lock` / `defer` / `ignore` decision ledger.
+- `glossary/canonical_findings.json` — deduplicated systemic findings from retrospective review workers; blocking evidence, not canonical by itself.
 - `glossary/characters.json` — generated canonical character identity registry.
 - `glossary/speech_bible.json` — curated compact dialogue-style guidance; this is the only speech profile data injected into prompts.
 - `glossary/speech_samples.json` — bounded dialogue evidence/statistics extracted from the pinned source; never treated as automatic personality claims.
@@ -158,6 +159,13 @@ Safety properties:
 - reapplying an already matching decision is idempotent.
 
 After application, rebuild `terminology_review_queue.json`. `defer`/`ignore` decisions leave the actionable queue; a `lock` remains high priority until `term_registry.json` actually contains it.
+
+## Canonical findings from retrospective audit
+
+Review workers report reusable systemic defects through their own result instead of editing canonical files. The merge pipeline deduplicates them into `glossary/canonical_findings.json`. Open findings are excluded from the global 19k context hash and participate only in item-scoped invalidation. Matching decisions are deferred until the finding is resolved; unrelated reviewed entries remain reusable. Evidence growth for the same finding does not change review identity.
+
+`build_terminology_review_queue.py` ranks open findings ahead of ordinary conflicts/candidates. A maintainer verifies and lands the canonical/context rule, explicitly ignores the finding, or defers it. Matching canonical targets deterministically resolve findings on refresh; defer remains blocking. The intended loop is `audit discovery → blocking finding → canonical verification/lock → affected entries reopen → audit continues`.
+
 
 ## Prompt scaling and precedence
 

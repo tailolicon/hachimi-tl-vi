@@ -66,9 +66,9 @@ jobs:
             pytest -q
             python scripts/build_translation_review_plan.py --repo-root . --batch-size 20
 
-            # The builder refreshes gate lifecycle timestamps on every invocation.
-            # If those timestamps are the only state difference, restore HEAD so
-            # an otherwise-current production sync remains a true no-op.
+            # Keep the open translation-review gate's human-readable reason stable
+            # across both first-plan generation and active-plan reuse. Then ignore
+            # lifecycle timestamp-only churn so an otherwise-current sync is a no-op.
             python - <<'PY'
           import json
           import subprocess
@@ -80,6 +80,14 @@ jobs:
               encoding="utf-8",
           ))
           after = json.loads(path.read_text(encoding="utf-8"))
+
+          gate = after.get("translation_review_gate")
+          if isinstance(gate, dict) and bool(gate.get("enabled")):
+              gate["reason"] = "Retrospective translation review is incomplete; new translation claims are paused."
+              path.write_text(
+                  json.dumps(after, ensure_ascii=False, indent=2) + "\n",
+                  encoding="utf-8",
+              )
 
           def without_gate_timestamps(payload):
               clone = json.loads(json.dumps(payload))

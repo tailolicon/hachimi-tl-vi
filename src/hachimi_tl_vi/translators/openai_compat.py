@@ -8,6 +8,7 @@ from typing import Sequence, Any
 import httpx
 
 from ..model import SourceEntry
+from ..translation_guard import TranslationQualityGuard
 from .base import Translator
 from .prompt import build_messages
 
@@ -83,4 +84,25 @@ class OpenAICompatibleTranslator(Translator):
         missing = allowed - result.keys()
         if missing:
             raise ValueError(f"Translator omitted {len(missing)} items: {sorted(missing)[:5]}")
+
+        guard = TranslationQualityGuard(self.glossary_dir)
+        violations: dict[str, list[str]] = {}
+        for entry in entries:
+            problems = guard.validate(
+                entry.source_text,
+                result[entry.uid],
+                uid=entry.uid,
+                key=str(entry.locator.get("key")) if isinstance(entry.locator, dict) and entry.locator.get("key") is not None else None,
+            )
+            if problems:
+                violations[entry.uid] = problems
+        if violations:
+            preview = "; ".join(
+                f"{uid}: {','.join(problems)}"
+                for uid, problems in list(violations.items())[:8]
+            )
+            raise ValueError(
+                "Translator output rejected by persistent quality guard; rerun after applying canonical/regression context: "
+                + preview
+            )
         return result

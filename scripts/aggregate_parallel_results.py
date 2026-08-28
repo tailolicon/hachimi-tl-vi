@@ -8,6 +8,7 @@ import subprocess
 from typing import Any
 
 from hachimi_tl_vi.parallel import set_json_path, structural_qa, task_id, task_slice
+from hachimi_tl_vi.translation_guard import TranslationQualityGuard
 
 
 def load_json(path: Path) -> Any:
@@ -30,12 +31,22 @@ def git_show_json(repo_root: Path, ref: str, path: str) -> Any:
     return json.loads(proc.stdout)
 
 
+def _entry_key(source: dict[str, Any]) -> str | None:
+    path = source.get("json_path")
+    if isinstance(path, list) and path:
+        first = path[0]
+        if isinstance(first, str):
+            return first
+    return None
+
+
 def validate_result(
     *,
     epoch: dict[str, Any],
     marker: dict[str, Any],
     result: dict[str, Any],
     source_batch: dict[str, Any],
+    quality_guard: TranslationQualityGuard | None = None,
 ) -> tuple[list[dict[str, Any]], list[str]]:
     errors: list[str] = []
     batch = int(result.get("batch", -1))
@@ -110,9 +121,22 @@ def validate_result(
         if item.get("reviewed") is not True:
             errors.append(f"entry {idx}: reviewed is not true")
 
-        qa = structural_qa(str(source.get("source_text", "")), target)
+        source_text = str(source.get("source_text", ""))
+        qa = structural_qa(source_text, target)
         if not qa["passed"]:
             errors.append(f"entry {idx}: structural QA failed: {', '.join(qa['errors'])}")
+
+        if quality_guard is not None:
+            guard_errors = quality_guard.validate(
+                source_text,
+                target,
+                uid=str(source.get("uid", "")) or None,
+                key=_entry_key(source),
+            )
+            if guard_errors:
+                errors.append(
+                    f"entry {idx}: persistent quality guard failed: {', '.join(guard_errors)}"
+                )
 
         operations.append(
             {
@@ -134,6 +158,7 @@ def validate_result(
 def aggregate(repo_root: Path) -> dict[str, Any]:
     parallel_root = repo_root / "work" / "parallel"
     localized_root = repo_root / "localized_data"
+    quality_guard = TranslationQualityGuard(repo_root / "glossary")
     report: dict[str, Any] = {
         "schema_version": 1,
         "generated_at": datetime.now(timezone.utc).isoformat(),
@@ -180,7 +205,13 @@ def aggregate(repo_root: Path) -> dict[str, Any]:
             report["invalid_tasks"].append({"task_id": marker.get("task_id"), "errors": [f"cannot load pinned source batch: {exc}"]})
             continue
 
-        operations, errors = validate_result(epoch=epoch, marker=marker, result=result, source_batch=source_batch)
+        operations, errors = validate_result(
+            epoch=epoch,
+            marker=marker,
+            result=result,
+            source_batch=source_batch,
+            quality_guard=quality_guard,
+        )
         if errors:
             report["invalid_tasks"].append({"task_id": marker.get("task_id"), "errors": errors})
             continue

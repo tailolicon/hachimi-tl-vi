@@ -1,77 +1,296 @@
 # Parallel UI review workers
 
-This is a dedicated retrospective UI-quality pipeline. It is independent from translation batches and from speech/terminology curation.
+This is the canonical retrospective UI-quality protocol for already translated fixed-size UI text in `localized_data/localize_dict.json`.
+
+It is optimized for stateless 25-minute ChatGPT workers: minimal startup reads, 20-entry batches, frequent durable checkpoints, and immediate released-claim handoff.
+
+Repository state on `main` overrides chat history, private memory, and model priors. Current Vietnamese is a hypothesis, not proof that it is correct.
 
 ## Purpose
 
-Review **already translated fixed-size UI text** in `localized_data/localize_dict.json` for two independent quality gates:
+UI review has two independent gates:
 
-1. **game-language correctness** — common gameplay labels and named mechanic/event/mode/resource names must match the repository's player-facing terminology; individual skill names must match the approved skill-title policy instead of being mechanically expanded from Chinese;
-2. **visual correctness** — labels must fit their controls without clipping, excessive best-fit shrinking, awkward wrapping, redundant wording, slash compounds, or untranslated JP/zh leakage.
+1. **game-language correctness** — canonical/player-facing terminology, named mechanics, resources, event/mode names, Skill categories, individual Skill titles, proper names;
+2. **visual correctness** — fit the actual control without clipping, extreme shrinking, awkward wrapping, redundant wording, bad slash compounds, or unnecessary width.
 
-A string is not QA-passed merely because its Vietnamese meaning is understandable.
+A semantically understandable string can still fail UI QA.
 
-Do not use this pipeline for story dialogue, character dialogue, lyrics, race commentary, or long prose.
+Do not use this pipeline for story dialogue, lyrics, long prose, or character conversation.
 
-## Policy generation
+## Work priority
 
-**UI review policy v3 is a clean semantic/community reset.** Results from policy v1/v2 do not count as completed v3 review. The plan builder intentionally re-enqueues unchanged fixed-size UI that was only reviewed under an older policy.
+Normal orchestration must first check `work/parallel_state.json.translation_review_gate`.
 
-Old v2 claims/results/completions must not be reused as authority. The merge pipeline marks unmerged pre-v3 completions as `superseded` instead of applying them.
+If retrospective translation audit is still required, translation review has higher priority and the worker should follow `TRANSLATION_REVIEW.md` instead.
 
-The active v3 plan is also bound to a terminology snapshot hash. When `term_registry.json`, `ui_community_terms.json`, `skill_name_style.json`, or `ui_short_forms.json` changes, the previous terminology context is no longer authoritative and a fresh plan is generated.
+UI review becomes the next priority after the translation-review gate is cleared and the UI active plan still has assignable work.
 
-## Mandatory context
+## 25-minute session policy
 
-Before claiming work, read from `main`:
+Read `work/worker_session_policy.json` through the path referenced by `work/parallel_state.json`.
 
-1. `UI_REVIEW.md`
-2. `UI_TRANSLATION_RULES.md`
-3. `glossary/ui_community_terms.json`
-4. `glossary/skill_name_style.json`
-5. `glossary/term_registry.json`
-6. `glossary/ui_short_forms.json`
-7. `glossary/ui_overrides.json`
-8. `glossary/style_rules.json`
-9. `GAME_CONTEXT.md`
-10. `work/ui_review/active_plan.json`
-11. the active plan referenced by it
-12. the specific batch file referenced by that plan
+For ChatGPT workers, use the shared rolling lease even if an old UI plan advertises a longer lease.
 
-Repository state overrides chat history and model priors.
+Required behavior:
 
-## Terminology gate
+- checkpoint after every 5 completed decisions or heartbeat interval, whichever comes first;
+- save partial result before refreshing the claim;
+- rolling heartbeat/lease only after durable checkpoint;
+- do not acquire a new batch after `stop_new_batch_after_minutes`;
+- start handoff by `handoff_start_minutes`;
+- release incomplete work with a pointer to the latest partial result instead of leaving a live claim.
 
-Treat the current Vietnamese text as a **hypothesis**, never as evidence that a term is correct.
+## Fast startup: do not bulk-read context
 
-Before choosing `keep` or `revise`, identify whether the source contains a common gameplay label, named game mechanic, event, mode, stage, gauge, resource, Skill category, individual skill name, race format, or other player-facing proper term.
+Normal startup reads only:
 
-Use this precedence:
+1. `work/parallel_state.json`
+2. `work/worker_session_policy.json`
+3. `work/ui_review/active_plan.json`
+4. this protocol only if not already supplied/current
+5. exactly one selected UI batch
 
-1. an accepted player-facing form in `glossary/ui_community_terms.json` for a matching common gameplay/UI concept;
-2. for an **individual skill name**, an exact canonical example in `glossary/skill_name_style.json` intentionally overrides an older conflicting skill-name target;
-3. a locked matching entry in `glossary/term_registry.json` only when the concept is not overridden by layers 1-2;
-4. an official in-game English/Romanized term or strongly established Uma Musume player shorthand for common gameplay/mechanics;
-5. the skill-title naming policy in `skill_name_style.json` for an unresolved individual skill name, using zh-CN as the compact naming-style reference and JP as the semantic/reference guard;
-6. a natural Vietnamese translation only when the concept is genuinely generic.
+Do **not** pre-read the full UI plan.
+Do **not** pre-read all of `GAME_CONTEXT.md`, `term_registry.json`, `skill_name_style.json`, `ui_short_forms.json`, `ui_overrides.json`, `style_rules.json`, or the regression memory.
 
-This precedence is intentional: `ui_community_terms.json` currently overrides several older locked Vietnamese gameplay mappings while the canonical registry is being migrated, and `skill_name_style.json` carries a small reviewed set of skill-title overrides where older wording does not match the approved naming style.
+Fetch targeted extra context only for an item that actually needs it.
 
-Common EN-version gameplay labels such as `Trainer`, `Speed`, `Stamina`, `Power`, `Guts`, `Wit`, `Aptitude`, `Turf`, `Dirt`, `Sprint`, `Mile`, `Medium`, `Long`, `Style`, and the EN running-style labels must not be translated back into Vietnamese when matched by the player-facing registry.
+## Choosing a batch without reading the full plan
 
-Generic category labels `Skill`, `Unique Skill`, and `Evolution Skill` also stay English. This does **not** mean the proper name of an individual skill should stay English. Individual skill names follow `glossary/skill_name_style.json`: learn from the concise zh-CN title rhythm, prefer a short natural Hán-Việt/Vietnamese ability name, preserve JP motif/wordplay/proper nouns, and never expand the title into an effect sentence.
+If `work/ui_review/active_plan.json.status != "active"`, there is no assignable UI review work.
 
-Examples already approved by the skill-title policy include `弧线教授 → Giáo Sư Cung Tuyến`, `弯道加速○ → Gia Tốc Khúc Cua○`, and `强攻策 → Cường Công Kế`.
+UI batch paths are deterministic:
 
-Do **not** mechanically translate a named mechanic from Chinese. Examples of prohibited regressions include `英雄量表 -> Thanh Anh hùng` and `英雄技能 -> Kỹ năng Anh hùng` when the player-facing mechanic is `Hero Gauge` / `Hero Skill`.
+`work/ui_review/batches/<plan_id>/<plan_id>-bNNNN.json`
 
-If a named mechanic or individual skill title is unfamiliar and the repository does not resolve it, research reliable official/player-guide/JP evidence when tools are available. If the evidence is still weak, use `defer`; do not invent a canonical Vietnamese term.
+The active plan gives `plan_id` and `batch_count`. UI candidates are generated in descending risk order, so low numeric batch ids are high-priority.
 
-For any batch item whose `community_terms` array is non-empty, a `keep` or `revise` decision must include a non-empty `terminology_basis`. The merge validator also rejects known forbidden calques and requires an accepted player-facing form when the matched term says `require_accepted: true`.
+To reduce collisions across many workers:
 
-## Ownership rule
+1. first probe a small high-risk window using a deterministic offset from the unique worker id;
+2. then probe the full `1..batch_count` range cyclically;
+3. skip `work/ui_review/merged/<batch_id>.json` if present;
+4. inspect a claim only after selecting a candidate batch;
+5. a non-expired `active` claim is busy;
+6. a `released` claim is immediately takeover-eligible;
+7. an expired claim is takeover-eligible.
 
-UI review workers **never edit**:
+Prefer resumable partial work over an untouched batch of similar priority.
+
+There is no need to load the full plan during normal work.
+
+## Atomic claim and takeover
+
+Claim path:
+
+`work/ui_review/claims/<batch_id>.json`
+
+Fresh claim:
+
+```json
+{
+  "schema_version": 1,
+  "plan_id": "...",
+  "batch_id": "...",
+  "claim_id": "ui-<unique>",
+  "worker_id": "<unique worker>",
+  "status": "active",
+  "claimed_at": "UTC ISO-8601",
+  "heartbeat_at": "UTC ISO-8601",
+  "expires_at": "UTC ISO-8601"
+}
+```
+
+Create atomically. If another worker wins, choose another candidate.
+
+For `released` or expired claims, use the current claim blob SHA to atomically replace it with your own new claim id/worker/timestamps/rolling lease. Preserve and fetch any old `partial_result_path` before replacing the claim. If the update conflicts, another worker won the takeover.
+
+Never overwrite another non-expired active claim.
+
+## Partial checkpoint and resume
+
+Partial result path:
+
+`work/ui_review/results/<batch_id>/<claim_id>.json`
+
+A checkpoint may contain only completed keys:
+
+```json
+{
+  "schema_version": 1,
+  "status": "partial",
+  "plan_id": "...",
+  "batch_id": "...",
+  "claim_id": "...",
+  "worker_id": "...",
+  "reviewed_at": "...",
+  "completed_count": 5,
+  "decisions": []
+}
+```
+
+A partial result has no completion marker and cannot be merged.
+
+A successor taking over must copy only decisions whose `key` is assigned by the current batch and whose `current_fingerprint` still matches exactly. Write those carried decisions into the successor's own claim-scoped result, then continue from the first unfinished key.
+
+If a released claim has no valid pointer, inspect `work/ui_review/results/<batch_id>/` for the newest matching partial result.
+
+## Embedded-first batch context
+
+Every UI batch already embeds:
+
+- key/path/UID where available;
+- source and current Vietnamese text;
+- source/current fingerprints;
+- approximate source/current visual width;
+- `risk_flags` and `risk_score`;
+- matched `community_terms` when recognized.
+
+Use those fields first. Automatic risk flags are hints, not verdicts, but `community_calque_risk` and `community_term_mismatch` are high-priority warnings.
+
+## Lazy targeted context
+
+Only when the batch itself is insufficient, fetch exact relevant records from:
+
+- `glossary/translation_regressions.generated.json` — first choice for known previous UI/translation mistakes;
+- `glossary/ui_community_terms.json` — player-facing common mechanics/labels;
+- `glossary/ui_short_forms.json` — compact/micro forms for cramped controls;
+- `glossary/ui_overrides.json` — already reviewed key-specific UI wording;
+- `glossary/skill_name_style.json` — individual Skill-title exact examples/style;
+- `glossary/term_registry.json` — locked terms not overridden by higher-priority rules;
+- `GAME_CONTEXT.md` — only for unresolved mechanic/context questions;
+- `UI_TRANSLATION_RULES.md` — only when detailed width/control guidance is needed.
+
+Search exact source/key/term; do not read whole large files end-to-end if targeted retrieval is available.
+
+If evidence remains weak, `defer` instead of spending most of a 25-minute session inventing a canonical answer.
+
+## Regression memory is mandatory when relevant
+
+`glossary/translation_regressions.generated.json` contains accepted corrections from both translation review and UI review.
+
+For a matching UID/source identity:
+
+- never reuse `rejected_targets`;
+- use the latest `approved_target` as strong reviewed guidance when context still matches;
+- if `origins` includes `ui_review`, inspect `ui_contexts` such as key, `control_type`, and `risk_flags` because the old text may have been rejected specifically for width/control fit.
+
+Do not recreate a longer semantically equivalent wording that UI review already rejected.
+
+## Terminology precedence
+
+When rules overlap:
+
+1. player-facing/community accepted form;
+2. exact canonical individual-Skill example;
+3. source-bridge/canonical correction when relevant;
+4. reviewed regression or key-specific UI override;
+5. locked registry term not overridden above;
+6. established official English/Romanized Uma Musume terminology;
+7. natural Vietnamese for genuinely generic concepts.
+
+Common labels such as `Trainer`, `Speed`, `Stamina`, `Power`, `Guts`, `Wit`, `Aptitude`, `Turf`, `Dirt`, `Sprint`, `Mile`, `Medium`, `Long`, `Style`, `Skill`, `Unique Skill`, and `Evolution Skill` stay in approved player-facing forms when matched.
+
+Never fix width by translating an approved English/Romanized mechanic/stat/style label back into Vietnamese.
+
+## Review decisions
+
+For every assigned key eventually choose exactly one:
+
+- `keep` — passes terminology/game-language QA and visual QA;
+- `revise` — confident, better player-facing/compact wording;
+- `defer` — context/terminology/layout evidence insufficient.
+
+Low-confidence change means `defer`.
+
+If `community_terms` is non-empty, `keep`/`revise` needs a non-empty `terminology_basis`.
+
+`control_type` may be `unknown` when not safely inferable; do not guess it merely to fill a field.
+
+## Visual QA
+
+For fixed controls:
+
+- semantic correctness alone is insufficient;
+- prefer compact wording for buttons/tabs/menu tiles;
+- remove context already obvious from the screen/icon;
+- avoid unnecessary slash-separated phrases;
+- do not add an extra newline to rescue width;
+- preserve source newline count and runtime syntax;
+- do not shorten so aggressively that the action/mechanic changes meaning;
+- preserve reviewed compact forms where they exist;
+- individual Skill titles follow Skill-title policy, not effect-sentence paraphrases.
+
+A revision should normally not be wider than the current text and should fit the apparent control budget.
+
+## Checkpoint loop
+
+After every configured checkpoint size or heartbeat interval:
+
+1. save/update your claim-scoped result as `status: "partial"` with all valid completed decisions;
+2. only after that succeeds, refresh your own claim heartbeat and rolling lease;
+3. continue from the next unfinished key.
+
+Do not keep completed UI review work only in chat.
+
+## Final result
+
+When all assigned keys are reviewed, write one complete result:
+
+```json
+{
+  "schema_version": 1,
+  "status": "complete",
+  "plan_id": "...",
+  "batch_id": "...",
+  "claim_id": "...",
+  "worker_id": "...",
+  "reviewed_at": "...",
+  "completed_count": 20,
+  "decisions": [
+    {
+      "key": "Heroes511003",
+      "current_fingerprint": "...",
+      "action": "revise",
+      "proposed_text": "Chi tiết Hero Gauge",
+      "control_type": "header",
+      "reason": "...",
+      "terminology_basis": "when applicable",
+      "confidence": "high|medium|low"
+    }
+  ]
+}
+```
+
+Before completion verify all and only batch keys appear exactly once, fingerprints match, structure/newlines/tokens are preserved, and no known forbidden/rejected wording survives a `keep`/`revise`.
+
+## Completion
+
+Only after the complete result is durable, create:
+
+`work/ui_review/completions/<batch_id>/<claim_id>.json`
+
+with exact plan/batch/claim/worker IDs, exact result path, and UTC completion time.
+
+Then optionally mark your own claim `status: "complete"`. The completion marker is authoritative. `.github/workflows/merge-ui-review.yml` exclusively applies accepted changes and updates UI overrides/regression memory.
+
+## Session-end handoff
+
+At `handoff_start_minutes`, stop optional research and new batch acquisition.
+
+If incomplete:
+
+1. save the newest valid partial result;
+2. update only your own claim to `status: "released"`;
+3. add `released_at`, `partial_result_path`, and `completed_count`;
+4. commit/push the release;
+5. stop.
+
+A released claim is immediately takeover-eligible; the successor does not wait for the old expiry.
+
+## Ownership
+
+UI review workers never directly edit:
 
 - `localized_data/**`
 - `glossary/ui_overrides.json`
@@ -80,158 +299,16 @@ UI review workers **never edit**:
 - `glossary/skill_name_style.json`
 - `glossary/term_registry.json`
 - `work/ui_review/reviewed_index.json`
-- translation progress, translation results, or curation canonical files
+- translation progress/results or curation canonical files
 
-Workers only write their own claim, result, heartbeat updates, and completion marker. `.github/workflows/merge-ui-review.yml` exclusively applies accepted revisions.
-
-## Atomic claiming
-
-Read `work/ui_review/active_plan.json`. If its status is not `active`, there is currently no assignable UI review work.
-
-Read the referenced plan and scan its batches in order. A batch is available when:
-
-- `work/ui_review/merged/<batch_id>.json` does not exist, and
-- no valid non-expired claim exists at `work/ui_review/claims/<batch_id>.json`.
-
-Atomically create exactly one claim at:
-
-`work/ui_review/claims/<batch_id>.json`
-
-Claim schema:
-
-```json
-{
-  "schema_version": 1,
-  "plan_id": "...",
-  "batch_id": "ui-p3-...-b0001",
-  "claim_id": "ui-gpt-20260827T143000Z-a1b2c3",
-  "worker_id": "ChatGPT",
-  "claimed_at": "2026-08-27T14:30:00Z",
-  "heartbeat_at": "2026-08-27T14:30:00Z",
-  "expires_at": "2026-08-27T15:15:00Z"
-}
-```
-
-Use the exact `plan_id` and lease duration from the active plan. Never overwrite another worker's live claim. If another worker wins the create race, immediately try another batch.
-
-Heartbeat long work by updating only your own claim while preserving `plan_id`, `batch_id`, `claim_id`, and `worker_id`.
-
-## Reviewing a batch
-
-Every assigned item contains the source text, current Vietnamese text, key/path, fingerprints, approximate visual widths, automatic risk hints, and—when recognized—`community_terms`.
-
-For **every item**, choose exactly one action:
-
-- `keep` — current text passes both terminology/game-language QA and visual QA.
-- `revise` — replace it with a better player-facing and compact UI form.
-- `defer` — terminology or layout/context is too uncertain to safely decide.
-
-Review all and only items assigned to the batch.
-
-### Visual correctness
-
-Follow `UI_TRANSLATION_RULES.md`. In particular:
-
-- semantic correctness alone is not enough for fixed controls;
-- prefer 1–3 short words for small buttons/tabs/menu tiles;
-- remove context already obvious from the screen or icon;
-- avoid slash-separated synonym piles;
-- do not add a newline merely to rescue a long translation;
-- preserve the source newline count and all runtime syntax;
-- a translation that protrudes, clips, wraps to an extra line, or forces extreme shrinking is not QA-passed;
-- do not shorten so aggressively that the game action or mechanic changes meaning;
-- never save width by translating a player-facing English mechanic/stat/style label into Vietnamese;
-- for an individual skill title, shorten according to the approved skill-title style rather than replacing the title with an effect description.
-
-Automatic `risk_flags` are hints, not verdicts. `community_calque_risk` and `community_term_mismatch` are high-priority semantic warnings.
-
-### `revise` requirements
-
-A revision must:
-
-- be non-empty natural player-facing Vietnamese/UI language;
-- preserve placeholders, printf tokens, markup tags, escaped runtime tokens, and source newline count;
-- preserve canonical English/Romanized game terms and accepted community-facing mechanic names;
-- preserve canonical skill-title examples and the skill-name style when the item is an individual skill name;
-- be at least as clear in the current UI context;
-- normally be no wider than the current text and preferably fit the budget in `UI_TRANSLATION_RULES.md`;
-- use canonical compact forms where applicable;
-- have `confidence` `high` or `medium`.
-
-If confidence is `low`, use `defer`, not `revise`.
-
-## Result
-
-After reviewing all items, write exactly one claim-scoped result:
-
-`work/ui_review/results/<batch_id>/<claim_id>.json`
-
-Schema:
-
-```json
-{
-  "schema_version": 1,
-  "plan_id": "...",
-  "batch_id": "ui-p3-...-b0001",
-  "claim_id": "...",
-  "worker_id": "ChatGPT",
-  "reviewed_at": "...",
-  "decisions": [
-    {
-      "key": "Heroes511003",
-      "current_fingerprint": "...",
-      "action": "revise",
-      "proposed_text": "Chi tiết Hero Gauge",
-      "control_type": "header",
-      "reason": "The current text calques a named LoH mechanic; use the player-facing mechanic name.",
-      "terminology_basis": "ui_community_terms:event.loh.hero_gauge",
-      "confidence": "high"
-    }
-  ]
-}
-```
-
-For `keep`, omit `proposed_text`. For `defer`, explain the missing context briefly. `control_type` may be `unknown` rather than guessed.
-
-Before completion verify:
-
-- decisions cover ALL AND ONLY batch keys exactly once;
-- every `current_fingerprint` exactly matches the batch item;
-- every matched `community_terms` item has terminology checked before `keep`/`revise`;
-- no known forbidden calque survives a `keep`/`revise`;
-- no exact canonical skill-title override is replaced by an older conflicting wording;
-- no revision changes placeholders/tags/newline structure;
-- no revision expands a reviewed compact label without evidence;
-- no story/prose rewriting was introduced.
-
-## Completion
-
-After the result is committed, create:
-
-`work/ui_review/completions/<batch_id>/<claim_id>.json`
-
-```json
-{
-  "schema_version": 1,
-  "plan_id": "...",
-  "batch_id": "ui-p3-...-b0001",
-  "claim_id": "...",
-  "worker_id": "ChatGPT",
-  "result_path": "work/ui_review/results/ui-p3-...-b0001/<claim_id>.json",
-  "completed_at": "..."
-}
-```
-
-The merge workflow validates the result against the immutable plan batch. If the underlying UI text changed after the plan snapshot, the batch is closed as stale and those changed keys are automatically eligible for a later plan instead of applying stale edits.
+Workers edit only their own claim/result/completion and own heartbeat/release state.
 
 ## Continuous loop
 
-After completing a batch:
+After each completed batch:
 
-1. re-read `work/ui_review/active_plan.json` from `main`;
-2. claim another available UI batch;
-3. continue while useful capacity remains.
+1. re-read only `work/parallel_state.json` and `work/ui_review/active_plan.json`;
+2. if session elapsed time is before `stop_new_batch_after_minutes`, claim another available/resumable batch;
+3. otherwise end cleanly without acquiring more work.
 
-Do not switch to speech/terminology or translation batches while acting as a UI review worker.
-
-At session end report only: batches completed, keep/revise/defer counts, and blockers.
+At session end report only completed batches, keep/revise/defer counts, any saved partial handoff, and blockers.

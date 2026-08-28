@@ -67,33 +67,33 @@ jobs:
             # If those timestamps are the only state difference, restore HEAD so
             # an otherwise-current production sync remains a true no-op.
             python - <<'PY'
-            import json
-            import subprocess
-            from pathlib import Path
+          import json
+          import subprocess
+          from pathlib import Path
 
-            path = Path("work/parallel_state.json")
-            before = json.loads(subprocess.check_output(
-                ["git", "show", "HEAD:work/parallel_state.json"],
-                encoding="utf-8",
-            ))
-            after = json.loads(path.read_text(encoding="utf-8"))
+          path = Path("work/parallel_state.json")
+          before = json.loads(subprocess.check_output(
+              ["git", "show", "HEAD:work/parallel_state.json"],
+              encoding="utf-8",
+          ))
+          after = json.loads(path.read_text(encoding="utf-8"))
 
-            def without_gate_timestamps(payload):
-                clone = json.loads(json.dumps(payload))
-                gate = clone.get("translation_review_gate")
-                if isinstance(gate, dict):
-                    gate.pop("updated_at", None)
-                    gate.pop("activated_at", None)
-                    gate.pop("cleared_at", None)
-                return clone
+          def without_gate_timestamps(payload):
+              clone = json.loads(json.dumps(payload))
+              gate = clone.get("translation_review_gate")
+              if isinstance(gate, dict):
+                  gate.pop("updated_at", None)
+                  gate.pop("activated_at", None)
+                  gate.pop("cleared_at", None)
+              return clone
 
-            if before != after and without_gate_timestamps(before) == without_gate_timestamps(after):
-                path.write_text(
-                    json.dumps(before, ensure_ascii=False, indent=2) + "\n",
-                    encoding="utf-8",
-                )
-                print("Ignored timestamp-only translation review gate churn.")
-            PY
+          if before != after and without_gate_timestamps(before) == without_gate_timestamps(after):
+              path.write_text(
+                  json.dumps(before, ensure_ascii=False, indent=2) + "\n",
+                  encoding="utf-8",
+              )
+              print("Ignored timestamp-only translation review gate churn.")
+          PY
 
             git add \
               TRANSLATION_REVIEW.md \

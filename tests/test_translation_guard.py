@@ -83,7 +83,24 @@ def _guard(tmp_path: Path) -> TranslationQualityGuard:
                     "source_text": "重新启动",
                     "rejected_targets": ["Khởi chạy lại"],
                     "approved_target": "Khởi động lại",
-                }
+                    "origins": ["translation_review"],
+                },
+                {
+                    "id": "review.regression.ui",
+                    "uid": "zhcn:menu",
+                    "scope": "uid",
+                    "source_text": "物品/转换",
+                    "rejected_targets": ["Vật phẩm/Chuyển đổi"],
+                    "approved_target": "Vật phẩm / Đổi",
+                    "origins": ["ui_review"],
+                    "ui_contexts": [
+                        {
+                            "key": "Menu424001",
+                            "control_type": "menu_tile",
+                            "risk_flags": ["overflow_risk", "verbose_wording"],
+                        }
+                    ],
+                },
             ]
         },
     )
@@ -131,6 +148,13 @@ def test_reviewed_bad_translation_cannot_recur(tmp_path: Path) -> None:
     errors = guard.validate("重新启动", "Khởi chạy lại", uid="zhcn:test")
     assert "known_bad_regression:review.regression.test" in errors
     assert guard.validate("重新启动", "Khởi động lại", uid="zhcn:test") == []
+
+
+def test_reviewed_bad_ui_wording_cannot_recur(tmp_path: Path) -> None:
+    guard = _guard(tmp_path)
+    errors = guard.validate("物品/转换", "Vật phẩm/Chuyển đổi", uid="zhcn:menu", key="Menu424001")
+    assert "known_bad_regression:review.regression.ui" in errors
+    assert guard.validate("物品/转换", "Vật phẩm / Đổi", uid="zhcn:menu", key="Menu424001") == []
 
 
 def test_numeric_semantics_are_hard_preserved(tmp_path: Path) -> None:

@@ -8,6 +8,7 @@ from pathlib import Path
 from typing import Any
 
 from hachimi_tl_vi.qa import qa_pair
+from hachimi_tl_vi.translation_guard import TranslationQualityGuard
 
 
 def _git_show(ref: str, path: str) -> str:
@@ -71,13 +72,7 @@ def _set_path(doc: Any, path: list[Any], value: str) -> None:
 
 
 def _recover_runtime_newlines(source: str, target: str) -> str | None:
-    """Recover the legacy worker bug that decoded literal ``\\n`` into real newlines.
-
-    Recovery is deliberately narrow: the source must contain no real newlines, and the
-    target's real-newline count must exactly account for the source's missing literal
-    runtime-newline tokens. This preserves every translated character while restoring
-    only the escaped runtime structure that was present in the pinned source.
-    """
+    """Recover the legacy worker bug that decoded literal ``\\n`` into real newlines."""
     if source.count("\n") != 0:
         return None
 
@@ -115,10 +110,18 @@ def _source_batch(source_ref: str, batch: int) -> dict[str, Any]:
     return json.loads(_git_show(source_ref, path))
 
 
+def _entry_key(source_entry: dict[str, Any]) -> str | None:
+    path = source_entry.get("json_path")
+    if isinstance(path, list) and path and isinstance(path[0], str):
+        return path[0]
+    return None
+
+
 def _validate_and_complete(
     source: dict[str, Any],
     source_ref: str,
     result_payloads: list[dict[str, Any]],
+    quality_guard: TranslationQualityGuard | None = None,
 ) -> tuple[dict[str, str] | None, list[str], set[str]]:
     diagnostics: list[str] = []
     blocking_errors: list[str] = []
@@ -170,6 +173,19 @@ def _validate_and_complete(
                     f"{result_path}:ignored_qa:{uid}:{','.join(qa['problems'])}"
                 )
                 continue
+
+            if quality_guard is not None:
+                guard_errors = quality_guard.validate(
+                    str(source_text),
+                    target,
+                    uid=str(uid),
+                    key=_entry_key(source_entry),
+                )
+                if guard_errors:
+                    diagnostics.append(
+                        f"{result_path}:ignored_quality_guard:{uid}:{','.join(guard_errors)}"
+                    )
+                    continue
             candidates[uid].add(target)
 
     resolved: dict[str, str] = {}
@@ -227,6 +243,7 @@ def main() -> int:
 
     args.merged_root.mkdir(parents=True, exist_ok=True)
     results = _collect_results(args.results_root)
+    quality_guard = TranslationQualityGuard(Path("glossary"))
     newly_merged: list[int] = []
     diagnostics: dict[str, list[str]] = {}
 
@@ -236,7 +253,10 @@ def main() -> int:
             continue
         source = _source_batch(args.source_ref, batch)
         resolved, batch_diagnostics, claims = _validate_and_complete(
-            source, args.source_ref, results[batch]
+            source,
+            args.source_ref,
+            results[batch],
+            quality_guard=quality_guard,
         )
         if resolved is None:
             diagnostics[str(batch)] = batch_diagnostics

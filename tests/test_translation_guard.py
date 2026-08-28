@@ -161,3 +161,48 @@ def test_numeric_semantics_are_hard_preserved(tmp_path: Path) -> None:
     guard = _guard(tmp_path)
     assert "numeric_token_mismatch" in guard.validate("最多60个", "Tối đa 50")
     assert guard.validate("最多60个", "Tối đa 60") == []
+
+
+def test_guard_named_condition_is_path_scoped(tmp_path: Path) -> None:
+    guard = _guard(tmp_path)
+    guard.term_registry.setdefault("terms", []).append({
+        "id": "condition.night_owl",
+        "locked": True,
+        "zh_cn": ["熬夜"],
+        "target_vi": "Night Owl",
+        "source_paths": ["text_data_dict.json"],
+        "json_path_prefixes": [["142"]],
+        "match_mode": "exact",
+    })
+    guard.community.setdefault("terms", []).append({
+        "id": "common.condition.night_owl",
+        "source_aliases": ["熬夜"],
+        "accepted": ["Night Owl"],
+        "compact": [],
+        "forbidden": ["Thức khuya"],
+        "require_accepted": True,
+        "source_paths": ["text_data_dict.json"],
+        "json_path_prefixes": [["142"]],
+        "match_mode": "exact",
+    })
+    errors = guard.validate(
+        "熬夜",
+        "Thức khuya",
+        source_path="text_data_dict.json",
+        json_path=["142", "1"],
+    )
+    assert "community_forbidden:common.condition.night_owl" in errors
+    assert "community_required:common.condition.night_owl" in errors
+    assert guard.validate(
+        "熬夜",
+        "Night Owl",
+        source_path="text_data_dict.json",
+        json_path=["142", "1"],
+    ) == []
+    assert guard.validate(
+        "今天熬夜了",
+        "Hôm nay đã thức khuya",
+        source_path="text_data_dict.json",
+        json_path=["143", "1"],
+    ) == []
+

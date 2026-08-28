@@ -29,12 +29,44 @@ def _contains_any(text: str, values: list[str]) -> bool:
     return any(_normalize(value) in normalized for value in values if value)
 
 
-def _alias_matches(source: str, alias: str) -> bool:
+def _alias_matches(source: str, alias: str, mode: str = "contains") -> bool:
     if not alias:
         return False
+    if mode == "exact":
+        return source.strip() == alias.strip()
     if source == alias:
         return True
     return len(alias) >= 2 and alias in source
+
+
+def _context_matches(
+    term: dict[str, Any],
+    *,
+    key: str | None,
+    source_path: str | None,
+    json_path: list[Any] | None,
+) -> bool:
+    source_paths = _strings(term.get("source_paths"))
+    if source_paths and (source_path is None or source_path not in source_paths):
+        return False
+    exact_keys = _strings(term.get("key_exact"))
+    if exact_keys and (key is None or key not in exact_keys):
+        return False
+    prefixes = _strings(term.get("key_prefixes"))
+    if prefixes and (key is None or not any(key.startswith(prefix) for prefix in prefixes)):
+        return False
+    raw_prefixes = term.get("json_path_prefixes", [])
+    if raw_prefixes:
+        if not isinstance(json_path, list):
+            return False
+        normalized = [str(value) for value in json_path]
+        if not any(
+            normalized[: len(raw if isinstance(raw, list) else [raw])]
+            == [str(value) for value in (raw if isinstance(raw, list) else [raw])]
+            for raw in raw_prefixes
+        ):
+            return False
+    return True
 
 
 def _strings(value: Any) -> list[str]:
@@ -93,7 +125,9 @@ class TranslationQualityGuard:
         self.bridge = _merge_bridge_config(manual, generated)
         self.regressions = _load_json(root / "translation_regressions.generated.json", {"entries": []})
 
-    def _community_matches(self, source: str, key: str | None) -> list[dict[str, Any]]:
+    def _community_matches(
+        self, source: str, key: str | None, source_path: str | None, json_path: list[Any] | None
+    ) -> list[dict[str, Any]]:
         matches: list[dict[str, Any]] = []
         for term in self.community.get("terms", []):
             if not isinstance(term, dict):
@@ -101,11 +135,11 @@ class TranslationQualityGuard:
             exclusions = _strings(term.get("exclude_source_contains"))
             if exclusions and any(value in source for value in exclusions):
                 continue
-            prefixes = _strings(term.get("key_prefixes"))
-            if prefixes and (key is None or not any(key.startswith(prefix) for prefix in prefixes)):
+            if not _context_matches(term, key=key, source_path=source_path, json_path=json_path):
                 continue
             aliases = _strings(term.get("source_aliases"))
-            matched = [alias for alias in aliases if _alias_matches(source, alias)]
+            mode = str(term.get("match_mode", "contains"))
+            matched = [alias for alias in aliases if _alias_matches(source, alias, mode)]
             if matched:
                 matches.append({"term": term, "aliases": matched})
         return matches
@@ -129,6 +163,8 @@ class TranslationQualityGuard:
         *,
         uid: str | None = None,
         key: str | None = None,
+        source_path: str | None = None,
+        json_path: list[Any] | None = None,
     ) -> list[str]:
         errors: list[str] = []
         source = str(source)
@@ -139,7 +175,7 @@ class TranslationQualityGuard:
         if source_numbers != target_numbers:
             errors.append("numeric_token_mismatch")
 
-        community_matches = self._community_matches(source, key)
+        community_matches = self._community_matches(source, key, source_path, json_path)
         community_aliases = {
             alias
             for match in community_matches
@@ -161,11 +197,14 @@ class TranslationQualityGuard:
             exclusions = _strings(term.get("exclude_source_contains"))
             if exclusions and any(value in source for value in exclusions):
                 continue
+            if not _context_matches(term, key=key, source_path=source_path, json_path=json_path):
+                continue
             expected = str(term.get("target_vi", "")).strip()
             if not expected:
                 continue
             aliases = _strings(term.get("zh_cn"))
-            matched = [alias for alias in aliases if _alias_matches(source, alias)]
+            mode = str(term.get("match_mode", "contains"))
+            matched = [alias for alias in aliases if _alias_matches(source, alias, mode)]
             if not matched:
                 continue
             # Documented precedence: player-facing community rules override an
@@ -177,8 +216,11 @@ class TranslationQualityGuard:
 
         bridge_term_matched = False
         for term in self.bridge.get("terms", []):
+            if not _context_matches(term, key=key, source_path=source_path, json_path=json_path):
+                continue
             aliases = _strings(term.get("zh_cn"))
-            if not any(_alias_matches(source, alias) for alias in aliases):
+            mode = str(term.get("match_mode", "contains"))
+            if not any(_alias_matches(source, alias, mode) for alias in aliases):
                 continue
             bridge_term_matched = True
             term_id = str(term.get("id", "unknown"))

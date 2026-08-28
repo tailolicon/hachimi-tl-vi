@@ -11,6 +11,8 @@ try:
     from scripts.translation_review_common import (
         community_term_matches,
         context_snapshot_hash,
+        item_scoped_context_hash,
+        item_scoped_policy_hash,
         get_json_path,
         load_community_terms,
         load_json,
@@ -31,6 +33,8 @@ except ModuleNotFoundError:
     from translation_review_common import (  # type: ignore[no-redef]
         community_term_matches,
         context_snapshot_hash,
+        item_scoped_context_hash,
+        item_scoped_policy_hash,
         get_json_path,
         load_community_terms,
         load_json,
@@ -98,7 +102,7 @@ def _set_gate(
     write_json(path, state)
 
 
-def _active_incomplete(repo_root: Path, context_hash: str, bridge_hash: str) -> dict[str, Any] | None:
+def _active_incomplete(repo_root: Path, context_hash: str, bridge_hash: str, item_policy_hash: str) -> dict[str, Any] | None:
     active_path = repo_root / "work/translation_review/active_plan.json"
     if not active_path.exists():
         return None
@@ -110,6 +114,8 @@ def _active_incomplete(repo_root: Path, context_hash: str, bridge_hash: str) -> 
     if str(active.get("context_snapshot_sha256", "")) != context_hash:
         return None
     if str(active.get("source_bridge_policy_sha256", "")) != bridge_hash:
+        return None
+    if str(active.get("item_scoped_policy_sha256", "")) != item_policy_hash:
         return None
     plan_path = active.get("plan_path")
     if not plan_path:
@@ -147,6 +153,7 @@ def _prior_is_resolved(
     current_fp: str,
     bridge_sensitive: bool,
     bridge_hash: str,
+    item_context_hash: str | None = None,
 ) -> bool:
     if not isinstance(prior, dict):
         return False
@@ -163,6 +170,9 @@ def _prior_is_resolved(
         return False
     if bridge_sensitive and prior.get("source_bridge_policy_sha256") != bridge_hash:
         return False
+    prior_item_context = prior.get("item_context_sha256")
+    if (prior_item_context is not None or item_context_hash is not None) and prior_item_context != item_context_hash:
+        return False
     return True
 
 
@@ -170,7 +180,8 @@ def build_plan(repo_root: Path, batch_size: int) -> dict[str, Any]:
     review_root = repo_root / "work/translation_review"
     context_hash = context_snapshot_hash(repo_root)
     bridge_hash = source_bridge_policy_hash(repo_root)
-    active = _active_incomplete(repo_root, context_hash, bridge_hash)
+    item_policy_hash = item_scoped_policy_hash(repo_root)
+    active = _active_incomplete(repo_root, context_hash, bridge_hash, item_policy_hash)
     if active is not None:
         _set_gate(
             repo_root,
@@ -185,6 +196,7 @@ def build_plan(repo_root: Path, batch_size: int) -> dict[str, Any]:
             "plan_id": active.get("plan_id"),
             "candidate_count": active.get("candidate_count", 0),
             "source_bridge_policy_sha256": bridge_hash,
+            "item_scoped_policy_sha256": item_policy_hash,
         }
 
     reviewed = load_json(
@@ -228,13 +240,27 @@ def build_plan(repo_root: Path, batch_size: int) -> dict[str, Any]:
             source_fp = str(entry.get("source_fingerprint", ""))
             current_fp = text_fingerprint(current)
             key = str(json_path[0]) if source_file == "localize_dict.json" and len(json_path) == 1 else None
-            community = community_term_matches(key, source, current, community_terms)
-            locked = locked_term_matches(source, current, locked_terms)
+            community = community_term_matches(
+                key, source, current, community_terms, source_path=source_file, json_path=json_path
+            )
+            locked = locked_term_matches(
+                source, current, locked_terms, key=key, source_path=source_file, json_path=json_path
+            )
             locked = suppress_overridden_locked_terms(locked, community)
             skill = skill_examples.get(source)
-            bridge_terms = source_bridge_term_matches(source, current, bridge_term_rules)
+            bridge_terms = source_bridge_term_matches(
+                source, current, bridge_term_rules, key=key, source_path=source_file, json_path=json_path
+            )
             bridge_risks = source_bridge_risk_matches(source, bridge_risk_rules)
             bridge_sensitive = bool(bridge_terms or bridge_risks)
+            item_context_hash = item_scoped_context_hash(
+                key=key,
+                source=source,
+                source_path=source_file,
+                json_path=json_path,
+                locked_terms=locked_terms,
+                community_terms=community_terms,
+            )
 
             prior = reviewed_entries.get(uid)
             if _prior_is_resolved(
@@ -244,6 +270,7 @@ def build_plan(repo_root: Path, batch_size: int) -> dict[str, Any]:
                 current_fp=current_fp,
                 bridge_sensitive=bridge_sensitive,
                 bridge_hash=bridge_hash,
+                item_context_hash=item_context_hash,
             ):
                 continue
 
@@ -276,6 +303,7 @@ def build_plan(repo_root: Path, batch_size: int) -> dict[str, Any]:
                 "source_bridge_terms": bridge_terms,
                 "source_bridge_risks": bridge_risks,
                 "source_bridge_policy_sha256": bridge_hash if bridge_sensitive else None,
+                "item_context_sha256": item_context_hash,
             })
 
     candidates.sort(key=lambda item: (int(item["source_batch"]), int(item["entry_index"]), str(item["uid"])))
@@ -288,7 +316,7 @@ def build_plan(repo_root: Path, batch_size: int) -> dict[str, Any]:
     source_label = sorted(source_commits)[0] if len(source_commits) == 1 else "multi-source"
     plan_id = (
         f"tr-p{TRANSLATION_REVIEW_POLICY_VERSION}-"
-        f"{source_label[:12]}-{scope_hash[:12]}-{context_hash[:10]}"
+        f"{source_label[:12]}-{scope_hash[:12]}-{context_hash[:10]}-{item_policy_hash[:10]}"
     )
 
     active_path = review_root / "active_plan.json"
@@ -302,6 +330,7 @@ def build_plan(repo_root: Path, batch_size: int) -> dict[str, Any]:
             "generated_at": utc_now(),
             "context_snapshot_sha256": context_hash,
             "source_bridge_policy_sha256": bridge_hash,
+            "item_scoped_policy_sha256": item_policy_hash,
             "candidate_count": 0,
             "reviewed_scope": "all canonical entries represented by work/merged markers",
             "note": "All currently merged translations are resolved under the current translation-review policy/context.",
@@ -357,6 +386,7 @@ def build_plan(repo_root: Path, batch_size: int) -> dict[str, Any]:
         "lease_minutes": 45,
         "context_snapshot_sha256": context_hash,
         "source_bridge_policy_sha256": bridge_hash,
+        "item_scoped_policy_sha256": item_policy_hash,
         "scope_snapshot_sha256": scope_hash,
         "candidate_count": len(candidates),
         "batch_count": len(batches),
@@ -402,6 +432,7 @@ def build_plan(repo_root: Path, batch_size: int) -> dict[str, Any]:
         "priority_head_size": len(priority_batch_ids),
         "context_snapshot_sha256": context_hash,
         "source_bridge_policy_sha256": bridge_hash,
+        "item_scoped_policy_sha256": item_policy_hash,
     }
 
 

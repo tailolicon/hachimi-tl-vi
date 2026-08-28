@@ -12,6 +12,7 @@ try:
     from scripts.translation_review_common import (
         contains_any,
         context_snapshot_hash,
+        item_scoped_policy_hash,
         get_json_path,
         load_json,
         load_source_bridge_config,
@@ -27,6 +28,7 @@ except ModuleNotFoundError:
     from translation_review_common import (  # type: ignore[no-redef]
         contains_any,
         context_snapshot_hash,
+        item_scoped_policy_hash,
         get_json_path,
         load_json,
         load_source_bridge_config,
@@ -127,7 +129,14 @@ def _bridge_auto_defer_reasons(
     bridge_risk_rules: list[dict[str, Any]],
 ) -> tuple[list[str], list[dict[str, Any]], list[dict[str, Any]]]:
     source = str(item.get("source_text", ""))
-    terms = source_bridge_term_matches(source, candidate, bridge_term_rules)
+    terms = source_bridge_term_matches(
+        source,
+        candidate,
+        bridge_term_rules,
+        key=item.get("key"),
+        source_path=item.get("source_path"),
+        json_path=item.get("json_path"),
+    )
     risks = source_bridge_risk_matches(source, bridge_risk_rules)
     reasons: list[str] = []
 
@@ -286,6 +295,7 @@ def merge(repo_root: Path) -> dict[str, Any]:
     )
     reviewed_entries = reviewed.setdefault("entries", {})
     current_context_hash = context_snapshot_hash(repo_root)
+    current_item_policy_hash = item_scoped_policy_hash(repo_root)
     bridge_hash = source_bridge_policy_hash(repo_root)
     bridge_config = load_source_bridge_config(repo_root)
     bridge_term_rules = [item for item in bridge_config.get("terms", []) if isinstance(item, dict)]
@@ -330,12 +340,14 @@ def merge(repo_root: Path) -> dict[str, Any]:
         if (
             int(plan.get("policy_version", 0)) != CURRENT_POLICY_VERSION
             or str(plan.get("context_snapshot_sha256", "")) != current_context_hash
+            or str(plan.get("item_scoped_policy_sha256", "")) != current_item_policy_hash
         ):
-            reason = (
-                "legacy_policy"
-                if int(plan.get("policy_version", 0)) != CURRENT_POLICY_VERSION
-                else "review_context_changed"
-            )
+            if int(plan.get("policy_version", 0)) != CURRENT_POLICY_VERSION:
+                reason = "legacy_policy"
+            elif str(plan.get("context_snapshot_sha256", "")) != current_context_hash:
+                reason = "review_context_changed"
+            else:
+                reason = "item_scoped_policy_changed"
             write_json(merged_path, {
                 "schema_version": 1,
                 "status": "superseded",
@@ -421,6 +433,8 @@ def merge(repo_root: Path) -> dict[str, Any]:
                 "auto_defer_reasons": decision["auto_defer_reasons"],
                 "source_bridge_policy_sha256": decision.get("source_bridge_policy_sha256"),
                 "context_snapshot_sha256": current_context_hash,
+                "item_context_sha256": item.get("item_context_sha256"),
+                "item_scoped_policy_sha256": current_item_policy_hash,
                 "policy_version": int(plan["policy_version"]),
                 "plan_id": plan_id,
                 "batch_id": batch_id,
@@ -443,6 +457,7 @@ def merge(repo_root: Path) -> dict[str, Any]:
             "deferred_items": counts["defer"],
             "auto_deferred": auto_deferred_for_batch,
             "source_bridge_policy_sha256": bridge_hash,
+            "item_scoped_policy_sha256": current_item_policy_hash,
         })
         report["merged_batches"].append(batch_id)
 

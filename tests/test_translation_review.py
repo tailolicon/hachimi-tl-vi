@@ -1,6 +1,10 @@
 from scripts.merge_translation_review import _validate_result
+import json
 from scripts.translation_review_common import (
     community_term_matches,
+    context_snapshot_hash,
+    item_scoped_context_hash,
+    item_scoped_policy_hash,
     locked_term_matches,
     suppress_overridden_locked_terms,
     text_fingerprint,
@@ -144,3 +148,101 @@ def test_defer_is_allowed_without_forcing_a_guess():
 
     assert errors == []
     assert decisions[0]["action"] == "defer"
+
+
+def test_named_condition_exact_context_does_not_match_ordinary_prose():
+    terms = [{
+        "id": "common.condition.night_owl",
+        "source_aliases": ["熬夜"],
+        "preferred": "Night Owl",
+        "accepted": ["Night Owl"],
+        "forbidden": ["Thức khuya"],
+        "require_accepted": True,
+        "source_paths": ["text_data_dict.json"],
+        "json_path_prefixes": [["142"]],
+        "match_mode": "exact",
+        "invalidation_scope": "item",
+    }]
+    matched = community_term_matches(
+        None,
+        "熬夜",
+        "Thức khuya",
+        terms,
+        source_path="text_data_dict.json",
+        json_path=["142", "1"],
+    )
+    assert matched and matched[0]["preferred"] == "Night Owl"
+    assert community_term_matches(
+        None,
+        "总是会不自觉地熬夜",
+        "Luôn vô thức thức khuya",
+        terms,
+        source_path="text_data_dict.json",
+        json_path=["143", "1"],
+    ) == []
+
+
+def test_mood_level_requires_exact_ui_key():
+    terms = [{
+        "id": "common.state.mood.normal",
+        "source_aliases": ["普通"],
+        "preferred": "Normal",
+        "accepted": ["Normal"],
+        "forbidden": ["Bình thường"],
+        "require_accepted": True,
+        "source_paths": ["localize_dict.json"],
+        "key_exact": ["Race0632"],
+        "match_mode": "exact",
+        "invalidation_scope": "item",
+    }]
+    assert community_term_matches(
+        "Race0632", "普通", "Bình thường", terms,
+        source_path="localize_dict.json", json_path=["Race0632"],
+    )
+    assert community_term_matches(
+        "Menu999", "普通", "Bình thường", terms,
+        source_path="localize_dict.json", json_path=["Menu999"],
+    ) == []
+
+
+def test_item_scoped_canon_changes_policy_hash_without_global_context_hash(tmp_path):
+    glossary = tmp_path / "glossary"
+    glossary.mkdir()
+    (tmp_path / "TRANSLATION_REVIEW.md").write_text("review", encoding="utf-8")
+    (tmp_path / "GAME_CONTEXT.md").write_text("context", encoding="utf-8")
+    for name in ("translation_audit_policy.json", "skill_name_style.json", "style_rules.json"):
+        (glossary / name).write_text("{}", encoding="utf-8")
+    (glossary / "term_registry.json").write_text(json.dumps({"terms": []}), encoding="utf-8")
+    (glossary / "ui_community_terms.json").write_text(json.dumps({"terms": []}), encoding="utf-8")
+    global_before = context_snapshot_hash(tmp_path)
+    scoped_before = item_scoped_policy_hash(tmp_path)
+    scoped = {
+        "id": "common.condition.night_owl",
+        "source_aliases": ["熬夜"],
+        "preferred": "Night Owl",
+        "accepted": ["Night Owl"],
+        "invalidation_scope": "item",
+        "source_paths": ["text_data_dict.json"],
+        "json_path_prefixes": [["142"]],
+        "match_mode": "exact",
+    }
+    (glossary / "ui_community_terms.json").write_text(json.dumps({"terms": [scoped]}), encoding="utf-8")
+    assert context_snapshot_hash(tmp_path) == global_before
+    assert item_scoped_policy_hash(tmp_path) != scoped_before
+    assert item_scoped_context_hash(
+        key=None,
+        source="熬夜",
+        source_path="text_data_dict.json",
+        json_path=["142", "1"],
+        locked_terms=[],
+        community_terms=[scoped],
+    ) is not None
+    assert item_scoped_context_hash(
+        key=None,
+        source="今天熬夜了",
+        source_path="text_data_dict.json",
+        json_path=["143", "1"],
+        locked_terms=[],
+        community_terms=[scoped],
+    ) is None
+

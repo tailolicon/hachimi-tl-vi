@@ -180,6 +180,8 @@ def _validate_and_complete(
                     target,
                     uid=str(uid),
                     key=_entry_key(source_entry),
+                    source_path=str(source_entry.get("source_path", "")) or None,
+                    json_path=source_entry.get("json_path") if isinstance(source_entry.get("json_path"), list) else None,
                 )
                 if guard_errors:
                     diagnostics.append(

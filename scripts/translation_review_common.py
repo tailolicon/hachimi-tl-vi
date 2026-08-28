@@ -61,15 +61,46 @@ def text_fingerprint(text: str) -> str:
     return hashlib.sha256(text.encode("utf-8")).hexdigest()
 
 
+def _global_context_bytes(rel: str, path: Path) -> bytes:
+    if rel not in {"glossary/term_registry.json", "glossary/ui_community_terms.json"}:
+        return path.read_bytes()
+    payload = load_json(path, {}) or {}
+    if not isinstance(payload, dict):
+        return path.read_bytes()
+    semantic = dict(payload)
+    semantic["terms"] = [
+        term for term in payload.get("terms", [])
+        if isinstance(term, dict) and str(term.get("invalidation_scope", "global")) != "item"
+    ]
+    return json.dumps(semantic, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode("utf-8")
+
+
 def context_snapshot_hash(repo_root: Path) -> str:
+    """Hash global review policy while excluding explicitly item-scoped canon records."""
     digest = hashlib.sha256()
     for rel in CONTEXT_PATHS:
         digest.update(rel.encode("utf-8") + b"\0")
         path = repo_root / rel
         if path.exists():
-            digest.update(path.read_bytes())
+            digest.update(_global_context_bytes(rel, path))
         digest.update(b"\0")
     return digest.hexdigest()
+
+
+def item_scoped_policy_hash(repo_root: Path) -> str:
+    semantic: dict[str, list[dict[str, Any]]] = {}
+    for rel in ("glossary/term_registry.json", "glossary/ui_community_terms.json"):
+        payload = load_json(repo_root / rel, {}) or {}
+        terms = payload.get("terms", []) if isinstance(payload, dict) else []
+        semantic[rel] = sorted(
+            [
+                term for term in terms
+                if isinstance(term, dict) and str(term.get("invalidation_scope", "")) == "item"
+            ],
+            key=lambda term: str(term.get("id", "")),
+        )
+    encoded = json.dumps(semantic, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode("utf-8")
+    return hashlib.sha256(encoded).hexdigest()
 
 
 def source_bridge_policy_hash(repo_root: Path) -> str:
@@ -140,12 +171,90 @@ def contains_any(text: str, values: list[str]) -> bool:
     return any(normalize(value) in normalized for value in values if value)
 
 
-def _alias_matches(source: str, alias: str) -> bool:
+def _alias_matches(source: str, alias: str, mode: str = "contains") -> bool:
     if not alias:
         return False
+    if mode == "exact":
+        return source.strip() == alias.strip()
     if source == alias:
         return True
     return len(alias) >= 2 and alias in source
+
+
+def _strings(value: Any) -> list[str]:
+    if isinstance(value, str):
+        return [value]
+    if isinstance(value, list):
+        return [str(item) for item in value if str(item)]
+    return []
+
+
+def _context_matches(
+    term: dict[str, Any],
+    *,
+    key: str | None,
+    source_path: str | None,
+    json_path: list[Any] | None,
+) -> bool:
+    source_paths = _strings(term.get("source_paths"))
+    if source_paths and (source_path is None or source_path not in source_paths):
+        return False
+    exact_keys = _strings(term.get("key_exact"))
+    if exact_keys and (key is None or key not in exact_keys):
+        return False
+    prefixes = _strings(term.get("key_prefixes"))
+    if prefixes and (key is None or not any(key.startswith(prefix) for prefix in prefixes)):
+        return False
+    raw_prefixes = term.get("json_path_prefixes", [])
+    if raw_prefixes:
+        if not isinstance(json_path, list):
+            return False
+        normalized_path = [str(value) for value in json_path]
+        matched_prefix = False
+        for raw in raw_prefixes:
+            values = raw if isinstance(raw, list) else [raw]
+            prefix = [str(value) for value in values]
+            if normalized_path[: len(prefix)] == prefix:
+                matched_prefix = True
+                break
+        if not matched_prefix:
+            return False
+    return True
+
+
+def _matched_aliases(source: str, aliases: list[str], term: dict[str, Any]) -> list[str]:
+    mode = str(term.get("match_mode", "contains"))
+    return [alias for alias in aliases if _alias_matches(source, alias, mode)]
+
+
+def item_scoped_context_hash(
+    *,
+    key: str | None,
+    source: str,
+    source_path: str | None,
+    json_path: list[Any] | None,
+    locked_terms: list[dict[str, Any]],
+    community_terms: list[dict[str, Any]],
+) -> str | None:
+    matched: list[dict[str, Any]] = []
+    for layer, terms, alias_field in (
+        ("locked", locked_terms, "zh_cn"),
+        ("community", community_terms, "source_aliases"),
+    ):
+        for term in terms:
+            if str(term.get("invalidation_scope", "")) != "item":
+                continue
+            if not _context_matches(term, key=key, source_path=source_path, json_path=json_path):
+                continue
+            aliases = _strings(term.get(alias_field))
+            if not _matched_aliases(source, aliases, term):
+                continue
+            matched.append({"layer": layer, "term": term})
+    if not matched:
+        return None
+    matched.sort(key=lambda item: (item["layer"], str(item["term"].get("id", ""))))
+    encoded = json.dumps(matched, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode("utf-8")
+    return hashlib.sha256(encoded).hexdigest()
 
 
 def load_locked_terms(repo_root: Path) -> list[dict[str, Any]]:
@@ -156,14 +265,24 @@ def load_locked_terms(repo_root: Path) -> list[dict[str, Any]]:
     ]
 
 
-def locked_term_matches(source: str, target: str, terms: list[dict[str, Any]]) -> list[dict[str, Any]]:
+def locked_term_matches(
+    source: str,
+    target: str,
+    terms: list[dict[str, Any]],
+    *,
+    key: str | None = None,
+    source_path: str | None = None,
+    json_path: list[Any] | None = None,
+) -> list[dict[str, Any]]:
     result: list[dict[str, Any]] = []
     for term in terms:
         exclusions = [str(v) for v in term.get("exclude_source_contains", []) if str(v)]
         if exclusions and any(value in source for value in exclusions):
             continue
+        if not _context_matches(term, key=key, source_path=source_path, json_path=json_path):
+            continue
         aliases = [str(v) for v in term.get("zh_cn", []) if str(v)]
-        matched_aliases = [alias for alias in aliases if _alias_matches(source, alias)]
+        matched_aliases = _matched_aliases(source, aliases, term)
         if not matched_aliases:
             continue
         expected = str(term["target_vi"])
@@ -186,17 +305,19 @@ def community_term_matches(
     source: str,
     target: str,
     terms: list[dict[str, Any]],
+    *,
+    source_path: str | None = None,
+    json_path: list[Any] | None = None,
 ) -> list[dict[str, Any]]:
     result: list[dict[str, Any]] = []
     for term in terms:
         exclusions = [str(v) for v in term.get("exclude_source_contains", []) if str(v)]
         if exclusions and any(value in source for value in exclusions):
             continue
-        prefixes = [str(v) for v in term.get("key_prefixes", []) if str(v)]
-        if prefixes and (key is None or not any(key.startswith(prefix) for prefix in prefixes)):
+        if not _context_matches(term, key=key, source_path=source_path, json_path=json_path):
             continue
         aliases = [str(v) for v in term.get("source_aliases", []) if str(v)]
-        matched_aliases = [alias for alias in aliases if _alias_matches(source, alias)]
+        matched_aliases = _matched_aliases(source, aliases, term)
         if not matched_aliases:
             continue
         accepted = list(dict.fromkeys(
@@ -251,13 +372,19 @@ def source_bridge_term_matches(
     source: str,
     target: str,
     terms: list[dict[str, Any]],
+    *,
+    key: str | None = None,
+    source_path: str | None = None,
+    json_path: list[Any] | None = None,
 ) -> list[dict[str, Any]]:
     result: list[dict[str, Any]] = []
     for term in terms:
         if not isinstance(term, dict):
             continue
+        if not _context_matches(term, key=key, source_path=source_path, json_path=json_path):
+            continue
         aliases = [str(v) for v in term.get("zh_cn", []) if str(v)]
-        matched_aliases = [alias for alias in aliases if _alias_matches(source, alias)]
+        matched_aliases = _matched_aliases(source, aliases, term)
         if not matched_aliases:
             continue
         accepted = [str(v) for v in term.get("accepted", []) if str(v)]

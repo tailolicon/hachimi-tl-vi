@@ -16,6 +16,158 @@ BRAND_EXCLUSIONS = [
 ]
 
 
+NAMED_CONDITIONS = [
+    {
+        "id": "condition.night_owl",
+        "ja": ["夜ふかし気味"],
+        "zh_cn": ["熬夜"],
+        "target": "Night Owl",
+        "forbidden": ["Thức khuya"],
+        "note": "Named negative Condition. Current Global/community name: Night Owl. The plain zh-CN alias is valid only as the exact Condition label in text_data category 142.",
+    },
+    {
+        "id": "condition.slacker",
+        "ja": ["なまけ癖"],
+        "zh_cn": ["懒惰成性"],
+        "target": "Slacker",
+        "forbidden": ["Lười biếng thành tính"],
+        "note": "Named negative Condition; established Global name Slacker.",
+    },
+    {
+        "id": "condition.skin_outbreak",
+        "ja": ["肌荒れ"],
+        "zh_cn": ["皮肤粗糙"],
+        "target": "Skin Outbreak",
+        "forbidden": ["Da thô ráp"],
+        "note": "Named negative Condition; established Global name Skin Outbreak.",
+    },
+    {
+        "id": "condition.slow_metabolism",
+        "ja": ["太り気味"],
+        "zh_cn": ["变胖"],
+        "target": "Slow Metabolism",
+        "forbidden": ["Tăng cân"],
+        "note": "Named negative Condition; established Global name Slow Metabolism.",
+    },
+    {
+        "id": "condition.migraine",
+        "ja": ["片頭痛"],
+        "zh_cn": ["偏头痛"],
+        "target": "Migraine",
+        "forbidden": ["Đau nửa đầu"],
+        "note": "Named negative Condition; established Global name Migraine.",
+    },
+    {
+        "id": "condition.practice_poor",
+        "ja": ["練習ベタ"],
+        "zh_cn": ["不擅长练习"],
+        "target": "Practice Poor",
+        "forbidden": ["Không giỏi luyện tập", "Poor Practice"],
+        "note": "Named negative Condition. Use current Global name Practice Poor, not the older community ordering Poor Practice.",
+    },
+    {
+        "id": "condition.fast_learner",
+        "ja": ["切れ者"],
+        "zh_cn": ["能人"],
+        "target": "Fast Learner",
+        "forbidden": ["Người tài"],
+        "note": "Named positive Condition; established Global name Fast Learner.",
+    },
+    {
+        "id": "condition.charming_circle",
+        "ja": ["愛嬌○"],
+        "zh_cn": ["惹人怜爱○"],
+        "target": "Charming ○",
+        "forbidden": ["Đáng yêu○", "Đáng yêu ○"],
+        "note": "Named positive Condition; established Global name Charming ○.",
+    },
+    {
+        "id": "condition.hot_topic",
+        "ja": ["注目株"],
+        "zh_cn": ["潜力股"],
+        "target": "Hot Topic",
+        "forbidden": ["Ngôi sao tiềm năng"],
+        "note": "Named positive Condition; established Global name Hot Topic.",
+    },
+    {
+        "id": "condition.practice_perfect_circle",
+        "ja": ["練習上手○"],
+        "zh_cn": ["擅长练习○"],
+        "target": "Practice Perfect ○",
+        "forbidden": ["Thành thạo luyện tập○", "Thành thạo luyện tập ○"],
+        "note": "Named positive Condition; established Global name Practice Perfect ○.",
+    },
+    {
+        "id": "condition.practice_perfect_double_circle",
+        "ja": ["練習上手◎"],
+        "zh_cn": ["擅长练习◎"],
+        "target": "Practice Perfect ◎",
+        "forbidden": ["Thành thạo luyện tập◎", "Thành thạo luyện tập ◎"],
+        "note": "Named positive Condition; established Global name Practice Perfect ◎.",
+    },
+    {
+        "id": "condition.under_the_weather",
+        "ja": ["小さなほころび"],
+        "zh_cn": ["微小的破绽"],
+        "target": "Under the Weather",
+        "forbidden": ["Kẽ hở nhỏ", "Cracking"],
+        "note": "Super Creek named negative Condition. Current Global/community name is Under the Weather; supersedes older community label Cracking.",
+    },
+    {
+        "id": "condition.shining_brightly",
+        "ja": ["大輪の輝き"],
+        "zh_cn": ["夺目的光辉"],
+        "target": "Shining Brightly",
+        "forbidden": ["Ánh hào quang chói lọi"],
+        "note": "Super Creek named positive Condition; established Global name Shining Brightly.",
+    },
+    {
+        "id": "condition.not_ready",
+        "ja": ["まだまだ準備中"],
+        "zh_cn": ["仍在准备中"],
+        "target": "Not Ready",
+        "forbidden": ["Vẫn đang chuẩn bị"],
+        "note": "Meisho Doto named negative Condition; current established Global/community name Not Ready.",
+    },
+    {
+        "id": "condition.legs_of_glass",
+        "ja": ["ガラスの脚"],
+        "zh_cn": ["玻璃般的双脚"],
+        "target": "Legs of Glass",
+        "forbidden": ["Đôi chân mong manh như thủy tinh"],
+        "note": "Mejiro Ardan named Condition; established international/community name Legs of Glass.",
+    },
+    {
+        "id": "condition.fan_promise",
+        "ja": [
+            "ファンとの約束・北海道", "ファンとの約束・北東", "ファンとの約束・中山",
+            "ファンとの約束・関西", "ファンとの約束・小倉", "ファンとの約束・川崎",
+        ],
+        "zh_cn": [
+            "与粉丝的约定・北海道", "与粉丝的约定・东北", "与粉丝的约定・中山",
+            "与粉丝的约定・关西", "与粉丝的约定・小仓", "与粉丝的约定・川崎",
+        ],
+        "target": "Fan Promise",
+        "forbidden": ["Lời hứa với fan"],
+        "note": "Smart Falcon Condition family. Require the established Fan Promise concept while preserving the region; punctuation/region spelling may be resolved by the reviewer from the exact label.",
+    },
+]
+
+MOOD_LEVELS = [
+    {"id": "state.mood.awful", "ja": ["絶不調"], "zh_cn": ["绝不调"], "key": "Race0630", "target": "Awful", "forbidden": ["Rất tệ"]},
+    {"id": "state.mood.bad", "ja": ["不調"], "zh_cn": ["不调"], "key": "Race0631", "target": "Bad", "forbidden": ["Tệ"]},
+    {"id": "state.mood.normal", "ja": ["普通"], "zh_cn": ["普通"], "key": "Race0632", "target": "Normal", "forbidden": ["Bình thường"]},
+    {"id": "state.mood.good", "ja": ["好調"], "zh_cn": ["好调"], "key": "Race0633", "target": "Good", "forbidden": ["Tốt"]},
+    {"id": "state.mood.great", "ja": ["絶好調"], "zh_cn": ["绝好调"], "key": "Race0634", "target": "Great", "forbidden": ["Rất tốt"]},
+]
+
+CONDITION_CONTEXT = {
+    "invalidation_scope": "item",
+    "source_paths": ["text_data_dict.json"],
+    "json_path_prefixes": [["142"]],
+    "match_mode": "exact",
+}
+
 def load_json(path: Path, default: Any) -> Any:
     if not path.exists():
         return default
@@ -145,6 +297,32 @@ def update_registry(repo_root: Path) -> bool:
     for record in additions:
         upsert_by_id(terms, record)
 
+    for spec in NAMED_CONDITIONS:
+        upsert_by_id(terms, {
+            "id": spec["id"],
+            "category": "condition",
+            "ja": spec["ja"],
+            "zh_cn": spec["zh_cn"],
+            "target_vi": spec["target"],
+            "locked": True,
+            "note": spec["note"],
+            **CONDITION_CONTEXT,
+        })
+    for spec in MOOD_LEVELS:
+        upsert_by_id(terms, {
+            "id": spec["id"],
+            "category": "mood_level",
+            "ja": spec["ja"],
+            "zh_cn": spec["zh_cn"],
+            "target_vi": spec["target"],
+            "locked": True,
+            "note": "Named Mood level; use established Global player-facing label.",
+            "invalidation_scope": "item",
+            "source_paths": ["localize_dict.json"],
+            "key_exact": [spec["key"]],
+            "match_mode": "exact",
+        })
+
     policy = payload.setdefault("policy", {})
     policy["player_facing_rule"] = (
         "For established gameplay concepts use the canonical player-facing English/Romanized term; "
@@ -248,6 +426,36 @@ def update_community(repo_root: Path) -> bool:
             basis="Named negative Condition; ordinary prose about staying up late is outside this rule.",
         ),
     ]
+    for spec in NAMED_CONDITIONS:
+        records.append({
+            "id": "common." + spec["id"],
+            "category": "condition",
+            "source_aliases": spec["zh_cn"],
+            "preferred": spec["target"],
+            "compact": [],
+            "accepted": [spec["target"]],
+            "forbidden": spec["forbidden"],
+            "require_accepted": True,
+            "basis": spec["note"],
+            **CONDITION_CONTEXT,
+        })
+    for spec in MOOD_LEVELS:
+        records.append({
+            "id": "common." + spec["id"],
+            "category": "mood_level",
+            "source_aliases": spec["zh_cn"],
+            "preferred": spec["target"],
+            "compact": [],
+            "accepted": [spec["target"]],
+            "forbidden": spec["forbidden"],
+            "require_accepted": True,
+            "basis": "Named Mood level; established Global player-facing label.",
+            "invalidation_scope": "item",
+            "source_paths": ["localize_dict.json"],
+            "key_exact": [spec["key"]],
+            "match_mode": "exact",
+        })
+
     for record in records:
         upsert_by_id(terms, record)
 
@@ -260,6 +468,49 @@ def update_community(repo_root: Path) -> bool:
     for rule in additions:
         if rule not in rules:
             rules.append(rule)
+
+    after = json.dumps(payload, ensure_ascii=False, sort_keys=True)
+    if after != before:
+        write_json(path, payload)
+        return True
+    return False
+
+
+
+def update_source_bridge(repo_root: Path) -> bool:
+    path = repo_root / "glossary/source_bridge_terms.json"
+    payload = load_json(path, {"schema_version": 1, "policy": {}, "terms": [], "untrusted_sources": []})
+    before = json.dumps(payload, ensure_ascii=False, sort_keys=True)
+    terms = payload.setdefault("terms", [])
+
+    for spec in NAMED_CONDITIONS:
+        upsert_by_id(terms, {
+            "id": spec["id"],
+            "ja": spec["ja"],
+            "zh_cn": spec["zh_cn"],
+            "preferred": spec["target"],
+            "accepted": [spec["target"]],
+            "forbidden": spec["forbidden"],
+            "require_accepted": True,
+            "source_paths": ["text_data_dict.json"],
+            "json_path_prefixes": [["142"]],
+            "match_mode": "exact",
+            "note": spec["note"] + " The zh-CN semantic label is not authoritative outside this guarded Condition slot.",
+        })
+    for spec in MOOD_LEVELS:
+        upsert_by_id(terms, {
+            "id": spec["id"],
+            "ja": spec["ja"],
+            "zh_cn": spec["zh_cn"],
+            "preferred": spec["target"],
+            "accepted": [spec["target"]],
+            "forbidden": spec["forbidden"],
+            "require_accepted": True,
+            "source_paths": ["localize_dict.json"],
+            "key_exact": [spec["key"]],
+            "match_mode": "exact",
+            "note": "Named Mood level. Guard by exact Race0630-Race0634 UI identity so generic prose is not rewritten.",
+        })
 
     after = json.dumps(payload, ensure_ascii=False, sort_keys=True)
     if after != before:
@@ -443,6 +694,7 @@ def main() -> int:
     changed = {
         "term_registry": update_registry(REPO_ROOT),
         "ui_community_terms": update_community(REPO_ROOT),
+        "source_bridge_terms": update_source_bridge(REPO_ROOT),
         "translation_audit_policy": ensure_audit_policy(REPO_ROOT),
         "translation_review_common": patch_review_common(REPO_ROOT),
         "translation_guard": patch_translation_guard(REPO_ROOT),

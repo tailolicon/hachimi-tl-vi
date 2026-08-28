@@ -23,7 +23,7 @@ def replace_once(rel: str, old: str, new: str) -> None:
 
 def regex_once(rel: str, pattern: str, replacement: str) -> None:
     text = read(rel)
-    updated, count = re.subn(pattern, replacement, text, count=1, flags=re.S)
+    updated, count = re.subn(pattern, lambda _match: replacement, text, count=1, flags=re.S)
     if count != 1:
         raise RuntimeError(f"regex anchor count={count} in {rel}: {pattern[:120]!r}")
     write(rel, updated)
@@ -537,7 +537,7 @@ text = text.replace(
 )
 text = text.replace(
     "    bridge_hash: str,\n) -> bool:\n",
-    "    bridge_hash: str,\n    item_context_hash: str | None,\n) -> bool:\n",
+    "    bridge_hash: str,\n    item_context_hash: str | None = None,\n) -> bool:\n",
     1,
 )
 text = text.replace(
@@ -779,48 +779,8 @@ if "test_named_condition_exact_context_does_not_match_ordinary_prose" not in tex
 write("tests/test_translation_review.py", text)
 
 text = read("tests/test_translation_guard.py")
-text = text.replace(
-    '                {"id": "locked.foo", "locked": True, "zh_cn": ["术语"], "target_vi": "Chuẩn"},\n',
-    '                {"id": "locked.foo", "locked": True, "zh_cn": ["术语"], "target_vi": "Chuẩn"},\n                {"id": "condition.night_owl", "locked": True, "zh_cn": ["熬夜"], "target_vi": "Night Owl", "source_paths": ["text_data_dict.json"], "json_path_prefixes": [["142"]], "match_mode": "exact"},\n',
-)
-needle = '''                {\n                    "id": "common.speed",\n                    "source_aliases": ["速度"],\n                    "accepted": ["Speed"],\n                    "compact": [],\n                    "forbidden": ["Tốc độ"],\n                    "require_accepted": True,\n                }\n'''
-replacement = needle[:-2] + ''',\n                {\n                    "id": "common.condition.night_owl",\n                    "source_aliases": ["熬夜"],\n                    "accepted": ["Night Owl"],\n                    "compact": [],\n                    "forbidden": ["Thức khuya"],\n                    "require_accepted": True,\n                    "source_paths": ["text_data_dict.json"],\n                    "json_path_prefixes": [["142"]],\n                    "match_mode": "exact",\n                }\n'''
-if needle not in text:
-    raise RuntimeError("test guard community fixture anchor missing")
-text = text.replace(needle, replacement, 1)
-append = r'''
-
-
-def test_guard_named_condition_is_path_scoped(tmp_path: Path) -> None:
-    guard = _guard(tmp_path)
-    errors = guard.validate(
-        "熬夜",
-        "Thức khuya",
-        source_path="text_data_dict.json",
-        json_path=["142", "1"],
-    )
-    assert "community_forbidden:common.condition.night_owl" in errors
-    assert "community_required:common.condition.night_owl" in errors
-    assert guard.validate(
-        "熬夜",
-        "Night Owl",
-        source_path="text_data_dict.json",
-        json_path=["142", "1"],
-    ) == []
-    assert guard.validate(
-        "今天熬夜了",
-        "Hôm nay đã thức khuya",
-        source_path="text_data_dict.json",
-        json_path=["143", "1"],
-    ) == []
-'''
+append = '\n\n\ndef test_guard_named_condition_is_path_scoped(tmp_path: Path) -> None:\n    guard = _guard(tmp_path)\n    guard.term_registry.setdefault("terms", []).append({\n        "id": "condition.night_owl",\n        "locked": True,\n        "zh_cn": ["熬夜"],\n        "target_vi": "Night Owl",\n        "source_paths": ["text_data_dict.json"],\n        "json_path_prefixes": [["142"]],\n        "match_mode": "exact",\n    })\n    guard.community.setdefault("terms", []).append({\n        "id": "common.condition.night_owl",\n        "source_aliases": ["熬夜"],\n        "accepted": ["Night Owl"],\n        "compact": [],\n        "forbidden": ["Thức khuya"],\n        "require_accepted": True,\n        "source_paths": ["text_data_dict.json"],\n        "json_path_prefixes": [["142"]],\n        "match_mode": "exact",\n    })\n    errors = guard.validate(\n        "熬夜",\n        "Thức khuya",\n        source_path="text_data_dict.json",\n        json_path=["142", "1"],\n    )\n    assert "community_forbidden:common.condition.night_owl" in errors\n    assert "community_required:common.condition.night_owl" in errors\n    assert guard.validate(\n        "熬夜",\n        "Night Owl",\n        source_path="text_data_dict.json",\n        json_path=["142", "1"],\n    ) == []\n    assert guard.validate(\n        "今天熬夜了",\n        "Hôm nay đã thức khuya",\n        source_path="text_data_dict.json",\n        json_path=["143", "1"],\n    ) == []\n'
 if "test_guard_named_condition_is_path_scoped" not in text:
     text = text.rstrip() + append + "\n"
 write("tests/test_translation_guard.py", text)
-
-# Remove the temporary workflow hook and this script from the commit produced by the running workflow.
-workflow = read(".github/workflows/sync-translation-review-plan.yml")
-workflow = workflow.replace("          python scripts/apply_condition_mood_hardening.py\n", "")
-write(".github/workflows/sync-translation-review-plan.yml", workflow)
-Path(__file__).unlink()
-print("condition/mood hardening patch applied")
+print('condition/mood hardening patch applied')

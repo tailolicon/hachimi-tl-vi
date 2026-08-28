@@ -132,6 +132,8 @@ def validate_result(
                 target,
                 uid=str(source.get("uid", "")) or None,
                 key=_entry_key(source),
+                source_path=str(source.get("source_path", "")) or None,
+                json_path=source.get("json_path") if isinstance(source.get("json_path"), list) else None,
             )
             if guard_errors:
                 errors.append(

@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "status": "partial",
+  "plan_id": "tr-p3-67f8551f7780-69f8dab19d78-7782b2e26e",
+  "batch_id": "tr-p3-67f8551f7780-69f8dab19d78-7782b2e26e-b0580",
+  "claim_id": "trc-gpt56sol-20260828T054600Z-b0580",
+  "worker_id": "gpt56sol-20260828T054600Z",
+  "reviewed_at": "2026-08-28T05:48:30Z",
+  "completed_count": 5,
+  "decisions": [
+    {
+      "uid": "zhcn:a0b460d5e680edc5eb7bebc1",
+      "current_fingerprint": "ffcece5809c559548e42c7d85a77e49eeaabb59a072a78a8071ccbe1a00fe55d",
+      "action": "keep",
+      "reason": "Meaning, quantity, scenario restriction and newline structure are preserved; the Vietnamese is clear enough for a mission condition.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:eaf7a104bcaf179c607e60c4",
+      "current_fingerprint": "b4657cec600f51cde15e64107575a55ac2a637576b961edac787704bc9216eb1",
+      "action": "revise",
+      "proposed_text": "Chiến thắng Satsuki Sho khi có độ phổ biến cao hơn hạng 2, tham gia Kikuka Sho với độ phổ biến hạng 1, đồng thời chiến thắng Japanese Derby, Takarazuka Kinen (cấp Senior), Tenno Sho (Autumn) (cấp Senior) và Japan Cup (cấp Senior)",
+      "reason": "The current text is semantically equivalent on the first popularity condition but drops source numeric token 2 and uses non-canonical Japan Derby. The revision preserves the source bound explicitly and restores locked Japanese Derby.",
+      "terminology_basis": "Embedded locked race terms require Japanese Derby, Satsuki Sho, Kikuka Sho, Takarazuka Kinen, Tenno Sho (Autumn), and Japan Cup.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:c7b861a015c49aa45f9d9c19",
+      "current_fingerprint": "0165baeb1f8e0e776c7e8e813a8901b121e7e23a770d5ca97302f3ffac8fb070",
+      "action": "keep",
+      "reason": "The win condition, four opponents, and at-least-two-times requirement are all preserved naturally.",
+      "terminology_basis": "All embedded locked terms are present: Tenno Sho (Spring), Gold Ship, Gentildonna, Eishin Flash, and Orfevre.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:d651b7b235fe91fa9bf12b5c",
+      "current_fingerprint": "4135221b96e4333bdd58cec8bf9eb65dfc64c3598e53c9d2eb2c4089a133c521",
+      "action": "defer",
+      "reason": "A correction from [Ý chí] to community-required [Guts] is clear, but the embedded locked term incorrectly matches the substring 女王杯 inside the full source race 伊丽莎白女王杯 and demands Queen Cup. Repository curation evidence on main maps the full source race to Queen Elizabeth II Cup, matching the current text. Do not work around the conflicting persistent term guard by inserting the wrong race name.",
+      "terminology_basis": "Embedded community term requires Guts and forbids Ý chí; embedded Queen Cup lock conflicts with the full source race identity, while main curation result term-0100 maps 伊丽莎白女王杯 to Queen Elizabeth II Cup.",
+      "confidence": "medium"
+    },
+    {
+      "uid": "zhcn:7f3a5ee5d49af42d8f2ee908",
+      "current_fingerprint": "c91572f8ce0d20c3d77943a56b0be5ef26f38b9bf69819cf10c5900be95199ac",
+      "action": "defer",
+      "reason": "The Vietnamese meaning and character names are correct, but the embedded Queen Cup lock is a substring collision on the full source race 伊丽莎白女王杯. Main curation evidence identifies that full race as Queen Elizabeth II Cup, so forcing Queen Cup would introduce an error.",
+      "terminology_basis": "Curren Bouquetd'or, Chrono Genesis, and Lucky Lilac locks are satisfied; the Queen Cup lock conflicts with exact source identity and main curation evidence for Queen Elizabeth II Cup.",
+      "confidence": "medium"
+    }
+  ]
+}

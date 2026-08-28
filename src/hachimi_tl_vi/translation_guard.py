@@ -98,6 +98,9 @@ class TranslationQualityGuard:
         for term in self.community.get("terms", []):
             if not isinstance(term, dict):
                 continue
+            exclusions = _strings(term.get("exclude_source_contains"))
+            if exclusions and any(value in source for value in exclusions):
+                continue
             prefixes = _strings(term.get("key_prefixes"))
             if prefixes and (key is None or not any(key.startswith(prefix) for prefix in prefixes)):
                 continue
@@ -154,6 +157,9 @@ class TranslationQualityGuard:
 
         for term in self.term_registry.get("terms", []):
             if not isinstance(term, dict) or not bool(term.get("locked")):
+                continue
+            exclusions = _strings(term.get("exclude_source_contains"))
+            if exclusions and any(value in source for value in exclusions):
                 continue
             expected = str(term.get("target_vi", "")).strip()
             if not expected:

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "policy_version": 5,
+  "policy_version": 6,
   "purpose": "Authoritative player-facing Uma Musume terminology for common gameplay/UI labels and named mechanics. For listed concepts, preserve the accepted English/Romanized player term instead of mechanically translating it into Vietnamese.",
   "reference_note": "The common EN terminology set was updated from a Vietnamese community reference supplied by the project owner. Individual skill NAMES are handled separately by style_rules.json and should normally be localized into concise Vietnamese/Han-Viet game-style titles.",
   "precedence": [
@@ -16,7 +16,10 @@
     "Forbidden forms are known misleading/noncanonical calques and must not survive keep/revise.",
     "Common gameplay terms such as stats, race surfaces, distance classes, running styles, Skill labels, and established event mechanics stay in English/Romanized form.",
     "Individual skill names are NOT covered by the keep-English rule: localize those names according to glossary/style_rules.json.",
-    "If an unfamiliar named mechanic is not covered here or by term_registry, verify it or defer instead of inventing a Vietnamese canonical term."
+    "If an unfamiliar named mechanic is not covered here or by term_registry, verify it or defer instead of inventing a Vietnamese canonical term.",
+    "Generic ウマ娘/赛马娘 uses Mã Nương in Vietnamese prose/dialogue; preserve Umamusume: Pretty Derby when the full product title is present.",
+    "Named Conditions use their established English player-facing names; do not translate condition labels literally from zh-CN.",
+    "Skill Pt, Skill Hint, Spark/Sparks, and running-style names are canonical gameplay vocabulary and must not be Vietnamese calques."
   ],
   "terms": [
     {
@@ -248,15 +251,20 @@
     {
       "id": "common.spark",
       "category": "legacy",
-      "source_aliases": [],
+      "source_aliases": [
+        "因子"
+      ],
       "preferred": "Spark",
       "compact": [],
       "accepted": [
-        "Spark"
+        "Spark",
+        "Sparks"
       ],
-      "forbidden": [],
+      "forbidden": [
+        "Nhân tố"
+      ],
       "require_accepted": true,
-      "basis": "Reference EN term for Spark/Inspiration context."
+      "basis": "Established Legacy/Inheritance terminology; Sparks pass stats, aptitudes, and Skill Hints."
     },
     {
       "id": "common.scenario",
@@ -701,6 +709,115 @@
       "forbidden": [],
       "require_accepted": true,
       "basis": "Player-facing feature name."
+    },
+    {
+      "id": "common.world.umamusume",
+      "category": "world",
+      "source_aliases": [
+        "ウマ娘",
+        "赛马娘"
+      ],
+      "preferred": "Mã Nương",
+      "compact": [],
+      "accepted": [
+        "Mã Nương"
+      ],
+      "forbidden": [
+        "Uma Musume"
+      ],
+      "require_accepted": true,
+      "basis": "Vietnamese project term established by the official Vietnamese anime subtitle usage supplied by the project owner; applies to the generic world/species term, not the franchise title.",
+      "exclude_source_contains": [
+        "ウマ娘 プリティーダービー",
+        "ウマ娘Pretty Derby",
+        "ウマ娘 Pretty Derby",
+        "赛马娘 Pretty Derby",
+        "赛马娘Pretty Derby"
+      ]
+    },
+    {
+      "id": "common.skill_points",
+      "category": "resource",
+      "source_aliases": [
+        "スキルPt",
+        "スキルポイント",
+        "技能Pt",
+        "技能点",
+        "技能点数"
+      ],
+      "preferred": "Skill Pt",
+      "compact": [],
+      "accepted": [
+        "Skill Pt",
+        "Skill Pts",
+        "Skill Points"
+      ],
+      "forbidden": [
+        "Điểm kỹ năng",
+        "Pt kỹ năng"
+      ],
+      "require_accepted": true,
+      "basis": "Established player-facing terminology; UI may use Skill Pt while prose may use Skill Points."
+    },
+    {
+      "id": "common.skill_hint",
+      "category": "skill",
+      "source_aliases": [
+        "スキルヒント",
+        "技能灵感",
+        "技能提示"
+      ],
+      "preferred": "Skill Hint",
+      "compact": [],
+      "accepted": [
+        "Skill Hint",
+        "Skill Hints"
+      ],
+      "forbidden": [
+        "Gợi ý Skill",
+        "Gợi ý kỹ năng"
+      ],
+      "require_accepted": true,
+      "basis": "Established player-facing terminology for skill hints."
+    },
+    {
+      "id": "common.style.runaway",
+      "category": "running_style",
+      "source_aliases": [
+        "大逃げ",
+        "大逃",
+        "爆领"
+      ],
+      "preferred": "Runaway",
+      "compact": [],
+      "accepted": [
+        "Runaway"
+      ],
+      "forbidden": [
+        "Dai Nige",
+        "Đại đào thoát"
+      ],
+      "require_accepted": true,
+      "basis": "Established English name for the special 大逃げ strategy."
+    },
+    {
+      "id": "common.condition.night_owl",
+      "category": "condition",
+      "source_aliases": [
+        "夜ふかし気味",
+        "「熬夜」",
+        "熬夜状态"
+      ],
+      "preferred": "Night Owl",
+      "compact": [],
+      "accepted": [
+        "Night Owl"
+      ],
+      "forbidden": [
+        "Thức khuya"
+      ],
+      "require_accepted": true,
+      "basis": "Named negative Condition; ordinary prose about staying up late is outside this rule."
     }
   ]
 }

@@ -294,3 +294,23 @@ After a completed batch:
 4. otherwise end cleanly without acquiring more work.
 
 Do not reread this protocol unless it changed.
+
+## Manual-audit canonical rules
+
+`glossary/translation_audit_policy.json` defines the explicit full-corpus audit round. It is part of the global review context hash. Incrementing `audit_round` intentionally reopens every currently merged translation, even if all other glossary files are unchanged. A cleared gate means only that the **current audit round** is clean; it is not a permanent assertion that future audits can find nothing else.
+
+Apply these project-owner audit decisions as hard review policy:
+
+- generic `ウマ娘` / `赛马娘` in world/prose/dialogue is **Mã Nương**; preserve the product/franchise title **Umamusume: Pretty Derby** when the full title is present;
+- established gameplay vocabulary stays player-facing: **Support Card, Mood, Speed, Stamina, Power, Guts, Wit, Skill, Skill Pt/Skill Points, Skill Hint, Spark/Sparks, Turf, Dirt, Sprint, Mile, Medium, Long, Front Runner, Pace Chaser, Late Surger, End Closer, Runaway**;
+- named Conditions use their established English names (for example `夜ふかし気味` / quoted `熬夜` condition → **Night Owl**). Do not replace ordinary prose containing similar words with a Condition name;
+- individual Skill names still follow the Vietnamese Skill-title style/canonical registry; the keep-English rule above applies to generic gameplay labels, not every Skill title;
+- song titles and race names are proper names: use the verified international/official Romanized or English form, never a literal zh-CN semantic calque. If the international form is not established in repository evidence, verify it or `defer`;
+- song/person credits must use a verified Latin/Roman spelling for real creator names. CJK creator names left verbatim are not considered a clean Vietnamese result merely because the credit label was translated;
+- zh-CN-only translator/editor credits such as `译：...` are bridge metadata, not automatically original game credits. If the corresponding JP source/official credit cannot confirm them, remove them when evidence is clear or `defer` instead of propagating the bridge artifact;
+- `text_data` category `171` is interaction/login trigger metadata. Translate it as a condition/trigger label (for example “Khi đăng nhập buổi sáng”) rather than mistaking it for normal dialogue or an imperative UI action;
+- `text_data` category `172` is inheritance/Spark description context. Literal `因子 → Nhân tố`, `技能Pt → điểm/Pt kỹ năng`, or `技能灵感 → Gợi ý Skill` is noncanonical;
+- a terminology rule discovered by manual audit must be fixed in canonical context first. Do not patch only the sampled line and leave the same wrong mapping reusable elsewhere.
+
+After the game reaches full translation, start additional whole-corpus audit rounds by incrementing `audit_round`. Multiple clean passes are expected because later context, newly translated content, and manual sampling can expose systemic errors that an earlier pass could not see.
+

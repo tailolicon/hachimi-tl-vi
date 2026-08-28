@@ -8,7 +8,9 @@
     ],
     "locked_means": "Workers must use target_vi exactly for the concept unless the entry explicitly documents a context exception.",
     "proper_name_rule": "Never create a Vietnamese semantic calque from a Chinese character/racehorse name.",
-    "unknown_term_rule": "Do not invent a canonical term during batch translation. Use the safest identifiable form and leave normalization to terminology review."
+    "unknown_term_rule": "Do not invent a canonical term during batch translation. Use the safest identifiable form and leave normalization to terminology review.",
+    "player_facing_rule": "For established gameplay concepts use the canonical player-facing English/Romanized term; generic ウマ娘/赛马娘 is Mã Nương in Vietnamese, while the full product brand remains Umamusume: Pretty Derby.",
+    "canonical_sync": "scripts/enforce_player_facing_canon.py"
   },
   "terms": [
     {
@@ -20,8 +22,16 @@
       "zh_cn": [
         "赛马娘"
       ],
-      "target_vi": "Uma Musume",
-      "locked": true
+      "target_vi": "Mã Nương",
+      "locked": true,
+      "exclude_source_contains": [
+        "ウマ娘 プリティーダービー",
+        "ウマ娘Pretty Derby",
+        "ウマ娘 Pretty Derby",
+        "赛马娘 Pretty Derby",
+        "赛马娘Pretty Derby"
+      ],
+      "note": "Generic world/species term. Use Mã Nương in Vietnamese prose/dialogue; preserve the product brand Umamusume: Pretty Derby when the full title is present."
     },
     {
       "id": "world.tracen",
@@ -82,7 +92,7 @@
       ],
       "target_vi": "Support Card",
       "locked": true,
-      "note": "Player-facing Uma Musume term; keep Support Card in English."
+      "note": "Player-facing term; keep Support Card in English."
     },
     {
       "id": "system.support_points",
@@ -107,7 +117,7 @@
       "zh_cn": [
         "速度"
       ],
-      "target_vi": "Tốc độ",
+      "target_vi": "Speed",
       "locked": true
     },
     {
@@ -119,7 +129,7 @@
       "zh_cn": [
         "耐力"
       ],
-      "target_vi": "Thể lực",
+      "target_vi": "Stamina",
       "locked": true
     },
     {
@@ -131,7 +141,7 @@
       "zh_cn": [
         "力量"
       ],
-      "target_vi": "Sức mạnh",
+      "target_vi": "Power",
       "locked": true
     },
     {
@@ -143,7 +153,7 @@
       "zh_cn": [
         "毅力"
       ],
-      "target_vi": "Ý chí",
+      "target_vi": "Guts",
       "locked": true
     },
     {
@@ -155,7 +165,7 @@
       "zh_cn": [
         "智力"
       ],
-      "target_vi": "Trí tuệ",
+      "target_vi": "Wit",
       "locked": true
     },
     {
@@ -182,7 +192,7 @@
       ],
       "target_vi": "Mood",
       "locked": true,
-      "note": "Player-facing Uma Musume state term; やる気/干劲 maps to Mood."
+      "note": "Player-facing state term; やる気/干劲 maps to Mood."
     },
     {
       "id": "skill.generic",
@@ -193,7 +203,7 @@
       "zh_cn": [
         "技能"
       ],
-      "target_vi": "Kỹ năng",
+      "target_vi": "Skill",
       "locked": true
     },
     {
@@ -205,7 +215,7 @@
       "zh_cn": [
         "固有技能"
       ],
-      "target_vi": "Kỹ năng Độc nhất",
+      "target_vi": "Unique Skill",
       "locked": true
     },
     {
@@ -217,7 +227,7 @@
       "zh_cn": [
         "进化技能"
       ],
-      "target_vi": "Kỹ năng Tiến hóa",
+      "target_vi": "Evolution Skill",
       "locked": true
     },
     {
@@ -242,7 +252,7 @@
       "zh_cn": [
         "草地"
       ],
-      "target_vi": "Sân cỏ",
+      "target_vi": "Turf",
       "locked": true
     },
     {
@@ -266,7 +276,7 @@
       "zh_cn": [
         "短距离"
       ],
-      "target_vi": "Cự ly ngắn",
+      "target_vi": "Sprint",
       "locked": true
     },
     {
@@ -290,7 +300,7 @@
       "zh_cn": [
         "中距离"
       ],
-      "target_vi": "Cự ly trung bình",
+      "target_vi": "Medium",
       "locked": true
     },
     {
@@ -302,7 +312,7 @@
       "zh_cn": [
         "长距离"
       ],
-      "target_vi": "Cự ly dài",
+      "target_vi": "Long",
       "locked": true
     },
     {
@@ -314,7 +324,7 @@
       "zh_cn": [
         "跑法"
       ],
-      "target_vi": "Lối chạy",
+      "target_vi": "Style",
       "locked": true
     },
     {
@@ -326,7 +336,7 @@
       "zh_cn": [
         "领跑"
       ],
-      "target_vi": "Nige",
+      "target_vi": "Front Runner",
       "locked": true
     },
     {
@@ -338,7 +348,7 @@
       "zh_cn": [
         "先行"
       ],
-      "target_vi": "Senko",
+      "target_vi": "Pace Chaser",
       "locked": true
     },
     {
@@ -350,7 +360,7 @@
       "zh_cn": [
         "差行"
       ],
-      "target_vi": "Sashi",
+      "target_vi": "Late Surger",
       "locked": true
     },
     {
@@ -364,7 +374,7 @@
         "追赶",
         "追马"
       ],
-      "target_vi": "Oikomi",
+      "target_vi": "End Closer",
       "locked": true
     },
     {
@@ -374,10 +384,12 @@
         "大逃げ"
       ],
       "zh_cn": [
-        "大逃"
+        "大逃",
+        "爆领"
       ],
-      "target_vi": "Dai Nige",
-      "locked": true
+      "target_vi": "Runaway",
+      "locked": true,
+      "note": "Player-facing English strategy name for 大逃げ; do not calque as Đại đào thoát or keep Dai Nige."
     },
     {
       "id": "progress.fans",
@@ -27638,6 +27650,79 @@
         "source": "glossary/terminology_reviews.json"
       },
       "note": "The identical unbracketed title has the observed merged target 'Nhớ thương, cầu nguyện'; reuse it and preserve the card-title brackets."
+    },
+    {
+      "id": "world.umamusume_brand",
+      "category": "world_brand",
+      "ja": [
+        "ウマ娘 プリティーダービー",
+        "ウマ娘 Pretty Derby",
+        "ウマ娘Pretty Derby"
+      ],
+      "zh_cn": [
+        "赛马娘 Pretty Derby",
+        "赛马娘Pretty Derby"
+      ],
+      "target_vi": "Umamusume: Pretty Derby",
+      "locked": true,
+      "note": "Product/franchise title. Preserve the brand; this is the explicit exception to generic ウマ娘/赛马娘 → Mã Nương."
+    },
+    {
+      "id": "resource.skill_pt",
+      "category": "resource",
+      "ja": [
+        "スキルPt",
+        "スキルポイント"
+      ],
+      "zh_cn": [
+        "技能Pt",
+        "技能点",
+        "技能点数"
+      ],
+      "target_vi": "Skill Pt",
+      "locked": true,
+      "note": "Player-facing Skill Point resource. In prose, Skill Points is also acceptable through the community-term layer; never use Điểm kỹ năng/Pt kỹ năng."
+    },
+    {
+      "id": "skill.hint",
+      "category": "skill",
+      "ja": [
+        "スキルヒント"
+      ],
+      "zh_cn": [
+        "技能灵感",
+        "技能提示"
+      ],
+      "target_vi": "Skill Hint",
+      "locked": true,
+      "note": "Player-facing term for a skill hint; do not literalize as Gợi ý Skill/Gợi ý kỹ năng."
+    },
+    {
+      "id": "legacy.spark",
+      "category": "legacy",
+      "ja": [
+        "因子"
+      ],
+      "zh_cn": [
+        "因子"
+      ],
+      "target_vi": "Spark",
+      "locked": true,
+      "note": "Inheritance/Legacy system term. Use Spark/Sparks rather than Nhân tố."
+    },
+    {
+      "id": "condition.night_owl",
+      "category": "condition",
+      "ja": [
+        "夜ふかし気味"
+      ],
+      "zh_cn": [
+        "「熬夜」",
+        "熬夜状态"
+      ],
+      "target_vi": "Night Owl",
+      "locked": true,
+      "note": "Named Condition. Do not translate the condition label as Thức khuya; ordinary prose about staying up late is not covered by this rule."
     }
   ]
 }

@@ -25,6 +25,7 @@ CONTEXT_PATHS = (
     "GAME_CONTEXT.md",
     "glossary/term_registry.json",
     "glossary/ui_community_terms.json",
+    "glossary/translation_audit_policy.json",
     "glossary/skill_name_style.json",
     "glossary/style_rules.json",
 )
@@ -158,6 +159,9 @@ def load_locked_terms(repo_root: Path) -> list[dict[str, Any]]:
 def locked_term_matches(source: str, target: str, terms: list[dict[str, Any]]) -> list[dict[str, Any]]:
     result: list[dict[str, Any]] = []
     for term in terms:
+        exclusions = [str(v) for v in term.get("exclude_source_contains", []) if str(v)]
+        if exclusions and any(value in source for value in exclusions):
+            continue
         aliases = [str(v) for v in term.get("zh_cn", []) if str(v)]
         matched_aliases = [alias for alias in aliases if _alias_matches(source, alias)]
         if not matched_aliases:
@@ -185,6 +189,9 @@ def community_term_matches(
 ) -> list[dict[str, Any]]:
     result: list[dict[str, Any]] = []
     for term in terms:
+        exclusions = [str(v) for v in term.get("exclude_source_contains", []) if str(v)]
+        if exclusions and any(value in source for value in exclusions):
+            continue
         prefixes = [str(v) for v in term.get("key_prefixes", []) if str(v)]
         if prefixes and (key is None or not any(key.startswith(prefix) for prefix in prefixes)):
             continue

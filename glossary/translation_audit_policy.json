@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "audit_round": 1,
+  "round_id": "manual-terminology-cleanup-2026-08",
+  "mode": "full_retrospective_pass",
+  "scope": "all currently merged Vietnamese translations",
+  "purpose": "Make repeated whole-corpus audits explicit. Changing audit_round invalidates prior review context and forces another full pass even when no other glossary file changed.",
+  "required_checks": [
+    "semantic correctness and natural Vietnamese",
+    "player-facing terminology and named Conditions",
+    "proper names, race names, song titles, and creator credits",
+    "zh-CN bridge artifacts or translator-only credits absent from JP",
+    "numeric/condition/comparator/structure preservation"
+  ],
+  "completion_policy": {
+    "current_round": "The translation gate clears only after every in-scope entry is resolved for this audit round.",
+    "after_game_translation_complete": "Run additional full audit rounds by incrementing audit_round. At least two clean post-completion passes are recommended before treating the localization as release-clean.",
+    "new_findings": "Any newly discovered systemic terminology rule should update canonical context and start/restart a full audit round rather than patch isolated lines only."
+  }
+}

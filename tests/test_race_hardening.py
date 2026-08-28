@@ -80,7 +80,8 @@ def test_grades_use_g1_g2_g3_and_short_open_labels_are_exact(tmp_path: Path) -> 
     community = load_community_terms(root)
     for source, target, rid in (("GⅠ", "G1", "race.grade.g1"), ("GⅡ", "G2", "race.grade.g2"), ("GⅢ", "G3", "race.grade.g3")):
         assert rid in _ids(locked_term_matches(source, target, locked, source_path="localize_dict.json", json_path=["Menu"]));
-        assert f"common.{rid}" in _ids(community_term_matches(None, source, target, community, source_path="localize_dict.json", json_path=["Menu"]))
+        community_id = {"race.grade.g1": "common.race_grade.g1", "race.grade.g2": "common.race_grade.g2", "race.grade.g3": "common.race_grade.g3"}[rid]
+        assert community_id in _ids(community_term_matches(None, source, target, community, source_path="localize_dict.json", json_path=["Menu"]))
     assert "race.grade.open" in _ids(locked_term_matches("OP", "OP", locked, key="Race0025", source_path="localize_dict.json", json_path=["Race0025"]))
     assert "race.grade.pre_open" in _ids(locked_term_matches("Pre-OP比赛", "Cuộc đua Pre-OP", locked, key="SingleMode0493", source_path="localize_dict.json", json_path=["SingleMode0493"]))
     assert "race.grade.open" not in _ids(locked_term_matches("OPENING", "OPENING", locked, source_path="text_data_dict.json", json_path=["163", "1"]))
@@ -110,7 +111,8 @@ def test_named_races_use_single_verified_targets(tmp_path: Path) -> None:
     )
     for source, target, rid in checks:
         assert rid in _ids(locked_term_matches(source, target, terms, source_path="text_data_dict.json", json_path=["111", "1"]))
-    obsolete = next(term for term in terms if term["id"] == "reviewed.race_name.867d16270a74")
+    registry = json.loads((root / "glossary/term_registry.json").read_text(encoding="utf-8"))
+    obsolete = next(term for term in registry["terms"] if term["id"] == "reviewed.race_name.867d16270a74")
     assert obsolete["locked"] is False and obsolete["zh_cn"] == []
 
 
@@ -151,7 +153,7 @@ def test_semantic_zh_race_bridges_are_narrow_and_generic_words_do_not_match(tmp_
 def test_proper_name_substrings_do_not_create_generic_named_race_matches(tmp_path: Path) -> None:
     root = _seed(tmp_path)
     terms = load_locked_terms(root)
-    ids = _ids(locked_term_matches("这是普通的冠军杯子，不是赛事名", "Đây chỉ là chiếc cúp của nhà vô địch", terms, source_path="text_data_dict.json", json_path=["163", "1"]))
+    ids = _ids(locked_term_matches("这是普通的冠军和奖杯，不是赛事名", "Đây chỉ là chiếc cúp của nhà vô địch", terms, source_path="text_data_dict.json", json_path=["163", "1"]))
     assert "race.champions_cup" not in ids
     assert "race.tokyo_yushun" not in _ids(locked_term_matches("德比是一种赛事称呼", "Derby là một cách gọi cuộc đua", terms, source_path="text_data_dict.json", json_path=["163", "2"]))
 

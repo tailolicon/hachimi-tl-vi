@@ -63,6 +63,7 @@ except ModuleNotFoundError:
 
 TRANSLATION_REVIEW_POLICY_VERSION = 3
 PRIORITY_HEAD_SIZE = 64
+INCOMPLETE_GATE_REASON = "Retrospective translation review is incomplete; new translation claims are paused."
 
 
 def git_show_json(repo_root: Path, ref: str, path: str) -> Any:
@@ -109,6 +110,32 @@ def _set_gate(
     if not enabled:
         gate["cleared_at"] = utc_now()
     write_json(path, state)
+
+
+def normalize_gate_state_for_noop(after: dict[str, Any], before: dict[str, Any]) -> dict[str, Any]:
+    """Restore only gate timestamps when the semantic gate state is unchanged.
+
+    Production Sync captures ``before`` prior to rebuilding. A rediscovered active
+    plan may refresh ``updated_at`` even though plan identity, scope, reason, and
+    policy are identical. This helper makes that unchanged second sync byte-stable
+    without hiding any semantic gate change.
+    """
+    result = json.loads(json.dumps(after))
+    old_gate = before.get("translation_review_gate") if isinstance(before, dict) else None
+    new_gate = result.get("translation_review_gate") if isinstance(result, dict) else None
+    if not isinstance(old_gate, dict) or not isinstance(new_gate, dict):
+        return result
+    volatile = {"updated_at", "activated_at", "cleared_at"}
+    old_semantic = {key: value for key, value in old_gate.items() if key not in volatile}
+    new_semantic = {key: value for key, value in new_gate.items() if key not in volatile}
+    if old_semantic != new_semantic:
+        return result
+    for key in volatile:
+        if key in old_gate:
+            new_gate[key] = old_gate[key]
+        else:
+            new_gate.pop(key, None)
+    return result
 
 
 def _active_incomplete(repo_root: Path, context_hash: str, bridge_hash: str, item_policy_hash: str) -> dict[str, Any] | None:
@@ -197,7 +224,7 @@ def build_plan(repo_root: Path, batch_size: int) -> dict[str, Any]:
             enabled=True,
             plan_id=str(active.get("plan_id")),
             candidate_count=int(active.get("candidate_count", 0)),
-            reason="Retrospective translation review is incomplete; new translation claims are paused.",
+            reason=INCOMPLETE_GATE_REASON,
         )
         return {
             "status": "active_plan_incomplete",
@@ -437,7 +464,7 @@ def build_plan(repo_root: Path, batch_size: int) -> dict[str, Any]:
         enabled=True,
         plan_id=plan_id,
         candidate_count=len(candidates),
-        reason="Review every already merged translation before accepting new translation claims.",
+        reason=INCOMPLETE_GATE_REASON,
     )
     return {
         "status": "active",

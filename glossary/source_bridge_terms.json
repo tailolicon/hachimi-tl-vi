@@ -5,7 +5,8 @@
     "scope": "Applied by translation review in addition to the normal term registry. This file is intentionally item-scoped and is not part of the global context hash, so adding a bridge rule only reopens matching entries.",
     "resolved_rule": "A bridge-sensitive keep is resolved only when the accepted player-facing form is present and confidence is high.",
     "untrusted_rule": "Known lossy zh-CN source titles stay deferred until a canonical Vietnamese rendering is curated from JP evidence.",
-    "skill_inheritance_hardening": "Do not add blind source-bridge aliases for 技能点/提示/灵感/因子/继承/传承. Full Skill Pt/Skill Hint compounds and proven Spark/Affinity contexts are enforced by canonical records; bare inheritance/inspiration words remain deferred until JP identity or an exact UI key proves the player-facing concept."
+    "skill_inheritance_hardening": "Do not add blind source-bridge aliases for 技能点/提示/灵感/因子/继承/传承. Full Skill Pt/Skill Hint compounds and proven Spark/Affinity contexts are enforced by canonical records; bare inheritance/inspiration words remain deferred until JP identity or an exact UI key proves the player-facing concept.",
+    "race_hardening": "zh-CN race titles are identity-risk data, not authority for proper-name form. Resolve JP identity first; proper race names and racecourses are item-scoped. Never add broad aliases for generic 比赛/杯/锦标/德比/冠军/最终. Game-specific 新马/赛马娘 substitutions and scenario/event race labels stay deferred unless a verified player-facing identity exists."
   },
   "terms": [
     {
@@ -1004,6 +1005,156 @@
       "require_accepted": true,
       "match_mode": "contains",
       "note": "Smart Falcon Condition family. Require the established Fan Promise concept while preserving the region; punctuation/region spelling may be resolved by the reviewer from the exact label. Explicitly quoted source aliases are safe named-Condition references outside category 142; unquoted prose remains outside this rule."
+    },
+    {
+      "id": "race.bridge.capella_stakes",
+      "category": "race_name",
+      "ja": [
+        "カペラステークス"
+      ],
+      "zh_cn": [
+        "五车二锦标"
+      ],
+      "preferred": "Capella Stakes",
+      "accepted": [
+        "Capella Stakes"
+      ],
+      "forbidden": [],
+      "require_accepted": true,
+      "source_paths": [
+        "text_data_dict.json"
+      ],
+      "json_path_prefixes": [
+        [
+          "111"
+        ],
+        [
+          "147"
+        ]
+      ],
+      "match_mode": "contains",
+      "invalidation_scope": "item",
+      "note": "Verified semantic zh-CN proper-race bridge; preserve the canonical international/Japanese race name rather than translating the Chinese meaning."
+    },
+    {
+      "id": "race.bridge.stayers_stakes",
+      "category": "race_name",
+      "ja": [
+        "ステイヤーズステークス"
+      ],
+      "zh_cn": [
+        "长途锦标"
+      ],
+      "preferred": "Stayers Stakes",
+      "accepted": [
+        "Stayers Stakes"
+      ],
+      "forbidden": [],
+      "require_accepted": true,
+      "source_paths": [
+        "text_data_dict.json"
+      ],
+      "json_path_prefixes": [
+        [
+          "111"
+        ],
+        [
+          "147"
+        ]
+      ],
+      "match_mode": "contains",
+      "invalidation_scope": "item",
+      "note": "Verified semantic zh-CN proper-race bridge; preserve the canonical international/Japanese race name rather than translating the Chinese meaning."
+    },
+    {
+      "id": "race.bridge.diolite_kinen",
+      "category": "race_name",
+      "ja": [
+        "ダイオライト記念"
+      ],
+      "zh_cn": [
+        "闪长岩纪念"
+      ],
+      "preferred": "Diolite Kinen",
+      "accepted": [
+        "Diolite Kinen"
+      ],
+      "forbidden": [],
+      "require_accepted": true,
+      "source_paths": [
+        "text_data_dict.json"
+      ],
+      "json_path_prefixes": [
+        [
+          "111"
+        ],
+        [
+          "147"
+        ]
+      ],
+      "match_mode": "contains",
+      "invalidation_scope": "item",
+      "note": "Verified semantic zh-CN proper-race bridge; preserve the canonical international/Japanese race name rather than translating the Chinese meaning."
+    },
+    {
+      "id": "race.bridge.cluster_cup",
+      "category": "race_name",
+      "ja": [
+        "クラスターカップ"
+      ],
+      "zh_cn": [
+        "星团杯"
+      ],
+      "preferred": "Cluster Cup",
+      "accepted": [
+        "Cluster Cup"
+      ],
+      "forbidden": [],
+      "require_accepted": true,
+      "source_paths": [
+        "text_data_dict.json"
+      ],
+      "json_path_prefixes": [
+        [
+          "111"
+        ],
+        [
+          "147"
+        ]
+      ],
+      "match_mode": "contains",
+      "invalidation_scope": "item",
+      "note": "Verified semantic zh-CN proper-race bridge; preserve the canonical international/Japanese race name rather than translating the Chinese meaning."
+    },
+    {
+      "id": "race.bridge.sparking_lady_cup",
+      "category": "race_name",
+      "ja": [
+        "スパーキングレディーカップ"
+      ],
+      "zh_cn": [
+        "星火雌马杯"
+      ],
+      "preferred": "Sparking Lady Cup",
+      "accepted": [
+        "Sparking Lady Cup"
+      ],
+      "forbidden": [],
+      "require_accepted": true,
+      "source_paths": [
+        "text_data_dict.json"
+      ],
+      "json_path_prefixes": [
+        [
+          "111"
+        ],
+        [
+          "147"
+        ]
+      ],
+      "match_mode": "contains",
+      "invalidation_scope": "item",
+      "note": "Verified semantic zh-CN proper-race bridge; preserve the canonical international/Japanese race name rather than translating the Chinese meaning."
     }
   ],
   "untrusted_sources": [

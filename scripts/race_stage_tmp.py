@@ -47,7 +47,7 @@ def patch_race_test() -> None:
 def main() -> int:
     patch_builder()
     patch_race_test()
-    from scripts.harden_race_canon import harden
+    from harden_race_canon import harden
     harden(ROOT)
     return 0
 

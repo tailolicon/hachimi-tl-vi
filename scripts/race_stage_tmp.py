@@ -41,6 +41,10 @@ def patch_race_test() -> None:
         'community_id = {"race.grade.g1": "common.race_grade.g1", "race.grade.g2": "common.race_grade.g2", "race.grade.g3": "common.race_grade.g3"}[rid]\n        assert community_id in _ids(community_term_matches(None, source, target, community, source_path="localize_dict.json", json_path=["Menu"]))',
     )
     text = text.replace("这是普通的冠军杯子，不是赛事名", "这是普通的冠军和奖杯，不是赛事名")
+    text = text.replace(
+        '    obsolete = next(term for term in terms if term["id"] == "reviewed.race_name.867d16270a74")\n    assert obsolete["locked"] is False and obsolete["zh_cn"] == []\n',
+        '    registry = json.loads((root / "glossary/term_registry.json").read_text(encoding="utf-8"))\n    obsolete = next(term for term in registry["terms"] if term["id"] == "reviewed.race_name.867d16270a74")\n    assert obsolete["locked"] is False and obsolete["zh_cn"] == []\n',
+    )
     path.write_text(text, encoding="utf-8")
 
 

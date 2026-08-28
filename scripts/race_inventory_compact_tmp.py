@@ -15,27 +15,17 @@ def write(name: str, value):
 def main() -> int:
     gaps = load("tmp_race_exact_gaps.json")
     mismatches = load("tmp_race_exact_mismatches.json")
-    compact = {
-        "gaps": [
-            {
-                "source": item["source"],
-                "currents": item["currents"],
-                "locators": item["locators"],
-            }
-            for item in gaps
-        ],
-        "mismatches": [
-            {
-                "source": item["source"],
-                "currents": item["currents"],
-                "canonical_ids": item["canonical_ids"],
-                "canonical_targets": item["canonical_targets"],
-                "locators": item["locators"],
-            }
-            for item in mismatches
-        ],
-    }
-    write("tmp_race_compact.json", compact)
+    write("tmp_race_gap_names.json", [
+        {"source": item["source"], "currents": item["currents"]} for item in gaps
+    ])
+    write("tmp_race_mismatch_names.json", [
+        {"source": item["source"], "currents": item["currents"], "canonical_targets": item["canonical_targets"]}
+        for item in mismatches
+    ])
+    write("tmp_race_compact.json", {
+        "gaps": [{"source": item["source"], "currents": item["currents"], "locators": item["locators"]} for item in gaps],
+        "mismatches": [{"source": item["source"], "currents": item["currents"], "canonical_ids": item["canonical_ids"], "canonical_targets": item["canonical_targets"], "locators": item["locators"]} for item in mismatches],
+    })
     return 0
 
 if __name__ == "__main__":

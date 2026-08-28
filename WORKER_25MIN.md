@@ -18,6 +18,23 @@ Read `work/parallel_state.json` first, then the file referenced by `worker_sessi
 
 Do not load translation/UI/new-translation protocols in parallel. Select exactly one work mode from live state, then load only that mode's protocol and one batch/task.
 
+## Mandatory GitHub write-capability discovery
+
+This worker system is repository-coordinated. Claim, checkpoint, completion, heartbeat, and handoff state must be written to `main` through the connected GitHub capability available in the current session.
+
+**Do not infer that GitHub is read-only merely because write actions are not present in the initial tool list or because direct local `git`/shell access is unavailable.** Fresh/temporary ChatGPT sessions may expose only a subset of connector actions until the relevant GitHub write capability is discovered/loaded.
+
+Before reporting any blocker such as `GitHub write access disabled`, `cannot commit`, `read-only session`, or `direct Git unavailable`, the worker MUST:
+
+1. discover/load the connected GitHub actions needed for repository writes, especially file create/update operations (for example `create_file` and `update_file`, or equivalent commit/ref actions exposed by the connector);
+2. use repository-native reads to obtain the current file/blob SHA when an update/takeover requires optimistic concurrency;
+3. attempt the actual protocol-required write — normally the atomic claim creation or takeover — rather than creating an unrelated test file;
+4. only declare a write blocker if write-action discovery genuinely exposes no usable write operation, or an actual required write invocation returns an authentication/authorization/connector error.
+
+If a required write fails, the end report must include the concrete failed operation and the actual error category/message. Absence of a preloaded write tool is **not** evidence of missing permission.
+
+Do not substitute public-web GitHub reads for the connected GitHub connector when repository writes are required. Do not abandon claimable work solely because local `git` is unavailable.
+
 ### Mode A: translation audit
 
 If `translation_review_gate.enabled == true` or `claims_allowed == false`:
@@ -26,6 +43,8 @@ If `translation_review_gate.enabled == true` or `claims_allowed == false`:
 - read `work/translation_review/active_plan.json`;
 - claim/resume exactly one translation-review batch;
 - do not inspect UI/new-translation work.
+
+**Important:** in this state, `claims_allowed: false` pauses **normal translation claims only**. It does **not** prohibit translation-review claims. When the translation-review gate is active, a worker with repository write capability is expected to claim/resume translation-review work.
 
 ### Mode B: UI audit
 

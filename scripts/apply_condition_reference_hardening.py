@@ -12,6 +12,8 @@ helper_anchor = '''CONDITION_CONTEXT = {
     "json_path_prefixes": [["142"]],
     "match_mode": "exact",
 }
+
+
 def load_json'''
 helper_replacement = '''CONDITION_CONTEXT = {
     "invalidation_scope": "item",

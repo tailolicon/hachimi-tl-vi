@@ -14,7 +14,11 @@ try:
         context_snapshot_hash,
         get_json_path,
         load_json,
+        load_source_bridge_config,
         normalize,
+        source_bridge_policy_hash,
+        source_bridge_risk_matches,
+        source_bridge_term_matches,
         text_fingerprint,
         utc_now,
         write_json,
@@ -25,7 +29,11 @@ except ModuleNotFoundError:
         context_snapshot_hash,
         get_json_path,
         load_json,
+        load_source_bridge_config,
         normalize,
+        source_bridge_policy_hash,
+        source_bridge_risk_matches,
+        source_bridge_term_matches,
         text_fingerprint,
         utc_now,
         write_json,
@@ -77,10 +85,45 @@ def _validate_terms(item: dict[str, Any], candidate: str, decision: dict[str, An
             errors.append(f"{item['uid']}: canonical skill title must be {expected!r}")
 
 
+def _bridge_auto_defer_reasons(
+    item: dict[str, Any],
+    candidate: str,
+    action: str,
+    confidence: str,
+    bridge_term_rules: list[dict[str, Any]],
+    bridge_risk_rules: list[dict[str, Any]],
+) -> tuple[list[str], list[dict[str, Any]], list[dict[str, Any]]]:
+    source = str(item.get("source_text", ""))
+    terms = source_bridge_term_matches(source, candidate, bridge_term_rules)
+    risks = source_bridge_risk_matches(source, bridge_risk_rules)
+    reasons: list[str] = []
+
+    if action == "keep" and confidence != "high":
+        reasons.append("non_high_confidence_keep")
+
+    if action in {"keep", "revise"}:
+        if any(term.get("forbidden_present") for term in terms):
+            reasons.append("source_bridge_forbidden_calque")
+        if any(
+            term.get("require_accepted", True)
+            and term.get("accepted")
+            and not term.get("accepted_present")
+            for term in terms
+        ):
+            reasons.append("source_bridge_term_mismatch")
+        if any(risk.get("mode") == "defer_until_canonical" for risk in risks):
+            reasons.append("source_bridge_untrusted_source")
+
+    return list(dict.fromkeys(reasons)), terms, risks
+
+
 def _validate_result(
     completion: dict[str, Any],
     result: dict[str, Any],
     batch: dict[str, Any],
+    bridge_term_rules: list[dict[str, Any]],
+    bridge_risk_rules: list[dict[str, Any]],
+    bridge_hash: str,
 ) -> tuple[list[dict[str, Any]], list[str]]:
     errors: list[str] = []
     for field in ("plan_id", "batch_id", "claim_id", "worker_id"):
@@ -138,23 +181,42 @@ def _validate_result(
                 errors.append(f"{uid}: revise requires proposed_text")
             else:
                 candidate = proposed
-                qa = structural_qa(str(item.get("source_text", "")), proposed)
-                if not qa["passed"]:
-                    errors.append(f"{uid}: structural QA failed: {', '.join(qa['errors'])}")
         elif proposed is not None:
             errors.append(f"{uid}: proposed_text is only allowed for revise")
 
-        if action in {"keep", "revise"}:
+        qa = structural_qa(str(item.get("source_text", "")), candidate)
+        auto_defer: list[str] = []
+        if action in {"keep", "revise"} and not qa["passed"]:
+            auto_defer.append("structural_qa_failed")
+
+        bridge_defer, dynamic_bridge_terms, dynamic_bridge_risks = _bridge_auto_defer_reasons(
+            item,
+            candidate,
+            action,
+            confidence,
+            bridge_term_rules,
+            bridge_risk_rules,
+        )
+        auto_defer.extend(bridge_defer)
+        auto_defer = list(dict.fromkeys(auto_defer))
+        normalized_action = "defer" if auto_defer and action in {"keep", "revise"} else action
+
+        if normalized_action in {"keep", "revise"}:
             _validate_terms(item, candidate, decision, errors)
 
         normalized.append({
             "uid": uid,
-            "action": action,
+            "action": normalized_action,
+            "submitted_action": action,
             "confidence": confidence,
             "reason": reason,
             "proposed_text": proposed,
             "terminology_basis": decision.get("terminology_basis"),
             "speech_basis": decision.get("speech_basis"),
+            "auto_defer_reasons": auto_defer,
+            "source_bridge_terms": dynamic_bridge_terms,
+            "source_bridge_risks": dynamic_bridge_risks,
+            "source_bridge_policy_sha256": bridge_hash if (dynamic_bridge_terms or dynamic_bridge_risks) else None,
             "item": item,
         })
     return normalized, errors
@@ -183,6 +245,10 @@ def merge(repo_root: Path) -> dict[str, Any]:
     )
     reviewed_entries = reviewed.setdefault("entries", {})
     current_context_hash = context_snapshot_hash(repo_root)
+    bridge_hash = source_bridge_policy_hash(repo_root)
+    bridge_config = load_source_bridge_config(repo_root)
+    bridge_term_rules = [item for item in bridge_config.get("terms", []) if isinstance(item, dict)]
+    bridge_risk_rules = [item for item in bridge_config.get("untrusted_sources", []) if isinstance(item, dict)]
     docs: dict[str, Any] = {}
     dirty_docs: set[str] = set()
 
@@ -190,6 +256,7 @@ def merge(repo_root: Path) -> dict[str, Any]:
         "schema_version": 1,
         "policy_version": CURRENT_POLICY_VERSION,
         "generated_at": utc_now(),
+        "source_bridge_policy_sha256": bridge_hash,
         "merged_batches": [],
         "stale_batches": [],
         "superseded_batches": [],
@@ -197,6 +264,7 @@ def merge(repo_root: Path) -> dict[str, Any]:
         "counts": {"keep": 0, "revise": 0, "defer": 0},
         "revised_uids": [],
         "unresolved_defer_uids": [],
+        "auto_deferred": [],
     }
 
     completion_paths = (
@@ -243,7 +311,14 @@ def merge(repo_root: Path) -> dict[str, Any]:
         if completion.get("result_path") != expected_result.as_posix():
             raise ValueError(f"{batch_id}: completion result_path mismatch")
         result = load_json(repo_root / expected_result)
-        decisions, errors = _validate_result(completion, result, batch)
+        decisions, errors = _validate_result(
+            completion,
+            result,
+            batch,
+            bridge_term_rules,
+            bridge_risk_rules,
+            bridge_hash,
+        )
         if errors:
             raise ValueError(f"{batch_id}: " + "; ".join(errors))
 
@@ -266,6 +341,7 @@ def merge(repo_root: Path) -> dict[str, Any]:
             continue
 
         counts: Counter[str] = Counter()
+        auto_deferred_for_batch: list[dict[str, Any]] = []
         for decision in decisions:
             item = decision["item"]
             uid = decision["uid"]
@@ -280,6 +356,15 @@ def merge(repo_root: Path) -> dict[str, Any]:
             elif action == "defer":
                 report["unresolved_defer_uids"].append(uid)
 
+            if decision["auto_defer_reasons"]:
+                auto_record = {
+                    "uid": uid,
+                    "submitted_action": decision["submitted_action"],
+                    "reasons": decision["auto_defer_reasons"],
+                }
+                report["auto_deferred"].append(auto_record)
+                auto_deferred_for_batch.append(auto_record)
+
             reviewed_entries[uid] = {
                 "source_path": item["source_path"],
                 "json_path": item["json_path"],
@@ -287,9 +372,12 @@ def merge(repo_root: Path) -> dict[str, Any]:
                 "current_fingerprint": text_fingerprint(final_text),
                 "text": final_text,
                 "action": action,
+                "submitted_action": decision["submitted_action"],
                 "confidence": decision["confidence"],
                 "terminology_basis": decision.get("terminology_basis"),
                 "speech_basis": decision.get("speech_basis"),
+                "auto_defer_reasons": decision["auto_defer_reasons"],
+                "source_bridge_policy_sha256": decision.get("source_bridge_policy_sha256"),
                 "context_snapshot_sha256": current_context_hash,
                 "policy_version": int(plan["policy_version"]),
                 "plan_id": plan_id,
@@ -311,6 +399,8 @@ def merge(repo_root: Path) -> dict[str, Any]:
             "counts": dict(counts),
             "gate_resolved_items": counts["keep"] + counts["revise"],
             "deferred_items": counts["defer"],
+            "auto_deferred": auto_deferred_for_batch,
+            "source_bridge_policy_sha256": bridge_hash,
         })
         report["merged_batches"].append(batch_id)
 

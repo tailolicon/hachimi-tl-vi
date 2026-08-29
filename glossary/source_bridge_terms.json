@@ -1163,6 +1163,123 @@
       "match_mode": "contains",
       "invalidation_scope": "item",
       "note": "Verified semantic zh-CN proper-race bridge; preserve the canonical international/Japanese race name rather than translating the Chinese meaning."
+    },
+    {
+      "id": "currency.jewel.paid",
+      "ja": [
+        "有償ジュエル"
+      ],
+      "zh_cn": [
+        "付费宝石",
+        "有偿宝石"
+      ],
+      "preferred": "paid Jewels",
+      "accepted": [
+        "paid Jewel",
+        "paid Jewels",
+        "Jewel trả phí"
+      ],
+      "forbidden": [
+        "Jewel miễn phí",
+        "free Jewel",
+        "free Jewels"
+      ],
+      "require_accepted": true,
+      "source_paths": [
+        "localize_dict.json"
+      ],
+      "match_mode": "contains",
+      "note": "Paid-Jewel wording is a fixed shop/account distinction. Scope to localize UI so generic paid/free prose is not captured."
+    },
+    {
+      "id": "currency.jewel.free",
+      "ja": [
+        "無償ジュエル"
+      ],
+      "zh_cn": [
+        "免费宝石",
+        "无偿宝石"
+      ],
+      "preferred": "free Jewels",
+      "accepted": [
+        "free Jewel",
+        "free Jewels",
+        "Jewel miễn phí"
+      ],
+      "forbidden": [
+        "Jewel trả phí",
+        "paid Jewel",
+        "paid Jewels"
+      ],
+      "require_accepted": true,
+      "source_paths": [
+        "localize_dict.json"
+      ],
+      "match_mode": "contains",
+      "note": "Free-Jewel wording is a fixed shop/account distinction. Scope to localize UI so generic paid/free prose is not captured."
+    },
+    {
+      "id": "gacha.exchange_points",
+      "ja": [
+        "交換Pt",
+        "交換ポイント"
+      ],
+      "zh_cn": [
+        "兑换点数",
+        "兑换Pt",
+        "交換點數",
+        "交換Pt"
+      ],
+      "preferred": "Exchange Points",
+      "accepted": [
+        "Exchange Point",
+        "Exchange Points"
+      ],
+      "forbidden": [
+        "Điểm đổi",
+        "Điểm cần để đổi",
+        "Pt đổi",
+        "điểm đổi",
+        "điểm cần để đổi"
+      ],
+      "require_accepted": true,
+      "source_paths": [
+        "localize_dict.json"
+      ],
+      "key_prefixes": [
+        "Gacha"
+      ],
+      "match_mode": "contains",
+      "note": "兑换点数/兑换Pt in Gacha UI is the banner pity currency shown as Exchange Points in Global usage. Restrict to Gacha localize keys so generic shop exchanges or story language do not become a pity-currency match."
+    },
+    {
+      "id": "resource.clover",
+      "ja": [
+        "クローバー"
+      ],
+      "zh_cn": [
+        "四叶草",
+        "四葉草"
+      ],
+      "preferred": "Clovers",
+      "accepted": [
+        "Clover",
+        "Clovers"
+      ],
+      "forbidden": [
+        "Cỏ bốn lá",
+        "cỏ bốn lá"
+      ],
+      "require_accepted": true,
+      "source_paths": [
+        "localize_dict.json"
+      ],
+      "key_prefixes": [
+        "Gacha",
+        "Shop"
+      ],
+      "match_mode": "contains",
+      "note": "Four-leaf-clover wording in Gacha/Shop localize UI denotes the persistent Clovers resource, including conversion of expired Exchange Points. Keep ordinary narrative four-leaf clovers outside these resource/UI keys as prose."
     }
   ],
   "untrusted_sources": [

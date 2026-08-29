@@ -24,12 +24,14 @@ def _record(root: Path, key: str, source: str, target: str, rid: str):
     return next(item for item in matches if item["id"] == rid)
 
 
-def test_close_change_confirm_controls_are_exact_key_scoped(tmp_path: Path) -> None:
+def test_common_status_and_action_controls_are_exact_key_scoped(tmp_path: Path) -> None:
     root = _seed(tmp_path)
     cases = [
+        ("Common0005", "选择中", "Đang chọn", "common_ui.selecting.common0005"),
         ("Common0007", "关闭", "Đóng", "common_ui.close.common0007"),
         ("Common0008", "更改", "Thay đổi", "common_ui.change.common0008"),
         ("Common0009", "确认", "Xác nhận", "common_ui.confirm.common0009"),
+        ("Common0013", "使用", "Sử dụng", "common_ui.use.common0013"),
     ]
     for key, source, target, rid in cases:
         record = _record(root, key, source, target, rid)
@@ -38,9 +40,10 @@ def test_close_change_confirm_controls_are_exact_key_scoped(tmp_path: Path) -> N
         assert community_term_matches(None, source, target, load_community_terms(root), source_path="story.json", json_path=["1"]) == []
 
 
-def test_change_allows_compact_control_form(tmp_path: Path) -> None:
+def test_compact_control_forms_are_accepted(tmp_path: Path) -> None:
     root = _seed(tmp_path)
     assert _record(root, "Common0008", "更改", "Đổi", "common_ui.change.common0008")["accepted_present"] is True
+    assert _record(root, "Common0013", "使用", "Dùng", "common_ui.use.common0013")["accepted_present"] is True
 
 
 def test_cancel_is_scoped_to_standalone_circle_control(tmp_path: Path) -> None:

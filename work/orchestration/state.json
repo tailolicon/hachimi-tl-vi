@@ -6,8 +6,8 @@
   "canonical_parallel_protocol": "CANONICAL_PARALLEL.md",
   "short_spawn_prompt": "Run tailolicon/hachimi-tl-vi/WORKER_START.md from main.",
   "goal": "Finish high-frequency canonical hardening, complete retrospective audits, translate the entire pinned source corpus including deferred waves, run post-completion full-corpus audits, and publish a validated final release.",
-  "phase": "canonical_hardening",
-  "blocking_maintenance": true,
+  "phase": "retrospective_translation_review",
+  "blocking_maintenance": false,
   "terminal": false,
   "maintenance_claim_path": "work/orchestration/maintenance_claim.json",
   "canonical_parallelism": {
@@ -24,27 +24,18 @@
     "final_conflict_sweep_rule": "canonical-final-conflict-sweep is dependency-gated and starts only after all earlier initial canonical domains are complete on live main."
   },
   "active_task": {
-    "task_id": "canonical-final-conflict-sweep",
-    "title": "Final high-frequency canonical conflict and overmatch sweep",
-    "task_file": "work/orchestration/tasks/remaining-canonical-domains.md",
-    "branch": "canonical-final-conflict-sweep",
+    "task_id": "translation-review-round1",
+    "title": "Retrospective translation Audit Round 1",
+    "task_file": "work/orchestration/tasks/corpus-completion.md",
     "status": "active",
-    "stage": "domain_work",
-    "primary_lane": true,
-    "integration_serial": true,
+    "stage": "mass_review",
+    "primary_lane": false,
+    "integration_serial": false,
     "domain_work_parallel": false,
-    "blocks_mass_work": true,
-    "activated_at": "2026-08-29T17:57:00Z",
-    "predecessor_task_id": "canonical-missions-events",
-    "activation_summary": "All substantive initial canonical domains are now integrated and production Sync/no-op verified on live main. Final conflict sweep dependencies are satisfied; this serial-only sweep is the remaining Phase-0 gate before retrospective translation review.",
-    "finalization_scope": [
-      "run the combined high-frequency canonical conflict and overmatch sweep across all integrated substantive domains",
-      "resolve split-brain terminology, overmatching, hidden legacy locks, and missing negative regression coverage without patching localized_data examples",
-      "run full repository validation and permanent hardener idempotence checks",
-      "rebuild retrospective review context and run production Sync plus a second unchanged no-op Sync",
-      "spot-check representative positive and negative contexts across integrated canonical domains",
-      "only after a clean sweep mark canonical-final-conflict-sweep complete, clear blocking maintenance, and transition to retrospective translation Audit Round 1"
-    ]
+    "blocks_mass_work": false,
+    "activated_at": "2026-08-29T18:30:00Z",
+    "predecessor_task_id": "canonical-final-conflict-sweep",
+    "activation_summary": "Initial canonical hardening is complete and final production Sync/no-op verification is clean. Route workers through WORKER_25MIN.md and the live translation-review gate for Audit Round 1."
   },
   "roadmap": [
     {
@@ -87,7 +78,9 @@
       "branch": "canonical-character-training-ui-hardening",
       "parallel_eligible": true,
       "claim_path": "work/orchestration/domain_claims/canonical-character-training-ui.json",
-      "depends_on": ["canonical-race"],
+      "depends_on": [
+        "canonical-race"
+      ],
       "domain_work_checkpoint": "work/orchestration/checkpoints/canonical-character-training-ui-codex-20260829T1658Z.md",
       "last_observed_branch_sha": "3f613bd18ff9fe10a9f9111f68078dc410540316",
       "activated_at": "2026-08-29T17:40:00Z",
@@ -107,7 +100,9 @@
       "branch": "canonical-resources-gacha-shop-hardening",
       "parallel_eligible": true,
       "claim_path": "work/orchestration/domain_claims/canonical-resources-gacha-shop.json",
-      "depends_on": ["canonical-race"],
+      "depends_on": [
+        "canonical-race"
+      ],
       "domain_work_checkpoint": "work/orchestration/checkpoints/canonical-resources-gacha-shop-w2-20260829T1609Z.md",
       "activated_at": "2026-08-29T16:20:34Z",
       "completed_at": "2026-08-29T16:59:00Z",
@@ -126,7 +121,9 @@
       "branch": "canonical-missions-events-hardening",
       "parallel_eligible": true,
       "claim_path": "work/orchestration/domain_claims/canonical-missions-events.json",
-      "depends_on": ["canonical-race"],
+      "depends_on": [
+        "canonical-race"
+      ],
       "domain_work_checkpoint": "work/orchestration/checkpoints/canonical-missions-events-codex2-20260829T1703Z.md",
       "last_observed_branch_sha": "31a9c5f6a4a3ab2e80b7babb9eabc2993b088669",
       "activated_at": "2026-08-29T17:44:00Z",
@@ -146,7 +143,9 @@
       "branch": "canonical-common-ui-system-hardening",
       "parallel_eligible": true,
       "claim_path": "work/orchestration/domain_claims/canonical-common-ui-system.json",
-      "depends_on": ["canonical-race"],
+      "depends_on": [
+        "canonical-race"
+      ],
       "domain_work_checkpoint": "work/orchestration/checkpoints/canonical-common-ui-system-w1-20260829T1617Z.md",
       "activated_at": "2026-08-29T16:59:00Z",
       "completed_at": "2026-08-29T17:40:00Z",
@@ -157,23 +156,35 @@
     {
       "id": "canonical-final-conflict-sweep",
       "title": "Final high-frequency canonical conflict and overmatch sweep",
-      "status": "active",
-      "stage": "domain_work",
+      "status": "complete",
+      "stage": "complete",
       "kind": "canonical_hardening",
       "task_file": "work/orchestration/tasks/remaining-canonical-domains.md",
       "suggested_branch": "canonical-final-conflict-sweep",
       "branch": "canonical-final-conflict-sweep",
       "parallel_eligible": false,
-      "depends_on": ["canonical-race", "canonical-training-support", "canonical-character-training-ui", "canonical-resources-gacha-shop", "canonical-missions-events", "canonical-common-ui-system"],
-      "activated_at": "2026-08-29T17:57:00Z"
+      "depends_on": [
+        "canonical-race",
+        "canonical-training-support",
+        "canonical-character-training-ui",
+        "canonical-resources-gacha-shop",
+        "canonical-missions-events",
+        "canonical-common-ui-system"
+      ],
+      "activated_at": "2026-08-29T17:57:00Z",
+      "completed_at": "2026-08-29T18:30:00Z",
+      "finalization_checkpoint": "work/orchestration/checkpoints/canonical-final-conflict-sweep-finalizer-20260829T1830Z.md",
+      "production_sync_sha": "6e28d2d18f7a31cb83b012b8001bd9e8333254c0"
     },
     {
       "id": "translation-review-round1",
       "title": "Retrospective translation Audit Round 1",
-      "status": "blocked",
+      "status": "active",
       "kind": "mass_review",
       "task_file": "work/orchestration/tasks/corpus-completion.md",
-      "condition": "all initial canonical_hardening roadmap items complete"
+      "condition": "all initial canonical_hardening roadmap items complete",
+      "stage": "mass_review",
+      "activated_at": "2026-08-29T18:30:00Z"
     },
     {
       "id": "ui-review-round1",
@@ -226,7 +237,12 @@
   ],
   "scope_policy": {
     "initial_hardening_focus": "High-frequency player-facing gameplay/system terminology only.",
-    "skip_as_blocking_domains": ["songs", "lyrics", "staff_names", "creator_credits"],
+    "skip_as_blocking_domains": [
+      "songs",
+      "lyrics",
+      "staff_names",
+      "creator_credits"
+    ],
     "systemic_finding_policy": "Record a canonical finding, verify once, lock/defer/ignore explicitly, and let context invalidation reopen affected prior translations. Never let workers invent competing local standards.",
     "localized_data_policy": "Canonical hardening never patches localized_data examples directly. Merge pipelines apply reviewed translation changes."
   },

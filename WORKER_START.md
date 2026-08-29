@@ -31,11 +31,32 @@ Do not use an unrelated test file as the permission check.
 If `work/orchestration/state.json` says `blocking_maintenance: true`, or its current phase is `canonical_hardening`:
 
 - read the active task file named by `active_task.task_file`;
+- read `active_task.stage`, defaulting legacy state to `domain_work`;
 - use the existing task branch named by `active_task.branch` when one is present;
-- never restart inventory merely because this is a fresh chat;
 - claim `work/orchestration/maintenance_claim.json` atomically before writing task code/state;
 - never overwrite a non-expired active maintenance claim owned by another worker;
+- every maintenance heartbeat/lease refresh MUST carry new durable `progress_token` evidence under `work/worker_session_policy.json`; a time-only heartbeat is invalid;
 - complete/checkpoint/release according to `AUTOPILOT.md`.
+
+Route by maintenance stage:
+
+#### `domain_work`
+
+Do the canonical/domain work described by the task file. Never restart inventory merely because this is a fresh chat. As soon as the domain's substantive canonical work and permanent regression coverage are complete enough that only cleanup/integration/sync/verification remains, persist `active_task.stage = "ready_for_finalize"`, checkpoint exact evidence, and release the domain-work claim. Do not retain the lease merely to perform later finalization in the same logical stage.
+
+#### `ready_for_finalize`
+
+This is NOT permission to resume domain research. Acquire the maintenance claim as a finalizer, atomically set `active_task.stage = "finalizing"`, and perform only the bounded finalization contract from `AUTOPILOT.md` and the task file: remove temporary artifacts, resolve small acceptance discrepancies already identified, integrate clean permanent changes onto live `main`, run required production sync/no-op proof, spot-check regenerated context, and transition orchestration to the next task.
+
+Return to `domain_work` only if finalization produces concrete repository evidence of a substantive unresolved domain defect. Persist that reason explicitly before changing stage.
+
+#### `finalizing`
+
+Resume the persisted finalization checkpoint only. Do not redo inventory/evidence gathering. If another non-expired finalizer claim exists, stop rather than creating a second finalizer. If the claim is released/expired, take over finalization from repository evidence.
+
+#### `complete`
+
+Do not work the completed domain. Advance/repair orchestration state to the next roadmap item if that transition was not already persisted.
 
 While initial blocking canonical hardening is active, do not claim translation/review/UI batches merely to stay busy.
 
@@ -68,7 +89,8 @@ Every meaningful checkpoint, claim, finding, task transition, and completion mus
 At session end:
 
 - save valid partial work first;
-- heartbeat or release only your own claim;
+- refresh a maintenance lease only after new durable progress evidence; otherwise release it or allow it to expire;
+- release only your own claim;
 - update task/orchestration state only when the selected protocol authorizes it;
 - leave a concise final report, but assume the next worker will read the repository rather than that report.
 

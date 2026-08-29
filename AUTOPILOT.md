@@ -17,6 +17,18 @@ Repository state is authoritative. Chat history is not.
 
 Quality gates always outrank raw translation percentage.
 
+## Productive-session utilization
+
+Use `work/worker_session_policy.json` as the timing authority. The normal target is to keep doing useful work until `productive_target_minutes` and begin clean handoff at `handoff_start_minutes`; the host may still terminate a run earlier, so this is a worker-behavior target rather than a wall-clock guarantee.
+
+A durable checkpoint is not a stop signal. Completing one batch, maintenance substep, validation, stage transition, or task is a trigger to re-read the minimum live routing state and continue the next safe eligible unit while still before `stop_new_batch_after_minutes`.
+
+A worker must not voluntarily end early merely because work became resumable. Before the productive target, early handoff is allowed only when there is no immediately eligible continuation, another worker owns the required non-expired serial claim, every repository path required for the next safe step has actually been attempted and is unavailable, or a protocol/safety constraint forbids further valid work.
+
+For serial maintenance, stage boundaries are durability boundaries, not mandatory worker boundaries. The same owner may progress `domain_work -> ready_for_finalize -> finalizing` in one run by persisting each state/claim transition atomically. If a serial task completes early, advance orchestration and continue the next immediately runnable roadmap task when time and ownership rules allow.
+
+Never idle merely to reach the handoff minute. Use remaining pre-handoff budget for the current eligible work.
+
 ## Persistent files
 
 - `WORKER_START.md` — universal entrypoint.
@@ -40,7 +52,7 @@ Every serial maintenance task has an explicit `active_task.stage` in `work/orche
 
 Legacy state with no `stage` is interpreted as `domain_work` only until it is normalized.
 
-The purpose of these stages is to prevent a completed domain from being repeatedly re-claimed as if research/inventory were still unfinished.
+The purpose of these stages is to prevent a completed domain from being repeatedly re-claimed as if research/inventory were still unfinished, not to force a new chat at each stage.
 
 ## Maintenance lease
 
@@ -61,8 +73,10 @@ Fresh claim/takeover rules:
 3. use the rolling lease from `work/worker_session_policy.json`;
 4. checkpoint durable task changes before refreshing the lease;
 5. never overwrite another worker's non-expired active claim;
-6. at handoff, persist branch/task progress first, then mark the claim `released` with branch/head/checkpoint notes;
+6. at actual handoff, persist branch/task progress first, then mark the claim `released` with branch/head/checkpoint notes;
 7. after completing the task and advancing orchestration state, mark the claim `complete` for the finished task. The next task may reset/reuse the file only after reading current orchestration state.
+
+A same-session stage transition does not require releasing ownership. Update state and claim stage with optimistic concurrency, preserving the same worker identity or recording an explicit same-session continuation token.
 
 ### Progress-backed heartbeat requirement
 
@@ -79,11 +93,19 @@ Valid examples include a new maintenance-branch head, a changed persistent task 
 
 Invalid heartbeat: changing only `heartbeat_at` and `lease_expires_at`, or reusing the same `progress_token` merely because time passed.
 
-If there is no new durable progress, do not refresh the lease. Continue read-only work only while the existing lease is valid; at handoff release the claim, otherwise let it expire so another worker can take over.
+If there is no new durable progress, do not refresh the lease merely for time. Continue useful work while the lease remains valid. A missing refresh token is not itself a reason to end early; it only prevents a fake lease extension.
 
-Waiting for CI is not by itself progress. A newly observed CI state/result becomes progress only when its run/job identity and result are persisted as a changed checkpoint.
+Waiting for CI is not by itself progress. A newly observed CI state/result becomes progress only when its run/job identity and result are persisted as a changed checkpoint. While CI runs, continue any safe independent inspection/cleanup/preparation that remains within the same task instead of idling when practical.
 
 If initial canonical hardening is blocking and another worker owns the active claim, do not start review/translation work behind the hardening gate.
+
+## Execution-backend independence
+
+No external harness, plugin, local container, shell, MCP provider, or other execution path is implicitly required by this repository. A rate limit, EOF, DNS/network failure, unavailable shell/container, or transient tool error is local to that capability.
+
+When one path fails, preserve task/claim state and continue with available repository capabilities. Prefer connected GitHub read/write operations for durable repository work and use repository GitHub Actions/validation workflows for execution evidence when the local runtime is unavailable. Required acceptance tests remain required; fallback means changing execution path, not skipping validation.
+
+One backend failure is never by itself a valid early-stop reason. Exceptional handoff for capability failure requires that every currently available repository path necessary for the next safe step has actually been attempted and is unavailable, or that the normal handoff boundary has arrived.
 
 ## Finalization contract
 
@@ -104,7 +126,7 @@ A finalizer MUST NOT restart broad inventory, redo evidence gathering, or reopen
 
 Return from `finalizing` to `domain_work` only when finalization produces concrete evidence of a substantive unresolved domain defect. Persist the exact defect/evidence in the task file and state transition.
 
-When substantive domain work becomes complete, the current owner should persist `stage = "ready_for_finalize"` and release the claim promptly instead of holding the same lease across indefinite cleanup/integration work.
+When substantive domain work becomes complete, the current owner should persist `stage = "ready_for_finalize"`. If useful session budget remains, it should immediately transition the owned claim/state to `finalizing` and continue bounded finalization in the same run. Release at this point only if the normal handoff boundary is near or a real blocker/ownership condition requires another worker.
 
 ## Phase 0 — initial canonical hardening
 
@@ -142,10 +164,10 @@ When substantive canonical decisions, permanent hardener/tooling, and permanent 
 1. checkpoint exact completed-domain evidence in the task file;
 2. update `active_task.stage` from `domain_work` to `ready_for_finalize` using current blob SHA;
 3. do not mark the roadmap item complete yet;
-4. release the domain-work maintenance claim;
-5. allow a fresh worker to claim the bounded finalization stage.
+4. if still before the new-work cutoff and the same worker can safely continue, atomically move the maintenance claim/state to `finalizing` and continue immediately;
+5. otherwise, at actual handoff, release the claim so the next worker can resume bounded finalization.
 
-A finalizer then sets `stage = "finalizing"`, completes the finalization contract, and only after live verification marks the roadmap task `complete`.
+A finalizer sets/keeps `stage = "finalizing"`, completes the finalization contract, and only after live verification marks the roadmap task `complete`.
 
 When a domain fully completes, the finalizer must atomically update `work/orchestration/state.json`:
 
@@ -155,7 +177,9 @@ When a domain fully completes, the finalizer must atomically update `work/orches
 - set its task file/branch if needed;
 - keep `blocking_maintenance: true` until the final initial-hardening task is complete.
 
-After the final initial hardening domain is clean, transition to `phase = "retrospective_translation_review"` and set `blocking_maintenance = false`.
+If the next canonical task is immediately runnable and the worker is still before `stop_new_batch_after_minutes`, claim/continue that task in the same session. Completing one domain is not a mandatory stop condition.
+
+After the final initial hardening domain is clean, transition to `phase = "retrospective_translation_review"` and set `blocking_maintenance = false`. If time remains before the cutoff, re-route into the now-highest eligible work instead of voluntarily ending solely because the phase changed.
 
 ## Canonical findings discovered during mass work
 
@@ -165,7 +189,7 @@ Expected flow:
 
 1. worker records a structured canonical finding through the existing canonical-finding pipeline;
 2. matching review items defer/block as designed instead of being accepted with arbitrary local wording;
-3. a fresh `WORKER_START.md` session notices unresolved blocking findings;
+3. a current or fresh `WORKER_START.md` session notices unresolved blocking findings;
 4. a maintainer acquires the maintenance claim and verifies the concept;
 5. maintainer locks/corrects canonical context or records an explicit defer/ignore decision;
 6. production review-plan/context sync invalidates/reopens affected entries through existing context hashes;
@@ -177,7 +201,7 @@ Never blind-replace old translated text across the corpus. Canonical changes dri
 
 Use `WORKER_25MIN.md` + `TRANSLATION_REVIEW.md`.
 
-The current Audit Round 1 reviews all already-merged canonical translations under hardened context. Workers claim isolated review batches and may checkpoint/release partial decisions.
+The current Audit Round 1 reviews all already-merged canonical translations under hardened context. Workers claim isolated review batches and may checkpoint partial decisions, but a partial checkpoint is not a session stop condition.
 
 Do not open normal translation claims while `work/parallel_state.json.translation_review_gate.enabled == true`.
 
@@ -202,6 +226,8 @@ Workers:
 - claim isolated shards only;
 - use the exact pinned `source_queue_git_commit`;
 - checkpoint every configured interval;
+- continue the same shard after checkpoint while it remains valid;
+- when a shard completes before the cutoff, re-read live state and claim another eligible shard;
 - never edit canonical progress or `localized_data/**` directly;
 - aggregation/merge workflows remain authoritative;
 - regression/canonical/source-bridge guards must be obeyed.
@@ -278,9 +304,11 @@ Before every state transition:
 
 ## Session behavior
 
-Use `work/worker_session_policy.json` for timing. For serial maintenance that cannot finish in one session, checkpoint branch/task evidence in GitHub and release the maintenance claim by handoff time. The next fresh worker resumes from repository state and the task file; it does not restart research.
+Use `work/worker_session_policy.json` for timing. Keep doing useful eligible work toward `productive_target_minutes`; stop starting broad new units at `stop_new_batch_after_minutes`; begin clean handoff at `handoff_start_minutes`; hard-stop within `session_minutes`.
 
-Do not keep a serial task alive by periodic time-only heartbeats. A refresh without a new durable progress token violates the protocol and should be treated as stale coordination rather than evidence of useful work.
+For serial maintenance that cannot finish in one session, checkpoint branch/task evidence in GitHub and release the maintenance claim at the actual handoff boundary. The next fresh worker resumes from repository state and the task file; it does not restart research.
+
+Do not keep a serial task alive by periodic time-only heartbeats. A refresh without a new durable progress token violates the protocol and should be treated as stale coordination rather than evidence of useful work. Conversely, the inability to make a fake heartbeat is not permission to quit early: continue valid work and checkpoint real progress.
 
 The desired human workflow remains one line forever:
 

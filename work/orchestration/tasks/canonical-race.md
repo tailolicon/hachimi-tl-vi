@@ -325,3 +325,12 @@ Persist first, report second. A concise chat report may include:
 - orchestration transition to the next task.
 
 The next worker must be able to continue using only `WORKER_START.md` and repository state.
+
+## Finalizer checkpoint — 2026-08-29T09:25Z
+
+- Maintainer claim: `canonical-race-finalizer-20260829T0916Z-gpt56sol`.
+- Race branch validation at `7d68edfda2383764ff5cd1a45a1387a461e1d6b8` reached full `pytest -q` and failed with exactly two test failures; Ruff and prior staging gates were already clean.
+- Existing Actions log decoding did not expose the traceback text through the connector, so no speculative permanent code change was made.
+- Added TEMP-only diagnostic instrumentation to `.github/workflows/validate-race-hardening.yml` on Race branch commit `9be6a421989f5cfb5ffca105a77124f13ea071ea`: pytest now runs with `--tb=short`, tees to `race-pytest.log`, and uploads `race-pytest-diagnostics` with `if: always()`.
+- This workflow is branch-only diagnostic tooling and MUST NOT be integrated to `main`.
+- Next bounded action: inspect the push-triggered validator run for `9be6a421989f5cfb5ffca105a77124f13ea071ea`, download `race-pytest-diagnostics`, identify the exact two failures, then apply only the concrete permanent fix(es) before rerunning validation.

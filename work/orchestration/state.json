@@ -29,8 +29,8 @@
     "task_file": "work/orchestration/tasks/remaining-canonical-domains.md",
     "branch": "canonical-training-support-hardening",
     "last_observed_branch_sha": "35179cc7f3858498a8a4624057fbb52ca858ab76",
-    "status": "active",
-    "stage": "ready_for_finalize",
+    "status": "complete",
+    "stage": "complete",
     "primary_lane": true,
     "integration_serial": true,
     "domain_work_parallel": true,
@@ -47,7 +47,10 @@
       "run production Sync and second unchanged no-op Sync",
       "spot-check Friendship Gauge and representative category-155 Support Effect positive/negative contexts",
       "mark Training/Support complete; then select the earliest ready_for_integration canonical domain for the serial integration lane while other domain work continues in parallel"
-    ]
+    ],
+    "completed_at": "2026-08-29T16:07:00Z",
+    "finalization_checkpoint": "work/orchestration/checkpoints/canonical-training-support-finalizer-w5-20260829T1607Z.md",
+    "finalization_summary": "Permanent canonical repair validated; production Sync succeeded; unchanged second Sync proved no-op; representative Training/Support positive/negative guards verified."
   },
   "roadmap": [
     {
@@ -65,8 +68,8 @@
     {
       "id": "canonical-training-support",
       "title": "Training / Support / progression terminology",
-      "status": "active",
-      "stage": "ready_for_finalize",
+      "status": "complete",
+      "stage": "complete",
       "kind": "canonical_hardening",
       "task_file": "work/orchestration/tasks/remaining-canonical-domains.md",
       "suggested_branch": "canonical-training-support-hardening",
@@ -75,7 +78,9 @@
       "claim_path": "work/orchestration/maintenance_claim.json",
       "lane": "primary",
       "activated_at": "2026-08-29T11:17:00Z",
-      "domain_work_checkpoint": "work/orchestration/checkpoints/canonical-training-support-20260829T1418Z.md"
+      "domain_work_checkpoint": "work/orchestration/checkpoints/canonical-training-support-20260829T1418Z.md",
+      "completed_at": "2026-08-29T16:07:00Z",
+      "finalization_checkpoint": "work/orchestration/checkpoints/canonical-training-support-finalizer-w5-20260829T1607Z.md"
     },
     {
       "id": "canonical-character-training-ui",
@@ -88,7 +93,9 @@
       "branch": "canonical-character-training-ui-hardening",
       "parallel_eligible": true,
       "claim_path": "work/orchestration/domain_claims/canonical-character-training-ui.json",
-      "depends_on": ["canonical-race"]
+      "depends_on": [
+        "canonical-race"
+      ]
     },
     {
       "id": "canonical-resources-gacha-shop",
@@ -101,7 +108,9 @@
       "branch": "canonical-resources-gacha-shop-hardening",
       "parallel_eligible": true,
       "claim_path": "work/orchestration/domain_claims/canonical-resources-gacha-shop.json",
-      "depends_on": ["canonical-race"]
+      "depends_on": [
+        "canonical-race"
+      ]
     },
     {
       "id": "canonical-missions-events",
@@ -114,7 +123,9 @@
       "branch": "canonical-missions-events-hardening",
       "parallel_eligible": true,
       "claim_path": "work/orchestration/domain_claims/canonical-missions-events.json",
-      "depends_on": ["canonical-race"]
+      "depends_on": [
+        "canonical-race"
+      ]
     },
     {
       "id": "canonical-common-ui-system",
@@ -127,7 +138,9 @@
       "branch": "canonical-common-ui-system-hardening",
       "parallel_eligible": true,
       "claim_path": "work/orchestration/domain_claims/canonical-common-ui-system.json",
-      "depends_on": ["canonical-race"]
+      "depends_on": [
+        "canonical-race"
+      ]
     },
     {
       "id": "canonical-final-conflict-sweep",

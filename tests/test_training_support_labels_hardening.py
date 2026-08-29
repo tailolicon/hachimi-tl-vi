@@ -112,6 +112,50 @@ def test_failure_rate_rejects_historical_calque(tmp_path: Path) -> None:
     assert record["forbidden_present"] is True
 
 
+def test_support_effects_is_scoped_to_character0331(tmp_path: Path) -> None:
+    root = _seed(tmp_path)
+    locked = load_locked_terms(root)
+    community = load_community_terms(root)
+
+    source = "支援效果"
+    target = "Support Effects"
+    assert "support.effects.character0331" in _ids(
+        locked_term_matches(source, target, locked, source_path="localize_dict.json", json_path=["Character0331"])
+    )
+    matches = community_term_matches(
+        "Character0331",
+        source,
+        target,
+        community,
+        source_path="localize_dict.json",
+        json_path=["Character0331"],
+    )
+    record = next(item for item in matches if item["id"] == "common.support_effects.character0331")
+    assert record["accepted_present"] is True
+    assert record["forbidden_present"] is False
+
+    assert "support.effects.character0331" not in _ids(
+        locked_term_matches(source, "Hiệu ứng hỗ trợ", locked, source_path="story.json", json_path=["1"])
+    )
+    assert community_term_matches(None, source, "Hiệu ứng hỗ trợ", community, source_path="story.json", json_path=["1"]) == []
+
+
+def test_support_effects_rejects_historical_calque(tmp_path: Path) -> None:
+    root = _seed(tmp_path)
+    community = load_community_terms(root)
+    matches = community_term_matches(
+        "Character0331",
+        "支援效果",
+        "Hiệu ứng hỗ trợ",
+        community,
+        source_path="localize_dict.json",
+        json_path=["Character0331"],
+    )
+    record = next(item for item in matches if item["id"] == "common.support_effects.character0331")
+    assert record["accepted_present"] is False
+    assert record["forbidden_present"] is True
+
+
 def test_labels_hardener_is_idempotent(tmp_path: Path) -> None:
     root = _seed(tmp_path)
     before = (

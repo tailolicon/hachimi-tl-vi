@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "status": "partial",
+  "plan_id": "tr-p3-67f8551f7780-6290eeddf480-68a7732bb5-1d4e028f2d",
+  "batch_id": "tr-p3-67f8551f7780-6290eeddf480-68a7732bb5-1d4e028f2d-b0701",
+  "claim_id": "trc-chatgpt-hourly7-b0701-20260829T2342Z",
+  "worker_id": "chatgpt-hourly7",
+  "reviewed_at": "2026-08-29T23:47:30Z",
+  "completed_count": 5,
+  "decisions": [
+    {
+      "uid": "zhcn:ee4de682f141e6017511f084",
+      "current_fingerprint": "38a909be15cb54061b8de441aa7069dd2ac825f9596ca9694158ee83f1baad9e",
+      "action": "keep",
+      "reason": "Bản hiện tại khớp chính xác canonical locked Skill name.",
+      "terminology_basis": "locked_terms: reviewed.skill_name.2c92ac1e288f → Mũi tên thứ hai",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:9938f9c4acced626de169324",
+      "current_fingerprint": "dfddafb17d5c27136b22caa57e6534da94b0fd5251b4d0f7521f3e9168178054",
+      "action": "keep",
+      "reason": "Khởi động lại truyền đạt đúng nghĩa 重启, tự nhiên và không có canonical context mâu thuẫn trong item.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:e00f5cb63256ff1d5564c125",
+      "current_fingerprint": "dfddafb17d5c27136b22caa57e6534da94b0fd5251b4d0f7521f3e9168178054",
+      "action": "keep",
+      "reason": "Khởi động lại truyền đạt đúng nghĩa 重启, tự nhiên và không có canonical context mâu thuẫn trong item.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:a9ba352cf47a18f4859f498f",
+      "current_fingerprint": "dfddafb17d5c27136b22caa57e6534da94b0fd5251b4d0f7521f3e9168178054",
+      "action": "keep",
+      "reason": "Khởi động lại truyền đạt đúng nghĩa 重启, tự nhiên và không có canonical context mâu thuẫn trong item.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:39433f3c6b8aeb6369dfd3ef",
+      "current_fingerprint": "f2494d25ce49a155260441faca8e036da2fb1d9bfa5007e24c38b8c8d8c462e4",
+      "action": "defer",
+      "reason": "Embedded context tự mâu thuẫn: canonical Skill title yêu cầu 'Đường thẳng Senko ○' nhưng generic running-style rule lại cấm 'Senko' và bắt Pace Chaser. Theo audit policy, generic style label không được tự động ghi đè tên Skill riêng; cần sửa context rule ở canonical source trước.",
+      "terminology_basis": "locked_terms reviewed.skill_name.ff328aef1290 conflicts with community_terms common.style.pace_chaser",
+      "canonical_finding": {
+        "kind": "context_rule",
+        "source_zh_cn": "先行直线○",
+        "concept": "Skill title vs generic running-style context",
+        "match_mode": "exact",
+        "scope": "auto",
+        "reason": "Generic Pace Chaser/Senko community rule is overmatching an individual canonical Skill title and conflicts with the locked Skill-name rule.",
+        "confidence": "high"
+      },
+      "confidence": "high"
+    }
+  ]
+}

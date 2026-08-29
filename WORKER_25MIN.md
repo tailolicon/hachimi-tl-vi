@@ -22,6 +22,8 @@ Read `work/parallel_state.json` first, then the file referenced by `worker_sessi
 
 Do not load translation/UI/new-translation protocols in parallel. Select exactly one work mode from live state, then load only that mode's protocol and one batch/task.
 
+After the minimum routing reads, claim/resume useful work immediately. A valid claim/resume should be one of the first meaningful repository mutations of the run. Do not perform deep repository analysis, broad glossary scans, branch archaeology, or public research before owning a work unit. If another worker wins a claim race, immediately try the next eligible same-priority unit.
+
 ## Mandatory GitHub write-capability discovery
 
 This worker system is repository-coordinated. Claim, checkpoint, completion, heartbeat, and handoff state must be written to `main` through the connected GitHub capability available in the current session.
@@ -34,6 +36,8 @@ Before reporting any blocker such as `GitHub write access disabled`, `cannot com
 2. use repository-native reads to obtain the current file/blob SHA when an update/takeover requires optimistic concurrency;
 3. attempt the actual protocol-required write — normally the atomic claim creation or takeover — rather than creating an unrelated test file;
 4. only declare a write blocker if write-action discovery genuinely exposes no usable write operation, or an actual required write invocation returns an authentication/authorization/connector error.
+
+If one required write is rejected by a tool, policy, safety, transport, connector, or stale-SHA layer, do not bypass that layer and do not end the worker merely because of that rejection. Refetch live state/SHA, retry through a normal supported repository operation when appropriate, or switch immediately to another protocol-valid eligible unit/path and continue useful work. One or two rejected writes are not a voluntary handoff reason before the normal handoff boundary.
 
 If a required write fails, the worker must try other repository paths that can safely perform the next step before ending. A failure of one backend, local shell, container, network path, or connector operation is not by itself a task-level blocker.
 
@@ -93,7 +97,7 @@ Expected cadence:
 - at `handoff_start_minutes`, stop broad new work and save/release cleanly;
 - hard stop within `session_minutes`.
 
-Do not voluntarily finish early merely because a batch completed or became safely resumable. Before the productive target, early handoff is exceptional and must satisfy the allowed reasons in `work/worker_session_policy.json.early_stop_rule`.
+Do not voluntarily hand off before `productive_target_minutes` while any protocol-valid useful work remains. There is no worker-defined early-stop exception. If the current unit/path cannot progress, immediately switch to the next safe eligible unit/path at the same priority. A checkpoint, completed unit, competing owned claim, branch divergence, or one failed write/backend does not end the session.
 
 Do not spend startup time bulk-reading glossary/context files.
 Do not spend final handoff minutes on optional research or refactors.
@@ -139,6 +143,7 @@ Always save the partial result **before** refreshing/releasing the claim, then c
 - Never pre-claim future work.
 - Never idle after a completed batch while eligible same-priority work remains.
 - A completed unit is a continuation trigger, not a session-end trigger.
+- Checkpointing is not a stop condition.
 
 ## Quality is not traded for throughput
 

@@ -106,7 +106,7 @@ def harden(repo_root: Path = REPO_ROOT) -> None:
             "target_vi": "Support Pt",
             "locked": True,
             "source_paths": ["localize_dict.json"],
-            "key_exact": ["Common0160"],
+            "json_path_prefixes": [["Common0160"]],
             "match_mode": "exact",
             "invalidation_scope": "item",
             "note": (
@@ -126,12 +126,12 @@ def harden(repo_root: Path = REPO_ROOT) -> None:
             "target_vi": "Energy",
             "locked": True,
             "source_paths": ["localize_dict.json"],
-            "key_exact": ["SingleMode0006", "SingleMode0074", "SingleMode0075"],
+            "json_path_prefixes": [["SingleMode0006"], ["SingleMode0074"], ["SingleMode0075"]],
             "match_mode": "contains",
             "invalidation_scope": "item",
             "note": (
                 "These SingleMode slots are the Career training Energy gauge and its gain/loss messages. "
-                "Scope is exact so ordinary prose about physical strength is not forced to Energy."
+                "Scope is exact at the one-component localize path so ordinary physical-strength prose is not forced to Energy."
             ),
         },
     )

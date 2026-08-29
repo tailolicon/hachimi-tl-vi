@@ -20,14 +20,7 @@ def _seed(tmp_path: Path) -> Path:
 
 
 def _record(root: Path, key: str, source: str, target: str, rid: str):
-    matches = community_term_matches(
-        key,
-        source,
-        target,
-        load_community_terms(root),
-        source_path="localize_dict.json",
-        json_path=[key],
-    )
+    matches = community_term_matches(key, source, target, load_community_terms(root), source_path="localize_dict.json", json_path=[key])
     return next(item for item in matches if item["id"] == rid)
 
 
@@ -76,14 +69,18 @@ def test_navigation_and_sort_controls_are_exact_key_scoped(tmp_path: Path) -> No
         assert community_term_matches(None, source, target, load_community_terms(root), source_path="story.json", json_path=["1"]) == []
 
 
-def test_toggle_on_off_are_exact_and_close_off_share_source_safely(tmp_path: Path) -> None:
-    root = _seed(tmp_path)
-    assert _record(root, "Common0092", "开启", "Bật", "common_ui.on.common0092")["accepted_present"] is True
-    assert _record(root, "Common0093", "关闭", "Tắt", "common_ui.off.common0093")["accepted_present"] is True
-    assert _record(root, "Common0007", "关闭", "Đóng", "common_ui.close.common0007")["accepted_present"] is True
-    wrong_off = community_term_matches("Common0093", "关闭", "Đóng", load_community_terms(root), source_path="localize_dict.json", json_path=["Common0093"])
-    assert any(item["id"] == "common_ui.off.common0093" and not item["accepted_present"] for item in wrong_off)
-    assert all(item["id"] != "common_ui.close.common0007" for item in wrong_off)
+def test_hardener_removes_invalid_toggle_rules_for_race_phase_keys(tmp_path: Path) -> None:
+    glossary = tmp_path / "glossary"
+    _write(glossary / "ui_community_terms.json", {"terms": [
+        {"id": "common_ui.on.common0092", "source_aliases": ["开启"], "preferred": "Bật"},
+        {"id": "common_ui.off.common0093", "source_aliases": ["关闭"], "preferred": "Tắt"},
+    ]})
+    harden(tmp_path)
+    ids = {str(item.get("id")) for item in json.loads((glossary / "ui_community_terms.json").read_text(encoding="utf-8"))["terms"]}
+    assert "common_ui.on.common0092" not in ids
+    assert "common_ui.off.common0093" not in ids
+    assert community_term_matches("Common0092", "中盘", "Giữa cuộc đua", load_community_terms(tmp_path), source_path="localize_dict.json", json_path=["Common0092"]) == []
+    assert community_term_matches("Common0093", "终盘", "Cuối cuộc đua", load_community_terms(tmp_path), source_path="localize_dict.json", json_path=["Common0093"]) == []
 
 
 def test_details_is_scoped_to_standalone_roommatch_control(tmp_path: Path) -> None:

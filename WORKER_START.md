@@ -19,13 +19,19 @@ Read, in this order:
 
 Do not bulk-read glossary/protocol files before selecting a mode.
 
-## 1.1 Productive-session rule
+## 1.1 Fast-claim and productive-session rule
 
-`work/worker_session_policy.json.productive_target_minutes` is the minimum voluntary work target. **Checkpoint is not stop.** Before that target, do not voluntarily end merely because one checkpoint, batch, validation, stage transition, branch divergence, or backend failure occurred. Persist progress, re-read the minimum live state, and continue the next safe eligible unit until the new-work cutoff or a real blocker.
+`work/worker_session_policy.json.productive_target_minutes` is the minimum voluntary work target.
+
+After the minimum routing reads above, claim or resume useful work as one of the first meaningful repository mutations. Do not spend substantial session time on broad repository history, glossary scans, branch archaeology, or public research before owning a work unit. If a claim race is lost, immediately try the next eligible same-priority unit.
+
+**Checkpoint is not stop. Completing one unit is a continuation trigger.** Before the productive target, while any protocol-valid useful work remains, do not voluntarily end. When a unit, checkpoint, validation, or stage completes, re-read only the minimum live routing and immediately claim/resume the next safe eligible unit at the same highest priority. Do not spend meaningful session time optimizing which eligible unit to choose.
 
 ## 2. Mandatory GitHub write discovery
 
 This project is repository-coordinated. Before reporting that GitHub is read-only or that a claim/commit cannot be made, discover/load connected GitHub write operations, fetch current blob/ref SHA for optimistic concurrency, and attempt the required write. Do not use an unrelated test file as the permission check.
+
+A tool/policy/safety/transport rejection that prevents one GitHub write from reaching the repository is capability-local. Do not bypass platform safety, but do not reinterpret that rejection as repository completion or a voluntary session-end signal. Refetch live state/SHA and use another normal supported GitHub operation if available; if that path remains unavailable, switch immediately to another protocol-valid eligible unit/path. One or two rejected writes are not a reason to hand off before the normal boundary.
 
 ## 2.1 Execution-backend independence
 
@@ -47,7 +53,8 @@ When `phase == canonical_hardening`, `CANONICAL_PARALLEL.md` is authoritative fo
 4. Atomically claim exactly one such domain claim and work only that domain branch.
 5. Parallel domain workers research/harden/test/checkpoint their branch but do not publish canonical changes directly to `main` and do not run production integration as if they owned the primary lane.
 6. When domain work is ready, checkpoint it and mark that roadmap item `ready_for_integration` / `ready_for_finalize`, then release the domain claim. Other domains continue regardless.
-7. The primary integration owner serially selects the earliest ready domain, rebases/reconstructs against live `main`, resolves cross-domain conflicts, validates, runs production Sync + second unchanged no-op Sync, spot-checks, then marks that domain complete.
+7. If this occurs before the configured new-work cutoff, immediately re-read the minimal live routing and claim/resume the next eligible same-priority canonical unit instead of ending the session.
+8. The primary integration owner serially selects the earliest ready domain, rebases/reconstructs against live `main`, resolves cross-domain conflicts, validates, runs production Sync + second unchanged no-op Sync, spot-checks, then marks that domain complete.
 
 `blocking_maintenance: true` blocks translation/review/UI mass work during the initial freeze. It does **not** block another independent canonical-domain worker.
 

@@ -10,7 +10,8 @@ Pipeline dịch tiếng Việt độc lập cho **Uma Musume Pretty Derby JP** t
 | Metric | Live state |
 | --- | --- |
 | Current phase | **canonical_hardening** |
-| Active maintenance task | **Training / Support / progression terminology** — stage **ready_for_finalize** (`canonical-training-support-hardening`) |
+| Primary integration lane | **Training / Support / progression terminology** — stage **ready_for_finalize** (`canonical-training-support-hardening`) |
+| Canonical parallelism | **ON** — domain work parallel / integration serial; 5 active-or-claimable domain lanes, 0 ready for integration, 1 canonical domains complete; configured domain-worker cap 5 |
 | Pinned source coverage | **19,520 / 1,158,825 (1.68%)** — 1,139,305 remaining |
 | Current translation wave | **19,520 / 131,560 (14.84%)** — 112,040 queued remaining |
 | Deferred pinned entries | **1,027,265** — these must be promoted in later deterministic waves, not ignored |
@@ -19,9 +20,9 @@ Pipeline dịch tiếng Việt độc lập cho **Uma Musume Pretty Derby JP** t
 | Context curation | Speech **100.00%**, terminology **100.00%** |
 | Active worker claims | **0** |
 
-**Roadmap:** ▶ Training / Support / progression terminology<br>→ Character / training-career UI terminology<br>→ Resources / gacha / shop terminology<br>→ Missions / rewards / events terminology
+**Roadmap:** ▶ Training / Support / progression terminology<br>→ Character / training-career UI terminology<br>→ Resources / gacha / shop terminology<br>→ Missions / rewards / events terminology<br>→ Common system/UI player-facing terminology<br>→ Final high-frequency canonical conflict and overmatch sweep
 
-Machine routing lives in `work/orchestration/state.json`; detailed lifecycle is in `AUTOPILOT.md`. This block is generated from canonical repository state. The `status` branch keeps the timestamped detailed progress snapshot.
+Machine routing lives in `work/orchestration/state.json`; canonical parallel rules are in `CANONICAL_PARALLEL.md`; detailed lifecycle is in `AUTOPILOT.md`. This block is generated from canonical repository state. The `status` branch keeps the timestamped detailed progress snapshot.
 <!-- AUTO_PROGRESS_END -->
 
 Mục tiêu dài hạn là ưu tiên **JP → VI** trực tiếp. Để bootstrap với dữ liệu đủ mới trong 2026, dự án hiện dùng snapshot Hachimi zh-CN của **server JP** làm semantic bridge, được pin theo commit để mọi worker dịch cùng một corpus bất biến.

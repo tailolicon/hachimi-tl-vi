@@ -54,6 +54,8 @@ def test_hardener_scopes_resource_bridges_to_localize_ui(tmp_path: Path) -> None
 
     assert terms["currency.monies"]["source_paths"] == ["localize_dict.json"]
     assert terms["resource.cleat"]["source_paths"] == ["localize_dict.json"]
+    assert terms["currency.jewel.paid"]["source_paths"] == ["localize_dict.json"]
+    assert terms["currency.jewel.free"]["source_paths"] == ["localize_dict.json"]
 
 
 def test_monies_matches_shop_ui_but_not_story_prose(tmp_path: Path) -> None:
@@ -108,6 +110,43 @@ def test_cleat_matches_ui_but_not_hoof_prose(tmp_path: Path) -> None:
     assert [item["id"] for item in ui] == ["resource.cleat"]
     assert ui[0]["accepted_present"] is True
     assert story == []
+
+
+def test_paid_and_free_jewel_labels_are_distinct_and_ui_scoped(tmp_path: Path) -> None:
+    _write_bridge(tmp_path)
+    harden(tmp_path)
+    terms = _terms(tmp_path)
+
+    paid = source_bridge_term_matches(
+        "付费宝石详情",
+        "Chi tiết Jewel trả phí",
+        terms,
+        key="Shop626028",
+        source_path="localize_dict.json",
+        json_path=["Shop626028"],
+    )
+    free = source_bridge_term_matches(
+        "免费宝石详情",
+        "Chi tiết Jewel miễn phí",
+        terms,
+        key="Shop626029",
+        source_path="localize_dict.json",
+        json_path=["Shop626029"],
+    )
+    prose = source_bridge_term_matches(
+        "这是免费获得的宝石般的礼物。",
+        "Đây là món quà giống đá quý nhận miễn phí.",
+        terms,
+        key=None,
+        source_path="text_data_dict.json",
+        json_path=["181", "1001"],
+    )
+
+    assert [item["id"] for item in paid] == ["currency.jewel.paid"]
+    assert paid[0]["accepted_present"] is True
+    assert [item["id"] for item in free] == ["currency.jewel.free"]
+    assert free[0]["accepted_present"] is True
+    assert prose == []
 
 
 def test_hardener_is_idempotent(tmp_path: Path) -> None:

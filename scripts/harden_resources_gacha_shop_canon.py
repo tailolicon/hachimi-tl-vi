@@ -24,14 +24,17 @@ def _find(items: list[dict[str, Any]], record_id: str) -> dict[str, Any] | None:
     return None
 
 
-def harden(repo_root: Path = REPO_ROOT) -> None:
-    """Harden high-frequency resource bridges without matching ordinary prose.
+def _upsert(items: list[dict[str, Any]], record: dict[str, Any]) -> None:
+    existing = _find(items, str(record["id"]))
+    if existing is None:
+        items.append(record)
+    else:
+        existing.clear()
+        existing.update(record)
 
-    zh-CN uses semantic substitutions for some Uma Musume resource identities.
-    Those aliases are useful in player-facing resource/UI strings, but they are
-    unsafe as global prose aliases.  Resource bridge rules are therefore kept
-    on UI localization data until narrower text-data contexts are proven.
-    """
+
+def harden(repo_root: Path = REPO_ROOT) -> None:
+    """Harden high-frequency resource bridges without matching ordinary prose."""
 
     bridge_path = repo_root / "glossary/source_bridge_terms.json"
     payload = _load(bridge_path, {"schema_version": 1, "terms": []})
@@ -64,6 +67,37 @@ def harden(repo_root: Path = REPO_ROOT) -> None:
                 ),
             }
         )
+
+    _upsert(
+        terms,
+        {
+            "id": "currency.jewel.paid",
+            "ja": ["有償ジュエル"],
+            "zh_cn": ["付费宝石", "有偿宝石"],
+            "preferred": "paid Jewels",
+            "accepted": ["paid Jewel", "paid Jewels", "Jewel trả phí"],
+            "forbidden": ["Jewel miễn phí", "free Jewel", "free Jewels"],
+            "require_accepted": True,
+            "source_paths": ["localize_dict.json"],
+            "match_mode": "contains",
+            "note": "Paid-Jewel wording is a fixed shop/account distinction. Scope to localize UI so generic paid/free prose is not captured.",
+        },
+    )
+    _upsert(
+        terms,
+        {
+            "id": "currency.jewel.free",
+            "ja": ["無償ジュエル"],
+            "zh_cn": ["免费宝石", "无偿宝石"],
+            "preferred": "free Jewels",
+            "accepted": ["free Jewel", "free Jewels", "Jewel miễn phí"],
+            "forbidden": ["Jewel trả phí", "paid Jewel", "paid Jewels"],
+            "require_accepted": True,
+            "source_paths": ["localize_dict.json"],
+            "match_mode": "contains",
+            "note": "Free-Jewel wording is a fixed shop/account distinction. Scope to localize UI so generic paid/free prose is not captured.",
+        },
+    )
 
     _write(bridge_path, payload)
 

@@ -38,6 +38,15 @@ def roadmap_label(state: dict[str, Any]) -> str:
     return "<br>".join(rows) if rows else "No pending roadmap item"
 
 
+def maintenance_stage(active: dict[str, Any]) -> str:
+    stage = str(active.get("stage") or "").strip()
+    if stage:
+        return stage
+    if str(active.get("status") or "") == "complete":
+        return "complete"
+    return "domain_work"
+
+
 def build_block(progress: dict[str, Any], state: dict[str, Any]) -> str:
     t = progress.get("translation") or {}
     r = progress.get("translation_review") or {}
@@ -65,6 +74,7 @@ def build_block(progress: dict[str, Any], state: dict[str, Any]) -> str:
     phase = str(state.get("phase") or "unknown")
     task_title = str(active.get("title") or active.get("task_id") or "none")
     task_branch = str(active.get("branch") or "main")
+    task_stage = maintenance_stage(active)
     spawn = str(state.get("short_spawn_prompt") or "Run tailolicon/hachimi-tl-vi/WORKER_START.md from main.")
 
     return "\n".join(
@@ -77,7 +87,7 @@ def build_block(progress: dict[str, Any], state: dict[str, Any]) -> str:
             "| Metric | Live state |",
             "| --- | --- |",
             f"| Current phase | **{phase}** |",
-            f"| Active maintenance task | **{task_title}** (`{task_branch}`) |",
+            f"| Active maintenance task | **{task_title}** — stage **{task_stage}** (`{task_branch}`) |",
             f"| Pinned source coverage | **{translated:,} / {total:,} ({pct(translated, total):.2f}%)** — {remaining_total:,} remaining |",
             f"| Current translation wave | **{translated:,} / {queued:,} ({pct(translated, queued):.2f}%)** — {remaining_queue:,} queued remaining |",
             f"| Deferred pinned entries | **{deferred:,}** — these must be promoted in later deterministic waves, not ignored |",

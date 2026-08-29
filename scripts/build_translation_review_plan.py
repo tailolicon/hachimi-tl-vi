@@ -8,20 +8,13 @@ import subprocess
 from typing import Any
 
 try:
-    from scripts.translation_review_common import canonical_finding_matches, load_canonical_findings
-except ModuleNotFoundError:
-    from translation_review_common import canonical_finding_matches, load_canonical_findings  # type: ignore[no-redef]
-
-try:
     from scripts.translation_review_common import (
-        canonical_finding_matches,
         canonical_finding_matches,
         community_term_matches,
         context_snapshot_hash,
+        get_json_path,
         item_scoped_context_hash,
         item_scoped_policy_hash,
-        get_json_path,
-        load_canonical_findings,
         load_canonical_findings,
         load_community_terms,
         load_json,
@@ -40,11 +33,13 @@ try:
     )
 except ModuleNotFoundError:
     from translation_review_common import (  # type: ignore[no-redef]
+        canonical_finding_matches,
         community_term_matches,
         context_snapshot_hash,
+        get_json_path,
         item_scoped_context_hash,
         item_scoped_policy_hash,
-        get_json_path,
+        load_canonical_findings,
         load_community_terms,
         load_json,
         load_locked_terms,

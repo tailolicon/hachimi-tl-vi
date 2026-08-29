@@ -101,7 +101,7 @@ def test_named_races_use_single_verified_targets(tmp_path: Path) -> None:
     root = _seed(tmp_path)
     terms = load_locked_terms(root)
     checks = (
-        ("日本德比", "Japanese Derby (Tokyo Yushun)", "race.tokyo_yushun"),
+        ("日本德比", "Japanese Derby", "race.tokyo_yushun"),
         ("优骏牝马（日本橡树大赛）", "Japanese Oaks", "race.japanese_oaks"),
         ("樱花赏", "Oka Sho", "race.oka_sho"),
         ("冠军杯", "Champions Cup", "race.champions_cup"),
@@ -116,11 +116,60 @@ def test_named_races_use_single_verified_targets(tmp_path: Path) -> None:
     assert obsolete["locked"] is False and obsolete["zh_cn"] == []
 
 
-def test_miyako_zh_collision_is_scoped_away_from_retrospective_category_111(tmp_path: Path) -> None:
+def test_same_zh_collapse_resolves_to_two_contextual_race_identities(tmp_path: Path) -> None:
     root = _seed(tmp_path)
     terms = load_locked_terms(root)
-    assert "race.miyako_stakes" in _ids(locked_term_matches("京城锦标", "Miyako Stakes", terms, source_path="text_data_dict.json", json_path=["32", "3061"]))
-    assert "race.miyako_stakes" not in _ids(locked_term_matches("京城锦标", "Keio Hai Junior Stakes", terms, source_path="text_data_dict.json", json_path=["111", "134"]))
+    miyako = locked_term_matches("京城锦标", "Miyako Stakes", terms, source_path="text_data_dict.json", json_path=["32", "3061"])
+    keio = locked_term_matches("京城锦标", "Keio Hai Nisai Stakes", terms, source_path="text_data_dict.json", json_path=["111", "134"])
+    assert "race.miyako_stakes" in _ids(miyako)
+    assert "race.keio_hai_nisai_stakes.zhcollapse_111_134" in _ids(keio)
+    assert "race.miyako_stakes" not in _ids(keio)
+    assert "race.keio_hai_nisai_stakes.zhcollapse_111_134" not in _ids(miyako)
+
+    community = load_community_terms(root)
+    miyako_hash = item_scoped_context_hash(key=None, source="京城锦标", source_path="text_data_dict.json", json_path=["32", "3061"], locked_terms=terms, community_terms=community)
+    keio_hash = item_scoped_context_hash(key=None, source="京城锦标", source_path="text_data_dict.json", json_path=["111", "134"], locked_terms=terms, community_terms=community)
+    assert miyako_hash is not None and keio_hash is not None and miyako_hash != keio_hash
+
+
+def test_named_race_identity_variants_are_canonical_and_scoped(tmp_path: Path) -> None:
+    root = _seed(tmp_path)
+    terms = load_locked_terms(root)
+    checks = (
+        ("天皇赏（春）", "Tenno Sho (Spring)", "race.tenno_sho_spring"),
+        ("天皇赏（秋）", "Tenno Sho (Autumn)", "race.tenno_sho_autumn"),
+        ("菊花赏", "Kikuka Sho", "race.kikuka_sho"),
+        ("日经广播赏", "Radio NIKKEI Sho", "race.radio_nikkei_sho"),
+    )
+    for source, target, rid in checks:
+        assert rid in _ids(locked_term_matches(source, target, terms, source_path="text_data_dict.json", json_path=["111", "9"]))
+    assert "race.tenno_sho_spring" not in _ids(locked_term_matches("天皇赏（秋）", "Tenno Sho (Autumn)", terms, source_path="text_data_dict.json", json_path=["111", "9"]))
+
+
+def test_song_category_and_objective_prose_do_not_receive_proper_race_context(tmp_path: Path) -> None:
+    root = _seed(tmp_path)
+    terms = load_locked_terms(root)
+    song_ids = _ids(locked_term_matches("日本德比", "Japanese Derby", terms, source_path="text_data_dict.json", json_path=["16", "9001"]))
+    assert "race.tokyo_yushun" not in song_ids
+    objective_ids = _ids(locked_term_matches("经典比赛的目标是在最终比赛获胜", "Mục tiêu là thắng cuộc đua cuối", terms, source_path="text_data_dict.json", json_path=["147", "44"]))
+    assert not any(rid.startswith("race.") and rid != "race.generic" for rid in objective_ids)
+
+
+def test_removing_named_race_rule_invalidates_only_matching_item_context(tmp_path: Path) -> None:
+    root = _seed(tmp_path)
+    locked = load_locked_terms(root)
+    community = load_community_terms(root)
+    affected_before = item_scoped_context_hash(key=None, source="日本德比", source_path="text_data_dict.json", json_path=["111", "12"], locked_terms=locked, community_terms=community)
+    unrelated_before = item_scoped_context_hash(key=None, source="普通文本", source_path="text_data_dict.json", json_path=["163", "1"], locked_terms=locked, community_terms=community)
+    registry_path = root / "glossary/term_registry.json"
+    registry = json.loads(registry_path.read_text(encoding="utf-8"))
+    registry["terms"] = [term for term in registry["terms"] if term.get("id") != "race.tokyo_yushun"]
+    _write(registry_path, registry)
+    locked_after = load_locked_terms(root)
+    affected_after = item_scoped_context_hash(key=None, source="日本德比", source_path="text_data_dict.json", json_path=["111", "12"], locked_terms=locked_after, community_terms=community)
+    unrelated_after = item_scoped_context_hash(key=None, source="普通文本", source_path="text_data_dict.json", json_path=["163", "1"], locked_terms=locked_after, community_terms=community)
+    assert affected_before is not None and affected_after != affected_before
+    assert unrelated_before == unrelated_after
 
 
 def test_track_condition_direction_and_course_shape_are_exact_race_ui(tmp_path: Path) -> None:

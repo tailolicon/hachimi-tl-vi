@@ -27,8 +27,8 @@ RACES: dict[str, dict[str, Any]] = {
     "race.tokyo_yushun": {
         "zh_cn": ["东京优骏（日本德比）", "日本德比"],
         "ja": ["東京優駿", "日本ダービー"],
-        "target_vi": "Japanese Derby (Tokyo Yushun)",
-        "note": "Player-facing Global form is Japanese Derby (Tokyo Yushun); JRA identity is 東京優駿 / Tokyo Yushun (Japanese Derby). One canonical target prevents Japan Derby/Japanese Derby/Tokyo Yushun split-brain.",
+        "target_vi": "Japanese Derby",
+        "note": "Canonical player-facing form is Japanese Derby; JP identity is 東京優駿 / Tokyo Yushun. One target prevents legacy Japan Derby/Japanese Derby/Tokyo Yushun split-brain.",
     },
     "race.japanese_oaks": {
         "zh_cn": ["优骏牝马（日本橡树大赛）"],
@@ -58,7 +58,7 @@ RACES: dict[str, dict[str, Any]] = {
     "race.queen_elizabeth_ii_cup": {"zh_cn": ["伊丽莎白女王杯"], "ja": ["エリザベス女王杯"], "target_vi": "Queen Elizabeth II Cup"},
     "race.nikkei_sho": {"zh_cn": ["日经赏"], "ja": ["日経賞"], "target_vi": "Nikkei Sho"},
     "race.nikkei_shinshun_hai": {"zh_cn": ["日经新春杯"], "ja": ["日経新春杯"], "target_vi": "Nikkei Shinshun Hai"},
-    "race.radio_nikkei_sho": {"zh_cn": ["日经广播赏"], "ja": ["ラジオNIKKEI賞"], "target_vi": "Radio Nikkei Sho"},
+    "race.radio_nikkei_sho": {"zh_cn": ["日经广播赏"], "ja": ["ラジオNIKKEI賞"], "target_vi": "Radio NIKKEI Sho"},
     "race.cluster_cup": {"zh_cn": ["星团杯"], "ja": ["クラスターカップ"], "target_vi": "Cluster Cup"},
     "race.sparking_lady_cup": {"zh_cn": ["星火雌马杯"], "ja": ["スパーキングレディーカップ"], "target_vi": "Sparking Lady Cup"},
     "race.hanshin_juvenile_fillies": {"zh_cn": ["阪神两岁雌马大赛"], "ja": ["阪神ジュベナイルフィリーズ"], "target_vi": "Hanshin Juvenile Fillies"},
@@ -82,6 +82,13 @@ RACES: dict[str, dict[str, Any]] = {
     "race.hankyu_hai": {"zh_cn": ["阪急杯"], "ja": ["阪急杯"], "target_vi": "Hankyu Hai"},
     "race.ladies_prelude": {"zh_cn": ["雌马预赛"], "ja": ["レディスプレリュード"], "target_vi": "Ladies Prelude"},
     "race.prix_arc_de_triomphe": {"zh_cn": ["凯旋门赏"], "ja": ["凱旋門賞"], "target_vi": "Prix de l'Arc de Triomphe"},
+    "race.tokyo_sports_hai_nisai_stakes": {"zh_cn": ["东京体育杯新马锦标"], "ja": ["東京スポーツ杯2歳ステークス"], "target_vi": "Tokyo Sports Hai Nisai Stakes", "note": "Verified JRA/in-game identity; preserve Nisai instead of semantic-calquing the zh-CN title."},
+    "race.keio_hai_nisai_stakes": {"zh_cn": ["京王杯新马锦标"], "ja": ["京王杯2歳ステークス"], "target_vi": "Keio Hai Nisai Stakes", "note": "Verified JRA/in-game identity; lossy zh-CN 京城锦标 is handled separately by an exact retrospective slot rule."},
+    "race.hakodate_nisai_stakes": {"zh_cn": ["函馆新马锦标"], "ja": ["函館2歳ステークス"], "target_vi": "Hakodate Nisai Stakes", "note": "Verified JRA/in-game identity."},
+    "race.sapporo_nisai_stakes": {"zh_cn": ["札幌新马锦标"], "ja": ["札幌2歳ステークス"], "target_vi": "Sapporo Nisai Stakes", "note": "Verified JRA/in-game identity."},
+    "race.nakayama_himba_stakes": {"zh_cn": ["中山赛马娘锦标"], "ja": ["中山牝馬ステークス"], "target_vi": "Nakayama Himba Stakes", "note": "Verified JRA/in-game identity; zh-CN semantic wording is not spelling authority."},
+    "race.kyoto_himba_stakes": {"zh_cn": ["京都赛马娘锦标"], "ja": ["京都牝馬ステークス"], "target_vi": "Kyoto Himba Stakes", "note": "Verified historical JRA/in-game identity."},
+    "race.hanshin_himba_stakes": {"zh_cn": ["阪神赛马娘锦标"], "ja": ["阪神牝馬ステークス"], "target_vi": "Hanshin Himba Stakes", "note": "Verified JRA/in-game identity."},
 }
 
 BRIDGE_RACES = {
@@ -120,17 +127,12 @@ def _upsert(items: list[dict[str, Any]], record: dict[str, Any]) -> dict[str, An
 
 
 def _is_proper_race(term: dict[str, Any]) -> bool:
-    tid = str(term.get("id", ""))
-    if str(term.get("category", "")) == "race_name":
-        return True
-    if not tid.startswith("race."):
-        return False
-    return tid not in {
-        "race.generic", "race.surface.turf", "race.surface.dirt",
-        "race.distance.sprint", "race.distance.mile", "race.distance.medium", "race.distance.long",
-        "race.strategy.style", "race.strategy.front_runner", "race.strategy.pace_chaser",
-        "race.strategy.late_surger", "race.strategy.end_closer", "race.strategy.runaway",
-    }
+    # Only structured proper-race records may receive the default named-race
+    # guards. Prefix-based detection is unsafe because system records such as
+    # race.class.*, race.grade.*, race.ui.*, and race.track_condition.* also
+    # intentionally use the race.* namespace. RACES upserts normalize verified
+    # legacy named races to category=race_name before persistence.
+    return str(term.get("category", "")) == "race_name"
 
 
 def _harden_registry(repo_root: Path) -> None:
@@ -142,6 +144,9 @@ def _harden_registry(repo_root: Path) -> None:
     # invalidate entries that actually contain the identity.
     for term in terms:
         if isinstance(term, dict) and bool(term.get("locked")) and _is_proper_race(term):
+            term["source_paths"] = ["text_data_dict.json"]
+            term["json_path_prefixes"] = [["32"], ["33"], ["111"]]
+            term["match_mode"] = "contains"
             term["invalidation_scope"] = "item"
 
     # Remove old competing Derby/Japanese-Oaks aliases so one identity has one
@@ -161,6 +166,8 @@ def _harden_registry(repo_root: Path) -> None:
             "zh_cn": list(spec.get("zh_cn", [])),
             "target_vi": spec["target_vi"],
             "locked": True,
+            "source_paths": ["text_data_dict.json"],
+            "json_path_prefixes": [["32"], ["33"], ["111"]],
             "match_mode": "contains",
             "invalidation_scope": "item",
             "note": spec.get("note", "Verified player-facing/JRA/NAR/international proper-race identity; do not semantic-calque the zh-CN title."),
@@ -181,6 +188,20 @@ def _harden_registry(repo_root: Path) -> None:
             "invalidation_scope": "item",
             "note": "Pinned 32/3061 and 33/3061 are Miyako Stakes. zh-CN 京城锦标 collides with a different retrospective identity at 111/134, so this rule is intentionally slot-scoped.",
         })
+
+    _upsert(terms, {
+        "id": "race.keio_hai_nisai_stakes.zhcollapse_111_134",
+        "category": "race_name",
+        "ja": ["京王杯2歳ステークス"],
+        "zh_cn": ["京城锦标"],
+        "target_vi": "Keio Hai Nisai Stakes",
+        "locked": True,
+        "source_paths": ["text_data_dict.json"],
+        "json_path_prefixes": [["111", "134"]],
+        "match_mode": "exact",
+        "invalidation_scope": "item",
+        "note": "At retrospective identity 111/134, lossy zh-CN 京城锦标 is Keio Hai Nisai Stakes. Keep it structurally distinct from Miyako Stakes at 32/3061 and 33/3061.",
+    })
 
     # Race classes: exact primary UI labels plus explicitly race-oriented text
     # tables. Story prose (e.g. category 128) is intentionally outside these guards.

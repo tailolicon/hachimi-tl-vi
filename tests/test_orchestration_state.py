@@ -55,6 +55,10 @@ def test_parallel_canonical_tasks_have_independent_claim_files() -> None:
     assert matches[0].get("stage") == active.get("stage")
     assert (ROOT / active["task_file"]).is_file()
 
+    # There can legitimately be no *other* unfinished parallel domain when the
+    # serial integration lane is finalizing the last parallel-eligible domain.
+    # When other unfinished parallel domains do exist, each still needs its own
+    # repository-backed task claim.
     parallel_tasks = [
         item
         for item in roadmap
@@ -63,7 +67,6 @@ def test_parallel_canonical_tasks_have_independent_claim_files() -> None:
         and item["id"] != active["task_id"]
         and item.get("status") != "complete"
     ]
-    assert parallel_tasks
     for item in parallel_tasks:
         claim_path = item.get("claim_path")
         assert claim_path, item["id"]

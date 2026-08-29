@@ -79,3 +79,45 @@ def test_club_points_are_exact_key_scoped_until_more_context_is_proven(tmp_path:
     assert [item["id"] for item in old] == ["currency.club_points"]
     assert old[0]["forbidden_present"] is True
     assert unrelated == []
+
+
+def test_friend_points_match_team_trials_currency_not_generic_friendship(tmp_path: Path) -> None:
+    terms = _seed(tmp_path)
+    observed = source_bridge_term_matches(
+        "友情点数",
+        "Friend Points",
+        terms,
+        key="TeamStadium0090",
+        source_path="localize_dict.json",
+        json_path=["TeamStadium0090"],
+    )
+    old = source_bridge_term_matches(
+        "友情点数",
+        "Điểm bạn bè",
+        terms,
+        key="TeamStadium0090",
+        source_path="localize_dict.json",
+        json_path=["TeamStadium0090"],
+    )
+    other_ui = source_bridge_term_matches(
+        "友情点数",
+        "Điểm bạn bè",
+        terms,
+        key="StoryEvent9999998",
+        source_path="localize_dict.json",
+        json_path=["StoryEvent9999998"],
+    )
+    prose = source_bridge_term_matches(
+        "友情是很珍贵的。",
+        "Tình bạn rất quý giá.",
+        terms,
+        key=None,
+        source_path="text_data_dict.json",
+        json_path=["181", "2002"],
+    )
+    assert [item["id"] for item in observed] == ["currency.friend_points"]
+    assert observed[0]["accepted_present"] is True
+    assert [item["id"] for item in old] == ["currency.friend_points"]
+    assert old[0]["forbidden_present"] is True
+    assert other_ui == []
+    assert prose == []

@@ -178,6 +178,26 @@ def harden(repo_root: Path = REPO_ROOT) -> None:
             ),
         },
     )
+    _upsert(
+        terms,
+        {
+            "id": "currency.friend_points",
+            "ja": ["フレンドPt", "フレンドポイント"],
+            "zh_cn": ["友情点数", "友情點數"],
+            "preferred": "Friend Points",
+            "accepted": ["Friend Point", "Friend Points"],
+            "forbidden": ["Điểm bạn bè", "điểm bạn bè"],
+            "require_accepted": True,
+            "source_paths": ["localize_dict.json"],
+            "key_prefixes": ["TeamStadium"],
+            "match_mode": "contains",
+            "note": (
+                "TeamStadium0090 proves 友情点数 as the persistent Friend Points currency in "
+                "player-facing Team Trials UI. Scope to TeamStadium localize keys so generic "
+                "friendship wording elsewhere is never treated as currency."
+            ),
+        },
+    )
 
     _write(bridge_path, payload)
 

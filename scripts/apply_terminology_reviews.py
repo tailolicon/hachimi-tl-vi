@@ -57,22 +57,63 @@ def aliases_for_term(term: dict[str, Any]) -> dict[str, list[str]]:
     }
 
 
-def locked_alias_index(terms: list[dict[str, Any]]) -> dict[tuple[str, str], dict[str, Any]]:
-    index: dict[tuple[str, str], dict[str, Any]] = {}
+def _path_prefixes(term: dict[str, Any]) -> list[tuple[str, ...]]:
+    raw = term.get("json_path_prefixes") or []
+    out: list[tuple[str, ...]] = []
+    if not isinstance(raw, list):
+        return out
+    for prefix in raw:
+        if isinstance(prefix, list) and prefix:
+            out.append(tuple(str(part) for part in prefix))
+    return out
+
+
+def _prefixes_overlap(left: tuple[str, ...], right: tuple[str, ...]) -> bool:
+    width = min(len(left), len(right))
+    return left[:width] == right[:width]
+
+
+def scopes_provably_disjoint(left: dict[str, Any], right: dict[str, Any]) -> bool:
+    left_paths = set(clean_list(left.get("source_paths")))
+    right_paths = set(clean_list(right.get("source_paths")))
+    if left_paths and right_paths and left_paths.isdisjoint(right_paths):
+        return True
+
+    left_keys = set(clean_list(left.get("key_exact")))
+    right_keys = set(clean_list(right.get("key_exact")))
+    if left_keys and right_keys and left_keys.isdisjoint(right_keys):
+        return True
+
+    left_prefixes = _path_prefixes(left)
+    right_prefixes = _path_prefixes(right)
+    if left_prefixes and right_prefixes:
+        return not any(
+            _prefixes_overlap(left_prefix, right_prefix)
+            for left_prefix in left_prefixes
+            for right_prefix in right_prefixes
+        )
+    return False
+
+
+def locked_alias_index(terms: list[dict[str, Any]]) -> dict[tuple[str, str], list[dict[str, Any]]]:
+    index: dict[tuple[str, str], list[dict[str, Any]]] = {}
     for term in terms:
         if not isinstance(term, dict) or not term.get("locked"):
             continue
         for field, aliases in aliases_for_term(term).items():
             for alias in aliases:
                 key = (field, alias)
-                existing = index.get(key)
-                if existing and existing.get("target_vi") != term.get("target_vi"):
+                existing_terms = index.setdefault(key, [])
+                for existing in existing_terms:
+                    if existing.get("target_vi") == term.get("target_vi"):
+                        continue
+                    if scopes_provably_disjoint(existing, term):
+                        continue
                     raise ValueError(
                         f"existing locked registry is internally conflicting for {field}:{alias!r}"
                     )
-                index[key] = term
+                existing_terms.append(term)
     return index
-
 
 def normalize_decision(decision: dict[str, Any], ordinal: int) -> dict[str, Any]:
     action = str(decision.get("action") or "").strip().lower()
@@ -170,28 +211,35 @@ def apply_reviews(registry: dict[str, Any], reviews: dict[str, Any]) -> tuple[di
                 )
 
         matched_existing: dict[str, Any] | None = None
+        scope_term = existing_id or candidate
         for field, aliases in aliases_for_term(candidate).items():
             for alias in aliases:
-                previous = alias_index.get((field, alias))
-                if previous is None:
-                    continue
-                previous_target = str(previous.get("target_vi") or "")
-                if previous_target != target:
-                    raise ValueError(
-                        f"decision {decision['decision_id']}: locked alias {field}:{alias!r} already maps "
-                        f"to {previous_target!r}, not {target!r}"
-                    )
-                if matched_existing is None:
-                    matched_existing = previous
-                elif matched_existing is not previous:
-                    raise ValueError(
-                        f"decision {decision['decision_id']}: aliases span multiple existing locked concepts; review manually"
-                    )
+                previous_terms = alias_index.get((field, alias), [])
+                for previous in previous_terms:
+                    if previous is existing_id:
+                        if matched_existing is None:
+                            matched_existing = previous
+                        continue
+                    previous_target = str(previous.get("target_vi") or "")
+                    if previous_target != target:
+                        if scopes_provably_disjoint(previous, scope_term):
+                            continue
+                        raise ValueError(
+                            f"decision {decision['decision_id']}: locked alias {field}:{alias!r} already maps "
+                            f"to {previous_target!r}, not {target!r}"
+                        )
+                    if matched_existing is None:
+                        matched_existing = previous
+                    elif matched_existing is not previous and existing_id is None:
+                        raise ValueError(
+                            f"decision {decision['decision_id']}: aliases span multiple existing locked concepts; review manually"
+                        )
 
         if existing_id is not None and matched_existing is not None and existing_id is not matched_existing:
-            raise ValueError(
-                f"decision {decision['decision_id']}: term_id and aliases point to different existing concepts"
-            )
+            if str(matched_existing.get("target_vi") or "") != target:
+                raise ValueError(
+                    f"decision {decision['decision_id']}: term_id and aliases point to different existing concepts"
+                )
 
         existing = existing_id or matched_existing
         if existing is not None:
@@ -205,7 +253,7 @@ def apply_reviews(registry: dict[str, Any], reviews: dict[str, Any]) -> tuple[di
         term_by_id[term_id] = candidate
         for field, aliases in aliases_for_term(candidate).items():
             for alias in aliases:
-                alias_index[(field, alias)] = candidate
+                alias_index.setdefault((field, alias), []).append(candidate)
         stats["locked_added"] += 1
 
     return result, stats

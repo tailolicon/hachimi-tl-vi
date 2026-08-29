@@ -96,6 +96,16 @@ def harden(repo_root: Path = REPO_ROOT) -> None:
         },
     )
 
+    legacy_support_points = _find(terms, "system.support_points")
+    if legacy_support_points is not None:
+        legacy_support_points["ja"] = []
+        legacy_support_points["zh_cn"] = []
+        legacy_support_points["locked"] = False
+        legacy_support_points["note"] = (
+            "Superseded legacy Support Points umbrella. The player-facing compact resource label is scoped "
+            "by resource.support_points.common0160; keep this record only as registry history."
+        )
+
     _upsert(
         terms,
         {
@@ -115,6 +125,16 @@ def harden(repo_root: Path = REPO_ROOT) -> None:
             ),
         },
     )
+
+    legacy_energy = _find(terms, "resource.energy")
+    if legacy_energy is not None:
+        legacy_energy["ja"] = []
+        legacy_energy["zh_cn"] = []
+        legacy_energy["locked"] = False
+        legacy_energy["note"] = (
+            "Superseded legacy Energy umbrella. Bare 体力 is not globally locked; the Career Energy gauge "
+            "is enforced only by state.energy.singlemode in verified SingleMode slots."
+        )
 
     _upsert(
         terms,

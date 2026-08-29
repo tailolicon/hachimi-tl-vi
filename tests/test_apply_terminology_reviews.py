@@ -87,3 +87,28 @@ def test_duplicate_decision_ids_are_rejected():
     }
     with pytest.raises(ValueError, match="duplicate decision_id"):
         apply_reviews(base_registry(), reviews)
+
+
+def test_disjoint_scoped_locked_aliases_are_allowed():
+    registry = {
+        "schema_version": 2,
+        "terms": [
+            {"id": "race.miyako", "category": "race_name", "zh_cn": ["京城锦标"], "target_vi": "Miyako Stakes", "locked": True, "source_paths": ["text_data_dict.json"], "json_path_prefixes": [["32", "3061"], ["33", "3061"]], "match_mode": "exact"},
+            {"id": "race.keio", "category": "race_name", "zh_cn": ["京城锦标"], "target_vi": "Keio Hai Nisai Stakes", "locked": True, "source_paths": ["text_data_dict.json"], "json_path_prefixes": [["111", "134"]], "match_mode": "exact"},
+        ],
+    }
+    updated, stats = apply_reviews(registry, {"decisions": []})
+    assert updated == registry
+    assert stats["decisions"] == 0
+
+
+def test_overlapping_scoped_locked_aliases_still_conflict():
+    registry = {
+        "schema_version": 2,
+        "terms": [
+            {"id": "race.a", "category": "race_name", "zh_cn": ["冲突名"], "target_vi": "Race A", "locked": True, "source_paths": ["text_data_dict.json"], "json_path_prefixes": [["111"]]},
+            {"id": "race.b", "category": "race_name", "zh_cn": ["冲突名"], "target_vi": "Race B", "locked": True, "source_paths": ["text_data_dict.json"], "json_path_prefixes": [["111", "134"]]},
+        ],
+    }
+    with pytest.raises(ValueError, match="internally conflicting"):
+        apply_reviews(registry, {"decisions": []})

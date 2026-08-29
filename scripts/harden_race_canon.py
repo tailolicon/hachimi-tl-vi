@@ -58,7 +58,7 @@ RACES: dict[str, dict[str, Any]] = {
     "race.queen_elizabeth_ii_cup": {"zh_cn": ["伊丽莎白女王杯"], "ja": ["エリザベス女王杯"], "target_vi": "Queen Elizabeth II Cup"},
     "race.nikkei_sho": {"zh_cn": ["日经赏"], "ja": ["日経賞"], "target_vi": "Nikkei Sho"},
     "race.nikkei_shinshun_hai": {"zh_cn": ["日经新春杯"], "ja": ["日経新春杯"], "target_vi": "Nikkei Shinshun Hai"},
-    "race.radio_nikkei_sho": {"zh_cn": ["日经广播赏"], "ja": ["ラジオNIKKEI賞"], "target_vi": "Radio NIKKEI Sho"},
+    "race.radio_nikkei_sho": {"zh_cn": ["日经广播赏"], "ja": ["ラジオNIKKEI賞"], "target_vi": "Radio Nikkei Sho"},
     "race.cluster_cup": {"zh_cn": ["星团杯"], "ja": ["クラスターカップ"], "target_vi": "Cluster Cup"},
     "race.sparking_lady_cup": {"zh_cn": ["星火雌马杯"], "ja": ["スパーキングレディーカップ"], "target_vi": "Sparking Lady Cup"},
     "race.hanshin_juvenile_fillies": {"zh_cn": ["阪神两岁雌马大赛"], "ja": ["阪神ジュベナイルフィリーズ"], "target_vi": "Hanshin Juvenile Fillies"},

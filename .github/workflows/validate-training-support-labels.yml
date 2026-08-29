@@ -1,0 +1,36 @@
+name: Validate Training Support Labels
+
+on:
+  push:
+    branches:
+      - canonical-training-support-hardening
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install
+        run: python -m pip install -e . pytest
+      - name: Materialize hardeners
+        run: |
+          python scripts/harden_training_support_canon.py
+          python scripts/harden_training_support_labels.py
+          git diff --check
+      - name: Focused tests
+        run: python -m pytest tests/test_training_support_hardening.py tests/test_training_support_labels_hardening.py -q
+      - name: Full tests
+        run: python -m pytest -q
+      - name: CLI validation
+        run: |
+          tlvi --db /tmp/tlvi.db validate
+          tlvi --db /tmp/tlvi.db index --out /tmp/index.json
+      - name: Show generated glossary delta
+        run: git diff --stat -- glossary/term_registry.json glossary/ui_community_terms.json

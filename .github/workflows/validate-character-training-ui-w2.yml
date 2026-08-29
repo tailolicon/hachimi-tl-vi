@@ -27,6 +27,17 @@ jobs:
           python scripts/harden_character_training_ui_canon.py
           git diff -- glossary/term_registry.json glossary/ui_community_terms.json scripts/enforce_player_facing_canon.py > /tmp/second.patch
           cmp /tmp/first.patch /tmp/second.patch
+      - name: Diagnose Race class reuse
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from scripts.translation_review_common import load_locked_terms, locked_term_matches
+          root = Path('.')
+          terms = load_locked_terms(root)
+          rec = next(t for t in terms if t.get('id') == 'race.class.junior.ui')
+          print('record=', rec)
+          print('matches=', locked_term_matches('新马级','Junior Class',terms,key='SingleMode0017',source_path='localize_dict.json',json_path=['SingleMode0017']))
+          PY
       - name: Focused tests
         run: pytest -q tests/test_character_training_ui_hardening.py tests/test_character_training_ui_career_mode.py tests/test_character_training_ui_aptitude_grade.py tests/test_character_training_ui_sync_source.py
       - name: Full tests

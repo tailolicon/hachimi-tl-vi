@@ -84,6 +84,22 @@ def test_back_reset_filter_sort_controls_are_exact_key_scoped(tmp_path: Path) ->
         ) == []
 
 
+def test_toggle_on_off_are_exact_and_close_off_share_source_safely(tmp_path: Path) -> None:
+    root = _seed(tmp_path)
+    on_record = _record(root, "Common0092", "开启", "Bật", "common_ui.on.common0092")
+    off_record = _record(root, "Common0093", "关闭", "Tắt", "common_ui.off.common0093")
+    close_record = _record(root, "Common0007", "关闭", "Đóng", "common_ui.close.common0007")
+    assert on_record["accepted_present"] is True
+    assert off_record["accepted_present"] is True
+    assert close_record["accepted_present"] is True
+    wrong_off = community_term_matches(
+        "Common0093", "关闭", "Đóng", load_community_terms(root),
+        source_path="localize_dict.json", json_path=["Common0093"]
+    )
+    assert any(item["id"] == "common_ui.off.common0093" and not item["accepted_present"] for item in wrong_off)
+    assert all(item["id"] != "common_ui.close.common0007" for item in wrong_off)
+
+
 def test_details_is_scoped_to_standalone_roommatch_control(tmp_path: Path) -> None:
     root = _seed(tmp_path)
     record = _record(root, "RoomMatch0117", "详情", "Chi tiết", "common_ui.details.roommatch0117")

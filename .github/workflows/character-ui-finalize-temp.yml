@@ -1,0 +1,85 @@
+name: TEMP finalize Character Training UI
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/character-ui-finalize-temp.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: canonical-character-training-ui-finalize
+  cancel-in-progress: false
+
+jobs:
+  finalize:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Replay Character Training UI hardening and validate
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main canonical-character-training-ui-hardening
+            git checkout -B character-ui-finalize origin/main
+
+            for path in \
+              scripts/harden_character_training_ui_canon.py \
+              tests/test_character_training_ui_aptitude_grade.py \
+              tests/test_character_training_ui_career_mode.py \
+              tests/test_character_training_ui_hardening.py \
+              tests/test_character_training_ui_sync_source.py \
+              work/orchestration/checkpoints/canonical-character-training-ui-codex-20260829T1658Z.md; do
+              mkdir -p "$(dirname "$path")"
+              git show origin/canonical-character-training-ui-hardening:"$path" > "$path"
+            done
+
+            python scripts/harden_character_training_ui_canon.py
+            sha256sum \
+              glossary/term_registry.json \
+              glossary/ui_community_terms.json \
+              scripts/enforce_player_facing_canon.py > /tmp/character-ui-first.sha
+            python scripts/harden_character_training_ui_canon.py
+            sha256sum \
+              glossary/term_registry.json \
+              glossary/ui_community_terms.json \
+              scripts/enforce_player_facing_canon.py > /tmp/character-ui-second.sha
+            diff -u /tmp/character-ui-first.sha /tmp/character-ui-second.sha
+
+            python -m pip install -e ".[dev]"
+            pytest -q
+            tlvi validate
+            tlvi index
+
+            git add \
+              glossary/term_registry.json \
+              glossary/ui_community_terms.json \
+              scripts/enforce_player_facing_canon.py \
+              scripts/harden_character_training_ui_canon.py \
+              tests/test_character_training_ui_aptitude_grade.py \
+              tests/test_character_training_ui_career_mode.py \
+              tests/test_character_training_ui_hardening.py \
+              tests/test_character_training_ui_sync_source.py \
+              work/orchestration/checkpoints/canonical-character-training-ui-codex-20260829T1658Z.md
+            git rm .github/workflows/character-ui-finalize-temp.yml
+            git commit -m "Canonical: integrate Character Training UI hardening"
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+            sleep $((attempt * 2))
+          done
+
+          echo "Failed to publish Character/Training UI finalization after retries" >&2
+          exit 1

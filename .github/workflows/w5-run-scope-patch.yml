@@ -20,13 +20,14 @@ jobs:
       - run: python scripts/w5_temp_support_pt_patch.py
       - run: python scripts/harden_training_support_canon.py
       - run: python scripts/harden_race_canon.py
+      - run: python scripts/w5_temp_review_conflict_audit.py
       - run: python scripts/apply_terminology_reviews.py --check
       - run: python -m pytest -q tests/test_apply_terminology_reviews.py tests/test_race_hardening.py tests/test_training_support_hardening.py
       - run: python -m pytest -q
       - run: python -m tlvi validate
       - run: python -m tlvi index
-      - run: rm scripts/w5_temp_scope_patch.py scripts/w5_temp_support_pt_patch.py .github/workflows/w5-run-scope-patch.yml
+      - run: rm scripts/w5_temp_scope_patch.py scripts/w5_temp_support_pt_patch.py scripts/w5_temp_review_conflict_audit.py .github/workflows/w5-run-scope-patch.yml
       - uses: EndBug/add-and-commit@v9
         with:
           message: Resolve scoped canonical alias conflicts
-          add: scripts/apply_terminology_reviews.py scripts/harden_race_canon.py scripts/harden_training_support_canon.py tests/test_apply_terminology_reviews.py glossary/term_registry.json glossary/ui_community_terms.json glossary/source_bridge_terms.json scripts/w5_temp_scope_patch.py scripts/w5_temp_support_pt_patch.py .github/workflows/w5-run-scope-patch.yml
+          add: scripts/apply_terminology_reviews.py scripts/harden_race_canon.py scripts/harden_training_support_canon.py tests/test_apply_terminology_reviews.py glossary/term_registry.json glossary/ui_community_terms.json glossary/source_bridge_terms.json scripts/w5_temp_scope_patch.py scripts/w5_temp_support_pt_patch.py scripts/w5_temp_review_conflict_audit.py .github/workflows/w5-run-scope-patch.yml

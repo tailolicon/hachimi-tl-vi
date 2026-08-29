@@ -35,6 +35,10 @@ def test_common_status_and_action_controls_are_exact_key_scoped(tmp_path: Path) 
         ("Common0008", "更改", "Thay đổi", "common_ui.change.common0008"),
         ("Common0009", "确认", "Xác nhận", "common_ui.confirm.common0009"),
         ("Common0013", "使用", "Sử dụng", "common_ui.use.common0013"),
+        ("Common0020", "全部", "Tất cả", "common_ui.all.common0020"),
+        ("Common0022", "搜索", "Tìm kiếm", "common_ui.search.common0022"),
+        ("Common0023", "决定", "Xác nhận", "common_ui.confirm.common0023"),
+        ("Common0030", "默认", "Mặc định", "common_ui.default.common0030"),
     ]
     for key, source, target, rid in cases:
         record = _record(root, key, source, target, rid)
@@ -47,6 +51,7 @@ def test_compact_control_forms_are_accepted(tmp_path: Path) -> None:
     root = _seed(tmp_path)
     assert _record(root, "Common0008", "更改", "Đổi", "common_ui.change.common0008")["accepted_present"] is True
     assert _record(root, "Common0013", "使用", "Dùng", "common_ui.use.common0013")["accepted_present"] is True
+    assert _record(root, "Common0022", "搜索", "Tìm", "common_ui.search.common0022")["accepted_present"] is True
 
 
 def test_cancel_is_scoped_to_controls_not_status_or_compounds(tmp_path: Path) -> None:

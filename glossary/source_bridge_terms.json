@@ -1155,6 +1155,323 @@
       "match_mode": "contains",
       "invalidation_scope": "item",
       "note": "Verified semantic zh-CN proper-race bridge; preserve the canonical international/Japanese race name rather than translating the Chinese meaning."
+    },
+    {
+      "id": "currency.jewel.paid",
+      "ja": [
+        "有償ジュエル"
+      ],
+      "zh_cn": [
+        "付费宝石",
+        "有偿宝石"
+      ],
+      "preferred": "paid Jewels",
+      "accepted": [
+        "paid Jewel",
+        "paid Jewels",
+        "Jewel trả phí"
+      ],
+      "forbidden": [
+        "Jewel miễn phí",
+        "free Jewel",
+        "free Jewels"
+      ],
+      "require_accepted": true,
+      "source_paths": [
+        "localize_dict.json"
+      ],
+      "match_mode": "contains",
+      "note": "Paid-Jewel wording is a fixed shop/account distinction. Scope to localize UI so generic paid/free prose is not captured."
+    },
+    {
+      "id": "currency.jewel.free",
+      "ja": [
+        "無償ジュエル"
+      ],
+      "zh_cn": [
+        "免费宝石",
+        "无偿宝石"
+      ],
+      "preferred": "free Jewels",
+      "accepted": [
+        "free Jewel",
+        "free Jewels",
+        "Jewel miễn phí"
+      ],
+      "forbidden": [
+        "Jewel trả phí",
+        "paid Jewel",
+        "paid Jewels"
+      ],
+      "require_accepted": true,
+      "source_paths": [
+        "localize_dict.json"
+      ],
+      "match_mode": "contains",
+      "note": "Free-Jewel wording is a fixed shop/account distinction. Scope to localize UI so generic paid/free prose is not captured."
+    },
+    {
+      "id": "gacha.exchange_points",
+      "ja": [
+        "交換Pt",
+        "交換ポイント"
+      ],
+      "zh_cn": [
+        "兑换点数",
+        "兑换Pt",
+        "交換點數",
+        "交換Pt"
+      ],
+      "preferred": "Exchange Points",
+      "accepted": [
+        "Exchange Point",
+        "Exchange Points"
+      ],
+      "forbidden": [
+        "Điểm đổi",
+        "Điểm cần để đổi",
+        "Pt đổi",
+        "điểm đổi",
+        "điểm cần để đổi"
+      ],
+      "require_accepted": true,
+      "source_paths": [
+        "localize_dict.json"
+      ],
+      "key_prefixes": [
+        "Gacha"
+      ],
+      "match_mode": "contains",
+      "note": "兑换点数/兑换Pt in Gacha UI is the banner pity currency shown as Exchange Points in Global usage. Restrict to Gacha localize keys so generic shop exchanges or story language do not become a pity-currency match."
+    },
+    {
+      "id": "resource.clover",
+      "ja": [
+        "クローバー"
+      ],
+      "zh_cn": [
+        "四叶草",
+        "四葉草"
+      ],
+      "preferred": "Clovers",
+      "accepted": [
+        "Clover",
+        "Clovers"
+      ],
+      "forbidden": [
+        "Cỏ bốn lá",
+        "cỏ bốn lá"
+      ],
+      "require_accepted": true,
+      "source_paths": [
+        "localize_dict.json"
+      ],
+      "key_prefixes": [
+        "Gacha",
+        "Shop"
+      ],
+      "match_mode": "contains",
+      "note": "Four-leaf-clover wording in Gacha/Shop localize UI denotes the persistent Clovers resource, including conversion of expired Exchange Points. Keep ordinary narrative four-leaf clovers outside these resource/UI keys as prose."
+    },
+    {
+      "id": "resource.goddess_statue",
+      "ja": [
+        "女神像"
+      ],
+      "zh_cn": [
+        "女神像"
+      ],
+      "preferred": "Goddess Statues",
+      "accepted": [
+        "Goddess Statue",
+        "Goddess Statues"
+      ],
+      "forbidden": [
+        "Tượng Nữ thần",
+        "Tượng nữ thần",
+        "tượng nữ thần"
+      ],
+      "require_accepted": true,
+      "source_paths": [
+        "localize_dict.json"
+      ],
+      "key_prefixes": [
+        "Gacha",
+        "Shop"
+      ],
+      "match_mode": "contains",
+      "note": "女神像 in Gacha/Shop UI is the persistent Goddess Statues resource awarded for duplicate trainees. Restrict enforcement to resource-facing localize keys so a literal goddess statue in narrative prose remains ordinary language."
+    },
+    {
+      "id": "currency.club_points",
+      "ja": [
+        "サークルPt",
+        "サークルポイント"
+      ],
+      "zh_cn": [
+        "社团点数",
+        "社團點數"
+      ],
+      "preferred": "Club Points",
+      "accepted": [
+        "Club Point",
+        "Club Points"
+      ],
+      "forbidden": [
+        "điểm câu lạc bộ",
+        "Điểm câu lạc bộ"
+      ],
+      "require_accepted": true,
+      "source_paths": [
+        "localize_dict.json"
+      ],
+      "key_exact": [
+        "StoryEvent4080030"
+      ],
+      "match_mode": "contains",
+      "note": "The observed StoryEvent4080030 UI label is explicitly a Club Points exchange. Keep this first lock exact-key scoped until additional corpus keys prove safe broader contexts for the same currency."
+    },
+    {
+      "id": "currency.friend_points",
+      "ja": [
+        "フレンドPt",
+        "フレンドポイント"
+      ],
+      "zh_cn": [
+        "友情点数",
+        "友情點數"
+      ],
+      "preferred": "Friend Points",
+      "accepted": [
+        "Friend Point",
+        "Friend Points"
+      ],
+      "forbidden": [
+        "Điểm bạn bè",
+        "điểm bạn bè"
+      ],
+      "require_accepted": true,
+      "source_paths": [
+        "localize_dict.json"
+      ],
+      "key_prefixes": [
+        "TeamStadium"
+      ],
+      "match_mode": "contains",
+      "note": "TeamStadium0090 proves 友情点数 as the persistent Friend Points currency in player-facing Team Trials UI. Scope to TeamStadium localize keys so generic friendship wording elsewhere is never treated as currency."
+    },
+    {
+      "id": "gacha.scout_ticket",
+      "ja": [
+        "ガチャチケット"
+      ],
+      "zh_cn": [
+        "抽奖券",
+        "抽獎券"
+      ],
+      "preferred": "Scout Ticket",
+      "accepted": [
+        "Scout Ticket",
+        "Scout Tickets"
+      ],
+      "forbidden": [
+        "Vé Gacha",
+        "vé Gacha",
+        "vé gacha"
+      ],
+      "require_accepted": true,
+      "source_paths": [
+        "localize_dict.json"
+      ],
+      "key_prefixes": [
+        "Gacha"
+      ],
+      "match_mode": "contains",
+      "note": "Gacha0065/0066 prove 抽奖券 as the generic Scout Ticket token, including the 10-pull ticket label. Scope to Gacha localize keys; named or event-specific ticket identities remain outside this generic lock."
+    },
+    {
+      "id": "resource.crystal_shard",
+      "ja": [
+        "結晶片"
+      ],
+      "zh_cn": [
+        "结晶片",
+        "結晶片"
+      ],
+      "preferred": "Crystal Shards",
+      "accepted": [
+        "Crystal Shard",
+        "Crystal Shards"
+      ],
+      "forbidden": [
+        "Mảnh kết tinh",
+        "mảnh kết tinh"
+      ],
+      "require_accepted": true,
+      "source_paths": [
+        "localize_dict.json"
+      ],
+      "key_exact": [
+        "Shop420161"
+      ],
+      "match_mode": "contains",
+      "note": "Shop420161 is the Crystal Shard Exchange heading; exact-key scope avoids literal crystal-fragment prose."
+    },
+    {
+      "id": "resource.crystal_shard.rainbow",
+      "ja": [
+        "虹の結晶片"
+      ],
+      "zh_cn": [
+        "彩虹结晶片",
+        "彩虹結晶片"
+      ],
+      "preferred": "Rainbow Crystal Shards",
+      "accepted": [
+        "Rainbow Crystal Shard",
+        "Rainbow Crystal Shards"
+      ],
+      "forbidden": [
+        "Mảnh kết tinh Cầu vồng",
+        "mảnh kết tinh cầu vồng"
+      ],
+      "require_accepted": true,
+      "source_paths": [
+        "localize_dict.json"
+      ],
+      "key_exact": [
+        "Shop420162"
+      ],
+      "match_mode": "contains",
+      "note": "Shop420162 is the stable Rainbow Crystal Shard resource label."
+    },
+    {
+      "id": "resource.crystal_shard.gold",
+      "ja": [
+        "金の結晶片"
+      ],
+      "zh_cn": [
+        "金色结晶片",
+        "金色結晶片"
+      ],
+      "preferred": "Gold Crystal Shards",
+      "accepted": [
+        "Gold Crystal Shard",
+        "Gold Crystal Shards"
+      ],
+      "forbidden": [
+        "Mảnh kết tinh Vàng",
+        "mảnh kết tinh vàng"
+      ],
+      "require_accepted": true,
+      "source_paths": [
+        "localize_dict.json"
+      ],
+      "key_exact": [
+        "Shop420163"
+      ],
+      "match_mode": "contains",
+      "note": "Shop420163 is the stable Gold Crystal Shard resource label."
     }
   ],
   "untrusted_sources": [

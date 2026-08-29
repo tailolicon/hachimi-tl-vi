@@ -15,6 +15,7 @@ concurrency:
 
 jobs:
   finalize:
+    # Retry after the final-parallel-domain orchestration assertion was corrected.
     if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
     steps:

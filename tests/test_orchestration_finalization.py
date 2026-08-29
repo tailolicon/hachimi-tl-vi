@@ -27,6 +27,22 @@ def test_worker_policy_requires_progress_backed_maintenance_heartbeat() -> None:
     assert "ready_for_finalize" in policy["maintenance_finalizer_rule"]
 
 
+def test_worker_policy_is_execution_backend_independent() -> None:
+    policy = load_json("work/worker_session_policy.json")
+    worker_start = (ROOT / "WORKER_START.md").read_text(encoding="utf-8")
+
+    assert policy["policy_version"] >= 3
+    assert "execution-backend independent" in policy["execution_backend_rule"]
+    assert "not a task-level blocker" in policy["execution_backend_rule"]
+    assert "connected GitHub read/write capabilities" in policy["backend_failure_fallback_rule"]
+    assert "Do not release or end a worker solely because one execution backend failed" in policy[
+        "backend_failure_handoff_rule"
+    ]
+    assert "Execution-backend independence" in worker_start
+    assert "NOT a task-level blocker" in worker_start
+    assert "Do not release/checkpoint merely because one backend failed" in worker_start
+
+
 def test_live_orchestration_state_has_explicit_valid_stage() -> None:
     policy = load_json("work/worker_session_policy.json")
     state = load_json("work/orchestration/state.json")

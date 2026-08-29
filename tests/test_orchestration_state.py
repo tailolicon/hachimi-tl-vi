@@ -51,7 +51,8 @@ def test_parallel_canonical_tasks_have_independent_claim_files() -> None:
     active = state["active_task"]
     matches = [item for item in roadmap if item["id"] == active["task_id"]]
     assert len(matches) == 1
-    assert matches[0]["status"] == "active"
+    assert matches[0]["status"] == active["status"]
+    assert matches[0].get("stage") == active.get("stage")
     assert (ROOT / active["task_file"]).is_file()
 
     parallel_tasks = [

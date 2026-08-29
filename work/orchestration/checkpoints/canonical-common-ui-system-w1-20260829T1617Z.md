@@ -1,14 +1,14 @@
 # Common UI/System canonical hardening — W1 checkpoint
 
 Task: `canonical-common-ui-system`
-Stage: `domain_work`
+Stage: `ready_for_finalize`
 Branch: `canonical-common-ui-system-hardening`
 
-## Durable scope completed so far
+## Domain-work result
 
-Added permanent exact-key/item-scoped hardening in `scripts/harden_common_ui_labels.py` with regression coverage in `tests/test_common_ui_labels_hardening.py` for high-frequency generic controls/status labels. No `localized_data/**` files were edited.
+Substantive high-frequency Common UI/System hardening is complete enough for serial integration. Permanent exact-key/item-scoped rules live in `scripts/harden_common_ui_labels.py` with regression coverage in `tests/test_common_ui_labels_hardening.py`. No `localized_data/**` files were edited.
 
-Current canonical targets covered:
+Canonical targets hardened:
 
 - `Common0001` `确定` -> `Xác nhận`
 - `Common0002`, `Common0004` `取消` -> `Hủy`
@@ -35,38 +35,49 @@ Current canonical targets covered:
 - `RoomMatch0117` bare `详情` -> `Chi tiết`
 - `Circle0086` bare `取消` -> `Hủy`
 
-All rules are scoped to exact `localize_dict.json` keys. Regression negatives cover story prose, cancellation status/compound actions, and compound `详情` headings.
+All records are scoped to exact `localize_dict.json` keys. Regression negatives cover story prose, cancellation status/compound actions, and compound `详情` headings.
 
-## Important conflict caught and corrected
+## Important conflict caught and permanently guarded
 
-A transient branch revision incorrectly treated `Common0092`/`Common0093` as generic On/Off labels. Direct current-corpus evidence shows these are race phases:
+A transient branch revision incorrectly inferred `Common0092`/`Common0093` as generic On/Off labels. Direct current-corpus evidence proves these keys are Race phases:
 
 - `Common0092` `中盘` -> `Giữa cuộc đua`
 - `Common0093` `终盘` -> `Cuối cuộc đua`
 
-The invalid `common_ui.on.common0092` and `common_ui.off.common0093` records were removed. The permanent hardener now deletes those IDs if encountered, and regression coverage asserts the race-phase keys remain unmatched by Common-UI rules.
+The invalid `common_ui.on.common0092` and `common_ui.off.common0093` records were removed. The permanent hardener deletes those IDs if encountered, and regressions assert the Race-phase keys remain unmatched by Common-UI rules.
 
 ## Cross-domain exclusions
 
-Intentionally did not harden overlapping concepts owned by parallel domains:
+Intentionally left overlapping concepts to their owning domains instead of creating split-brain rules:
 
 - Training Level, Max Energy, stat cap/limit -> Training/Support;
 - Reward, required/owned resource quantities, shop/purchase, consumables/materials -> Missions/Resources;
 - race-phase labels `Common0091`-`Common0093` -> Race;
 - character/training-specific status labels -> Character/Training UI.
 
-No broad aliases were added for generic prose such as `详情`, `取消`, `使用`, `搜索`, or `更改`.
+No broad aliases were added for generic prose such as `详情`, `取消`, `使用`, `搜索`, or `更改`. Rare/ambiguous generic-looking strings without strong exact evidence were intentionally not locked.
 
-## Validation evidence so far
+## Validation and cleanup evidence
 
-Earlier branch run `33262122728` passed focused regressions, full pytest, canonical materialization, and a second hardener no-op proof. Later green runs validated the removal of the invalid `Common0092`/`Common0093` toggle rules and subsequent expanded controls. Latest validation for the final expanded set is still running at this checkpoint and must be verified before handoff.
+Final TEMP validation run `33262561076` completed successfully on the final substantive branch content:
 
-Temporary validation workflow `.github/workflows/temp-common-ui-validation.yml` remains branch-local and MUST be removed before integration/handoff.
+- focused Common UI regressions: success;
+- full pytest: success;
+- canonical materialization: success;
+- second hardener run/no-op proof: success.
 
-## Remaining in this worker run
+The temporary validation workflow was removed in branch commit `c174ae9c6b40fa02913f83640729695336511157`. A post-cleanup compare shows only permanent glossary/hardener/tests plus this checkpoint differ from live `main`; no TEMP workflow and no `localized_data/**` edits remain.
 
-1. verify the latest focused/full-test/materialization/no-op run;
-2. ensure final materialized branch head is captured;
-3. remove the temporary workflow;
-4. decide whether current substantive Common UI coverage is sufficient for `ready_for_integration` under `CANONICAL_PARALLEL.md` or leave explicit `domain_work` continuation evidence;
-5. checkpoint/release the domain claim only at the normal session handoff boundary.
+## Integration handoff
+
+This domain is ready for the serial integration lane under `CANONICAL_PARALLEL.md`.
+
+Finalizer should:
+
+1. compare/reconstruct the permanent branch changes onto current live `main`, preserving concurrently integrated domains;
+2. resolve any cross-domain canonical conflict explicitly rather than last-writer-wins;
+3. run full validation on integrated `main`;
+4. rebuild retrospective review context;
+5. run production Sync and second unchanged no-op Sync;
+6. spot-check Common0001/Common0002, Common0007, Common0087/Common0098, Common0092/Common0093 negative guard, and RoomMatch0117 compound-negative behavior;
+7. only then mark `canonical-common-ui-system` complete.

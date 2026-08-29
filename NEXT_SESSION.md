@@ -1,27 +1,13 @@
 # Next-session handoff
 
-This project now uses parallel workers.
+The repository now owns the complete handoff and lifecycle state.
 
-Do not rely on chat memory.
+Do not use chat history, copied prompts, or this file as an independent worker protocol.
 
-Read, in this order:
+For every fresh session, use exactly:
 
-1. `PARALLEL_WORKERS.md`
-2. `work/translation_progress.json`
+> Run `tailolicon/hachimi-tl-vi/WORKER_START.md` from `main`.
 
-Then act as one parallel worker:
+`WORKER_START.md` reads `work/orchestration/state.json` and routes the worker to the current blocking canonical-maintenance task, systemic canonical finding, retrospective review, UI review, translation wave, deferred-wave expansion, post-completion audit, or final release task.
 
-- claim one available batch atomically,
-- use the exact pinned `source_batch_ref`,
-- resume persisted partial results if they exist,
-- translate only missing entries,
-- persist results every 10 entries,
-- heartbeat the claim after each persisted part,
-- create the completion marker only when all source UIDs are covered,
-- never edit `localized_data/` or canonical progress directly.
-
-GitHub Actions merges completed batches and updates canonical progress.
-
-The old single-worker rule "always translate next_batch" is obsolete. `next_batch` is now only the lowest known unmerged batch and a starting point for scanning; different workers should claim different batches.
-
-If the current upstream translation source changes, do not automatically move active workers to the new source. Existing workers must continue using the pinned `source_batch_ref` until a deliberate source reconciliation/promotion updates canonical progress.
+The current progress/task summary is automatically rendered near the top of `README.md`.

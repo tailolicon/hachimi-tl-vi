@@ -72,6 +72,26 @@ def test_cancel_is_scoped_to_standalone_circle_control(tmp_path: Path) -> None:
     ) == []
 
 
+def test_filter_and_sort_controls_are_exact_key_scoped(tmp_path: Path) -> None:
+    root = _seed(tmp_path)
+    cases = [
+        ("Common0087", "排序", "Sắp xếp", "common_ui.sort.common0087"),
+        ("Common0098", "筛选", "Lọc", "common_ui.filter.common0098"),
+    ]
+    for key, source, target, rid in cases:
+        record = _record(root, key, source, target, rid)
+        assert record["accepted_present"] is True
+        assert record["forbidden_present"] is False
+        assert community_term_matches(
+            None,
+            source,
+            target,
+            load_community_terms(root),
+            source_path="story.json",
+            json_path=["1"],
+        ) == []
+
+
 def test_common_ui_hardener_is_idempotent(tmp_path: Path) -> None:
     root = _seed(tmp_path)
     path = root / "glossary/ui_community_terms.json"

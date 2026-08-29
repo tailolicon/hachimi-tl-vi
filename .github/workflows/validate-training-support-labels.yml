@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   validate:
@@ -34,3 +34,14 @@ jobs:
           tlvi --db /tmp/tlvi.db index --out /tmp/index.json
       - name: Show generated glossary delta
         run: git diff --stat -- glossary/term_registry.json glossary/ui_community_terms.json
+      - name: Commit materialized glossary
+        run: |
+          if git diff --quiet -- glossary/term_registry.json glossary/ui_community_terms.json; then
+            echo "Glossary already materialized"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add glossary/term_registry.json glossary/ui_community_terms.json
+          git commit -m "Materialize Training Level and Failure Rate canon"
+          git push origin HEAD:canonical-training-support-hardening

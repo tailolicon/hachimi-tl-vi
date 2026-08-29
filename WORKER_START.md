@@ -24,6 +24,24 @@ This project is repository-coordinated. Before reporting that GitHub is read-onl
 
 Do not use an unrelated test file as the permission check.
 
+## 2.1 Execution-backend independence
+
+No named external harness, plugin, local container, shell, MCP provider, or other execution backend is a prerequisite for this project unless the repository itself explicitly declares it as one.
+
+A failure of one execution path — including rate limiting, EOF, DNS/network failure, unavailable shell/container, or a transient tool error — is a capability-local failure, NOT a task-level blocker and NOT by itself a valid reason to end the worker.
+
+When one path fails:
+
+1. preserve the current task/claim and continue with the repository capabilities that are still available;
+2. prefer connected GitHub read/write operations for repository inspection and durable writes;
+3. use the current execution environment for tests when available, otherwise use repository GitHub Actions/validation workflows when they can provide the required evidence;
+4. continue all safe integration/inspection/checkpoint work that does not depend on the failed path;
+5. never invent a dependency on a tool/provider that is not part of the repository contract.
+
+Do not release/checkpoint merely because one backend failed. A backend failure may justify handoff only when the normal session handoff boundary is reached OR every currently available repository write/execution path required for the next safe step has actually been attempted and is unavailable. Persist the exact generic capability blocker and the attempted fallbacks if that exceptional case occurs.
+
+Required acceptance tests are still required before claiming completion. Backend independence means retry/fallback/continue, not skipping verification.
+
 ## 3. Select exactly one mode from live state
 
 ### A. Blocking maintenance / canonical hardening

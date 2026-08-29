@@ -198,6 +198,26 @@ def harden(repo_root: Path = REPO_ROOT) -> None:
             ),
         },
     )
+    _upsert(
+        terms,
+        {
+            "id": "gacha.scout_ticket",
+            "ja": ["ガチャチケット"],
+            "zh_cn": ["抽奖券", "抽獎券"],
+            "preferred": "Scout Ticket",
+            "accepted": ["Scout Ticket", "Scout Tickets"],
+            "forbidden": ["Vé Gacha", "vé Gacha", "vé gacha"],
+            "require_accepted": True,
+            "source_paths": ["localize_dict.json"],
+            "key_prefixes": ["Gacha"],
+            "match_mode": "contains",
+            "note": (
+                "Gacha0065/0066 prove 抽奖券 as the generic Scout Ticket token, including the "
+                "10-pull ticket label. Scope to Gacha localize keys; named or event-specific ticket "
+                "identities remain outside this generic lock."
+            ),
+        },
+    )
 
     _write(bridge_path, payload)
 

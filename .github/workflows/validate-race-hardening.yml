@@ -27,11 +27,7 @@ jobs:
           from pathlib import Path
           sys.path.insert(0, str(Path("scripts").resolve()))
           import race_stage_tmp as stage
-          stage.clean_builder_imports()
-          stage.patch_hardener()
-          stage.patch_race_tests()
-          from harden_race_canon import harden
-          harden(stage.ROOT)
+          raise SystemExit(stage.main())
           PY
       - run: python -m py_compile scripts/harden_race_canon.py scripts/build_translation_review_plan.py scripts/race_inventory_tmp.py scripts/race_inventory_compact_tmp.py
       - run: pytest -q
@@ -72,7 +68,7 @@ jobs:
             scripts/harden_race_canon.py \
             scripts/build_translation_review_plan.py \
             tests/test_race_hardening.py \
-            tests/test_review_gate_idempotence.py \
+            tests/test_translation_review_gate_idempotence.py \
             glossary/term_registry.json \
             glossary/ui_community_terms.json \
             glossary/source_bridge_terms.json \

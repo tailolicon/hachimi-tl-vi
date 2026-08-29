@@ -61,11 +61,14 @@ def harden(repo_root: Path = REPO_ROOT) -> None:
             ["Tăng hiệu quả huấn luyện", "tăng hiệu quả huấn luyện", "Hiệu quả huấn luyện"],
             "Established Support Effect label for training effectiveness, limited to support-effect category 155.",
         ),
-        _effect_record(
-            "support.mood_effect.effect155", "干劲效果提升", "Mood Effect",
-            ["Tăng hiệu ứng hứng khởi", "tăng hiệu ứng hứng khởi", "Hiệu ứng hứng khởi"],
-            "Established Support Effect label; narrower than the already-canonical generic Mood state.",
-        ),
+        {
+            **_effect_record(
+                "support.mood_effect.effect155", "干劲效果提升", "Mood Effect",
+                ["Tăng hiệu ứng hứng khởi", "tăng hiệu ứng hứng khởi", "Hiệu ứng hứng khởi", "Thưởng Hứng khởi", "Thưởng hứng khởi"],
+                "Established Support Effect label; narrower than the already-canonical generic Mood state.",
+            ),
+            "source_aliases": ["干劲效果提升", "心情加成"],
+        },
         {
             **_effect_record(
                 "support.initial_friendship.effect155", "初始牵绊值", "Initial Friendship",

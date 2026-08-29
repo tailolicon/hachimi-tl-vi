@@ -35,7 +35,7 @@ Before reporting any blocker such as `GitHub write access disabled`, `cannot com
 3. attempt the actual protocol-required write — normally the atomic claim creation or takeover — rather than creating an unrelated test file;
 4. only declare a write blocker if write-action discovery genuinely exposes no usable write operation, or an actual required write invocation returns an authentication/authorization/connector error.
 
-If a required write fails, the end report must include the concrete failed operation and the actual error category/message. Absence of a preloaded write tool is **not** evidence of missing permission.
+If a required write fails, the worker must try other repository paths that can safely perform the next step before ending. A failure of one backend, local shell, container, network path, or connector operation is not by itself a task-level blocker.
 
 Do not substitute public-web GitHub reads for the connected GitHub connector when repository writes are required. Do not abandon claimable work solely because local `git` is unavailable.
 
@@ -45,18 +45,22 @@ If `translation_review_gate.enabled == true` or `claims_allowed == false`:
 
 - use `TRANSLATION_REVIEW.md`;
 - read `work/translation_review/active_plan.json`;
-- claim/resume exactly one translation-review batch;
-- do not inspect UI/new-translation work.
+- claim/resume exactly one translation-review batch at a time;
+- do not inspect UI/new-translation work while this gate remains active.
 
 **Important:** in this state, `claims_allowed: false` pauses **normal translation claims only**. It does **not** prohibit translation-review claims. When the translation-review gate is active, a worker with repository write capability is expected to claim/resume translation-review work.
+
+After a batch completes, re-read only the live state needed to confirm the gate/priority and immediately claim/resume the next eligible review batch if still before the configured new-work cutoff.
 
 ### Mode B: UI audit
 
 Only after the translation-review gate clears:
 
 - read `work/ui_review/active_plan.json`;
-- if active assignable UI work remains, use `UI_REVIEW.md` and claim/resume one UI batch;
+- if active assignable UI work remains, use `UI_REVIEW.md` and claim/resume one UI batch at a time;
 - do not start new translation while required UI audit remains assignable.
+
+After a UI batch completes, re-read live priority and continue another eligible UI batch while before the cutoff.
 
 ### Mode C: new translation
 
@@ -64,22 +68,32 @@ Only when translation audit is clear and no higher-priority required UI audit re
 
 - use `PARALLEL_TRANSLATION.md`;
 - load current epoch metadata;
-- claim/resume one pinned source shard.
+- claim/resume one pinned source shard at a time.
 
-Re-evaluate this priority from live state after each completed unit.
+After a shard completes, re-evaluate priority from live state and claim/resume another eligible shard while before the cutoff.
 
 ## Session budget
 
 Use `work/worker_session_policy.json` as canonical timing policy.
 
-Current intended cadence:
+The current policy defines four distinct concepts:
+
+- `session_minutes`: hard outer budget;
+- `productive_target_minutes`: minimum voluntary useful-work target;
+- `stop_new_batch_after_minutes`: latest point to start another unit;
+- `handoff_start_minutes`: point to begin clean final checkpoint/release.
+
+Expected cadence:
 
 - first minute: state + mode + claim/resume;
-- main session: useful review/translation work;
+- main session: continuous useful review/translation work;
 - checkpoint every configured item count or heartbeat interval;
-- no new batch/task after configured stop-new-work minute;
-- begin clean handoff at configured handoff minute;
-- hard stop at 25 minutes.
+- **checkpoint and continue** — checkpointing is not a stop condition;
+- if a unit completes before `stop_new_batch_after_minutes`, immediately claim/resume another eligible unit;
+- at `handoff_start_minutes`, stop broad new work and save/release cleanly;
+- hard stop within `session_minutes`.
+
+Do not voluntarily finish early merely because a batch completed or became safely resumable. Before the productive target, early handoff is exceptional and must satisfy the allowed reasons in `work/worker_session_policy.json.early_stop_rule`.
 
 Do not spend startup time bulk-reading glossary/context files.
 Do not spend final handoff minutes on optional research or refactors.
@@ -106,11 +120,13 @@ Checkpoint to repository state, never only to chat.
 
 For translation/UI review, partial result files may contain only completed decisions and have `status: "partial"` plus `completed_count`. They do not get completion markers.
 
-At handoff, the outgoing claim stores `partial_result_path` and completed count. The successor validates fingerprints, carries forward valid decisions into its own result, and resumes at the first unfinished item.
+A partial result exists so the current worker can safely continue and so a later worker can recover after handoff. **Its existence is not a reason for the current worker to stop.**
+
+At actual handoff, the outgoing claim stores `partial_result_path` and completed count. The successor validates fingerprints, carries forward valid decisions into its own result, and resumes at the first unfinished item.
 
 For normal translation, the task result path is stable across workers, so the successor validates existing saved entries and resumes from the first missing entry.
 
-Always save the partial result **before** refreshing/releasing the claim.
+Always save the partial result **before** refreshing/releasing the claim, then continue unless the handoff condition has actually been reached.
 
 ## Throughput rules
 
@@ -119,8 +135,10 @@ Always save the partial result **before** refreshing/releasing the claim.
 - Use embedded batch context first.
 - Fetch extra glossary/game/speech/UI context only for the exact item that requires it.
 - Low-confidence ambiguity should usually `defer` rather than consume a large share of a 25-minute session.
-- If a batch completes early enough, immediately re-read live state and claim another unit.
+- If a batch completes before the cutoff, immediately re-read live state and claim another unit.
 - Never pre-claim future work.
+- Never idle after a completed batch while eligible same-priority work remains.
+- A completed unit is a continuation trigger, not a session-end trigger.
 
 ## Quality is not traded for throughput
 
@@ -149,9 +167,16 @@ In normal translation mode, workers write only isolated task claim/result/comple
 
 ## End of session
 
-If current work is complete, save final result and completion marker.
+Finishing the current unit does not automatically end the session.
 
-If incomplete:
+If current work completes before `stop_new_batch_after_minutes`:
+
+1. save final result/completion marker for that unit;
+2. re-read live routing state;
+3. claim/resume the next eligible unit at the same highest priority;
+4. continue until the cutoff/handoff condition.
+
+At actual handoff, if the current unit is incomplete:
 
 1. save latest valid partial state;
 2. mark only your own claim `released`;
@@ -159,4 +184,4 @@ If incomplete:
 4. commit/push;
 5. stop.
 
-End report should be short: mode, batch/task IDs, completed counts, partial handoff if any, claim status, blockers, and final live gate/state.
+End report should be short: mode, all batch/task IDs handled in the run, aggregate completed counts, partial handoff if any, claim status, blockers, and final live gate/state.

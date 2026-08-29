@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "status": "partial",
+  "plan_id": "tr-p3-67f8551f7780-6290eeddf480-68a7732bb5-1d4e028f2d",
+  "batch_id": "tr-p3-67f8551f7780-6290eeddf480-68a7732bb5-1d4e028f2d-b0625",
+  "claim_id": "trc-chatgpt-auto3-20260829T192630Z-b0625",
+  "worker_id": "chatgpt-auto3-20260829T192630Z",
+  "reviewed_at": "2026-08-29T19:28:00Z",
+  "completed_count": 5,
+  "decisions": [
+    {
+      "uid": "zhcn:2ed57e76ee4fb81e77c89514",
+      "current_fingerprint": "ad6c1f698f41ace0776f1b7709f99da137fdad4fbd8285a28f3e01c7d5f953f5",
+      "action": "revise",
+      "proposed_text": "Điểm có thể nhận được khi kích hoạt Evolution Skill",
+      "reason": "Tên category gameplay đang dùng bản dịch cấm; giữ nguyên Evolution Skill theo canonical player-facing terminology.",
+      "terminology_basis": "common.skill.generic + common.skill.evolution require Skill / Evolution Skill and forbid Kỹ năng tiến hóa.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:5df295dbde7c22c777987b02",
+      "current_fingerprint": "79f1506fa2bb38434411e0d9367ca7622191097284a87ae129722d2b606d4e1b",
+      "action": "revise",
+      "proposed_text": "Night Owl",
+      "reason": "Đây là nhãn Condition có tên riêng trong category 142, không phải văn xuôi chung.",
+      "terminology_basis": "common.condition.night_owl and source bridge condition.night_owl require Night Owl for this guarded slot.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:73766dfbd4236b544fc11c14",
+      "current_fingerprint": "a47f63fd2bb2a985dfc6345e64aea774e2502eb3a9549692e3422ab42cf6c862",
+      "action": "revise",
+      "proposed_text": "Practice Perfect ○",
+      "reason": "Nhãn Condition có tên riêng cần dùng tên Global/canonical.",
+      "terminology_basis": "common.condition.practice_perfect_circle and source bridge require Practice Perfect ○.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:f494f72ba600adffb5495d8b",
+      "current_fingerprint": "f44bf1d9d88f25bd75d4f2373ccf4a4efe6ba79ac92c508a0eadff3807ab44bd",
+      "action": "defer",
+      "reason": "热情领域 là nhãn hệ thống lặp lại nhưng batch chưa có canonical/player-facing identity; không khóa bản dịch calque tại một dòng.",
+      "canonical_finding": {
+        "kind": "system_label",
+        "source_zh_cn": "热情领域",
+        "concept": "Passion-zone style support/group system label",
+        "match_mode": "exact",
+        "scope": "auto",
+        "reason": "Repeated player-facing label in category 142 needs verified JP/Global identity before review can resolve affected entries.",
+        "confidence": "high"
+      },
+      "confidence": "low"
+    },
+    {
+      "uid": "zhcn:27bb9535e631d33602dbf517",
+      "current_fingerprint": "9dc1a798b15b9238ab2aca6df12d1806d3ab46f2da881f9223eeea5e4b6600a0",
+      "action": "defer",
+      "reason": "Cùng nhãn hệ thống 热情领域 chưa có canonical identity; cần giải quyết ở canonical layer trước.",
+      "canonical_finding": {
+        "kind": "system_label",
+        "source_zh_cn": "热情领域",
+        "concept": "Passion-zone style support/group system label",
+        "match_mode": "exact",
+        "scope": "auto",
+        "reason": "Repeated player-facing label in category 142 needs verified JP/Global identity before review can resolve affected entries.",
+        "confidence": "high"
+      },
+      "confidence": "low"
+    }
+  ]
+}

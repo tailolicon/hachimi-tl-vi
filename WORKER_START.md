@@ -27,6 +27,8 @@ After the minimum routing reads above, claim or resume useful work as one of the
 
 **Checkpoint is not stop. Completing one unit is a continuation trigger.** Before the productive target, while any protocol-valid useful work remains, do not voluntarily end. When a unit, checkpoint, validation, or stage completes, re-read only the minimum live routing and immediately claim/resume the next safe eligible unit at the same highest priority. Do not spend meaningful session time optimizing which eligible unit to choose.
 
+**Full-session utilization is mandatory.** Do not stop after one batch/unit merely because it produced a clean checkpoint or completion. Before `stop_new_batch_after_minutes`, immediately continue another safe eligible unit whenever one exists. Do not infer that the 25-minute budget is nearly exhausted from subjective effort, token usage, number of tool calls, lease timing, or one rejected operation; use the live configured minute thresholds only. Lease pressure is not an early-handoff reason.
+
 ## 2. Mandatory GitHub write discovery
 
 This project is repository-coordinated. Before reporting that GitHub is read-only or that a claim/commit cannot be made, discover/load connected GitHub write operations, fetch current blob/ref SHA for optimistic concurrency, and attempt the required write. Do not use an unrelated test file as the permission check.

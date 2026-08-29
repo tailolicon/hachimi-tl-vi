@@ -1,6 +1,10 @@
-# Stateless 25-minute worker orchestration
+# Stateless 25-minute mass-work protocol
 
-Use this as the top-level instruction for every fresh ChatGPT worker session on `tailolicon/hachimi-tl-vi`.
+`WORKER_START.md` is the universal top-level entrypoint for every fresh ChatGPT worker session on `tailolicon/hachimi-tl-vi`.
+
+Use this file **only after `WORKER_START.md` delegates the session to ordinary mass work** because no blocking repository-maintenance/canonical-hardening task requires this worker. This protocol then selects exactly one of retrospective translation review, retrospective UI review, or new translation from live state.
+
+Do not bypass `WORKER_START.md` to escape a blocking maintenance task or unresolved routing condition.
 
 Do not rely on chat history, private memory, previous worker reasoning, or stale progress assumptions. `main` is the source of truth.
 

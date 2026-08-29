@@ -33,7 +33,7 @@ on:
       - "tests/test_condition_reference_hardening.py"
       - "tests/test_skill_inheritance_hardening.py"
       - "tests/test_race_hardening.py"
-      - "tests/test_review_gate_idempotence.py"
+      - "tests/test_translation_review_gate_idempotence.py"
       - ".github/workflows/sync-translation-review-plan.yml"
   workflow_dispatch:
 
@@ -114,7 +114,7 @@ jobs:
               scripts/merge_parallel_results.py \
               scripts/aggregate_parallel_results.py \
               tests/test_race_hardening.py \
-              tests/test_review_gate_idempotence.py \
+              tests/test_translation_review_gate_idempotence.py \
               src/hachimi_tl_vi/translation_guard.py \
               src/hachimi_tl_vi/context_categories.py \
               work/translation_review \

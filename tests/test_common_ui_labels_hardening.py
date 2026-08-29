@@ -42,72 +42,54 @@ def test_close_change_confirm_controls_are_exact_key_scoped(tmp_path: Path) -> N
         record = _record(root, key, source, target, rid)
         assert record["accepted_present"] is True
         assert record["forbidden_present"] is False
-        assert community_term_matches(
-            None, source, target, load_community_terms(root), source_path="story.json", json_path=["1"]
-        ) == []
+        assert community_term_matches(None, source, target, load_community_terms(root), source_path="story.json", json_path=["1"]) == []
 
 
 def test_change_allows_compact_control_form(tmp_path: Path) -> None:
     root = _seed(tmp_path)
-    record = _record(root, "Common0008", "更改", "Đổi", "common_ui.change.common0008")
-    assert record["accepted_present"] is True
+    assert _record(root, "Common0008", "更改", "Đổi", "common_ui.change.common0008")["accepted_present"] is True
 
 
 def test_cancel_is_scoped_to_standalone_circle_control(tmp_path: Path) -> None:
     root = _seed(tmp_path)
-    record = _record(root, "Circle0086", "取消", "Hủy", "common_ui.cancel.circle0086")
-    assert record["accepted_present"] is True
-    assert community_term_matches(
-        "Circle0085", "申请已取消", "Đã hủy đăng ký", load_community_terms(root),
-        source_path="localize_dict.json", json_path=["Circle0085"]
-    ) == []
-    assert community_term_matches(
-        "RoomMatch0124", "取消举办", "Hủy tổ chức", load_community_terms(root),
-        source_path="localize_dict.json", json_path=["RoomMatch0124"]
-    ) == []
+    assert _record(root, "Circle0086", "取消", "Hủy", "common_ui.cancel.circle0086")["accepted_present"] is True
+    assert community_term_matches("Circle0085", "申请已取消", "Đã hủy đăng ký", load_community_terms(root), source_path="localize_dict.json", json_path=["Circle0085"]) == []
+    assert community_term_matches("RoomMatch0124", "取消举办", "Hủy tổ chức", load_community_terms(root), source_path="localize_dict.json", json_path=["RoomMatch0124"]) == []
 
 
-def test_back_reset_filter_sort_controls_are_exact_key_scoped(tmp_path: Path) -> None:
+def test_navigation_and_sort_controls_are_exact_key_scoped(tmp_path: Path) -> None:
     root = _seed(tmp_path)
     cases = [
         ("Common0082", "返回", "Quay lại", "common_ui.back.common0082"),
+        ("Common0083", "下项", "Tiếp theo", "common_ui.next.common0083"),
+        ("Common0084", "卸下", "Tháo", "common_ui.remove.common0084"),
         ("Common0087", "排序", "Sắp xếp", "common_ui.sort.common0087"),
         ("Common0096", "重置", "Đặt lại", "common_ui.reset.common0096"),
         ("Common0098", "筛选", "Lọc", "common_ui.filter.common0098"),
+        ("Common0100", "升序", "Tăng dần", "common_ui.sort_ascending.common0100"),
+        ("Common0101", "降序", "Giảm dần", "common_ui.sort_descending.common0101"),
     ]
     for key, source, target, rid in cases:
         record = _record(root, key, source, target, rid)
         assert record["accepted_present"] is True
         assert record["forbidden_present"] is False
-        assert community_term_matches(
-            None, source, target, load_community_terms(root), source_path="story.json", json_path=["1"]
-        ) == []
+        assert community_term_matches(None, source, target, load_community_terms(root), source_path="story.json", json_path=["1"]) == []
 
 
 def test_toggle_on_off_are_exact_and_close_off_share_source_safely(tmp_path: Path) -> None:
     root = _seed(tmp_path)
-    on_record = _record(root, "Common0092", "开启", "Bật", "common_ui.on.common0092")
-    off_record = _record(root, "Common0093", "关闭", "Tắt", "common_ui.off.common0093")
-    close_record = _record(root, "Common0007", "关闭", "Đóng", "common_ui.close.common0007")
-    assert on_record["accepted_present"] is True
-    assert off_record["accepted_present"] is True
-    assert close_record["accepted_present"] is True
-    wrong_off = community_term_matches(
-        "Common0093", "关闭", "Đóng", load_community_terms(root),
-        source_path="localize_dict.json", json_path=["Common0093"]
-    )
+    assert _record(root, "Common0092", "开启", "Bật", "common_ui.on.common0092")["accepted_present"] is True
+    assert _record(root, "Common0093", "关闭", "Tắt", "common_ui.off.common0093")["accepted_present"] is True
+    assert _record(root, "Common0007", "关闭", "Đóng", "common_ui.close.common0007")["accepted_present"] is True
+    wrong_off = community_term_matches("Common0093", "关闭", "Đóng", load_community_terms(root), source_path="localize_dict.json", json_path=["Common0093"])
     assert any(item["id"] == "common_ui.off.common0093" and not item["accepted_present"] for item in wrong_off)
     assert all(item["id"] != "common_ui.close.common0007" for item in wrong_off)
 
 
 def test_details_is_scoped_to_standalone_roommatch_control(tmp_path: Path) -> None:
     root = _seed(tmp_path)
-    record = _record(root, "RoomMatch0117", "详情", "Chi tiết", "common_ui.details.roommatch0117")
-    assert record["accepted_present"] is True
-    assert community_term_matches(
-        "Outgame0167", "支援卡详情", "Chi tiết Support Card", load_community_terms(root),
-        source_path="localize_dict.json", json_path=["Outgame0167"]
-    ) == []
+    assert _record(root, "RoomMatch0117", "详情", "Chi tiết", "common_ui.details.roommatch0117")["accepted_present"] is True
+    assert community_term_matches("Outgame0167", "支援卡详情", "Chi tiết Support Card", load_community_terms(root), source_path="localize_dict.json", json_path=["Outgame0167"]) == []
 
 
 def test_common_ui_hardener_is_idempotent(tmp_path: Path) -> None:

@@ -56,6 +56,8 @@ def test_hardener_scopes_resource_bridges_to_localize_ui(tmp_path: Path) -> None
     assert terms["resource.cleat"]["source_paths"] == ["localize_dict.json"]
     assert terms["currency.jewel.paid"]["source_paths"] == ["localize_dict.json"]
     assert terms["currency.jewel.free"]["source_paths"] == ["localize_dict.json"]
+    assert terms["gacha.exchange_points"]["source_paths"] == ["localize_dict.json"]
+    assert terms["gacha.exchange_points"]["key_prefixes"] == ["Gacha"]
 
 
 def test_monies_matches_shop_ui_but_not_story_prose(tmp_path: Path) -> None:
@@ -147,6 +149,53 @@ def test_paid_and_free_jewel_labels_are_distinct_and_ui_scoped(tmp_path: Path) -
     assert [item["id"] for item in free] == ["currency.jewel.free"]
     assert free[0]["accepted_present"] is True
     assert prose == []
+
+
+def test_exchange_points_match_gacha_pity_but_not_generic_exchange(tmp_path: Path) -> None:
+    _write_bridge(tmp_path)
+    harden(tmp_path)
+    terms = _terms(tmp_path)
+
+    gacha = source_bridge_term_matches(
+        "所需支援卡兑换点数",
+        "Exchange Points cần để đổi Support Card",
+        terms,
+        key="Gacha0002",
+        source_path="localize_dict.json",
+        json_path=["Gacha0002"],
+    )
+    old_calque = source_bridge_term_matches(
+        "所需育成赛马娘兑换点数",
+        "Điểm cần để đổi Uma Musume",
+        terms,
+        key="Gacha0001",
+        source_path="localize_dict.json",
+        json_path=["Gacha0001"],
+    )
+    shop = source_bridge_term_matches(
+        "兑换点数不足",
+        "Không đủ điểm để đổi",
+        terms,
+        key="Shop999002",
+        source_path="localize_dict.json",
+        json_path=["Shop999002"],
+    )
+    story = source_bridge_term_matches(
+        "把点数兑换成纪念品。",
+        "Đổi điểm lấy quà lưu niệm.",
+        terms,
+        key=None,
+        source_path="text_data_dict.json",
+        json_path=["181", "1002"],
+    )
+
+    assert [item["id"] for item in gacha] == ["gacha.exchange_points"]
+    assert gacha[0]["accepted_present"] is True
+    assert [item["id"] for item in old_calque] == ["gacha.exchange_points"]
+    assert old_calque[0]["accepted_present"] is False
+    assert old_calque[0]["forbidden_present"] is True
+    assert shop == []
+    assert story == []
 
 
 def test_hardener_is_idempotent(tmp_path: Path) -> None:

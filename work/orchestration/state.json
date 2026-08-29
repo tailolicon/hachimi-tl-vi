@@ -24,33 +24,29 @@
     "final_conflict_sweep_rule": "canonical-final-conflict-sweep is dependency-gated and starts only after all earlier initial canonical domains are complete on live main."
   },
   "active_task": {
-    "task_id": "canonical-training-support",
-    "title": "Training / Support / progression terminology",
+    "task_id": "canonical-resources-gacha-shop",
+    "title": "Resources / gacha / shop terminology",
     "task_file": "work/orchestration/tasks/remaining-canonical-domains.md",
-    "branch": "canonical-training-support-hardening",
-    "last_observed_branch_sha": "35179cc7f3858498a8a4624057fbb52ca858ab76",
-    "status": "complete",
-    "stage": "complete",
+    "branch": "canonical-resources-gacha-shop-hardening",
+    "last_observed_branch_sha": "b9a3393b840a786a4118e81eaca5288eca154044",
+    "status": "active",
+    "stage": "finalizing",
     "primary_lane": true,
     "integration_serial": true,
     "domain_work_parallel": true,
     "blocks_mass_work": true,
-    "activated_at": "2026-08-29T11:17:00Z",
-    "predecessor_task_id": "canonical-race",
-    "activation_summary": "Race canonical hardening finalization completed with clean permanent integration, green validation, regenerated review context, and second production Sync no-op proof. Other independent canonical domains may now proceed in parallel while Training/Support occupies the primary integration lane.",
-    "domain_work_completed_at": "2026-08-29T14:18:00Z",
-    "domain_work_summary": "Substantive Training/Support canonical hardening and scoped regression coverage are complete enough for bounded finalization. Remaining work is permanent integration, full validation, review-context rebuild, production Sync/no-op proof, and spot checks; do not restart broad Training/Support inventory.",
+    "activated_at": "2026-08-29T16:20:34Z",
+    "predecessor_task_id": "canonical-training-support",
+    "activation_summary": "Training/Support is complete. Resources/Gacha/Shop is the earliest dependency-satisfied ready_for_integration domain and now occupies the serial primary integration lane.",
+    "domain_work_checkpoint": "work/orchestration/checkpoints/canonical-resources-gacha-shop-w2-20260829T1609Z.md",
     "finalization_scope": [
-      "integrate only permanent Training/Support hardeners, tests, and materialized glossary changes onto live main while preserving concurrent main changes",
+      "integrate only permanent Resources/Gacha/Shop hardeners, tests, and materialized glossary/source-bridge changes onto live main while preserving concurrent main changes",
       "run full validation",
       "rebuild retrospective review context",
       "run production Sync and second unchanged no-op Sync",
-      "spot-check Friendship Gauge and representative category-155 Support Effect positive/negative contexts",
-      "mark Training/Support complete; then select the earliest ready_for_integration canonical domain for the serial integration lane while other domain work continues in parallel"
-    ],
-    "completed_at": "2026-08-29T16:07:00Z",
-    "finalization_checkpoint": "work/orchestration/checkpoints/canonical-training-support-finalizer-w5-20260829T1607Z.md",
-    "finalization_summary": "Permanent canonical repair validated; production Sync succeeded; unchanged second Sync proved no-op; representative Training/Support positive/negative guards verified."
+      "spot-check representative Monies, Cleats, Exchange Points, Scout Ticket, Crystal Shards, and prose-negative contexts",
+      "mark Resources/Gacha/Shop complete; then select the earliest ready_for_integration canonical domain or continue an unfinished eligible domain according to live routing"
+    ]
   },
   "roadmap": [
     {
@@ -100,8 +96,8 @@
     {
       "id": "canonical-resources-gacha-shop",
       "title": "Resources / gacha / shop terminology",
-      "status": "ready_for_integration",
-      "stage": "ready_for_finalize",
+      "status": "active",
+      "stage": "finalizing",
       "kind": "canonical_hardening",
       "task_file": "work/orchestration/tasks/remaining-canonical-domains.md",
       "suggested_branch": "canonical-resources-gacha-shop-hardening",
@@ -111,7 +107,8 @@
       "depends_on": [
         "canonical-race"
       ],
-      "domain_work_checkpoint": "work/orchestration/checkpoints/canonical-resources-gacha-shop-w2-20260829T1609Z.md"
+      "domain_work_checkpoint": "work/orchestration/checkpoints/canonical-resources-gacha-shop-w2-20260829T1609Z.md",
+      "activated_at": "2026-08-29T16:20:34Z"
     },
     {
       "id": "canonical-missions-events",

@@ -1,0 +1,142 @@
+from pathlib import Path
+
+race = Path('scripts/harden_race_canon.py')
+s = race.read_text(encoding='utf-8')
+old = '"race.radio_nikkei_sho": {"zh_cn": ["日经广播赏"], "ja": ["ラジオNIKKEI賞"], "target_vi": "Radio NIKKEI Sho"}'
+new = '"race.radio_nikkei_sho": {"zh_cn": ["日经广播赏"], "ja": ["ラジオNIKKEI賞"], "target_vi": "Radio Nikkei Sho"}'
+if s.count(old) != 1:
+    raise SystemExit(f'expected exactly one Radio NIKKEI target, found {s.count(old)}')
+race.write_text(s.replace(old, new), encoding='utf-8')
+
+p = Path('scripts/apply_terminology_reviews.py')
+s = p.read_text(encoding='utf-8')
+start = s.index('def locked_alias_index(')
+end = s.index('\ndef normalize_decision', start)
+replacement = '''def _path_prefixes(term: dict[str, Any]) -> list[tuple[str, ...]]:
+    raw = term.get("json_path_prefixes") or []
+    out: list[tuple[str, ...]] = []
+    if not isinstance(raw, list):
+        return out
+    for prefix in raw:
+        if isinstance(prefix, list) and prefix:
+            out.append(tuple(str(part) for part in prefix))
+    return out
+
+
+def _prefixes_overlap(left: tuple[str, ...], right: tuple[str, ...]) -> bool:
+    width = min(len(left), len(right))
+    return left[:width] == right[:width]
+
+
+def scopes_provably_disjoint(left: dict[str, Any], right: dict[str, Any]) -> bool:
+    left_paths = set(clean_list(left.get("source_paths")))
+    right_paths = set(clean_list(right.get("source_paths")))
+    if left_paths and right_paths and left_paths.isdisjoint(right_paths):
+        return True
+
+    left_keys = set(clean_list(left.get("key_exact")))
+    right_keys = set(clean_list(right.get("key_exact")))
+    if left_keys and right_keys and left_keys.isdisjoint(right_keys):
+        return True
+
+    left_prefixes = _path_prefixes(left)
+    right_prefixes = _path_prefixes(right)
+    if left_prefixes and right_prefixes:
+        return not any(
+            _prefixes_overlap(left_prefix, right_prefix)
+            for left_prefix in left_prefixes
+            for right_prefix in right_prefixes
+        )
+    return False
+
+
+def locked_alias_index(terms: list[dict[str, Any]]) -> dict[tuple[str, str], list[dict[str, Any]]]:
+    index: dict[tuple[str, str], list[dict[str, Any]]] = {}
+    for term in terms:
+        if not isinstance(term, dict) or not term.get("locked"):
+            continue
+        for field, aliases in aliases_for_term(term).items():
+            for alias in aliases:
+                key = (field, alias)
+                existing_terms = index.setdefault(key, [])
+                for existing in existing_terms:
+                    if existing.get("target_vi") == term.get("target_vi"):
+                        continue
+                    if scopes_provably_disjoint(existing, term):
+                        continue
+                    raise ValueError(
+                        f"existing locked registry is internally conflicting for {field}:{alias!r}"
+                    )
+                existing_terms.append(term)
+    return index
+'''
+s = s[:start] + replacement + s[end:]
+block_start = s.index('        matched_existing: dict[str, Any] | None = None')
+block_end = s.index('        existing = existing_id or matched_existing', block_start)
+alias_block = '''        matched_existing: dict[str, Any] | None = None
+        scope_term = existing_id or candidate
+        for field, aliases in aliases_for_term(candidate).items():
+            for alias in aliases:
+                previous_terms = alias_index.get((field, alias), [])
+                for previous in previous_terms:
+                    if previous is existing_id:
+                        if matched_existing is None:
+                            matched_existing = previous
+                        continue
+                    previous_target = str(previous.get("target_vi") or "")
+                    if previous_target != target:
+                        if scopes_provably_disjoint(previous, scope_term):
+                            continue
+                        raise ValueError(
+                            f"decision {decision['decision_id']}: locked alias {field}:{alias!r} already maps "
+                            f"to {previous_target!r}, not {target!r}"
+                        )
+                    if matched_existing is None:
+                        matched_existing = previous
+                    elif matched_existing is not previous and existing_id is None:
+                        raise ValueError(
+                            f"decision {decision['decision_id']}: aliases span multiple existing locked concepts; review manually"
+                        )
+
+        if existing_id is not None and matched_existing is not None and existing_id is not matched_existing:
+            if str(matched_existing.get("target_vi") or "") != target:
+                raise ValueError(
+                    f"decision {decision['decision_id']}: term_id and aliases point to different existing concepts"
+                )
+
+'''
+s = s[:block_start] + alias_block + s[block_end:]
+old_append = '                alias_index[(field, alias)] = candidate'
+if s.count(old_append) != 1:
+    raise SystemExit(f'expected one alias append, found {s.count(old_append)}')
+s = s.replace(old_append, '                alias_index.setdefault((field, alias), []).append(candidate)')
+p.write_text(s, encoding='utf-8')
+
+t = Path('tests/test_apply_terminology_reviews.py')
+tests = t.read_text(encoding='utf-8')
+if 'def test_disjoint_scoped_locked_aliases_are_allowed():' not in tests:
+    tests += '''\n\ndef test_disjoint_scoped_locked_aliases_are_allowed():
+    registry = {
+        "schema_version": 2,
+        "terms": [
+            {"id": "race.miyako", "category": "race_name", "zh_cn": ["京城锦标"], "target_vi": "Miyako Stakes", "locked": True, "source_paths": ["text_data_dict.json"], "json_path_prefixes": [["32", "3061"], ["33", "3061"]], "match_mode": "exact"},
+            {"id": "race.keio", "category": "race_name", "zh_cn": ["京城锦标"], "target_vi": "Keio Hai Nisai Stakes", "locked": True, "source_paths": ["text_data_dict.json"], "json_path_prefixes": [["111", "134"]], "match_mode": "exact"},
+        ],
+    }
+    updated, stats = apply_reviews(registry, {"decisions": []})
+    assert updated == registry
+    assert stats["decisions"] == 0
+
+
+def test_overlapping_scoped_locked_aliases_still_conflict():
+    registry = {
+        "schema_version": 2,
+        "terms": [
+            {"id": "race.a", "category": "race_name", "zh_cn": ["冲突名"], "target_vi": "Race A", "locked": True, "source_paths": ["text_data_dict.json"], "json_path_prefixes": [["111"]]},
+            {"id": "race.b", "category": "race_name", "zh_cn": ["冲突名"], "target_vi": "Race B", "locked": True, "source_paths": ["text_data_dict.json"], "json_path_prefixes": [["111", "134"]]},
+        ],
+    }
+    with pytest.raises(ValueError, match="internally conflicting"):
+        apply_reviews(registry, {"decisions": []})
+'''
+    t.write_text(tests, encoding='utf-8')

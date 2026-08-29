@@ -100,15 +100,26 @@ jobs:
               work/parallel_state.json
           }
 
-          git fetch origin main
-          git checkout -B missions-events-production-sync origin/main
-          run_sync
-          stage_sync
-          git rm .github/workflows/missions-events-sync-temp.yml
-          git commit -m "Translation review: sync after Missions Events hardening"
-          git push origin HEAD:main
-          FIRST_SYNC_SHA=$(git rev-parse HEAD)
-          echo "FIRST_SYNC_SHA=$FIRST_SYNC_SHA"
+          pushed=false
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            git checkout -B missions-events-production-sync origin/main
+            run_sync
+            stage_sync
+            git rm .github/workflows/missions-events-sync-temp.yml
+            git commit -m "Translation review: sync after Missions Events hardening"
+            if git push origin HEAD:main; then
+              FIRST_SYNC_SHA=$(git rev-parse HEAD)
+              echo "FIRST_SYNC_SHA=$FIRST_SYNC_SHA"
+              pushed=true
+              break
+            fi
+            sleep $((attempt * 2))
+          done
+          if [ "$pushed" != true ]; then
+            echo "Failed to publish first production Sync after retries" >&2
+            exit 1
+          fi
 
           git fetch origin main
           git checkout -B missions-events-production-sync-noop origin/main

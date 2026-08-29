@@ -103,18 +103,38 @@ def harden(repo_root: Path = REPO_ROOT) -> None:
         {
             "id": "gacha.exchange_points",
             "ja": ["交換Pt", "交換ポイント"],
-            "zh_cn": ["兑换点数", "交換點數"],
+            "zh_cn": ["兑换点数", "兑换Pt", "交換點數", "交換Pt"],
             "preferred": "Exchange Points",
             "accepted": ["Exchange Point", "Exchange Points"],
-            "forbidden": ["Điểm đổi", "Điểm cần để đổi", "điểm đổi", "điểm cần để đổi"],
+            "forbidden": ["Điểm đổi", "Điểm cần để đổi", "Pt đổi", "điểm đổi", "điểm cần để đổi"],
             "require_accepted": True,
             "source_paths": ["localize_dict.json"],
             "key_prefixes": ["Gacha"],
             "match_mode": "contains",
             "note": (
-                "兑换点数 in Gacha UI is the banner pity currency shown as Exchange Points in "
-                "Global usage. Restrict to Gacha localize keys so generic shop exchanges or story "
-                "language do not become a pity-currency match."
+                "兑换点数/兑换Pt in Gacha UI is the banner pity currency shown as Exchange Points "
+                "in Global usage. Restrict to Gacha localize keys so generic shop exchanges or "
+                "story language do not become a pity-currency match."
+            ),
+        },
+    )
+    _upsert(
+        terms,
+        {
+            "id": "resource.clover",
+            "ja": ["クローバー"],
+            "zh_cn": ["四叶草", "四葉草"],
+            "preferred": "Clovers",
+            "accepted": ["Clover", "Clovers"],
+            "forbidden": ["Cỏ bốn lá", "cỏ bốn lá"],
+            "require_accepted": True,
+            "source_paths": ["localize_dict.json"],
+            "key_prefixes": ["Gacha", "Shop"],
+            "match_mode": "contains",
+            "note": (
+                "Four-leaf-clover wording in Gacha/Shop localize UI denotes the persistent Clovers "
+                "resource, including conversion of expired Exchange Points. Keep ordinary narrative "
+                "four-leaf clovers outside these resource/UI keys as prose."
             ),
         },
     )

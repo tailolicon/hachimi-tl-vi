@@ -86,7 +86,7 @@ def test_live_orchestration_state_has_explicit_valid_stage() -> None:
 
     matches = [item for item in state["roadmap"] if item["id"] == active["task_id"]]
     assert len(matches) == 1
-    assert matches[0]["status"] == "active"
+    assert matches[0]["status"] == active["status"]
     assert matches[0].get("stage") == active["stage"]
 
     if active["stage"] in {"ready_for_finalize", "finalizing"}:

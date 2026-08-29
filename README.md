@@ -10,7 +10,7 @@ Pipeline dịch tiếng Việt độc lập cho **Uma Musume Pretty Derby JP** t
 | Metric | Live state |
 | --- | --- |
 | Current phase | **canonical_hardening** |
-| Active maintenance task | **Race terminology and race identity hardening** — stage **ready_for_finalize** (`canonical-race-hardening-20260828`) |
+| Active maintenance task | **Race terminology and race identity hardening** — stage **finalizing** (`canonical-race-hardening-20260828`) |
 | Pinned source coverage | **19,520 / 1,158,825 (1.68%)** — 1,139,305 remaining |
 | Current translation wave | **19,520 / 131,560 (14.84%)** — 112,040 queued remaining |
 | Deferred pinned entries | **1,027,265** — these must be promoted in later deterministic waves, not ignored |

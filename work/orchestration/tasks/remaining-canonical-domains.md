@@ -1,119 +1,96 @@
 # Remaining initial canonical-hardening domains
 
-This file supplies persistent scope for the initial high-frequency canonical hardening tasks after `canonical-race`.
+This file supplies persistent scope for the initial high-frequency canonical hardening tasks after Race.
 
-All tasks use the generic completion/safety rules in `AUTOPILOT.md`:
+**Claim and integration semantics are governed by `CANONICAL_PARALLEL.md`. Domain work is parallel; live-main integration is serial.** Any older handoff that says one domain must finish before another domain can begin is obsolete.
 
-- dedicated repository maintenance, not normal translation/review/UI work;
-- claim the serial maintenance lease first;
-- `main` + live task branch are source of truth, never chat memory;
+Shared rules:
+
+- repository maintenance, not normal translation/review/UI work;
+- primary/integration owner uses `work/orchestration/maintenance_claim.json`;
+- independent domain workers use the task-specific `claim_path` from `work/orchestration/state.json`;
+- work on the deterministic domain branch; never create competing branches merely because main advanced;
 - canonical-first systemic fixes;
 - no direct `localized_data/**` example patching;
 - narrow/item-scoped rules where correctness permits;
 - positive + negative tests;
 - permanent idempotent enforcement;
-- remove temporary staging/inventory artifacts;
-- full validation + production Sync + representative regenerated-context checks + second unchanged no-op Sync;
-- update `work/orchestration/state.json` only after live completion criteria are verified.
+- temporary staging/inventory artifacts must not land on main;
+- parallel domain workers stop at `ready_for_integration`; only the serial integration lane publishes to main and performs production Sync/no-op proof;
+- `blocking_maintenance` blocks mass audit/translation/UI work, not another independent canonical domain.
 
-Songs, lyrics, staff names and creator credits are not blocking domains in this initial sequence.
+Songs, lyrics, staff names and creator credits are not blocking domains in this initial phase.
 
 ## canonical-training-support
 
-Focus on the high-frequency training/support/progression vocabulary players repeatedly see.
-
-Inventory and harden, where supported by actual JP/game identity:
+Focus on high-frequency Training / Support / progression vocabulary:
 
 - Training;
 - Friendship Training;
 - Support Card;
-- Support Pt / Support Points if the game distinguishes display forms;
+- Support Pt / Support Points where display forms differ;
 - Bond / Friendship Gauge and related gauge/bonus wording;
 - Energy;
 - training success/failure and failure-rate UI;
-- training level / facility level where applicable;
+- training/facility level where applicable;
 - stat gain / bonus / cap / limit terminology;
-- support effects that are generic system labels rather than individual effect names;
-- repeated training-result/status labels.
+- generic Support Effect labels and repeated training-result/status labels.
 
-Known risk: the historical registry used Vietnamese calques such as `Huấn luyện`, `Huấn luyện Hữu nghị`, `Điểm Hỗ trợ`, `Gắn kết`, etc. Do not assume they are correct just because they are locked somewhere; compare all canonical layers and actual player-facing terminology.
+Historical Vietnamese calques such as `Huấn luyện`, `Huấn luyện Hữu nghị`, `Điểm Hỗ trợ`, `Gắn kết`, etc. are evidence, not authority. Compare canonical layers and verified game terminology. Ordinary prose about training/friendship/energy must remain negative unless it is truly system UI.
 
-Do not turn ordinary story prose about training, friendship, energy, bonding or support into system labels. Use category/key/json-path guards and negative tests.
-
-When complete, transition to `canonical-character-training-ui`.
+When substantive branch work is complete, checkpoint it as ready for serial integration. Do not require Character/UI or later domains to wait.
 
 ## canonical-character-training-ui
 
-Focus on common育成/career/player-facing labels rather than proper-name trivia.
+Focus on common training-career/player-facing labels rather than proper-name trivia:
 
-Inventory and harden concepts such as:
-
-- Mã Nương vs franchise brand protection;
 - Trainer and role labels;
-- Career /育成 run terminology;
-- objective / target race labels;
-- turn / year / class labels used in career flow;
+- Career / 育成-run terminology;
+- objective / target-race labels;
+- turn / year / class labels in career flow;
 - aptitude and aptitude grades;
-- rating/rank labels where generic;
-- Scenario as a system label where verified;
-- Track / course-related generic labels not already owned by Race hardening;
-- status/condition headings without redoing named Conditions already hardened;
-- common selection/result labels in training mode.
+- generic rating/rank labels;
+- Scenario as a verified system label;
+- track/course generic labels not already owned by Race hardening;
+- status/condition headings without redoing named Conditions;
+- common selection/result labels in training mode;
+- generic Uma Musume world-reference usage vs franchise-brand protection.
 
-Preserve the established rule that generic `Uma Musume` world-reference usage may map to `Mã Nương` while the franchise brand remains `Umamusume: Pretty Derby`.
-
-Do not harden character proper names as part of this domain unless a high-frequency systemic identity defect blocks ordinary UI consistency.
-
-When complete, transition to `canonical-resources-gacha-shop`.
+Do not harden character proper names unless a high-frequency systemic identity defect blocks UI consistency. Generic prose must not match UI concepts merely because the same word appears.
 
 ## canonical-resources-gacha-shop
 
-Focus on currencies/resources and repeated acquisition/exchange UI.
+Focus on currencies/resources and repeated acquisition/exchange UI:
 
-Inventory and harden, with exact mechanic identity:
-
-- Jewels and paid/free distinctions where present;
+- Jewels and paid/free distinctions;
 - Monies;
 - Cleat / Cleats;
-- Support Pt if not fully settled by Training/Support;
-- tickets and named generic ticket types only when their identity is stable;
+- Support Pt only where Training/Support has not settled the context;
+- stable generic ticket identities;
 - exchange/shop points and pity/exchange mechanics;
-- owned / required / cost / insufficient-resource labels in resource-specific contexts;
-- acquisition/spend/exchange generic UI terms;
-- shop/exchange headings if project-wide player-facing terminology is inconsistent.
+- owned / required / cost / insufficient-resource labels in resource contexts;
+- acquisition/spend/exchange UI;
+- shop/exchange headings.
 
-Preserve source-bridge safeguards such as `金币` resource context -> `Monies` and `蹄铁` resource context -> `Cleat/Cleats`; do not match ordinary gold/money/hoof prose.
-
-Do not lock one-off event currency names without strong evidence merely to expand the glossary.
-
-When complete, transition to `canonical-missions-events`.
+Preserve scoped source-bridge safeguards such as resource-context `金币` -> `Monies` and `蹄铁` -> `Cleat/Cleats`; ordinary money/gold/hoof prose must remain negative. Do not lock one-off event currencies merely to grow the glossary.
 
 ## canonical-missions-events
 
-Focus on repeated mission/reward/event-system labels.
-
-Inventory and harden concepts such as:
+Focus on repeated mission/reward/event-system labels:
 
 - Daily / Weekly / Main missions;
 - Mission / objective / progress / clear/completion labels;
 - Rewards / claim/receive labels;
-- event points and generic event mission labels;
+- generic event points / event mission labels;
 - Login Bonus;
-- campaign/system event labels that recur broadly;
-- completion conditions and counters where a fixed player-facing label exists;
-- trigger labels such as morning login only when they are actual system labels, not prose.
+- recurring campaign/system event labels;
+- completion conditions/counters where a fixed player-facing label exists.
 
-Do not translate event titles/proper names into a canonical system rule unless they are genuinely repeated game identities.
-
-Category/context separation is mandatory: mission objective prose remains natural Vietnamese and must not be corrupted by generic label rules.
-
-When complete, transition to `canonical-common-ui-system`.
+Mission objective prose stays natural text. Event titles/proper names are not system canonical rules unless they are genuinely repeated identities.
 
 ## canonical-common-ui-system
 
-Focus on high-frequency generic controls/system labels that materially affect UI consistency.
-
-Audit recurring labels such as:
+Focus on high-frequency generic controls/system labels:
 
 - OK / Cancel / Confirm;
 - Select / Change;
@@ -129,53 +106,29 @@ Audit recurring labels such as:
 - date/time/status headings;
 - generic result/notice/confirmation labels.
 
-Do not force English merely for aesthetic consistency. Use established project/game UI terminology and fit constraints. UI-short-form rules may be more appropriate than global term-registry locks for compact controls.
+Do not force English for aesthetics. Prefer established game/project terminology and UI fit constraints. UI-short-form rules may be more appropriate than global locks. Add prose negatives for generic tokens with overmatch risk.
 
-Do not collide with proper names or ordinary sentence text that contains the same words.
+## Parallel-domain ready-for-integration criteria
 
-When complete, transition to `canonical-final-conflict-sweep`.
+A parallel domain may set its roadmap item to `status = ready_for_integration` and `stage = ready_for_finalize` only after it has checkpointed the substantive canonical decisions, permanent hardener/data changes, regression coverage, branch SHA, and any remaining integration-only acceptance work. It then releases its task-specific domain claim.
+
+It must **not** mark itself complete, publish canonical changes directly to main, or run production Sync as if it owned the primary integration lane.
 
 ## canonical-final-conflict-sweep
 
-This is not a new broad research domain. It is the freeze check before scaling Audit Round 1.
+This task is deliberately not parallel-eligible. It starts only after Race, Training/Support, Character/Training UI, Resources/Gacha/Shop, Missions/Events and Common UI/System are complete on live main.
 
-Systematically detect split-brain canonical state across:
+It is the freeze check before scaling Audit Round 1. Detect split-brain state across canonical registries, source-bridge/UI rules, permanent hardeners, matching logic, and the current merged corpus as evidence. Look for:
 
-- `glossary/term_registry.json`;
-- `glossary/ui_community_terms.json`;
-- `glossary/source_bridge_terms.json`;
-- `glossary/ui_short_forms.json`;
-- `glossary/skill_name_style.json`;
-- permanent hardener scripts;
-- translation guard/review matching logic;
-- current merged 19,520-entry corpus as evidence only.
+- lower-priority bad locked values hidden by overrides;
+- one concept with competing targets;
+- unsafe global substring aliases that should be exact/scoped;
+- prose accidentally matching named gameplay concepts;
+- literal zh-CN carryover for high-frequency mechanics;
+- conflicts with prior Conditions/Mood, Skill/Inheritance, Race, Training/Support and other completed domains;
+- missing negative tests;
+- temporary hardening/staging artifacts in production paths.
 
-Look specifically for:
+Completion requires full validation, idempotent canonical enforcement, production review-plan Sync, representative positive/negative checks, second unchanged Sync true no-op, and no known high-frequency systemic conflict left without explicit defer rationale.
 
-- lower-priority bad locked values being hidden by higher-priority overrides;
-- one concept with multiple competing targets;
-- global substring aliases that should be exact/scoped;
-- generic prose accidentally matching named gameplay concepts;
-- literal zh-CN carryover for high-frequency player-facing mechanics;
-- canonical rules that conflict with earlier Conditions/Mood, Skill/Inheritance or Race hardening;
-- rules with missing negative tests;
-- temporary hardening/staging artifacts left in production workflows.
-
-Do not delay mass audit for songs, lyrics, staff/creator credits or rare one-off proper-name uncertainty. Those can be handled by ordinary review/canonical findings when encountered.
-
-Completion criteria are strict:
-
-1. full tests pass;
-2. canonical enforcement is idempotent;
-3. production review-plan Sync succeeds;
-4. representative positive/negative contexts are correct;
-5. second unchanged Sync is a true no-op;
-6. no known high-frequency systemic conflict remains intentionally unfixed without explicit defer rationale.
-
-Then update orchestration:
-
-- mark all initial canonical-hardening tasks complete;
-- set `blocking_maintenance = false`;
-- set `phase = "retrospective_translation_review"`;
-- clear/reset the maintenance claim;
-- let future `WORKER_START.md` sessions route to `WORKER_25MIN.md` and the live Audit Round 1 gate.
+Only then may the integration owner set `blocking_maintenance = false`, transition to `retrospective_translation_review`, and allow mass Audit Round 1 workers.

@@ -1,0 +1,49 @@
+name: W5 complete Training Support state
+on:
+  push:
+    paths:
+      - .github/workflows/w5-complete-training.yml
+permissions:
+  contents: write
+jobs:
+  complete:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - name: Mark Training Support complete
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p = Path('work/orchestration/state.json')
+          data = json.loads(p.read_text(encoding='utf-8'))
+          active = data['active_task']
+          if active.get('task_id') != 'canonical-training-support':
+              raise SystemExit(f"unexpected active task: {active.get('task_id')}")
+          active['status'] = 'complete'
+          active['stage'] = 'complete'
+          active['completed_at'] = '2026-08-29T16:07:00Z'
+          active['finalization_checkpoint'] = 'work/orchestration/checkpoints/canonical-training-support-finalizer-w5-20260829T1607Z.md'
+          active['finalization_summary'] = 'Permanent canonical repair validated; production Sync succeeded; unchanged second Sync proved no-op; representative Training/Support positive/negative guards verified.'
+          for item in data['roadmap']:
+              if item.get('id') == 'canonical-training-support':
+                  item['status'] = 'complete'
+                  item['stage'] = 'complete'
+                  item['completed_at'] = '2026-08-29T16:07:00Z'
+                  item['finalization_checkpoint'] = 'work/orchestration/checkpoints/canonical-training-support-finalizer-w5-20260829T1607Z.md'
+                  break
+          else:
+              raise SystemExit('Training Support roadmap item missing')
+          p.write_text(json.dumps(data, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+          PY
+          rm .github/workflows/w5-complete-training.yml
+      - name: Commit transition
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add -A work/orchestration/state.json .github/workflows/w5-complete-training.yml
+          git commit -m 'Mark Training Support canonical hardening complete'
+          git push origin HEAD:main

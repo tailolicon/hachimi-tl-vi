@@ -21,10 +21,7 @@ def _seed(tmp_path: Path) -> Path:
 def _record(root: Path, source: str, target: str, record_id: str, path: list[str] | None = None):
     terms = load_community_terms(root)
     matches = community_term_matches(
-        None,
-        source,
-        target,
-        terms,
+        None, source, target, terms,
         source_path="text_data_dict.json",
         json_path=path or ["155", "30003"],
     )
@@ -61,6 +58,23 @@ def test_specialty_priority_scoped(tmp_path: Path) -> None:
     assert good["accepted_present"] is True
     terms = load_community_terms(root)
     assert community_term_matches(None, "得意率提升", "Tăng tỷ lệ sở trường", terms, source_path="story.json", json_path=["1"]) == []
+
+
+def test_repeated_stat_bonus_labels_are_scoped(tmp_path: Path) -> None:
+    root = _seed(tmp_path)
+    cases = [
+        ("速度加成", "Speed Bonus", "support.speed_bonus.effect155"),
+        ("耐力加成", "Stamina Bonus", "support.stamina_bonus.effect155"),
+        ("力量加成", "Power Bonus", "support.power_bonus.effect155"),
+        ("根性加成", "Guts Bonus", "support.guts_bonus.effect155"),
+        ("智力加成", "Wit Bonus", "support.wit_bonus.effect155"),
+        ("技能Pt加成", "Skill Pt Bonus", "support.skill_pt_bonus.effect155"),
+    ]
+    for source, target, record_id in cases:
+        record = _record(root, source, target, record_id)
+        assert record["accepted_present"] is True
+    terms = load_community_terms(root)
+    assert community_term_matches(None, "速度加成", "Thưởng Speed", terms, source_path="story.json", json_path=["1"]) == []
 
 
 def test_effect_label_hardener_is_idempotent(tmp_path: Path) -> None:

@@ -10,8 +10,8 @@ Pipeline dịch tiếng Việt độc lập cho **Uma Musume Pretty Derby JP** t
 | Metric | Live state |
 | --- | --- |
 | Current phase | **canonical_hardening** |
-| Primary integration lane | **Resources / gacha / shop terminology** — stage **finalizing** (`canonical-resources-gacha-shop-hardening`) |
-| Canonical parallelism | **ON** — domain work parallel / integration serial; 3 active-or-claimable domain lanes, 1 ready for integration, 2 canonical domains complete; configured domain-worker cap 5 |
+| Primary integration lane | **Common system/UI player-facing terminology** — stage **finalizing** (`canonical-common-ui-system-hardening`) |
+| Canonical parallelism | **ON** — domain work parallel / integration serial; 2 active-or-claimable domain lanes, 1 ready for integration, 3 canonical domains complete; configured domain-worker cap 5 |
 | Pinned source coverage | **19,520 / 1,158,825 (1.68%)** — 1,139,305 remaining |
 | Current translation wave | **19,520 / 131,560 (14.84%)** — 112,040 queued remaining |
 | Deferred pinned entries | **1,027,265** — these must be promoted in later deterministic waves, not ignored |
@@ -20,7 +20,7 @@ Pipeline dịch tiếng Việt độc lập cho **Uma Musume Pretty Derby JP** t
 | Context curation | Speech **100.00%**, terminology **100.00%** |
 | Active worker claims | **0** |
 
-**Roadmap:** → Character / training-career UI terminology<br>▶ Resources / gacha / shop terminology<br>→ Missions / rewards / events terminology<br>✓→ Common system/UI player-facing terminology [ready for integration]<br>→ Final high-frequency canonical conflict and overmatch sweep
+**Roadmap:** ✓→ Character / training-career UI terminology [ready for integration]<br>→ Missions / rewards / events terminology<br>▶ Common system/UI player-facing terminology<br>→ Final high-frequency canonical conflict and overmatch sweep
 
 Machine routing lives in `work/orchestration/state.json`; canonical parallel rules are in `CANONICAL_PARALLEL.md`; detailed lifecycle is in `AUTOPILOT.md`. This block is generated from canonical repository state. The `status` branch keeps the timestamped detailed progress snapshot.
 <!-- AUTO_PROGRESS_END -->

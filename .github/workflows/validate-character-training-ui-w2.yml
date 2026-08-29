@@ -1,0 +1,37 @@
+name: Validate Character Training UI W2
+
+on:
+  push:
+    branches: [canonical-character-training-ui-hardening]
+    paths:
+      - "scripts/harden_character_training_ui_canon.py"
+      - "tests/test_character_training_ui_*.py"
+      - ".github/workflows/validate-character-training-ui-w2.yml"
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: python -m pip install -e ".[dev]"
+      - name: Materialize hardener and prove idempotence
+        shell: bash
+        run: |
+          set -euo pipefail
+          python scripts/harden_character_training_ui_canon.py
+          git diff -- glossary/term_registry.json glossary/ui_community_terms.json scripts/enforce_player_facing_canon.py > /tmp/first.patch
+          python scripts/harden_character_training_ui_canon.py
+          git diff -- glossary/term_registry.json glossary/ui_community_terms.json scripts/enforce_player_facing_canon.py > /tmp/second.patch
+          cmp /tmp/first.patch /tmp/second.patch
+      - name: Focused tests
+        run: pytest -q tests/test_character_training_ui_hardening.py tests/test_character_training_ui_career_mode.py tests/test_character_training_ui_aptitude_grade.py tests/test_character_training_ui_sync_source.py
+      - name: Full tests
+        run: pytest -q
+      - name: Validate and index
+        run: |
+          tlvi --db /tmp/tlvi-character-w2.db validate
+          tlvi --db /tmp/tlvi-character-w2.db index

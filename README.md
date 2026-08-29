@@ -10,8 +10,8 @@ Pipeline dịch tiếng Việt độc lập cho **Uma Musume Pretty Derby JP** t
 | Metric | Live state |
 | --- | --- |
 | Current phase | **canonical_hardening** |
-| Primary integration lane | **Character / training-career UI terminology** — stage **finalizing** (`canonical-character-training-ui-hardening`) |
-| Canonical parallelism | **ON** — domain work parallel / integration serial; 1 active-or-claimable domain lanes, 1 ready for integration, 4 canonical domains complete; configured domain-worker cap 5 |
+| Primary integration lane | **Missions / rewards / events terminology** — stage **finalizing** (`canonical-missions-events-hardening`) |
+| Canonical parallelism | **ON** — domain work parallel / integration serial; 1 active-or-claimable domain lanes, 0 ready for integration, 5 canonical domains complete; configured domain-worker cap 5 |
 | Pinned source coverage | **19,520 / 1,158,825 (1.68%)** — 1,139,305 remaining |
 | Current translation wave | **19,520 / 131,560 (14.84%)** — 112,040 queued remaining |
 | Deferred pinned entries | **1,027,265** — these must be promoted in later deterministic waves, not ignored |
@@ -20,7 +20,7 @@ Pipeline dịch tiếng Việt độc lập cho **Uma Musume Pretty Derby JP** t
 | Context curation | Speech **100.00%**, terminology **100.00%** |
 | Active worker claims | **0** |
 
-**Roadmap:** ▶ Character / training-career UI terminology<br>✓→ Missions / rewards / events terminology [ready for integration]<br>→ Final high-frequency canonical conflict and overmatch sweep
+**Roadmap:** ▶ Missions / rewards / events terminology<br>→ Final high-frequency canonical conflict and overmatch sweep
 
 Machine routing lives in `work/orchestration/state.json`; canonical parallel rules are in `CANONICAL_PARALLEL.md`; detailed lifecycle is in `AUTOPILOT.md`. This block is generated from canonical repository state. The `status` branch keeps the timestamped detailed progress snapshot.
 <!-- AUTO_PROGRESS_END -->

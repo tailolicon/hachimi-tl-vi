@@ -24,30 +24,30 @@
     "final_conflict_sweep_rule": "canonical-final-conflict-sweep is dependency-gated and starts only after all earlier initial canonical domains are complete on live main."
   },
   "active_task": {
-    "task_id": "canonical-resources-gacha-shop",
-    "title": "Resources / gacha / shop terminology",
+    "task_id": "canonical-common-ui-system",
+    "title": "Common system/UI player-facing terminology",
     "task_file": "work/orchestration/tasks/remaining-canonical-domains.md",
-    "branch": "canonical-resources-gacha-shop-hardening",
-    "last_observed_branch_sha": "b9a3393b840a786a4118e81eaca5288eca154044",
+    "branch": "canonical-common-ui-system-hardening",
+    "last_observed_branch_sha": "c174ae9c6b40fa02913f83640729695336511157",
     "status": "active",
     "stage": "finalizing",
     "primary_lane": true,
     "integration_serial": true,
     "domain_work_parallel": true,
     "blocks_mass_work": true,
-    "activated_at": "2026-08-29T16:20:34Z",
-    "predecessor_task_id": "canonical-training-support",
-    "activation_summary": "Training/Support is complete. Resources/Gacha/Shop is the earliest dependency-satisfied ready_for_integration domain and now occupies the serial primary integration lane.",
-    "domain_work_checkpoint": "work/orchestration/checkpoints/canonical-resources-gacha-shop-w2-20260829T1609Z.md",
+    "activated_at": "2026-08-29T16:59:00Z",
+    "predecessor_task_id": "canonical-resources-gacha-shop",
+    "activation_summary": "Resources/Gacha/Shop is complete. Common UI/System is the earliest dependency-satisfied ready_for_integration domain and now occupies the serial primary integration lane.",
+    "domain_work_checkpoint": "work/orchestration/checkpoints/canonical-common-ui-system-w1-20260829T1617Z.md",
+    "domain_work_summary": "Common UI/System exact-key hardening covers repeated confirmation, cancellation, selection, close/change/use/search/sort/filter/reset/navigation labels with Race-phase and prose-negative guards; branch validation and hardener no-op evidence are checkpointed.",
     "finalization_scope": [
-      "integrate only permanent Resources/Gacha/Shop hardeners, tests, and materialized glossary/source-bridge changes onto live main while preserving concurrent main changes",
-      "run full validation",
+      "selectively integrate only permanent Common UI/System hardener, glossary materialization, tests, and checkpoint onto current live main while preserving concurrent changes",
+      "run full validation and hardener idempotence",
       "rebuild retrospective review context",
       "run production Sync and second unchanged no-op Sync",
-      "spot-check representative Monies, Cleats, Exchange Points, Scout Ticket, Crystal Shards, and prose-negative contexts",
-      "mark Resources/Gacha/Shop complete; then select the earliest ready_for_integration canonical domain or continue an unfinished eligible domain according to live routing"
-    ],
-    "domain_work_summary": "Resources/Gacha/Shop branch hardens Monies, Cleats, paid/free Jewels, Exchange Points, Clovers, Goddess Statues, scoped Club/Friend Points, Scout Tickets, and Crystal Shards with positive/negative regression coverage; ready checkpoint is work/orchestration/checkpoints/canonical-resources-gacha-shop-w2-20260829T1609Z.md."
+      "spot-check Common0001/Common0002, Common0007, Common0087/Common0098, Common0092/Common0093 negative guard, and RoomMatch0117 compound-negative behavior",
+      "mark Common UI/System complete and continue the next highest-priority eligible canonical unit"
+    ]
   },
   "roadmap": [
     {
@@ -99,8 +99,8 @@
     {
       "id": "canonical-resources-gacha-shop",
       "title": "Resources / gacha / shop terminology",
-      "status": "active",
-      "stage": "finalizing",
+      "status": "complete",
+      "stage": "complete",
       "kind": "canonical_hardening",
       "task_file": "work/orchestration/tasks/remaining-canonical-domains.md",
       "suggested_branch": "canonical-resources-gacha-shop-hardening",
@@ -111,7 +111,11 @@
         "canonical-race"
       ],
       "domain_work_checkpoint": "work/orchestration/checkpoints/canonical-resources-gacha-shop-w2-20260829T1609Z.md",
-      "activated_at": "2026-08-29T16:20:34Z"
+      "activated_at": "2026-08-29T16:20:34Z",
+      "completed_at": "2026-08-29T16:59:00Z",
+      "finalization_checkpoint": "work/orchestration/checkpoints/canonical-resources-gacha-shop-finalizer-codex-20260829T1658Z.md",
+      "integrated_main_sha": "c481fb8c0c0380ba5ba19e6006e515d12a98bf09",
+      "production_sync_sha": "06402372b6295f0053069f6f55f4cd9f0fecd13b"
     },
     {
       "id": "canonical-missions-events",
@@ -131,8 +135,8 @@
     {
       "id": "canonical-common-ui-system",
       "title": "Common system/UI player-facing terminology",
-      "status": "ready_for_integration",
-      "stage": "ready_for_finalize",
+      "status": "active",
+      "stage": "finalizing",
       "kind": "canonical_hardening",
       "task_file": "work/orchestration/tasks/remaining-canonical-domains.md",
       "suggested_branch": "canonical-common-ui-system-hardening",
@@ -142,7 +146,8 @@
       "depends_on": [
         "canonical-race"
       ],
-      "domain_work_checkpoint": "work/orchestration/checkpoints/canonical-common-ui-system-w1-20260829T1617Z.md"
+      "domain_work_checkpoint": "work/orchestration/checkpoints/canonical-common-ui-system-w1-20260829T1617Z.md",
+      "activated_at": "2026-08-29T16:59:00Z"
     },
     {
       "id": "canonical-final-conflict-sweep",

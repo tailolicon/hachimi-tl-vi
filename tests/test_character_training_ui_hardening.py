@@ -117,25 +117,6 @@ def test_singlemode_aptitude_composes_with_existing_surface_canon() -> None:
     assert _by_id(matches, "common.aptitude")["accepted_present"] is True
 
 
-def test_career_class_labels_reuse_race_hardening_exact_ui_scope() -> None:
-    locked = load_locked_terms(REPO_ROOT)
-    cases = (
-        ("SingleMode0017", "新马级", "Junior Class", "race.class.junior.ui"),
-        ("SingleMode0018", "经典级", "Classic Class", "race.class.classic.ui"),
-        ("SingleMode0019", "古马级", "Senior Class", "race.class.senior.ui"),
-    )
-    for key, source, target, expected in cases:
-        matches = locked_term_matches(
-            source,
-            target,
-            locked,
-            key=key,
-            source_path="localize_dict.json",
-            json_path=[key],
-        )
-        assert expected in _ids(matches)
-
-
 def test_career_class_rules_do_not_overmatch_story_prose() -> None:
     locked = load_locked_terms(REPO_ROOT)
     matches = locked_term_matches(

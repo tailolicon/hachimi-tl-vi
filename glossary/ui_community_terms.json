@@ -1911,6 +1911,112 @@
       "match_mode": "contains",
       "invalidation_scope": "global",
       "basis": "Conventional player-facing race-grade formatting; source marker is unambiguous and applies globally."
+    },
+    {
+      "id": "common.friendship_training",
+      "source_aliases": [
+        "友情トレーニング",
+        "友情训练"
+      ],
+      "preferred": "Friendship Training",
+      "accepted": [
+        "Friendship Training"
+      ],
+      "compact": [],
+      "forbidden": [
+        "Huấn luyện Hữu nghị",
+        "huấn luyện hữu nghị",
+        "Huấn luyện tình bạn",
+        "huấn luyện tình bạn"
+      ],
+      "require_accepted": true,
+      "match_mode": "contains",
+      "invalidation_scope": "item",
+      "basis": "Established player-facing term for the rainbow training mechanic. Full-compound aliases only; generic friendship/training prose is intentionally not matched."
+    },
+    {
+      "id": "common.friendship_gauge.support_effects",
+      "source_aliases": [
+        "羁绊值"
+      ],
+      "preferred": "Friendship Gauge",
+      "accepted": [
+        "Friendship Gauge"
+      ],
+      "compact": [],
+      "forbidden": [
+        "Gắn kết",
+        "gắn kết",
+        "Giá trị liên kết",
+        "giá trị liên kết"
+      ],
+      "require_accepted": true,
+      "source_paths": [
+        "text_data_dict.json"
+      ],
+      "json_path_prefixes": [
+        [
+          "155"
+        ]
+      ],
+      "match_mode": "contains",
+      "invalidation_scope": "item",
+      "basis": "Category 155 support-effect descriptions refer to the Support Card Friendship Gauge. Bare 羁绊 remains ordinary friendship/bond language outside this scoped mechanic."
+    },
+    {
+      "id": "common.support_points.common0160",
+      "source_aliases": [
+        "支援点数"
+      ],
+      "preferred": "Support Pt",
+      "accepted": [
+        "Support Pt",
+        "Support Pts",
+        "Support Points"
+      ],
+      "compact": [],
+      "forbidden": [
+        "Điểm Hỗ trợ",
+        "Điểm hỗ trợ",
+        "điểm hỗ trợ"
+      ],
+      "require_accepted": true,
+      "source_paths": [
+        "localize_dict.json"
+      ],
+      "key_exact": [
+        "Common0160"
+      ],
+      "match_mode": "exact",
+      "invalidation_scope": "item",
+      "basis": "Common0160 is the player-facing Support Points resource label. Compact UI uses Support Pt; plural prose may use Support Pts or Support Points."
+    },
+    {
+      "id": "common.energy.singlemode",
+      "source_aliases": [
+        "体力"
+      ],
+      "preferred": "Energy",
+      "accepted": [
+        "Energy"
+      ],
+      "compact": [],
+      "forbidden": [
+        "Thể lực",
+        "thể lực"
+      ],
+      "require_accepted": true,
+      "source_paths": [
+        "localize_dict.json"
+      ],
+      "key_exact": [
+        "SingleMode0006",
+        "SingleMode0074",
+        "SingleMode0075"
+      ],
+      "match_mode": "contains",
+      "invalidation_scope": "item",
+      "basis": "Exact Career training UI slots for the Energy gauge and its gain/loss messages. The key guard prevents ordinary physical-strength prose from matching."
     }
   ]
 }

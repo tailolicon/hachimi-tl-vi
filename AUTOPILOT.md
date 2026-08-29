@@ -1,314 +1,233 @@
 # Repository autopilot lifecycle
 
-This file defines the persistent worker lifecycle from the current canonical-hardening phase through the remaining pinned corpus and final audits. `WORKER_START.md` is the only human entrypoint; this file is loaded by workers after the live router state.
-
-Repository state is authoritative. Chat history is not.
+`WORKER_START.md` is the only human entrypoint. Repository state is authoritative; chat history is not.
 
 ## Global priority
 
-1. blocking repository maintenance/canonical hardening;
-2. unresolved systemic canonical findings that would otherwise propagate inconsistency;
+1. initial canonical hardening / canonical integration;
+2. unresolved systemic canonical findings that would propagate inconsistency;
 3. retrospective translation review;
 4. retrospective UI review;
-5. normal translation of the current pinned queue;
-6. expansion of deferred pinned-source content into the next translation wave;
+5. normal translation of the current pinned wave;
+6. deterministic expansion of deferred pinned-source content;
 7. post-completion full-corpus audits;
 8. final release verification.
 
-Quality gates always outrank raw translation percentage.
+Quality gates outrank raw translation percentage.
 
 ## Productive-session utilization
 
-Use `work/worker_session_policy.json` as the timing authority. The normal target is to keep doing useful work until `productive_target_minutes` and begin clean handoff at `handoff_start_minutes`; the host may still terminate a run earlier, so this is a worker-behavior target rather than a wall-clock guarantee.
+Use `work/worker_session_policy.json` as timing authority. A durable checkpoint is not a stop signal. Completing one unit, stage, validation, or task means re-read the minimum live state and continue the next safe eligible unit while before the new-work cutoff.
 
-A durable checkpoint is not a stop signal. Completing one batch, maintenance substep, validation, stage transition, or task is a trigger to re-read the minimum live routing state and continue the next safe eligible unit while still before `stop_new_batch_after_minutes`.
+Never idle merely to reach the handoff minute.
 
-A worker must not voluntarily end early merely because work became resumable. Before the productive target, early handoff is allowed only when there is no immediately eligible continuation, another worker owns the required non-expired serial claim, every repository path required for the next safe step has actually been attempted and is unavailable, or a protocol/safety constraint forbids further valid work.
+A backend/plugin/container failure is capability-local. Follow the execution-backend-independent fallback rules in `WORKER_START.md` and policy; required acceptance evidence may move to GitHub Actions rather than being skipped.
 
-For serial maintenance, stage boundaries are durability boundaries, not mandatory worker boundaries. The same owner may progress `domain_work -> ready_for_finalize -> finalizing` in one run by persisting each state/claim transition atomically. If a serial task completes early, advance orchestration and continue the next immediately runnable roadmap task when time and ownership rules allow.
+## Persistent control files
 
-Never idle merely to reach the handoff minute. Use remaining pre-handoff budget for the current eligible work.
+- `WORKER_START.md` — universal router.
+- `work/orchestration/state.json` — project phase, roadmap, primary integration lane and parallelism policy.
+- `CANONICAL_PARALLEL.md` — authoritative initial canonical parallel-domain protocol.
+- `work/orchestration/maintenance_claim.json` — primary/live-main integration lease.
+- `work/orchestration/domain_claims/*.json` — independent canonical domain-work leases.
+- `work/orchestration/tasks/*.md` — persistent task scopes/handoffs.
+- `work/parallel_state.json` — live review/translation gate routing.
+- `work/translation_progress.json` — pinned source totals and translation progress.
+- `glossary/canonical_findings.json` — systemic findings; blocking evidence, never automatic canonical locks.
 
-## Persistent files
+README is human-facing progress only. Machine routing reads the JSON/protocol files above.
 
-- `WORKER_START.md` — universal entrypoint.
-- `work/orchestration/state.json` — current phase, active maintenance task, roadmap and transitions.
-- `work/orchestration/maintenance_claim.json` — single-writer lease for serial maintenance/canonical work.
-- `work/orchestration/tasks/*.md` — detailed task handoffs that must survive chat/session loss.
-- `work/parallel_state.json` — live translation-review gate and worker protocol routing.
-- `work/translation_progress.json` — pinned source totals and canonical translation progress.
-- `glossary/canonical_findings.json` — systemic worker findings awaiting canonical resolution; findings are blocking evidence, never automatic locks.
+## Lease invariant
 
-README progress is generated from these live sources and is human-facing only. Machine routing must read the underlying JSON/protocol files.
+Every maintenance/domain lease is progress-backed:
 
-## Maintenance stages
+- one active owner per claim file;
+- optimistic concurrency on every write;
+- lease refresh only after new durable progress;
+- `progress_token`, `progress_kind`, `progress_ref`, `last_progress_at` identify that durable evidence;
+- a time-only heartbeat is invalid;
+- released/expired claims are takeover-eligible;
+- persist branch/result/checkpoint before handoff.
 
-Every serial maintenance task has an explicit `active_task.stage` in `work/orchestration/state.json`:
-
-1. `domain_work` — substantive research/canonical/tooling work is still required;
-2. `ready_for_finalize` — substantive domain work is done; only bounded cleanup/integration/verification remains;
-3. `finalizing` — a finalizer currently owns/resumes that bounded finish work;
-4. `complete` — task is finished and must no longer be claimed.
-
-Legacy state with no `stage` is interpreted as `domain_work` only until it is normalized.
-
-The purpose of these stages is to prevent a completed domain from being repeatedly re-claimed as if research/inventory were still unfinished, not to force a new chat at each stage.
-
-## Maintenance lease
-
-Serial repository-maintenance work must own `work/orchestration/maintenance_claim.json` before modifying the maintenance branch or advancing orchestration state.
-
-A claim is valid only when:
-
-- `status == "active"`;
-- `task_id` matches the currently selected maintenance task/finding;
-- `lease_expires_at` is still in the future;
-- its claim stage is compatible with `active_task.stage`;
-- every lease refresh after the initial claim contains NEW durable progress evidence.
-
-Fresh claim/takeover rules:
-
-1. fetch the current claim file and blob SHA;
-2. if released/unclaimed/expired, update it with a unique worker ID/claim ID, current task ID, and current maintenance stage;
-3. use the rolling lease from `work/worker_session_policy.json`;
-4. checkpoint durable task changes before refreshing the lease;
-5. never overwrite another worker's non-expired active claim;
-6. at actual handoff, persist branch/task progress first, then mark the claim `released` with branch/head/checkpoint notes;
-7. after completing the task and advancing orchestration state, mark the claim `complete` for the finished task. The next task may reset/reuse the file only after reading current orchestration state.
-
-A same-session stage transition does not require releasing ownership. Update state and claim stage with optimistic concurrency, preserving the same worker identity or recording an explicit same-session continuation token.
-
-### Progress-backed heartbeat requirement
-
-A maintenance heartbeat is not a clock tick. It is a claim refresh backed by new durable progress.
-
-Before each refresh, persist at least one new durable artifact and record it in the claim as:
-
-- `progress_token` — unique token that changed since the previous claim write;
-- `progress_kind` — e.g. `branch_head`, `task_checkpoint`, `validation_run`, `sync_run`, `state_transition`;
-- `progress_ref` — durable GitHub ref/SHA/run ID/path that proves the progress;
-- `last_progress_at` — timestamp of that durable progress.
-
-Valid examples include a new maintenance-branch head, a changed persistent task checkpoint, a newly completed validation/sync run whose result is checkpointed, or an orchestration-stage transition.
-
-Invalid heartbeat: changing only `heartbeat_at` and `lease_expires_at`, or reusing the same `progress_token` merely because time passed.
-
-If there is no new durable progress, do not refresh the lease merely for time. Continue useful work while the lease remains valid. A missing refresh token is not itself a reason to end early; it only prevents a fake lease extension.
-
-Waiting for CI is not by itself progress. A newly observed CI state/result becomes progress only when its run/job identity and result are persisted as a changed checkpoint. While CI runs, continue any safe independent inspection/cleanup/preparation that remains within the same task instead of idling when practical.
-
-If initial canonical hardening is blocking and another worker owns the active claim, do not start review/translation work behind the hardening gate.
-
-## Execution-backend independence
-
-No external harness, plugin, local container, shell, MCP provider, or other execution path is implicitly required by this repository. A rate limit, EOF, DNS/network failure, unavailable shell/container, or transient tool error is local to that capability.
-
-When one path fails, preserve task/claim state and continue with available repository capabilities. Prefer connected GitHub read/write operations for durable repository work and use repository GitHub Actions/validation workflows for execution evidence when the local runtime is unavailable. Required acceptance tests remain required; fallback means changing execution path, not skipping validation.
-
-One backend failure is never by itself a valid early-stop reason. Exceptional handoff for capability failure requires that every currently available repository path necessary for the next safe step has actually been attempted and is unavailable, or that the normal handoff boundary has arrived.
-
-## Finalization contract
-
-`ready_for_finalize` and `finalizing` are deliberately narrow.
-
-A finalizer MAY:
-
-- remove temporary inventory/debug/staging artifacts;
-- fix small acceptance discrepancies already identified by the task evidence;
-- clean imports/formatting/build wiring needed for integration;
-- rebase/cherry-pick/reconstruct clean permanent changes onto live `main` without overwriting unrelated work;
-- run tests/validation;
-- run production Sync and the required second unchanged no-op Sync;
-- inspect representative regenerated contexts;
-- persist completion evidence and advance orchestration.
-
-A finalizer MUST NOT restart broad inventory, redo evidence gathering, or reopen the whole domain because the branch diverged. Branch divergence is an integration problem, not proof that domain research is incomplete.
-
-Return from `finalizing` to `domain_work` only when finalization produces concrete evidence of a substantive unresolved domain defect. Persist the exact defect/evidence in the task file and state transition.
-
-When substantive domain work becomes complete, the current owner should persist `stage = "ready_for_finalize"`. If useful session budget remains, it should immediately transition the owned claim/state to `finalizing` and continue bounded finalization in the same run. Release at this point only if the normal handoff boundary is near or a real blocker/ownership condition requires another worker.
+Do not overwrite another worker's non-expired claim.
 
 ## Phase 0 — initial canonical hardening
 
-This phase is serial and blocking. The ordered domains are stored in `work/orchestration/state.json.roadmap`.
+**Domain work is parallel. Integration is serial.** `CANONICAL_PARALLEL.md` is authoritative for this phase.
 
-Current intended sequence:
+`blocking_maintenance = true` blocks mass translation/review/UI work until the initial canonical freeze is complete. It does not stop independent canonical-domain workers.
 
-1. Race terminology / classes / grades / racecourse / named-race identity;
-2. Training / Support / progression;
-3. Character / training-career UI;
-4. Resources / gacha / shop;
-5. Missions / rewards / events;
-6. common system/UI vocabulary;
-7. final high-frequency canonical conflict sweep.
+### Parallel domain lane
 
-Songs and staff/creator-credit hardening are intentionally not blocking domains. Isolated song/credit cases may be handled by ordinary review when encountered unless they reveal a genuinely systemic high-frequency defect.
+If the primary maintenance claim is already owned by another worker, a fresh canonical worker must scan roadmap order for another dependency-satisfied item with `parallel_eligible: true` and a takeover-eligible task-specific `claim_path`.
 
-Canonical-hardening rules:
+A parallel domain worker:
 
-- canonical-first: fix systemic terminology/context at its source;
-- do not patch `localized_data/**` examples to hide systemic defects;
-- use official Global terminology where verifiable, then official JP identity/organizer English forms, then strong established community terminology;
+1. atomically claims that domain file;
+2. resumes/creates the deterministic domain branch;
+3. performs only that domain's inventory/evidence/canonical hardening/permanent tests;
+4. never patches `localized_data/**` examples to hide systemic defects;
+5. never publishes canonical changes directly to live `main`;
+6. checkpoints branch SHA/evidence throughout;
+7. when substantive work is ready, sets only that roadmap item to `status = ready_for_integration` and `stage = ready_for_finalize`, then releases the domain claim.
+
+Another domain does not wait for this integration. This is the core throughput rule.
+
+### Primary integration lane
+
+Only the owner of `work/orchestration/maintenance_claim.json` may serialize canonical publication to live `main` and completion transitions.
+
+It chooses work deterministically:
+
+1. continue the current `active_task` if already `ready_for_finalize`/`finalizing`;
+2. otherwise select the earliest dependency-satisfied `ready_for_integration` roadmap item;
+3. if none is ready, it may continue one unfinished canonical domain as the primary lane while other workers remain free to claim other eligible domains.
+
+For each integration:
+
+- fetch live main again;
+- compare/rebase/reconstruct the domain branch without erasing concurrent main changes;
+- resolve cross-domain canonical conflicts explicitly, never last-writer-wins;
+- remove TEMP inventory/debug/staging artifacts;
+- run full validation;
+- rebuild retrospective review context;
+- run production Sync;
+- run the second unchanged production Sync and prove semantic no-op;
+- inspect representative positive and negative contexts;
+- only then mark that domain `complete`.
+
+Branch divergence is an integration problem, not evidence that domain research must restart.
+
+### Initial domain order vs parallelism
+
+Roadmap order remains the deterministic integration/priority order, not a requirement that research wait serially.
+
+The substantive domains may overlap in time:
+
+- Training / Support / progression;
+- Character / training-career UI;
+- Resources / gacha / shop;
+- Missions / rewards / events;
+- Common system/UI.
+
+Race is already a predecessor domain when marked complete.
+
+`canonical-final-conflict-sweep` is intentionally not parallel-eligible. It depends on all preceding substantive canonical domains being complete on live main, because it checks their combined state for split-brain terminology, overmatching, hidden legacy locks, and missing negative coverage.
+
+### Canonical hardening rules
+
+Across all domains:
+
+- canonical-first systemic fixes;
+- official Global terminology where verifiable, then official JP/organizer identity, then strong established community usage;
 - zh-CN is a semantic bridge, not identity authority;
-- prefer narrow/item-scoped invalidation for proper names/narrow mechanics when correctness permits;
-- do not globally match generic prose just to reduce manual work;
-- add positive and negative regression tests;
-- permanent enforcement must be idempotent;
-- remove temporary staging/inventory workflows/scripts before integration;
-- full tests + plan rebuild + production Sync + second unchanged no-op Sync are required before a hardening domain is complete.
+- narrow/item-scoped invalidation for proper names/narrow mechanics where correctness permits;
+- generic prose must not match named/system concepts merely because words overlap;
+- positive and negative regression tests;
+- permanent enforcement idempotent;
+- no TEMP hardening artifacts on main;
+- canonical changes reopen affected prior translations through context/review invalidation rather than blind corpus replacement.
 
-### Domain-work -> finalization transition
+### Phase-0 completion
 
-When substantive canonical decisions, permanent hardener/tooling, and permanent regression coverage are complete, but cleanup/integration/production verification remains:
+When all substantive domains are integrated and complete, run the final conflict sweep serially. Its completion requires full validation, production Sync, representative positive/negative checks, second unchanged Sync no-op proof, and no known high-frequency systemic conflict left without explicit defer rationale.
 
-1. checkpoint exact completed-domain evidence in the task file;
-2. update `active_task.stage` from `domain_work` to `ready_for_finalize` using current blob SHA;
-3. do not mark the roadmap item complete yet;
-4. if still before the new-work cutoff and the same worker can safely continue, atomically move the maintenance claim/state to `finalizing` and continue immediately;
-5. otherwise, at actual handoff, release the claim so the next worker can resume bounded finalization.
+Then the integration owner atomically:
 
-A finalizer sets/keeps `stage = "finalizing"`, completes the finalization contract, and only after live verification marks the roadmap task `complete`.
+- sets `blocking_maintenance = false`;
+- sets `phase = retrospective_translation_review`;
+- marks `canonical-final-conflict-sweep` complete;
+- advances the roadmap to Audit Round 1.
 
-When a domain fully completes, the finalizer must atomically update `work/orchestration/state.json`:
+## Canonical findings during mass work
 
-- mark the completed roadmap task `complete` with final main SHA and summary;
-- set the completed task stage/status to `complete` in durable history/summary;
-- activate the next pending canonical-hardening task with `stage = "domain_work"`;
-- set its task file/branch if needed;
-- keep `blocking_maintenance: true` until the final initial-hardening task is complete.
+Review/translation workers do not choose a new project-wide standard ad hoc.
 
-If the next canonical task is immediately runnable and the worker is still before `stop_new_batch_after_minutes`, claim/continue that task in the same session. Completing one domain is not a mandatory stop condition.
+Expected loop:
 
-After the final initial hardening domain is clean, transition to `phase = "retrospective_translation_review"` and set `blocking_maintenance = false`. If time remains before the cutoff, re-route into the now-highest eligible work instead of voluntarily ending solely because the phase changed.
+1. worker emits structured canonical finding;
+2. matching review items defer/block;
+3. a maintainer verifies the concept;
+4. maintainer locks/corrects canonical context or records explicit defer/ignore;
+5. production plan/context sync invalidates affected items;
+6. ordinary workers resume under corrected context.
 
-## Canonical findings discovered during mass work
+Never blind-rewrite the corpus from a finding.
 
-Review/translation workers must not silently choose a new project-wide terminology standard when they discover a systemic issue.
-
-Expected flow:
-
-1. worker records a structured canonical finding through the existing canonical-finding pipeline;
-2. matching review items defer/block as designed instead of being accepted with arbitrary local wording;
-3. a current or fresh `WORKER_START.md` session notices unresolved blocking findings;
-4. a maintainer acquires the maintenance claim and verifies the concept;
-5. maintainer locks/corrects canonical context or records an explicit defer/ignore decision;
-6. production review-plan/context sync invalidates/reopens affected entries through existing context hashes;
-7. ordinary workers resume under the corrected context.
-
-Never blind-replace old translated text across the corpus. Canonical changes drive scoped review/invalidation; merge pipelines apply actual translated-string corrections.
-
-## Phase 1 — retrospective translation review
+## Phase 1 — retrospective translation Audit Round 1
 
 Use `WORKER_25MIN.md` + `TRANSLATION_REVIEW.md`.
 
-The current Audit Round 1 reviews all already-merged canonical translations under hardened context. Workers claim isolated review batches and may checkpoint partial decisions, but a partial checkpoint is not a session stop condition.
-
-Do not open normal translation claims while `work/parallel_state.json.translation_review_gate.enabled == true`.
-
-Systemic discoveries use the canonical-finding flow above.
-
-Transition only when the live translation-review gate is cleared by production state, not merely when a worker says the audit is done.
+- review all already-merged canonical translations under hardened context;
+- do not open normal translation claims while the translation-review gate is enabled;
+- completing one review batch is a continuation trigger;
+- systemic discoveries use the canonical-finding loop;
+- transition only when the live production gate clears.
 
 ## Phase 2 — retrospective UI review
 
-After translation review clears, use `WORKER_25MIN.md` routing and `UI_REVIEW.md` while active assignable UI review remains.
+After translation review clears, use `WORKER_25MIN.md` + `UI_REVIEW.md` while required UI work remains. UI review outranks untranslated content until the live UI gate is clear.
 
-UI review remains higher priority than untranslated content because real control fit/short-form issues create persistent regressions if ignored.
+## Phase 3 — translate current pinned wave
 
-Transition to translation only when required UI review is no longer assignable/required according to live state.
+Use `PARALLEL_TRANSLATION.md` under the pinned source epoch.
 
-## Phase 3 — translate current pinned queue
+Workers claim isolated shards, obey canonical/context guards, checkpoint per policy, and never edit canonical progress or `localized_data/**` directly outside the merge pipeline.
 
-Use `PARALLEL_TRANSLATION.md` under the current pinned epoch.
+Finishing the current wave is not project completion if deferred pinned entries remain.
 
-Workers:
+## Phase 4 — deferred-corpus wave expansion
 
-- claim isolated shards only;
-- use the exact pinned `source_queue_git_commit`;
-- checkpoint every configured interval;
-- continue the same shard after checkpoint while it remains valid;
-- when a shard completes before the cutoff, re-read live state and claim another eligible shard;
-- never edit canonical progress or `localized_data/**` directly;
-- aggregation/merge workflows remain authoritative;
-- regression/canonical/source-bridge guards must be obeyed.
+Trigger when review/UI gates are clear, the current wave is fully covered, and `deferred_entries > 0`.
 
-The current source snapshot contains more entries than the initial queued wave. Therefore finishing the current queue is not project completion.
+Serial queue-maintenance must:
 
-## Phase 4 — deferred-corpus queue expansion
-
-Trigger condition:
-
-- review/UI gates are clear;
-- all entries in the current queued wave are canonically merged/covered;
-- `work/translation_progress.json.deferred_entries > 0`.
-
-This is serial maintenance and uses the maintenance claim/stage lifecycle above.
-
-The maintainer must inspect the live queue-generation/source-batch tooling rather than inventing a new corpus. The next wave must:
-
-- remain tied to the pinned source identity unless an explicit source-promotion task changes it;
-- preserve already translated UIDs/fingerprints;
-- promote a deterministic next tranche of deferred entries into claimable source batches/epoch metadata;
-- keep completed Translation Memory/results reusable;
-- update `queued_entries`, `deferred_entries`, batch/epoch metadata consistently;
+- remain tied to the pinned source identity unless a separate explicit source-promotion task changes it;
+- preserve translated UIDs/fingerprints and reusable results;
+- deterministically promote a bounded next tranche of deferred entries;
+- update queue/deferred/batch/epoch metadata consistently;
 - validate before publication;
-- make the next wave claimable through the ordinary `PARALLEL_TRANSLATION.md` path.
+- make the next wave claimable through ordinary translation workers.
 
-Use bounded waves rather than trying to generate/commit an impractically huge one-shot worker queue if repository/tool limits make that unsafe. Repeat Phase 3 ↔ Phase 4 until `deferred_entries == 0` and translated/covered entries reach `source_total_entries` for the pinned corpus.
+Repeat Phase 3 ↔ Phase 4 until deferred entries are zero and pinned source coverage reaches the source total.
 
-Do not silently change the pinned upstream source commit during queue expansion. Upstream promotion is a separate deliberate maintenance action.
+## Phase 5 — post-completion full-corpus audits
 
-## Phase 5 — post-completion audit rounds
+Full source coverage is followed by at least:
 
-Full source coverage is followed by deliberate full-corpus audits.
+1. full-corpus Audit Round 2;
+2. a clean full-corpus Audit Round 3 after Round-2 systemic corrections settle.
 
-Minimum target:
-
-1. post-completion Audit Round 2;
-2. another full clean Audit Round 3 after Round 2 systemic corrections settle.
-
-Increment `glossary/translation_audit_policy.json.audit_round` only as part of an explicit full-pass transition. Do not increment it for ordinary canonical edits during a round.
-
-Each round must regenerate its review context/plan and complete through normal review merge state. Systemic findings still use canonical-first handling.
-
-A further round is required if a late systemic correction makes the preceding full pass materially stale.
+Increment `glossary/translation_audit_policy.json.audit_round` only on explicit full-pass transitions. If a late systemic correction materially stales the preceding pass, require another clean round.
 
 ## Phase 6 — final verification/release
 
-Terminal conditions include all of the following:
+Terminal conditions include:
 
-- pinned `source_total_entries` fully covered;
-- no deferred pinned-source entries remain;
-- required full-corpus translation audit rounds are clean;
-- required UI review is clean/complete;
-- no unresolved high-priority canonical finding remains without explicit defer/ignore rationale;
+- full pinned source coverage;
+- zero deferred pinned-source entries;
+- required full-corpus audit rounds clean;
+- required UI review complete;
+- no unresolved high-priority canonical finding without explicit defer/ignore rationale;
 - tests/validation pass;
 - release workflow succeeds and release index is publishable;
-- progress/orchestration state agrees with canonical repository state.
+- orchestration/progress state agrees with canonical repository state.
 
-Then set `work/orchestration/state.json.phase = "complete"`, `terminal = true`, and record the final main/release verification SHA(s).
+Then set `work/orchestration/state.json.phase = complete`, `terminal = true`, and persist final main/release verification SHAs.
 
 ## State-transition safety
 
-Only a worker whose selected protocol explicitly owns the serial maintenance task may advance `work/orchestration/state.json`.
-
-Mass review/translation workers do not rewrite the roadmap.
-
 Before every state transition:
 
-1. refetch live `main` and relevant active plan/progress files;
-2. verify the completion condition from repository evidence;
-3. fetch current state blob SHA;
+1. refetch live main and relevant progress/plan/claim files;
+2. verify the transition condition from repository evidence;
+3. fetch the current state blob SHA;
 4. update with optimistic concurrency;
 5. never erase unrelated concurrent progress.
 
-## Session behavior
+Parallel domain workers may update only their own claim/checkpoint and their own roadmap readiness fields. Only the primary integration lane may publish live-main canonical integration completion or advance global phase gates.
 
-Use `work/worker_session_policy.json` for timing. Keep doing useful eligible work toward `productive_target_minutes`; stop starting broad new units at `stop_new_batch_after_minutes`; begin clean handoff at `handoff_start_minutes`; hard-stop within `session_minutes`.
-
-For serial maintenance that cannot finish in one session, checkpoint branch/task evidence in GitHub and release the maintenance claim at the actual handoff boundary. The next fresh worker resumes from repository state and the task file; it does not restart research.
-
-Do not keep a serial task alive by periodic time-only heartbeats. A refresh without a new durable progress token violates the protocol and should be treated as stale coordination rather than evidence of useful work. Conversely, the inability to make a fake heartbeat is not permission to quit early: continue valid work and checkpoint real progress.
+## Human workflow
 
 The desired human workflow remains one line forever:
 

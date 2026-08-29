@@ -1,0 +1,55 @@
+name: Character domain replay and validate
+
+on:
+  push:
+    branches:
+      - canonical-character-training-ui-hardening
+    paths:
+      - .github/workflows/character-domain-replay-validate.yml
+
+permissions:
+  contents: write
+
+jobs:
+  replay-validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: canonical-character-training-ui-hardening
+          fetch-depth: 0
+      - name: Replay on live main
+        shell: bash
+        run: |
+          git fetch origin main canonical-character-training-ui-hardening
+          git rebase origin/main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install
+        run: python -m pip install -e ".[dev]"
+      - name: Materialize and prove idempotence
+        shell: bash
+        run: |
+          python scripts/harden_character_training_ui_canon.py
+          before=$(git diff | sha256sum | cut -d' ' -f1)
+          python scripts/harden_character_training_ui_canon.py
+          after=$(git diff | sha256sum | cut -d' ' -f1)
+          test "$before" = "$after"
+      - name: Full validation
+        shell: bash
+        run: |
+          python -m pytest -q
+          tlvi validate
+          tlvi index
+      - name: Persist replay and remove temporary workflow
+        shell: bash
+        run: |
+          rm .github/workflows/character-domain-replay-validate.yml
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add -A
+          if ! git diff --cached --quiet; then
+            git commit -m "Replay and validate character training UI canon"
+          fi
+          git push --force-with-lease origin HEAD:canonical-character-training-ui-hardening

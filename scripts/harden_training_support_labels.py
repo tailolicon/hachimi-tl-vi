@@ -71,6 +71,25 @@ def harden(repo_root: Path = REPO_ROOT) -> None:
             ),
         },
     )
+    _upsert(
+        terms,
+        {
+            "id": "support.effects.character0331",
+            "category": "support",
+            "ja": ["サポート効果"],
+            "zh_cn": ["支援效果"],
+            "target_vi": "Support Effects",
+            "locked": True,
+            "source_paths": ["localize_dict.json"],
+            "json_path_prefixes": [["Character0331"]],
+            "match_mode": "exact",
+            "invalidation_scope": "item",
+            "note": (
+                "Character0331 is the player-facing Support Card section label. Use Support Effects; exact-key "
+                "scope prevents ordinary prose about support or effects from becoming a fixed system label."
+            ),
+        },
+    )
     _write(registry_path, registry)
 
     community_path = repo_root / "glossary/ui_community_terms.json"
@@ -114,6 +133,26 @@ def harden(repo_root: Path = REPO_ROOT) -> None:
             "basis": (
                 "Established English Career-training UI term for the displayed probability of training failure. "
                 "Exact-key scope avoids matching ordinary narrative failure wording."
+            ),
+        },
+    )
+    _upsert(
+        community_terms,
+        {
+            "id": "common.support_effects.character0331",
+            "source_aliases": ["支援效果"],
+            "preferred": "Support Effects",
+            "accepted": ["Support Effects"],
+            "compact": [],
+            "forbidden": ["Hiệu ứng hỗ trợ", "hiệu ứng hỗ trợ"],
+            "require_accepted": True,
+            "source_paths": ["localize_dict.json"],
+            "key_exact": ["Character0331"],
+            "match_mode": "exact",
+            "invalidation_scope": "item",
+            "basis": (
+                "Established player-facing Support Card section label. Exact Character0331 scope avoids forcing "
+                "ordinary support/effect prose into the system label."
             ),
         },
     )

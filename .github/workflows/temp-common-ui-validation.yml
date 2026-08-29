@@ -1,0 +1,20 @@
+name: TEMP Common UI validation
+on:
+  push:
+    branches: [canonical-common-ui-system-hardening]
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install -e . pytest
+      - run: pytest -q tests/test_common_ui_labels_hardening.py
+      - run: pytest -q
+      - run: python scripts/harden_common_ui_labels.py
+      - run: git diff --exit-code -- scripts/harden_common_ui_labels.py tests/test_common_ui_labels_hardening.py glossary/ui_community_terms.json || true
+      - run: python scripts/harden_common_ui_labels.py && git diff --exit-code glossary/ui_community_terms.json

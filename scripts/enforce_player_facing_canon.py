@@ -13,6 +13,8 @@ BRAND_EXCLUSIONS = [
     "ウマ娘 Pretty Derby",
     "赛马娘 Pretty Derby",
     "赛马娘Pretty Derby",
+    "育成赛马娘",
+    "育成\n赛马娘",
 ]
 
 

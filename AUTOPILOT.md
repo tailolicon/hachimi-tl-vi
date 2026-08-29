@@ -29,6 +29,19 @@ Quality gates always outrank raw translation percentage.
 
 README progress is generated from these live sources and is human-facing only. Machine routing must read the underlying JSON/protocol files.
 
+## Maintenance stages
+
+Every serial maintenance task has an explicit `active_task.stage` in `work/orchestration/state.json`:
+
+1. `domain_work` — substantive research/canonical/tooling work is still required;
+2. `ready_for_finalize` — substantive domain work is done; only bounded cleanup/integration/verification remains;
+3. `finalizing` — a finalizer currently owns/resumes that bounded finish work;
+4. `complete` — task is finished and must no longer be claimed.
+
+Legacy state with no `stage` is interpreted as `domain_work` only until it is normalized.
+
+The purpose of these stages is to prevent a completed domain from being repeatedly re-claimed as if research/inventory were still unfinished.
+
 ## Maintenance lease
 
 Serial repository-maintenance work must own `work/orchestration/maintenance_claim.json` before modifying the maintenance branch or advancing orchestration state.
@@ -37,19 +50,61 @@ A claim is valid only when:
 
 - `status == "active"`;
 - `task_id` matches the currently selected maintenance task/finding;
-- `lease_expires_at` is still in the future.
+- `lease_expires_at` is still in the future;
+- its claim stage is compatible with `active_task.stage`;
+- every lease refresh after the initial claim contains NEW durable progress evidence.
 
 Fresh claim/takeover rules:
 
 1. fetch the current claim file and blob SHA;
-2. if released/unclaimed/expired, update it with a unique worker ID/claim ID and the current task ID;
+2. if released/unclaimed/expired, update it with a unique worker ID/claim ID, current task ID, and current maintenance stage;
 3. use the rolling lease from `work/worker_session_policy.json`;
 4. checkpoint durable task changes before refreshing the lease;
 5. never overwrite another worker's non-expired active claim;
 6. at handoff, persist branch/task progress first, then mark the claim `released` with branch/head/checkpoint notes;
 7. after completing the task and advancing orchestration state, mark the claim `complete` for the finished task. The next task may reset/reuse the file only after reading current orchestration state.
 
+### Progress-backed heartbeat requirement
+
+A maintenance heartbeat is not a clock tick. It is a claim refresh backed by new durable progress.
+
+Before each refresh, persist at least one new durable artifact and record it in the claim as:
+
+- `progress_token` — unique token that changed since the previous claim write;
+- `progress_kind` — e.g. `branch_head`, `task_checkpoint`, `validation_run`, `sync_run`, `state_transition`;
+- `progress_ref` — durable GitHub ref/SHA/run ID/path that proves the progress;
+- `last_progress_at` — timestamp of that durable progress.
+
+Valid examples include a new maintenance-branch head, a changed persistent task checkpoint, a newly completed validation/sync run whose result is checkpointed, or an orchestration-stage transition.
+
+Invalid heartbeat: changing only `heartbeat_at` and `lease_expires_at`, or reusing the same `progress_token` merely because time passed.
+
+If there is no new durable progress, do not refresh the lease. Continue read-only work only while the existing lease is valid; at handoff release the claim, otherwise let it expire so another worker can take over.
+
+Waiting for CI is not by itself progress. A newly observed CI state/result becomes progress only when its run/job identity and result are persisted as a changed checkpoint.
+
 If initial canonical hardening is blocking and another worker owns the active claim, do not start review/translation work behind the hardening gate.
+
+## Finalization contract
+
+`ready_for_finalize` and `finalizing` are deliberately narrow.
+
+A finalizer MAY:
+
+- remove temporary inventory/debug/staging artifacts;
+- fix small acceptance discrepancies already identified by the task evidence;
+- clean imports/formatting/build wiring needed for integration;
+- rebase/cherry-pick/reconstruct clean permanent changes onto live `main` without overwriting unrelated work;
+- run tests/validation;
+- run production Sync and the required second unchanged no-op Sync;
+- inspect representative regenerated contexts;
+- persist completion evidence and advance orchestration.
+
+A finalizer MUST NOT restart broad inventory, redo evidence gathering, or reopen the whole domain because the branch diverged. Branch divergence is an integration problem, not proof that domain research is incomplete.
+
+Return from `finalizing` to `domain_work` only when finalization produces concrete evidence of a substantive unresolved domain defect. Persist the exact defect/evidence in the task file and state transition.
+
+When substantive domain work becomes complete, the current owner should persist `stage = "ready_for_finalize"` and release the claim promptly instead of holding the same lease across indefinite cleanup/integration work.
 
 ## Phase 0 — initial canonical hardening
 
@@ -80,10 +135,23 @@ Canonical-hardening rules:
 - remove temporary staging/inventory workflows/scripts before integration;
 - full tests + plan rebuild + production Sync + second unchanged no-op Sync are required before a hardening domain is complete.
 
-When a domain completes, the maintainer must atomically update `work/orchestration/state.json`:
+### Domain-work -> finalization transition
+
+When substantive canonical decisions, permanent hardener/tooling, and permanent regression coverage are complete, but cleanup/integration/production verification remains:
+
+1. checkpoint exact completed-domain evidence in the task file;
+2. update `active_task.stage` from `domain_work` to `ready_for_finalize` using current blob SHA;
+3. do not mark the roadmap item complete yet;
+4. release the domain-work maintenance claim;
+5. allow a fresh worker to claim the bounded finalization stage.
+
+A finalizer then sets `stage = "finalizing"`, completes the finalization contract, and only after live verification marks the roadmap task `complete`.
+
+When a domain fully completes, the finalizer must atomically update `work/orchestration/state.json`:
 
 - mark the completed roadmap task `complete` with final main SHA and summary;
-- activate the next pending canonical-hardening task;
+- set the completed task stage/status to `complete` in durable history/summary;
+- activate the next pending canonical-hardening task with `stage = "domain_work"`;
 - set its task file/branch if needed;
 - keep `blocking_maintenance: true` until the final initial-hardening task is complete.
 
@@ -148,7 +216,7 @@ Trigger condition:
 - all entries in the current queued wave are canonically merged/covered;
 - `work/translation_progress.json.deferred_entries > 0`.
 
-This is serial maintenance and uses the maintenance claim.
+This is serial maintenance and uses the maintenance claim/stage lifecycle above.
 
 The maintainer must inspect the live queue-generation/source-batch tooling rather than inventing a new corpus. The next wave must:
 
@@ -211,6 +279,8 @@ Before every state transition:
 ## Session behavior
 
 Use `work/worker_session_policy.json` for timing. For serial maintenance that cannot finish in one session, checkpoint branch/task evidence in GitHub and release the maintenance claim by handoff time. The next fresh worker resumes from repository state and the task file; it does not restart research.
+
+Do not keep a serial task alive by periodic time-only heartbeats. A refresh without a new durable progress token violates the protocol and should be treated as stale coordination rather than evidence of useful work.
 
 The desired human workflow remains one line forever:
 

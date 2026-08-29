@@ -24,29 +24,29 @@
     "final_conflict_sweep_rule": "canonical-final-conflict-sweep is dependency-gated and starts only after all earlier initial canonical domains are complete on live main."
   },
   "active_task": {
-    "task_id": "canonical-common-ui-system",
-    "title": "Common system/UI player-facing terminology",
+    "task_id": "canonical-character-training-ui",
+    "title": "Character / training-career UI terminology",
     "task_file": "work/orchestration/tasks/remaining-canonical-domains.md",
-    "branch": "canonical-common-ui-system-hardening",
-    "last_observed_branch_sha": "c174ae9c6b40fa02913f83640729695336511157",
+    "branch": "canonical-character-training-ui-hardening",
+    "last_observed_branch_sha": "3f613bd18ff9fe10a9f9111f68078dc410540316",
     "status": "active",
     "stage": "finalizing",
     "primary_lane": true,
     "integration_serial": true,
     "domain_work_parallel": true,
     "blocks_mass_work": true,
-    "activated_at": "2026-08-29T16:59:00Z",
-    "predecessor_task_id": "canonical-resources-gacha-shop",
-    "activation_summary": "Resources/Gacha/Shop is complete. Common UI/System is the earliest dependency-satisfied ready_for_integration domain and now occupies the serial primary integration lane.",
-    "domain_work_checkpoint": "work/orchestration/checkpoints/canonical-common-ui-system-w1-20260829T1617Z.md",
-    "domain_work_summary": "Common UI/System exact-key hardening covers repeated confirmation, cancellation, selection, close/change/use/search/sort/filter/reset/navigation labels with Race-phase and prose-negative guards; branch validation and hardener no-op evidence are checkpointed.",
+    "activated_at": "2026-08-29T17:40:00Z",
+    "predecessor_task_id": "canonical-common-ui-system",
+    "activation_summary": "Common UI/System finalization evidence is complete on live main and stale orchestration state has been reconciled. Character/Training UI is the earliest dependency-satisfied ready_for_integration domain in roadmap order and now occupies the serial primary integration lane.",
+    "domain_work_checkpoint": "work/orchestration/checkpoints/canonical-character-training-ui-codex-20260829T1658Z.md",
+    "domain_work_summary": "Character/Training UI domain work is checkpointed on branch 3f613bd18ff9fe10a9f9111f68078dc410540316 and ready for selective integration/finalization against live main.",
     "finalization_scope": [
-      "selectively integrate only permanent Common UI/System hardener, glossary materialization, tests, and checkpoint onto current live main while preserving concurrent changes",
+      "selectively integrate only permanent Character/Training UI hardener, glossary materialization, tests, and checkpoint onto current live main while preserving concurrent changes",
       "run full validation and hardener idempotence",
       "rebuild retrospective review context",
       "run production Sync and second unchanged no-op Sync",
-      "spot-check Common0001/Common0002, Common0007, Common0087/Common0098, Common0092/Common0093 negative guard, and RoomMatch0117 compound-negative behavior",
-      "mark Common UI/System complete and continue the next highest-priority eligible canonical unit"
+      "spot-check representative positive and negative Character/Training UI contexts",
+      "mark Character/Training UI complete and continue the next highest-priority eligible canonical unit"
     ]
   },
   "roadmap": [
@@ -82,19 +82,18 @@
     {
       "id": "canonical-character-training-ui",
       "title": "Character / training-career UI terminology",
-      "status": "ready_for_integration",
-      "stage": "ready_for_finalize",
+      "status": "active",
+      "stage": "finalizing",
       "kind": "canonical_hardening",
       "task_file": "work/orchestration/tasks/remaining-canonical-domains.md",
       "suggested_branch": "canonical-character-training-ui-hardening",
       "branch": "canonical-character-training-ui-hardening",
       "parallel_eligible": true,
       "claim_path": "work/orchestration/domain_claims/canonical-character-training-ui.json",
-      "depends_on": [
-        "canonical-race"
-      ],
+      "depends_on": ["canonical-race"],
       "domain_work_checkpoint": "work/orchestration/checkpoints/canonical-character-training-ui-codex-20260829T1658Z.md",
-      "last_observed_branch_sha": "3f613bd18ff9fe10a9f9111f68078dc410540316"
+      "last_observed_branch_sha": "3f613bd18ff9fe10a9f9111f68078dc410540316",
+      "activated_at": "2026-08-29T17:40:00Z"
     },
     {
       "id": "canonical-resources-gacha-shop",
@@ -107,9 +106,7 @@
       "branch": "canonical-resources-gacha-shop-hardening",
       "parallel_eligible": true,
       "claim_path": "work/orchestration/domain_claims/canonical-resources-gacha-shop.json",
-      "depends_on": [
-        "canonical-race"
-      ],
+      "depends_on": ["canonical-race"],
       "domain_work_checkpoint": "work/orchestration/checkpoints/canonical-resources-gacha-shop-w2-20260829T1609Z.md",
       "activated_at": "2026-08-29T16:20:34Z",
       "completed_at": "2026-08-29T16:59:00Z",
@@ -128,28 +125,28 @@
       "branch": "canonical-missions-events-hardening",
       "parallel_eligible": true,
       "claim_path": "work/orchestration/domain_claims/canonical-missions-events.json",
-      "depends_on": [
-        "canonical-race"
-      ],
+      "depends_on": ["canonical-race"],
       "domain_work_checkpoint": "work/orchestration/checkpoints/canonical-missions-events-codex2-20260829T1703Z.md",
       "last_observed_branch_sha": "31a9c5f6a4a3ab2e80b7babb9eabc2993b088669"
     },
     {
       "id": "canonical-common-ui-system",
       "title": "Common system/UI player-facing terminology",
-      "status": "active",
-      "stage": "finalizing",
+      "status": "complete",
+      "stage": "complete",
       "kind": "canonical_hardening",
       "task_file": "work/orchestration/tasks/remaining-canonical-domains.md",
       "suggested_branch": "canonical-common-ui-system-hardening",
       "branch": "canonical-common-ui-system-hardening",
       "parallel_eligible": true,
       "claim_path": "work/orchestration/domain_claims/canonical-common-ui-system.json",
-      "depends_on": [
-        "canonical-race"
-      ],
+      "depends_on": ["canonical-race"],
       "domain_work_checkpoint": "work/orchestration/checkpoints/canonical-common-ui-system-w1-20260829T1617Z.md",
-      "activated_at": "2026-08-29T16:59:00Z"
+      "activated_at": "2026-08-29T16:59:00Z",
+      "completed_at": "2026-08-29T17:40:00Z",
+      "finalization_checkpoint": "work/orchestration/checkpoints/canonical-common-ui-system-finalizer-codex-20260829T1703Z.md",
+      "integrated_main_sha": "d31031b31114a0dafed647a3b73904e1105e4c4b",
+      "production_sync_sha": "09064e9cc416683b8ddbc2d60e2df40e66ee062e"
     },
     {
       "id": "canonical-final-conflict-sweep",
@@ -161,14 +158,7 @@
       "suggested_branch": "canonical-final-conflict-sweep",
       "branch": "canonical-final-conflict-sweep",
       "parallel_eligible": false,
-      "depends_on": [
-        "canonical-race",
-        "canonical-training-support",
-        "canonical-character-training-ui",
-        "canonical-resources-gacha-shop",
-        "canonical-missions-events",
-        "canonical-common-ui-system"
-      ]
+      "depends_on": ["canonical-race", "canonical-training-support", "canonical-character-training-ui", "canonical-resources-gacha-shop", "canonical-missions-events", "canonical-common-ui-system"]
     },
     {
       "id": "translation-review-round1",
@@ -229,12 +219,7 @@
   ],
   "scope_policy": {
     "initial_hardening_focus": "High-frequency player-facing gameplay/system terminology only.",
-    "skip_as_blocking_domains": [
-      "songs",
-      "lyrics",
-      "staff_names",
-      "creator_credits"
-    ],
+    "skip_as_blocking_domains": ["songs", "lyrics", "staff_names", "creator_credits"],
     "systemic_finding_policy": "Record a canonical finding, verify once, lock/defer/ignore explicitly, and let context invalidation reopen affected prior translations. Never let workers invent competing local standards.",
     "localized_data_policy": "Canonical hardening never patches localized_data examples directly. Merge pipelines apply reviewed translation changes."
   },

@@ -27,6 +27,9 @@ def _record(root: Path, key: str, source: str, target: str, rid: str):
 def test_common_status_and_action_controls_are_exact_key_scoped(tmp_path: Path) -> None:
     root = _seed(tmp_path)
     cases = [
+        ("Common0001", "确定", "Xác nhận", "common_ui.confirm.common0001"),
+        ("Common0002", "取消", "Hủy", "common_ui.cancel.common0002_0004"),
+        ("Common0004", "取消", "Hủy", "common_ui.cancel.common0002_0004"),
         ("Common0005", "选择中", "Đang chọn", "common_ui.selecting.common0005"),
         ("Common0007", "关闭", "Đóng", "common_ui.close.common0007"),
         ("Common0008", "更改", "Thay đổi", "common_ui.change.common0008"),
@@ -46,7 +49,7 @@ def test_compact_control_forms_are_accepted(tmp_path: Path) -> None:
     assert _record(root, "Common0013", "使用", "Dùng", "common_ui.use.common0013")["accepted_present"] is True
 
 
-def test_cancel_is_scoped_to_standalone_circle_control(tmp_path: Path) -> None:
+def test_cancel_is_scoped_to_controls_not_status_or_compounds(tmp_path: Path) -> None:
     root = _seed(tmp_path)
     assert _record(root, "Circle0086", "取消", "Hủy", "common_ui.cancel.circle0086")["accepted_present"] is True
     assert community_term_matches("Circle0085", "申请已取消", "Đã hủy đăng ký", load_community_terms(root), source_path="localize_dict.json", json_path=["Circle0085"]) == []

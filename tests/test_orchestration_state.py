@@ -36,9 +36,13 @@ def test_canonical_domain_work_is_parallel_but_integration_is_serial() -> None:
     assert parallel["domain_claim_dir"] == "work/orchestration/domain_claims"
 
     active = state["active_task"]
+    active_item = next(item for item in state["roadmap"] if item["id"] == active["task_id"])
     assert active["primary_lane"] is True
     assert active["integration_serial"] is True
-    assert active["domain_work_parallel"] is True
+    # Substantive domain work can be parallel, but the dependency-gated final
+    # conflict sweep is intentionally serial. The active-task routing flag must
+    # therefore agree with the roadmap item's parallel eligibility.
+    assert active["domain_work_parallel"] is bool(active_item.get("parallel_eligible", False))
     assert active["blocks_mass_work"] is True
 
 

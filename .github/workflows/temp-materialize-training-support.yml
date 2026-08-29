@@ -22,9 +22,10 @@ jobs:
         run: |
           python scripts/harden_training_support_canon.py
           python scripts/harden_training_support_labels.py
+          python scripts/harden_training_support_effect_labels.py
           git diff --check
       - name: Focused tests
-        run: python -m pytest tests/test_training_support_hardening.py tests/test_training_support_labels_hardening.py -q
+        run: python -m pytest tests/test_training_support_hardening.py tests/test_training_support_labels_hardening.py tests/test_training_support_effect_labels_hardening.py -q
       - name: Full tests
         run: python -m pytest -q
       - name: CLI validation

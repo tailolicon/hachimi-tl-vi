@@ -16,12 +16,33 @@ def test_universal_entrypoint_and_spawn_prompt_are_persistent() -> None:
     state = load_state()
     assert state["entrypoint"] == "WORKER_START.md"
     assert state["autopilot_protocol"] == "AUTOPILOT.md"
+    assert state["canonical_parallel_protocol"] == "CANONICAL_PARALLEL.md"
     assert state["short_spawn_prompt"] == "Run tailolicon/hachimi-tl-vi/WORKER_START.md from main."
     assert (ROOT / state["entrypoint"]).is_file()
     assert (ROOT / state["autopilot_protocol"]).is_file()
+    assert (ROOT / state["canonical_parallel_protocol"]).is_file()
 
 
-def test_active_task_is_unique_and_backed_by_persistent_file() -> None:
+def test_canonical_domain_work_is_parallel_but_integration_is_serial() -> None:
+    state = load_state()
+    assert state["schema_version"] >= 3
+    assert state["orchestration_version"] >= 3
+
+    parallel = state["canonical_parallelism"]
+    assert parallel["enabled"] is True
+    assert parallel["domain_work_parallel"] is True
+    assert parallel["integration_serial"] is True
+    assert parallel["primary_claim_path"] == "work/orchestration/maintenance_claim.json"
+    assert parallel["domain_claim_dir"] == "work/orchestration/domain_claims"
+
+    active = state["active_task"]
+    assert active["primary_lane"] is True
+    assert active["integration_serial"] is True
+    assert active["domain_work_parallel"] is True
+    assert active["blocks_mass_work"] is True
+
+
+def test_parallel_canonical_tasks_have_independent_claim_files() -> None:
     state = load_state()
     roadmap = state["roadmap"]
     ids = [item["id"] for item in roadmap]
@@ -31,13 +52,41 @@ def test_active_task_is_unique_and_backed_by_persistent_file() -> None:
     matches = [item for item in roadmap if item["id"] == active["task_id"]]
     assert len(matches) == 1
     assert matches[0]["status"] == "active"
-    assert Path(active["task_file"]).as_posix() == matches[0]["task_file"]
     assert (ROOT / active["task_file"]).is_file()
 
-    if state["phase"] == "canonical_hardening":
-        assert state["blocking_maintenance"] is True
-        assert active["serial"] is True
-        assert active["blocks_mass_work"] is True
+    parallel_tasks = [
+        item
+        for item in roadmap
+        if item.get("kind") == "canonical_hardening"
+        and item.get("parallel_eligible") is True
+        and item["id"] != active["task_id"]
+        and item.get("status") != "complete"
+    ]
+    assert parallel_tasks
+    for item in parallel_tasks:
+        claim_path = item.get("claim_path")
+        assert claim_path, item["id"]
+        path = ROOT / claim_path
+        assert path.is_file(), item["id"]
+        claim = json.loads(path.read_text(encoding="utf-8"))
+        assert claim["task_id"] == item["id"]
+        assert claim["branch"] == item["branch"]
+        assert claim["status"] in {"unclaimed", "active", "released", "ready_for_integration", "complete"}
+
+
+def test_final_conflict_sweep_is_dependency_gated_not_parallel() -> None:
+    state = load_state()
+    sweep = next(item for item in state["roadmap"] if item["id"] == "canonical-final-conflict-sweep")
+    assert sweep["parallel_eligible"] is False
+    deps = set(sweep["depends_on"])
+    assert {
+        "canonical-race",
+        "canonical-training-support",
+        "canonical-character-training-ui",
+        "canonical-resources-gacha-shop",
+        "canonical-missions-events",
+        "canonical-common-ui-system",
+    } <= deps
 
 
 def test_every_roadmap_phase_has_repository_owned_instructions() -> None:

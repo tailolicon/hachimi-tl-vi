@@ -138,6 +138,46 @@ def harden(repo_root: Path = REPO_ROOT) -> None:
             ),
         },
     )
+    _upsert(
+        terms,
+        {
+            "id": "resource.goddess_statue",
+            "ja": ["女神像"],
+            "zh_cn": ["女神像"],
+            "preferred": "Goddess Statues",
+            "accepted": ["Goddess Statue", "Goddess Statues"],
+            "forbidden": ["Tượng Nữ thần", "Tượng nữ thần", "tượng nữ thần"],
+            "require_accepted": True,
+            "source_paths": ["localize_dict.json"],
+            "key_prefixes": ["Gacha", "Shop"],
+            "match_mode": "contains",
+            "note": (
+                "女神像 in Gacha/Shop UI is the persistent Goddess Statues resource awarded for "
+                "duplicate trainees. Restrict enforcement to resource-facing localize keys so a "
+                "literal goddess statue in narrative prose remains ordinary language."
+            ),
+        },
+    )
+    _upsert(
+        terms,
+        {
+            "id": "currency.club_points",
+            "ja": ["サークルPt", "サークルポイント"],
+            "zh_cn": ["社团点数", "社團點數"],
+            "preferred": "Club Points",
+            "accepted": ["Club Point", "Club Points"],
+            "forbidden": ["điểm câu lạc bộ", "Điểm câu lạc bộ"],
+            "require_accepted": True,
+            "source_paths": ["localize_dict.json"],
+            "key_exact": ["StoryEvent4080030"],
+            "match_mode": "contains",
+            "note": (
+                "The observed StoryEvent4080030 UI label is explicitly a Club Points exchange. "
+                "Keep this first lock exact-key scoped until additional corpus keys prove safe "
+                "broader contexts for the same currency."
+            ),
+        },
+    )
 
     _write(bridge_path, payload)
 

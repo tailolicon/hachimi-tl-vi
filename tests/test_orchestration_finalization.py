@@ -43,6 +43,31 @@ def test_worker_policy_is_execution_backend_independent() -> None:
     assert "Do not release/checkpoint merely because one backend failed" in worker_start
 
 
+def test_worker_policy_targets_full_productive_session() -> None:
+    policy = load_json("work/worker_session_policy.json")
+    worker_start = (ROOT / "WORKER_START.md").read_text(encoding="utf-8")
+    worker_25 = (ROOT / "WORKER_25MIN.md").read_text(encoding="utf-8")
+    autopilot = (ROOT / "AUTOPILOT.md").read_text(encoding="utf-8")
+
+    assert policy["policy_version"] >= 4
+    assert policy["productive_target_minutes"] == 22
+    assert policy["stop_new_batch_after_minutes"] >= 21
+    assert policy["handoff_start_minutes"] == 22
+    assert policy["session_minutes"] == 25
+    assert "checkpoint is durability, not a stop condition" in policy["partial_checkpoint_rule"]
+    assert "do not voluntarily end" in policy["productive_session_rule"]
+    assert "immediately re-read live routing" in policy["continuation_rule"]
+    assert "same owner should atomically transition" in policy["maintenance_finalizer_rule"]
+
+    assert "checkpoint is not stop" in worker_start.lower()
+    assert "A stage boundary is a durability boundary, not a mandatory session boundary" in worker_start
+    assert "continue the next immediately runnable roadmap task" in worker_start
+    assert "checkpointing is not a stop condition" in worker_25
+    assert "A completed unit is a continuation trigger" in worker_25
+    assert "stage boundaries are durability boundaries, not mandatory worker boundaries" in autopilot
+    assert "Never idle merely to reach the handoff minute" in autopilot
+
+
 def test_live_orchestration_state_has_explicit_valid_stage() -> None:
     policy = load_json("work/worker_session_policy.json")
     state = load_json("work/orchestration/state.json")

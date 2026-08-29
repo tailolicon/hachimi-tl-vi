@@ -1,0 +1,122 @@
+name: Sync root README progress
+
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+  workflow_run:
+    workflows:
+      - "Aggregate parallel translation results"
+      - "Merge parallel translation results"
+      - "Merge parallel curation results"
+      - "Merge UI review results"
+      - "Merge translation review results"
+      - "Sync translation review plan"
+    types: [completed]
+  push:
+    branches: [main]
+    paths:
+      - "WORKER_START.md"
+      - "AUTOPILOT.md"
+      - "work/orchestration/**"
+      - "scripts/update_root_readme_progress.py"
+      - "scripts/build_progress_dashboard.py"
+      - "scripts/build_progress_dashboard_v2.py"
+      - "scripts/build_progress_dashboard_v3.py"
+      - "work/translation_progress.json"
+      - "work/parallel_state.json"
+      - "work/merged/**"
+      - "work/completions/**"
+      - "work/parallel/**"
+      - "work/translation_review/active_plan.json"
+      - "work/translation_review/completions/**"
+      - "work/translation_review/merged/**"
+      - "work/curation/completions/**"
+      - "work/curation/merged/**"
+      - "work/ui_review/completions/**"
+      - "work/ui_review/merged/**"
+      - ".github/workflows/sync-root-readme-progress.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: root-readme-progress
+  cancel-in-progress: true
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 1
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            README.md
+            WORKER_START.md
+            AUTOPILOT.md
+            scripts/build_progress_dashboard.py
+            scripts/build_progress_dashboard_v2.py
+            scripts/build_progress_dashboard_v3.py
+            scripts/update_root_readme_progress.py
+            work/orchestration/
+            work/translation_progress.json
+            work/parallel_state.json
+            work/merged/
+            work/claims/
+            work/completions/
+            work/parallel/
+            work/translation_review/
+            work/curation/
+            work/ui_review/
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Rebuild live progress and update root README
+        shell: bash
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            git checkout -B root-readme-progress origin/main
+            git reset --hard origin/main
+            git clean -fd
+
+            python -m py_compile \
+              scripts/build_progress_dashboard.py \
+              scripts/build_progress_dashboard_v2.py \
+              scripts/build_progress_dashboard_v3.py \
+              scripts/update_root_readme_progress.py
+
+            rm -rf "$RUNNER_TEMP/root-readme-progress"
+            python scripts/build_progress_dashboard_v3.py \
+              --repo-root . \
+              --output-dir "$RUNNER_TEMP/root-readme-progress"
+            python scripts/update_root_readme_progress.py \
+              --repo-root . \
+              --progress-json "$RUNNER_TEMP/root-readme-progress/progress.json"
+
+            if git diff --quiet -- README.md; then
+              echo "README progress block already current"
+              exit 0
+            fi
+
+            git add README.md
+            git commit -m "Progress: refresh root README live state"
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+            sleep $((attempt * 2))
+          done
+
+          echo "Failed to publish root README progress after retries" >&2
+          exit 1

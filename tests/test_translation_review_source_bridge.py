@@ -24,9 +24,20 @@ def _by_id(matches):
     return {match["id"]: match for match in matches}
 
 
+def _localize_matches(source: str, target: str, terms, *, key: str = "ShopTest001"):
+    return source_bridge_term_matches(
+        source,
+        target,
+        terms,
+        key=key,
+        source_path="localize_dict.json",
+        json_path=[key],
+    )
+
+
 def test_monies_rejects_literal_coin_translation() -> None:
     terms, _ = _bridge_rules()
-    matches = source_bridge_term_matches("金币不足", "Không đủ xu", terms)
+    matches = _localize_matches("金币不足", "Không đủ xu", terms)
     assert len(matches) == 1
     assert matches[0]["id"] == "currency.monies"
     assert matches[0]["accepted_present"] is False
@@ -35,7 +46,7 @@ def test_monies_rejects_literal_coin_translation() -> None:
 
 def test_monies_accepts_player_facing_term() -> None:
     terms, _ = _bridge_rules()
-    matches = source_bridge_term_matches("素材和金币不足", "Không đủ nguyên liệu và Monies", terms)
+    matches = _localize_matches("素材和金币不足", "Không đủ nguyên liệu và Monies", terms)
     assert len(matches) == 1
     assert matches[0]["accepted_present"] is True
     assert matches[0]["forbidden_present"] is False
@@ -76,7 +87,7 @@ def test_mood_accepts_player_facing_term() -> None:
 
 def test_cleat_rejects_horse_world_calque() -> None:
     terms, _ = _bridge_rules()
-    matches = _by_id(source_bridge_term_matches(
+    matches = _by_id(_localize_matches(
         "通过转换支援卡\n获得了以下的蹄铁",
         "Khi chuyển đổi Thẻ Hỗ trợ\nđã nhận được các Móng ngựa sau",
         terms,
@@ -89,7 +100,7 @@ def test_cleat_rejects_horse_world_calque() -> None:
 
 def test_cleat_accepts_player_facing_term() -> None:
     terms, _ = _bridge_rules()
-    matches = _by_id(source_bridge_term_matches(
+    matches = _by_id(_localize_matches(
         "通过转换支援卡\n获得了以下的蹄铁",
         "Khi chuyển đổi Support Card\nđã nhận được các Cleats sau",
         terms,
@@ -111,7 +122,12 @@ def test_known_lossy_zhcn_title_is_untrusted() -> None:
 
 def test_merge_auto_defers_literal_bridge_keep() -> None:
     terms, risks = _bridge_rules()
-    item = {"source_text": "金币不足"}
+    item = {
+        "source_text": "金币不足",
+        "source_path": "localize_dict.json",
+        "json_path": ["ShopTest001"],
+        "key": "ShopTest001",
+    }
     reasons, matched_terms, matched_risks = _bridge_auto_defer_reasons(
         item,
         "Không đủ xu",

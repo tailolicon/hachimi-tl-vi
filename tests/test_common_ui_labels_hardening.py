@@ -53,17 +53,20 @@ def test_cancel_is_scoped_to_standalone_circle_control(tmp_path: Path) -> None:
     assert community_term_matches("RoomMatch0124", "取消举办", "Hủy tổ chức", load_community_terms(root), source_path="localize_dict.json", json_path=["RoomMatch0124"]) == []
 
 
-def test_navigation_and_sort_controls_are_exact_key_scoped(tmp_path: Path) -> None:
+def test_navigation_selection_and_sort_controls_are_exact_key_scoped(tmp_path: Path) -> None:
     root = _seed(tmp_path)
     cases = [
         ("Common0082", "返回", "Quay lại", "common_ui.back.common0082"),
         ("Common0083", "下项", "Tiếp theo", "common_ui.next.common0083"),
         ("Common0084", "卸下", "Tháo", "common_ui.remove.common0084"),
+        ("Common0085", "无指定", "Không chỉ định", "common_ui.unspecified.common0085"),
         ("Common0087", "排序", "Sắp xếp", "common_ui.sort.common0087"),
         ("Common0096", "重置", "Đặt lại", "common_ui.reset.common0096"),
+        ("Common0097", "不能选择", "Không thể chọn", "common_ui.cannot_select.common0097"),
         ("Common0098", "筛选", "Lọc", "common_ui.filter.common0098"),
         ("Common0100", "升序", "Tăng dần", "common_ui.sort_ascending.common0100"),
         ("Common0101", "降序", "Giảm dần", "common_ui.sort_descending.common0101"),
+        ("Common0136", "显示顺序", "Thứ tự hiển thị", "common_ui.display_order.common0136"),
     ]
     for key, source, target, rid in cases:
         record = _record(root, key, source, target, rid)

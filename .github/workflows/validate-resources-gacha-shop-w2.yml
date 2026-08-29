@@ -6,7 +6,7 @@ on:
       - canonical-resources-gacha-shop-hardening
     paths:
       - 'scripts/harden_resources_gacha_shop_canon.py'
-      - 'tests/test_resources_gacha_shop_hardening.py'
+      - 'tests/test_resources_gacha_shop*.py'
       - '.github/workflows/validate-resources-gacha-shop-w2.yml'
 
 permissions:
@@ -27,7 +27,7 @@ jobs:
       - name: Materialize canonical bridge
         run: python scripts/harden_resources_gacha_shop_canon.py
       - name: Focused tests
-        run: python -m pytest -q tests/test_resources_gacha_shop_hardening.py
+        run: python -m pytest -q tests/test_resources_gacha_shop*.py
       - name: Idempotence
         run: |
           cp glossary/source_bridge_terms.json /tmp/bridge.json

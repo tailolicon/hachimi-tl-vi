@@ -56,7 +56,7 @@ def build_block(progress: dict[str, Any], state: dict[str, Any]) -> str:
     review_candidates = int(r.get("candidates") or 0)
     review_resolved = int(r.get("resolved_entries") or 0)
     ui_candidates = int(u.get("candidates") or 0)
-    ui_done = int(u.get("merged") or 0)
+    ui_done = int(u.get("reviewed_items") or 0)
     gate = "LOCKED" if bool(r.get("gate_enabled")) else "OPEN"
 
     speech = c.get("speech") or {}
@@ -82,7 +82,7 @@ def build_block(progress: dict[str, Any], state: dict[str, Any]) -> str:
             f"| Current translation wave | **{translated:,} / {queued:,} ({pct(translated, queued):.2f}%)** — {remaining_queue:,} queued remaining |",
             f"| Deferred pinned entries | **{deferred:,}** — these must be promoted in later deterministic waves, not ignored |",
             f"| Translation Audit Round 1 | **{review_resolved:,} / {review_candidates:,} resolved ({pct(review_resolved, review_candidates):.2f}%)** — gate **{gate}** |",
-            f"| UI review | **{ui_done:,} / {ui_candidates:,} merged batches/candidates context** |",
+            f"| UI review | **{ui_done:,} / {ui_candidates:,} reviewed items ({pct(ui_done, ui_candidates):.2f}%)** |",
             f"| Context curation | Speech **{float(speech.get('merged_percent') or 0):.2f}%**, terminology **{float(terminology.get('merged_percent') or 0):.2f}%** |",
             f"| Active worker claims | **{int(workers.get('active_total') or 0)}** |",
             "",

@@ -43,12 +43,7 @@ def test_close_change_confirm_controls_are_exact_key_scoped(tmp_path: Path) -> N
         assert record["accepted_present"] is True
         assert record["forbidden_present"] is False
         assert community_term_matches(
-            None,
-            source,
-            target,
-            load_community_terms(root),
-            source_path="story.json",
-            json_path=["1"],
+            None, source, target, load_community_terms(root), source_path="story.json", json_path=["1"]
         ) == []
 
 
@@ -63,19 +58,21 @@ def test_cancel_is_scoped_to_standalone_circle_control(tmp_path: Path) -> None:
     record = _record(root, "Circle0086", "取消", "Hủy", "common_ui.cancel.circle0086")
     assert record["accepted_present"] is True
     assert community_term_matches(
-        "Circle0085",
-        "申请已取消",
-        "Đã hủy đăng ký",
-        load_community_terms(root),
-        source_path="localize_dict.json",
-        json_path=["Circle0085"],
+        "Circle0085", "申请已取消", "Đã hủy đăng ký", load_community_terms(root),
+        source_path="localize_dict.json", json_path=["Circle0085"]
+    ) == []
+    assert community_term_matches(
+        "RoomMatch0124", "取消举办", "Hủy tổ chức", load_community_terms(root),
+        source_path="localize_dict.json", json_path=["RoomMatch0124"]
     ) == []
 
 
-def test_filter_and_sort_controls_are_exact_key_scoped(tmp_path: Path) -> None:
+def test_back_reset_filter_sort_controls_are_exact_key_scoped(tmp_path: Path) -> None:
     root = _seed(tmp_path)
     cases = [
+        ("Common0082", "返回", "Quay lại", "common_ui.back.common0082"),
         ("Common0087", "排序", "Sắp xếp", "common_ui.sort.common0087"),
+        ("Common0096", "重置", "Đặt lại", "common_ui.reset.common0096"),
         ("Common0098", "筛选", "Lọc", "common_ui.filter.common0098"),
     ]
     for key, source, target, rid in cases:
@@ -83,13 +80,18 @@ def test_filter_and_sort_controls_are_exact_key_scoped(tmp_path: Path) -> None:
         assert record["accepted_present"] is True
         assert record["forbidden_present"] is False
         assert community_term_matches(
-            None,
-            source,
-            target,
-            load_community_terms(root),
-            source_path="story.json",
-            json_path=["1"],
+            None, source, target, load_community_terms(root), source_path="story.json", json_path=["1"]
         ) == []
+
+
+def test_details_is_scoped_to_standalone_roommatch_control(tmp_path: Path) -> None:
+    root = _seed(tmp_path)
+    record = _record(root, "RoomMatch0117", "详情", "Chi tiết", "common_ui.details.roommatch0117")
+    assert record["accepted_present"] is True
+    assert community_term_matches(
+        "Outgame0167", "支援卡详情", "Chi tiết Support Card", load_community_terms(root),
+        source_path="localize_dict.json", json_path=["Outgame0167"]
+    ) == []
 
 
 def test_common_ui_hardener_is_idempotent(tmp_path: Path) -> None:

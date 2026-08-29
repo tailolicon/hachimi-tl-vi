@@ -71,15 +71,18 @@
     },
     {
       "id": "system.friendship_training",
-      "category": "system",
+      "category": "training",
       "ja": [
         "友情トレーニング"
       ],
       "zh_cn": [
         "友情训练"
       ],
-      "target_vi": "Huấn luyện Hữu nghị",
-      "locked": true
+      "target_vi": "Friendship Training",
+      "locked": true,
+      "match_mode": "contains",
+      "invalidation_scope": "item",
+      "note": "Player-facing training mechanic. Use Friendship Training; do not calque as Huấn luyện Hữu nghị/huấn luyện tình bạn. The rule matches only the full mechanic compound."
     },
     {
       "id": "system.support_card",
@@ -406,16 +409,11 @@
     {
       "id": "progress.bond",
       "category": "progress",
-      "ja": [
-        "絆",
-        "絆ゲージ"
-      ],
-      "zh_cn": [
-        "羁绊",
-        "羁绊条"
-      ],
+      "ja": [],
+      "zh_cn": [],
       "target_vi": "Gắn kết",
-      "locked": true
+      "locked": false,
+      "note": "Umbrella friendship/bond vocabulary only. Bare 絆/羁绊 is intentionally not globally locked; use scoped Friendship Gauge records for proven gameplay gauge contexts."
     },
     {
       "id": "currency.jewel",
@@ -34820,6 +34818,152 @@
       "match_mode": "exact",
       "invalidation_scope": "item",
       "note": "At retrospective identity 111/134, lossy zh-CN 京城锦标 is Keio Hai Nisai Stakes. Keep it structurally distinct from Miyako Stakes at 32/3061 and 33/3061."
+    },
+    {
+      "id": "progress.friendship_gauge.support_effects",
+      "category": "progression",
+      "ja": [
+        "絆ゲージ"
+      ],
+      "zh_cn": [
+        "羁绊值"
+      ],
+      "target_vi": "Friendship Gauge",
+      "locked": true,
+      "source_paths": [
+        "text_data_dict.json"
+      ],
+      "json_path_prefixes": [
+        [
+          "155"
+        ]
+      ],
+      "match_mode": "contains",
+      "invalidation_scope": "item",
+      "note": "Support-effect descriptions in text_data category 155 use 羁绊值 for the Support Card Friendship Gauge. Do not generalize bare friendship/bond prose to this system label."
+    },
+    {
+      "id": "resource.support_points.common0160",
+      "category": "resource",
+      "ja": [
+        "サポートPt",
+        "サポートポイント"
+      ],
+      "zh_cn": [
+        "支援点数"
+      ],
+      "target_vi": "Support Pt",
+      "locked": true,
+      "source_paths": [
+        "localize_dict.json"
+      ],
+      "json_path_prefixes": [
+        [
+          "Common0160"
+        ]
+      ],
+      "match_mode": "exact",
+      "invalidation_scope": "item",
+      "note": "Common0160 is the compact Support Points resource label. Use Support Pt in the UI; Support Points remains acceptable in prose."
+    },
+    {
+      "id": "state.energy.singlemode",
+      "category": "training",
+      "ja": [
+        "体力"
+      ],
+      "zh_cn": [
+        "体力"
+      ],
+      "target_vi": "Energy",
+      "locked": true,
+      "source_paths": [
+        "localize_dict.json"
+      ],
+      "json_path_prefixes": [
+        [
+          "SingleMode0006"
+        ],
+        [
+          "SingleMode0074"
+        ],
+        [
+          "SingleMode0075"
+        ]
+      ],
+      "match_mode": "contains",
+      "invalidation_scope": "item",
+      "note": "These SingleMode slots are the Career training Energy gauge and its gain/loss messages. Scope is exact at the one-component localize path so ordinary physical-strength prose is not forced to Energy."
+    },
+    {
+      "id": "training.level.outgame352008",
+      "category": "training",
+      "ja": [
+        "トレーニングLv",
+        "トレーニングレベル"
+      ],
+      "zh_cn": [
+        "训练等级"
+      ],
+      "target_vi": "Training Level",
+      "locked": true,
+      "source_paths": [
+        "localize_dict.json"
+      ],
+      "json_path_prefixes": [
+        [
+          "Outgame352008"
+        ]
+      ],
+      "match_mode": "exact",
+      "invalidation_scope": "item",
+      "note": "Outgame352008 is the player-facing training-facility level label. Keep the established English system term Training Level; do not globally match ordinary prose about training or levels."
+    },
+    {
+      "id": "training.failure_rate.singlemode0036",
+      "category": "training",
+      "ja": [
+        "失敗率"
+      ],
+      "zh_cn": [
+        "失败率"
+      ],
+      "target_vi": "Failure Rate",
+      "locked": true,
+      "source_paths": [
+        "localize_dict.json"
+      ],
+      "json_path_prefixes": [
+        [
+          "SingleMode0036"
+        ]
+      ],
+      "match_mode": "exact",
+      "invalidation_scope": "item",
+      "note": "SingleMode0036 is the Career training probability label shown before training. Use Failure Rate; the exact localize path prevents generic narrative failure wording from matching."
+    },
+    {
+      "id": "support.effects.character0331",
+      "category": "support",
+      "ja": [
+        "サポート効果"
+      ],
+      "zh_cn": [
+        "支援效果"
+      ],
+      "target_vi": "Support Effects",
+      "locked": true,
+      "source_paths": [
+        "localize_dict.json"
+      ],
+      "json_path_prefixes": [
+        [
+          "Character0331"
+        ]
+      ],
+      "match_mode": "exact",
+      "invalidation_scope": "item",
+      "note": "Character0331 is the player-facing Support Card section label. Use Support Effects; exact-key scope prevents ordinary prose about support or effects from becoming a fixed system label."
     }
   ]
 }

@@ -1911,6 +1911,571 @@
       "match_mode": "contains",
       "invalidation_scope": "global",
       "basis": "Conventional player-facing race-grade formatting; source marker is unambiguous and applies globally."
+    },
+    {
+      "id": "common.friendship_training",
+      "source_aliases": [
+        "友情トレーニング",
+        "友情训练"
+      ],
+      "preferred": "Friendship Training",
+      "accepted": [
+        "Friendship Training"
+      ],
+      "compact": [],
+      "forbidden": [
+        "Huấn luyện Hữu nghị",
+        "huấn luyện hữu nghị",
+        "Huấn luyện tình bạn",
+        "huấn luyện tình bạn"
+      ],
+      "require_accepted": true,
+      "match_mode": "contains",
+      "invalidation_scope": "item",
+      "basis": "Established player-facing term for the rainbow training mechanic. Full-compound aliases only; generic friendship/training prose is intentionally not matched."
+    },
+    {
+      "id": "common.friendship_gauge.support_effects",
+      "source_aliases": [
+        "羁绊值"
+      ],
+      "preferred": "Friendship Gauge",
+      "accepted": [
+        "Friendship Gauge"
+      ],
+      "compact": [],
+      "forbidden": [
+        "Gắn kết",
+        "gắn kết",
+        "Giá trị liên kết",
+        "giá trị liên kết"
+      ],
+      "require_accepted": true,
+      "source_paths": [
+        "text_data_dict.json"
+      ],
+      "json_path_prefixes": [
+        [
+          "155"
+        ]
+      ],
+      "match_mode": "contains",
+      "invalidation_scope": "item",
+      "basis": "Category 155 support-effect descriptions refer to the Support Card Friendship Gauge. Bare 羁绊 remains ordinary friendship/bond language outside this scoped mechanic."
+    },
+    {
+      "id": "common.support_points.common0160",
+      "source_aliases": [
+        "支援点数"
+      ],
+      "preferred": "Support Pt",
+      "accepted": [
+        "Support Pt",
+        "Support Pts",
+        "Support Points"
+      ],
+      "compact": [],
+      "forbidden": [
+        "Điểm Hỗ trợ",
+        "Điểm hỗ trợ",
+        "điểm hỗ trợ"
+      ],
+      "require_accepted": true,
+      "source_paths": [
+        "localize_dict.json"
+      ],
+      "key_exact": [
+        "Common0160"
+      ],
+      "match_mode": "exact",
+      "invalidation_scope": "item",
+      "basis": "Common0160 is the player-facing Support Points resource label. Compact UI uses Support Pt; plural prose may use Support Pts or Support Points."
+    },
+    {
+      "id": "common.energy.singlemode",
+      "source_aliases": [
+        "体力"
+      ],
+      "preferred": "Energy",
+      "accepted": [
+        "Energy"
+      ],
+      "compact": [],
+      "forbidden": [
+        "Thể lực",
+        "thể lực"
+      ],
+      "require_accepted": true,
+      "source_paths": [
+        "localize_dict.json"
+      ],
+      "key_exact": [
+        "SingleMode0006",
+        "SingleMode0074",
+        "SingleMode0075"
+      ],
+      "match_mode": "contains",
+      "invalidation_scope": "item",
+      "basis": "Exact Career training UI slots for the Energy gauge and its gain/loss messages. The key guard prevents ordinary physical-strength prose from matching."
+    },
+    {
+      "id": "common.training_level.outgame352008",
+      "source_aliases": [
+        "训练等级"
+      ],
+      "preferred": "Training Level",
+      "accepted": [
+        "Training Level"
+      ],
+      "compact": [
+        "Training Lv"
+      ],
+      "forbidden": [
+        "Cấp huấn luyện",
+        "cấp huấn luyện"
+      ],
+      "require_accepted": true,
+      "source_paths": [
+        "localize_dict.json"
+      ],
+      "key_exact": [
+        "Outgame352008"
+      ],
+      "match_mode": "exact",
+      "invalidation_scope": "item",
+      "basis": "Established English player terminology for the per-facility training level. Exact-key scope avoids turning generic level/training prose into a fixed system label."
+    },
+    {
+      "id": "common.failure_rate.singlemode0036",
+      "source_aliases": [
+        "失败率"
+      ],
+      "preferred": "Failure Rate",
+      "accepted": [
+        "Failure Rate"
+      ],
+      "compact": [],
+      "forbidden": [
+        "Tỷ lệ thất bại",
+        "tỷ lệ thất bại"
+      ],
+      "require_accepted": true,
+      "source_paths": [
+        "localize_dict.json"
+      ],
+      "key_exact": [
+        "SingleMode0036"
+      ],
+      "match_mode": "exact",
+      "invalidation_scope": "item",
+      "basis": "Established English Career-training UI term for the displayed probability of training failure. Exact-key scope avoids matching ordinary narrative failure wording."
+    },
+    {
+      "id": "common.support_effects.character0331",
+      "source_aliases": [
+        "支援效果"
+      ],
+      "preferred": "Support Effects",
+      "accepted": [
+        "Support Effects"
+      ],
+      "compact": [],
+      "forbidden": [
+        "Hiệu ứng hỗ trợ",
+        "hiệu ứng hỗ trợ"
+      ],
+      "require_accepted": true,
+      "source_paths": [
+        "localize_dict.json"
+      ],
+      "key_exact": [
+        "Character0331"
+      ],
+      "match_mode": "exact",
+      "invalidation_scope": "item",
+      "basis": "Established player-facing Support Card section label. Exact Character0331 scope avoids forcing ordinary support/effect prose into the system label."
+    },
+    {
+      "id": "common.stat_cap.singlemode400100",
+      "source_aliases": [
+        "{0}的上限已<color=#FF6D26>达到极限</color>"
+      ],
+      "preferred": "Stat Cap",
+      "accepted": [
+        "Stat Cap"
+      ],
+      "compact": [],
+      "forbidden": [
+        "giới hạn tối đa",
+        "Giới hạn tối đa"
+      ],
+      "require_accepted": true,
+      "source_paths": [
+        "localize_dict.json"
+      ],
+      "key_exact": [
+        "SingleMode400100"
+      ],
+      "match_mode": "exact",
+      "invalidation_scope": "item",
+      "basis": "Career stat-limit status UI. The established player term is Stat Cap; exact-key scope avoids matching generic prose about limits or maximum values."
+    },
+    {
+      "id": "common.stat_cap.singlemode400102",
+      "source_aliases": [
+        "{0}的上限"
+      ],
+      "preferred": "Stat Cap",
+      "accepted": [
+        "Stat Cap"
+      ],
+      "compact": [],
+      "forbidden": [
+        "Giới hạn của",
+        "giới hạn của"
+      ],
+      "require_accepted": true,
+      "source_paths": [
+        "localize_dict.json"
+      ],
+      "key_exact": [
+        "SingleMode400102"
+      ],
+      "match_mode": "exact",
+      "invalidation_scope": "item",
+      "basis": "Career stat-cap label. Stat Cap is the established player-facing term; exact-key scope prevents ordinary limit wording elsewhere from becoming canonical."
+    },
+    {
+      "id": "common.max_energy.singlemode400103",
+      "source_aliases": [
+        "体力最大值"
+      ],
+      "preferred": "Max Energy",
+      "accepted": [
+        "Max Energy"
+      ],
+      "compact": [],
+      "forbidden": [
+        "Thể lực tối đa",
+        "thể lực tối đa"
+      ],
+      "require_accepted": true,
+      "source_paths": [
+        "localize_dict.json"
+      ],
+      "key_exact": [
+        "SingleMode400103"
+      ],
+      "match_mode": "exact",
+      "invalidation_scope": "item",
+      "basis": "Career maximum-Energy status label. Energy is already canonical in this domain; exact-key scope keeps generic physical-stamina prose outside the rule."
+    },
+    {
+      "id": "support.friendship_bonus.effect155",
+      "source_aliases": [
+        "友情加成"
+      ],
+      "preferred": "Friendship Bonus",
+      "accepted": [
+        "Friendship Bonus"
+      ],
+      "compact": [],
+      "forbidden": [
+        "Thưởng tình bạn",
+        "thưởng tình bạn"
+      ],
+      "require_accepted": true,
+      "source_paths": [
+        "text_data_dict.json"
+      ],
+      "json_path_prefixes": [
+        [
+          "155"
+        ]
+      ],
+      "match_mode": "contains",
+      "invalidation_scope": "item",
+      "basis": "Support Effect label in category 155; scope prevents ordinary friendship prose from matching."
+    },
+    {
+      "id": "support.training_effectiveness.effect155",
+      "source_aliases": [
+        "训练效果提升"
+      ],
+      "preferred": "Training Effectiveness",
+      "accepted": [
+        "Training Effectiveness"
+      ],
+      "compact": [],
+      "forbidden": [
+        "Tăng hiệu quả huấn luyện",
+        "tăng hiệu quả huấn luyện",
+        "Hiệu quả huấn luyện"
+      ],
+      "require_accepted": true,
+      "source_paths": [
+        "text_data_dict.json"
+      ],
+      "json_path_prefixes": [
+        [
+          "155"
+        ]
+      ],
+      "match_mode": "contains",
+      "invalidation_scope": "item",
+      "basis": "Established Support Effect label for training effectiveness, limited to support-effect category 155."
+    },
+    {
+      "id": "support.mood_effect.effect155",
+      "source_aliases": [
+        "干劲效果提升",
+        "心情加成"
+      ],
+      "preferred": "Mood Effect",
+      "accepted": [
+        "Mood Effect"
+      ],
+      "compact": [],
+      "forbidden": [
+        "Tăng hiệu ứng hứng khởi",
+        "tăng hiệu ứng hứng khởi",
+        "Hiệu ứng hứng khởi",
+        "Thưởng Hứng khởi",
+        "Thưởng hứng khởi"
+      ],
+      "require_accepted": true,
+      "source_paths": [
+        "text_data_dict.json"
+      ],
+      "json_path_prefixes": [
+        [
+          "155"
+        ]
+      ],
+      "match_mode": "contains",
+      "invalidation_scope": "item",
+      "basis": "Established Support Effect label; narrower than the already-canonical generic Mood state."
+    },
+    {
+      "id": "support.initial_friendship.effect155",
+      "source_aliases": [
+        "初始牵绊值",
+        "初始羁绊值"
+      ],
+      "preferred": "Initial Friendship",
+      "accepted": [
+        "Initial Friendship"
+      ],
+      "compact": [],
+      "forbidden": [
+        "Liên kết ban đầu",
+        "liên kết ban đầu",
+        "Gắn kết ban đầu",
+        "gắn kết ban đầu"
+      ],
+      "require_accepted": true,
+      "source_paths": [
+        "text_data_dict.json"
+      ],
+      "json_path_prefixes": [
+        [
+          "155"
+        ]
+      ],
+      "match_mode": "contains",
+      "invalidation_scope": "item",
+      "basis": "Support Effect starting Friendship value; category scope avoids generic relationship prose."
+    },
+    {
+      "id": "support.specialty_priority.effect155",
+      "source_aliases": [
+        "得意率提升"
+      ],
+      "preferred": "Specialty Priority",
+      "accepted": [
+        "Specialty Priority"
+      ],
+      "compact": [],
+      "forbidden": [
+        "Tăng tỷ lệ sở trường",
+        "tăng tỷ lệ sở trường",
+        "Tỷ lệ sở trường"
+      ],
+      "require_accepted": true,
+      "source_paths": [
+        "text_data_dict.json"
+      ],
+      "json_path_prefixes": [
+        [
+          "155"
+        ]
+      ],
+      "match_mode": "contains",
+      "invalidation_scope": "item",
+      "basis": "Established Support Effect label for increased appearance at the card's specialty training."
+    },
+    {
+      "id": "support.speed_bonus.effect155",
+      "source_aliases": [
+        "速度加成"
+      ],
+      "preferred": "Speed Bonus",
+      "accepted": [
+        "Speed Bonus"
+      ],
+      "compact": [],
+      "forbidden": [
+        "Thưởng Tốc độ",
+        "Thưởng tốc độ"
+      ],
+      "require_accepted": true,
+      "source_paths": [
+        "text_data_dict.json"
+      ],
+      "json_path_prefixes": [
+        [
+          "155"
+        ]
+      ],
+      "match_mode": "contains",
+      "invalidation_scope": "item",
+      "basis": "Repeated player-facing Support Effect bonus label in category 155; ordinary stat prose remains unscoped."
+    },
+    {
+      "id": "support.stamina_bonus.effect155",
+      "source_aliases": [
+        "耐力加成"
+      ],
+      "preferred": "Stamina Bonus",
+      "accepted": [
+        "Stamina Bonus"
+      ],
+      "compact": [],
+      "forbidden": [
+        "Thưởng Thể lực",
+        "Thưởng thể lực"
+      ],
+      "require_accepted": true,
+      "source_paths": [
+        "text_data_dict.json"
+      ],
+      "json_path_prefixes": [
+        [
+          "155"
+        ]
+      ],
+      "match_mode": "contains",
+      "invalidation_scope": "item",
+      "basis": "Repeated player-facing Support Effect bonus label in category 155; ordinary stat prose remains unscoped."
+    },
+    {
+      "id": "support.power_bonus.effect155",
+      "source_aliases": [
+        "力量加成"
+      ],
+      "preferred": "Power Bonus",
+      "accepted": [
+        "Power Bonus"
+      ],
+      "compact": [],
+      "forbidden": [
+        "Thưởng Sức mạnh",
+        "Thưởng sức mạnh"
+      ],
+      "require_accepted": true,
+      "source_paths": [
+        "text_data_dict.json"
+      ],
+      "json_path_prefixes": [
+        [
+          "155"
+        ]
+      ],
+      "match_mode": "contains",
+      "invalidation_scope": "item",
+      "basis": "Repeated player-facing Support Effect bonus label in category 155; ordinary stat prose remains unscoped."
+    },
+    {
+      "id": "support.guts_bonus.effect155",
+      "source_aliases": [
+        "根性加成"
+      ],
+      "preferred": "Guts Bonus",
+      "accepted": [
+        "Guts Bonus"
+      ],
+      "compact": [],
+      "forbidden": [
+        "Thưởng Ý chí",
+        "Thưởng ý chí"
+      ],
+      "require_accepted": true,
+      "source_paths": [
+        "text_data_dict.json"
+      ],
+      "json_path_prefixes": [
+        [
+          "155"
+        ]
+      ],
+      "match_mode": "contains",
+      "invalidation_scope": "item",
+      "basis": "Repeated player-facing Support Effect bonus label in category 155; ordinary stat prose remains unscoped."
+    },
+    {
+      "id": "support.wit_bonus.effect155",
+      "source_aliases": [
+        "智力加成"
+      ],
+      "preferred": "Wit Bonus",
+      "accepted": [
+        "Wit Bonus"
+      ],
+      "compact": [],
+      "forbidden": [
+        "Thưởng Trí tuệ",
+        "Thưởng trí tuệ"
+      ],
+      "require_accepted": true,
+      "source_paths": [
+        "text_data_dict.json"
+      ],
+      "json_path_prefixes": [
+        [
+          "155"
+        ]
+      ],
+      "match_mode": "contains",
+      "invalidation_scope": "item",
+      "basis": "Repeated player-facing Support Effect bonus label in category 155; ordinary stat prose remains unscoped."
+    },
+    {
+      "id": "support.skill_pt_bonus.effect155",
+      "source_aliases": [
+        "技能Pt加成"
+      ],
+      "preferred": "Skill Pt Bonus",
+      "accepted": [
+        "Skill Pt Bonus"
+      ],
+      "compact": [],
+      "forbidden": [
+        "Thưởng Điểm kỹ năng",
+        "Thưởng điểm kỹ năng",
+        "Thưởng Skill Pt"
+      ],
+      "require_accepted": true,
+      "source_paths": [
+        "text_data_dict.json"
+      ],
+      "json_path_prefixes": [
+        [
+          "155"
+        ]
+      ],
+      "match_mode": "contains",
+      "invalidation_scope": "item",
+      "basis": "Repeated player-facing Support Effect bonus label in category 155; ordinary stat prose remains unscoped."
     }
   ]
 }

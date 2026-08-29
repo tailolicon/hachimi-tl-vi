@@ -1,0 +1,72 @@
+name: TEMP finalize Missions Events
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/missions-events-finalize-temp.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: canonical-missions-events-finalize
+  cancel-in-progress: false
+
+jobs:
+  finalize:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Replay Missions Events hardening and validate
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main canonical-missions-events-hardening
+            git checkout -B missions-events-finalize origin/main
+
+            for path in \
+              scripts/harden_missions_events_canon.py \
+              tests/test_missions_events_hardening.py \
+              work/orchestration/checkpoints/canonical-missions-events-codex2-20260829T1703Z.md; do
+              mkdir -p "$(dirname "$path")"
+              git show origin/canonical-missions-events-hardening:"$path" > "$path"
+            done
+
+            python scripts/harden_missions_events_canon.py
+            sha256sum glossary/term_registry.json glossary/ui_community_terms.json > /tmp/missions-first.sha
+            python scripts/harden_missions_events_canon.py
+            sha256sum glossary/term_registry.json glossary/ui_community_terms.json > /tmp/missions-second.sha
+            diff -u /tmp/missions-first.sha /tmp/missions-second.sha
+
+            python -m pip install -e ".[dev]"
+            pytest -q
+            tlvi validate
+            tlvi index
+
+            git add \
+              glossary/term_registry.json \
+              glossary/ui_community_terms.json \
+              scripts/harden_missions_events_canon.py \
+              tests/test_missions_events_hardening.py \
+              work/orchestration/checkpoints/canonical-missions-events-codex2-20260829T1703Z.md
+            git rm .github/workflows/missions-events-finalize-temp.yml
+            git commit -m "Canonical: integrate Missions Events hardening"
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+            sleep $((attempt * 2))
+          done
+
+          echo "Failed to publish Missions/Events finalization after retries" >&2
+          exit 1

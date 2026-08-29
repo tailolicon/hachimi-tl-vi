@@ -1,0 +1,54 @@
+name: W5 Race canonical conflict repair
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/w5-race-fix.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  repair:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install project
+        run: python -m pip install -e ".[dev]"
+      - name: Repair canonical Race target at source
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('scripts/harden_race_canon.py')
+          s = p.read_text(encoding='utf-8')
+          old = '"race.radio_nikkei_sho": {"zh_cn": ["日经广播赏"], "ja": ["ラジオNIKKEI賞"], "target_vi": "Radio NIKKEI Sho"}'
+          new = '"race.radio_nikkei_sho": {"zh_cn": ["日经广播赏"], "ja": ["ラジオNIKKEI賞"], "target_vi": "Radio Nikkei Sho"}'
+          if s.count(old) != 1:
+              raise SystemExit(f'expected exactly one old Radio NIKKEI target, found {s.count(old)}')
+          p.write_text(s.replace(old, new), encoding='utf-8')
+          PY
+          python scripts/harden_race_canon.py
+          python scripts/apply_terminology_reviews.py --check
+      - name: Race regression tests
+        run: python -m pytest -q tests/test_race_hardening.py
+      - name: Full tests and validation
+        run: |
+          python -m pytest -q
+          python -m tlvi validate
+          python -m tlvi index
+      - name: Commit permanent repair and remove temporary workflow
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git rm .github/workflows/w5-race-fix.yml
+          git add scripts/harden_race_canon.py glossary/term_registry.json glossary/ui_community_terms.json glossary/source_bridge_terms.json
+          git diff --cached --check
+          git commit -m "Resolve Radio Nikkei Sho canonical conflict"
+          git push origin HEAD:main

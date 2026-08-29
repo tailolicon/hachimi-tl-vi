@@ -58,6 +58,7 @@ def test_hardener_scopes_resource_bridges_to_localize_ui(tmp_path: Path) -> None
     assert terms["currency.jewel.free"]["source_paths"] == ["localize_dict.json"]
     assert terms["gacha.exchange_points"]["source_paths"] == ["localize_dict.json"]
     assert terms["gacha.exchange_points"]["key_prefixes"] == ["Gacha"]
+    assert terms["resource.clover"]["key_prefixes"] == ["Gacha", "Shop"]
 
 
 def test_monies_matches_shop_ui_but_not_story_prose(tmp_path: Path) -> None:
@@ -164,6 +165,14 @@ def test_exchange_points_match_gacha_pity_but_not_generic_exchange(tmp_path: Pat
         source_path="localize_dict.json",
         json_path=["Gacha0002"],
     )
+    abbreviated = source_bridge_term_matches(
+        "支援卡兑换Pt",
+        "Pt đổi Support Card",
+        terms,
+        key="Gacha0023",
+        source_path="localize_dict.json",
+        json_path=["Gacha0023"],
+    )
     old_calque = source_bridge_term_matches(
         "所需育成赛马娘兑换点数",
         "Điểm cần để đổi Uma Musume",
@@ -191,11 +200,52 @@ def test_exchange_points_match_gacha_pity_but_not_generic_exchange(tmp_path: Pat
 
     assert [item["id"] for item in gacha] == ["gacha.exchange_points"]
     assert gacha[0]["accepted_present"] is True
+    assert [item["id"] for item in abbreviated] == ["gacha.exchange_points"]
+    assert abbreviated[0]["accepted_present"] is False
+    assert abbreviated[0]["forbidden_present"] is True
     assert [item["id"] for item in old_calque] == ["gacha.exchange_points"]
     assert old_calque[0]["accepted_present"] is False
     assert old_calque[0]["forbidden_present"] is True
     assert shop == []
     assert story == []
+
+
+def test_clover_matches_gacha_resource_but_not_story_prose(tmp_path: Path) -> None:
+    _write_bridge(tmp_path)
+    harden(tmp_path)
+    terms = _terms(tmp_path)
+
+    gacha = source_bridge_term_matches(
+        "未用作兑换的兑换点数已变换为四叶草",
+        "Exchange Points chưa dùng đã được đổi thành Clovers",
+        terms,
+        key="Gacha0032",
+        source_path="localize_dict.json",
+        json_path=["Gacha0032"],
+    )
+    old_calque = source_bridge_term_matches(
+        "未用作兑换的兑换点数已变换为四叶草",
+        "Điểm đổi chưa dùng đã được chuyển thành Cỏ bốn lá",
+        terms,
+        key="Gacha0032",
+        source_path="localize_dict.json",
+        json_path=["Gacha0032"],
+    )
+    prose = source_bridge_term_matches(
+        "她在草地上找到了四叶草。",
+        "Cô ấy tìm thấy một cỏ bốn lá trên đồng cỏ.",
+        terms,
+        key=None,
+        source_path="text_data_dict.json",
+        json_path=["181", "1003"],
+    )
+
+    assert [item["id"] for item in gacha] == ["gacha.exchange_points", "resource.clover"]
+    assert all(item["accepted_present"] is True for item in gacha)
+    assert [item["id"] for item in old_calque] == ["gacha.exchange_points", "resource.clover"]
+    assert all(item["accepted_present"] is False for item in old_calque)
+    assert all(item["forbidden_present"] is True for item in old_calque)
+    assert prose == []
 
 
 def test_hardener_is_idempotent(tmp_path: Path) -> None:

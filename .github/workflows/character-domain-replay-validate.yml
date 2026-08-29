@@ -21,6 +21,8 @@ jobs:
       - name: Replay on live main
         shell: bash
         run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
           git fetch origin main canonical-character-training-ui-hardening
           git rebase origin/main
       - uses: actions/setup-python@v5
@@ -46,8 +48,6 @@ jobs:
         shell: bash
         run: |
           rm .github/workflows/character-domain-replay-validate.yml
-          git config user.name github-actions
-          git config user.email github-actions@github.com
           git add -A
           if ! git diff --cached --quiet; then
             git commit -m "Replay and validate character training UI canon"

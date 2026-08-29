@@ -8,8 +8,12 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 
 
+def load_json(path: str) -> dict:
+    return json.loads((ROOT / path).read_text(encoding="utf-8"))
+
+
 def test_worker_policy_requires_progress_backed_maintenance_heartbeat() -> None:
-    policy = json.loads((ROOT / "work/worker_session_policy.json").read_text(encoding="utf-8"))
+    policy = load_json("work/worker_session_policy.json")
 
     assert policy["policy_version"] >= 2
     assert policy["maintenance_stages"] == [
@@ -21,6 +25,42 @@ def test_worker_policy_requires_progress_backed_maintenance_heartbeat() -> None:
     assert "progress_token" in policy["maintenance_progress_evidence_rule"]
     assert "time-only heartbeat" in policy["maintenance_heartbeat_rule"]
     assert "ready_for_finalize" in policy["maintenance_finalizer_rule"]
+
+
+def test_live_orchestration_state_has_explicit_valid_stage() -> None:
+    policy = load_json("work/worker_session_policy.json")
+    state = load_json("work/orchestration/state.json")
+    active = state["active_task"]
+
+    assert state["schema_version"] >= 2
+    assert state["orchestration_version"] >= 2
+    assert active["stage"] in policy["maintenance_stages"]
+
+    active_roadmap = [item for item in state["roadmap"] if item.get("status") == "active"]
+    assert len(active_roadmap) == 1
+    assert active_roadmap[0]["id"] == active["task_id"]
+    assert active_roadmap[0].get("stage") == active["stage"]
+
+    if active["stage"] in {"ready_for_finalize", "finalizing"}:
+        assert active.get("domain_work_summary")
+        assert active.get("finalization_scope")
+
+
+def test_live_maintenance_claim_carries_progress_evidence() -> None:
+    policy = load_json("work/worker_session_policy.json")
+    state = load_json("work/orchestration/state.json")
+    claim = load_json("work/orchestration/maintenance_claim.json")
+
+    assert claim["schema_version"] >= 2
+    assert claim["stage"] in policy["maintenance_stages"]
+    assert claim.get("progress_token")
+    assert claim.get("progress_kind")
+    assert claim.get("progress_ref")
+    assert claim.get("last_progress_at")
+
+    if claim["status"] == "active":
+        assert claim["task_id"] == state["active_task"]["task_id"]
+        assert claim["stage"] == state["active_task"]["stage"]
 
 
 def test_universal_router_has_bounded_finalizer_mode() -> None:

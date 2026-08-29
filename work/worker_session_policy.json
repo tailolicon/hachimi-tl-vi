@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "policy_version": 2,
+  "policy_version": 3,
   "session_minutes": 25,
   "rolling_lease_minutes": 12,
   "heartbeat_every_minutes": 6,
@@ -16,6 +16,9 @@
   "maintenance_progress_evidence_rule": "Every maintenance claim refresh must record a changed progress_token plus progress_kind/progress_ref that identifies durable GitHub evidence, such as a new maintenance-branch head, a changed persistent task checkpoint, a newly completed validation/sync run, or an orchestration-stage transition. The same progress_token may never be used to extend a lease twice.",
   "maintenance_no_progress_rule": "If there is no new durable progress evidence, do not refresh the lease. Continue read-only work only while the existing lease remains valid; at handoff release the claim, otherwise allow it to expire naturally so another worker can take over.",
   "maintenance_finalizer_rule": "Once domain content/research is complete, persist stage=ready_for_finalize and release the domain-work claim. The next owner claims stage=finalizing and performs only cleanup, integration, production sync/no-op proof, spot checks, and orchestration transition. It must not restart domain inventory or research unless finalization produces concrete evidence that domain work is incomplete.",
+  "execution_backend_rule": "Repository work is execution-backend independent. No external harness, plugin, shell, local container, MCP provider, or other backend is implicitly required. A failure of one backend is local to that capability and is not a task-level blocker while another repository read/write/execution path remains available.",
+  "backend_failure_fallback_rule": "After a rate limit, EOF, DNS/network failure, unavailable shell/container, or transient tool error, preserve the task and claim, continue with available connected GitHub read/write capabilities, and use repository GitHub Actions/validation workflows for required execution evidence when the local runtime is unavailable. Continue safe work that does not depend on the failed path.",
+  "backend_failure_handoff_rule": "Do not release or end a worker solely because one execution backend failed. Backend failure may justify exceptional handoff only at the normal handoff boundary or after every currently available repository path required for the next safe step has actually been attempted and is unavailable. Required acceptance tests may not be skipped when claiming completion.",
   "session_end_rule": "Start handoff by handoff_start_minutes. If incomplete, save partial result then mark only your own claim released with partial_result_path and completed_count. Do not intentionally leave an active claim at session end.",
   "throughput_rule": "A worker may claim another batch only before stop_new_batch_after_minutes. Prefer continuing from a released/expired partial batch over starting untouched work when both have similar priority."
 }

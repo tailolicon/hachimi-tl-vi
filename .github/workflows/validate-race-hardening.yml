@@ -29,6 +29,8 @@ jobs:
           import race_stage_tmp as stage
           raise SystemExit(stage.main())
           PY
+      - name: Apply bounded finalizer classifier fix
+        run: python scripts/race_finalizer_fix_tmp.py
       - run: python -m py_compile scripts/harden_race_canon.py scripts/build_translation_review_plan.py scripts/race_inventory_tmp.py scripts/race_inventory_compact_tmp.py
       - name: Full pytest with preserved diagnostics
         shell: bash

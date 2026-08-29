@@ -1,0 +1,99 @@
+name: TEMP Final conflict sweep phase transition
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/final-conflict-sweep-transition-temp.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: canonical-final-conflict-sweep-transition
+  cancel-in-progress: false
+
+jobs:
+  transition:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Transition Phase 0 to Audit Round 1
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin main
+          git checkout -B final-conflict-sweep-transition origin/main
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          state_path = Path("work/orchestration/state.json")
+          claim_path = Path("work/orchestration/maintenance_claim.json")
+          state = json.loads(state_path.read_text(encoding="utf-8"))
+          claim = json.loads(claim_path.read_text(encoding="utf-8"))
+
+          assert state.get("phase") == "canonical_hardening", state.get("phase")
+          assert state.get("active_task", {}).get("task_id") == "canonical-final-conflict-sweep"
+          assert claim.get("task_id") == "canonical-final-conflict-sweep"
+          assert claim.get("status") == "active"
+          assert claim.get("worker_id") == "worker-chatgpt-hourly-003"
+
+          completed_at = "2026-08-29T18:30:00Z"
+          checkpoint = "work/orchestration/checkpoints/canonical-final-conflict-sweep-finalizer-20260829T1830Z.md"
+          sync_sha = "6e28d2d18f7a31cb83b012b8001bd9e8333254c0"
+
+          for item in state["roadmap"]:
+              if item["id"] == "canonical-final-conflict-sweep":
+                  item["status"] = "complete"
+                  item["stage"] = "complete"
+                  item["completed_at"] = completed_at
+                  item["finalization_checkpoint"] = checkpoint
+                  item["production_sync_sha"] = sync_sha
+              elif item["id"] == "translation-review-round1":
+                  item["status"] = "active"
+                  item["stage"] = "mass_review"
+                  item["activated_at"] = completed_at
+
+          state["blocking_maintenance"] = False
+          state["phase"] = "retrospective_translation_review"
+          state["active_task"] = {
+              "task_id": "translation-review-round1",
+              "title": "Retrospective translation Audit Round 1",
+              "task_file": "work/orchestration/tasks/corpus-completion.md",
+              "status": "active",
+              "stage": "mass_review",
+              "primary_lane": False,
+              "integration_serial": False,
+              "domain_work_parallel": False,
+              "blocks_mass_work": False,
+              "activated_at": completed_at,
+              "predecessor_task_id": "canonical-final-conflict-sweep",
+              "activation_summary": "Initial canonical hardening is complete and final production Sync/no-op verification is clean. Route workers through WORKER_25MIN.md and the live translation-review gate for Audit Round 1."
+          }
+
+          claim.update({
+              "stage": "complete",
+              "status": "released",
+              "heartbeat_at": completed_at,
+              "lease_expires_at": completed_at,
+              "partial_result_path": checkpoint,
+              "progress_token": "complete-20260829T1830Z-6e28d2d18f7a31cb83b012b8001bd9e8333254c0",
+              "progress_kind": "task_complete_phase_transition",
+              "progress_ref": sync_sha,
+              "last_progress_at": completed_at,
+              "note": "Final conflict sweep complete: combined cross-domain audit clean, 270 tests passed on both production Sync passes, canonical findings 0 active, review plan unchanged at 19,520 candidates, SECOND_SYNC_NOOP=true. Phase transitioned to retrospective translation Audit Round 1."
+          })
+
+          state_path.write_text(json.dumps(state, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+          claim_path.write_text(json.dumps(claim, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+          PY
+          git add work/orchestration/state.json work/orchestration/maintenance_claim.json
+          git rm .github/workflows/final-conflict-sweep-transition-temp.yml
+          git commit -m "orchestration: start retrospective translation audit"
+          git push origin HEAD:main

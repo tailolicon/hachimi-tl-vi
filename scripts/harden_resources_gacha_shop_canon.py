@@ -98,6 +98,26 @@ def harden(repo_root: Path = REPO_ROOT) -> None:
             "note": "Free-Jewel wording is a fixed shop/account distinction. Scope to localize UI so generic paid/free prose is not captured.",
         },
     )
+    _upsert(
+        terms,
+        {
+            "id": "gacha.exchange_points",
+            "ja": ["交換Pt", "交換ポイント"],
+            "zh_cn": ["兑换点数", "交換點數"],
+            "preferred": "Exchange Points",
+            "accepted": ["Exchange Point", "Exchange Points"],
+            "forbidden": ["Điểm đổi", "Điểm cần để đổi", "điểm đổi", "điểm cần để đổi"],
+            "require_accepted": True,
+            "source_paths": ["localize_dict.json"],
+            "key_prefixes": ["Gacha"],
+            "match_mode": "contains",
+            "note": (
+                "兑换点数 in Gacha UI is the banner pity currency shown as Exchange Points in "
+                "Global usage. Restrict to Gacha localize keys so generic shop exchanges or story "
+                "language do not become a pity-currency match."
+            ),
+        },
+    )
 
     _write(bridge_path, payload)
 

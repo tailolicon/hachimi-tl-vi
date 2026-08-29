@@ -28,12 +28,13 @@ def roadmap_label(state: dict[str, Any]) -> str:
         if not isinstance(item, dict):
             continue
         status = str(item.get("status") or "")
-        if status not in {"active", "pending"}:
+        if status not in {"active", "pending", "ready_for_integration"}:
             continue
         title = str(item.get("title") or item.get("id") or "unknown")
-        marker = "▶" if status == "active" else "→"
-        rows.append(f"{marker} {title}")
-        if len(rows) >= 4:
+        marker = "▶" if status == "active" else ("✓→" if status == "ready_for_integration" else "→")
+        suffix = " [ready for integration]" if status == "ready_for_integration" else ""
+        rows.append(f"{marker} {title}{suffix}")
+        if len(rows) >= 6:
             break
     return "<br>".join(rows) if rows else "No pending roadmap item"
 
@@ -45,6 +46,33 @@ def maintenance_stage(active: dict[str, Any]) -> str:
     if str(active.get("status") or "") == "complete":
         return "complete"
     return "domain_work"
+
+
+def canonical_parallel_summary(state: dict[str, Any]) -> str:
+    cfg = state.get("canonical_parallelism") or {}
+    if not cfg.get("enabled"):
+        return "disabled / legacy serial mode"
+
+    pending = 0
+    ready = 0
+    complete = 0
+    for item in state.get("roadmap") or []:
+        if not isinstance(item, dict) or item.get("kind") != "canonical_hardening":
+            continue
+        status = str(item.get("status") or "")
+        if status == "ready_for_integration":
+            ready += 1
+        elif status == "complete":
+            complete += 1
+        elif item.get("parallel_eligible") is True and status in {"pending", "active"}:
+            pending += 1
+
+    limit = int(cfg.get("max_parallel_domain_workers") or 0)
+    return (
+        f"**ON** — domain work parallel / integration serial; "
+        f"{pending} active-or-claimable domain lanes, {ready} ready for integration, {complete} canonical domains complete"
+        + (f"; configured domain-worker cap {limit}" if limit else "")
+    )
 
 
 def build_block(progress: dict[str, Any], state: dict[str, Any]) -> str:
@@ -87,7 +115,8 @@ def build_block(progress: dict[str, Any], state: dict[str, Any]) -> str:
             "| Metric | Live state |",
             "| --- | --- |",
             f"| Current phase | **{phase}** |",
-            f"| Active maintenance task | **{task_title}** — stage **{task_stage}** (`{task_branch}`) |",
+            f"| Primary integration lane | **{task_title}** — stage **{task_stage}** (`{task_branch}`) |",
+            f"| Canonical parallelism | {canonical_parallel_summary(state)} |",
             f"| Pinned source coverage | **{translated:,} / {total:,} ({pct(translated, total):.2f}%)** — {remaining_total:,} remaining |",
             f"| Current translation wave | **{translated:,} / {queued:,} ({pct(translated, queued):.2f}%)** — {remaining_queue:,} queued remaining |",
             f"| Deferred pinned entries | **{deferred:,}** — these must be promoted in later deterministic waves, not ignored |",
@@ -98,7 +127,7 @@ def build_block(progress: dict[str, Any], state: dict[str, Any]) -> str:
             "",
             "**Roadmap:** " + roadmap_label(state),
             "",
-            "Machine routing lives in `work/orchestration/state.json`; detailed lifecycle is in `AUTOPILOT.md`. This block is generated from canonical repository state. The `status` branch keeps the timestamped detailed progress snapshot.",
+            "Machine routing lives in `work/orchestration/state.json`; canonical parallel rules are in `CANONICAL_PARALLEL.md`; detailed lifecycle is in `AUTOPILOT.md`. This block is generated from canonical repository state. The `status` branch keeps the timestamped detailed progress snapshot.",
             END,
         ]
     )
@@ -114,7 +143,6 @@ def replace_block(readme: str, block: str) -> str:
     if not lines:
         return block + "\n"
 
-    # Put progress immediately after the first descriptive paragraph below H1.
     insert_at = min(len(lines), 1)
     while insert_at < len(lines) and not lines[insert_at].strip():
         insert_at += 1

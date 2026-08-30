@@ -1842,7 +1842,8 @@
       "concepts": [
         "Skill-name alias 全力 overmatches ordinary prose such as 全力支持",
         "Skill-name alias 全力 overmatches ordinary prose 发挥全力",
-        "Skill-title alias 全力 must not match ordinary prose meaning full effort"
+        "Skill-title alias 全力 must not match ordinary prose meaning full effort",
+        "Generic adverbial 全力 versus named Skill title"
       ],
       "suggested_targets_vi": [],
       "confidence_levels": [
@@ -1851,9 +1852,10 @@
       "reasons": [
         "The Skill-title lock Dốc hết sức is being applied inside ordinary prose, so the canonical matching rule needs narrower context before this item can resolve.",
         "The reviewed Skill-title lock Dốc hết sức should not fire inside generic prose meaning 'perform at full strength'; narrow its matching context.",
-        "Current Skill matcher overmatches generic prose in Condition descriptions."
+        "Current Skill matcher overmatches generic prose in Condition descriptions.",
+        "The reviewed Skill-name matcher is firing inside a longer character-description sentence where 全力 means running with all one's strength, not a Skill name."
       ],
-      "evidence_count": 3,
+      "evidence_count": 4,
       "evidence": [
         {
           "uid": "zhcn:9cd244f642d25ce4875a165d",
@@ -1902,6 +1904,22 @@
           "current_text": "Đua mile là cuộc đấu ngắn hạn! Không bắt được nhịp thì chịu luôn! Muốn về nhà quá……\nVì dao động nên bước chân không ổn định, không thể phát huy toàn lực ở các cuộc đua mile",
           "proposed_text": null,
           "reported_at": "2026-08-30T13:20:00Z"
+        },
+        {
+          "uid": "zhcn:ab6f7f3d56f1e6f2d0f56bc6",
+          "plan_id": "tr-p3-67f8551f7780-e955c4d6f515-b5c0bcb3bd-ec33283c35",
+          "batch_id": "tr-p3-67f8551f7780-e955c4d6f515-b5c0bcb3bd-ec33283c35-b0518",
+          "claim_id": "trc-gpt56sol-20260830T175100Z-b0518",
+          "worker_id": "gpt56sol-20260830T175100Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "144",
+            "1072"
+          ],
+          "source_text": "以武代礼，全力奔跑。\\n武痴赛马娘",
+          "current_text": "Dùng võ thay lễ, dốc sức chạy hết mình.\\nUma Musume mê võ",
+          "proposed_text": null,
+          "reported_at": "2026-08-30T17:55:00Z"
         }
       ],
       "canonical_resolution": {
@@ -1915,7 +1933,7 @@
         "target_vi": "Dốc hết sức"
       },
       "first_seen_at": "2026-08-30T13:48:00Z",
-      "last_seen_at": "2026-08-30T13:20:00Z"
+      "last_seen_at": "2026-08-30T17:55:00Z"
     },
     {
       "finding_id": "cf-bbd5eb705be28b90",

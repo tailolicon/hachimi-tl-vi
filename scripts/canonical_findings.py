@@ -421,12 +421,12 @@ def refresh_canonical_resolutions(repo_root: Path, ledger: dict[str, Any] | None
         if isinstance(finding.get("review_resolution"), dict) and finding["review_resolution"].get("action") == "ignore":
             continue
 
-        expected = set(_norm(value) for value in _strings(finding.get("suggested_targets_vi")) if _norm(value))
         review_resolution = finding.get("review_resolution")
-        if not expected and isinstance(review_resolution, dict) and review_resolution.get("action") == "lock":
+        if isinstance(review_resolution, dict) and review_resolution.get("action") == "lock":
             target = str(review_resolution.get("target_vi") or "").strip()
-            if target:
-                expected.add(_norm(target))
+            expected = {_norm(target)} if target else set()
+        else:
+            expected = set(_norm(value) for value in _strings(finding.get("suggested_targets_vi")) if _norm(value))
         if len(expected) != 1:
             continue
 

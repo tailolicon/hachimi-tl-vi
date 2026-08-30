@@ -46,7 +46,7 @@ def _finding(source: str, category: str = "142") -> dict[str, object]:
 
 def test_hardener_is_idempotent_and_resolves_night_owl_reference_variant(tmp_path: Path) -> None:
     glossary = _seed_glossary(tmp_path)
-    ledger = {"schema_version": 1, "findings": [{**_finding("熬夜倾向", "143"), "match_mode": "contains"}]}
+    ledger = {"schema_version": 1, "findings": [{**_finding("熬夜倾向", "143"), "match_mode": "contains", "suggested_targets_vi": ["Night Owl"]}]}
     assert harden(tmp_path) is True
     assert harden(tmp_path) is False
     payload = json.loads((glossary / "ui_community_terms.json").read_text(encoding="utf-8"))

@@ -27,6 +27,7 @@ on:
       - "scripts/harden_fast_step_skill_context_finding.py"
       - "scripts/harden_triumph_skill_context_finding.py"
       - "scripts/harden_legend_race_context_finding.py"
+      - "scripts/harden_fuchu_himba_context_finding.py"
       - "src/hachimi_tl_vi/context_categories.py"
       - "src/hachimi_tl_vi/context_registry.py"
       - "src/hachimi_tl_vi/translators/prompt.py"
@@ -48,6 +49,7 @@ on:
       - "tests/test_fast_step_skill_context_finding_hardening.py"
       - "tests/test_triumph_skill_context_finding_hardening.py"
       - "tests/test_legend_race_context_finding_hardening.py"
+      - "tests/test_fuchu_himba_context_finding_hardening.py"
       - "tests/test_context_guard_finding_resolution.py"
       - "tests/test_jewel_context_guard_resolution.py"
       - "tests/test_recovery_spirit_context_guard_resolution.py"
@@ -135,6 +137,9 @@ jobs:
       - name: Harden Legend Race context finding
         run: python scripts/harden_legend_race_context_finding.py
 
+      - name: Harden Fuchu Himba Stakes context finding
+        run: python scripts/harden_fuchu_himba_context_finding.py
+
       - name: Build source-bridge risk registry
         run: python scripts/build_source_bridge_risk_registry.py
 
@@ -170,9 +175,7 @@ jobs:
             exit 0
           fi
           git commit -m "Sync translation context from pinned source"
-
           git reset --hard HEAD
-
           for attempt in 1 2 3 4 5; do
             git fetch origin main
             if git rebase origin/main; then

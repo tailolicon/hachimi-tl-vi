@@ -20,6 +20,7 @@ on:
       - "scripts/harden_full_effort_skill_finding.py"
       - "scripts/harden_room_match_finding.py"
       - "scripts/harden_power_context_finding.py"
+      - "scripts/harden_aptitude_alias_finding.py"
       - "src/hachimi_tl_vi/context_categories.py"
       - "src/hachimi_tl_vi/context_registry.py"
       - "src/hachimi_tl_vi/translators/prompt.py"
@@ -34,6 +35,7 @@ on:
       - "tests/test_full_effort_skill_finding_hardening.py"
       - "tests/test_room_match_finding_hardening.py"
       - "tests/test_power_context_finding_hardening.py"
+      - "tests/test_aptitude_alias_finding_hardening.py"
       - "tests/test_context_guard_finding_resolution.py"
       - "tests/test_context_registry.py"
       - "tests/test_context_sync.py"
@@ -94,6 +96,9 @@ jobs:
 
       - name: Harden narrative Power context finding
         run: python scripts/harden_power_context_finding.py
+
+      - name: Harden Aptitude alias finding
+        run: python scripts/harden_aptitude_alias_finding.py
 
       - name: Build source-bridge risk registry
         run: python scripts/build_source_bridge_risk_registry.py

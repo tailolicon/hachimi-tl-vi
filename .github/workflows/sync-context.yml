@@ -16,31 +16,7 @@ on:
       - "scripts/build_source_bridge_risk_registry.py"
       - "scripts/apply_terminology_reviews.py"
       - "scripts/harden_audit_findings.py"
-      - "scripts/harden_weekend_challenge_finding.py"
-      - "scripts/harden_strongest_team_finding.py"
-      - "scripts/harden_triple_tiara_finding.py"
-      - "scripts/harden_positive_thinking_finding.py"
-      - "scripts/harden_training_rank_finding.py"
-      - "scripts/harden_cosmo_puella_song_finding.py"
-      - "scripts/harden_tokaeri_no_hana_song_finding.py"
-      - "scripts/harden_gochiso_sama_song_finding.py"
-      - "scripts/harden_pegasus_punch_song_finding.py"
-      - "scripts/harden_asatsuyu_song_finding.py"
-      - "scripts/harden_heibon_miracle_song_finding.py"
-      - "scripts/harden_sora_no_hohoemi_song_finding.py"
-      - "scripts/harden_boku_blue_song_finding.py"
-      - "scripts/harden_hikari_no_ushiro_sugata_song_finding.py"
-      - "scripts/harden_full_effort_skill_finding.py"
-      - "scripts/harden_room_match_finding.py"
-      - "scripts/harden_power_context_finding.py"
-      - "scripts/harden_aptitude_alias_finding.py"
-      - "scripts/harden_jewel_name_overlap_finding.py"
-      - "scripts/harden_recovery_spirit_context_finding.py"
-      - "scripts/harden_innovation_skill_context_finding.py"
-      - "scripts/harden_fast_step_skill_context_finding.py"
-      - "scripts/harden_triumph_skill_context_finding.py"
-      - "scripts/harden_legend_race_context_finding.py"
-      - "scripts/harden_fuchu_himba_context_finding.py"
+      - "scripts/harden_*_finding.py"
       - "src/hachimi_tl_vi/context_categories.py"
       - "src/hachimi_tl_vi/context_registry.py"
       - "src/hachimi_tl_vi/translators/prompt.py"
@@ -51,32 +27,8 @@ on:
       - "glossary/ui_community_terms.json"
       - "glossary/source_bridge_terms.json"
       - "tests/test_audit_finding_hardening.py"
-      - "tests/test_weekend_challenge_finding_hardening.py"
-      - "tests/test_strongest_team_finding_hardening.py"
-      - "tests/test_triple_tiara_finding_hardening.py"
-      - "tests/test_positive_thinking_finding_hardening.py"
-      - "tests/test_training_rank_finding_hardening.py"
-      - "tests/test_cosmo_puella_song_finding_hardening.py"
-      - "tests/test_tokaeri_no_hana_song_finding_hardening.py"
-      - "tests/test_gochiso_sama_song_finding_hardening.py"
-      - "tests/test_pegasus_punch_song_finding_hardening.py"
-      - "tests/test_asatsuyu_song_finding_hardening.py"
-      - "tests/test_heibon_miracle_song_finding_hardening.py"
-      - "tests/test_sora_no_hohoemi_song_finding_hardening.py"
-      - "tests/test_boku_blue_song_finding_hardening.py"
-      - "tests/test_hikari_no_ushiro_sugata_song_finding_hardening.py"
-      - "tests/test_full_effort_skill_finding_hardening.py"
-      - "tests/test_room_match_finding_hardening.py"
-      - "tests/test_power_context_finding_hardening.py"
-      - "tests/test_aptitude_alias_finding_hardening.py"
-      - "tests/test_jewel_name_overlap_finding_hardening.py"
-      - "tests/test_recovery_spirit_context_finding_hardening.py"
-      - "tests/test_innovation_skill_context_finding_hardening.py"
+      - "tests/test_*_finding_hardening.py"
       - "tests/test_fast_step_context_guard_resolution.py"
-      - "tests/test_fast_step_skill_context_finding_hardening.py"
-      - "tests/test_triumph_skill_context_finding_hardening.py"
-      - "tests/test_legend_race_context_finding_hardening.py"
-      - "tests/test_fuchu_himba_context_finding_hardening.py"
       - "tests/test_context_guard_finding_resolution.py"
       - "tests/test_jewel_context_guard_resolution.py"
       - "tests/test_recovery_spirit_context_guard_resolution.py"
@@ -131,80 +83,16 @@ jobs:
       - name: Harden audit-discovered canonical rules
         run: python scripts/harden_audit_findings.py
 
-      - name: Harden Weekend Challenge audit finding
-        run: python scripts/harden_weekend_challenge_finding.py
-
-      - name: Harden Aim for the Stars event finding
-        run: python scripts/harden_strongest_team_finding.py
-
-      - name: Harden Triple Tiara finding
-        run: python scripts/harden_triple_tiara_finding.py
-
-      - name: Harden Positive Thinking condition finding
-        run: python scripts/harden_positive_thinking_finding.py
-
-      - name: Harden Training Rank finding
-        run: python scripts/harden_training_rank_finding.py
-
-      - name: Harden Cosmo Puella song finding
-        run: python scripts/harden_cosmo_puella_song_finding.py
-
-      - name: Harden The Bloom of an Era song finding
-        run: python scripts/harden_tokaeri_no_hana_song_finding.py
-
-      - name: Harden GOCHISO-SAMA song finding
-        run: python scripts/harden_gochiso_sama_song_finding.py
-
-      - name: Harden Soulful Fist Pegasus Punch song finding
-        run: python scripts/harden_pegasus_punch_song_finding.py
-
-      - name: Harden Asatsuyu song finding
-        run: python scripts/harden_asatsuyu_song_finding.py
-
-      - name: Harden From Ordinary to Extraordinary song finding
-        run: python scripts/harden_heibon_miracle_song_finding.py
-
-      - name: Harden Why the Sky Makes Me Smile song finding
-        run: python scripts/harden_sora_no_hohoemi_song_finding.py
-
-      - name: Harden My Endless Blue Dreams song finding
-        run: python scripts/harden_boku_blue_song_finding.py
-
-      - name: Harden Hikari no Ushiro Sugata song finding
-        run: python scripts/harden_hikari_no_ushiro_sugata_song_finding.py
-
-      - name: Harden full-effort Skill context finding
-        run: python scripts/harden_full_effort_skill_finding.py
-
-      - name: Harden Room Match finding
-        run: python scripts/harden_room_match_finding.py
-
-      - name: Harden narrative Power context finding
-        run: python scripts/harden_power_context_finding.py
-
-      - name: Harden Aptitude alias finding
-        run: python scripts/harden_aptitude_alias_finding.py
-
-      - name: Harden Jewel/Daiichi Ruby overlap finding
-        run: python scripts/harden_jewel_name_overlap_finding.py
-
-      - name: Harden Recovery Spirit context finding
-        run: python scripts/harden_recovery_spirit_context_finding.py
-
-      - name: Harden Innovation Skill context finding
-        run: python scripts/harden_innovation_skill_context_finding.py
-
-      - name: Harden fast-step Skill context finding
-        run: python scripts/harden_fast_step_skill_context_finding.py
-
-      - name: Harden triumph Skill context finding
-        run: python scripts/harden_triumph_skill_context_finding.py
-
-      - name: Harden Legend Race context finding
-        run: python scripts/harden_legend_race_context_finding.py
-
-      - name: Harden Fuchu Himba Stakes context finding
-        run: python scripts/harden_fuchu_himba_context_finding.py
+      - name: Run all finding hardeners
+        shell: bash
+        run: |
+          set -euo pipefail
+          shopt -s nullglob
+          scripts=(scripts/harden_*_finding.py)
+          for script in "${scripts[@]}"; do
+            echo "Running ${script}"
+            python "${script}"
+          done
 
       - name: Build source-bridge risk registry
         run: python scripts/build_source_bridge_risk_registry.py

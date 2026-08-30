@@ -41,8 +41,10 @@ permissions:
   contents: write
 
 concurrency:
+  # Rebuilds always start from live main, so queueing a sync is safer than
+  # repeatedly cancelling it under heavy worker churn and starving README updates.
   group: root-readme-progress
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   sync:

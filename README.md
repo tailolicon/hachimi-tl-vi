@@ -15,8 +15,8 @@ Pipeline dịch tiếng Việt độc lập cho **Uma Musume Pretty Derby JP** t
 | Pinned source coverage | **19,520 / 1,158,825 (1.68%)** — 1,139,305 remaining |
 | Current translation wave | **19,520 / 131,560 (14.84%)** — 112,040 queued remaining |
 | Deferred pinned entries | **1,027,265** — these must be promoted in later deterministic waves, not ignored |
-| Translation Audit Round 1 | **7,921 / 19,520 entries reviewed at least once (40.58%)** — ledger keep/revise/defer **4,391/2,128/1,402**; 4,184 / 19,520 currently resolved (21.43%); current generation **89 / 809 batches (11.00%)**, 1,620 merged decisions; 15,336 unresolved; gate **LOCKED** |
-| Audit merge backlog | **8 completed batch** awaiting bounded reconciliation (normally ≤5 min) |
+| Translation Audit Round 1 | **7,921 / 19,520 entries reviewed at least once (40.58%)** — ledger keep/revise/defer **4,391/2,128/1,402**; 4,184 / 19,520 currently resolved (21.43%); current generation **90 / 809 batches (11.12%)**, 1,620 merged decisions; 15,336 unresolved; gate **LOCKED** |
+| Audit merge backlog | **9 completed batch** awaiting bounded reconciliation (normally ≤5 min) |
 | UI review | **0 / 6,455 reviewed items (0.00%)** |
 | Context curation | Speech **100.00%**, terminology **100.00%** |
 | Active worker claims | **10** |

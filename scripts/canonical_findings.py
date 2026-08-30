@@ -359,7 +359,7 @@ def _rule_matches_finding_source(rule: dict[str, Any], alias_field: str, finding
 
 
 def _rule_target_forms(rule: dict[str, Any], layer: str) -> list[str]:
-    if layer == "locked":
+    if layer in {"locked", "skill_name"}:
         return _strings(rule.get("target_vi"))
     return list(dict.fromkeys(
         _strings(rule.get("preferred"))
@@ -378,6 +378,7 @@ def refresh_canonical_resolutions(repo_root: Path, ledger: dict[str, Any] | None
     registry = read_json(repo_root / "glossary/term_registry.json", {}) or {}
     community = read_json(repo_root / "glossary/ui_community_terms.json", {}) or {}
     bridge = read_json(repo_root / "glossary/source_bridge_terms.json", {}) or {}
+    skill_style = read_json(repo_root / "glossary/skill_name_style.json", {}) or {}
     rules: list[tuple[str, dict[str, Any], str]] = []
     for term in registry.get("terms", []) if isinstance(registry, dict) else []:
         if isinstance(term, dict) and bool(term.get("locked")):
@@ -388,6 +389,18 @@ def refresh_canonical_resolutions(repo_root: Path, ledger: dict[str, Any] | None
     for term in bridge.get("terms", []) if isinstance(bridge, dict) else []:
         if isinstance(term, dict):
             rules.append(("source_bridge", term, "zh_cn"))
+    for example in skill_style.get("canonical_examples", []) if isinstance(skill_style, dict) else []:
+        if not isinstance(example, dict):
+            continue
+        source = str(example.get("source_zh_cn") or "").strip()
+        target = str(example.get("target_vi") or "").strip()
+        if not source or not target:
+            continue
+        rule = dict(example)
+        rule["id"] = f"skill_name_style.{hashlib.sha256(source.encode('utf-8')).hexdigest()[:12]}"
+        rule["zh_cn"] = [source]
+        rule["match_mode"] = "exact"
+        rules.append(("skill_name", rule, "zh_cn"))
 
     for finding in result.get("findings", []) if isinstance(result.get("findings"), list) else []:
         if not isinstance(finding, dict):

@@ -49,6 +49,32 @@ JUNIOR_MAKE_DEBUT_DECISION = {
     "note": "Established player-facing English race label for the initial Career objective; canonical matching itself remains item-scoped through race.junior_make_debut.singlemode619001.",
 }
 
+MOXIE_SKILL = {
+    "id": "skill.moxie.text147",
+    "category": "skill_name",
+    "source_aliases": ["随势而动"],
+    "preferred": "Moxie",
+    "compact": [],
+    "accepted": ["Moxie"],
+    "forbidden": ["Thuận thế hành động"],
+    "require_accepted": True,
+    "invalidation_scope": "item",
+    "source_paths": ["text_data_dict.json"],
+    "json_path_prefixes": [["147"]],
+    "match_mode": "exact",
+    "basis": "Verified identity: zh-CN 随势而动 is JP 勢い任せ (skill IDs 2012801/2012802/2012803); the released English player-facing name is Moxie. Exact source alias plus skill-title category prevents generic prose matching.",
+}
+
+MOXIE_SKILL_DECISION = {
+    "decision_id": "audit.finding.moxie",
+    "source_zh_cn": "随势而动",
+    "action": "lock",
+    "target_vi": "Moxie",
+    "kind": "skill_name",
+    "category": "skill_name",
+    "note": "Verified against JP 勢い任せ and released EN Moxie. Applies to the repeated text_data category-147 skill-title entries only through the scoped community rule.",
+}
+
 
 def _load(path: Path, default: dict[str, Any] | None = None) -> dict[str, Any]:
     if not path.exists():
@@ -89,6 +115,7 @@ def harden(repo_root: Path = ROOT) -> bool:
         raise ValueError("glossary/ui_community_terms.json terms must be a list")
     _upsert(terms, NIGHT_OWL_REFERENCE_VARIANT)
     _upsert(terms, JUNIOR_MAKE_DEBUT)
+    _upsert(terms, MOXIE_SKILL)
     if before != json.dumps(community, ensure_ascii=False, sort_keys=True):
         _write(community_path, community)
         changed = True
@@ -100,6 +127,7 @@ def harden(repo_root: Path = ROOT) -> bool:
     if not isinstance(decisions, list):
         raise ValueError("glossary/terminology_reviews.json decisions must be a list")
     _upsert(decisions, JUNIOR_MAKE_DEBUT_DECISION, id_field="decision_id")
+    _upsert(decisions, MOXIE_SKILL_DECISION, id_field="decision_id")
     if before != json.dumps(reviews, ensure_ascii=False, sort_keys=True):
         _write(reviews_path, reviews)
         changed = True

@@ -130,6 +130,20 @@ def _upsert(terms: list[dict[str, Any]], record: dict[str, Any]) -> None:
     terms.append(normalized)
 
 
+def _disarm_ambiguous_training_alias(terms: list[dict[str, Any]]) -> None:
+    """Bare 育成 is Career at proven UI keys and must not remain a global Training alias."""
+    for term in terms:
+        if not isinstance(term, dict) or term.get("id") != "system.training":
+            continue
+        term["ja"] = [value for value in term.get("ja", []) if value != "育成"]
+        term["zh_cn"] = [value for value in term.get("zh_cn", []) if value != "育成"]
+        term["note"] = (
+            "Generic Training concept. Bare 育成 is intentionally excluded because it denotes Career mode "
+            "at proven SingleMode UI keys; career.ui.mode owns those scoped matches."
+        )
+        return
+
+
 def _exclude_trainee_from_world_term(repo_root: Path) -> None:
     path = repo_root / "glossary" / "ui_community_terms.json"
     if not path.exists():
@@ -178,6 +192,7 @@ def harden(repo_root: Path = REPO_ROOT) -> None:
     path = repo_root / "glossary" / "term_registry.json"
     payload = _load(path)
     terms = payload.setdefault("terms", [])
+    _disarm_ambiguous_training_alias(terms)
     for record in SCOPED_UI_TERMS:
         _upsert(terms, record)
     _write(path, payload)

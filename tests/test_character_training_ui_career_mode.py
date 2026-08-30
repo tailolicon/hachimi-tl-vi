@@ -138,3 +138,37 @@ def test_career_mode_rule_does_not_match_story_training_prose(tmp_path: Path) ->
         json_path=["163", "1"],
     )
     assert "career.ui.mode" not in _ids(matches)
+
+
+def test_hardener_removes_bare_ikusei_from_generic_training_term(tmp_path: Path) -> None:
+    root = _seed(tmp_path)
+    registry_path = root / "glossary" / "term_registry.json"
+    registry_path.write_text(
+        json.dumps(
+            {
+                "schema_version": 1,
+                "terms": [
+                    {
+                        "id": "system.training",
+                        "category": "training",
+                        "ja": ["トレーニング", "育成"],
+                        "zh_cn": ["训练", "育成"],
+                        "target_vi": "Huấn luyện",
+                        "locked": True,
+                    }
+                ],
+            },
+            ensure_ascii=False,
+            indent=2,
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+    harden(root)
+    payload = json.loads(registry_path.read_text(encoding="utf-8"))
+    training = next(item for item in payload["terms"] if item["id"] == "system.training")
+    assert "育成" not in training["ja"]
+    assert "育成" not in training["zh_cn"]
+    career = next(item for item in payload["terms"] if item["id"] == "career.ui.mode")
+    assert career["ja"] == ["育成"]
+    assert career["zh_cn"] == ["育成"]

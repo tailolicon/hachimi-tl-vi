@@ -56,11 +56,115 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
+          quarantine_file=/tmp/translation-review-quarantine.tsv
+          : > "$quarantine_file"
+
+          merge_with_quarantine() {
+            local merge_output merge_rc error_line batch_id bad_completion
+            for quarantine_attempt in $(seq 1 25); do
+              # A failed merge can have written untracked merged markers before
+              # raising. Reset every retry so those partial markers can never make
+              # a valid batch look already merged without its reviewed-index/data
+              # changes being persisted.
+              git reset --hard HEAD
+              git clean -fd -- work/translation_review/merged
+
+              if [[ -s "$quarantine_file" ]]; then
+                while IFS=$'\t' read -r bad_completion _; do
+                  [[ -n "$bad_completion" ]] && rm -f "$bad_completion"
+                done < "$quarantine_file"
+              fi
+
+              set +e
+              merge_output=$(python scripts/merge_translation_review.py --repo-root . 2>&1)
+              merge_rc=$?
+              set -e
+              printf '%s\n' "$merge_output"
+              if [[ $merge_rc -eq 0 ]]; then
+                return 0
+              fi
+
+              # Per-batch validation failures are quarantined for this run only.
+              # Unknown/global failures still fail loudly rather than being hidden.
+              error_line=$(printf '%s\n' "$merge_output" | grep -E 'ValueError:' | tail -n 1 || true)
+              batch_id=$(printf '%s\n' "$error_line" | sed -nE 's/.*ValueError: ([^:[:space:]]+):.*/\1/p')
+              bad_completion=""
+
+              if [[ -n "$batch_id" && -d "work/translation_review/completions/$batch_id" ]]; then
+                bad_completion=$(find "work/translation_review/completions/$batch_id" -type f -name '*.json' | sort | head -n 1)
+              fi
+              if [[ -z "$bad_completion" ]]; then
+                bad_completion=$(printf '%s\n' "$error_line" | sed -nE 's/.*invalid completion marker: (.*)$/\1/p')
+              fi
+
+              if [[ -z "$bad_completion" || ! -f "$bad_completion" ]]; then
+                echo "Merge failed for a non-quarantinable/global reason." >&2
+                return "$merge_rc"
+              fi
+              if grep -Fq "$bad_completion"$'\t' "$quarantine_file"; then
+                echo "Repeated failure for already quarantined completion: $bad_completion" >&2
+                return "$merge_rc"
+              fi
+
+              printf '%s\t%s\n' "$bad_completion" "${error_line//$'\t'/ }" >> "$quarantine_file"
+              echo "::warning::Quarantining malformed review completion for this merge run: $bad_completion"
+            done
+
+            echo "Too many malformed completion markers in one merge run." >&2
+            return 1
+          }
+
           for attempt in 1 2 3 4 5; do
             git fetch origin main
             git checkout -B translation-review-merge origin/main
 
-            python scripts/merge_translation_review.py --repo-root .
+            merge_with_quarantine
+
+            # Restore source completion markers before committing. Quarantine is a
+            # fail-soft merge policy, not deletion of worker evidence.
+            if [[ -s "$quarantine_file" ]]; then
+              while IFS=$'\t' read -r bad_completion _; do
+                git checkout -- "$bad_completion"
+              done < "$quarantine_file"
+            fi
+
+            python - "$quarantine_file" <<'PY'
+          import json
+          import sys
+          from datetime import datetime, timezone
+          from pathlib import Path
+
+          src = Path(sys.argv[1])
+          report_path = Path("work/translation_review/quarantine_report.json")
+          entries = []
+          if src.exists():
+              for raw in src.read_text(encoding="utf-8").splitlines():
+                  if not raw.strip():
+                      continue
+                  path, _, error = raw.partition("\t")
+                  p = Path(path)
+                  entries.append({
+                      "completion_path": path,
+                      "batch_id": p.parent.name,
+                      "claim_id": p.stem,
+                      "error": error,
+                  })
+          previous = {}
+          if report_path.exists():
+              try:
+                  previous = json.loads(report_path.read_text(encoding="utf-8"))
+              except (OSError, json.JSONDecodeError):
+                  previous = {}
+          if previous.get("entries") != entries:
+              payload = {
+                  "schema_version": 1,
+                  "updated_at": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
+                  "policy": "Malformed completion markers are quarantined per merge run so valid review batches continue; source evidence is never deleted.",
+                  "entries": entries,
+              }
+              report_path.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+          PY
+
             python scripts/build_translation_regression_memory.py --repo-root .
             python scripts/canonical_findings.py --repo-root . --refresh
             python scripts/build_terminology_review_queue.py

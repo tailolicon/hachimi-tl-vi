@@ -5,6 +5,7 @@ from pathlib import Path
 
 from scripts.harden_audit_findings import (
     JUNIOR_MAKE_DEBUT,
+    MOXIE_SKILL,
     NIGHT_OWL_REFERENCE_VARIANT,
     harden,
 )
@@ -138,6 +139,71 @@ def test_junior_make_debut_rule_does_not_resolve_another_localize_key(tmp_path: 
                 "source_paths": ["localize_dict.json"],
                 "key_exact": ["Story999999"],
                 "json_path_prefixes": [],
+                "suggested_targets_vi": [],
+                "canonical_resolution": None,
+                "review_resolution": None,
+            }
+        ],
+    }
+    refreshed = refresh_canonical_resolutions(tmp_path, ledger)
+    assert refreshed["findings"][0]["canonical_resolution"] is None
+
+
+def test_moxie_resolves_only_the_skill_title_category(tmp_path: Path) -> None:
+    glossary = _seed_glossary(tmp_path)
+    assert harden(tmp_path) is True
+    community = json.loads((glossary / "ui_community_terms.json").read_text(encoding="utf-8"))
+    rule = next(item for item in community["terms"] if item["id"] == MOXIE_SKILL["id"])
+    assert rule["preferred"] == "Moxie"
+    assert rule["source_aliases"] == ["随势而动"]
+    assert rule["json_path_prefixes"] == [["147"]]
+    assert rule["match_mode"] == "exact"
+
+    ledger = {
+        "schema_version": 1,
+        "findings": [
+            {
+                "finding_id": "cf-test-moxie",
+                "status": "open",
+                "source_zh_cn": "随势而动",
+                "match_mode": "exact",
+                "source_paths": ["text_data_dict.json"],
+                "key_exact": [],
+                "json_path_prefixes": [["147"]],
+                "suggested_targets_vi": [],
+                "canonical_resolution": None,
+                "review_resolution": None,
+            }
+        ],
+    }
+    refreshed = refresh_canonical_resolutions(tmp_path, ledger)
+    finding = refreshed["findings"][0]
+    assert finding["review_resolution"] == {
+        "decision_id": "audit.finding.moxie",
+        "action": "lock",
+        "target_vi": "Moxie",
+    }
+    assert finding["canonical_resolution"] == {
+        "layer": "community",
+        "term_id": "skill.moxie.text147",
+        "target_vi": "Moxie",
+    }
+
+
+def test_moxie_does_not_resolve_same_words_outside_skill_title_category(tmp_path: Path) -> None:
+    _seed_glossary(tmp_path)
+    assert harden(tmp_path) is True
+    ledger = {
+        "schema_version": 1,
+        "findings": [
+            {
+                "finding_id": "cf-test-moxie-prose",
+                "status": "open",
+                "source_zh_cn": "随势而动",
+                "match_mode": "exact",
+                "source_paths": ["text_data_dict.json"],
+                "key_exact": [],
+                "json_path_prefixes": [["163"]],
                 "suggested_targets_vi": [],
                 "canonical_resolution": None,
                 "review_resolution": None,

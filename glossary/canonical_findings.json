@@ -7,6 +7,60 @@
   },
   "findings": [
     {
+      "finding_id": "cf-04aeb4f2712eb3c6",
+      "status": "open",
+      "source_zh_cn": "全力",
+      "match_mode": "contains",
+      "source_paths": [
+        "localize_dict.json"
+      ],
+      "key_exact": [],
+      "json_path_prefixes": [],
+      "kinds": [
+        "context_rule"
+      ],
+      "concepts": [
+        "Generic adverbial 全力 versus named Skill title"
+      ],
+      "suggested_targets_vi": [],
+      "confidence_levels": [
+        "high"
+      ],
+      "reasons": [
+        "The reviewed Skill-name matcher fires inside ordinary farming prose where 全力 means doing something with full effort, not the Skill title."
+      ],
+      "evidence_count": 1,
+      "evidence": [
+        {
+          "uid": "zhcn:4d1e956849c157ae8223c3f8",
+          "plan_id": "tr-p3-67f8551f7780-e955c4d6f515-b5c0bcb3bd-ec33283c35",
+          "batch_id": "tr-p3-67f8551f7780-e955c4d6f515-b5c0bcb3bd-ec33283c35-b0269",
+          "claim_id": "trc-gpt56sol-20260830T181100Z-b0269",
+          "worker_id": "gpt56sol-20260830T181100Z",
+          "source_path": "localize_dict.json",
+          "json_path": [
+            "SingleModeScenarioCook425083"
+          ],
+          "source_text": "尽全力打理了农田！\n<color=#FF6D26>{0}</color>似乎尤其会顺利成长",
+          "current_text": "Đã dốc toàn lực chăm sóc nông trại!\n<color=#FF6D26>{0}</color> có vẻ sẽ phát triển đặc biệt thuận lợi",
+          "proposed_text": null,
+          "reported_at": "2026-08-30T18:15:00Z"
+        }
+      ],
+      "canonical_resolution": {
+        "layer": "locked",
+        "term_id": "reviewed.skill_name.5907479481a9",
+        "target_vi": "Dốc hết sức"
+      },
+      "review_resolution": {
+        "decision_id": "parallel.ctx-67f8551f77807292-v1.term-0017.11",
+        "action": "lock",
+        "target_vi": "Dốc hết sức"
+      },
+      "first_seen_at": "2026-08-30T18:15:00Z",
+      "last_seen_at": "2026-08-30T18:15:00Z"
+    },
+    {
       "finding_id": "cf-09b27325b6a6dff2",
       "status": "open",
       "source_zh_cn": "勤勉好学",
@@ -351,6 +405,61 @@
       },
       "first_seen_at": "2026-08-30T12:26:00Z",
       "last_seen_at": "2026-08-30T12:26:00Z"
+    },
+    {
+      "finding_id": "cf-4247246a96780f8b",
+      "status": "open",
+      "source_zh_cn": "革新",
+      "match_mode": "contains",
+      "source_paths": [
+        "text_data_dict.json"
+      ],
+      "key_exact": [],
+      "json_path_prefixes": [],
+      "kinds": [
+        "context_rule"
+      ],
+      "concepts": [
+        "Generic innovation/reform prose versus named Skill title"
+      ],
+      "suggested_targets_vi": [],
+      "confidence_levels": [
+        "high"
+      ],
+      "reasons": [
+        "Skill-name matching fires inside a longer character-introduction sentence where 革新 is a generic noun."
+      ],
+      "evidence_count": 1,
+      "evidence": [
+        {
+          "uid": "zhcn:9d512c4dd7e383ae7c06a5dc",
+          "plan_id": "tr-p3-67f8551f7780-e955c4d6f515-b5c0bcb3bd-ec33283c35",
+          "batch_id": "tr-p3-67f8551f7780-e955c4d6f515-b5c0bcb3bd-ec33283c35-b0727",
+          "claim_id": "trc-gpt56sol-20260830T180100Z-b0727",
+          "worker_id": "gpt56sol-20260830T180100Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "163",
+            "1138"
+          ],
+          "source_text": "Hi!　我是青春永驻哦！\\n路线图准备完毕！要在赛马娘界\\n掀起一场革新，不是吗！",
+          "current_text": "Hi!　Tôi là Forever Young!\\nLộ trình đã sẵn sàng! Phải tạo nên một cuộc\\ncách mạng trong thế giới Uma Musume chứ, đúng không!",
+          "proposed_text": null,
+          "reported_at": "2026-08-30T18:05:00Z"
+        }
+      ],
+      "canonical_resolution": {
+        "layer": "locked",
+        "term_id": "reviewed.skill_name.5dffb471df59",
+        "target_vi": "Đổi mới"
+      },
+      "review_resolution": {
+        "decision_id": "parallel.ctx-67f8551f77807292-v1.term-0092.15",
+        "action": "lock",
+        "target_vi": "Đổi mới"
+      },
+      "first_seen_at": "2026-08-30T18:05:00Z",
+      "last_seen_at": "2026-08-30T18:05:00Z"
     },
     {
       "finding_id": "cf-55f0e8a1d70264a2",
@@ -1422,7 +1531,8 @@
         "Prevent Skill-name alias from matching inside 凯旋门赏 race name",
         "Skill-name alias 凯旋 overmatches the race proper name 凯旋门赏",
         "Skill alias must not overmatch Prix de l'Arc de Triomphe race name 凯旋门赏",
-        "Skill alias 凯旋 must not match inside race proper name 凯旋门赏"
+        "Skill alias 凯旋 must not match inside race proper name 凯旋门赏",
+        "Generic/proper-name substring 凯旋 inside Prix de l'Arc de Triomphe versus named Skill title"
       ],
       "suggested_targets_vi": [],
       "confidence_levels": [
@@ -1434,9 +1544,10 @@
         "The reviewed Skill-title lock should not fire inside the proper race name Prix de l'Arc de Triomphe; narrow the matcher before resolving this item.",
         "Current item is a race objective and the official race name should not be replaced by a Skill-title lock matched on a substring.",
         "Current reviewed Skill matcher overmatches a substring of Prix de l'Arc de Triomphe and falsely requires Khải hoàn.",
-        "Current reviewed Skill matcher overmatches the race proper name and falsely requires Khải hoàn."
+        "Current reviewed Skill matcher overmatches the race proper name and falsely requires Khải hoàn.",
+        "The Skill matcher must not fire inside the proper race name 凯旋门赏."
       ],
-      "evidence_count": 6,
+      "evidence_count": 7,
       "evidence": [
         {
           "uid": "zhcn:1136cb24b7b89add2e024a3d",
@@ -1533,6 +1644,22 @@
           "current_text": "Chiến thắng Prix Niel, Prix Foy và Prix de l'Arc de Triomphe\\n※Chỉ áp dụng cho dự án Reach for the stars L'Arc",
           "proposed_text": null,
           "reported_at": "2026-08-30T14:56:00Z"
+        },
+        {
+          "uid": "zhcn:95e7ef6a4c1204a21b9c7281",
+          "plan_id": "tr-p3-67f8551f7780-e955c4d6f515-b5c0bcb3bd-ec33283c35",
+          "batch_id": "tr-p3-67f8551f7780-e955c4d6f515-b5c0bcb3bd-ec33283c35-b0727",
+          "claim_id": "trc-gpt56sol-20260830T180100Z-b0727",
+          "worker_id": "gpt56sol-20260830T180100Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "163",
+            "9043"
+          ],
+          "source_text": "我是佐岳五月！欧洲比赛的分析\\n就交给我吧。制霸『凯旋门赏』这个\\n前所未有的梦想，就请同我一起去实现吧！",
+          "current_text": "Tôi là Satake Mei! Việc phân tích các cuộc đua châu Âu\\ncứ giao cho tôi. Giấc mơ chưa từng có là chinh phục\\n『Prix de l'Arc de Triomphe』, hãy cùng tôi biến nó thành hiện thực!",
+          "proposed_text": null,
+          "reported_at": "2026-08-30T18:05:00Z"
         }
       ],
       "canonical_resolution": {
@@ -1546,7 +1673,7 @@
         "target_vi": "Khải hoàn"
       },
       "first_seen_at": "2026-08-30T01:06:00Z",
-      "last_seen_at": "2026-08-30T14:56:00Z"
+      "last_seen_at": "2026-08-30T18:05:00Z"
     },
     {
       "finding_id": "cf-a6f9a22d7cf78668",
@@ -1853,9 +1980,11 @@
         "The Skill-title lock Dốc hết sức is being applied inside ordinary prose, so the canonical matching rule needs narrower context before this item can resolve.",
         "The reviewed Skill-title lock Dốc hết sức should not fire inside generic prose meaning 'perform at full strength'; narrow its matching context.",
         "Current Skill matcher overmatches generic prose in Condition descriptions.",
-        "The reviewed Skill-name matcher is firing inside a longer character-description sentence where 全力 means running with all one's strength, not a Skill name."
+        "The reviewed Skill-name matcher is firing inside a longer character-description sentence where 全力 means running with all one's strength, not a Skill name.",
+        "全力 appears in ordinary support prose, not as a Skill title.",
+        "全力 occurs in ordinary dialogue, not as a Skill title."
       ],
-      "evidence_count": 4,
+      "evidence_count": 6,
       "evidence": [
         {
           "uid": "zhcn:9cd244f642d25ce4875a165d",
@@ -1920,6 +2049,38 @@
           "current_text": "Dùng võ thay lễ, dốc sức chạy hết mình.\\nUma Musume mê võ",
           "proposed_text": null,
           "reported_at": "2026-08-30T17:55:00Z"
+        },
+        {
+          "uid": "zhcn:4e47243fd335a2e0da5a3ae1",
+          "plan_id": "tr-p3-67f8551f7780-e955c4d6f515-b5c0bcb3bd-ec33283c35",
+          "batch_id": "tr-p3-67f8551f7780-e955c4d6f515-b5c0bcb3bd-ec33283c35-b0727",
+          "claim_id": "trc-gpt56sol-20260830T180100Z-b0727",
+          "worker_id": "gpt56sol-20260830T180100Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "163",
+            "9001"
+          ],
+          "source_text": "您好，我是特雷森学园的理事长秘书骏川手纲。\\n为了让大家能够过上更好的学园生活，\\n我会全力支援您的♪",
+          "current_text": "Xin chào, tôi là Tazuna Hayakawa, thư ký hiệu trưởng Học viện Tracen.\\nĐể mọi người có một cuộc sống học đường tốt đẹp hơn,\\ntôi sẽ dốc toàn lực hỗ trợ bạn♪",
+          "proposed_text": null,
+          "reported_at": "2026-08-30T18:05:00Z"
+        },
+        {
+          "uid": "zhcn:95960302b38e030f40b8b7fb",
+          "plan_id": "tr-p3-67f8551f7780-e955c4d6f515-b5c0bcb3bd-ec33283c35",
+          "batch_id": "tr-p3-67f8551f7780-e955c4d6f515-b5c0bcb3bd-ec33283c35-b0727",
+          "claim_id": "trc-gpt56sol-20260830T180100Z-b0727",
+          "worker_id": "gpt56sol-20260830T180100Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "163",
+            "9002"
+          ],
+          "source_text": "我是理事长秋川弥生！我将尽全力为我校学生\\n以及支援着她们的训练员们提供帮助！\\n诸位就尽情交给我吧！！",
+          "current_text": "Tôi là hiệu trưởng Yayoi Akikawa! Tôi sẽ dốc hết sức giúp đỡ học sinh trường ta\\nvà những huấn luyện viên đang hỗ trợ họ!\\nMọi người cứ giao hết cho tôi!!",
+          "proposed_text": null,
+          "reported_at": "2026-08-30T18:05:00Z"
         }
       ],
       "canonical_resolution": {
@@ -1933,7 +2094,7 @@
         "target_vi": "Dốc hết sức"
       },
       "first_seen_at": "2026-08-30T13:48:00Z",
-      "last_seen_at": "2026-08-30T17:55:00Z"
+      "last_seen_at": "2026-08-30T18:05:00Z"
     },
     {
       "finding_id": "cf-bbd5eb705be28b90",

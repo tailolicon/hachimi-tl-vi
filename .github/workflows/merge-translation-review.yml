@@ -4,8 +4,7 @@ name: Merge translation review results
 # reconciler from results/** or completions/**: doing so creates an unbounded
 # serial Actions backlog while workers are healthy. Instead, reconcile the whole
 # durable backlog on a bounded cadence. A run always reads latest main and drains
-# every completion currently available, so the maximum normal merge lag is one
-# schedule interval rather than the age of an Actions queue.
+# every completion currently available.
 on:
   push:
     branches: [main]
@@ -122,9 +121,14 @@ jobs:
             return 1
           }
 
+          # Full validation can take minutes while review workers continue to push
+          # task-local checkpoints. Those writes must not starve the validated
+          # integration commit. We recompute only when main changed semantically;
+          # worker evidence and README-only movement are rebased after validation.
           for attempt in 1 2 3 4 5; do
             git fetch origin main
             git checkout -B translation-review-merge origin/main
+            validated_base=$(git rev-parse HEAD)
 
             merge_with_quarantine
 
@@ -179,7 +183,6 @@ jobs:
             pytest -q
             tlvi --db /tmp/tlvi-translation-review.db validate
             tlvi --db /tmp/tlvi-translation-review.db index
-
             python scripts/build_translation_review_plan.py --repo-root . --batch-size 20
 
             git add localized_data index.json glossary/translation_regressions.generated.json glossary/canonical_findings.json glossary/terminology_review_queue.json work/translation_review work/parallel_state.json
@@ -188,10 +191,31 @@ jobs:
               exit 0
             fi
             git commit -m "Merge retrospective translation review"
-            if git push origin HEAD:main; then
-              exit 0
-            fi
-            sleep $((attempt * 2))
+
+            # Publish the already-validated commit across harmless concurrent
+            # worker/checkpoint and README commits. If code, canonical policy,
+            # localized data, or review state changed, discard and recompute.
+            for publish_attempt in $(seq 1 20); do
+              git fetch origin main
+              remote_main=$(git rev-parse origin/main)
+              unsafe_changes=$(git diff --name-only "$validated_base" "$remote_main" | grep -Ev '^(README\.md$|work/translation_review/(claims|results|completions)/)' || true)
+              if [[ -n "$unsafe_changes" ]]; then
+                echo "Main changed in validation-sensitive paths; recomputing from latest main:"
+                printf '%s\n' "$unsafe_changes"
+                break
+              fi
+
+              if ! git rebase origin/main; then
+                git rebase --abort || true
+                echo "Safe-path rebase conflicted; recomputing."
+                break
+              fi
+              if git push origin HEAD:main; then
+                exit 0
+              fi
+              sleep 1
+            done
+            sleep "$attempt"
           done
 
           echo "Failed to merge translation review results after retries" >&2

@@ -729,7 +729,7 @@
         "Uma Musume"
       ],
       "require_accepted": true,
-      "basis": "Vietnamese project term established by the official Vietnamese anime subtitle usage supplied by the project owner; applies to the generic world/species term, not the franchise title.",
+      "basis": "Generic 赛马娘 is the project world/species term Mã Nương, but it must not fire inside established proper race names such as 府中赛马娘锦标 (Fuchu Himba Stakes).",
       "exclude_source_contains": [
         "ウマ娘 プリティーダービー",
         "ウマ娘Pretty Derby",
@@ -737,7 +737,8 @@
         "赛马娘 Pretty Derby",
         "赛马娘Pretty Derby",
         "育成赛马娘",
-        "育成\n赛马娘"
+        "育成\n赛马娘",
+        "府中赛马娘锦标"
       ]
     },
     {
@@ -3825,6 +3826,31 @@
       ],
       "match_mode": "contains",
       "basis": "Established player-facing mode name. Keep the canonical rule narrowly scoped to the proven RoomMatch0001 label while related Room Match UI is audited independently."
+    },
+    {
+      "id": "common.aptitude.zhcn_variant",
+      "category": "system",
+      "source_aliases": [
+        "适应性"
+      ],
+      "preferred": "Aptitude",
+      "compact": [],
+      "accepted": [
+        "Aptitude"
+      ],
+      "forbidden": [
+        "Độ thích nghi",
+        "độ thích nghi",
+        "Thích nghi",
+        "thích nghi"
+      ],
+      "require_accepted": true,
+      "invalidation_scope": "item",
+      "source_paths": [
+        "localize_dict.json"
+      ],
+      "match_mode": "contains",
+      "basis": "zh-CN localize UI uses 适应性 as a variant for the player-facing Aptitude system. Scope is restricted to localize_dict so generic adaptability prose elsewhere is not captured."
     }
   ]
 }

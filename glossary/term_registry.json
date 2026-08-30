@@ -234,7 +234,11 @@
         "赛事"
       ],
       "target_vi": "Cuộc đua",
-      "locked": true
+      "locked": true,
+      "exclude_source_contains": [
+        "传奇比赛"
+      ],
+      "context_note": "Generic 比赛/レース maps to Cuộc đua, but must not fire inside established named-mode compounds such as 传奇比赛 (Legend Race)."
     },
     {
       "id": "surface.turf",
@@ -415,7 +419,11 @@
         "宝石"
       ],
       "target_vi": "Jewel",
-      "locked": true
+      "locked": true,
+      "exclude_source_contains": [
+        "第一红宝石"
+      ],
+      "context_note": "宝石 is the Jewel currency only in actual currency context. Do not match the substring 宝石 inside the character name 第一红宝石 (Daiichi Ruby)."
     },
     {
       "id": "character.anshinzawa_sasami",
@@ -3050,7 +3058,9 @@
         "トライアンフ"
       ],
       "note": "JP skill ID 110201211 được xác minh là トライアンフ (Triumph). 'Khải hoàn' là cách Việt ngắn, trực tiếp và ổn định cho đúng nghĩa của tên JP, không dựa riêng vào chữ Hán zh-CN.",
-      "invalidation_scope": "item"
+      "invalidation_scope": "item",
+      "match_mode": "exact",
+      "context_note": "凯旋 is the Skill title Khải hoàn only as a complete source string. It must not match inside 凯旋门赏 (Prix de l'Arc de Triomphe), character names, or ordinary prose about returning triumphant."
     },
     {
       "id": "reviewed.skill_name.1b6045e2f0ec",
@@ -6008,7 +6018,9 @@
         "抜きん出る一歩"
       ],
       "note": "Current Japanese references verify 抜きん出る一歩; the Vietnamese title preserves the image of a step that pulls ahead.",
-      "invalidation_scope": "item"
+      "invalidation_scope": "item",
+      "match_mode": "exact",
+      "context_note": "快人一步 is a Skill title only when it is the complete source string. In longer prose such as 速度快人一步 it is an ordinary phrase meaning to be a step ahead."
     },
     {
       "id": "reviewed.skill_name.dbaeae4087a7",
@@ -8366,7 +8378,9 @@
         "イノベーション"
       ],
       "note": "Locator 47:204191 is verified as JP イノベーション (innovation). 'Đổi mới' is the standard, compact Vietnamese equivalent and is stable as a standalone skill title.",
-      "invalidation_scope": "item"
+      "invalidation_scope": "item",
+      "match_mode": "exact",
+      "context_note": "革新 is a Skill title only when it is the complete source string. Longer character/profile prose using 革新 as ordinary innovation/reform language must not trigger the Skill lock."
     },
     {
       "id": "reviewed.skill_name.d6baea9eebfd",
@@ -36002,7 +36016,17 @@
         "source": "glossary/terminology_reviews.json"
       },
       "note": "Verified as JP リカバリー精神 from the 5.5th Anniversary Trainer Ability system; preserve Recovery Spirit in the scoped Condition-name table.",
-      "invalidation_scope": "item"
+      "invalidation_scope": "item",
+      "match_mode": "exact",
+      "source_paths": [
+        "text_data_dict.json"
+      ],
+      "json_path_prefixes": [
+        [
+          "142"
+        ]
+      ],
+      "context_note": "恢复精神 is the named Recovery Spirit Condition only in the text_data category-142 Condition-name table. Do not match the same words inside ordinary item prose such as 喝了恢复精神吧."
     },
     {
       "id": "reviewed.condition.751e9ce57b75",

@@ -26,6 +26,7 @@ on:
       - "scripts/harden_innovation_skill_context_finding.py"
       - "scripts/harden_fast_step_skill_context_finding.py"
       - "scripts/harden_triumph_skill_context_finding.py"
+      - "scripts/harden_legend_race_context_finding.py"
       - "src/hachimi_tl_vi/context_categories.py"
       - "src/hachimi_tl_vi/context_registry.py"
       - "src/hachimi_tl_vi/translators/prompt.py"
@@ -46,6 +47,7 @@ on:
       - "tests/test_innovation_skill_context_finding_hardening.py"
       - "tests/test_fast_step_skill_context_finding_hardening.py"
       - "tests/test_triumph_skill_context_finding_hardening.py"
+      - "tests/test_legend_race_context_finding_hardening.py"
       - "tests/test_context_guard_finding_resolution.py"
       - "tests/test_jewel_context_guard_resolution.py"
       - "tests/test_recovery_spirit_context_guard_resolution.py"
@@ -130,6 +132,9 @@ jobs:
       - name: Harden triumph Skill context finding
         run: python scripts/harden_triumph_skill_context_finding.py
 
+      - name: Harden Legend Race context finding
+        run: python scripts/harden_legend_race_context_finding.py
+
       - name: Build source-bridge risk registry
         run: python scripts/build_source_bridge_risk_registry.py
 
@@ -166,13 +171,8 @@ jobs:
           fi
           git commit -m "Sync translation context from pinned source"
 
-          # Tests/validators may leave disposable working-tree changes. The only
-          # publishable files were explicitly staged above, so clean everything
-          # else before rebasing on fast-moving worker commits.
           git reset --hard HEAD
 
-          # Translation workers write claims/results frequently. Rebase on their
-          # latest commits and retry instead of force-pushing or overwriting work.
           for attempt in 1 2 3 4 5; do
             git fetch origin main
             if git rebase origin/main; then

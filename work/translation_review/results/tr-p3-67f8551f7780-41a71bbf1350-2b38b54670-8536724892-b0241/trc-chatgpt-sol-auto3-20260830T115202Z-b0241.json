@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "status": "partial",
+  "status": "complete",
   "plan_id": "tr-p3-67f8551f7780-41a71bbf1350-2b38b54670-8536724892",
   "batch_id": "tr-p3-67f8551f7780-41a71bbf1350-2b38b54670-8536724892-b0241",
   "claim_id": "trc-chatgpt-sol-auto3-20260830T115202Z-b0241",
   "worker_id": "chatgpt-sol-auto3-20260830T115202Z",
-  "reviewed_at": "2026-08-30T11:58:00Z",
-  "completed_count": 15,
+  "reviewed_at": "2026-08-30T12:00:00Z",
+  "completed_count": 20,
   "decisions": [
     {"uid":"zhcn:0c75eb8126d1e27e60e2b7de","current_fingerprint":"fd717063a61b67a4733d5562e20b16f0a6ae1713a8e9df24cec474eae3420db2","action":"keep","reason":"Nghĩa chính xác và tự nhiên cho trạng thái đã thỏa điều kiện.","confidence":"high"},
     {"uid":"zhcn:03c2f380f4726da291fdcee4","current_fingerprint":"8f4dcd51d0709610790075084eae19d7b559c171fc092e90e0c610bf4017a7b3","action":"keep","reason":"Giữ đúng nghĩa có thể tiến hóa khi kết thúc育成; câu tự nhiên và không có ràng buộc thuật ngữ xung đột.","confidence":"high"},
@@ -22,6 +22,11 @@
     {"uid":"zhcn:1337088827ebd454a34ac20a","current_fingerprint":"abdfe6bc1b9979c0ef49e98053ef5fecea577b6ddd1c15850c45407aaedbebba","action":"revise","proposed_text":"Bạn có muốn kết thúc huấn luyện mà không tiến hóa thành Evolution Skill không?","reason":"Cụm 进化技能 được khóa là Evolution Skill; bản hiện tại dùng thuật ngữ không canonical.","terminology_basis":"common.skill.evolution: preferred/accepted = Evolution Skill; common.skill.generic requires Skill and forbids Kỹ năng.","confidence":"high"},
     {"uid":"zhcn:0814a2c551915d0554e87f8a","current_fingerprint":"7ba2555e0fb868453e6119a4d0482d46c5d8b1bfdbb7a946796e6788b304d627","action":"revise","proposed_text":"Chưa nhận Skill này","reason":"Sửa generic gameplay label 技能 sang Skill theo canonical context.","terminology_basis":"common.skill.generic: preferred/accepted = Skill; forbidden = Kỹ năng.","confidence":"high"},
     {"uid":"zhcn:4f7cda11b7d8dd1fb8232bca","current_fingerprint":"c3b389fe286628b15306e8d0afa3ccdc93e3efdea2a58cf00a96e4a09bda57ae","action":"keep","reason":"Đúng nghĩa trạng thái đã đạt điều kiện tiến hóa.","confidence":"high"},
-    {"uid":"zhcn:d151466192b38813b8a0d34f","current_fingerprint":"1b9e880660c4ec5160c2b15567b3009bc2190592c946ddae7616f2d775e3ada2","action":"keep","reason":"Nhãn trạng thái ngắn gọn, chính xác.","confidence":"high"}
+    {"uid":"zhcn:d151466192b38813b8a0d34f","current_fingerprint":"1b9e880660c4ec5160c2b15567b3009bc2190592c946ddae7616f2d775e3ada2","action":"keep","reason":"Nhãn trạng thái ngắn gọn, chính xác.","confidence":"high"},
+    {"uid":"zhcn:2f610d44006779f97188049d","current_fingerprint":"c8ee2cc395fd52fa1df12f48864fcd650d24a8aa4a481e8f9fb3056535009389","action":"revise","proposed_text":"Cần đáp ứng một trong các điều kiện sau","reason":"Nguồn nghĩa là một trong các điều kiện; đổi chữ số 1 sang diễn đạt ngôn ngữ tự nhiên để tránh numeric-token mismatch giả.","confidence":"high"},
+    {"uid":"zhcn:09ce1360ec2709a3cefbaab4","current_fingerprint":"a6dc54b0261fabfbb7e85827a2941aaf92be3b2e95c4e2c6d40fa62096f5921f","action":"revise","proposed_text":"Kịch bản\nEvolution Skill","reason":"Cụm 进化技能 là gameplay category đã khóa Evolution Skill; giữ nguyên cấu trúc xuống dòng.","terminology_basis":"common.skill.evolution: preferred/accepted = Evolution Skill; common.skill.generic requires Skill and forbids Kỹ năng.","confidence":"high"},
+    {"uid":"zhcn:72a25a05b6aef801cf8ec7b5","current_fingerprint":"f3ffdedcb99ff7a53fac500e646a80d074fd506d5c1266d2e66e663c2adbc303","action":"revise","proposed_text":"{0} không thể tham gia Cuộc đua <color=#2E85E6>nữa</color>","reason":"Bản hiện tại bỏ canonical race label; sửa để chứa đúng 'Cuộc đua' đồng thời giữ placeholder và color tag.","terminology_basis":"race.generic locked term: target_vi = Cuộc đua.","confidence":"high"},
+    {"uid":"zhcn:b4eabe2de909009574d88408","current_fingerprint":"783928e109f7e3910ac78c6ed557be80d8bbbba03eaddb03328ac4a4bb7b2722","action":"keep","reason":"Bảo toàn {0}, {1}, color tag và truyền đạt đúng việc không thể tập {1} nữa.","confidence":"high"},
+    {"uid":"zhcn:7f514419de354065c0f986d7","current_fingerprint":"137a2314728c44f45b912e5c7433b926d00270020834f706b90a07eb031c4dde","action":"revise","proposed_text":"Hãy chọn <color=#FF911C>1</color> Spark bạn muốn chỉ định","reason":"Trong localize_dict, 因子 là Spark theo context nhúng; bản hiện tại dùng calque bị cấm 'Nhân tố'.","terminology_basis":"common.spark.localize_ui: preferred = Spark; forbidden includes Nhân tố/Factor.","confidence":"high"}
   ]
 }

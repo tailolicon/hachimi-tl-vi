@@ -6,16 +6,16 @@
   "claim_id": "canonical-findings-maintenance-chatgpt-20260830T0212Z",
   "worker_id": "chatgpt-20260830T0212Z",
   "claimed_at": "2026-08-30T02:12:45Z",
-  "heartbeat_at": "2026-08-30T02:20:00Z",
-  "lease_expires_at": "2026-08-30T02:26:00Z",
+  "heartbeat_at": "2026-08-30T02:29:30Z",
+  "lease_expires_at": "2026-08-30T02:35:30Z",
   "released_at": null,
   "branch": "main",
   "partial_result_path": null,
   "handoff_from_claim_id": "canonical-findings-maintenance-chatgpt-20260830T0130Z",
-  "progress_token": "7794b099a867d3e83a7ec097c6d99a280c8ab173",
+  "progress_token": "cebfa4022431b61adc708df9d0a6ba77e630edfc",
   "progress_kind": "commit",
-  "progress_ref": ".github/workflows/sync-translation-review-plan.yml",
-  "last_progress_at": "2026-08-30T02:19:15Z",
-  "completed_count": 4,
-  "note": "Production Sync now both executes harden_character_training_ui_canon.py and has a bounded rebase-before-push loop so task-local review commits cannot repeatedly starve canonical publication. Commit 7794b099a867d3e83a7ec097c6d99a280c8ab173 adds the push-race resilience; Validate run 33287708543 and queued Sync run 33287708534 are pending behind active Sync 33287502754. Continue until canonical output is published, second Sync is semantic no-op, and remaining active findings are resolved/explicitly ignored through the canonical pipeline."
+  "progress_ref": "glossary/term_registry.json",
+  "last_progress_at": "2026-08-30T02:24:31Z",
+  "completed_count": 5,
+  "note": "Production Sync successfully published canonical/review-plan output in cebfa4022431b61adc708df9d0a6ba77e630edfc after applying the Character/Training UI hardener. The bare 育成 collision is now durably corrected in the generated canonical registry. Continue with second unchanged Sync/no-op proof and resolve fresh active canonical findings; do not return to mass review while any blocking finding remains."
 }

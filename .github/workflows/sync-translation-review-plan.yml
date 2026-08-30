@@ -18,6 +18,7 @@ on:
       - "glossary/style_rules.json"
       - "glossary/canonical_findings.json"
       - "scripts/enforce_player_facing_canon.py"
+      - "scripts/harden_audit_findings.py"
       - "scripts/harden_character_training_ui_canon.py"
       - "scripts/harden_skill_inheritance_canon.py"
       - "scripts/harden_race_canon.py"
@@ -67,6 +68,7 @@ jobs:
             git checkout -B translation-review-plan origin/main
 
             python scripts/enforce_player_facing_canon.py
+            python scripts/harden_audit_findings.py
             python scripts/harden_character_training_ui_canon.py
             python scripts/harden_skill_inheritance_canon.py
             python scripts/harden_race_canon.py
@@ -107,6 +109,7 @@ jobs:
               glossary/translation_audit_policy.json \
               glossary/canonical_findings.json \
               scripts/enforce_player_facing_canon.py \
+              scripts/harden_audit_findings.py \
               scripts/harden_character_training_ui_canon.py \
               scripts/harden_skill_inheritance_canon.py \
               scripts/harden_race_canon.py \

@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "status": "partial",
+  "status": "complete",
   "plan_id": "tr-p3-67f8551f7780-e955c4d6f515-b5c0bcb3bd-ec33283c35",
   "batch_id": "tr-p3-67f8551f7780-e955c4d6f515-b5c0bcb3bd-ec33283c35-b0069",
   "claim_id": "trc-gpt56sol-20260830T172831Z-b0069",
   "worker_id": "gpt56sol-20260830T172831Z",
-  "reviewed_at": "2026-08-30T17:33:20Z",
-  "completed_count": 15,
+  "reviewed_at": "2026-08-30T17:33:51Z",
+  "completed_count": 20,
   "decisions": [
     {"uid":"zhcn:865da59ccf4a35a25681856b","current_fingerprint":"c0e11fdbfab44ce543fbca8d216b36236a89ccc9c3669d5bcf3ab138011527ba","action":"keep","reason":"已关注 means already following; Đã theo dõi preserves the completed state and is natural Vietnamese UI text.","confidence":"high"},
     {"uid":"zhcn:8accecd5bc8c288540c5905b","current_fingerprint":"6a37f212fb9de04f58ad11b96147d788f5dc2ec73f30281ed9b1417828a7ed36","action":"keep","reason":"关注 is the follow action; Theo dõi is concise and semantically exact for this UI label.","confidence":"high"},
@@ -22,6 +22,11 @@
     {"uid":"zhcn:06de970e1aa214d579c814a8","current_fingerprint":"ff2038e5a89a96934a327eba9f447f9b41bdc3dbfb8588c3cdc8d25b2c0c3fd8","action":"keep","reason":"{0}pt is a compact value-plus-unit label already written in Latin characters; the placeholder and unit are preserved exactly.","confidence":"high"},
     {"uid":"zhcn:b09ed2aae4c399392a026f5e","current_fingerprint":"e1e3837acbc50bf537b5b945bd21885b6918b773eaeba9d9de89bfa4a6522a51","action":"revise","proposed_text":"Số fan của đối phương đã đạt giới hạn","reason":"对方的粉丝数达到上限 refers to the other party's fan count reaching its cap; the current text treats Fan as the subject and loses the explicit count meaning.","terminology_basis":"Embedded locked term progress.fans maps 粉丝数 to Số fan and is currently marked absent, so the revision restores the required canonical term.","confidence":"high"},
     {"uid":"zhcn:f675b0e60f436298e629e6ef","current_fingerprint":"a303fb7e96cc032202c0bb11e01e3b6422b1d57d52e5542acd5c40309902f8de","action":"keep","reason":"关注数达到上限 means the following-count limit has been reached; Đã đạt giới hạn theo dõi is a concise natural UI rendering of that state.","confidence":"high"},
-    {"uid":"zhcn:c4a7b897de6d160c730962e7","current_fingerprint":"f78e7906596b2e0c0675f6f12d25dbc02b410d450c7b845baac2b8bc21375b8d","action":"keep","reason":"没有正在关注的训练员 means no Trainer is currently being followed; Chưa theo dõi Trainer nào conveys that state naturally.","terminology_basis":"Embedded community term common.trainer requires Trainer and forbids Huấn luyện viên; the current text satisfies it.","confidence":"high"}
+    {"uid":"zhcn:c4a7b897de6d160c730962e7","current_fingerprint":"f78e7906596b2e0c0675f6f12d25dbc02b410d450c7b845baac2b8bc21375b8d","action":"keep","reason":"没有正在关注的训练员 means no Trainer is currently being followed; Chưa theo dõi Trainer nào conveys that state naturally.","terminology_basis":"Embedded community term common.trainer requires Trainer and forbids Huấn luyện viên; the current text satisfies it.","confidence":"high"},
+    {"uid":"zhcn:74236b03f6e1a2117a439c55","current_fingerprint":"7dd46c9619cec9747a77e6f1f10b6fd80c0405c00a6ec1e207349783b7c0b713","action":"keep","reason":"1分钟以内 means within one minute; Trong 1 phút preserves the upper-bound meaning naturally.","confidence":"high"},
+    {"uid":"zhcn:6529cb472d36258246d1a5e0","current_fingerprint":"d3252954c632ea590d9b63d0cb650aeccc222a2133c8dcc48e250d41b81a9f68","action":"keep","reason":"批量解除关注 means bulk unfollow; Bỏ theo dõi hàng loạt is natural and preserves the required newline structure.","confidence":"high"},
+    {"uid":"zhcn:b117b0b0c96a66542a9c4e73","current_fingerprint":"3ab7fb2e87900706aad25f40be97c28d7c2fc980825c518645f64687aadfc446","action":"keep","reason":"解除关注后将无法恢复 warns that unfollowing cannot be restored; Bỏ theo dõi không thể hoàn tác conveys the same irreversible action clearly.","confidence":"high"},
+    {"uid":"zhcn:fba02bd2a2e1a3560dae9ede","current_fingerprint":"9d5a0b7d65a71194a502fd734227fd94e528f5e8d52e00905415c03e0e5e347f","action":"revise","proposed_text":"Sẽ hủy thay đổi và chuyển sang trang khác\nBạn chắc chắn chứ?","reason":"将放弃更改并移至其他页面 coordinates two actions: discard changes and move to another page. The current wording makes Các thay đổi the grammatical subject of both actions, incorrectly implying the changes themselves move pages; the revision restores the intended actor while preserving the newline.","confidence":"high"},
+    {"uid":"zhcn:358c435ffae5b9c49ed0832e","current_fingerprint":"bb8f723b5d038b3720981a42cc73eb6b6d2e7b82ccc7eac5112304d2a38554dd","action":"keep","reason":"请选择要解除关注的训练员 asks the user to select the Trainer to unfollow; Chọn Trainer muốn bỏ theo dõi is concise and semantically correct.","terminology_basis":"Embedded community term common.trainer requires Trainer and forbids Huấn luyện viên; the current text satisfies it.","confidence":"high"}
   ]
 }

@@ -23,6 +23,7 @@ on:
       - "scripts/harden_aptitude_alias_finding.py"
       - "scripts/harden_jewel_name_overlap_finding.py"
       - "scripts/harden_recovery_spirit_context_finding.py"
+      - "scripts/harden_innovation_skill_context_finding.py"
       - "src/hachimi_tl_vi/context_categories.py"
       - "src/hachimi_tl_vi/context_registry.py"
       - "src/hachimi_tl_vi/translators/prompt.py"
@@ -40,9 +41,11 @@ on:
       - "tests/test_aptitude_alias_finding_hardening.py"
       - "tests/test_jewel_name_overlap_finding_hardening.py"
       - "tests/test_recovery_spirit_context_finding_hardening.py"
+      - "tests/test_innovation_skill_context_finding_hardening.py"
       - "tests/test_context_guard_finding_resolution.py"
       - "tests/test_jewel_context_guard_resolution.py"
       - "tests/test_recovery_spirit_context_guard_resolution.py"
+      - "tests/test_innovation_context_guard_resolution.py"
       - "tests/test_context_registry.py"
       - "tests/test_context_sync.py"
       - "tests/test_prompt_context.py"
@@ -111,6 +114,9 @@ jobs:
 
       - name: Harden Recovery Spirit context finding
         run: python scripts/harden_recovery_spirit_context_finding.py
+
+      - name: Harden Innovation Skill context finding
+        run: python scripts/harden_innovation_skill_context_finding.py
 
       - name: Build source-bridge risk registry
         run: python scripts/build_source_bridge_risk_registry.py

@@ -338,3 +338,4 @@ Apply these project-owner audit decisions as hard review policy:
 - a terminology rule discovered by manual audit must be fixed in canonical context first. Do not patch only the sampled line and leave the same wrong mapping reusable elsewhere.
 
 After the game reaches full translation, start additional whole-corpus audit rounds by incrementing `audit_round`. Multiple clean passes are expected because later context, newly translated content, and manual sampling can expose systemic errors that an earlier pass could not see.
+

@@ -1,11 +1,15 @@
 name: Merge translation review results
 
+# Review workers write partial result checkpoints frequently. Do not trigger this
+# reconciler from results/** or completions/**: doing so creates an unbounded
+# serial Actions backlog while workers are healthy. Instead, reconcile the whole
+# durable backlog on a bounded cadence. A run always reads latest main and drains
+# every completion currently available, so the maximum normal merge lag is one
+# schedule interval rather than the age of an Actions queue.
 on:
   push:
     branches: [main]
     paths:
-      - "work/translation_review/completions/**"
-      - "work/translation_review/results/**"
       - "TRANSLATION_REVIEW.md"
       - "scripts/translation_review_common.py"
       - "scripts/canonical_findings.py"
@@ -22,8 +26,11 @@ on:
       - "tests/test_canonical_findings.py"
       - "tests/test_orchestration_finalization.py"
       - "tests/test_orchestration_state.py"
+      - "tests/test_translation_review_merge_workflow.py"
       - ".github/workflows/merge-translation-review.yml"
   workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
 
 permissions:
   contents: write
@@ -35,6 +42,7 @@ concurrency:
 jobs:
   merge:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
         with:

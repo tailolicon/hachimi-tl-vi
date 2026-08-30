@@ -35,15 +35,25 @@ def test_canonical_domain_work_is_parallel_but_integration_is_serial() -> None:
     assert parallel["primary_claim_path"] == "work/orchestration/maintenance_claim.json"
     assert parallel["domain_claim_dir"] == "work/orchestration/domain_claims"
 
-    active = state["active_task"]
-    active_item = next(item for item in state["roadmap"] if item["id"] == active["task_id"])
-    assert active["primary_lane"] is True
-    assert active["integration_serial"] is True
-    # Substantive domain work can be parallel, but the dependency-gated final
-    # conflict sweep is intentionally serial. The active-task routing flag must
-    # therefore agree with the roadmap item's parallel eligibility.
-    assert active["domain_work_parallel"] is bool(active_item.get("parallel_eligible", False))
-    assert active["blocks_mass_work"] is True
+    canonical_items = [item for item in state["roadmap"] if item.get("kind") == "canonical_hardening"]
+    assert canonical_items
+    for item in canonical_items:
+        if item.get("parallel_eligible") is True:
+            assert item.get("claim_path") or item.get("lane") == "primary"
+
+    if state["phase"] == "canonical_hardening":
+        active = state["active_task"]
+        active_item = next(item for item in state["roadmap"] if item["id"] == active["task_id"])
+        assert active["primary_lane"] is True
+        assert active["integration_serial"] is True
+        # Substantive domain work can be parallel, but the dependency-gated final
+        # conflict sweep is intentionally serial. The active-task routing flag must
+        # therefore agree with the roadmap item's parallel eligibility.
+        assert active["domain_work_parallel"] is bool(active_item.get("parallel_eligible", False))
+        assert active["blocks_mass_work"] is True
+    else:
+        assert all(item.get("status") == "complete" for item in canonical_items)
+        assert state["blocking_maintenance"] is False
 
 
 def test_parallel_canonical_tasks_have_independent_claim_files() -> None:

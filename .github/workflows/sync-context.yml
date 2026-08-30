@@ -28,6 +28,7 @@ on:
       - "scripts/harden_asatsuyu_song_finding.py"
       - "scripts/harden_heibon_miracle_song_finding.py"
       - "scripts/harden_sora_no_hohoemi_song_finding.py"
+      - "scripts/harden_boku_blue_song_finding.py"
       - "scripts/harden_full_effort_skill_finding.py"
       - "scripts/harden_room_match_finding.py"
       - "scripts/harden_power_context_finding.py"
@@ -61,6 +62,7 @@ on:
       - "tests/test_asatsuyu_song_finding_hardening.py"
       - "tests/test_heibon_miracle_song_finding_hardening.py"
       - "tests/test_sora_no_hohoemi_song_finding_hardening.py"
+      - "tests/test_boku_blue_song_finding_hardening.py"
       - "tests/test_full_effort_skill_finding_hardening.py"
       - "tests/test_room_match_finding_hardening.py"
       - "tests/test_power_context_finding_hardening.py"
@@ -85,6 +87,7 @@ on:
       - "tests/test_source_bridge_risk_registry.py"
       - "tests/test_terminology_review.py"
       - "tests/test_apply_terminology_reviews.py"
+      - "tests/test_context_sync_workflow_persistence.py"
       - "pyproject.toml"
       - ".github/workflows/sync-context.yml"
 
@@ -161,6 +164,9 @@ jobs:
 
       - name: Harden Why the Sky Makes Me Smile song finding
         run: python scripts/harden_sora_no_hohoemi_song_finding.py
+
+      - name: Harden My Endless Blue Dreams song finding
+        run: python scripts/harden_boku_blue_song_finding.py
 
       - name: Harden full-effort Skill context finding
         run: python scripts/harden_full_effort_skill_finding.py

@@ -9,13 +9,13 @@
     "growth": "Every accepted retrospective translation revise and accepted UI revise is folded into this file automatically by both review merge workflows."
   },
   "summary": {
-    "merged_markers_scanned": 240,
-    "translation_merged_markers_scanned": 140,
+    "merged_markers_scanned": 241,
+    "translation_merged_markers_scanned": 141,
     "ui_merged_markers_scanned": 100,
-    "accepted_revision_events": 3281,
-    "accepted_translation_revision_events": 1792,
+    "accepted_revision_events": 3289,
+    "accepted_translation_revision_events": 1800,
     "accepted_ui_revision_events": 1489,
-    "regression_identity_count": 3044,
+    "regression_identity_count": 3049,
     "skipped_incomplete_markers": 0,
     "translation_skipped_incomplete_markers": 0,
     "ui_skipped_incomplete_markers": 0
@@ -486,10 +486,11 @@
       "source_text": "游戏数据信息",
       "source_fingerprint": "8354eaacb1ec7aadb07c171e858d8b9bb1ec398bdacc962f17f8a6bde8ecaf06",
       "rejected_targets": [
-        "Thông tin dữ liệu trò chơi"
+        "Thông tin dữ liệu"
       ],
-      "approved_target": "Thông tin dữ liệu",
+      "approved_target": "Thông tin dữ liệu trò chơi",
       "origins": [
+        "translation_review",
         "ui_review"
       ],
       "ui_contexts": [
@@ -511,6 +512,14 @@
           "reason": "The account-link screen already establishes game-data context, so the repeated game noun can be removed safely.",
           "ui_key": "AccoutDataLink0028",
           "control_type": "header"
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-f93c6e2897a3-68a7732bb5-8b8da4b995",
+          "batch_id": "tr-p3-67f8551f7780-f93c6e2897a3-68a7732bb5-8b8da4b995-b0002",
+          "claim_id": "trc-sol-auto9-20260830T020140Z-b0002",
+          "merged_at": "2026-08-30T02:03:38.798524Z",
+          "reason": "Nguồn nêu rõ 'dữ liệu trò chơi'; bản hiện tại lược mất phạm vi 'trò chơi'."
         }
       ]
     },
@@ -2327,6 +2336,31 @@
           "claim_id": "trc-chatgpt-20260827T100941Z-5a73d2e9",
           "merged_at": "2026-08-27T10:12:05.982617Z",
           "reason": "Replace forbidden localized stat/generic-Skill labels and smooth the imperative Skill title into natural Vietnamese while retaining its hype-up meaning."
+        }
+      ]
+    },
+    {
+      "id": "review.regression.cf9510c63e97f938",
+      "uid": "zhcn:051e8d713e1cf851bbe1dbf1",
+      "scope": "uid",
+      "source_text": "请输入训练员ID和连携密码",
+      "source_fingerprint": "30e5aab23d43b8e3ac14eea8490808ea4087a01a9dfc203763f974e401d47635",
+      "rejected_targets": [
+        "Vui lòng nhập ID Huấn luyện viên và mật khẩu liên kết"
+      ],
+      "approved_target": "Vui lòng nhập ID Trainer và mật khẩu liên kết",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-f93c6e2897a3-68a7732bb5-8b8da4b995",
+          "batch_id": "tr-p3-67f8551f7780-f93c6e2897a3-68a7732bb5-8b8da4b995-b0002",
+          "claim_id": "trc-sol-auto9-20260830T020140Z-b0002",
+          "merged_at": "2026-08-30T02:03:38.798524Z",
+          "reason": "Thay thuật ngữ bị cấm 'Huấn luyện viên' bằng canonical Trainer."
         }
       ]
     },
@@ -24018,10 +24052,11 @@
       "source_text": "连携数据确认",
       "source_fingerprint": "e50518d070134b1a5c8507db7aabf9bd654961ae433690e9f10434200e2c1b89",
       "rejected_targets": [
-        "Xác nhận dữ liệu liên kết"
+        "Xác nhận dữ liệu"
       ],
-      "approved_target": "Xác nhận dữ liệu",
+      "approved_target": "Xác nhận dữ liệu liên kết",
       "origins": [
+        "translation_review",
         "ui_review"
       ],
       "ui_contexts": [
@@ -24043,6 +24078,14 @@
           "reason": "Within the data-link flow, 'liên kết' is redundant screen context; the shorter title preserves that the linked data itself is being confirmed.",
           "ui_key": "AccoutDataLink0026",
           "control_type": "dialog_title"
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-f93c6e2897a3-68a7732bb5-8b8da4b995",
+          "batch_id": "tr-p3-67f8551f7780-f93c6e2897a3-68a7732bb5-8b8da4b995-b0002",
+          "claim_id": "trc-sol-auto9-20260830T020140Z-b0002",
+          "merged_at": "2026-08-30T02:03:38.798524Z",
+          "reason": "Nguồn là xác nhận dữ liệu liên kết; bản hiện tại lược mất ý 'liên kết'."
         }
       ]
     },
@@ -33322,6 +33365,31 @@
       ]
     },
     {
+      "id": "review.regression.2b342a43bbc2fd8d",
+      "uid": "zhcn:5c298c2f5f70c806f44f5348",
+      "scope": "uid",
+      "source_text": "输入的训练员ID与绑定密码\n不一致",
+      "source_fingerprint": "181563ae5bbe8cd6a5df68232e346470b41706d398078c24078352240f23e654",
+      "rejected_targets": [
+        "ID Huấn luyện viên và mật khẩu liên kết đã nhập\nkhông khớp"
+      ],
+      "approved_target": "ID Trainer và mật khẩu liên kết đã nhập\nkhông khớp",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-f93c6e2897a3-68a7732bb5-8b8da4b995",
+          "batch_id": "tr-p3-67f8551f7780-f93c6e2897a3-68a7732bb5-8b8da4b995-b0002",
+          "claim_id": "trc-sol-auto9-20260830T020140Z-b0002",
+          "merged_at": "2026-08-30T02:03:38.798524Z",
+          "reason": "Bản hiện tại dùng thuật ngữ bị cấm 'Huấn luyện viên'; thay bằng canonical Trainer và giữ xuống dòng."
+        }
+      ]
+    },
+    {
       "id": "review.regression.60c5ee5df29b24d2",
       "uid": "zhcn:5c2e0fe9541d2d21ab987e52",
       "scope": "uid",
@@ -34915,6 +34983,31 @@
           "reason": "Expresses the disabled-back-button state directly and more compactly while preserving tutorial context.",
           "ui_key": "Tutorial0010",
           "control_type": "short_system_label"
+        }
+      ]
+    },
+    {
+      "id": "review.regression.d59bb8e5712e236f",
+      "uid": "zhcn:60647f86446c8af129ab4108",
+      "scope": "uid",
+      "source_text": "请确认训练员ID和连携密码后\n再试一次",
+      "source_fingerprint": "8c3d8ffba2c4f5beacb41b0304ed42177656e211a05b5753273b837c11073a92",
+      "rejected_targets": [
+        "Vui lòng kiểm tra ID Huấn luyện viên và mật khẩu liên kết,\nrồi thử lại"
+      ],
+      "approved_target": "Vui lòng kiểm tra ID Trainer và mật khẩu liên kết,\nrồi thử lại",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-f93c6e2897a3-68a7732bb5-8b8da4b995",
+          "batch_id": "tr-p3-67f8551f7780-f93c6e2897a3-68a7732bb5-8b8da4b995-b0002",
+          "claim_id": "trc-sol-auto9-20260830T020140Z-b0002",
+          "merged_at": "2026-08-30T02:03:38.798524Z",
+          "reason": "Bản hiện tại dùng thuật ngữ bị cấm 'Huấn luyện viên'; thay bằng canonical Trainer và giữ cấu trúc nguồn."
         }
       ]
     },
@@ -51242,6 +51335,31 @@
       ]
     },
     {
+      "id": "review.regression.e41208ac8ce8633f",
+      "uid": "zhcn:89e5bd2d86b78e388dd56269",
+      "scope": "uid",
+      "source_text": "输入训练员ID和连携密码",
+      "source_fingerprint": "0e826f9d5d0f9eaf8e0c695685c1eb579a4ff2fd2b0b4e95b3c364fedf3c5c08",
+      "rejected_targets": [
+        "Nhập ID Huấn luyện viên và mật khẩu liên kết"
+      ],
+      "approved_target": "Nhập ID Trainer và mật khẩu liên kết",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-f93c6e2897a3-68a7732bb5-8b8da4b995",
+          "batch_id": "tr-p3-67f8551f7780-f93c6e2897a3-68a7732bb5-8b8da4b995-b0002",
+          "claim_id": "trc-sol-auto9-20260830T020140Z-b0002",
+          "merged_at": "2026-08-30T02:03:38.798524Z",
+          "reason": "Bản hiện tại dùng thuật ngữ bị cấm 'Huấn luyện viên'; canonical player-facing là Trainer."
+        }
+      ]
+    },
+    {
       "id": "review.regression.fd1a2563da2f3f26",
       "uid": "zhcn:89ef1bbd8e294f16ed1e9226",
       "scope": "uid",
@@ -62990,10 +63108,12 @@
       "source_text": "连携完成",
       "source_fingerprint": "4b971df5b0cb9ccf141e350a3e9d87d6d7790f5b33ccb64d63baeb12a1c4ca36",
       "rejected_targets": [
-        "Liên kết hoàn tất"
+        "Liên kết hoàn tất",
+        "Liên kết xong"
       ],
-      "approved_target": "Liên kết xong",
+      "approved_target": "Hoàn tất liên kết",
       "origins": [
+        "translation_review",
         "ui_review"
       ],
       "ui_contexts": [
@@ -63015,6 +63135,14 @@
           "reason": "The compact completion status is more natural and narrower while preserving that linking has finished.",
           "ui_key": "AccoutDataLink0032",
           "control_type": "short_system_label"
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-f93c6e2897a3-68a7732bb5-8b8da4b995",
+          "batch_id": "tr-p3-67f8551f7780-f93c6e2897a3-68a7732bb5-8b8da4b995-b0002",
+          "claim_id": "trc-sol-auto9-20260830T020140Z-b0002",
+          "merged_at": "2026-08-30T02:03:38.798524Z",
+          "reason": "Nhãn trạng thái UI tự nhiên và trang trọng hơn 'Liên kết xong' trong khi giữ nguyên nghĩa nguồn."
         }
       ]
     },
@@ -73966,6 +74094,31 @@
           "reason": "The title/download context already establishes game data, so the extra noun is redundant and causes unnecessary width.",
           "ui_key": "Title0039",
           "control_type": "normal_button"
+        }
+      ]
+    },
+    {
+      "id": "review.regression.30d13b880dc3fa2a",
+      "uid": "zhcn:c8b581f023939d2b98c50d0a",
+      "scope": "uid",
+      "source_text": "与<color=#ff911c>其他平台</color>进行连携的话\n所持有的付费宝石不能继承使用",
+      "source_fingerprint": "17750d4a6f1f720a8503af78ea0b265428eb7c4310c3a730455c0d3df49b1a33",
+      "rejected_targets": [
+        "Nếu liên kết với <color=#ff911c>nền tảng khác</color>,\nNgọc trả phí đang sở hữu sẽ không được chuyển sang để sử dụng"
+      ],
+      "approved_target": "Nếu liên kết với <color=#ff911c>nền tảng khác</color>,\nJewel trả phí đang sở hữu sẽ không được chuyển sang để sử dụng",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-f93c6e2897a3-68a7732bb5-8b8da4b995",
+          "batch_id": "tr-p3-67f8551f7780-f93c6e2897a3-68a7732bb5-8b8da4b995-b0002",
+          "claim_id": "trc-sol-auto9-20260830T020140Z-b0002",
+          "merged_at": "2026-08-30T02:03:38.798524Z",
+          "reason": "Bản hiện tại dùng 'Ngọc trả phí', trái canonical Jewel và bridge rule cho paid Jewels."
         }
       ]
     },

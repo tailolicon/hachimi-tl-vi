@@ -23,8 +23,20 @@ WEEKEND_CHALLENGE = {
     "basis": "Named Monthly Match feature label. Current English community/reference usage calls this phase Weekend Challenge; keep the rule narrowly scoped to the proven RatingRace600015 UI slot so generic weekend-challenge prose is unaffected.",
 }
 
+WEEKEND_CHALLENGE_DECISION = {
+    "decision_id": "audit.finding.weekend-challenge",
+    "source_zh_cn": "周末挑战",
+    "action": "lock",
+    "target_vi": "Weekend Challenge",
+    "kind": "system_label",
+    "category": "event",
+    "note": "Verified named Monthly Match feature label. The canonical rule remains narrowly scoped to localize_dict RatingRace600015 so generic weekend prose is unaffected.",
+}
 
-def _load(path: Path) -> dict[str, Any]:
+
+def _load(path: Path, default: dict[str, Any] | None = None) -> dict[str, Any]:
+    if not path.exists():
+        return dict(default or {})
     payload = json.loads(path.read_text(encoding="utf-8"))
     if not isinstance(payload, dict):
         raise ValueError(f"{path} must contain a JSON object")
@@ -39,26 +51,42 @@ def _write(path: Path, payload: dict[str, Any]) -> None:
     )
 
 
+def _upsert(items: list[Any], record: dict[str, Any], *, id_field: str) -> None:
+    record_id = str(record[id_field])
+    for index, item in enumerate(items):
+        if isinstance(item, dict) and str(item.get(id_field) or "") == record_id:
+            merged = dict(item)
+            merged.update(record)
+            items[index] = merged
+            return
+    items.append(dict(record))
+
+
 def harden(repo_root: Path = ROOT) -> bool:
-    path = repo_root / "glossary" / "ui_community_terms.json"
-    payload = _load(path)
-    terms = payload.setdefault("terms", [])
+    changed = False
+
+    community_path = repo_root / "glossary" / "ui_community_terms.json"
+    community = _load(community_path, {"schema_version": 1, "terms": []})
+    terms = community.setdefault("terms", [])
     if not isinstance(terms, list):
         raise ValueError("glossary/ui_community_terms.json terms must be a list")
+    before = json.dumps(community, ensure_ascii=False, sort_keys=True)
+    _upsert(terms, WEEKEND_CHALLENGE, id_field="id")
+    if before != json.dumps(community, ensure_ascii=False, sort_keys=True):
+        _write(community_path, community)
+        changed = True
 
-    before = json.dumps(payload, ensure_ascii=False, sort_keys=True)
-    for index, item in enumerate(terms):
-        if isinstance(item, dict) and item.get("id") == WEEKEND_CHALLENGE["id"]:
-            merged = dict(item)
-            merged.update(WEEKEND_CHALLENGE)
-            terms[index] = merged
-            break
-    else:
-        terms.append(dict(WEEKEND_CHALLENGE))
+    reviews_path = repo_root / "glossary" / "terminology_reviews.json"
+    reviews = _load(reviews_path, {"schema_version": 1, "decisions": []})
+    decisions = reviews.setdefault("decisions", [])
+    if not isinstance(decisions, list):
+        raise ValueError("glossary/terminology_reviews.json decisions must be a list")
+    before = json.dumps(reviews, ensure_ascii=False, sort_keys=True)
+    _upsert(decisions, WEEKEND_CHALLENGE_DECISION, id_field="decision_id")
+    if before != json.dumps(reviews, ensure_ascii=False, sort_keys=True):
+        _write(reviews_path, reviews)
+        changed = True
 
-    changed = before != json.dumps(payload, ensure_ascii=False, sort_keys=True)
-    if changed:
-        _write(path, payload)
     return changed
 
 

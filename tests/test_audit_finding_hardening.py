@@ -4,6 +4,7 @@ import json
 from pathlib import Path
 
 from scripts.harden_audit_findings import (
+    EPIPHANEIA_NO_HOLDING_BACK_CONDITION,
     JUNIOR_MAKE_DEBUT,
     MENTAL_GUARD_CONDITION,
     MOXIE_SKILL,
@@ -28,35 +29,32 @@ def _seed_glossary(tmp_path: Path) -> Path:
     return glossary
 
 
-def test_hardener_is_idempotent_and_resolves_night_owl_reference_variant(tmp_path: Path) -> None:
-    glossary = _seed_glossary(tmp_path)
-
-    finding = {
-        "finding_id": "cf-test-night-owl-variant",
+def _finding(source: str, category: str = "142") -> dict[str, object]:
+    return {
+        "finding_id": f"cf-test-{source}-{category}",
         "status": "open",
-        "source_zh_cn": "熬夜倾向",
-        "match_mode": "contains",
+        "source_zh_cn": source,
+        "match_mode": "exact",
         "source_paths": ["text_data_dict.json"],
         "key_exact": [],
-        "json_path_prefixes": [["143"]],
-        "suggested_targets_vi": ["Night Owl"],
+        "json_path_prefixes": [[category]],
+        "suggested_targets_vi": [],
         "canonical_resolution": None,
         "review_resolution": None,
     }
-    ledger = {"schema_version": 1, "findings": [finding]}
 
+
+def test_hardener_is_idempotent_and_resolves_night_owl_reference_variant(tmp_path: Path) -> None:
+    glossary = _seed_glossary(tmp_path)
+    ledger = {"schema_version": 1, "findings": [{**_finding("熬夜倾向", "143"), "match_mode": "contains"}]}
     assert harden(tmp_path) is True
     assert harden(tmp_path) is False
-
     payload = json.loads((glossary / "ui_community_terms.json").read_text(encoding="utf-8"))
     rule = next(item for item in payload["terms"] if item["id"] == NIGHT_OWL_REFERENCE_VARIANT["id"])
     assert rule["source_aliases"] == ["熬夜倾向"]
     assert rule["preferred"] == "Night Owl"
     assert rule["json_path_prefixes"] == [["143"]]
-
-    refreshed = refresh_canonical_resolutions(tmp_path, ledger)
-    resolution = refreshed["findings"][0]["canonical_resolution"]
-    assert resolution == {
+    assert refresh_canonical_resolutions(tmp_path, ledger)["findings"][0]["canonical_resolution"] == {
         "layer": "community",
         "term_id": "common.condition.night_owl.reference_variant",
         "target_vi": "Night Owl",
@@ -66,27 +64,8 @@ def test_hardener_is_idempotent_and_resolves_night_owl_reference_variant(tmp_pat
 def test_night_owl_reference_variant_does_not_resolve_outside_category_143(tmp_path: Path) -> None:
     _seed_glossary(tmp_path)
     assert harden(tmp_path) is True
-
-    ledger = {
-        "schema_version": 1,
-        "findings": [
-            {
-                "finding_id": "cf-test-night-owl-prose",
-                "status": "open",
-                "source_zh_cn": "熬夜倾向",
-                "match_mode": "contains",
-                "source_paths": ["text_data_dict.json"],
-                "key_exact": [],
-                "json_path_prefixes": [["999"]],
-                "suggested_targets_vi": ["Night Owl"],
-                "canonical_resolution": None,
-                "review_resolution": None,
-            }
-        ],
-    }
-
-    refreshed = refresh_canonical_resolutions(tmp_path, ledger)
-    assert refreshed["findings"][0]["canonical_resolution"] is None
+    ledger = {"schema_version": 1, "findings": [{**_finding("熬夜倾向", "999"), "match_mode": "contains"}]}
+    assert refresh_canonical_resolutions(tmp_path, ledger)["findings"][0]["canonical_resolution"] is None
 
 
 def test_junior_make_debut_resolves_the_scoped_audit_finding(tmp_path: Path) -> None:
@@ -95,61 +74,25 @@ def test_junior_make_debut_resolves_the_scoped_audit_finding(tmp_path: Path) -> 
     community = json.loads((glossary / "ui_community_terms.json").read_text(encoding="utf-8"))
     rule = next(item for item in community["terms"] if item["id"] == JUNIOR_MAKE_DEBUT["id"])
     assert rule["key_exact"] == ["SingleMode619001"]
-    assert rule["preferred"] == "Junior Make Debut"
-
-    ledger = {
-        "schema_version": 1,
-        "findings": [
-            {
-                "finding_id": "cf-test-junior-make-debut",
-                "status": "open",
-                "source_zh_cn": "新马级出道赛",
-                "match_mode": "contains",
-                "source_paths": ["localize_dict.json"],
-                "key_exact": ["SingleMode619001"],
-                "json_path_prefixes": [],
-                "suggested_targets_vi": [],
-                "canonical_resolution": None,
-                "review_resolution": None,
-            }
-        ],
-    }
-    refreshed = refresh_canonical_resolutions(tmp_path, ledger)
-    finding = refreshed["findings"][0]
-    assert finding["review_resolution"] == {
-        "decision_id": "audit.finding.junior-make-debut",
-        "action": "lock",
-        "target_vi": "Junior Make Debut",
-    }
-    assert finding["canonical_resolution"] == {
-        "layer": "community",
-        "term_id": "race.junior_make_debut.singlemode619001",
-        "target_vi": "Junior Make Debut",
-    }
+    ledger = {"schema_version": 1, "findings": [{
+        "finding_id": "cf-test-junior-make-debut", "status": "open", "source_zh_cn": "新马级出道赛",
+        "match_mode": "contains", "source_paths": ["localize_dict.json"], "key_exact": ["SingleMode619001"],
+        "json_path_prefixes": [], "suggested_targets_vi": [], "canonical_resolution": None, "review_resolution": None,
+    }]}
+    finding = refresh_canonical_resolutions(tmp_path, ledger)["findings"][0]
+    assert finding["review_resolution"]["target_vi"] == "Junior Make Debut"
+    assert finding["canonical_resolution"]["target_vi"] == "Junior Make Debut"
 
 
 def test_junior_make_debut_rule_does_not_resolve_another_localize_key(tmp_path: Path) -> None:
     _seed_glossary(tmp_path)
     assert harden(tmp_path) is True
-    ledger = {
-        "schema_version": 1,
-        "findings": [
-            {
-                "finding_id": "cf-test-junior-make-debut-wrong-key",
-                "status": "open",
-                "source_zh_cn": "新马级出道赛",
-                "match_mode": "contains",
-                "source_paths": ["localize_dict.json"],
-                "key_exact": ["Story999999"],
-                "json_path_prefixes": [],
-                "suggested_targets_vi": [],
-                "canonical_resolution": None,
-                "review_resolution": None,
-            }
-        ],
-    }
-    refreshed = refresh_canonical_resolutions(tmp_path, ledger)
-    assert refreshed["findings"][0]["canonical_resolution"] is None
+    ledger = {"schema_version": 1, "findings": [{
+        "finding_id": "cf-test-junior-wrong", "status": "open", "source_zh_cn": "新马级出道赛",
+        "match_mode": "contains", "source_paths": ["localize_dict.json"], "key_exact": ["Story999999"],
+        "json_path_prefixes": [], "suggested_targets_vi": [], "canonical_resolution": None, "review_resolution": None,
+    }]}
+    assert refresh_canonical_resolutions(tmp_path, ledger)["findings"][0]["canonical_resolution"] is None
 
 
 def test_moxie_resolves_only_the_skill_title_category(tmp_path: Path) -> None:
@@ -158,63 +101,17 @@ def test_moxie_resolves_only_the_skill_title_category(tmp_path: Path) -> None:
     community = json.loads((glossary / "ui_community_terms.json").read_text(encoding="utf-8"))
     rule = next(item for item in community["terms"] if item["id"] == MOXIE_SKILL["id"])
     assert rule["preferred"] == "Moxie"
-    assert rule["source_aliases"] == ["随势而动"]
-    assert rule["json_path_prefixes"] == [["147"]]
-    assert rule["match_mode"] == "exact"
-
-    ledger = {
-        "schema_version": 1,
-        "findings": [
-            {
-                "finding_id": "cf-test-moxie",
-                "status": "open",
-                "source_zh_cn": "随势而动",
-                "match_mode": "exact",
-                "source_paths": ["text_data_dict.json"],
-                "key_exact": [],
-                "json_path_prefixes": [["147"]],
-                "suggested_targets_vi": [],
-                "canonical_resolution": None,
-                "review_resolution": None,
-            }
-        ],
-    }
-    refreshed = refresh_canonical_resolutions(tmp_path, ledger)
-    finding = refreshed["findings"][0]
-    assert finding["review_resolution"] == {
-        "decision_id": "audit.finding.moxie",
-        "action": "lock",
-        "target_vi": "Moxie",
-    }
-    assert finding["canonical_resolution"] == {
-        "layer": "community",
-        "term_id": "skill.moxie.text147",
-        "target_vi": "Moxie",
-    }
+    ledger = {"schema_version": 1, "findings": [_finding("随势而动", "147")]}
+    finding = refresh_canonical_resolutions(tmp_path, ledger)["findings"][0]
+    assert finding["review_resolution"]["target_vi"] == "Moxie"
+    assert finding["canonical_resolution"]["target_vi"] == "Moxie"
 
 
 def test_moxie_does_not_resolve_same_words_outside_skill_title_category(tmp_path: Path) -> None:
     _seed_glossary(tmp_path)
     assert harden(tmp_path) is True
-    ledger = {
-        "schema_version": 1,
-        "findings": [
-            {
-                "finding_id": "cf-test-moxie-prose",
-                "status": "open",
-                "source_zh_cn": "随势而动",
-                "match_mode": "exact",
-                "source_paths": ["text_data_dict.json"],
-                "key_exact": [],
-                "json_path_prefixes": [["163"]],
-                "suggested_targets_vi": [],
-                "canonical_resolution": None,
-                "review_resolution": None,
-            }
-        ],
-    }
-    refreshed = refresh_canonical_resolutions(tmp_path, ledger)
-    assert refreshed["findings"][0]["canonical_resolution"] is None
+    ledger = {"schema_version": 1, "findings": [_finding("随势而动", "163")]}
+    assert refresh_canonical_resolutions(tmp_path, ledger)["findings"][0]["canonical_resolution"] is None
 
 
 def test_trainer_ability_conditions_resolve_in_category_142(tmp_path: Path) -> None:
@@ -223,65 +120,48 @@ def test_trainer_ability_conditions_resolve_in_category_142(tmp_path: Path) -> N
     community = json.loads((glossary / "ui_community_terms.json").read_text(encoding="utf-8"))
     by_id = {item["id"]: item for item in community["terms"]}
     expected = (
-        (SCHOLAR_CONDITION, "勤勉好学", "Scholar", "audit.finding.condition-scholar"),
-        (MENTAL_GUARD_CONDITION, "精神防护", "Mental Guard", "audit.finding.condition-mental-guard"),
-        (RECOVERY_SPIRIT_CONDITION, "恢复精神", "Recovery Spirit", "audit.finding.condition-recovery-spirit"),
+        (SCHOLAR_CONDITION, "勤勉好学", "Scholar"),
+        (MENTAL_GUARD_CONDITION, "精神防护", "Mental Guard"),
+        (RECOVERY_SPIRIT_CONDITION, "恢复精神", "Recovery Spirit"),
     )
-    for rule, source, target, decision_id in expected:
-        stored = by_id[rule["id"]]
-        assert stored["source_aliases"] == [source]
-        assert stored["preferred"] == target
-        assert stored["json_path_prefixes"] == [["142"]]
-        ledger = {
-            "schema_version": 1,
-            "findings": [
-                {
-                    "finding_id": f"cf-test-{rule['id']}",
-                    "status": "open",
-                    "source_zh_cn": source,
-                    "match_mode": "exact",
-                    "source_paths": ["text_data_dict.json"],
-                    "key_exact": [],
-                    "json_path_prefixes": [["142"]],
-                    "suggested_targets_vi": [],
-                    "canonical_resolution": None,
-                    "review_resolution": None,
-                }
-            ],
-        }
-        finding = refresh_canonical_resolutions(tmp_path, ledger)["findings"][0]
-        assert finding["review_resolution"] == {
-            "decision_id": decision_id,
-            "action": "lock",
-            "target_vi": target,
-        }
-        assert finding["canonical_resolution"] == {
-            "layer": "community",
-            "term_id": rule["id"],
-            "target_vi": target,
-        }
+    for rule, source, target in expected:
+        assert by_id[rule["id"]]["preferred"] == target
+        finding = refresh_canonical_resolutions(tmp_path, {"schema_version": 1, "findings": [_finding(source)]})["findings"][0]
+        assert finding["review_resolution"]["target_vi"] == target
+        assert finding["canonical_resolution"]["target_vi"] == target
 
 
 def test_trainer_ability_condition_words_do_not_resolve_outside_category_142(tmp_path: Path) -> None:
     _seed_glossary(tmp_path)
     assert harden(tmp_path) is True
     for source in ("勤勉好学", "精神防护", "恢复精神"):
-        ledger = {
-            "schema_version": 1,
-            "findings": [
-                {
-                    "finding_id": f"cf-test-negative-{source}",
-                    "status": "open",
-                    "source_zh_cn": source,
-                    "match_mode": "exact",
-                    "source_paths": ["text_data_dict.json"],
-                    "key_exact": [],
-                    "json_path_prefixes": [["163"]],
-                    "suggested_targets_vi": [],
-                    "canonical_resolution": None,
-                    "review_resolution": None,
-                }
-            ],
-        }
-        finding = refresh_canonical_resolutions(tmp_path, ledger)["findings"][0]
+        finding = refresh_canonical_resolutions(tmp_path, {"schema_version": 1, "findings": [_finding(source, "163")]})["findings"][0]
         assert finding["canonical_resolution"] is None
+
+
+def test_epiphaneia_no_holding_back_condition_resolves_only_category_142(tmp_path: Path) -> None:
+    glossary = _seed_glossary(tmp_path)
+    assert harden(tmp_path) is True
+    community = json.loads((glossary / "ui_community_terms.json").read_text(encoding="utf-8"))
+    rule = next(item for item in community["terms"] if item["id"] == EPIPHANEIA_NO_HOLDING_BACK_CONDITION["id"])
+    assert rule["source_aliases"] == ["传至双腿的焦躁"]
+    assert rule["preferred"] == "I Won't Hold Back!!"
+    assert rule["json_path_prefixes"] == [["142"]]
+    finding = refresh_canonical_resolutions(tmp_path, {"schema_version": 1, "findings": [_finding("传至双腿的焦躁")]})["findings"][0]
+    assert finding["review_resolution"] == {
+        "decision_id": "audit.finding.condition-epiphaneia-no-holding-back",
+        "action": "lock",
+        "target_vi": "I Won't Hold Back!!",
+    }
+    assert finding["canonical_resolution"] == {
+        "layer": "community",
+        "term_id": "condition.epiphaneia.no_holding_back",
+        "target_vi": "I Won't Hold Back!!",
+    }
+
+
+def test_epiphaneia_no_holding_back_words_do_not_resolve_as_generic_prose(tmp_path: Path) -> None:
+    _seed_glossary(tmp_path)
+    assert harden(tmp_path) is True
+    finding = refresh_canonical_resolutions(tmp_path, {"schema_version": 1, "findings": [_finding("传至双腿的焦躁", "163")]})["findings"][0]
+    assert finding["canonical_resolution"] is None

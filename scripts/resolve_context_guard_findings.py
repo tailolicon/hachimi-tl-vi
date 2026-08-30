@@ -4,12 +4,20 @@ import json
 from pathlib import Path
 from typing import Any
 
-from scripts.translation_review_common import (
-    community_term_matches,
-    load_community_terms,
-    load_locked_terms,
-    locked_term_matches,
-)
+try:
+    from scripts.translation_review_common import (
+        community_term_matches,
+        load_community_terms,
+        load_locked_terms,
+        locked_term_matches,
+    )
+except ModuleNotFoundError:
+    from translation_review_common import (  # type: ignore[no-redef]
+        community_term_matches,
+        load_community_terms,
+        load_locked_terms,
+        locked_term_matches,
+    )
 
 
 ROOT = Path(__file__).resolve().parents[1]

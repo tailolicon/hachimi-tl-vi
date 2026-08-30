@@ -5,94 +5,23 @@
   "batch_id": "tr-p3-67f8551f7780-2abf5652714b-2b38b54670-14db803be1-b0305",
   "claim_id": "trc-chatgpt-sol-20260830-1132-a7-b0305",
   "worker_id": "chatgpt-sol-20260830-1132-a7",
-  "reviewed_at": "2026-08-30T04:35:36Z",
-  "completed_count": 10,
+  "reviewed_at": "2026-08-30T04:36:21Z",
+  "completed_count": 15,
   "decisions": [
-    {
-      "uid": "zhcn:4b0c51bf22313c256f23fc4d",
-      "current_fingerprint": "a0336d1b5fc81999af4da966b59118456cd8c365ac1a43e2f7071839c349f60f",
-      "action": "keep",
-      "reason": "Bản hiện tại truyền đạt đúng điều kiện khi bắt đầu Huấn luyện tự chủ và không có lỗi cấu trúc hay thuật ngữ bắt buộc.",
-      "confidence": "high"
-    },
-    {
-      "uid": "zhcn:1aa6151a7b98dcd7b7858fb1",
-      "current_fingerprint": "775e8fdb6799c3e9d61fff7257b7a1d9e77f206f01d47582fc5eed0e07fdce5e",
-      "action": "keep",
-      "reason": "Giữ đúng quan hệ điều kiện OFF và việc không còn hiển thị xác nhận khi bắt đầu Huấn luyện tự chủ; newline được bảo toàn.",
-      "confidence": "high"
-    },
-    {
-      "uid": "zhcn:10a328181d782b4827801d0a",
-      "current_fingerprint": "d011d0d358ceafb8b892dcb68a02519345421a49ce85e9f65ec36c363af3aa84",
-      "action": "revise",
-      "proposed_text": "Kích hoạt Spark chỉ số cơ bản",
-      "reason": "Trong localize UI này 因子 là cơ chế Spark; bản hiện tại dùng calque bị cấm 'nhân tố'.",
-      "terminology_basis": "common.spark.localize_ui: localize_dict 因子 phải dùng Spark/Sparks, không dùng Nhân tố/nhân tố.",
-      "confidence": "high"
-    },
-    {
-      "uid": "zhcn:2c77f210a7f95264f6bb6dec",
-      "current_fingerprint": "7d7806c8cc4d557854bf9fe72e146dd39536fd51115e818c40abec986cba47ad",
-      "action": "defer",
-      "reason": "因子 chắc chắn là Spark, nhưng 资质 đang được dùng như khái niệm Aptitude mà canonical hiện chỉ khóa alias 適性/适性. Cần canonical hóa alias 资质 trước khi chốt toàn câu.",
-      "canonical_finding": {
-        "kind": "terminology",
-        "source_zh_cn": "资质",
-        "suggested_target_vi": "Aptitude",
-        "concept": "Aptitude",
-        "match_mode": "exact",
-        "scope": "auto",
-        "reason": "资质 lặp lại trong UI huấn luyện/cuộc đua với nghĩa aptitude; alias này chưa nằm trong canonical common.aptitude nên không nên tự chuẩn hóa cục bộ.",
-        "confidence": "medium"
-      },
-      "confidence": "medium"
-    },
-    {
-      "uid": "zhcn:e5088a6ce1855c4dc40e158a",
-      "current_fingerprint": "81f085f7b9d54be6ce53155b640dfb232f10f1b8171d4a8f9554a226c0c577a4",
-      "action": "keep",
-      "reason": "Bản hiện tại đúng nghĩa Huấn luyện tự chủ hoàn thành theo thời gian và không có lỗi thuật ngữ/cấu trúc.",
-      "confidence": "high"
-    },
-    {
-      "uid": "zhcn:cc6281ab4470b4a038b076f7",
-      "current_fingerprint": "39c483b938151dd9c5bc36107ea982350ff606725589a5610c75f14520a0c469",
-      "action": "keep",
-      "reason": "Bản hiện tại bảo toàn nghĩa không thể đo do Huấn luyện tự chủ; cờ absence_risk không cho thấy đảo nghĩa hay bỏ sót phủ định.",
-      "confidence": "high"
-    },
-    {
-      "uid": "zhcn:f6d36864f4a9e424e4447ff7",
-      "current_fingerprint": "9e5558e6cc0f6a90a6cc7a9b2f929391c1af975c9c465741e75b10ed71aad320",
-      "action": "keep",
-      "reason": "'Nhật ký huấn luyện' truyền đạt đúng 养成日志 và tự nhiên trong ngữ cảnh UI.",
-      "confidence": "high"
-    },
-    {
-      "uid": "zhcn:69d590191774578c191d60d7",
-      "current_fingerprint": "0b0d8dbbfb64dad6965bdd8905676c8cb424523fd34c8c48d7b058ecefd59260",
-      "action": "keep",
-      "reason": "Giữ đúng giới hạn tối đa 10 lần trong mỗi lượt huấn luyện, bảo toàn atlas tag và thuật ngữ Trainer.",
-      "terminology_basis": "common.trainer yêu cầu giữ Trainer; bản hiện tại đã dùng đúng thuật ngữ.",
-      "confidence": "high"
-    },
-    {
-      "uid": "zhcn:e9e705a6a113c72fb57c1bcb",
-      "current_fingerprint": "145740e72b6fcd741274494f3e5bd1f4ac02eed8f3a8efc6c3519873bb29ac7b",
-      "action": "keep",
-      "reason": "Giữ đúng giới hạn Jewel tối đa 20 lần mỗi ngày, bảo toàn atlas tag và giá trị số.",
-      "terminology_basis": "currency.jewel khóa target là Jewel; bản hiện tại đã tuân thủ.",
-      "confidence": "high"
-    },
-    {
-      "uid": "zhcn:9c92550ac19f0ffdfacbbf31",
-      "current_fingerprint": "69fad777d66252850d79d97e48366484a3178e0feef7ba55c49c3cf5f1b02db2",
-      "action": "revise",
-      "proposed_text": "Sau khi đặt Skill ưu tiên, trong sự kiện huấn luyện và các trường hợp tương tự\nsẽ ưu tiên nhận gợi ý của Skill ưu tiên",
-      "reason": "Bản hiện tại dùng 'kỹ năng' cho gameplay label 技能, trái canonical player-facing Skill; phần nghĩa ưu tiên nhận gợi ý vẫn đúng.",
-      "terminology_basis": "common.skill.generic yêu cầu dùng Skill và cấm Kỹ năng/kỹ năng cho gameplay label này.",
-      "confidence": "high"
-    }
+    {"uid":"zhcn:4b0c51bf22313c256f23fc4d","current_fingerprint":"a0336d1b5fc81999af4da966b59118456cd8c365ac1a43e2f7071839c349f60f","action":"keep","reason":"Bản hiện tại truyền đạt đúng điều kiện khi bắt đầu Huấn luyện tự chủ và không có lỗi cấu trúc hay thuật ngữ bắt buộc.","confidence":"high"},
+    {"uid":"zhcn:1aa6151a7b98dcd7b7858fb1","current_fingerprint":"775e8fdb6799c3e9d61fff7257b7a1d9e77f206f01d47582fc5eed0e07fdce5e","action":"keep","reason":"Giữ đúng quan hệ điều kiện OFF và việc không còn hiển thị xác nhận khi bắt đầu Huấn luyện tự chủ; newline được bảo toàn.","confidence":"high"},
+    {"uid":"zhcn:10a328181d782b4827801d0a","current_fingerprint":"d011d0d358ceafb8b892dcb68a02519345421a49ce85e9f65ec36c363af3aa84","action":"revise","proposed_text":"Kích hoạt Spark chỉ số cơ bản","reason":"Trong localize UI này 因子 là cơ chế Spark; bản hiện tại dùng calque bị cấm 'nhân tố'.","terminology_basis":"common.spark.localize_ui: localize_dict 因子 phải dùng Spark/Sparks, không dùng Nhân tố/nhân tố.","confidence":"high"},
+    {"uid":"zhcn:2c77f210a7f95264f6bb6dec","current_fingerprint":"7d7806c8cc4d557854bf9fe72e146dd39536fd51115e818c40abec986cba47ad","action":"defer","reason":"因子 chắc chắn là Spark, nhưng 资质 đang được dùng như khái niệm Aptitude mà canonical hiện chỉ khóa alias 適性/适性. Cần canonical hóa alias 资质 trước khi chốt toàn câu.","canonical_finding":{"kind":"terminology","source_zh_cn":"资质","suggested_target_vi":"Aptitude","concept":"Aptitude","match_mode":"exact","scope":"auto","reason":"资质 lặp lại trong UI huấn luyện/cuộc đua với nghĩa aptitude; alias này chưa nằm trong canonical common.aptitude nên không nên tự chuẩn hóa cục bộ.","confidence":"medium"},"confidence":"medium"},
+    {"uid":"zhcn:e5088a6ce1855c4dc40e158a","current_fingerprint":"81f085f7b9d54be6ce53155b640dfb232f10f1b8171d4a8f9554a226c0c577a4","action":"keep","reason":"Bản hiện tại đúng nghĩa Huấn luyện tự chủ hoàn thành theo thời gian và không có lỗi thuật ngữ/cấu trúc.","confidence":"high"},
+    {"uid":"zhcn:cc6281ab4470b4a038b076f7","current_fingerprint":"39c483b938151dd9c5bc36107ea982350ff606725589a5610c75f14520a0c469","action":"keep","reason":"Bản hiện tại bảo toàn nghĩa không thể đo do Huấn luyện tự chủ; cờ absence_risk không cho thấy đảo nghĩa hay bỏ sót phủ định.","confidence":"high"},
+    {"uid":"zhcn:f6d36864f4a9e424e4447ff7","current_fingerprint":"9e5558e6cc0f6a90a6cc7a9b2f929391c1af975c9c465741e75b10ed71aad320","action":"keep","reason":"'Nhật ký huấn luyện' truyền đạt đúng 养成日志 và tự nhiên trong ngữ cảnh UI.","confidence":"high"},
+    {"uid":"zhcn:69d590191774578c191d60d7","current_fingerprint":"0b0d8dbbfb64dad6965bdd8905676c8cb424523fd34c8c48d7b058ecefd59260","action":"keep","reason":"Giữ đúng giới hạn tối đa 10 lần trong mỗi lượt huấn luyện, bảo toàn atlas tag và thuật ngữ Trainer.","terminology_basis":"common.trainer yêu cầu giữ Trainer; bản hiện tại đã dùng đúng thuật ngữ.","confidence":"high"},
+    {"uid":"zhcn:e9e705a6a113c72fb57c1bcb","current_fingerprint":"145740e72b6fcd741274494f3e5bd1f4ac02eed8f3a8efc6c3519873bb29ac7b","action":"keep","reason":"Giữ đúng giới hạn Jewel tối đa 20 lần mỗi ngày, bảo toàn atlas tag và giá trị số.","terminology_basis":"currency.jewel khóa target là Jewel; bản hiện tại đã tuân thủ.","confidence":"high"},
+    {"uid":"zhcn:9c92550ac19f0ffdfacbbf31","current_fingerprint":"69fad777d66252850d79d97e48366484a3178e0feef7ba55c49c3cf5f1b02db2","action":"revise","proposed_text":"Sau khi đặt Skill ưu tiên, trong sự kiện huấn luyện và các trường hợp tương tự\nsẽ ưu tiên nhận gợi ý của Skill ưu tiên","reason":"Bản hiện tại dùng 'kỹ năng' cho gameplay label 技能, trái canonical player-facing Skill; phần nghĩa ưu tiên nhận gợi ý vẫn đúng.","terminology_basis":"common.skill.generic yêu cầu dùng Skill và cấm Kỹ năng/kỹ năng cho gameplay label này.","confidence":"high"},
+    {"uid":"zhcn:1a38085c559967b8fd72bea1","current_fingerprint":"f046e0a7b43a79733a3bfe7d1126e6a23ba17046747cda86b05d94597fcc34a7","action":"keep","reason":"'Sử dụng Đồng hồ báo thức' truyền đạt đúng 使用闹钟 và không có lỗi cấu trúc hay canonical bắt buộc.","confidence":"high"},
+    {"uid":"zhcn:7fbe3b0a2645a73390be38b1","current_fingerprint":"0f8312087fa63aa3a46be99dab1dd9f4a7d1d42f98b20223e79d1998855ddf4b","action":"keep","reason":"Bản hiện tại giữ đúng ý xác nhận cho cài đặt tiếp tục; không có bằng chứng đủ mạnh để thay đổi nhãn UI này.","confidence":"medium"},
+    {"uid":"zhcn:f4650f8879c6cf7346de9435","current_fingerprint":"1617bd7df4f3ee2016286b6f006128eca06a426465df878647d508001a244a75","action":"defer","reason":"Câu hiện tại nhìn chung đúng nghĩa nhưng dùng 'mức thích nghi' cho 资质. Alias 资质 chưa được canonical hóa thành Aptitude nên không chốt một bản sửa cục bộ.","terminology_basis":"race.generic khóa Cuộc đua; phần này hiện đúng, nhưng thuật ngữ 资质 vẫn chưa được canonical hóa.","canonical_finding":{"kind":"terminology","source_zh_cn":"资质","suggested_target_vi":"Aptitude","concept":"Aptitude","match_mode":"exact","scope":"auto","reason":"资质 xuất hiện lặp lại trong UI cuộc đua với nghĩa aptitude; cần canonical alias trước khi sửa hàng loạt.","confidence":"medium"},"confidence":"medium"},
+    {"uid":"zhcn:9ad50fbef8f404bcaa322836","current_fingerprint":"719e353ae131b8f97c6f1e302ffcd459257ac3f2c05a7900f11d92d1deb48a9e","action":"defer","reason":"Câu hiện tại bảo toàn ý cài đặt không dùng đồng hồ ở cuộc đua có 资质 thấp, nhưng 资质 chưa có alias canonical an toàn nên cần defer.","terminology_basis":"race.generic khóa Cuộc đua; phần còn lại bị chặn bởi alias 资质 chưa canonical hóa.","canonical_finding":{"kind":"terminology","source_zh_cn":"资质","suggested_target_vi":"Aptitude","concept":"Aptitude","match_mode":"exact","scope":"auto","reason":"资质 xuất hiện lặp lại trong UI cuộc đua với nghĩa aptitude; cần canonical alias trước khi sửa hàng loạt.","confidence":"medium"},"confidence":"medium"},
+    {"uid":"zhcn:6e2e658fbc8e37c981c17d12","current_fingerprint":"a716d511586f0e8279bd6f7cedf755fc0e7ac6b5c7eccb6302585f5f67d91f99","action":"defer","reason":"Bản hiện tại đúng cấu trúc điều kiện nhưng 'mức thích nghi' ánh xạ 资质 chưa có canonical alias; cần giải quyết finding trước.","terminology_basis":"race.generic khóa Cuộc đua; thuật ngữ 资质 chưa được canonical hóa.","canonical_finding":{"kind":"terminology","source_zh_cn":"资质","suggested_target_vi":"Aptitude","concept":"Aptitude","match_mode":"exact","scope":"auto","reason":"资质 xuất hiện lặp lại trong UI cuộc đua với nghĩa aptitude; cần canonical alias trước khi sửa hàng loạt.","confidence":"medium"},"confidence":"medium"}
   ]
 }

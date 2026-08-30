@@ -34,6 +34,11 @@ GUARDS = {
         "term_id": "reviewed.skill_name.5dffb471df59",
         "target_vi": "Đổi mới",
     },
+    "cf-b4ddf0728febc08f": {
+        "layer": "locked",
+        "term_id": "reviewed.skill_name.e778cffef185",
+        "target_vi": "Một bước vượt lên",
+    },
 }
 
 

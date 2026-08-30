@@ -9,13 +9,13 @@
     "growth": "Every accepted retrospective translation revise and accepted UI revise is folded into this file automatically by both review merge workflows."
   },
   "summary": {
-    "merged_markers_scanned": 833,
-    "translation_merged_markers_scanned": 733,
+    "merged_markers_scanned": 837,
+    "translation_merged_markers_scanned": 737,
     "ui_merged_markers_scanned": 100,
-    "accepted_revision_events": 5813,
-    "accepted_translation_revision_events": 4324,
+    "accepted_revision_events": 5817,
+    "accepted_translation_revision_events": 4328,
     "accepted_ui_revision_events": 1489,
-    "regression_identity_count": 4740,
+    "regression_identity_count": 4742,
     "skipped_incomplete_markers": 0,
     "translation_skipped_incomplete_markers": 0,
     "ui_skipped_incomplete_markers": 0
@@ -5770,6 +5770,31 @@
           "claim_id": "trc-chatgpt-sol-manual-20260830-0628-b0581",
           "merged_at": "2026-08-30T11:29:03.156705Z",
           "reason": "Thương nhân tình báo is a stiff calque for 情报商; revision preserves the information-broker role naturally."
+        }
+      ]
+    },
+    {
+      "id": "review.regression.43f02f7ed1868001",
+      "uid": "zhcn:08c70029b453574944ac4169",
+      "scope": "uid",
+      "source_text": "・「育成中获得基础能力」「育成中获得技能点数」\n　是在育成中满足条件即可获得训练成果",
+      "source_fingerprint": "4c39f34cc98eff14e44b7678959cfa25f1f003f48695edba5289cbd04d42df0a",
+      "rejected_targets": [
+        "・Với「Nhận chỉ số cơ bản trong huấn luyện」「Nhận điểm kỹ năng trong huấn luyện」\n　chỉ cần đáp ứng điều kiện trong huấn luyện là có thể nhận thành quả huấn luyện"
+      ],
+      "approved_target": "・Với「Nhận chỉ số cơ bản trong huấn luyện」「Nhận Skill Pt trong huấn luyện」\n　chỉ cần đáp ứng điều kiện trong huấn luyện là có thể nhận thành quả huấn luyện",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3",
+          "batch_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3-b0137",
+          "claim_id": "trc-gpt56sol-20260830T230000Z-b0137",
+          "merged_at": "2026-08-30T23:00:21.014717Z",
+          "reason": "The second quoted condition uses the forbidden literal translation for the established Skill Pt resource; structure and condition logic are otherwise correct."
         }
       ]
     },
@@ -29712,10 +29737,11 @@
       "source_text": "训练成果获得量",
       "source_fingerprint": "164a6873fd974792ef4463862ddd7be7bc69cc369b8868a89ec748cfb1a67dfd",
       "rejected_targets": [
-        "Lượng thành quả huấn luyện nhận được"
+        "Lượng thành quả Huấn luyện"
       ],
-      "approved_target": "Lượng thành quả Huấn luyện",
+      "approved_target": "Lượng thành quả huấn luyện nhận được",
       "origins": [
+        "translation_review",
         "ui_review"
       ],
       "ui_contexts": [
@@ -29738,6 +29764,14 @@
           "reason": "The current phrase redundantly spells out 'received'; the compact label preserves the amount of Training results gained.",
           "ui_key": "Outgame608028",
           "control_type": "setting_label"
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3",
+          "batch_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3-b0137",
+          "claim_id": "trc-gpt56sol-20260830T230000Z-b0137",
+          "merged_at": "2026-08-30T23:00:21.014717Z",
+          "reason": "Restores the explicit obtained-amount meaning and normalizes unnecessary capitalization."
         }
       ]
     },
@@ -121275,6 +121309,31 @@
       ]
     },
     {
+      "id": "review.regression.e3a2bc003cbde4f6",
+      "uid": "zhcn:d8c1365870d52d1c5639b423",
+      "scope": "uid",
+      "source_text": "支援卡批量编组",
+      "source_fingerprint": "05b83256497808b46d4fce7cfa97e0b7a366dd70e6a055d12fd4ee9e8722ecb0",
+      "rejected_targets": [
+        "Lập đội thẻ hỗ trợ hàng loạt"
+      ],
+      "approved_target": "Lập đội hình Support Card hàng loạt",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3",
+          "batch_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3-b0137",
+          "claim_id": "trc-gpt56sol-20260830T230000Z-b0137",
+          "merged_at": "2026-08-30T23:00:21.014717Z",
+          "reason": "Current text uses the forbidden literal Vietnamese rendering of the player-facing Support Card term."
+        }
+      ]
+    },
+    {
       "id": "review.regression.c6e9607868fdef23",
       "uid": "zhcn:d8c33e3524123392977a9708",
       "scope": "uid",
@@ -127592,10 +127651,12 @@
       "source_text": "对其他训练员的显示设置",
       "source_fingerprint": "a25dba2981f0dd4b90eb8c2183de45508bb590849c83d4766b7c363220031229",
       "rejected_targets": [
-        "Cài đặt hiển thị với Huấn luyện viên khác"
+        "Cài đặt hiển thị với Huấn luyện viên khác",
+        "Hiển thị với Trainer khác"
       ],
-      "approved_target": "Hiển thị với Trainer khác",
+      "approved_target": "Cài đặt hiển thị với Trainer khác",
       "origins": [
+        "translation_review",
         "ui_review"
       ],
       "ui_contexts": [
@@ -127618,6 +127679,14 @@
           "reason": "The compact setting label keeps the visibility-to-other-Trainers meaning and removes redundant 'Cài đặt'.",
           "ui_key": "Outgame608079",
           "control_type": "setting_label"
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3",
+          "batch_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3-b0138",
+          "claim_id": "trc-gpt56sol-20260830T230500Z-b0138",
+          "merged_at": "2026-08-30T23:00:21.019070Z",
+          "reason": "Current text drops the explicit settings/configuration meaning from 显示设置."
         }
       ]
     },

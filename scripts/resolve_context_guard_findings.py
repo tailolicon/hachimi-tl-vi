@@ -29,6 +29,11 @@ GUARDS = {
         "term_id": "reviewed.condition.97c2a1f26a21",
         "target_vi": "Recovery Spirit",
     },
+    "cf-4247246a96780f8b": {
+        "layer": "locked",
+        "term_id": "reviewed.skill_name.5dffb471df59",
+        "target_vi": "Đổi mới",
+    },
 }
 
 

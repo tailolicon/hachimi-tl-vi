@@ -5,8 +5,8 @@
   "batch_id": "tr-p3-67f8551f7780-8b9478e80ea1-2b38b54670-fe34436d0c-b0604",
   "claim_id": "trc-gpt56sol-chat-20260830T1537Z-b0604",
   "worker_id": "gpt56sol-chat-20260830T1525Z",
-  "reviewed_at": "2026-08-30T15:38:00Z",
-  "completed_count": 5,
+  "reviewed_at": "2026-08-30T15:39:00Z",
+  "completed_count": 10,
   "decisions": [
     {
       "uid": "zhcn:580e3eb0b0e7ec1bd8a6a7b0",
@@ -44,6 +44,53 @@
       "action": "keep",
       "reason": "Đây là tiêu đề tiếng Anh cách điệu và đã có khóa unique-effect đúng nguyên văn; giữ nguyên là phù hợp.",
       "terminology_basis": "locked_terms: reviewed.support_unique_effect_name.bd5125f49052",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:e566ef14d63af1bbc62f93ad",
+      "current_fingerprint": "5b42e08820235f8c9c8849f4dc1986afdf7db34a961921235ce8ddeefd8fd403",
+      "action": "keep",
+      "reason": "Đây là tiêu đề dạng chuỗi số cách điệu; bản hiện tại bảo toàn chính xác số và dấu phân cách, đồng thời trùng khóa review.",
+      "terminology_basis": "locked_terms: reviewed.support_unique_effect_name.5b42e0882023",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:6c651f4a11db1a339cabaca9",
+      "current_fingerprint": "72e695a13348c8a664f54b2740aa35e4e897d1e4fcd5ea201d8fb79cabc7b1b3",
+      "action": "keep",
+      "reason": "Two Pieces là tiêu đề tiếng Anh đã được khóa nguyên văn; giữ nguyên là đúng danh xưng.",
+      "terminology_basis": "locked_terms: reviewed.support_unique_effect_name.72e695a13348",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:6fc6a07d2434cccb267c8ac7",
+      "current_fingerprint": "a60c18dd14e364790e364dfee1c452302df0ab794f0d5a40498141284d62f4c3",
+      "action": "keep",
+      "reason": "'Độc chiếm lạnh lùng?' giữ được ý 冰冷的独占 và sắc thái nghi vấn; tuy hơi cô đọng nhưng phù hợp dạng tiêu đề.",
+      "confidence": "medium"
+    },
+    {
+      "uid": "zhcn:d461a63159f2d9d4b19732b1",
+      "current_fingerprint": "c8132e14cb27070cea17db5288b71deefce3c2b2d573f6f0f48ea8adf63ff801",
+      "action": "defer",
+      "reason": "Hai locked term xung đột ngay trong một mục: alias Skill 全力 yêu cầu 'Dốc hết sức', còn khóa unique-effect toàn câu yêu cầu 'Hết sức! Tantrum!'. Không thể thỏa cả hai mà không quyết định canonical scope/overmatch trước.",
+      "canonical_finding": {
+        "kind": "context_rule",
+        "source_zh_cn": "全力",
+        "concept": "Skill-name alias 全力 đang overmatch bên trong tiêu đề Support unique effect 全力！Tantrum！",
+        "match_mode": "contains",
+        "scope": "auto",
+        "reason": "Embedded context simultaneously applies a Skill-name lock and an exact whole-title unique-effect lock with incompatible Vietnamese targets; matching scope must be narrowed before this item can resolve safely.",
+        "confidence": "high"
+      },
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:b80b9778610162599a56a414",
+      "current_fingerprint": "aebdca3ccd82bdc2192d8fbbf722819e57ed932be9253c604327ea2ed13be7fe",
+      "action": "keep",
+      "reason": "TRIFLE☆VACATION là tiêu đề Latin cách điệu đã được khóa nguyên văn; giữ nguyên là phù hợp.",
+      "terminology_basis": "locked_terms: reviewed.support_unique_effect_name.aebdca3ccd82",
       "confidence": "high"
     }
   ]

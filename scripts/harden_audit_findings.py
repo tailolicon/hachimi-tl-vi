@@ -123,6 +123,32 @@ RECOVERY_SPIRIT_CONDITION = {
     "basis": "Uma Musume JP 5.5th Anniversary Trainer Ability Condition: JP リカバリー精神. Preserve the mixed English/Japanese player-facing identity as Recovery Spirit; scope is limited to the Condition-name table.",
 }
 
+LUCKY_CONSTITUTION_CONDITION = {
+    "id": "condition.lucky_constitution",
+    "category": "condition",
+    "source_aliases": ["幸运体质"],
+    "preferred": "Lucky Constitution",
+    "compact": [],
+    "accepted": ["Lucky Constitution"],
+    "forbidden": ["Thể chất may mắn"],
+    "require_accepted": True,
+    "invalidation_scope": "item",
+    "source_paths": ["text_data_dict.json"],
+    "json_path_prefixes": [["142"]],
+    "match_mode": "exact",
+    "basis": "Verified named Condition identity: zh-CN 幸运体质 maps to JP 幸運体質, which prevents one bad Condition before disappearing. Strong current English community usage calls it Lucky Constitution. Keep the rule exact and confined to the Condition-name table.",
+}
+
+LUCKY_CONSTITUTION_DECISION = {
+    "decision_id": "audit.finding.condition-lucky-constitution",
+    "source_zh_cn": "幸运体质",
+    "action": "lock",
+    "target_vi": "Lucky Constitution",
+    "kind": "condition",
+    "category": "condition",
+    "note": "Verified against JP 幸運体質 and its one-use bad-Condition prevention effect; use established English community label Lucky Constitution in the exact text_data category-142 Condition slot.",
+}
+
 EPIPHANEIA_NO_HOLDING_BACK_CONDITION = {
     "id": "condition.epiphaneia.no_holding_back",
     "category": "condition",
@@ -223,6 +249,7 @@ def harden(repo_root: Path = ROOT) -> bool:
     _upsert(terms, SCHOLAR_CONDITION)
     _upsert(terms, MENTAL_GUARD_CONDITION)
     _upsert(terms, RECOVERY_SPIRIT_CONDITION)
+    _upsert(terms, LUCKY_CONSTITUTION_CONDITION)
     _upsert(terms, EPIPHANEIA_NO_HOLDING_BACK_CONDITION)
     if before != json.dumps(community, ensure_ascii=False, sort_keys=True):
         _write(community_path, community)
@@ -238,6 +265,7 @@ def harden(repo_root: Path = ROOT) -> bool:
     _upsert(decisions, MOXIE_SKILL_DECISION, id_field="decision_id")
     for decision in TRAINER_ABILITY_CONDITION_DECISIONS:
         _upsert(decisions, decision, id_field="decision_id")
+    _upsert(decisions, LUCKY_CONSTITUTION_DECISION, id_field="decision_id")
     _upsert(decisions, EPIPHANEIA_NO_HOLDING_BACK_DECISION, id_field="decision_id")
     if before != json.dumps(reviews, ensure_ascii=False, sort_keys=True):
         _write(reviews_path, reviews)

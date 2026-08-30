@@ -16,5 +16,5 @@ def test_sync_context_auto_triggers_and_runs_all_finding_hardeners() -> None:
     workflow = (ROOT / ".github" / "workflows" / "sync-context.yml").read_text(encoding="utf-8")
     assert '"scripts/harden_*_finding.py"' in workflow
     assert '"tests/test_*_finding_hardening.py"' in workflow
-    assert "scripts=(scripts/harden_*_finding.py)" in workflow
-    assert 'python "${script}"' in workflow
+    assert "for script in scripts/harden_*_finding.py; do" in workflow
+    assert 'python "$script"' in workflow

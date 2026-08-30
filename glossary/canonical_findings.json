@@ -1358,7 +1358,8 @@
       "concepts": [
         "Prevent Skill-name alias from matching inside 凯旋门赏 race name",
         "Skill-name alias 凯旋 overmatches the race proper name 凯旋门赏",
-        "Skill alias must not overmatch Prix de l'Arc de Triomphe race name 凯旋门赏"
+        "Skill alias must not overmatch Prix de l'Arc de Triomphe race name 凯旋门赏",
+        "Skill alias 凯旋 must not match inside race proper name 凯旋门赏"
       ],
       "suggested_targets_vi": [],
       "confidence_levels": [
@@ -1368,9 +1369,11 @@
         "Skill-name substring overmatches the proper race name Prix de l'Arc de Triomphe; race identity must remain protected.",
         "Same systemic substring overmatch as other L'Arc race item; canonical matcher must distinguish race name from Skill title.",
         "The reviewed Skill-title lock should not fire inside the proper race name Prix de l'Arc de Triomphe; narrow the matcher before resolving this item.",
-        "Current item is a race objective and the official race name should not be replaced by a Skill-title lock matched on a substring."
+        "Current item is a race objective and the official race name should not be replaced by a Skill-title lock matched on a substring.",
+        "Current reviewed Skill matcher overmatches a substring of Prix de l'Arc de Triomphe and falsely requires Khải hoàn.",
+        "Current reviewed Skill matcher overmatches the race proper name and falsely requires Khải hoàn."
       ],
-      "evidence_count": 4,
+      "evidence_count": 6,
       "evidence": [
         {
           "uid": "zhcn:1136cb24b7b89add2e024a3d",
@@ -1435,6 +1438,38 @@
           "current_text": "Chiến thắng Prix Niel, Prix Foy và Prix de l'Arc de Triomphe\\n※Chỉ áp dụng cho dự án Reach for the stars L'Arc",
           "proposed_text": null,
           "reported_at": "2026-08-30T14:34:00Z"
+        },
+        {
+          "uid": "zhcn:89445919f1d57d139c2e0970",
+          "plan_id": "tr-p3-67f8551f7780-8b9478e80ea1-2b38b54670-fe34436d0c",
+          "batch_id": "tr-p3-67f8551f7780-8b9478e80ea1-2b38b54670-fe34436d0c-b0452",
+          "claim_id": "trc-gpt56sol-20260830T145200Z-b0452",
+          "worker_id": "gpt56sol-20260830T145200Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "131",
+            "294"
+          ],
+          "source_text": "在凯旋门赏与法国传奇选手竞争并取得胜利\\n※Reach for the stars L'Arc计划限定",
+          "current_text": "Đối đầu tay đua huyền thoại của Pháp tại Prix de l'Arc de Triomphe và giành chiến thắng\\n※Chỉ áp dụng cho dự án Reach for the stars L'Arc",
+          "proposed_text": null,
+          "reported_at": "2026-08-30T14:56:00Z"
+        },
+        {
+          "uid": "zhcn:4ba7e48282072b043003b971",
+          "plan_id": "tr-p3-67f8551f7780-8b9478e80ea1-2b38b54670-fe34436d0c",
+          "batch_id": "tr-p3-67f8551f7780-8b9478e80ea1-2b38b54670-fe34436d0c-b0452",
+          "claim_id": "trc-gpt56sol-20260830T145200Z-b0452",
+          "worker_id": "gpt56sol-20260830T145200Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "131",
+            "297"
+          ],
+          "source_text": "取得尼尔赏、富瓦赏、凯旋门赏的胜利\\n※Reach for the stars L'Arc计划限定",
+          "current_text": "Chiến thắng Prix Niel, Prix Foy và Prix de l'Arc de Triomphe\\n※Chỉ áp dụng cho dự án Reach for the stars L'Arc",
+          "proposed_text": null,
+          "reported_at": "2026-08-30T14:56:00Z"
         }
       ],
       "canonical_resolution": {
@@ -1448,7 +1483,7 @@
         "target_vi": "Khải hoàn"
       },
       "first_seen_at": "2026-08-30T01:06:00Z",
-      "last_seen_at": "2026-08-30T14:34:00Z"
+      "last_seen_at": "2026-08-30T14:56:00Z"
     },
     {
       "finding_id": "cf-a6f9a22d7cf78668",

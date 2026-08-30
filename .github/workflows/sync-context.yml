@@ -15,6 +15,7 @@ on:
       - "scripts/build_source_bridge_risk_registry.py"
       - "scripts/apply_terminology_reviews.py"
       - "scripts/harden_audit_findings.py"
+      - "scripts/harden_weekend_challenge_finding.py"
       - "src/hachimi_tl_vi/context_categories.py"
       - "src/hachimi_tl_vi/context_registry.py"
       - "src/hachimi_tl_vi/translators/prompt.py"
@@ -25,6 +26,7 @@ on:
       - "glossary/ui_community_terms.json"
       - "glossary/source_bridge_terms.json"
       - "tests/test_audit_finding_hardening.py"
+      - "tests/test_weekend_challenge_finding_hardening.py"
       - "tests/test_context_registry.py"
       - "tests/test_context_sync.py"
       - "tests/test_prompt_context.py"
@@ -72,6 +74,9 @@ jobs:
 
       - name: Harden audit-discovered canonical rules
         run: python scripts/harden_audit_findings.py
+
+      - name: Harden Weekend Challenge audit finding
+        run: python scripts/harden_weekend_challenge_finding.py
 
       - name: Build source-bridge risk registry
         run: python scripts/build_source_bridge_risk_registry.py

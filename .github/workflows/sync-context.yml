@@ -26,6 +26,7 @@ on:
       - "scripts/harden_gochiso_sama_song_finding.py"
       - "scripts/harden_pegasus_punch_song_finding.py"
       - "scripts/harden_asatsuyu_song_finding.py"
+      - "scripts/harden_heibon_miracle_song_finding.py"
       - "scripts/harden_full_effort_skill_finding.py"
       - "scripts/harden_room_match_finding.py"
       - "scripts/harden_power_context_finding.py"
@@ -57,6 +58,7 @@ on:
       - "tests/test_gochiso_sama_song_finding_hardening.py"
       - "tests/test_pegasus_punch_song_finding_hardening.py"
       - "tests/test_asatsuyu_song_finding_hardening.py"
+      - "tests/test_heibon_miracle_song_finding_hardening.py"
       - "tests/test_full_effort_skill_finding_hardening.py"
       - "tests/test_room_match_finding_hardening.py"
       - "tests/test_power_context_finding_hardening.py"
@@ -151,6 +153,9 @@ jobs:
 
       - name: Harden Asatsuyu song finding
         run: python scripts/harden_asatsuyu_song_finding.py
+
+      - name: Harden From Ordinary to Extraordinary song finding
+        run: python scripts/harden_heibon_miracle_song_finding.py
 
       - name: Harden full-effort Skill context finding
         run: python scripts/harden_full_effort_skill_finding.py

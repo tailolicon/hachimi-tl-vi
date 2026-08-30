@@ -58,11 +58,23 @@ jobs:
             fi
 
             git commit -m "Translation review: restore incremental audit progress"
-            if git push origin HEAD:main; then
-              exit 0
-            fi
 
-            echo "Concurrent main update; rebuilding repair from live main ($attempt/5)."
+            # Main is intentionally busy with review claims/checkpoints. Rebase the
+            # validated repair over unrelated churn; rebuild only on a real generated-
+            # state conflict so no worker progress is overwritten.
+            for push_attempt in 1 2 3 4 5 6 7 8; do
+              git fetch origin main
+              if ! git rebase origin/main; then
+                git rebase --abort || true
+                break
+              fi
+              if git push origin HEAD:main; then
+                exit 0
+              fi
+              sleep "$push_attempt"
+            done
+
+            echo "Concurrent generated-state update; rebuilding repair from live main ($attempt/5)."
             sleep $((attempt * 2))
           done
 

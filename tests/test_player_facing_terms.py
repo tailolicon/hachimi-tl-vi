@@ -86,7 +86,7 @@ def test_skill_style_exact_examples_are_reviewed_overrides() -> None:
     assert canonical["弧线教授"] == "Giáo Sư Cung Tuyến"
     assert canonical["弯道加速○"] == "Gia Tốc Khúc Cua○"
     assert canonical["弯道回复○"] == "Hồi Phục Khúc Cua○"
-    assert canonical["弯道巧者○"] == "Xảo Thủ Khúc Cua○"
+    assert canonical["弯道巧者○"] == "Thành thạo khúc cua○"
     assert canonical["强攻策"] == "Cường Công Kế"
     assert "older conflicting skill-name target" in policy["precedence"][0]
 

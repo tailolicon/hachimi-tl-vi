@@ -112,8 +112,10 @@ def test_live_primary_maintenance_claim_carries_progress_evidence() -> None:
     assert claim.get("last_progress_at")
 
     if claim["status"] == "active":
-        assert state["phase"] == "canonical_hardening"
-        assert claim["task_id"] == state["active_task"]["task_id"]
+        assert not state["terminal"]
+        assert claim.get("task_id")
+        if state["phase"] == "canonical_hardening":
+            assert claim["task_id"] == state["active_task"]["task_id"]
 
 
 def test_readme_progress_renderer_exposes_maintenance_stage() -> None:

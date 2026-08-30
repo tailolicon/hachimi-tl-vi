@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "status": "partial",
+  "plan_id": "tr-p3-67f8551f7780-2abf5652714b-2b38b54670-14db803be1",
+  "batch_id": "tr-p3-67f8551f7780-2abf5652714b-2b38b54670-14db803be1-b0305",
+  "claim_id": "trc-chatgpt-sol-20260830-1132-a7-b0305",
+  "worker_id": "chatgpt-sol-20260830-1132-a7",
+  "reviewed_at": "2026-08-30T04:34:41Z",
+  "completed_count": 5,
+  "decisions": [
+    {
+      "uid": "zhcn:4b0c51bf22313c256f23fc4d",
+      "current_fingerprint": "a0336d1b5fc81999af4da966b59118456cd8c365ac1a43e2f7071839c349f60f",
+      "action": "keep",
+      "reason": "Bản hiện tại truyền đạt đúng điều kiện khi bắt đầu Huấn luyện tự chủ và không có lỗi cấu trúc hay thuật ngữ bắt buộc.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:1aa6151a7b98dcd7b7858fb1",
+      "current_fingerprint": "775e8fdb6799c3e9d61fff7257b7a1d9e77f206f01d47582fc5eed0e07fdce5e",
+      "action": "keep",
+      "reason": "Giữ đúng quan hệ điều kiện OFF và việc không còn hiển thị xác nhận khi bắt đầu Huấn luyện tự chủ; newline được bảo toàn.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:10a328181d782b4827801d0a",
+      "current_fingerprint": "d011d0d358ceafb8b892dcb68a02519345421a49ce85e9f65ec36c363af3aa84",
+      "action": "revise",
+      "proposed_text": "Kích hoạt Spark chỉ số cơ bản",
+      "reason": "Trong localize UI này 因子 là cơ chế Spark; bản hiện tại dùng calque bị cấm 'nhân tố'.",
+      "terminology_basis": "common.spark.localize_ui: localize_dict 因子 phải dùng Spark/Sparks, không dùng Nhân tố/nhân tố.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:2c77f210a7f95264f6bb6dec",
+      "current_fingerprint": "7d7806c8cc4d557854bf9fe72e146dd39536fd51115e818c40abec986cba47ad",
+      "action": "defer",
+      "reason": "因子 chắc chắn là Spark, nhưng 资质 đang được dùng như khái niệm Aptitude mà canonical hiện chỉ khóa alias 適性/适性. Cần canonical hóa alias 资质 trước khi chốt toàn câu.",
+      "canonical_finding": {
+        "kind": "terminology",
+        "source_zh_cn": "资质",
+        "suggested_target_vi": "Aptitude",
+        "concept": "Aptitude",
+        "match_mode": "exact",
+        "scope": "auto",
+        "reason": "资质 lặp lại trong UI huấn luyện/cuộc đua với nghĩa aptitude; alias này chưa nằm trong canonical common.aptitude nên không nên tự chuẩn hóa cục bộ.",
+        "confidence": "medium"
+      },
+      "confidence": "medium"
+    },
+    {
+      "uid": "zhcn:e5088a6ce1855c4dc40e158a",
+      "current_fingerprint": "81f085f7b9d54be6ce53155b640dfb232f10f1b8171d4a8f9554a226c0c577a4",
+      "action": "keep",
+      "reason": "Bản hiện tại đúng nghĩa Huấn luyện tự chủ hoàn thành theo thời gian và không có lỗi thuật ngữ/cấu trúc.",
+      "confidence": "high"
+    }
+  ]
+}

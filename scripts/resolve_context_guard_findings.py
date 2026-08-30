@@ -39,6 +39,11 @@ GUARDS = {
         "term_id": "reviewed.skill_name.e778cffef185",
         "target_vi": "Một bước vượt lên",
     },
+    "cf-a54e17e1f89443be": {
+        "layer": "locked",
+        "term_id": "reviewed.skill_name.1c68057834c9",
+        "target_vi": "Khải hoàn",
+    },
 }
 
 

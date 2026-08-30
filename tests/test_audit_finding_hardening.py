@@ -5,8 +5,11 @@ from pathlib import Path
 
 from scripts.harden_audit_findings import (
     JUNIOR_MAKE_DEBUT,
+    MENTAL_GUARD_CONDITION,
     MOXIE_SKILL,
     NIGHT_OWL_REFERENCE_VARIANT,
+    RECOVERY_SPIRIT_CONDITION,
+    SCHOLAR_CONDITION,
     harden,
 )
 from scripts.canonical_findings import refresh_canonical_resolutions
@@ -212,3 +215,73 @@ def test_moxie_does_not_resolve_same_words_outside_skill_title_category(tmp_path
     }
     refreshed = refresh_canonical_resolutions(tmp_path, ledger)
     assert refreshed["findings"][0]["canonical_resolution"] is None
+
+
+def test_trainer_ability_conditions_resolve_in_category_142(tmp_path: Path) -> None:
+    glossary = _seed_glossary(tmp_path)
+    assert harden(tmp_path) is True
+    community = json.loads((glossary / "ui_community_terms.json").read_text(encoding="utf-8"))
+    by_id = {item["id"]: item for item in community["terms"]}
+    expected = (
+        (SCHOLAR_CONDITION, "勤勉好学", "Scholar", "audit.finding.condition-scholar"),
+        (MENTAL_GUARD_CONDITION, "精神防护", "Mental Guard", "audit.finding.condition-mental-guard"),
+        (RECOVERY_SPIRIT_CONDITION, "恢复精神", "Recovery Spirit", "audit.finding.condition-recovery-spirit"),
+    )
+    for rule, source, target, decision_id in expected:
+        stored = by_id[rule["id"]]
+        assert stored["source_aliases"] == [source]
+        assert stored["preferred"] == target
+        assert stored["json_path_prefixes"] == [["142"]]
+        ledger = {
+            "schema_version": 1,
+            "findings": [
+                {
+                    "finding_id": f"cf-test-{rule['id']}",
+                    "status": "open",
+                    "source_zh_cn": source,
+                    "match_mode": "exact",
+                    "source_paths": ["text_data_dict.json"],
+                    "key_exact": [],
+                    "json_path_prefixes": [["142"]],
+                    "suggested_targets_vi": [],
+                    "canonical_resolution": None,
+                    "review_resolution": None,
+                }
+            ],
+        }
+        finding = refresh_canonical_resolutions(tmp_path, ledger)["findings"][0]
+        assert finding["review_resolution"] == {
+            "decision_id": decision_id,
+            "action": "lock",
+            "target_vi": target,
+        }
+        assert finding["canonical_resolution"] == {
+            "layer": "community",
+            "term_id": rule["id"],
+            "target_vi": target,
+        }
+
+
+def test_trainer_ability_condition_words_do_not_resolve_outside_category_142(tmp_path: Path) -> None:
+    _seed_glossary(tmp_path)
+    assert harden(tmp_path) is True
+    for source in ("勤勉好学", "精神防护", "恢复精神"):
+        ledger = {
+            "schema_version": 1,
+            "findings": [
+                {
+                    "finding_id": f"cf-test-negative-{source}",
+                    "status": "open",
+                    "source_zh_cn": source,
+                    "match_mode": "exact",
+                    "source_paths": ["text_data_dict.json"],
+                    "key_exact": [],
+                    "json_path_prefixes": [["163"]],
+                    "suggested_targets_vi": [],
+                    "canonical_resolution": None,
+                    "review_resolution": None,
+                }
+            ],
+        }
+        finding = refresh_canonical_resolutions(tmp_path, ledger)["findings"][0]
+        assert finding["canonical_resolution"] is None

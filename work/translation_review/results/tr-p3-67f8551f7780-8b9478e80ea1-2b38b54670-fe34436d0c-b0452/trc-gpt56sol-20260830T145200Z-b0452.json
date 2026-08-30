@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "status": "partial",
+  "plan_id": "tr-p3-67f8551f7780-8b9478e80ea1-2b38b54670-fe34436d0c",
+  "batch_id": "tr-p3-67f8551f7780-8b9478e80ea1-2b38b54670-fe34436d0c-b0452",
+  "claim_id": "trc-gpt56sol-20260830T145200Z-b0452",
+  "worker_id": "gpt56sol-20260830T145200Z",
+  "reviewed_at": "2026-08-30T14:53:00Z",
+  "completed_count": 5,
+  "decisions": [
+    {"uid":"zhcn:ba0f26b9b58f7ceec1a3d9a6","current_fingerprint":"ffd4d607e902266e996666bb478e3a4dc6a47fe6e4716e34ee0da1b2b7b9e835","action":"keep","reason":"Meaning, numeric value, SS Match terminology and scenario restriction are preserved.","confidence":"high"},
+    {"uid":"zhcn:ed9a0e86af7afe25692475a1","current_fingerprint":"424c28bf8f641da0f7e40c1fd4b45e6c1eaf78c70e4ec1233a83e9effe19b478","action":"keep","reason":"Meaning and quantity are preserved, and the required player-facing Aptitude term is present.","terminology_basis":"Embedded common.aptitude requires Aptitude for 适性.","confidence":"high"},
+    {"uid":"zhcn:89445919f1d57d139c2e0970","current_fingerprint":"bdab9e9a70c79895477b55ff94464694562201ba4c5a72e4776e26022af0fe05","action":"defer","reason":"The locked Skill alias 凯旋 is being matched inside the proper race name 凯旋门赏; forcing Khải hoàn would corrupt Prix de l'Arc de Triomphe.","terminology_basis":"Current race name Prix de l'Arc de Triomphe is a proper-name rendering; the Skill lock is contextually inapplicable here.","canonical_finding":{"kind":"context_rule","source_zh_cn":"凯旋","concept":"Skill alias 凯旋 must not match inside race proper name 凯旋门赏","match_mode":"contains","scope":"source_path","reason":"Current reviewed Skill matcher overmatches a substring of Prix de l'Arc de Triomphe and falsely requires Khải hoàn.","confidence":"high"},"confidence":"high"},
+    {"uid":"zhcn:7055be7ddbc527744cd88307","current_fingerprint":"3e93ea3601b03f1ce4c2c03aed4168c3afa1a30e06cefbd776039cd3e68b6c20","action":"keep","reason":"Meaning and L'Arc scenario restriction are preserved naturally.","confidence":"high"},
+    {"uid":"zhcn:e71c5e238d8ac2a15b4e1a60","current_fingerprint":"a99f31f20d2f0de71d4edee4d864a80093f991750d2badd1f1c0edc89c0b2c23","action":"revise","proposed_text":"Đưa ít nhất 6 loại Aptitude hải ngoại lên Lv2\\n※Chỉ áp dụng cho dự án Reach for the stars L'Arc","reason":"The system term 适性 must use the established player-facing Aptitude label.","terminology_basis":"Embedded common.aptitude requires Aptitude; current Thích nghi does not satisfy it.","confidence":"high"}
+  ]
+}

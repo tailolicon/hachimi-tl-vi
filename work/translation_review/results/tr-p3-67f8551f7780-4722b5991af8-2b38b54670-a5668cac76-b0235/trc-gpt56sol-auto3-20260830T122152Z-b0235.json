@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "status": "partial",
+  "status": "complete",
   "plan_id": "tr-p3-67f8551f7780-4722b5991af8-2b38b54670-a5668cac76",
   "batch_id": "tr-p3-67f8551f7780-4722b5991af8-2b38b54670-a5668cac76-b0235",
   "claim_id": "trc-gpt56sol-auto3-20260830T122152Z-b0235",
   "worker_id": "gpt56sol-auto3-20260830T122152Z",
-  "reviewed_at": "2026-08-30T12:28:00Z",
-  "completed_count": 15,
+  "reviewed_at": "2026-08-30T12:30:00Z",
+  "completed_count": 20,
   "decisions": [
     {"uid":"zhcn:8945bbc7daaa04b6abe3474d","current_fingerprint":"05312ec9f61e8e948459b894114768ffc854e3c993991ac07923e22b83abce03","action":"revise","proposed_text":"Tiến hóa Skill","reason":"Gameplay label must preserve the canonical English term Skill instead of the forbidden Vietnamese calque.","terminology_basis":"common.skill.generic: preferred Skill; Kỹ năng is forbidden for the generic gameplay label.","confidence":"high"},
     {"uid":"zhcn:27a1a66e2183d417a1caa772","current_fingerprint":"c7162695d4920e19a463ee51ee466724aa0ae248af08a05c0a91bc6b321eefa5","action":"revise","proposed_text":"Skill cần tiến hóa","reason":"Preserve canonical Skill terminology while retaining the source meaning.","terminology_basis":"common.skill.generic: preferred Skill; Kỹ năng is forbidden for the generic gameplay label.","confidence":"high"},
@@ -22,6 +22,11 @@
     {"uid":"zhcn:a61952011c3f1f6161818db1","current_fingerprint":"841d4820e4cb62f1cd0649c3a952480ea089886fcdfc9995b03d8cf9cc6efa74","action":"revise","proposed_text":"Max Energy","reason":"The exact career maximum-energy label has an embedded canonical English form.","terminology_basis":"common.max_energy.singlemode400103 requires Max Energy and forbids Thể lực tối đa.","confidence":"high"},
     {"uid":"zhcn:51b990a872d20095ff24659c","current_fingerprint":"f40dd31a6e9d7abc3642d72e60a967b6ead25ca45f16c2ebe825a8a2b9b2f07f","action":"revise","proposed_text":"Tăng giới hạn chỉ số cơ bản","reason":"Năng lực cơ bản is an awkward literal rendering here; chỉ số cơ bản better matches the stat-cap UI meaning.","confidence":"high"},
     {"uid":"zhcn:2ff0333f752e82cebce38194","current_fingerprint":"e5f083c75080d7214bde6f3f9a30d8c0e974eb14d72883b3d77a4cc2bea4bc7f","action":"revise","proposed_text":"Giới hạn chỉ số cơ bản","reason":"Use natural Vietnamese stat UI wording instead of the literal năng lực cơ bản phrasing.","confidence":"high"},
-    {"uid":"zhcn:3b883e93c7583a17396e69e3","current_fingerprint":"f3f4c1652512ef921da380f808667c9a87b375e35be66dc30b78dcde40520811","action":"keep","reason":"Meaning and newline structure are preserved, and the Vietnamese is acceptable in this scenario-formation context.","confidence":"high"}
+    {"uid":"zhcn:3b883e93c7583a17396e69e3","current_fingerprint":"f3f4c1652512ef921da380f808667c9a87b375e35be66dc30b78dcde40520811","action":"keep","reason":"Meaning and newline structure are preserved, and the Vietnamese is acceptable in this scenario-formation context.","confidence":"high"},
+    {"uid":"zhcn:aeb90be97524a1e8ab6a3d01","current_fingerprint":"8c574391abffbe1d591c4391c73f44ade2abde1bdbc69c12b0fe2581c839509d","action":"revise","proposed_text":"Trong kịch bản huấn luyện này, Mã Nương được huấn luyện cần\n<color=#ff911c>hoàn thành mục tiêu riêng được đặt ra</color>","reason":"Generic 赛马娘 must use the project-wide Mã Nương wording; the sentence is also tightened while preserving the newline and color tag.","terminology_basis":"Manual-audit canonical rule: generic ウマ娘 / 赛马娘 in world/prose/UI context is Mã Nương; preserve the franchise title only when the full title is present.","confidence":"high"},
+    {"uid":"zhcn:893a39258148d2d9391ab0f4","current_fingerprint":"8cb8c80319ff96a846bb803e5d968616671c5f61b2710d41abca7f9ccdf33c36","action":"revise","proposed_text":"Mục tiêu riêng của Mã Nương được huấn luyện","reason":"The current Uma wording is noncanonical for generic 赛马娘; preserve the specific target-label meaning.","terminology_basis":"Manual-audit canonical rule: generic ウマ娘 / 赛马娘 is Mã Nương.","confidence":"high"},
+    {"uid":"zhcn:fbea7319ce86fbec198a9d16","current_fingerprint":"7e31fccc4f20488dbf2f2672a4ec830528b7e2470a75f5657b3c40e416af0f40","action":"revise","proposed_text":"Trong cốt truyện huấn luyện này, Mã Nương được huấn luyện sẽ hướng tới <color=#ff911c>hoàn thành mục tiêu chung do cốt truyện chỉ định</color>","reason":"Replace noncanonical generic Uma Musume wording with Mã Nương and remove repetitive literal phrasing while preserving the highlighted objective.","terminology_basis":"Manual-audit canonical rule: generic ウマ娘 / 赛马娘 is Mã Nương.","confidence":"high"},
+    {"uid":"zhcn:682b9d4e045f340478574b63","current_fingerprint":"afb2689ec9f01a3abc2f932c114e83eed46a5028baf5c2c7e58d8435fa593770","action":"keep","reason":"The short scenario-specific objective label is accurate and natural.","confidence":"high"},
+    {"uid":"zhcn:976213f1ed6c2758e7d2422f","current_fingerprint":"4e660c56e5b42c6e20b65e7211bdcd4088abcfce9e3776419baf98afcce10079","action":"revise","proposed_text":"Trong kịch bản huấn luyện này,\nkhông thể xếp các Support Card sau vào đội hình","reason":"The player-facing term must remain Support Card; the revision preserves the source prohibition and newline structure.","terminology_basis":"common.support_card and source-bridge system.support_card both require Support Card and forbid Thẻ hỗ trợ.","confidence":"high"}
   ]
 }

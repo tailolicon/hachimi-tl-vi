@@ -49,3 +49,12 @@ def test_top_level_25_minute_orchestrator_prioritizes_old_audit() -> None:
     ui_audit = text.index("retrospective UI audit")
     new_translation = text.index("new untranslated content")
     assert translation_audit < ui_audit < new_translation
+
+
+def test_worker_policy_prevents_exact_match_for_embedded_canonical_aliases() -> None:
+    policy = _load("work/worker_session_policy.json")
+    rule = policy["canonical_finding_match_rule"]
+    assert "exact is valid ONLY" in rule
+    assert "complete reviewed item.source_text" in rule
+    assert "use match_mode=contains" in rule
+    assert "may be quarantined" in rule

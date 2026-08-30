@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "status": "partial",
+  "status": "complete",
   "plan_id": "tr-p3-67f8551f7780-d659bf582bbc-2b38b54670-aa2835c54a",
   "batch_id": "tr-p3-67f8551f7780-d659bf582bbc-2b38b54670-aa2835c54a-b0226",
   "claim_id": "trc-gpt56sol-20260830T131600Z-b0226",
   "worker_id": "gpt56sol-20260830T131600Z",
-  "reviewed_at": "2026-08-30T13:21:00Z",
-  "completed_count": 15,
+  "reviewed_at": "2026-08-30T13:22:00Z",
+  "completed_count": 20,
   "decisions": [
     {"uid":"zhcn:a45a3d2108b5d096cf118c8a","current_fingerprint":"778344b5ad8717bab7032621affe2ff45c750d9750ccb8719956451917a88287","action":"revise","proposed_text":"Chỉ rút gọn sự kiện của Mã Nương đang huấn luyện","reason":"育成赛马娘 chỉ Mã Nương đang được huấn luyện; bản hiện tại dùng 'Uma' không theo hard audit policy cho generic 赛马娘.","terminology_basis":"Manual audit policy requires generic 赛马娘 → Mã Nương.","confidence":"high"},
     {"uid":"zhcn:0812387f965d4ee2c5961de0","current_fingerprint":"bcd7376e4d7827d28f3e20986e2abaa4bab40235d38d5dfe4ebcdd7176999534","action":"keep","reason":"Bản hiện tại giữ đúng tag màu, newline, ý rút gọn sự kiện và khuyến nghị cho người đã huấn luyện nhiều lần.","terminology_basis":"common.trainer requires Trainer and current text satisfies it.","confidence":"high"},
@@ -22,6 +22,11 @@
     {"uid":"zhcn:ac0b65472bb5458beebc93b6","current_fingerprint":"117c001acd3d442b7030bb1eaa6d313fd7f56d9440a4bd51e8468933dae2ae21","action":"keep","reason":"Bản hiện tại đúng hộp thoại xác nhận ghi đè thông tin deck hiện tại và không làm mất điều kiện/cực tính.","confidence":"high"},
     {"uid":"zhcn:a0a87e6d5fe25b4e050b772e","current_fingerprint":"e85b2dadd11c1647ccadc0331bb6d592d65ab9b15fe1e0161e77bdf727789f66","action":"keep","reason":"Bản hiện tại bảo toàn atlas token và cảnh báo rằng thông tin deck không thể khôi phục sau khi ghi đè.","confidence":"high"},
     {"uid":"zhcn:a782958839392cbc9e47b502","current_fingerprint":"1dc4b22466c48182baaf7bb1e484158ee07dbdacb3aa54a126687f5f8832d800","action":"keep","reason":"'Tính năng đề xuất cuộc đua' đúng nghĩa 比赛推荐功能 và đã thỏa locked race term.","terminology_basis":"race.generic requires Cuộc đua and current text satisfies the concept.","confidence":"high"},
-    {"uid":"zhcn:b242e9b7bce81143abca53b8","current_fingerprint":"4b3987409085b9cf5ece5d6ba3717cff8a2e790822728ccfde79b5c0ec4310ad","action":"revise","proposed_text":"Sẽ đề xuất các Cuộc đua phù hợp với Mã Nương.\nVới Trainer mới, <color=#FF911c>khuyến nghị tùy chọn trên cùng</color>.","reason":"Generic 赛马娘 phải dùng Mã Nương; giữ Trainer, tag màu/newline và ý đề xuất cuộc đua cho người mới.","terminology_basis":"race.generic requires Cuộc đua; common.trainer requires Trainer; common.world.umamusume requires Mã Nương.","confidence":"high"}
+    {"uid":"zhcn:b242e9b7bce81143abca53b8","current_fingerprint":"4b3987409085b9cf5ece5d6ba3717cff8a2e790822728ccfde79b5c0ec4310ad","action":"revise","proposed_text":"Sẽ đề xuất các Cuộc đua phù hợp với Mã Nương.\nVới Trainer mới, <color=#FF911c>khuyến nghị tùy chọn trên cùng</color>.","reason":"Generic 赛马娘 phải dùng Mã Nương; giữ Trainer, tag màu/newline và ý đề xuất cuộc đua cho người mới.","terminology_basis":"race.generic requires Cuộc đua; common.trainer requires Trainer; common.world.umamusume requires Mã Nương.","confidence":"high"},
+    {"uid":"zhcn:8ca4183f1976ab5dc302fd94","current_fingerprint":"eff883fa810eb1d3ef7ce0eda7cb90e7b4872dbaab3e291d1908a24a8a831d35","action":"keep","reason":"Bản hiện tại bảo toàn color placeholder {0} và truyền đạt đúng nhãn con đường đi theo lối độc hành.","confidence":"high"},
+    {"uid":"zhcn:0bbff928835bf5a1874bdb0d","current_fingerprint":"2ffc57ad4546f6be4f60d06d6ef4b925d6d2cd1ccf3600be757ab9cd5f9cd75e","action":"keep","reason":"Bản hiện tại bảo toàn color placeholder {0} và truyền đạt đúng con đường ưu tiên vị trí Center.","confidence":"high"},
+    {"uid":"zhcn:9b2dd0c9939bf65d39199b70","current_fingerprint":"b781cd3893b263519c1f39558e08dc0f7396d9ea4b8746e345064aa4d8a95471","action":"revise","proposed_text":"<color=#{0}>Mã Nương nổi tiếng</color>","reason":"Generic 赛马娘 phải dùng Mã Nương; giữ nguyên color placeholder và nghĩa nhãn con đường.","terminology_basis":"common.world.umamusume requires Mã Nương.","confidence":"high"},
+    {"uid":"zhcn:14ee053e0389314ce0c4bc21","current_fingerprint":"83a4d7d03841a9edcd76187a52809e7aa915eccb372ed2a24d3578f0626bc653","action":"keep","reason":"Bản hiện tại đúng nghĩa con đường không dùng tính năng đề xuất cuộc đua và thỏa locked race term.","terminology_basis":"race.generic requires Cuộc đua and current text satisfies the concept.","confidence":"high"},
+    {"uid":"zhcn:632fd19293931a0d24999c60","current_fingerprint":"ab737db2f110cc14aaf99b880a268cd31bc5f498cf3190e6e3ae698d0da708fa","action":"keep","reason":"Bản hiện tại giữ đúng hai dòng, mục tiêu tham gia các cuộc đua dễ giành hạng 1 để gom fan, và bảo toàn số 1.","terminology_basis":"race.generic requires Cuộc đua and current wording expresses the same race concept.","confidence":"high"}
   ]
 }

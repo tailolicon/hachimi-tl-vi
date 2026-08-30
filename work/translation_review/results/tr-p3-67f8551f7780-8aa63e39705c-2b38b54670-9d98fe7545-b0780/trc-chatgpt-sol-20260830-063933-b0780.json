@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "status": "partial",
+  "plan_id": "tr-p3-67f8551f7780-8aa63e39705c-2b38b54670-9d98fe7545",
+  "batch_id": "tr-p3-67f8551f7780-8aa63e39705c-2b38b54670-9d98fe7545-b0780",
+  "claim_id": "trc-chatgpt-sol-20260830-063933-b0780",
+  "worker_id": "chatgpt-sol-20260830-063933",
+  "reviewed_at": "2026-08-30T06:41:00Z",
+  "completed_count": 5,
+  "decisions": [
+    {
+      "uid": "zhcn:cee74f387a081efd23f54d19",
+      "current_fingerprint": "0ee7dce473b09be0e0b824c6442e08674644c1733d8189cbb95cc3abb2e89540",
+      "action": "keep",
+      "reason": "Meaning is preserved and the player-facing Support Card term is already used correctly.",
+      "terminology_basis": "Embedded common.support_card and source-bridge system.support_card both require Support Card and forbid the literal Vietnamese card label.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:c005ddb6856d27243c0b71fa",
+      "current_fingerprint": "98daae4ac75c64485e8385cccdd4fd85e09b82c3f90eaebd361a271fd7144ff0",
+      "action": "revise",
+      "proposed_text": "Khi Friendship Gauge đạt 80 trở lên,\nPower Bonus & tăng số Skill Hint nhận được",
+      "reason": "The meaning is correct, but the current Vietnamese generic 'Gợi ý' conflicts with the audit policy's established player-facing Skill Hint terminology.",
+      "terminology_basis": "Embedded Power rule is satisfied; TRANSLATION_REVIEW manual-audit policy requires Skill Hint as established gameplay vocabulary.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:baebe17ad26ce20ea76815b2",
+      "current_fingerprint": "08e2de19c1512c87fc7559a19c11c1e082fdb454746d2bdc22e46ad581f2abdd",
+      "action": "keep",
+      "reason": "The threshold condition and both bonus labels are represented correctly with canonical player-facing terminology.",
+      "terminology_basis": "Embedded rules require Speed, Skill/Skill Pt, and Speed Bonus; the current text uses Speed Bonus and Skill Pt Bonus consistently.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:39ec8e8c8a93288d9a010a73",
+      "current_fingerprint": "141cb38dafaaed75e010b8b350891502eb79db1c145db0417b4cabf39c3e9af0",
+      "action": "keep",
+      "reason": "The 80+ Friendship Gauge condition, Training Effectiveness increase, and Guts Bonus are all conveyed without changing direction or structure.",
+      "terminology_basis": "Embedded category-155 rules require Friendship Gauge, Guts, and Guts Bonus; the current wording satisfies them and uses the established Training Effectiveness label.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:f94b84261dd272f5a959e695",
+      "current_fingerprint": "658e985fb00f60c41d30a50c9c845643548499cc2dd68f464db5e23e55387160",
+      "action": "defer",
+      "reason": "This category-155 line clearly describes the same Support Card Friendship Gauge mechanic as adjacent entries, but the source variant 牵绊值 is not covered by the embedded Friendship Gauge canonical rule; fixing only this line would create a one-off standard.",
+      "canonical_finding": {
+        "kind": "terminology",
+        "source_zh_cn": "牵绊值",
+        "suggested_target_vi": "Friendship Gauge",
+        "concept": "Support Effect Friendship Gauge in text_data category 155",
+        "match_mode": "exact",
+        "scope": "auto",
+        "reason": "Repeated category-155 support-effect descriptions use this bond-value variant for the Support Card Friendship Gauge; canonicalize the alias before resolving affected review items.",
+        "confidence": "high"
+      },
+      "confidence": "high"
+    }
+  ]
+}

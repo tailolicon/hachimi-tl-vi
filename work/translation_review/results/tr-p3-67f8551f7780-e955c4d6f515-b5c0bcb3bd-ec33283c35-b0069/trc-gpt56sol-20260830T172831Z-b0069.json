@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "status": "partial",
+  "plan_id": "tr-p3-67f8551f7780-e955c4d6f515-b5c0bcb3bd-ec33283c35",
+  "batch_id": "tr-p3-67f8551f7780-e955c4d6f515-b5c0bcb3bd-ec33283c35-b0069",
+  "claim_id": "trc-gpt56sol-20260830T172831Z-b0069",
+  "worker_id": "gpt56sol-20260830T172831Z",
+  "reviewed_at": "2026-08-30T17:31:26Z",
+  "completed_count": 5,
+  "decisions": [
+    {
+      "uid": "zhcn:865da59ccf4a35a25681856b",
+      "current_fingerprint": "c0e11fdbfab44ce543fbca8d216b36236a89ccc9c3669d5bcf3ab138011527ba",
+      "action": "keep",
+      "reason": "已关注 means already following; Đã theo dõi preserves the completed state and is natural Vietnamese UI text.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:8accecd5bc8c288540c5905b",
+      "current_fingerprint": "6a37f212fb9de04f58ad11b96147d788f5dc2ec73f30281ed9b1417828a7ed36",
+      "action": "keep",
+      "reason": "关注 is the follow action; Theo dõi is concise and semantically exact for this UI label.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:a7b4249d6522f99e2457a019",
+      "current_fingerprint": "4c46e6f6ce078922d3064b5229210c3aa23437cde7cd2bb9ceae4a53c66240e3",
+      "action": "keep",
+      "reason": "1年前以上 expresses a time older than one year; Hơn 1 năm trước preserves the lower-bound meaning.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:a15ff2cb4575affa3c06bd1c",
+      "current_fingerprint": "b8ea6540c74aca49f0bc046da011669d7c3955585c5d4eb0907aaed6cf006590",
+      "action": "keep",
+      "reason": "1小时以内 means within one hour; Trong 1 giờ is a natural compact rendering with the same upper-bound meaning.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:e7fbb03e81e14cb3c5b3e0d3",
+      "current_fingerprint": "cf801b7565c5fde7ede2fa6e979c08f2ecdbeac76fcd1f9325481a565d124a56",
+      "action": "revise",
+      "proposed_text": "Không có Trainer được đề xuất",
+      "reason": "没有推荐的训练员 means there is no recommended Trainer; adding được makes the passive relationship explicit and removes the ambiguity in Không có Trainer đề xuất.",
+      "terminology_basis": "Embedded community term common.trainer requires the player-facing term Trainer and forbids Huấn luyện viên.",
+      "confidence": "high"
+    }
+  ]
+}

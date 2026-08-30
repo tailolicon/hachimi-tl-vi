@@ -6,16 +6,16 @@
   "claim_id": "canonical-findings-maintenance-chatgpt-20260830T0212Z",
   "worker_id": "chatgpt-20260830T0212Z",
   "claimed_at": "2026-08-30T02:12:45Z",
-  "heartbeat_at": "2026-08-30T02:16:00Z",
-  "lease_expires_at": "2026-08-30T02:22:00Z",
+  "heartbeat_at": "2026-08-30T02:20:00Z",
+  "lease_expires_at": "2026-08-30T02:26:00Z",
   "released_at": null,
   "branch": "main",
   "partial_result_path": null,
   "handoff_from_claim_id": "canonical-findings-maintenance-chatgpt-20260830T0130Z",
-  "progress_token": "549fb575e929af86610c21ad47957c7807ea7540",
+  "progress_token": "7794b099a867d3e83a7ec097c6d99a280c8ab173",
   "progress_kind": "commit",
   "progress_ref": ".github/workflows/sync-translation-review-plan.yml",
-  "last_progress_at": "2026-08-30T02:13:54Z",
-  "completed_count": 3,
-  "note": "Permanent production Sync now runs scripts/harden_character_training_ui_canon.py, so the tested disarm of bare 育成 from system.training will be applied to the canonical registry before findings refresh. Commit 549fb575e929af86610c21ad47957c7807ea7540 passed Validate run 33287502746; production Sync run 33287502754 is executing. Continue through Sync/no-op verification, then process any still-open canonical findings before returning to Audit Round 1."
+  "last_progress_at": "2026-08-30T02:19:15Z",
+  "completed_count": 4,
+  "note": "Production Sync now both executes harden_character_training_ui_canon.py and has a bounded rebase-before-push loop so task-local review commits cannot repeatedly starve canonical publication. Commit 7794b099a867d3e83a7ec097c6d99a280c8ab173 adds the push-race resilience; Validate run 33287708543 and queued Sync run 33287708534 are pending behind active Sync 33287502754. Continue until canonical output is published, second Sync is semantic no-op, and remaining active findings are resolved/explicitly ignored through the canonical pipeline."
 }

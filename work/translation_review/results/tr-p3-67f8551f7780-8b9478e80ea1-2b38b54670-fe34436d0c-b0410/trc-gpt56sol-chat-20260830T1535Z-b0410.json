@@ -6,7 +6,7 @@
   "claim_id": "trc-gpt56sol-chat-20260830T1535Z-b0410",
   "worker_id": "gpt56sol-chat-20260830T1530Z",
   "reviewed_at": "2026-08-30T15:35:00Z",
-  "completed_count": 10,
+  "completed_count": 15,
   "decisions": [
     {
       "uid": "zhcn:5cb0b462dec6ce7483d1984c",
@@ -88,6 +88,41 @@
       "action": "keep",
       "reason": "Nguồn chỉ là 无; 'Không' là tương đương ngắn gọn và giữ nguyên cấu trúc không có token đặc biệt.",
       "confidence": "medium"
+    },
+    {
+      "uid": "zhcn:dfe6ca4753e4fe7f9d67a6f1",
+      "current_fingerprint": "69be67023d549877063ada1fa698204e2a5bfde100225efc4ec32286ddf4fbf7",
+      "action": "defer",
+      "reason": "Embedded open canonical finding cf-f6302c57277dc9bc đang chặn phạm vi áp dụng 赛马娘/Mã Nương; không giải quyết cục bộ dù target hiện có Mã Nương.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:c97444e3eebe65833f620db0",
+      "current_fingerprint": "0a226db0872a152f3fc176d08f07a2165fc8d00666ae596c687566da6de45ca7",
+      "action": "defer",
+      "reason": "Open canonical finding cf-f6302c57277dc9bc vẫn là blocking context cho 赛马娘; chờ canonical resolution.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:33e35dbc7406da890b17ce0f",
+      "current_fingerprint": "8b5abf96d2ed7274307becd80c2891620de07c837cbe198d6bc069044b0b75d1",
+      "action": "defer",
+      "reason": "Mục có cùng open canonical finding về 赛马娘/Mã Nương; protocol yêu cầu defer tới khi canonical context giải quyết.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:029287ba95ee3bb707ac351f",
+      "current_fingerprint": "1dae66954b160d801101e8cf887fda899c198e6f8ecd046b53fc5f4601afd7f9",
+      "action": "defer",
+      "reason": "Open canonical finding cf-f6302c57277dc9bc chặn mục này; không tự đóng finding bằng một quyết định local.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:41a500c42b1d64dfd84365ff",
+      "current_fingerprint": "c7c525c7b07808da3c0fde62c012557a33a8b2b22e3d50c760ace05407a9437a",
+      "action": "defer",
+      "reason": "Embedded canonical finding cf-f6302c57277dc9bc còn open, vì vậy mục generic 赛马娘 này vẫn unresolved theo review gate.",
+      "confidence": "high"
     }
   ]
 }

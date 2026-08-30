@@ -9,13 +9,13 @@
     "growth": "Every accepted retrospective translation revise and accepted UI revise is folded into this file automatically by both review merge workflows."
   },
   "summary": {
-    "merged_markers_scanned": 827,
-    "translation_merged_markers_scanned": 727,
+    "merged_markers_scanned": 833,
+    "translation_merged_markers_scanned": 733,
     "ui_merged_markers_scanned": 100,
-    "accepted_revision_events": 5804,
-    "accepted_translation_revision_events": 4315,
+    "accepted_revision_events": 5813,
+    "accepted_translation_revision_events": 4324,
     "accepted_ui_revision_events": 1489,
-    "regression_identity_count": 4736,
+    "regression_identity_count": 4740,
     "skipped_incomplete_markers": 0,
     "translation_skipped_incomplete_markers": 0,
     "ui_skipped_incomplete_markers": 0
@@ -2486,10 +2486,12 @@
       "source_text": "此滤镜只能在横屏下选择",
       "source_fingerprint": "e856f5078a4bc68215784fa76896161afd083e3fe05a17eb9e41c1f49fb48d49",
       "rejected_targets": [
-        "Bộ lọc này chỉ có thể chọn ở màn hình ngang"
+        "Bộ lọc này chỉ có thể chọn ở màn hình ngang",
+        "Chỉ chọn ở màn hình ngang"
       ],
-      "approved_target": "Chỉ chọn ở màn hình ngang",
+      "approved_target": "Bộ lọc này chỉ có thể chọn ở chế độ ngang",
       "origins": [
+        "translation_review",
         "ui_review"
       ],
       "ui_contexts": [
@@ -2512,6 +2514,14 @@
           "reason": "This mirrors the compact portrait restriction and preserves that the filter is selectable only in landscape mode.",
           "ui_key": "Outgame508011",
           "control_type": "short_system_label"
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3",
+          "batch_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3-b0135",
+          "claim_id": "trc-gpt56sol-20260830T225000Z-b0135",
+          "merged_at": "2026-08-30T22:55:04.978376Z",
+          "reason": "Restores the explicit filter subject and landscape-orientation condition for clear Vietnamese UI wording."
         }
       ]
     },
@@ -2782,6 +2792,31 @@
           "claim_id": "trc-chatgpt-sol-auto-turn2-20260830-b0256",
           "merged_at": "2026-08-30T11:29:02.782822Z",
           "reason": "Bản hiện tại không giữ nhất quán locked labels Cuộc đua và Số fan ở cả hai vế."
+        }
+      ]
+    },
+    {
+      "id": "review.regression.85e8629b935ed2f4",
+      "uid": "zhcn:041eeb8fc678096c7d63f877",
+      "scope": "uid",
+      "source_text": "制作的拉面",
+      "source_fingerprint": "5b2d1f8c3d07fa7eaa8b3568f0b8348b290fb7668c8626cff3043e30adc96bb9",
+      "rejected_targets": [
+        "Ramen đã làm"
+      ],
+      "approved_target": "Ramen đã nấu",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3",
+          "batch_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3-b0135",
+          "claim_id": "trc-gpt56sol-20260830T225000Z-b0135",
+          "merged_at": "2026-08-30T22:55:04.978376Z",
+          "reason": "More natural Vietnamese for a prepared/made ramen label while preserving the completed-action sense."
         }
       ]
     },
@@ -3150,9 +3185,10 @@
       "source_text": "涙ひかって明日になれ！ ",
       "source_fingerprint": "2e63f9254b6e6bddbbec556eb7c3d14e1ffd03eca80e6f3f3030195677953ca3",
       "rejected_targets": [
+        "Namida Hikatte Asu ni Nare!",
         "涙ひかって明日になれ！"
       ],
-      "approved_target": "Namida Hikatte Asu ni Nare!",
+      "approved_target": "Namida Hikatte Ashita ni Nare!",
       "origins": [
         "translation_review"
       ],
@@ -3165,6 +3201,14 @@
           "claim_id": "trc-chatgpt-sol-auto-20260830-0849-b0797",
           "merged_at": "2026-08-30T11:29:03.515116Z",
           "reason": "Verified Romanized song identity; CJK title should not remain in Vietnamese output."
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3",
+          "batch_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3-b0656",
+          "claim_id": "trc-chatgpt-sol-20260830T225200Z-b0656",
+          "merged_at": "2026-08-30T22:55:04.999116Z",
+          "reason": "The current Romanization uses Asu, but embedded song canonical requires the established identity Namida Hikatte Ashita ni Nare!."
         }
       ]
     },
@@ -28434,9 +28478,10 @@
       "source_text": "因该赛马娘的礼物为无关亲密度值领取\n仅会播放演出",
       "source_fingerprint": "21bf2af8f37bcb0b6bccde34ac3fba016c45dcaef235c61c5398311aac18bfcc",
       "rejected_targets": [
+        "Vì quà của Mã Nương này được nhận không phụ thuộc mức thân mật\nchỉ phát màn trình diễn",
         "Vì quà của Uma Musume này được nhận không phụ thuộc mức thân mật\nchỉ phát màn trình diễn"
       ],
-      "approved_target": "Vì quà của Mã Nương này được nhận không phụ thuộc mức thân mật\nchỉ phát màn trình diễn",
+      "approved_target": "Vì quà của Mã Nương này được nhận không phụ thuộc vào mức thân mật,\nchỉ màn trình diễn sẽ được phát",
       "origins": [
         "translation_review"
       ],
@@ -28449,6 +28494,14 @@
           "claim_id": "trc-gpt56sol-auto5-b0152",
           "merged_at": "2026-08-30T17:37:08.470366Z",
           "reason": "Generic 赛马娘 phải dùng Mã Nương theo embedded community term; giữ nguyên phủ định/điều kiện và xuống dòng."
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3",
+          "batch_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3-b0136",
+          "claim_id": "trc-gpt56sol-20260830T225500Z-b0136",
+          "merged_at": "2026-08-30T22:55:04.982655Z",
+          "reason": "Current wording is grammatically broken; revision preserves the affinity-independent gift claim and the fact that only the performance is played."
         }
       ]
     },
@@ -37086,6 +37139,31 @@
       ]
     },
     {
+      "id": "review.regression.df19dd0605d19bae",
+      "uid": "zhcn:42b9aacbaa580f43bcab8a1c",
+      "scope": "uid",
+      "source_text": "获得的技能点数的{0}%",
+      "source_fingerprint": "55de750a196141d8313e0b32967a54a6af1a9377c81f1f4bc2333bf63ca46fcf",
+      "rejected_targets": [
+        "{0}% điểm kỹ năng đã nhận"
+      ],
+      "approved_target": "{0}% Skill Pt đã nhận",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3",
+          "batch_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3-b0136",
+          "claim_id": "trc-gpt56sol-20260830T225500Z-b0136",
+          "merged_at": "2026-08-30T22:55:04.982655Z",
+          "reason": "Current text uses the forbidden literal term while the percentage placeholder must be preserved."
+        }
+      ]
+    },
+    {
       "id": "review.regression.d31249c3890b038c",
       "uid": "zhcn:42c04b04410030435cf9fba1",
       "scope": "uid",
@@ -45693,6 +45771,31 @@
       ]
     },
     {
+      "id": "review.regression.0c27eb33c2724e8f",
+      "uid": "zhcn:530e86726998e4767d4292fc",
+      "scope": "uid",
+      "source_text": "开场播放确认",
+      "source_fingerprint": "a3cb9cb7d54bcde8b740f5ca3e10298b29f86c0615dd7b0beccbd8e794500028",
+      "rejected_targets": [
+        "Xác nhận phát mở đầu"
+      ],
+      "approved_target": "Xác nhận phát video mở đầu",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3",
+          "batch_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3-b0135",
+          "claim_id": "trc-gpt56sol-20260830T225000Z-b0135",
+          "merged_at": "2026-08-30T22:55:04.978376Z",
+          "reason": "The current phrase is unnatural; the adjacent setting confirms this is the opening-video playback confirmation."
+        }
+      ]
+    },
+    {
       "id": "review.regression.ba848f62f32b85ad",
       "uid": "zhcn:5315737b3f488c1922b4019f",
       "scope": "uid",
@@ -47982,10 +48085,12 @@
       "source_text": "育成中获得基础能力",
       "source_fingerprint": "f8cd79f3ca70f24ffbae1b4296629a92452887a07b7427087647688b71c67838",
       "rejected_targets": [
+        "Chỉ số cơ bản khi Huấn luyện",
         "Nhận chỉ số cơ bản trong huấn luyện"
       ],
-      "approved_target": "Chỉ số cơ bản khi Huấn luyện",
+      "approved_target": "Chỉ số cơ bản nhận được khi huấn luyện",
       "origins": [
+        "translation_review",
         "ui_review"
       ],
       "ui_contexts": [
@@ -48008,6 +48113,14 @@
           "reason": "As a compact acquisition-setting label, the shorter noun phrase preserves basic-stat gains during Training.",
           "ui_key": "Outgame608019",
           "control_type": "setting_label"
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3",
+          "batch_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3-b0136",
+          "claim_id": "trc-gpt56sol-20260830T225500Z-b0136",
+          "merged_at": "2026-08-30T22:55:04.982655Z",
+          "reason": "Restores the explicit 'obtained' meaning and removes unnecessary capitalization for a clearer stat label."
         }
       ]
     },
@@ -57891,6 +58004,31 @@
           "claim_id": "trc-chatgpt-20260827T120000Z-5e7a1c93",
           "merged_at": "2026-08-28T03:27:25.723561Z",
           "reason": "Use the canonical stage name and natural Vietnamese for the ranking announcement."
+        }
+      ]
+    },
+    {
+      "id": "review.regression.d4363211de8847e5",
+      "uid": "zhcn:68fe0fba719068cd2fbfd77f",
+      "scope": "uid",
+      "source_text": "笑顔の宝物 -Beyond The Future!-",
+      "source_fingerprint": "4949481c741a3ad306f37c7e247fc822cac9026252886d2f033ba6221321cbfe",
+      "rejected_targets": [
+        "Kho báu của nụ cười -Beyond The Future!-"
+      ],
+      "approved_target": "Egao no Takaramono -Beyond The Future!-",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3",
+          "batch_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3-b0656",
+          "claim_id": "trc-chatgpt-sol-20260830T225200Z-b0656",
+          "merged_at": "2026-08-30T22:55:04.999116Z",
+          "reason": "Current Vietnamese semantic calque conflicts with the embedded canonical Romanized song identity."
         }
       ]
     },
@@ -89018,10 +89156,12 @@
       "source_text": "育成中获得技能点数",
       "source_fingerprint": "5d5be6e9f1c129597ba1b26d85a90157a6115c074d95b4969528c00ead7395c5",
       "rejected_targets": [
-        "Nhận điểm kỹ năng trong huấn luyện"
+        "Nhận điểm kỹ năng trong huấn luyện",
+        "Điểm kỹ năng khi Huấn luyện"
       ],
-      "approved_target": "Điểm kỹ năng khi Huấn luyện",
+      "approved_target": "Skill Pt nhận được khi huấn luyện",
       "origins": [
+        "translation_review",
         "ui_review"
       ],
       "ui_contexts": [
@@ -89044,6 +89184,14 @@
           "reason": "As a compact acquisition-setting label, the shorter noun phrase preserves skill-point gains during Training.",
           "ui_key": "Outgame608021",
           "control_type": "setting_label"
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3",
+          "batch_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3-b0136",
+          "claim_id": "trc-gpt56sol-20260830T225500Z-b0136",
+          "merged_at": "2026-08-30T22:55:04.982655Z",
+          "reason": "Current text uses a forbidden Vietnamese calque for the established gameplay resource."
         }
       ]
     },

@@ -26,10 +26,7 @@ _NUMBER_RE = re.compile(r"(?<![\w{])\d+(?:\.\d+)?%?")
 # source_bridge_policy_hash() and applied item-by-item so a new bridge safeguard
 # reopens only entries that actually match it instead of invalidating all 19k.
 CONTEXT_PATHS = (
-    "TRANSLATION_REVIEW.md",
     "GAME_CONTEXT.md",
-    "glossary/term_registry.json",
-    "glossary/ui_community_terms.json",
     "glossary/translation_audit_policy.json",
     "glossary/skill_name_style.json",
     "glossary/style_rules.json",
@@ -94,22 +91,20 @@ def context_snapshot_hash(repo_root: Path) -> str:
 
 
 def item_scoped_policy_hash(repo_root: Path) -> str:
+    """Hash terminology policy that can reopen only matching review items.
+
+    Canonical findings are intentionally excluded from plan identity: the merger
+    applies active findings dynamically item-by-item. Evidence growth or a newly
+    reported finding therefore cannot churn the entire active plan.
+    """
     semantic: dict[str, list[dict[str, Any]]] = {}
     for rel in ("glossary/term_registry.json", "glossary/ui_community_terms.json"):
         payload = load_json(repo_root / rel, {}) or {}
         terms = payload.get("terms", []) if isinstance(payload, dict) else []
         semantic[rel] = sorted(
-            [
-                term for term in terms
-                if isinstance(term, dict) and str(term.get("invalidation_scope", "")) == "item"
-            ],
+            [term for term in terms if isinstance(term, dict)],
             key=lambda term: str(term.get("id", "")),
         )
-    finding_payload = load_json(repo_root / CANONICAL_FINDINGS_PATH, {}) or {}
-    semantic[CANONICAL_FINDINGS_PATH] = sorted(
-        [finding_semantic_view(finding) for finding in active_findings(finding_payload)],
-        key=lambda finding: str(finding.get("finding_id", "")),
-    )
     encoded = json.dumps(semantic, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode("utf-8")
     return hashlib.sha256(encoded).hexdigest()
 
@@ -254,8 +249,6 @@ def item_scoped_context_hash(
         ("community", community_terms, "source_aliases"),
     ):
         for term in terms:
-            if str(term.get("invalidation_scope", "")) != "item":
-                continue
             if not _context_matches(term, key=key, source_path=source_path, json_path=json_path):
                 continue
             aliases = _strings(term.get(alias_field))

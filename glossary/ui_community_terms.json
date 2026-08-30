@@ -3471,6 +3471,62 @@
       "match_mode": "exact",
       "invalidation_scope": "item",
       "basis": "Two event-system screens use the same compact group-reward heading; normalize the conflicting verbose variant while retaining exact-key scope."
+    },
+    {
+      "id": "common.condition.night_owl.reference_variant",
+      "category": "condition",
+      "source_aliases": [
+        "熬夜倾向"
+      ],
+      "preferred": "Night Owl",
+      "compact": [],
+      "accepted": [
+        "Night Owl"
+      ],
+      "forbidden": [
+        "Xu hướng thức khuya",
+        "Thức khuya"
+      ],
+      "require_accepted": true,
+      "invalidation_scope": "item",
+      "source_paths": [
+        "text_data_dict.json"
+      ],
+      "json_path_prefixes": [
+        [
+          "143"
+        ]
+      ],
+      "match_mode": "contains",
+      "basis": "Named Night Owl Condition reference variant found during retrospective audit; scoped to text_data category 143 so ordinary prose about staying up late is not canonicalized."
+    },
+    {
+      "id": "race.junior_make_debut.singlemode619001",
+      "category": "race",
+      "source_aliases": [
+        "新马级出道赛"
+      ],
+      "preferred": "Junior Make Debut",
+      "compact": [],
+      "accepted": [
+        "Junior Make Debut"
+      ],
+      "forbidden": [
+        "tân mã",
+        "Tân mã",
+        "giải ra mắt cấp Tân mã",
+        "Giải ra mắt cấp Tân mã"
+      ],
+      "require_accepted": true,
+      "invalidation_scope": "item",
+      "source_paths": [
+        "localize_dict.json"
+      ],
+      "key_exact": [
+        "SingleMode619001"
+      ],
+      "match_mode": "contains",
+      "basis": "Established English player-facing name for the first Career race objective. The source alias is scoped to the proven SingleMode619001 slot so generic debut prose is unaffected."
     }
   ]
 }

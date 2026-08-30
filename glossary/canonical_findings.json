@@ -1629,7 +1629,8 @@
         "Skill alias must not overmatch Prix de l'Arc de Triomphe race name 凯旋门赏",
         "Skill alias 凯旋 must not match inside race proper name 凯旋门赏",
         "Generic/proper-name substring 凯旋 inside Prix de l'Arc de Triomphe versus named Skill title",
-        "Reviewed Skill alias must not overmatch the Prix de l'Arc de Triomphe proper race name 凯旋门赏"
+        "Reviewed Skill alias must not overmatch the Prix de l'Arc de Triomphe proper race name 凯旋门赏",
+        "Reviewed Skill alias must not match ordinary narrative prose such as 誓要凯旋"
       ],
       "suggested_targets_vi": [],
       "confidence_levels": [
@@ -1643,9 +1644,10 @@
         "Current reviewed Skill matcher overmatches a substring of Prix de l'Arc de Triomphe and falsely requires Khải hoàn.",
         "Current reviewed Skill matcher overmatches the race proper name and falsely requires Khải hoàn.",
         "The Skill matcher must not fire inside the proper race name 凯旋门赏.",
-        "Forcing the Skill target Khải hoàn inside the proper race name would corrupt player-facing race terminology."
+        "Forcing the Skill target Khải hoàn inside the proper race name would corrupt player-facing race terminology.",
+        "The same surface string can be an ordinary verb/noun in narrative text, so Skill canonical enforcement must be limited to Skill-identifying contexts."
       ],
-      "evidence_count": 8,
+      "evidence_count": 9,
       "evidence": [
         {
           "uid": "zhcn:1136cb24b7b89add2e024a3d",
@@ -1774,6 +1776,22 @@
           "current_text": "Cuộc đua đỉnh cao thế giới 『Prix de l'Arc de Triomphe』. Các kẻ thách thức không ngừng\\nhướng tới chiến thắng. “Năm nay nhất định sẽ trở thành số một thế giới!”\\nHọc viện Tracen đã thành lập <color=#FF6D26>『Dự án L'Arc』</color>.\\nHành trình theo đuổi ước mơ và sự lãng mạn giờ chính thức bắt đầu.",
           "proposed_text": null,
           "reported_at": "2026-08-30T19:18:05Z"
+        },
+        {
+          "uid": "zhcn:fcaf8910f5a4288b34f940fe",
+          "plan_id": "tr-p3-67f8551f7780-6caf0e8dcee0-b5c0bcb3bd-3409ce21b7",
+          "batch_id": "tr-p3-67f8551f7780-6caf0e8dcee0-b5c0bcb3bd-3409ce21b7-b0390",
+          "claim_id": "trc-chatgpt-auto3-b0390-20260830T192200Z",
+          "worker_id": "chatgpt-auto3-20260830T185905Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "128",
+            "1082"
+          ],
+          "source_text": "少女们背负着积年夙愿，向那前所未有的胜利发起挑战。\\n誓要凯旋，踏上了异国征程――荣光的大门，就在她们眼前。",
+          "current_text": "Những cô gái mang trên vai tâm nguyện ấp ủ bao năm, thách thức chiến thắng chưa từng có.\\nThề sẽ khải hoàn, họ bước lên hành trình nơi đất khách――cánh cổng vinh quang đang ở ngay trước mắt.",
+          "proposed_text": null,
+          "reported_at": "2026-08-30T19:25:10Z"
         }
       ],
       "canonical_resolution": {
@@ -1787,7 +1805,7 @@
         "target_vi": "Khải hoàn"
       },
       "first_seen_at": "2026-08-30T01:06:00Z",
-      "last_seen_at": "2026-08-30T19:18:05Z"
+      "last_seen_at": "2026-08-30T19:25:10Z"
     },
     {
       "finding_id": "cf-a6f9a22d7cf78668",

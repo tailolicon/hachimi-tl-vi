@@ -23,8 +23,36 @@ NIGHT_OWL_REFERENCE_VARIANT = {
     "basis": "Named Night Owl Condition reference variant found during retrospective audit; scoped to text_data category 143 so ordinary prose about staying up late is not canonicalized.",
 }
 
+JUNIOR_MAKE_DEBUT = {
+    "id": "race.junior_make_debut.singlemode619001",
+    "category": "race",
+    "source_aliases": ["新马级出道赛"],
+    "preferred": "Junior Make Debut",
+    "compact": [],
+    "accepted": ["Junior Make Debut"],
+    "forbidden": ["tân mã", "Tân mã", "giải ra mắt cấp Tân mã", "Giải ra mắt cấp Tân mã"],
+    "require_accepted": True,
+    "invalidation_scope": "item",
+    "source_paths": ["localize_dict.json"],
+    "key_exact": ["SingleMode619001"],
+    "match_mode": "contains",
+    "basis": "Established English player-facing name for the first Career race objective. The source alias is scoped to the proven SingleMode619001 slot so generic debut prose is unaffected.",
+}
 
-def _load(path: Path) -> dict[str, Any]:
+JUNIOR_MAKE_DEBUT_DECISION = {
+    "decision_id": "audit.finding.junior-make-debut",
+    "source_zh_cn": "新马级出道赛",
+    "action": "lock",
+    "target_vi": "Junior Make Debut",
+    "kind": "race",
+    "category": "race",
+    "note": "Established player-facing English race label for the initial Career objective; canonical matching itself remains item-scoped through race.junior_make_debut.singlemode619001.",
+}
+
+
+def _load(path: Path, default: dict[str, Any] | None = None) -> dict[str, Any]:
+    if not path.exists():
+        return dict(default or {})
     payload = json.loads(path.read_text(encoding="utf-8"))
     if not isinstance(payload, dict):
         raise ValueError(f"{path} must contain a JSON object")
@@ -39,10 +67,10 @@ def _write(path: Path, payload: dict[str, Any]) -> None:
     )
 
 
-def _upsert(items: list[Any], record: dict[str, Any]) -> None:
-    record_id = str(record["id"])
+def _upsert(items: list[Any], record: dict[str, Any], *, id_field: str = "id") -> None:
+    record_id = str(record[id_field])
     for index, item in enumerate(items):
-        if isinstance(item, dict) and str(item.get("id") or "") == record_id:
+        if isinstance(item, dict) and str(item.get(id_field) or "") == record_id:
             merged = dict(item)
             merged.update(record)
             items[index] = merged
@@ -51,18 +79,32 @@ def _upsert(items: list[Any], record: dict[str, Any]) -> None:
 
 
 def harden(repo_root: Path = ROOT) -> bool:
-    path = repo_root / "glossary/ui_community_terms.json"
-    payload = _load(path)
-    before = json.dumps(payload, ensure_ascii=False, sort_keys=True)
-    terms = payload.setdefault("terms", [])
+    changed = False
+
+    community_path = repo_root / "glossary" / "ui_community_terms.json"
+    community = _load(community_path, {"schema_version": 1, "terms": []})
+    before = json.dumps(community, ensure_ascii=False, sort_keys=True)
+    terms = community.setdefault("terms", [])
     if not isinstance(terms, list):
         raise ValueError("glossary/ui_community_terms.json terms must be a list")
     _upsert(terms, NIGHT_OWL_REFERENCE_VARIANT)
-    after = json.dumps(payload, ensure_ascii=False, sort_keys=True)
-    if before == after:
-        return False
-    _write(path, payload)
-    return True
+    _upsert(terms, JUNIOR_MAKE_DEBUT)
+    if before != json.dumps(community, ensure_ascii=False, sort_keys=True):
+        _write(community_path, community)
+        changed = True
+
+    reviews_path = repo_root / "glossary" / "terminology_reviews.json"
+    reviews = _load(reviews_path, {"schema_version": 1, "decisions": []})
+    before = json.dumps(reviews, ensure_ascii=False, sort_keys=True)
+    decisions = reviews.setdefault("decisions", [])
+    if not isinstance(decisions, list):
+        raise ValueError("glossary/terminology_reviews.json decisions must be a list")
+    _upsert(decisions, JUNIOR_MAKE_DEBUT_DECISION, id_field="decision_id")
+    if before != json.dumps(reviews, ensure_ascii=False, sort_keys=True):
+        _write(reviews_path, reviews)
+        changed = True
+
+    return changed
 
 
 def main() -> int:

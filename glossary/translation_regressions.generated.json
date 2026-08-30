@@ -9,13 +9,13 @@
     "growth": "Every accepted retrospective translation revise and accepted UI revise is folded into this file automatically by both review merge workflows."
   },
   "summary": {
-    "merged_markers_scanned": 698,
-    "translation_merged_markers_scanned": 598,
+    "merged_markers_scanned": 702,
+    "translation_merged_markers_scanned": 602,
     "ui_merged_markers_scanned": 100,
-    "accepted_revision_events": 5706,
-    "accepted_translation_revision_events": 4217,
+    "accepted_revision_events": 5713,
+    "accepted_translation_revision_events": 4224,
     "accepted_ui_revision_events": 1489,
-    "regression_identity_count": 4650,
+    "regression_identity_count": 4656,
     "skipped_incomplete_markers": 0,
     "translation_skipped_incomplete_markers": 0,
     "ui_skipped_incomplete_markers": 0
@@ -14693,10 +14693,12 @@
       "source_text": "请设置主育成支援卡",
       "source_fingerprint": "952d2a1958a2a46f2ad5aab2a43aae5b65bf3d5258a3727cfe665ab38dcbef78",
       "rejected_targets": [
-        "Hãy đặt thẻ hỗ trợ huấn luyện chính"
+        "Hãy đặt thẻ hỗ trợ huấn luyện chính",
+        "Đặt thẻ hỗ trợ chính"
       ],
-      "approved_target": "Đặt thẻ hỗ trợ chính",
+      "approved_target": "Đặt Support Card chính",
       "origins": [
+        "translation_review",
         "ui_review"
       ],
       "ui_contexts": [
@@ -14719,6 +14721,14 @@
           "reason": "Removing polite wording and the implicit training qualifier keeps the main-support-card setup instruction clear and much narrower.",
           "ui_key": "SingleMode600003",
           "control_type": "short_system_label"
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-e955c4d6f515-b5c0bcb3bd-ec33283c35",
+          "batch_id": "tr-p3-67f8551f7780-e955c4d6f515-b5c0bcb3bd-ec33283c35-b0251",
+          "claim_id": "trc-gpt56sol-20260830T174800Z-b0251",
+          "merged_at": "2026-08-30T17:53:59.722445Z",
+          "reason": "支援卡 là bridge term bắt buộc giữ thành Support Card; bản Thẻ hỗ trợ là calque bị cấm."
         }
       ]
     },
@@ -22490,6 +22500,31 @@
           "reason": "Dropping the conversational subject keeps the anytime team-name change permission and reduces width.",
           "ui_key": "TeamBuilding424205",
           "control_type": "short_system_label"
+        }
+      ]
+    },
+    {
+      "id": "review.regression.b299d366ae109866",
+      "uid": "zhcn:295efa5c0b9c0e63a7114216",
+      "scope": "uid",
+      "source_text": "一次性获得{0}次因子",
+      "source_fingerprint": "fdf7269bd3584f5ddf6023d33610120772f2313e81b7d82dbeda57e054d0591f",
+      "rejected_targets": [
+        "Nhận Nhân tố {0} lần cùng lúc"
+      ],
+      "approved_target": "Nhận Spark {0} lần cùng lúc",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-e955c4d6f515-b5c0bcb3bd-ec33283c35",
+          "batch_id": "tr-p3-67f8551f7780-e955c4d6f515-b5c0bcb3bd-ec33283c35-b0251",
+          "claim_id": "trc-gpt56sol-20260830T174800Z-b0251",
+          "merged_at": "2026-08-30T17:53:59.722445Z",
+          "reason": "Sửa Nhân tố thành Spark theo canonical localize UI và giữ nguyên số lần {0}."
         }
       ]
     },
@@ -48737,6 +48772,31 @@
           "claim_id": "trc-gpt56sol-20260830T0214Z-b0907",
           "merged_at": "2026-08-30T02:18:26.117214Z",
           "reason": "Replace forbidden category-172 Nhân tố with canonical Spark while preserving the locked Skill title."
+        }
+      ]
+    },
+    {
+      "id": "review.regression.51be35bf5a930924",
+      "uid": "zhcn:5a8359c33984e63c254cceed",
+      "scope": "uid",
+      "source_text": "提示Lv+{0}",
+      "source_fingerprint": "99539a0713f716ed420d9e4be6ced6fd72fed359af453a07194cbc84a6e1aa89",
+      "rejected_targets": [
+        "Gợi ý Lv+{0}"
+      ],
+      "approved_target": "Hint Lv+{0}",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-e955c4d6f515-b5c0bcb3bd-ec33283c35",
+          "batch_id": "tr-p3-67f8551f7780-e955c4d6f515-b5c0bcb3bd-ec33283c35-b0251",
+          "claim_id": "trc-gpt56sol-20260830T174800Z-b0251",
+          "merged_at": "2026-08-30T17:53:59.722445Z",
+          "reason": "提示Lv là nhãn gameplay Hint Lv; dùng Gợi ý làm mất thuật ngữ player-facing đã được audit policy yêu cầu giữ bằng tiếng Anh. Placeholder {0} được bảo toàn."
         }
       ]
     },
@@ -81279,6 +81339,31 @@
       ]
     },
     {
+      "id": "review.regression.dc00ac194a3edc5f",
+      "uid": "zhcn:92537baad4889aca3f17a7ea",
+      "scope": "uid",
+      "source_text": "{0}优先于宝石使用",
+      "source_fingerprint": "267acbbcc385c3626bb7d2a5604a18572080be9546759b350897e14abbfa17fa",
+      "rejected_targets": [
+        "Ưu tiên dùng {0} trước Ngọc"
+      ],
+      "approved_target": "Ưu tiên dùng {0} trước Jewel",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-e955c4d6f515-b5c0bcb3bd-ec33283c35",
+          "batch_id": "tr-p3-67f8551f7780-e955c4d6f515-b5c0bcb3bd-ec33283c35-b0251",
+          "claim_id": "trc-gpt56sol-20260830T174800Z-b0251",
+          "merged_at": "2026-08-30T17:53:59.722445Z",
+          "reason": "Bản hiện tại dùng Ngọc cho 宝石; thay bằng currency term đã khóa và giữ placeholder {0}."
+        }
+      ]
+    },
+    {
       "id": "review.regression.5e651de7ee076ddc",
       "uid": "zhcn:9254c44bf0ae86cc1a2feef1",
       "scope": "uid",
@@ -102795,6 +102880,31 @@
       ]
     },
     {
+      "id": "review.regression.061c978b6a6e3706",
+      "uid": "zhcn:ba876d506e92ca5e7cba63fa",
+      "scope": "uid",
+      "source_text": "友情训练效果提升",
+      "source_fingerprint": "c89907bc9e8d9e7dc891cc9cbee8ffd1d85ef308ed57cf49029a133baffed3e8",
+      "rejected_targets": [
+        "Tăng hiệu quả huấn luyện tình bạn"
+      ],
+      "approved_target": "Tăng hiệu quả Friendship Training",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-e955c4d6f515-b5c0bcb3bd-ec33283c35",
+          "batch_id": "tr-p3-67f8551f7780-e955c4d6f515-b5c0bcb3bd-ec33283c35-b0251",
+          "claim_id": "trc-gpt56sol-20260830T174800Z-b0251",
+          "merged_at": "2026-08-30T17:53:59.722445Z",
+          "reason": "Bản hiện tại dùng calque huấn luyện tình bạn bị cấm; giữ nguyên mechanic player-facing Friendship Training."
+        }
+      ]
+    },
+    {
       "id": "review.regression.6644fd30b54aae2a",
       "uid": "zhcn:ba87e82439e67056031d5fb5",
       "scope": "uid",
@@ -111505,6 +111615,31 @@
           "claim_id": "trc-gpt56sol-20260828T055023Z-b0337-a7c1",
           "merged_at": "2026-08-28T05:54:24.909238Z",
           "reason": "Bản hiện tại dùng 'Hứng khởi' cho 干劲, trái với locked term bắt buộc; sửa sang 'Tinh thần' và giữ nguyên tag/mức trạng thái."
+        }
+      ]
+    },
+    {
+      "id": "review.regression.40e0f3ae7f2b265d",
+      "uid": "zhcn:cb9dfad07a52dd44956dcb50",
+      "scope": "uid",
+      "source_text": "短距离",
+      "source_fingerprint": "e5d7c457a410213a31e72b0ff468ad32b30f042ef00ffb6c7ed0a44c495154c1",
+      "rejected_targets": [
+        "Cự ly ngắn"
+      ],
+      "approved_target": "Sprint",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-e955c4d6f515-b5c0bcb3bd-ec33283c35",
+          "batch_id": "tr-p3-67f8551f7780-e955c4d6f515-b5c0bcb3bd-ec33283c35-b0610",
+          "claim_id": "trc-gpt56sol-20260830T174500Z-b0610",
+          "merged_at": "2026-08-30T17:53:59.731726Z",
+          "reason": "This is the player-facing distance class label, so the literal Vietnamese calque must be replaced with the canonical English term."
         }
       ]
     },
@@ -124677,6 +124812,31 @@
           "claim_id": "trc-gpt56sol-20260830T0231Z-b0955",
           "merged_at": "2026-08-30T02:34:34.527056Z",
           "reason": "Category 172 requires Spark instead of Nhân tố; the locked skill title and stat labels are already canonical."
+        }
+      ]
+    },
+    {
+      "id": "review.regression.af92bd92f4235be7",
+      "uid": "zhcn:e1ceed77f5b1b9f40a05f066",
+      "scope": "uid",
+      "source_text": "使用{1}张<color=#FF911C>{0}</color>\n进行因子的重新获得",
+      "source_fingerprint": "a509aad950ce5e8271b3256ce49910fac0f1e088697099070a949112274b0234",
+      "rejected_targets": [
+        "Dùng {1} <color=#FF911C>{0}</color>\nđể nhận lại Nhân tố"
+      ],
+      "approved_target": "Dùng {1} <color=#FF911C>{0}</color>\nđể nhận lại Spark",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-e955c4d6f515-b5c0bcb3bd-ec33283c35",
+          "batch_id": "tr-p3-67f8551f7780-e955c4d6f515-b5c0bcb3bd-ec33283c35-b0251",
+          "claim_id": "trc-gpt56sol-20260830T174800Z-b0251",
+          "merged_at": "2026-08-30T17:53:59.722445Z",
+          "reason": "Bản hiện tại dùng Nhân tố, trái với thuật ngữ Spark đã khóa; giữ nguyên placeholder, color tag và newline."
         }
       ]
     },

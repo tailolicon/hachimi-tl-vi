@@ -149,6 +149,84 @@ LUCKY_CONSTITUTION_DECISION = {
     "note": "Verified against JP 幸運体質 and its one-use bad-Condition prevention effect; use established English community label Lucky Constitution in the exact text_data category-142 Condition slot.",
 }
 
+CHAMPIONS_MEETING_CUP_TERMS = (
+    {
+        "id": "event.champions_meeting.taurus_cup",
+        "category": "event",
+        "source_aliases": ["金牛杯"],
+        "preferred": "Taurus Cup",
+        "compact": [],
+        "accepted": ["Taurus Cup"],
+        "forbidden": ["Cúp Kim Ngưu"],
+        "require_accepted": True,
+        "invalidation_scope": "item",
+        "source_paths": ["text_data_dict.json"],
+        "json_path_prefixes": [["10"]],
+        "match_mode": "contains",
+        "basis": "Official Global Champions Meeting event name. Preserve Taurus Cup as the proper name instead of translating the zodiac label literally.",
+    },
+    {
+        "id": "event.champions_meeting.gemini_cup",
+        "category": "event",
+        "source_aliases": ["双子杯"],
+        "preferred": "Gemini Cup",
+        "compact": [],
+        "accepted": ["Gemini Cup"],
+        "forbidden": ["Cúp Song Tử"],
+        "require_accepted": True,
+        "invalidation_scope": "item",
+        "source_paths": ["text_data_dict.json"],
+        "json_path_prefixes": [["10"]],
+        "match_mode": "contains",
+        "basis": "Official Global Champions Meeting event name. Preserve Gemini Cup as the proper name instead of translating the zodiac label literally.",
+    },
+    {
+        "id": "event.champions_meeting.cancer_cup",
+        "category": "event",
+        "source_aliases": ["巨蟹杯"],
+        "preferred": "Cancer Cup",
+        "compact": [],
+        "accepted": ["Cancer Cup"],
+        "forbidden": ["Cúp Cự Giải"],
+        "require_accepted": True,
+        "invalidation_scope": "item",
+        "source_paths": ["text_data_dict.json"],
+        "json_path_prefixes": [["10"]],
+        "match_mode": "contains",
+        "basis": "Official Global Champions Meeting event name. Preserve Cancer Cup as the proper name instead of translating the zodiac label literally.",
+    },
+)
+
+CHAMPIONS_MEETING_CUP_DECISIONS = (
+    {
+        "decision_id": "audit.finding.champions-meeting-taurus-cup",
+        "source_zh_cn": "金牛杯",
+        "action": "lock",
+        "target_vi": "Taurus Cup",
+        "kind": "proper_name",
+        "category": "event",
+        "note": "Official Global Champions Meeting proper name; do not literalize the zodiac name.",
+    },
+    {
+        "decision_id": "audit.finding.champions-meeting-gemini-cup",
+        "source_zh_cn": "双子杯",
+        "action": "lock",
+        "target_vi": "Gemini Cup",
+        "kind": "proper_name",
+        "category": "event",
+        "note": "Official Global Champions Meeting proper name; do not literalize the zodiac name.",
+    },
+    {
+        "decision_id": "audit.finding.champions-meeting-cancer-cup",
+        "source_zh_cn": "巨蟹杯",
+        "action": "lock",
+        "target_vi": "Cancer Cup",
+        "kind": "proper_name",
+        "category": "event",
+        "note": "Official Global Champions Meeting proper name; do not literalize the zodiac name.",
+    },
+)
+
 EPIPHANEIA_NO_HOLDING_BACK_CONDITION = {
     "id": "condition.epiphaneia.no_holding_back",
     "category": "condition",
@@ -250,6 +328,8 @@ def harden(repo_root: Path = ROOT) -> bool:
     _upsert(terms, MENTAL_GUARD_CONDITION)
     _upsert(terms, RECOVERY_SPIRIT_CONDITION)
     _upsert(terms, LUCKY_CONSTITUTION_CONDITION)
+    for term in CHAMPIONS_MEETING_CUP_TERMS:
+        _upsert(terms, term)
     _upsert(terms, EPIPHANEIA_NO_HOLDING_BACK_CONDITION)
     if before != json.dumps(community, ensure_ascii=False, sort_keys=True):
         _write(community_path, community)
@@ -266,6 +346,8 @@ def harden(repo_root: Path = ROOT) -> bool:
     for decision in TRAINER_ABILITY_CONDITION_DECISIONS:
         _upsert(decisions, decision, id_field="decision_id")
     _upsert(decisions, LUCKY_CONSTITUTION_DECISION, id_field="decision_id")
+    for decision in CHAMPIONS_MEETING_CUP_DECISIONS:
+        _upsert(decisions, decision, id_field="decision_id")
     _upsert(decisions, EPIPHANEIA_NO_HOLDING_BACK_DECISION, id_field="decision_id")
     if before != json.dumps(reviews, ensure_ascii=False, sort_keys=True):
         _write(reviews_path, reviews)

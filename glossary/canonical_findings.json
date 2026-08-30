@@ -1628,7 +1628,8 @@
         "Skill-name alias 凯旋 overmatches the race proper name 凯旋门赏",
         "Skill alias must not overmatch Prix de l'Arc de Triomphe race name 凯旋门赏",
         "Skill alias 凯旋 must not match inside race proper name 凯旋门赏",
-        "Generic/proper-name substring 凯旋 inside Prix de l'Arc de Triomphe versus named Skill title"
+        "Generic/proper-name substring 凯旋 inside Prix de l'Arc de Triomphe versus named Skill title",
+        "Reviewed Skill alias must not overmatch the Prix de l'Arc de Triomphe proper race name 凯旋门赏"
       ],
       "suggested_targets_vi": [],
       "confidence_levels": [
@@ -1641,9 +1642,10 @@
         "Current item is a race objective and the official race name should not be replaced by a Skill-title lock matched on a substring.",
         "Current reviewed Skill matcher overmatches a substring of Prix de l'Arc de Triomphe and falsely requires Khải hoàn.",
         "Current reviewed Skill matcher overmatches the race proper name and falsely requires Khải hoàn.",
-        "The Skill matcher must not fire inside the proper race name 凯旋门赏."
+        "The Skill matcher must not fire inside the proper race name 凯旋门赏.",
+        "Forcing the Skill target Khải hoàn inside the proper race name would corrupt player-facing race terminology."
       ],
-      "evidence_count": 7,
+      "evidence_count": 8,
       "evidence": [
         {
           "uid": "zhcn:1136cb24b7b89add2e024a3d",
@@ -1756,6 +1758,22 @@
           "current_text": "Tôi là Satake Mei! Việc phân tích các cuộc đua châu Âu\\ncứ giao cho tôi. Giấc mơ chưa từng có là chinh phục\\n『Prix de l'Arc de Triomphe』, hãy cùng tôi biến nó thành hiện thực!",
           "proposed_text": null,
           "reported_at": "2026-08-30T18:05:00Z"
+        },
+        {
+          "uid": "zhcn:bbbb04cf382f68baef5ada45",
+          "plan_id": "tr-p3-67f8551f7780-6caf0e8dcee0-b5c0bcb3bd-3409ce21b7",
+          "batch_id": "tr-p3-67f8551f7780-6caf0e8dcee0-b5c0bcb3bd-3409ce21b7-b0386",
+          "claim_id": "trc-chatgpt-auto3-b0386-20260830T191430Z",
+          "worker_id": "chatgpt-auto3-20260830T185905Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "120",
+            "6"
+          ],
+          "source_text": "世界最高峰的比赛『凯旋门赏』。不断有挑战者\\n力图赢取胜利。「今年誓要成为世界第一！」\\n特雷森学园设立了<color=#FF6D26>『L'Arc计划』</color>。\\n追寻梦想与浪漫的旅途，现已拉开帷幕。",
+          "current_text": "Cuộc đua đỉnh cao thế giới 『Prix de l'Arc de Triomphe』. Các kẻ thách thức không ngừng\\nhướng tới chiến thắng. “Năm nay nhất định sẽ trở thành số một thế giới!”\\nHọc viện Tracen đã thành lập <color=#FF6D26>『Dự án L'Arc』</color>.\\nHành trình theo đuổi ước mơ và sự lãng mạn giờ chính thức bắt đầu.",
+          "proposed_text": null,
+          "reported_at": "2026-08-30T19:18:05Z"
         }
       ],
       "canonical_resolution": {
@@ -1769,7 +1787,7 @@
         "target_vi": "Khải hoàn"
       },
       "first_seen_at": "2026-08-30T01:06:00Z",
-      "last_seen_at": "2026-08-30T18:05:00Z"
+      "last_seen_at": "2026-08-30T19:18:05Z"
     },
     {
       "finding_id": "cf-a6f9a22d7cf78668",
@@ -2066,7 +2084,8 @@
         "Skill-name alias 全力 overmatches ordinary prose such as 全力支持",
         "Skill-name alias 全力 overmatches ordinary prose 发挥全力",
         "Skill-title alias 全力 must not match ordinary prose meaning full effort",
-        "Generic adverbial 全力 versus named Skill title"
+        "Generic adverbial 全力 versus named Skill title",
+        "Reviewed Skill alias must not match generic prose such as 全力支持"
       ],
       "suggested_targets_vi": [],
       "confidence_levels": [
@@ -2078,9 +2097,10 @@
         "Current Skill matcher overmatches generic prose in Condition descriptions.",
         "The reviewed Skill-name matcher is firing inside a longer character-description sentence where 全力 means running with all one's strength, not a Skill name.",
         "全力 appears in ordinary support prose, not as a Skill title.",
-        "全力 occurs in ordinary dialogue, not as a Skill title."
+        "全力 occurs in ordinary dialogue, not as a Skill title.",
+        "The embedded Skill target Dốc hết sức is not the meaning of 全力 inside ordinary prose 全力支持."
       ],
-      "evidence_count": 6,
+      "evidence_count": 7,
       "evidence": [
         {
           "uid": "zhcn:9cd244f642d25ce4875a165d",
@@ -2177,6 +2197,22 @@
           "current_text": "Tôi là hiệu trưởng Yayoi Akikawa! Tôi sẽ dốc hết sức giúp đỡ học sinh trường ta\\nvà những huấn luyện viên đang hỗ trợ họ!\\nMọi người cứ giao hết cho tôi!!",
           "proposed_text": null,
           "reported_at": "2026-08-30T18:05:00Z"
+        },
+        {
+          "uid": "zhcn:9cd244f642d25ce4875a165d",
+          "plan_id": "tr-p3-67f8551f7780-6caf0e8dcee0-b5c0bcb3bd-3409ce21b7",
+          "batch_id": "tr-p3-67f8551f7780-6caf0e8dcee0-b5c0bcb3bd-3409ce21b7-b0386",
+          "claim_id": "trc-chatgpt-auto3-b0386-20260830T191430Z",
+          "worker_id": "chatgpt-auto3-20260830T185905Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "120",
+            "5"
+          ],
+          "source_text": "出现在想要全力支持赛马娘的训练员们\\n面前的是，被冠以三女神之名的\\n助训AI。领受三女神的睿智，\\n以称霸赛马娘界的顶点赛事――\\n<color=#FF6D26>『Grand Masters』</color>为目标！",
+          "current_text": "Xuất hiện trước những Trainer muốn hết lòng hỗ trợ Uma Musume\\nlà AI hỗ trợ huấn luyện mang tên Ba Nữ thần.\\nTiếp nhận trí tuệ của Ba Nữ thần,\\nhãy nhắm tới việc chinh phục giải đấu đỉnh cao của giới Uma Musume――\\n<color=#FF6D26>『Grand Masters』</color>!",
+          "proposed_text": null,
+          "reported_at": "2026-08-30T19:18:05Z"
         }
       ],
       "canonical_resolution": {
@@ -2190,7 +2226,7 @@
         "target_vi": "Dốc hết sức"
       },
       "first_seen_at": "2026-08-30T13:48:00Z",
-      "last_seen_at": "2026-08-30T18:05:00Z"
+      "last_seen_at": "2026-08-30T19:18:05Z"
     },
     {
       "finding_id": "cf-bbd5eb705be28b90",

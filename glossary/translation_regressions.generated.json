@@ -9,13 +9,13 @@
     "growth": "Every accepted retrospective translation revise and accepted UI revise is folded into this file automatically by both review merge workflows."
   },
   "summary": {
-    "merged_markers_scanned": 512,
-    "translation_merged_markers_scanned": 412,
+    "merged_markers_scanned": 516,
+    "translation_merged_markers_scanned": 416,
     "ui_merged_markers_scanned": 100,
-    "accepted_revision_events": 5401,
-    "accepted_translation_revision_events": 3912,
+    "accepted_revision_events": 5436,
+    "accepted_translation_revision_events": 3947,
     "accepted_ui_revision_events": 1489,
-    "regression_identity_count": 4401,
+    "regression_identity_count": 4418,
     "skipped_incomplete_markers": 0,
     "translation_skipped_incomplete_markers": 0,
     "ui_skipped_incomplete_markers": 0
@@ -5711,6 +5711,31 @@
       ]
     },
     {
+      "id": "review.regression.91b26cd49968e147",
+      "uid": "zhcn:09678b68394640f4ab3cfe8d",
+      "scope": "uid",
+      "source_text": "在抓娃娃游戏中与马娘对话",
+      "source_fingerprint": "ac1e41f17cf55179a96da22710dd45d9039e756dde78b265e9c0d7318ca664cc",
+      "rejected_targets": [
+        "Trò chuyện với Uma Musume trong trò gắp thú"
+      ],
+      "approved_target": "Trò chuyện với Mã Nương trong trò gắp thú",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-4722b5991af8-2b38b54670-a5668cac76",
+          "batch_id": "tr-p3-67f8551f7780-4722b5991af8-2b38b54670-a5668cac76-b0738",
+          "claim_id": "trc-gpt56sol-auto6-newplan-b0738",
+          "merged_at": "2026-08-30T12:23:06.086988Z",
+          "reason": "马娘 is a generic horse-girl reference in player-facing prose; use the project-standard Mã Nương rather than Uma Musume."
+        }
+      ]
+    },
+    {
       "id": "review.regression.902fe5f540c60032",
       "uid": "zhcn:097866a8b27d876756f4fda5",
       "scope": "uid",
@@ -6557,9 +6582,10 @@
       "source_text": "技能Pt加成和初始耐力提升",
       "source_fingerprint": "971c95be8ce5b06d7da755b18916f6011527d38e1854ac84f63209dfeffb1a85",
       "rejected_targets": [
+        "Thưởng Skill Pt & Tăng Stamina ban đầu",
         "Thưởng Điểm kỹ năng & Tăng Thể lực ban đầu"
       ],
-      "approved_target": "Thưởng Skill Pt & Tăng Stamina ban đầu",
+      "approved_target": "Skill Pt Bonus & Tăng Stamina ban đầu",
       "origins": [
         "translation_review"
       ],
@@ -6572,6 +6598,14 @@
           "claim_id": "trc-chatgpt-20260827T095336Z-d7b2c6b2",
           "merged_at": "2026-08-27T09:56:45.759798Z",
           "reason": "Use the source Pt marker with embedded player-facing Skill terminology and replace the forbidden localized Stamina label."
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-4722b5991af8-2b38b54670-a5668cac76",
+          "batch_id": "tr-p3-67f8551f7780-4722b5991af8-2b38b54670-a5668cac76-b0635",
+          "claim_id": "trc-chatgpt-sol-auto-restart2-20260830T1216Z-b0635",
+          "merged_at": "2026-08-30T12:23:06.082683Z",
+          "reason": "技能Pt加成 in category 155 requires Skill Pt Bonus; current Thưởng Skill Pt is explicitly forbidden."
         }
       ]
     },
@@ -7225,9 +7259,10 @@
       "source_text": "力量加成和初始力量提升",
       "source_fingerprint": "53a30c5e1ddf8541a6c86ae9162f41243a688280af159679584823f84573ee87",
       "rejected_targets": [
+        "Thưởng Power & Tăng Power ban đầu",
         "Thưởng Sức mạnh & Tăng Sức mạnh ban đầu"
       ],
-      "approved_target": "Thưởng Power & Tăng Power ban đầu",
+      "approved_target": "Power Bonus & Tăng Power ban đầu",
       "origins": [
         "translation_review"
       ],
@@ -7240,6 +7275,14 @@
           "claim_id": "trc-chatgpt-20260827T095336Z-d7b2c6b2",
           "merged_at": "2026-08-27T09:56:45.759798Z",
           "reason": "Replace both forbidden localized Power labels with the embedded player-facing term."
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-4722b5991af8-2b38b54670-a5668cac76",
+          "batch_id": "tr-p3-67f8551f7780-4722b5991af8-2b38b54670-a5668cac76-b0635",
+          "claim_id": "trc-chatgpt-sol-auto-restart2-20260830T1216Z-b0635",
+          "merged_at": "2026-08-30T12:23:06.082683Z",
+          "reason": "力量加成 in category 155 requires Power Bonus; current Thưởng Power does not satisfy the canonical Support Effect label."
         }
       ]
     },
@@ -15126,10 +15169,12 @@
       "source_text": "距离比赛举办还有{0}天",
       "source_fingerprint": "f5718323e44462a48993a6e6bff72e21bd9be432ef76c8bfc14257531a0c75e8",
       "rejected_targets": [
-        "Còn {0} ngày nữa đến khi cuộc đua diễn ra"
+        "Còn {0} ngày nữa đến khi cuộc đua diễn ra",
+        "Đua sau {0} ngày"
       ],
-      "approved_target": "Đua sau {0} ngày",
+      "approved_target": "Còn {0} ngày đến khi Cuộc đua diễn ra",
       "origins": [
+        "translation_review",
         "ui_review"
       ],
       "ui_contexts": [
@@ -15152,6 +15197,14 @@
           "reason": "A compact countdown label conveys the same time-until-race meaning without the long relative clause.",
           "ui_key": "Heroes511133",
           "control_type": "short_system_label"
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-4722b5991af8-2b38b54670-a5668cac76",
+          "batch_id": "tr-p3-67f8551f7780-4722b5991af8-2b38b54670-a5668cac76-b0097",
+          "claim_id": "trc-gpt56sol-20260830T121820Z-b0097",
+          "merged_at": "2026-08-30T12:23:06.067466Z",
+          "reason": "Bản hiện tại bỏ locked term Cuộc đua; đề xuất giữ placeholder {0} và diễn đạt đúng khoảng thời gian còn lại đến lúc cuộc đua diễn ra."
         }
       ]
     },
@@ -16836,6 +16889,31 @@
       ]
     },
     {
+      "id": "review.regression.3c838c9f36bb5f7b",
+      "uid": "zhcn:1f9870669032bd7350eea5a9",
+      "scope": "uid",
+      "source_text": "目标比赛回合干劲上佳时与马娘对话",
+      "source_fingerprint": "091fde585891d4f93814af1a63224c7ca54d57b6b53e9a068b4d02b8625e118c",
+      "rejected_targets": [
+        "Trò chuyện với Uma Musume trong lượt đua mục tiêu khi tâm trạng Khá tốt"
+      ],
+      "approved_target": "Trò chuyện với Mã Nương trong lượt Cuộc đua mục tiêu khi Mood Khá tốt",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-4722b5991af8-2b38b54670-a5668cac76",
+          "batch_id": "tr-p3-67f8551f7780-4722b5991af8-2b38b54670-a5668cac76-b0738",
+          "claim_id": "trc-gpt56sol-auto6-newplan-b0738",
+          "merged_at": "2026-08-30T12:23:06.086988Z",
+          "reason": "Use canonical Cuộc đua and Mood terminology, and normalize the generic horse-girl reference to Mã Nương."
+        }
+      ]
+    },
+    {
       "id": "review.regression.b0ae982cfc62316f",
       "uid": "zhcn:1f9ab8478775ccf586fafbc4",
       "scope": "uid",
@@ -17906,10 +17984,12 @@
       "source_text": "距离比赛举办还有{0}分",
       "source_fingerprint": "e69ceada4b0cabb7b7150857ae9cc70c51b38745eb8f4bcd2367d753b8769974",
       "rejected_targets": [
-        "Còn {0} phút nữa đến khi cuộc đua diễn ra"
+        "Còn {0} phút nữa đến khi cuộc đua diễn ra",
+        "Đua sau {0} phút"
       ],
-      "approved_target": "Đua sau {0} phút",
+      "approved_target": "Còn {0} phút đến khi Cuộc đua diễn ra",
       "origins": [
+        "translation_review",
         "ui_review"
       ],
       "ui_contexts": [
@@ -17932,6 +18012,14 @@
           "reason": "A compact countdown label conveys the same time-until-race meaning without the long relative clause.",
           "ui_key": "Heroes511135",
           "control_type": "short_system_label"
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-4722b5991af8-2b38b54670-a5668cac76",
+          "batch_id": "tr-p3-67f8551f7780-4722b5991af8-2b38b54670-a5668cac76-b0097",
+          "claim_id": "trc-gpt56sol-20260830T121820Z-b0097",
+          "merged_at": "2026-08-30T12:23:06.067466Z",
+          "reason": "Bản hiện tại bỏ locked term Cuộc đua; giữ placeholder {0} và đơn vị phút."
         }
       ]
     },
@@ -20795,9 +20883,10 @@
       "source_text": "训练效果提升&初始力量提升",
       "source_fingerprint": "4c79bc07a082d4444c2051749ca6028350066f93275a11f65615ff275fca9f1e",
       "rejected_targets": [
+        "Tăng hiệu quả huấn luyện & Tăng Power ban đầu",
         "Tăng hiệu quả huấn luyện & Tăng Sức mạnh ban đầu"
       ],
-      "approved_target": "Tăng hiệu quả huấn luyện & Tăng Power ban đầu",
+      "approved_target": "Training Effectiveness & Tăng Power ban đầu",
       "origins": [
         "translation_review"
       ],
@@ -20810,6 +20899,14 @@
           "claim_id": "trc-chatgpt-20260827T103926Z-a2c9e731",
           "merged_at": "2026-08-27T10:43:42.439398Z",
           "reason": "Current text uses the forbidden Vietnamese stat label."
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-4722b5991af8-2b38b54670-a5668cac76",
+          "batch_id": "tr-p3-67f8551f7780-4722b5991af8-2b38b54670-a5668cac76-b0635",
+          "claim_id": "trc-chatgpt-sol-auto-restart2-20260830T1216Z-b0635",
+          "merged_at": "2026-08-30T12:23:06.082683Z",
+          "reason": "训练效果提升 in category 155 must use the canonical Training Effectiveness label; current literal Vietnamese is forbidden."
         }
       ]
     },
@@ -31247,6 +31344,31 @@
       ]
     },
     {
+      "id": "review.regression.99e1c2b1f4cbca2c",
+      "uid": "zhcn:3b6430518d75ad2b69481afa",
+      "scope": "uid",
+      "source_text": "干劲普通时与马娘对话",
+      "source_fingerprint": "2679f345c290c2f8725fc0701714e4396c1ba3add1eb4cfb74f425570288105c",
+      "rejected_targets": [
+        "Trò chuyện với Uma Musume khi tâm trạng Bình thường"
+      ],
+      "approved_target": "Trò chuyện với Mã Nương khi Mood Bình thường",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-4722b5991af8-2b38b54670-a5668cac76",
+          "batch_id": "tr-p3-67f8551f7780-4722b5991af8-2b38b54670-a5668cac76-b0738",
+          "claim_id": "trc-gpt56sol-auto6-newplan-b0738",
+          "merged_at": "2026-08-30T12:23:06.086988Z",
+          "reason": "Use canonical Mood terminology and the project-standard generic horse-girl term."
+        }
+      ]
+    },
+    {
       "id": "review.regression.4fef2091ea9bebc2",
       "uid": "zhcn:3b6944a12efe20f09d309eec",
       "scope": "uid",
@@ -36662,10 +36784,12 @@
       "source_text": "距离比赛举办还有{0}小时",
       "source_fingerprint": "fc73b2664594db64a60cdeb9f48904fd30a64f30941a35040e3f6e2068204948",
       "rejected_targets": [
-        "Còn {0} giờ nữa đến khi cuộc đua diễn ra"
+        "Còn {0} giờ nữa đến khi cuộc đua diễn ra",
+        "Đua sau {0} giờ"
       ],
-      "approved_target": "Đua sau {0} giờ",
+      "approved_target": "Còn {0} giờ đến khi Cuộc đua diễn ra",
       "origins": [
+        "translation_review",
         "ui_review"
       ],
       "ui_contexts": [
@@ -36688,6 +36812,14 @@
           "reason": "A compact countdown label conveys the same time-until-race meaning without the long relative clause.",
           "ui_key": "Heroes511134",
           "control_type": "short_system_label"
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-4722b5991af8-2b38b54670-a5668cac76",
+          "batch_id": "tr-p3-67f8551f7780-4722b5991af8-2b38b54670-a5668cac76-b0097",
+          "claim_id": "trc-gpt56sol-20260830T121820Z-b0097",
+          "merged_at": "2026-08-30T12:23:06.067466Z",
+          "reason": "Bản hiện tại bỏ locked term Cuộc đua; giữ placeholder {0} và đơn vị giờ."
         }
       ]
     },
@@ -40205,9 +40337,10 @@
       "source_text": "速度加成和初始速度提升",
       "source_fingerprint": "7a39e318d2af4f9ca6ee7fee37f091f91e522085262c3dd222e7239b2000bce2",
       "rejected_targets": [
+        "Thưởng Speed & Tăng Speed ban đầu",
         "Thưởng Tốc độ & Tăng Tốc độ ban đầu"
       ],
-      "approved_target": "Thưởng Speed & Tăng Speed ban đầu",
+      "approved_target": "Speed Bonus & Tăng Speed ban đầu",
       "origins": [
         "translation_review"
       ],
@@ -40220,6 +40353,14 @@
           "claim_id": "trc-chatgpt-20260827T095336Z-d7b2c6b2",
           "merged_at": "2026-08-27T09:56:45.759798Z",
           "reason": "Replace forbidden localized Speed labels with the embedded player-facing term."
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-4722b5991af8-2b38b54670-a5668cac76",
+          "batch_id": "tr-p3-67f8551f7780-4722b5991af8-2b38b54670-a5668cac76-b0635",
+          "claim_id": "trc-chatgpt-sol-auto-restart2-20260830T1216Z-b0635",
+          "merged_at": "2026-08-30T12:23:06.082683Z",
+          "reason": "速度加成 in category 155 requires the canonical Speed Bonus label."
         }
       ]
     },
@@ -41379,6 +41520,31 @@
       ]
     },
     {
+      "id": "review.regression.162dc236aeeaec79",
+      "uid": "zhcn:4f9e420e8ac376f95a1a2dcf",
+      "scope": "uid",
+      "source_text": "好像被其他赛马娘挡住了，\n很难冲出来。",
+      "source_fingerprint": "832b6d678b3a1f21c1732eff032f82c72eb459075f46aa12bb34de69a8bb97a5",
+      "rejected_targets": [
+        "Có vẻ đã bị các Uma Musume khác chặn lại,\nnên rất khó lao ra."
+      ],
+      "approved_target": "Có vẻ đã bị các Mã Nương khác chặn lại,\nnên rất khó lao ra.",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-4722b5991af8-2b38b54670-a5668cac76",
+          "batch_id": "tr-p3-67f8551f7780-4722b5991af8-2b38b54670-a5668cac76-b0182",
+          "claim_id": "trc-chatgpt-sol-auto-restart2-20260830T1219Z-b0182",
+          "merged_at": "2026-08-30T12:23:06.071597Z",
+          "reason": "Generic 赛马娘 must use Mã Nương; meaning and newline are preserved."
+        }
+      ]
+    },
+    {
       "id": "review.regression.92127d439d08862c",
       "uid": "zhcn:4fc22e3be3a02a816c102ac6",
       "scope": "uid",
@@ -41837,10 +42003,12 @@
       "source_text": "特别阶段匹配结束后\n可获得活动限定称号<color=#ff911c>{0}</color>",
       "source_fingerprint": "3805b014b024c1a4542ea6dcf36af69f4716b83406aa67c22b56a022f875ff19",
       "rejected_targets": [
+        "Hết ghép trận Special Stage\ncó thể nhận danh hiệu <color=#ff911c>{0}</color>",
         "Sau khi kết thúc ghép trận Special Stage\ncó thể nhận danh hiệu giới hạn sự kiện <color=#ff911c>{0}</color>"
       ],
-      "approved_target": "Hết ghép trận Special Stage\ncó thể nhận danh hiệu <color=#ff911c>{0}</color>",
+      "approved_target": "Hết ghép trận Extra Stage\ncó thể nhận danh hiệu <color=#ff911c>{0}</color>",
       "origins": [
+        "translation_review",
         "ui_review"
       ],
       "ui_contexts": [
@@ -41863,6 +42031,14 @@
           "reason": "The Special Stage event context makes 'giới hạn sự kiện' redundant; the compact two-line form preserves the condition, title token, color tag, and newline count.",
           "ui_key": "Heroes511123",
           "control_type": "short_system_label"
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-4722b5991af8-2b38b54670-a5668cac76",
+          "batch_id": "tr-p3-67f8551f7780-4722b5991af8-2b38b54670-a5668cac76-b0097",
+          "claim_id": "trc-gpt56sol-20260830T121820Z-b0097",
+          "merged_at": "2026-08-30T12:23:06.067466Z",
+          "reason": "特别阶段 là named Extra Stage; placeholder/tag và cấu trúc hai dòng được bảo toàn."
         }
       ]
     },
@@ -45626,9 +45802,10 @@
       "source_text": "训练效果提升和初始力量提升",
       "source_fingerprint": "bdd04522cafb7b5f3699273517925d468d35afa9f53f7221f0913febf6204be2",
       "rejected_targets": [
+        "Tăng hiệu quả huấn luyện & Tăng Power ban đầu",
         "Tăng hiệu quả huấn luyện & Tăng Sức mạnh ban đầu"
       ],
-      "approved_target": "Tăng hiệu quả huấn luyện & Tăng Power ban đầu",
+      "approved_target": "Training Effectiveness & Tăng Power ban đầu",
       "origins": [
         "translation_review"
       ],
@@ -45641,6 +45818,14 @@
           "claim_id": "trc-chatgpt-20260827T095336Z-d7b2c6b2",
           "merged_at": "2026-08-27T09:56:45.759798Z",
           "reason": "Replace the forbidden localized Power label while preserving the otherwise sound training-effect wording."
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-4722b5991af8-2b38b54670-a5668cac76",
+          "batch_id": "tr-p3-67f8551f7780-4722b5991af8-2b38b54670-a5668cac76-b0635",
+          "claim_id": "trc-chatgpt-sol-auto-restart2-20260830T1216Z-b0635",
+          "merged_at": "2026-08-30T12:23:06.082683Z",
+          "reason": "训练效果提升 requires the canonical Training Effectiveness label in category 155."
         }
       ]
     },
@@ -46371,9 +46556,10 @@
       "source_text": "技能Pt加成和训练效果提升",
       "source_fingerprint": "e546ab683387edf6425c84a9351ec646dd58fa9f60098cf6c0088644e196e9ff",
       "rejected_targets": [
+        "Thưởng Skill Pt & Tăng hiệu quả huấn luyện",
         "Thưởng Điểm kỹ năng & Tăng hiệu quả huấn luyện"
       ],
-      "approved_target": "Thưởng Skill Pt & Tăng hiệu quả huấn luyện",
+      "approved_target": "Skill Pt Bonus & Training Effectiveness",
       "origins": [
         "translation_review"
       ],
@@ -46386,6 +46572,14 @@
           "claim_id": "trc-chatgpt-20260827T095336Z-d7b2c6b2",
           "merged_at": "2026-08-27T09:56:45.759798Z",
           "reason": "Use the source Pt marker with embedded player-facing Skill terminology; preserve the otherwise sound training-effect wording."
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-4722b5991af8-2b38b54670-a5668cac76",
+          "batch_id": "tr-p3-67f8551f7780-4722b5991af8-2b38b54670-a5668cac76-b0635",
+          "claim_id": "trc-chatgpt-sol-auto-restart2-20260830T1216Z-b0635",
+          "merged_at": "2026-08-30T12:23:06.082683Z",
+          "reason": "Both category-155 Support Effect labels are currently literal/noncanonical and must use Skill Pt Bonus and Training Effectiveness."
         }
       ]
     },
@@ -48096,6 +48290,31 @@
           "claim_id": "trc-chatgpt-20260827T105211Z-e3b7c642",
           "merged_at": "2026-08-28T03:27:25.758723Z",
           "reason": "Current Skill name does not match the embedded reviewed name."
+        }
+      ]
+    },
+    {
+      "id": "review.regression.8596198e0a0a98f3",
+      "uid": "zhcn:5c691d3192761554c911cf4f",
+      "scope": "uid",
+      "source_text": "友情训练出现时",
+      "source_fingerprint": "e1a950257bbc816b2e3cac74f8ca92f10a44deae50b5b124b70faa0de51822b0",
+      "rejected_targets": [
+        "Khi xuất hiện Huấn luyện Tình bạn"
+      ],
+      "approved_target": "Khi xuất hiện Friendship Training",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-4722b5991af8-2b38b54670-a5668cac76",
+          "batch_id": "tr-p3-67f8551f7780-4722b5991af8-2b38b54670-a5668cac76-b0738",
+          "claim_id": "trc-gpt56sol-auto6-newplan-b0738",
+          "merged_at": "2026-08-30T12:23:06.086988Z",
+          "reason": "友情训练 is the established rainbow-training mechanic and must use Friendship Training."
         }
       ]
     },
@@ -51438,10 +51657,12 @@
       "source_text": "特别阶段参赛奖励",
       "source_fingerprint": "7c2383caf79c46e27e83fb11137f733600259530b5980c863a12becd76f5c803",
       "rejected_targets": [
-        "Phần thưởng tham gia Special Stage"
+        "Phần thưởng tham gia Special Stage",
+        "Thưởng tham gia Special Stage"
       ],
-      "approved_target": "Thưởng tham gia Special Stage",
+      "approved_target": "Thưởng tham gia Extra Stage",
       "origins": [
+        "translation_review",
         "ui_review"
       ],
       "ui_contexts": [
@@ -51464,6 +51685,14 @@
           "reason": "Drops the unnecessary 'Phần' prefix while retaining the reward category and proper stage name.",
           "ui_key": "Heroes511131",
           "control_type": "header"
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-4722b5991af8-2b38b54670-a5668cac76",
+          "batch_id": "tr-p3-67f8551f7780-4722b5991af8-2b38b54670-a5668cac76-b0097",
+          "claim_id": "trc-gpt56sol-20260830T121820Z-b0097",
+          "merged_at": "2026-08-30T12:23:06.067466Z",
+          "reason": "特别阶段 là named Extra Stage; phần còn lại của nhãn đã đúng nghĩa."
         }
       ]
     },
@@ -52302,6 +52531,31 @@
           "claim_id": "trc-chatgpt-sol-20260830-1039-b0943",
           "merged_at": "2026-08-30T03:40:08.391478Z",
           "reason": "Category 172 uses the inheritance Spark mechanic; current text uses forbidden 'Nhân tố'."
+        }
+      ]
+    },
+    {
+      "id": "review.regression.0ff6c2655ccae8ce",
+      "uid": "zhcn:64af675d8d8568cafd9d56dd",
+      "scope": "uid",
+      "source_text": "目标比赛回合干劲不佳时与马娘对话",
+      "source_fingerprint": "93535066517c2d2dc16ee0d2eda1c0bfc6e95ac9bf2d8b0cfc0972586ef0cf4c",
+      "rejected_targets": [
+        "Trò chuyện với Uma Musume trong lượt đua mục tiêu khi tâm trạng Kém"
+      ],
+      "approved_target": "Trò chuyện với Mã Nương trong lượt Cuộc đua mục tiêu khi Mood Kém",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-4722b5991af8-2b38b54670-a5668cac76",
+          "batch_id": "tr-p3-67f8551f7780-4722b5991af8-2b38b54670-a5668cac76-b0738",
+          "claim_id": "trc-gpt56sol-auto6-newplan-b0738",
+          "merged_at": "2026-08-30T12:23:06.086988Z",
+          "reason": "Use canonical Cuộc đua and Mood terminology, and normalize the generic horse-girl reference to Mã Nương."
         }
       ]
     },
@@ -62345,6 +62599,31 @@
       ]
     },
     {
+      "id": "review.regression.fcdd317b30b4fe8a",
+      "uid": "zhcn:77851f6caa39004d0f63fee7",
+      "scope": "uid",
+      "source_text": "・英雄量表达到MAX后，在决定下一次的比赛对手时\n　可获得1个英雄技能",
+      "source_fingerprint": "61a479a4201d096e5eae833289e660e7916fd5c7d14c8e4e6acc8e6a7c417f5f",
+      "rejected_targets": [
+        "・Sau khi Thanh Anh hùng đạt MAX, khi quyết định đối thủ cho lượt đua tiếp theo\n　có thể nhận 1 Kỹ năng Anh hùng"
+      ],
+      "approved_target": "・Sau khi Hero Gauge đạt MAX, khi quyết định đối thủ cho Cuộc đua tiếp theo\n　có thể nhận 1 Hero Skill",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-4722b5991af8-2b38b54670-a5668cac76",
+          "batch_id": "tr-p3-67f8551f7780-4722b5991af8-2b38b54670-a5668cac76-b0097",
+          "claim_id": "trc-gpt56sol-20260830T121820Z-b0097",
+          "merged_at": "2026-08-30T12:23:06.067466Z",
+          "reason": "Chuẩn hóa 英雄量表 → Hero Gauge, 英雄技能 → Hero Skill và phục hồi locked Cuộc đua; giữ số 1/newline/indent."
+        }
+      ]
+    },
+    {
       "id": "review.regression.54cb155999c9d7e3",
       "uid": "zhcn:779d2459ca78d47669c3824c",
       "scope": "uid",
@@ -72011,6 +72290,31 @@
       ]
     },
     {
+      "id": "review.regression.3ef06ded1d45b51f",
+      "uid": "zhcn:8834d50777e1cb4e2f274497",
+      "scope": "uid",
+      "source_text": "在特别阶段参赛的殿堂赛马娘\n获得了活动限定称号<color=#ff911c>{0}</color>",
+      "source_fingerprint": "9b41ef639d58059c1fc1acad379243d9b0fc734eb58c201cbfb366fdb91325db",
+      "rejected_targets": [
+        "Uma Musume Điện Danh Vọng tham gia Special Stage\nđã nhận danh hiệu giới hạn sự kiện <color=#ff911c>{0}</color>"
+      ],
+      "approved_target": "Mã Nương Điện Danh Vọng tham gia Extra Stage\nđã nhận danh hiệu giới hạn sự kiện <color=#ff911c>{0}</color>",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-4722b5991af8-2b38b54670-a5668cac76",
+          "batch_id": "tr-p3-67f8551f7780-4722b5991af8-2b38b54670-a5668cac76-b0097",
+          "claim_id": "trc-gpt56sol-20260830T121820Z-b0097",
+          "merged_at": "2026-08-30T12:23:06.067466Z",
+          "reason": "Chuẩn hóa 特别阶段 → Extra Stage và generic 赛马娘 → Mã Nương; giữ tag/placeholder và newline."
+        }
+      ]
+    },
+    {
       "id": "review.regression.faff6834829727c4",
       "uid": "zhcn:884e51728918d27f173694a8",
       "scope": "uid",
@@ -72858,9 +73162,10 @@
       "source_text": "训练效果提升和初始智力提升",
       "source_fingerprint": "8e7fa52844b4451804cd65c0547834c8c94157252d9f004193bcd887138b6192",
       "rejected_targets": [
-        "Tăng hiệu quả huấn luyện & Tăng Trí tuệ ban đầu"
+        "Tăng hiệu quả huấn luyện & Tăng Trí tuệ ban đầu",
+        "Tăng hiệu quả huấn luyện & Tăng Wit ban đầu"
       ],
-      "approved_target": "Tăng hiệu quả huấn luyện & Tăng Wit ban đầu",
+      "approved_target": "Training Effectiveness & Tăng Wit ban đầu",
       "origins": [
         "translation_review"
       ],
@@ -72873,6 +73178,14 @@
           "claim_id": "trc-chatgpt-20260827T095336Z-d7b2c6b2",
           "merged_at": "2026-08-27T09:56:45.759798Z",
           "reason": "Replace the forbidden localized Wit label while preserving the otherwise sound training-effect wording."
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-4722b5991af8-2b38b54670-a5668cac76",
+          "batch_id": "tr-p3-67f8551f7780-4722b5991af8-2b38b54670-a5668cac76-b0635",
+          "claim_id": "trc-chatgpt-sol-auto-restart2-20260830T1216Z-b0635",
+          "merged_at": "2026-08-30T12:23:06.082683Z",
+          "reason": "训练效果提升 must use the canonical category-155 label Training Effectiveness."
         }
       ]
     },
@@ -72967,9 +73280,10 @@
       "source_text": "与排在前面的赛马娘比较的话\n拥有的技能好像有点少。",
       "source_fingerprint": "4508e2946a68baab5951d88c607b903fca7570f99c0ff3961de34080381d96b2",
       "rejected_targets": [
-        "So với những Uma Musume xếp phía trước\ncó vẻ số kỹ năng sở hữu hơi ít."
+        "So với những Uma Musume xếp phía trước\ncó vẻ số kỹ năng sở hữu hơi ít.",
+        "So với những Uma Musume xếp phía trước\ncó vẻ số Skill sở hữu hơi ít."
       ],
-      "approved_target": "So với những Uma Musume xếp phía trước\ncó vẻ số Skill sở hữu hơi ít.",
+      "approved_target": "So với những Mã Nương xếp phía trước\ncó vẻ số Skill sở hữu hơi ít.",
       "origins": [
         "translation_review"
       ],
@@ -72982,6 +73296,14 @@
           "claim_id": "trc-chatgpt-20260827T105110Z-5d9a31c7",
           "merged_at": "2026-08-27T10:53:16.093906Z",
           "reason": "Replace the translated generic Skill label while preserving the locked Uma Musume name, source meaning, and runtime newline."
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-4722b5991af8-2b38b54670-a5668cac76",
+          "batch_id": "tr-p3-67f8551f7780-4722b5991af8-2b38b54670-a5668cac76-b0182",
+          "claim_id": "trc-chatgpt-sol-auto-restart2-20260830T1219Z-b0182",
+          "merged_at": "2026-08-30T12:23:06.071597Z",
+          "reason": "Generic 赛马娘 must use Mã Nương; Skill is already canonical and newline is preserved."
         }
       ]
     },
@@ -73803,10 +74125,12 @@
       "source_text": "已获得 {0} 的赛马娘\n不能再获得新的称号",
       "source_fingerprint": "fce9eeb1b59a8d3fb0e1601beb5fc7f9a361aca374a49e3484911bee6b0124e6",
       "rejected_targets": [
-        "Uma Musume đã nhận {0}\nkhông thể nhận thêm danh hiệu mới"
+        "Uma Musume đã nhận {0}\nkhông thể nhận thêm danh hiệu mới",
+        "Uma đã nhận {0}\nkhông thể nhận thêm danh hiệu"
       ],
-      "approved_target": "Uma đã nhận {0}\nkhông thể nhận thêm danh hiệu",
+      "approved_target": "Mã Nương đã nhận {0}\nkhông thể nhận thêm danh hiệu",
       "origins": [
+        "translation_review",
         "ui_review"
       ],
       "ui_contexts": [
@@ -73829,6 +74153,14 @@
           "reason": "Uses the approved compact Uma form and removes redundant 'mới' while preserving the title-acquisition restriction and source newline.",
           "ui_key": "Heroes511124",
           "control_type": "short_system_label"
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-4722b5991af8-2b38b54670-a5668cac76",
+          "batch_id": "tr-p3-67f8551f7780-4722b5991af8-2b38b54670-a5668cac76-b0097",
+          "claim_id": "trc-gpt56sol-20260830T121820Z-b0097",
+          "merged_at": "2026-08-30T12:23:06.067466Z",
+          "reason": "Generic 赛马娘 phải dùng Mã Nương thay vì Uma; giữ placeholder {0} và newline."
         }
       ]
     },
@@ -74202,6 +74534,31 @@
           "claim_id": "trc-chatgpt-auto2-20260829T194700Z-b0824",
           "merged_at": "2026-08-30T00:48:53.660695Z",
           "reason": "Giữ thuật ngữ player-facing Friendship Training thay cho calque huấn luyện tình bạn."
+        }
+      ]
+    },
+    {
+      "id": "review.regression.761ed614bb758890",
+      "uid": "zhcn:8bf3daf5b3e6a4addefbce34",
+      "scope": "uid",
+      "source_text": "至主要阶段的排名统计期间为止，可在活动主页的\n[称号赛马娘选择]中多次重新进行选择。\n※[称号赛马娘选择]将在达到PLATINUM1后显示。\n\n称号可于主要阶段排名发表后获得。\n\n※达到PLATINUM1时进入联赛得分排名TOP3的赛马娘，即使之后\n联赛得分产生变动，也可被选为称号赛马娘。",
+      "source_fingerprint": "2bd81aee90225fa6a3b2af240a0f5808ae5fe12c5d753b291f4adfc7dad7403a",
+      "rejected_targets": [
+        "Cho đến khi bắt đầu tổng hợp xếp hạng Main Stage, có thể vào\n[Chọn Uma Musume danh hiệu] trên trang chủ sự kiện để chọn lại nhiều lần.\n※[Chọn Uma Musume danh hiệu] sẽ hiển thị sau khi đạt PLATINUM1.\n\nDanh hiệu có thể nhận sau khi công bố xếp hạng Main Stage.\n\n※Uma Musume nằm trong TOP3 xếp hạng điểm League khi đạt PLATINUM1, dù sau đó\nđiểm League thay đổi, vẫn có thể được chọn làm Uma Musume danh hiệu."
+      ],
+      "approved_target": "Cho đến khi bắt đầu tổng hợp xếp hạng Main Stage, có thể vào\n[Chọn Mã Nương danh hiệu] trên trang chủ sự kiện để chọn lại nhiều lần.\n※[Chọn Mã Nương danh hiệu] sẽ hiển thị sau khi đạt PLATINUM1.\n\nDanh hiệu có thể nhận sau khi công bố xếp hạng Main Stage.\n\n※Mã Nương nằm trong TOP3 xếp hạng League Score khi đạt PLATINUM1, dù sau đó\nLeague Score thay đổi, vẫn có thể được chọn làm Mã Nương danh hiệu.",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-4722b5991af8-2b38b54670-a5668cac76",
+          "batch_id": "tr-p3-67f8551f7780-4722b5991af8-2b38b54670-a5668cac76-b0097",
+          "claim_id": "trc-gpt56sol-20260830T121820Z-b0097",
+          "merged_at": "2026-08-30T12:23:06.067466Z",
+          "reason": "Chuẩn hóa generic 赛马娘 thành Mã Nương và thuật ngữ 联赛得分 thành League Score; Main Stage và toàn bộ cấu trúc dòng được giữ nguyên."
         }
       ]
     },
@@ -85288,9 +85645,10 @@
       "source_text": "技能Pt加成和初始速度提升",
       "source_fingerprint": "66e4d9206b934d96f9e1fa00ea3014dff59cc4f88349bb2256ab302c94611aff",
       "rejected_targets": [
+        "Thưởng Skill Pt & Tăng Speed ban đầu",
         "Thưởng Điểm kỹ năng & Tăng Tốc độ ban đầu"
       ],
-      "approved_target": "Thưởng Skill Pt & Tăng Speed ban đầu",
+      "approved_target": "Skill Pt Bonus & Tăng Speed ban đầu",
       "origins": [
         "translation_review"
       ],
@@ -85303,6 +85661,14 @@
           "claim_id": "trc-chatgpt-20260827T095336Z-d7b2c6b2",
           "merged_at": "2026-08-27T09:56:45.759798Z",
           "reason": "Use the source Pt marker with embedded player-facing Skill terminology and replace the forbidden localized Speed label."
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-4722b5991af8-2b38b54670-a5668cac76",
+          "batch_id": "tr-p3-67f8551f7780-4722b5991af8-2b38b54670-a5668cac76-b0635",
+          "claim_id": "trc-chatgpt-sol-auto-restart2-20260830T1216Z-b0635",
+          "merged_at": "2026-08-30T12:23:06.082683Z",
+          "reason": "技能Pt加成 in category 155 requires the canonical Skill Pt Bonus label."
         }
       ]
     },
@@ -87501,9 +87867,10 @@
       "source_text": "速度加成和初始根性提升",
       "source_fingerprint": "a99da262ab2d70b625af87fafa8c482b51f28c3ddbea678c1ac7865b2930f895",
       "rejected_targets": [
+        "Thưởng Speed & Tăng Guts ban đầu",
         "Thưởng Tốc độ & Tăng Ý chí ban đầu"
       ],
-      "approved_target": "Thưởng Speed & Tăng Guts ban đầu",
+      "approved_target": "Speed Bonus & Tăng Guts ban đầu",
       "origins": [
         "translation_review"
       ],
@@ -87516,6 +87883,14 @@
           "claim_id": "trc-chatgpt-20260827T095336Z-d7b2c6b2",
           "merged_at": "2026-08-27T09:56:45.759798Z",
           "reason": "Replace forbidden localized stat labels with embedded player-facing terms."
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-4722b5991af8-2b38b54670-a5668cac76",
+          "batch_id": "tr-p3-67f8551f7780-4722b5991af8-2b38b54670-a5668cac76-b0635",
+          "claim_id": "trc-chatgpt-sol-auto-restart2-20260830T1216Z-b0635",
+          "merged_at": "2026-08-30T12:23:06.082683Z",
+          "reason": "速度加成 in category 155 requires Speed Bonus; Guts is already the canonical stat term."
         }
       ]
     },
@@ -101906,6 +102281,31 @@
       ]
     },
     {
+      "id": "review.regression.ce2532c61efbc3eb",
+      "uid": "zhcn:c2c73cc9d5fb06dec76edaf0",
+      "scope": "uid",
+      "source_text": "干劲稍差时与马娘对话",
+      "source_fingerprint": "6b65704770a940936f02d40468ce8854e9c76f3c5d2d0cf6a605ec3a28515361",
+      "rejected_targets": [
+        "Trò chuyện với Uma Musume khi tâm trạng Hơi kém"
+      ],
+      "approved_target": "Trò chuyện với Mã Nương khi Mood Hơi kém",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-4722b5991af8-2b38b54670-a5668cac76",
+          "batch_id": "tr-p3-67f8551f7780-4722b5991af8-2b38b54670-a5668cac76-b0738",
+          "claim_id": "trc-gpt56sol-auto6-newplan-b0738",
+          "merged_at": "2026-08-30T12:23:06.086988Z",
+          "reason": "Use canonical Mood terminology and the project-standard generic horse-girl term."
+        }
+      ]
+    },
+    {
       "id": "review.regression.839645f386f81b67",
       "uid": "zhcn:c2f023168b09ef0f07f8b135",
       "scope": "uid",
@@ -104838,6 +105238,31 @@
           "claim_id": "trc-chatgpt-sol-20260830-1039-b0943",
           "merged_at": "2026-08-30T03:40:08.391478Z",
           "reason": "Category 172 uses the inheritance Spark mechanic; current text uses forbidden 'Nhân tố'."
+        }
+      ]
+    },
+    {
+      "id": "review.regression.bcd0084cdb2e7e5d",
+      "uid": "zhcn:c7b598fe49b0cfd71beba938",
+      "scope": "uid",
+      "source_text": "给{0}/{1} {2:D2}:{3:D2}开始\n参加特别阶段比赛的赛马娘\n　　　　　　　来应援吧！",
+      "source_fingerprint": "69cf65117d48aeb990706d527dfffc5a213ad3acd0397c3865f3ab626a08a624",
+      "rejected_targets": [
+        "Hãy cổ vũ\nUma Musume tham gia cuộc đua Special Stage bắt đầu lúc {0}/{1} {2:D2}:{3:D2}\n　　　　　　　nào!"
+      ],
+      "approved_target": "Hãy cổ vũ\nMã Nương tham gia Cuộc đua Extra Stage bắt đầu lúc {0}/{1} {2:D2}:{3:D2}\n　　　　　　　nào!",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-4722b5991af8-2b38b54670-a5668cac76",
+          "batch_id": "tr-p3-67f8551f7780-4722b5991af8-2b38b54670-a5668cac76-b0097",
+          "claim_id": "trc-gpt56sol-20260830T121820Z-b0097",
+          "merged_at": "2026-08-30T12:23:06.067466Z",
+          "reason": "特别阶段 là named Extra Stage, generic 赛马娘 phải dùng Mã Nương; giữ placeholder thời gian, ba dòng và locked race term."
         }
       ]
     },
@@ -111384,6 +111809,31 @@
       ]
     },
     {
+      "id": "review.regression.f86236486846ca25",
+      "uid": "zhcn:d46662b25c8cf63cf25bb27a",
+      "scope": "uid",
+      "source_text": "・英雄量表达到MAX后获得的技能为5场比赛限定\n\n・参赛的3名殿堂赛马娘将全部获得相同的英雄技能",
+      "source_fingerprint": "a43df47ff917e1fd7330a270e316173e76e692bde3cd78c552cdeed80dbefbb7",
+      "rejected_targets": [
+        "・Kỹ năng nhận được khi Thanh Anh hùng đạt MAX chỉ có hiệu lực trong 5 cuộc đua\n\n・Cả 3 Uma Musume Điện Danh Vọng tham gia sẽ nhận cùng một Kỹ năng Anh hùng"
+      ],
+      "approved_target": "・Skill nhận được khi Hero Gauge đạt MAX chỉ có hiệu lực trong 5 Cuộc đua\n\n・Cả 3 Mã Nương Điện Danh Vọng tham gia sẽ nhận cùng một Hero Skill",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-4722b5991af8-2b38b54670-a5668cac76",
+          "batch_id": "tr-p3-67f8551f7780-4722b5991af8-2b38b54670-a5668cac76-b0097",
+          "claim_id": "trc-gpt56sol-20260830T121820Z-b0097",
+          "merged_at": "2026-08-30T12:23:06.067466Z",
+          "reason": "Chuẩn hóa generic Skill, Hero Gauge, Mã Nương và named Hero Skill; bảo toàn 5/3 và dòng trống giữa hai bullet."
+        }
+      ]
+    },
+    {
       "id": "review.regression.5a27e3b0aec50eb5",
       "uid": "zhcn:d4680501a28881417d695b25",
       "scope": "uid",
@@ -111825,9 +112275,10 @@
       "source_text": "耐力加成和初始耐力提升",
       "source_fingerprint": "c788f8a3886c15d481d34071433c77c852a5dd28a3133a323574b62e340fef5d",
       "rejected_targets": [
+        "Thưởng Stamina & Tăng Stamina ban đầu",
         "Thưởng Thể lực & Tăng Thể lực ban đầu"
       ],
-      "approved_target": "Thưởng Stamina & Tăng Stamina ban đầu",
+      "approved_target": "Stamina Bonus & Tăng Stamina ban đầu",
       "origins": [
         "translation_review"
       ],
@@ -111840,6 +112291,14 @@
           "claim_id": "trc-chatgpt-20260827T095336Z-d7b2c6b2",
           "merged_at": "2026-08-27T09:56:45.759798Z",
           "reason": "Replace both forbidden localized Stamina labels with the embedded player-facing term."
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-4722b5991af8-2b38b54670-a5668cac76",
+          "batch_id": "tr-p3-67f8551f7780-4722b5991af8-2b38b54670-a5668cac76-b0635",
+          "claim_id": "trc-chatgpt-sol-auto-restart2-20260830T1216Z-b0635",
+          "merged_at": "2026-08-30T12:23:06.082683Z",
+          "reason": "耐力加成 in category 155 requires Stamina Bonus; current Thưởng Stamina is noncanonical."
         }
       ]
     },
@@ -113965,6 +114424,31 @@
           "claim_id": "trc-gpt56sol-20260828T054600Z-b0580",
           "merged_at": "2026-08-28T05:52:02.302348Z",
           "reason": "The upgrade direction and scenario restriction are correct, but the stat facility must use Guts rather than Ý chí."
+        }
+      ]
+    },
+    {
+      "id": "review.regression.bb3daab70918437d",
+      "uid": "zhcn:d908acb4542ba80dc86fa1a8",
+      "scope": "uid",
+      "source_text": "干劲上佳时与马娘对话",
+      "source_fingerprint": "5a52f9b70df430a6c6423b8a063fb13d17d1bced1298fdcfbdb53869f9c3e684",
+      "rejected_targets": [
+        "Trò chuyện với Uma Musume khi tâm trạng Khá tốt"
+      ],
+      "approved_target": "Trò chuyện với Mã Nương khi Mood Khá tốt",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-4722b5991af8-2b38b54670-a5668cac76",
+          "batch_id": "tr-p3-67f8551f7780-4722b5991af8-2b38b54670-a5668cac76-b0738",
+          "claim_id": "trc-gpt56sol-auto6-newplan-b0738",
+          "merged_at": "2026-08-30T12:23:06.086988Z",
+          "reason": "Use canonical Mood terminology and the project-standard generic horse-girl term."
         }
       ]
     },
@@ -119650,6 +120134,31 @@
           "reason": "Using the same compact unlock wording as the parallel key preserves the exact placeholder and improves UI consistency.",
           "ui_key": "SingleModeScenarioBreeders425087",
           "control_type": "short_system_label"
+        }
+      ]
+    },
+    {
+      "id": "review.regression.1d3356a9950f5524",
+      "uid": "zhcn:e36b81b51374e59243d3564d",
+      "scope": "uid",
+      "source_text": "对参加比赛的强烈心情成为了一股强大力量\n团队成员的心连接在了一起！\n获得5场比赛限定的英雄技能！",
+      "source_fingerprint": "4c7010fb5a712d13a8585f0d21315512b1c1bfe2b11a01576544fe5286fb0b4f",
+      "rejected_targets": [
+        "Khát vọng mãnh liệt được tham gia cuộc đua đã trở thành sức mạnh to lớn\nTrái tim các thành viên trong đội đã kết nối với nhau!\nNhận Kỹ năng Anh hùng giới hạn trong 5 cuộc đua!"
+      ],
+      "approved_target": "Khát vọng mãnh liệt được tham gia Cuộc đua đã trở thành Power to lớn\nTrái tim các thành viên trong đội đã kết nối với nhau!\nNhận Hero Skill giới hạn trong 5 Cuộc đua!",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-4722b5991af8-2b38b54670-a5668cac76",
+          "batch_id": "tr-p3-67f8551f7780-4722b5991af8-2b38b54670-a5668cac76-b0097",
+          "claim_id": "trc-gpt56sol-20260830T121820Z-b0097",
+          "merged_at": "2026-08-30T12:23:06.067466Z",
+          "reason": "Chuẩn hóa 力量 → Power, 英雄技能 → Hero Skill và giữ locked Cuộc đua; số 5 và ba dòng được bảo toàn."
         }
       ]
     },
@@ -128931,6 +129440,31 @@
       ]
     },
     {
+      "id": "review.regression.555b816f925f5307",
+      "uid": "zhcn:f4d7065bf3c72624430a1a8c",
+      "scope": "uid",
+      "source_text": "目标比赛回合干劲极差时与马娘对话",
+      "source_fingerprint": "bbc3e6817bf971c2a7743baa50ab5c2c378e3dd2c1e18a0fd49a01a5623084cb",
+      "rejected_targets": [
+        "Trò chuyện với Uma Musume trong lượt đua mục tiêu khi tâm trạng Cực tệ"
+      ],
+      "approved_target": "Trò chuyện với Mã Nương trong lượt Cuộc đua mục tiêu khi Mood Cực tệ",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-4722b5991af8-2b38b54670-a5668cac76",
+          "batch_id": "tr-p3-67f8551f7780-4722b5991af8-2b38b54670-a5668cac76-b0738",
+          "claim_id": "trc-gpt56sol-auto6-newplan-b0738",
+          "merged_at": "2026-08-30T12:23:06.086988Z",
+          "reason": "Use canonical Cuộc đua and Mood terminology, and normalize the generic horse-girl reference to Mã Nương."
+        }
+      ]
+    },
+    {
       "id": "review.regression.c182fe6f7172e1ca",
       "uid": "zhcn:f4d7645af079bf1189d38d9a",
       "scope": "uid",
@@ -130230,6 +130764,31 @@
           "reason": "In an empty ranking panel, 'để hiển thị' is redundant screen context; the shorter message preserves the absence of ranking data.",
           "ui_key": "Heroes679013",
           "control_type": "short_system_label"
+        }
+      ]
+    },
+    {
+      "id": "review.regression.12700503152c972e",
+      "uid": "zhcn:f71db5b1bc2a24a96a29fb96",
+      "scope": "uid",
+      "source_text": "似乎被其他赛马娘挡住了，\n很难突破重围。",
+      "source_fingerprint": "37ef7b811a6f624566c63c723769ea8707bf5a0ab5f3bc55ef74e1a3a1b3e64f",
+      "rejected_targets": [
+        "Có vẻ đã bị các Uma Musume khác chặn lại,\nnên rất khó thoát khỏi vòng vây."
+      ],
+      "approved_target": "Có vẻ đã bị các Mã Nương khác chặn lại,\nnên rất khó thoát khỏi vòng vây.",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-4722b5991af8-2b38b54670-a5668cac76",
+          "batch_id": "tr-p3-67f8551f7780-4722b5991af8-2b38b54670-a5668cac76-b0182",
+          "claim_id": "trc-chatgpt-sol-auto-restart2-20260830T1219Z-b0182",
+          "merged_at": "2026-08-30T12:23:06.071597Z",
+          "reason": "Generic 赛马娘 must use the project canonical Mã Nương term; meaning and newline are preserved."
         }
       ]
     },
@@ -132081,6 +132640,31 @@
       ]
     },
     {
+      "id": "review.regression.c0b8222068ce43fe",
+      "uid": "zhcn:fa33da589856aa16eb4975f4",
+      "scope": "uid",
+      "source_text": "以当前成员和作战策略登记参赛\n赛马娘、作战策略可于<color=#ff911c>参赛登记期间结束</color>前变更",
+      "source_fingerprint": "ec6a84393cfc44c6875afe112e0939b0e288b29b4678237ecab672d5c5efd557",
+      "rejected_targets": [
+        "Đăng ký tham gia với thành viên và chiến thuật hiện tại\nCó thể thay đổi Uma Musume và chiến thuật trước <color=#ff911c>khi thời gian đăng ký tham gia kết thúc</color>"
+      ],
+      "approved_target": "Đăng ký tham gia với thành viên và chiến thuật hiện tại\nCó thể thay đổi Mã Nương và chiến thuật trước <color=#ff911c>khi thời gian đăng ký tham gia kết thúc</color>",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-4722b5991af8-2b38b54670-a5668cac76",
+          "batch_id": "tr-p3-67f8551f7780-4722b5991af8-2b38b54670-a5668cac76-b0097",
+          "claim_id": "trc-gpt56sol-20260830T121820Z-b0097",
+          "merged_at": "2026-08-30T12:23:06.067466Z",
+          "reason": "Generic 赛马娘 phải dùng Mã Nương; giữ nguyên tag màu, newline và ý cho phép thay đổi trước khi thời gian đăng ký kết thúc."
+        }
+      ]
+    },
+    {
       "id": "review.regression.cf6a9696925fb39d",
       "uid": "zhcn:fa3728d3bc539a489c9c75cd",
       "scope": "uid",
@@ -133707,9 +134291,10 @@
       "source_text": "力量加成和初始力量提升",
       "source_fingerprint": "53a30c5e1ddf8541a6c86ae9162f41243a688280af159679584823f84573ee87",
       "rejected_targets": [
+        "Thưởng Power & Tăng Power ban đầu",
         "Thưởng Sức mạnh & Tăng Sức mạnh ban đầu"
       ],
-      "approved_target": "Thưởng Power & Tăng Power ban đầu",
+      "approved_target": "Power Bonus & Tăng Power ban đầu",
       "origins": [
         "translation_review"
       ],
@@ -133722,6 +134307,14 @@
           "claim_id": "trc-chatgpt-20260827T095336Z-d7b2c6b2",
           "merged_at": "2026-08-27T09:56:45.759798Z",
           "reason": "Replace both forbidden localized Power labels with the embedded player-facing term."
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-4722b5991af8-2b38b54670-a5668cac76",
+          "batch_id": "tr-p3-67f8551f7780-4722b5991af8-2b38b54670-a5668cac76-b0635",
+          "claim_id": "trc-chatgpt-sol-auto-restart2-20260830T1216Z-b0635",
+          "merged_at": "2026-08-30T12:23:06.082683Z",
+          "reason": "力量加成 in category 155 requires Power Bonus."
         }
       ]
     },

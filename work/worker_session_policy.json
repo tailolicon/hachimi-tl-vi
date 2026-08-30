@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "policy_version": 9,
+  "policy_version": 10,
   "session_minutes": 25,
   "productive_target_minutes": 22,
   "rolling_lease_minutes": 6,
@@ -36,6 +36,7 @@
   "execution_backend_rule": "Repository work is execution-backend independent. No external harness, plugin, shell, local container, MCP provider, or other backend is implicitly required. A failure of one backend is local to that capability and is not a task-level blocker while another repository read/write/execution path remains available.",
   "backend_failure_fallback_rule": "After a rate limit, EOF, DNS/network failure, unavailable shell/container, transient tool error, or rejected individual write, preserve the task and claim when valid, continue with available connected GitHub read/write capabilities, and use repository GitHub Actions/validation workflows for required execution evidence when the local runtime is unavailable.",
   "backend_failure_handoff_rule": "Do not release or end a worker solely because one execution backend failed. Do not bypass platform safety. Switch to available connected GitHub/repository paths or another eligible unit and keep working until the runtime itself signals finalization. Required acceptance tests may not be skipped when claiming completion.",
+  "canonical_finding_match_rule": "For every translation-review canonical_finding, match_mode=exact is valid ONLY when canonical_finding.source_zh_cn equals the complete reviewed item.source_text after normalization. If source_zh_cn is a reusable alias, race/event/condition name, or other concept occurring inside a longer source string, use match_mode=contains with the narrowest safe scope. Never choose exact merely because the alias itself is an exact/stable name. A result that violates this rule is malformed and may be quarantined by the central merger.",
   "session_end_rule": "Do not self-initiate session end from estimated elapsed time. On an actual platform/runtime cutoff signal, execute emergency_handoff_rule immediately: save partial state first, release your own claim with a continuation pointer, and keep the final report minimal. If the platform hard-kills the run before release, the short lease bounds orphan recovery for the next worker.",
   "throughput_rule": "A worker must continuously claim/resume another batch/unit whenever protocol-valid useful work remains and the runtime still permits work. Prefer continuing from released/expired partial work over untouched work when both have similar priority. Completing one unit early is a trigger to continue, never a reason to end the worker."
 }

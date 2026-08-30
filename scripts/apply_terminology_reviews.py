@@ -12,6 +12,16 @@ ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_REVIEWS = ROOT / "glossary/terminology_reviews.json"
 DEFAULT_REGISTRY = ROOT / "glossary/term_registry.json"
 ALLOWED_ACTIONS = {"lock", "defer", "ignore"}
+ITEM_SCOPED_KINDS = {"proper_name", "skill_name", "condition"}
+SCOPE_FIELDS = (
+    "invalidation_scope",
+    "source_paths",
+    "key_exact",
+    "key_prefixes",
+    "json_path_prefixes",
+    "match_mode",
+    "exclude_source_contains",
+)
 
 
 def read_json(path: Path, default: Any = None) -> Any:
@@ -115,6 +125,7 @@ def locked_alias_index(terms: list[dict[str, Any]]) -> dict[tuple[str, str], lis
                 existing_terms.append(term)
     return index
 
+
 def normalize_decision(decision: dict[str, Any], ordinal: int) -> dict[str, Any]:
     action = str(decision.get("action") or "").strip().lower()
     if action not in ALLOWED_ACTIONS:
@@ -136,6 +147,40 @@ def normalize_decision(decision: dict[str, Any], ordinal: int) -> dict[str, Any]
     return result
 
 
+def _copy_scope_metadata(decision: dict[str, Any], term: dict[str, Any]) -> None:
+    kind = str(decision.get("kind") or "").strip().lower()
+    scope = str(decision.get("invalidation_scope") or "").strip().lower()
+    if not scope and kind in ITEM_SCOPED_KINDS:
+        scope = "item"
+    if scope:
+        if scope not in {"global", "item"}:
+            raise ValueError(f"invalid invalidation_scope: {scope!r}")
+        term["invalidation_scope"] = scope
+
+    for field in ("source_paths", "key_exact", "key_prefixes", "exclude_source_contains"):
+        values = clean_list(decision.get(field))
+        if values:
+            term[field] = values
+
+    raw_prefixes = decision.get("json_path_prefixes")
+    if raw_prefixes is not None:
+        if not isinstance(raw_prefixes, list):
+            raise ValueError("json_path_prefixes must be an array")
+        prefixes: list[list[str]] = []
+        for prefix in raw_prefixes:
+            if not isinstance(prefix, list) or not prefix:
+                raise ValueError("json_path_prefixes entries must be non-empty arrays")
+            prefixes.append([str(part) for part in prefix])
+        if prefixes:
+            term["json_path_prefixes"] = prefixes
+
+    match_mode = str(decision.get("match_mode") or "").strip().lower()
+    if match_mode:
+        if match_mode not in {"exact", "contains"}:
+            raise ValueError(f"invalid match_mode: {match_mode!r}")
+        term["match_mode"] = match_mode
+
+
 def build_locked_term(decision: dict[str, Any]) -> dict[str, Any]:
     category = str(decision.get("category") or decision.get("kind") or "reviewed").strip()
     term: dict[str, Any] = {
@@ -153,10 +198,23 @@ def build_locked_term(decision: dict[str, Any]) -> dict[str, Any]:
         aliases = clean_list(decision.get(field))
         if aliases:
             term[field] = aliases
+    _copy_scope_metadata(decision, term)
     note = str(decision.get("note") or "").strip()
     if note:
         term["note"] = note
     return term
+
+
+def _backfill_scope_metadata(existing: dict[str, Any], candidate: dict[str, Any], decision_id: str) -> None:
+    for field in SCOPE_FIELDS:
+        if field not in candidate:
+            continue
+        if field in existing and existing[field] != candidate[field]:
+            raise ValueError(
+                f"decision {decision_id}: term scope field {field!r} conflicts with existing canonical metadata"
+            )
+        if field not in existing:
+            existing[field] = deepcopy(candidate[field])
 
 
 def apply_reviews(registry: dict[str, Any], reviews: dict[str, Any]) -> tuple[dict[str, Any], dict[str, int]]:
@@ -209,6 +267,7 @@ def apply_reviews(registry: dict[str, Any], reviews: dict[str, Any]) -> tuple[di
                     f"decision {decision['decision_id']}: term_id {term_id!r} already maps to "
                     f"{existing_id.get('target_vi')!r}, not {target!r}"
                 )
+            _backfill_scope_metadata(existing_id, candidate, str(decision["decision_id"]))
 
         matched_existing: dict[str, Any] | None = None
         scope_term = existing_id or candidate
@@ -243,9 +302,10 @@ def apply_reviews(registry: dict[str, Any], reviews: dict[str, Any]) -> tuple[di
 
         existing = existing_id or matched_existing
         if existing is not None:
-            # Idempotent application. We deliberately do not silently mutate an
-            # existing canonical concept with extra aliases; that needs its own
-            # explicit registry edit/review.
+            # Idempotent application. Scope metadata may be backfilled on the
+            # exact same reviewed term because missing item scope used to cause
+            # unrelated global-context churn and invalidate the entire audit.
+            # Aliases and target text are still never mutated implicitly.
             stats["locked_existing"] += 1
             continue
 

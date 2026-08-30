@@ -178,6 +178,107 @@
       "last_seen_at": "2026-08-29T21:40:00Z"
     },
     {
+      "finding_id": "cf-55f0e8a1d70264a2",
+      "status": "open",
+      "source_zh_cn": "等级奖牌",
+      "match_mode": "exact",
+      "source_paths": [
+        "text_data_dict.json"
+      ],
+      "key_exact": [],
+      "json_path_prefixes": [
+        [
+          "133"
+        ]
+      ],
+      "kinds": [
+        "system_label"
+      ],
+      "concepts": [
+        "Named grade/rank medal label in text_data category 133"
+      ],
+      "suggested_targets_vi": [],
+      "confidence_levels": [
+        "high"
+      ],
+      "reasons": [
+        "Repeated/system-facing medal label needs one verified player-facing identity before retrospective review can resolve it."
+      ],
+      "evidence_count": 1,
+      "evidence": [
+        {
+          "uid": "zhcn:6e7d42dbf885145a98b9cc48",
+          "plan_id": "tr-p3-67f8551f7780-8aa63e39705c-2b38b54670-9d98fe7545",
+          "batch_id": "tr-p3-67f8551f7780-8aa63e39705c-2b38b54670-9d98fe7545-b0539",
+          "claim_id": "trc-chatgpt-sol-live-20260830-1504-b0539",
+          "worker_id": "chatgpt-sol-live-20260830-1504-r2",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "133",
+            "3"
+          ],
+          "source_text": "等级奖牌",
+          "current_text": "Huy chương cấp",
+          "proposed_text": null,
+          "reported_at": "2026-08-30T08:38:00Z"
+        }
+      ],
+      "canonical_resolution": null,
+      "review_resolution": null,
+      "first_seen_at": "2026-08-30T08:38:00Z",
+      "last_seen_at": "2026-08-30T08:38:00Z"
+    },
+    {
+      "finding_id": "cf-5f122ded4af0e4b5",
+      "status": "open",
+      "source_zh_cn": "房间竞赛",
+      "match_mode": "contains",
+      "source_paths": [
+        "localize_dict.json"
+      ],
+      "key_exact": [
+        "RoomMatch0001"
+      ],
+      "json_path_prefixes": [],
+      "kinds": [
+        "terminology"
+      ],
+      "concepts": [
+        "Room Match mode"
+      ],
+      "suggested_targets_vi": [
+        "Room Match"
+      ],
+      "confidence_levels": [
+        "high"
+      ],
+      "reasons": [
+        "Các chuỗi cùng nguồn trong review context đã dùng Room Match nhất quán; cần một canonical label dùng chung thay vì giữ biến thể 'Đua phòng'."
+      ],
+      "evidence_count": 1,
+      "evidence": [
+        {
+          "uid": "zhcn:d54915354da6f3b43cb10f74",
+          "plan_id": "tr-p3-67f8551f7780-8aa63e39705c-2b38b54670-9d98fe7545",
+          "batch_id": "tr-p3-67f8551f7780-8aa63e39705c-2b38b54670-9d98fe7545-b0217",
+          "claim_id": "trc-chatgpt-sol-live-20260830-1504-b0217",
+          "worker_id": "chatgpt-sol-live-20260830-1504",
+          "source_path": "localize_dict.json",
+          "json_path": [
+            "RoomMatch0001"
+          ],
+          "source_text": "房间竞赛",
+          "current_text": "Đua phòng",
+          "proposed_text": null,
+          "reported_at": "2026-08-30T08:08:00Z"
+        }
+      ],
+      "canonical_resolution": null,
+      "review_resolution": null,
+      "first_seen_at": "2026-08-30T08:08:00Z",
+      "last_seen_at": "2026-08-30T08:08:00Z"
+    },
+    {
       "finding_id": "cf-770fa863ebe46e7e",
       "status": "open",
       "source_zh_cn": "恢复精神",
@@ -255,7 +356,8 @@
       ],
       "concepts": [
         "Skill title vs generic running-style context",
-        "Pace Chaser straight skill naming conflict"
+        "Pace Chaser straight skill naming conflict",
+        "Skill-name exception vs Pace Chaser generic matcher"
       ],
       "suggested_targets_vi": [],
       "confidence_levels": [
@@ -263,9 +365,10 @@
       ],
       "reasons": [
         "Generic Pace Chaser/Senko community rule is overmatching an individual canonical Skill title and conflicts with the locked Skill-name rule.",
-        "Locked skill-name requires Senko while community rule forbids Senko and requires Pace Chaser/Pace."
+        "Locked skill-name requires Senko while community rule forbids Senko and requires Pace Chaser/Pace.",
+        "The exact Skill name lock requires Senko, but the generic 先行 matcher forbids Senko on the same item. Skill-name context needs an exception or matcher scoping fix."
       ],
-      "evidence_count": 6,
+      "evidence_count": 9,
       "evidence": [
         {
           "uid": "zhcn:39433f3c6b8aeb6369dfd3ef",
@@ -362,6 +465,54 @@
           "current_text": "Đường thẳng Tiền hành○",
           "proposed_text": null,
           "reported_at": "2026-08-30T05:24:00Z"
+        },
+        {
+          "uid": "zhcn:39433f3c6b8aeb6369dfd3ef",
+          "plan_id": "tr-p3-67f8551f7780-8aa63e39705c-2b38b54670-9d98fe7545",
+          "batch_id": "tr-p3-67f8551f7780-8aa63e39705c-2b38b54670-9d98fe7545-b0647",
+          "claim_id": "trc-chatgpt-sol-20260830-1034-b0647",
+          "worker_id": "chatgpt-sol-20260830-0958",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "147",
+            "2013101"
+          ],
+          "source_text": "先行直线○",
+          "current_text": "Đường thẳng Tiền hành○",
+          "proposed_text": null,
+          "reported_at": "2026-08-30T10:42:00Z"
+        },
+        {
+          "uid": "zhcn:22b9e8e6fe16258419478bd4",
+          "plan_id": "tr-p3-67f8551f7780-8aa63e39705c-2b38b54670-9d98fe7545",
+          "batch_id": "tr-p3-67f8551f7780-8aa63e39705c-2b38b54670-9d98fe7545-b0647",
+          "claim_id": "trc-chatgpt-sol-20260830-1034-b0647",
+          "worker_id": "chatgpt-sol-20260830-0958",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "147",
+            "2013102"
+          ],
+          "source_text": "先行直线○",
+          "current_text": "Đường thẳng Tiền hành○",
+          "proposed_text": null,
+          "reported_at": "2026-08-30T10:42:00Z"
+        },
+        {
+          "uid": "zhcn:8384e889d245eb68f47d7aa7",
+          "plan_id": "tr-p3-67f8551f7780-8aa63e39705c-2b38b54670-9d98fe7545",
+          "batch_id": "tr-p3-67f8551f7780-8aa63e39705c-2b38b54670-9d98fe7545-b0647",
+          "claim_id": "trc-chatgpt-sol-20260830-1034-b0647",
+          "worker_id": "chatgpt-sol-20260830-0958",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "147",
+            "2013103"
+          ],
+          "source_text": "先行直线○",
+          "current_text": "Đường thẳng Tiền hành○",
+          "proposed_text": null,
+          "reported_at": "2026-08-30T10:42:00Z"
         }
       ],
       "canonical_resolution": {
@@ -375,7 +526,68 @@
         "target_vi": "Đường thẳng Senko ○"
       },
       "first_seen_at": "2026-08-30T00:36:00Z",
-      "last_seen_at": "2026-08-30T05:24:00Z"
+      "last_seen_at": "2026-08-30T10:42:00Z"
+    },
+    {
+      "finding_id": "cf-8babc5e5172cf132",
+      "status": "open",
+      "source_zh_cn": "目白光明",
+      "match_mode": "exact",
+      "source_paths": [
+        "text_data_dict.json"
+      ],
+      "key_exact": [],
+      "json_path_prefixes": [
+        [
+          "170"
+        ]
+      ],
+      "kinds": [
+        "context_rule"
+      ],
+      "concepts": [
+        "Skill-name substring matcher must not apply inside character names"
+      ],
+      "suggested_targets_vi": [
+        "Mejiro Bright"
+      ],
+      "confidence_levels": [
+        "high"
+      ],
+      "reasons": [
+        "The 光明 Skill-name lock overmatches the character source 目白光明. Full character-name identity Mejiro Bright should take precedence; scope Skill-name matching away from character-name category 170 entries."
+      ],
+      "evidence_count": 1,
+      "evidence": [
+        {
+          "uid": "zhcn:59f4b90d4fbff487a13d3b1a",
+          "plan_id": "tr-p3-67f8551f7780-8aa63e39705c-2b38b54670-9d98fe7545",
+          "batch_id": "tr-p3-67f8551f7780-8aa63e39705c-2b38b54670-9d98fe7545-b0873",
+          "claim_id": "trc-chatgpt-sol-20260830-1054-b0873",
+          "worker_id": "chatgpt-sol-20260830-0958",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "170",
+            "1074"
+          ],
+          "source_text": "目白光明",
+          "current_text": "Mejiro Bright",
+          "proposed_text": null,
+          "reported_at": "2026-08-30T11:02:00Z"
+        }
+      ],
+      "canonical_resolution": {
+        "layer": "locked",
+        "term_id": "character.mejiro_bright",
+        "target_vi": "Mejiro Bright"
+      },
+      "review_resolution": {
+        "decision_id": "parallel.ctx-67f8551f77807292-v1.term-0230.12",
+        "action": "lock",
+        "target_vi": "Mejiro Bright"
+      },
+      "first_seen_at": "2026-08-30T11:02:00Z",
+      "last_seen_at": "2026-08-30T11:02:00Z"
     },
     {
       "finding_id": "cf-a0c8767983424e78",
@@ -506,6 +718,97 @@
       "last_seen_at": "2026-08-30T01:06:00Z"
     },
     {
+      "finding_id": "cf-a9e259453780ac2e",
+      "status": "open",
+      "source_zh_cn": "GO! 全力以赴",
+      "match_mode": "exact",
+      "source_paths": [
+        "text_data_dict.json"
+      ],
+      "key_exact": [],
+      "json_path_prefixes": [
+        [
+          "147"
+        ]
+      ],
+      "kinds": [
+        "context_rule"
+      ],
+      "concepts": [
+        "Conflicting whole-skill and substring canonical locks"
+      ],
+      "suggested_targets_vi": [],
+      "confidence_levels": [
+        "high"
+      ],
+      "reasons": [
+        "Whole-string skill lock conflicts with a reusable substring lock on 全力; matching precedence/scope must be resolved canonically before review can pass."
+      ],
+      "evidence_count": 3,
+      "evidence": [
+        {
+          "uid": "zhcn:20162b1d1c8e5be8029d4669",
+          "plan_id": "tr-p3-67f8551f7780-8aa63e39705c-2b38b54670-9d98fe7545",
+          "batch_id": "tr-p3-67f8551f7780-8aa63e39705c-2b38b54670-9d98fe7545-b0603",
+          "claim_id": "trc-chatgpt-sol-auto-20260830-0651-b0603",
+          "worker_id": "chatgpt-sol-auto-20260830-0631",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "147",
+            "10350301"
+          ],
+          "source_text": "GO! 全力以赴",
+          "current_text": "GO! Dốc toàn lực",
+          "proposed_text": null,
+          "reported_at": "2026-08-30T06:56:00Z"
+        },
+        {
+          "uid": "zhcn:ed36bdbd9bb316a434c86f58",
+          "plan_id": "tr-p3-67f8551f7780-8aa63e39705c-2b38b54670-9d98fe7545",
+          "batch_id": "tr-p3-67f8551f7780-8aa63e39705c-2b38b54670-9d98fe7545-b0603",
+          "claim_id": "trc-chatgpt-sol-auto-20260830-0651-b0603",
+          "worker_id": "chatgpt-sol-auto-20260830-0631",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "147",
+            "10350302"
+          ],
+          "source_text": "GO! 全力以赴",
+          "current_text": "GO! Dốc toàn lực",
+          "proposed_text": null,
+          "reported_at": "2026-08-30T06:56:00Z"
+        },
+        {
+          "uid": "zhcn:b63bdb000e2ce849492e72d1",
+          "plan_id": "tr-p3-67f8551f7780-8aa63e39705c-2b38b54670-9d98fe7545",
+          "batch_id": "tr-p3-67f8551f7780-8aa63e39705c-2b38b54670-9d98fe7545-b0603",
+          "claim_id": "trc-chatgpt-sol-auto-20260830-0651-b0603",
+          "worker_id": "chatgpt-sol-auto-20260830-0631",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "147",
+            "10350303"
+          ],
+          "source_text": "GO! 全力以赴",
+          "current_text": "GO! Dốc toàn lực",
+          "proposed_text": null,
+          "reported_at": "2026-08-30T06:56:00Z"
+        }
+      ],
+      "canonical_resolution": {
+        "layer": "locked",
+        "term_id": "reviewed.skill_name.ad4464b7abc2",
+        "target_vi": "GO! Full-send"
+      },
+      "review_resolution": {
+        "decision_id": "parallel.ctx-67f8551f77807292-v1.term-0004.01",
+        "action": "lock",
+        "target_vi": "GO! Full-send"
+      },
+      "first_seen_at": "2026-08-30T06:56:00Z",
+      "last_seen_at": "2026-08-30T06:56:00Z"
+    },
+    {
       "finding_id": "cf-be35d63dbfa54562",
       "status": "open",
       "source_zh_cn": "先行弯道○",
@@ -524,7 +827,8 @@
       ],
       "concepts": [
         "Skill title vs generic running-style context",
-        "Pace Chaser corner skill naming conflict"
+        "Pace Chaser corner skill naming conflict",
+        "Skill-name exception vs Pace Chaser generic matcher"
       ],
       "suggested_targets_vi": [],
       "confidence_levels": [
@@ -532,9 +836,10 @@
       ],
       "reasons": [
         "Generic Pace Chaser/Senko community rule is overmatching an individual canonical Skill title and conflicts with the locked Skill-name rule.",
-        "Locked skill-name requires Senko while community rule forbids Senko and requires Pace Chaser/Pace."
+        "Locked skill-name requires Senko while community rule forbids Senko and requires Pace Chaser/Pace.",
+        "The exact Skill name lock requires Senko, but the generic 先行 matcher forbids Senko on the same item. Skill-name context needs an exception or matcher scoping fix."
       ],
-      "evidence_count": 6,
+      "evidence_count": 9,
       "evidence": [
         {
           "uid": "zhcn:74df4e00542e3c638235c6ca",
@@ -631,6 +936,54 @@
           "current_text": "Khúc cua Tiền hành○",
           "proposed_text": null,
           "reported_at": "2026-08-30T05:24:00Z"
+        },
+        {
+          "uid": "zhcn:74df4e00542e3c638235c6ca",
+          "plan_id": "tr-p3-67f8551f7780-8aa63e39705c-2b38b54670-9d98fe7545",
+          "batch_id": "tr-p3-67f8551f7780-8aa63e39705c-2b38b54670-9d98fe7545-b0647",
+          "claim_id": "trc-chatgpt-sol-20260830-1034-b0647",
+          "worker_id": "chatgpt-sol-20260830-0958",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "147",
+            "2013201"
+          ],
+          "source_text": "先行弯道○",
+          "current_text": "Khúc cua Tiền hành○",
+          "proposed_text": null,
+          "reported_at": "2026-08-30T10:42:00Z"
+        },
+        {
+          "uid": "zhcn:9863775bbca569dd0261ae90",
+          "plan_id": "tr-p3-67f8551f7780-8aa63e39705c-2b38b54670-9d98fe7545",
+          "batch_id": "tr-p3-67f8551f7780-8aa63e39705c-2b38b54670-9d98fe7545-b0647",
+          "claim_id": "trc-chatgpt-sol-20260830-1034-b0647",
+          "worker_id": "chatgpt-sol-20260830-0958",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "147",
+            "2013202"
+          ],
+          "source_text": "先行弯道○",
+          "current_text": "Khúc cua Tiền hành○",
+          "proposed_text": null,
+          "reported_at": "2026-08-30T10:42:00Z"
+        },
+        {
+          "uid": "zhcn:9583014c8169f5b618bf1823",
+          "plan_id": "tr-p3-67f8551f7780-8aa63e39705c-2b38b54670-9d98fe7545",
+          "batch_id": "tr-p3-67f8551f7780-8aa63e39705c-2b38b54670-9d98fe7545-b0647",
+          "claim_id": "trc-chatgpt-sol-20260830-1034-b0647",
+          "worker_id": "chatgpt-sol-20260830-0958",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "147",
+            "2013203"
+          ],
+          "source_text": "先行弯道○",
+          "current_text": "Khúc cua Tiền hành○",
+          "proposed_text": null,
+          "reported_at": "2026-08-30T10:42:00Z"
         }
       ],
       "canonical_resolution": {
@@ -644,7 +997,7 @@
         "target_vi": "Khúc cua Senko ○"
       },
       "first_seen_at": "2026-08-30T00:36:00Z",
-      "last_seen_at": "2026-08-30T05:24:00Z"
+      "last_seen_at": "2026-08-30T10:42:00Z"
     },
     {
       "finding_id": "cf-c4337c5258c3020a",
@@ -736,6 +1089,52 @@
       },
       "first_seen_at": "2026-08-29T23:41:00Z",
       "last_seen_at": "2026-08-29T23:41:00Z"
+    },
+    {
+      "finding_id": "cf-c507decbef6769ce",
+      "status": "open",
+      "source_zh_cn": "育成等级",
+      "match_mode": "exact",
+      "source_paths": [
+        "localize_dict.json"
+      ],
+      "key_exact": [],
+      "json_path_prefixes": [],
+      "kinds": [
+        "system_label"
+      ],
+      "concepts": [
+        "Room Match rank restriction for trained character"
+      ],
+      "suggested_targets_vi": [],
+      "confidence_levels": [
+        "high"
+      ],
+      "reasons": [
+        "Nhãn player-facing này cần xác định canonical label của 育成 + 等级 trong Room Match trước khi giữ hoặc sửa bản 'Cấp Huấn luyện'; bare 育成 đã được repo xác định là context-sensitive."
+      ],
+      "evidence_count": 1,
+      "evidence": [
+        {
+          "uid": "zhcn:b351b20eaa9a94ec9ea79f60",
+          "plan_id": "tr-p3-67f8551f7780-8aa63e39705c-2b38b54670-9d98fe7545",
+          "batch_id": "tr-p3-67f8551f7780-8aa63e39705c-2b38b54670-9d98fe7545-b0219",
+          "claim_id": "trc-chatgpt-sol-live-20260830-1504-b0219",
+          "worker_id": "chatgpt-sol-live-20260830-1504",
+          "source_path": "localize_dict.json",
+          "json_path": [
+            "RoomMatch0029"
+          ],
+          "source_text": "育成等级",
+          "current_text": "Cấp Huấn luyện",
+          "proposed_text": null,
+          "reported_at": "2026-08-30T08:18:00Z"
+        }
+      ],
+      "canonical_resolution": null,
+      "review_resolution": null,
+      "first_seen_at": "2026-08-30T08:18:00Z",
+      "last_seen_at": "2026-08-30T08:18:00Z"
     },
     {
       "finding_id": "cf-e037547aac6d0e61",

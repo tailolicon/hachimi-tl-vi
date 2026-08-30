@@ -17,3 +17,11 @@ def test_review_merge_has_bounded_watchdog_and_runtime() -> None:
     assert "timeout-minutes: 10" in text
     assert "group: merge-translation-review" in text
     assert "cancel-in-progress: false" in text
+
+
+def test_review_merge_can_publish_across_harmless_worker_checkpoint_churn() -> None:
+    text = _workflow_text()
+    assert "validated_base=$(git rev-parse HEAD)" in text
+    assert "git rebase origin/main" in text
+    assert "work/translation_review/(claims|results|completions)/" in text
+    assert "Main changed in validation-sensitive paths; recomputing" in text

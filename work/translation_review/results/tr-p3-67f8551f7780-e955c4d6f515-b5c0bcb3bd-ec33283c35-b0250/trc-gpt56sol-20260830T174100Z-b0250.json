@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "status": "partial",
+  "status": "complete",
   "plan_id": "tr-p3-67f8551f7780-e955c4d6f515-b5c0bcb3bd-ec33283c35",
   "batch_id": "tr-p3-67f8551f7780-e955c4d6f515-b5c0bcb3bd-ec33283c35-b0250",
   "claim_id": "trc-gpt56sol-20260830T174100Z-b0250",
   "worker_id": "gpt56sol-20260830T174100Z",
-  "reviewed_at": "2026-08-30T17:45:00Z",
-  "completed_count": 15,
+  "reviewed_at": "2026-08-30T17:47:00Z",
+  "completed_count": 20,
   "decisions": [
     {
       "uid": "zhcn:846b0a41d65672f60427c0b3",
@@ -128,6 +128,45 @@
       "proposed_text": "Mua Thẻ / Jewel",
       "reason": "Bản hiện tại dùng Ngọc cho 宝石, không khớp currency term đã khóa.",
       "terminology_basis": "locked term currency.jewel: 宝石 → Jewel.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:e82604aba57478499a529d32",
+      "current_fingerprint": "173d92e260c99539435b21a2084759123eddf9fc20326494de2dd5cca309d178",
+      "action": "revise",
+      "proposed_text": "Có thể dùng {1} {0} hoặc mua Thẻ nhận lại Spark\nđể nhận lại Spark",
+      "reason": "Sửa toàn bộ Nhân tố thành Spark và rút gọn cấu trúc lặp để phản ánh đúng quan hệ phương thức → nhận lại trong nguồn, đồng thời giữ newline và placeholders.",
+      "terminology_basis": "community term common.spark.localize_ui yêu cầu 因子 → Spark và cấm Nhân tố/Factor.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:226876699054c4958365d2d2",
+      "current_fingerprint": "5ef02e14b7a44e20d14fd4e83d2b0262f231593fca32b547467b643369462513",
+      "action": "revise",
+      "proposed_text": "Có thể thực hiện <color=#FF911C>nhận lại Spark bổ sung</color>\n\nBạn có muốn giữ Spark đã chọn ở trên không?",
+      "reason": "Thay calque Nhân tố bằng Spark, đồng thời diễn đạt rõ lựa chọn Spark phía trên; giữ nguyên color tag và hai newline.",
+      "terminology_basis": "community term common.spark.localize_ui yêu cầu 因子 → Spark và cấm Nhân tố/Factor.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:9f7eb7eadf7134af9f9f8528",
+      "current_fingerprint": "6dec17106f42bf63e0c452e08a0dde9b90b9fd699c0619d7b96eeafdab0fee05",
+      "action": "keep",
+      "reason": "Nhãn trạng thái tự động ON được truyền đạt rõ, giữ nguyên token ON.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:50d7bbbfe557e489fba2c013",
+      "current_fingerprint": "7a80274a983767b1f45f86ed0a4d66d74802c3f5155a8540c90a675fd53f90b1",
+      "action": "keep",
+      "reason": "Nhãn trạng thái tự động OFF được truyền đạt rõ, giữ nguyên token OFF.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:f009cda35c298b9696b48ccd",
+      "current_fingerprint": "eadc48c8309e8e55ffd23b951c37c2d39e2efe3000bfb41b6d54abe5be51407a",
+      "action": "keep",
+      "reason": "Cụm từ diễn đạt đúng trạng thái/thiết lập tự động hiện tại và không có rủi ro cấu trúc hay thuật ngữ khóa.",
       "confidence": "high"
     }
   ]

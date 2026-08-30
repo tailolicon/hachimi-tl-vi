@@ -392,6 +392,53 @@
       "last_seen_at": "2026-08-30T08:38:00Z"
     },
     {
+      "finding_id": "cf-5d23e532c5359881",
+      "status": "open",
+      "source_zh_cn": "力量",
+      "match_mode": "contains",
+      "source_paths": [
+        "text_data_dict.json"
+      ],
+      "key_exact": [],
+      "json_path_prefixes": [],
+      "kinds": [
+        "context_rule"
+      ],
+      "concepts": [
+        "Generic narrative power versus Power stat"
+      ],
+      "suggested_targets_vi": [],
+      "confidence_levels": [
+        "high"
+      ],
+      "reasons": [
+        "Stat matcher overmatches narrative title text."
+      ],
+      "evidence_count": 1,
+      "evidence": [
+        {
+          "uid": "zhcn:c7764341e6086330eea7872a",
+          "plan_id": "tr-p3-67f8551f7780-d659bf582bbc-2b38b54670-aa2835c54a",
+          "batch_id": "tr-p3-67f8551f7780-d659bf582bbc-2b38b54670-aa2835c54a-b0421",
+          "claim_id": "trc-sol-20260830-b0421",
+          "worker_id": "chatgpt-sol-20260830",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "130",
+            "181"
+          ],
+          "source_text": "商品的力量",
+          "current_text": "Sức mạnh của hàng hóa",
+          "proposed_text": null,
+          "reported_at": "2026-08-30T13:27:00Z"
+        }
+      ],
+      "canonical_resolution": null,
+      "review_resolution": null,
+      "first_seen_at": "2026-08-30T13:27:00Z",
+      "last_seen_at": "2026-08-30T13:27:00Z"
+    },
+    {
       "finding_id": "cf-5f122ded4af0e4b5",
       "status": "open",
       "source_zh_cn": "房间竞赛",
@@ -1600,16 +1647,18 @@
         "context_rule"
       ],
       "concepts": [
-        "Skill-name alias 快人一步 overmatches descriptive prose"
+        "Skill-name alias 快人一步 overmatches descriptive prose",
+        "Skill-title alias 快人一步 must not match ordinary prose phrase"
       ],
       "suggested_targets_vi": [],
       "confidence_levels": [
         "high"
       ],
       "reasons": [
-        "The reviewed Skill-title lock 一步 vượt lên is being applied inside ordinary descriptive condition text; restrict it to actual Skill-name contexts."
+        "The reviewed Skill-title lock 一步 vượt lên is being applied inside ordinary descriptive condition text; restrict it to actual Skill-name contexts.",
+        "Current Skill matcher overmatches a descriptive phrase in Condition text."
       ],
-      "evidence_count": 1,
+      "evidence_count": 2,
       "evidence": [
         {
           "uid": "zhcn:cdb4f7b18df4c7c403bba7e0",
@@ -1626,6 +1675,22 @@
           "current_text": "Nhờ tinh thông mọi thứ, tốc độ luôn đi trước một bước!\\nĐược giảm giá cho tất cả chiến thuật",
           "proposed_text": null,
           "reported_at": "2026-08-30T13:57:00Z"
+        },
+        {
+          "uid": "zhcn:cdb4f7b18df4c7c403bba7e0",
+          "plan_id": "tr-p3-67f8551f7780-d659bf582bbc-2b38b54670-aa2835c54a",
+          "batch_id": "tr-p3-67f8551f7780-d659bf582bbc-2b38b54670-aa2835c54a-b0471",
+          "claim_id": "trc-sol-20260830-b0471",
+          "worker_id": "chatgpt-sol-20260830",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "143",
+            "7"
+          ],
+          "source_text": "融会贯通的速度快人一步！\\n获得所有战术的折扣",
+          "current_text": "Nhờ tinh thông mọi thứ, tốc độ luôn đi trước một bước!\\nĐược giảm giá cho tất cả chiến thuật",
+          "proposed_text": null,
+          "reported_at": "2026-08-30T13:20:00Z"
         }
       ],
       "canonical_resolution": {
@@ -1639,7 +1704,7 @@
         "target_vi": "Một bước vượt lên"
       },
       "first_seen_at": "2026-08-30T13:57:00Z",
-      "last_seen_at": "2026-08-30T13:57:00Z"
+      "last_seen_at": "2026-08-30T13:20:00Z"
     },
     {
       "finding_id": "cf-b4f768868a204826",
@@ -1656,7 +1721,8 @@
       ],
       "concepts": [
         "Skill-name alias 全力 overmatches ordinary prose such as 全力支持",
-        "Skill-name alias 全力 overmatches ordinary prose 发挥全力"
+        "Skill-name alias 全力 overmatches ordinary prose 发挥全力",
+        "Skill-title alias 全力 must not match ordinary prose meaning full effort"
       ],
       "suggested_targets_vi": [],
       "confidence_levels": [
@@ -1664,9 +1730,10 @@
       ],
       "reasons": [
         "The Skill-title lock Dốc hết sức is being applied inside ordinary prose, so the canonical matching rule needs narrower context before this item can resolve.",
-        "The reviewed Skill-title lock Dốc hết sức should not fire inside generic prose meaning 'perform at full strength'; narrow its matching context."
+        "The reviewed Skill-title lock Dốc hết sức should not fire inside generic prose meaning 'perform at full strength'; narrow its matching context.",
+        "Current Skill matcher overmatches generic prose in Condition descriptions."
       ],
-      "evidence_count": 2,
+      "evidence_count": 3,
       "evidence": [
         {
           "uid": "zhcn:9cd244f642d25ce4875a165d",
@@ -1699,6 +1766,22 @@
           "current_text": "Đua mile là cuộc đấu ngắn hạn! Không bắt được nhịp thì chịu luôn! Muốn về nhà quá……\nVì dao động nên bước chân không ổn định, không thể phát huy toàn lực ở các cuộc đua mile",
           "proposed_text": null,
           "reported_at": "2026-08-30T13:57:00Z"
+        },
+        {
+          "uid": "zhcn:8015a4b1e289dc85b7256aad",
+          "plan_id": "tr-p3-67f8551f7780-d659bf582bbc-2b38b54670-aa2835c54a",
+          "batch_id": "tr-p3-67f8551f7780-d659bf582bbc-2b38b54670-aa2835c54a-b0471",
+          "claim_id": "trc-sol-20260830-b0471",
+          "worker_id": "chatgpt-sol-20260830",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "143",
+            "44"
+          ],
+          "source_text": "英里赛是短期决战！抓不准节奏根本没法玩！好想回家……\n因动摇而脚步不稳，无法在英里赛事中发挥全力",
+          "current_text": "Đua mile là cuộc đấu ngắn hạn! Không bắt được nhịp thì chịu luôn! Muốn về nhà quá……\nVì dao động nên bước chân không ổn định, không thể phát huy toàn lực ở các cuộc đua mile",
+          "proposed_text": null,
+          "reported_at": "2026-08-30T13:20:00Z"
         }
       ],
       "canonical_resolution": {
@@ -1712,7 +1795,7 @@
         "target_vi": "Dốc hết sức"
       },
       "first_seen_at": "2026-08-30T13:48:00Z",
-      "last_seen_at": "2026-08-30T13:57:00Z"
+      "last_seen_at": "2026-08-30T13:20:00Z"
     },
     {
       "finding_id": "cf-bbd5eb705be28b90",
@@ -2204,6 +2287,53 @@
       },
       "first_seen_at": "2026-08-30T12:26:00Z",
       "last_seen_at": "2026-08-30T12:26:00Z"
+    },
+    {
+      "finding_id": "cf-d1bcaa0ab582cbdf",
+      "status": "open",
+      "source_zh_cn": "宝石",
+      "match_mode": "contains",
+      "source_paths": [
+        "text_data_dict.json"
+      ],
+      "key_exact": [],
+      "json_path_prefixes": [],
+      "kinds": [
+        "context_rule"
+      ],
+      "concepts": [
+        "Jewel currency alias must not match inside Daiichi Ruby character name 第一红宝石"
+      ],
+      "suggested_targets_vi": [],
+      "confidence_levels": [
+        "high"
+      ],
+      "reasons": [
+        "Current locked-term matcher falsely requires Jewel inside a character proper name."
+      ],
+      "evidence_count": 1,
+      "evidence": [
+        {
+          "uid": "zhcn:f5882e4cb7a53a9de9a7ccd1",
+          "plan_id": "tr-p3-67f8551f7780-d659bf582bbc-2b38b54670-aa2835c54a",
+          "batch_id": "tr-p3-67f8551f7780-d659bf582bbc-2b38b54670-aa2835c54a-b0360",
+          "claim_id": "trc-sol-20260830-b0360",
+          "worker_id": "chatgpt-sol-20260830",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "10",
+            "10148"
+          ],
+          "source_text": "第一红宝石制作的手工巧克力。\\n使用后TP恢复30。",
+          "current_text": "Chocolate thủ công do Daiichi Ruby làm.\\nKhi dùng, hồi 30 TP.",
+          "proposed_text": null,
+          "reported_at": "2026-08-30T13:14:00Z"
+        }
+      ],
+      "canonical_resolution": null,
+      "review_resolution": null,
+      "first_seen_at": "2026-08-30T13:14:00Z",
+      "last_seen_at": "2026-08-30T13:14:00Z"
     },
     {
       "finding_id": "cf-d884bd73b0c0120f",

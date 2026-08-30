@@ -1357,7 +1357,8 @@
       ],
       "concepts": [
         "Prevent Skill-name alias from matching inside 凯旋门赏 race name",
-        "Skill-name alias 凯旋 overmatches the race proper name 凯旋门赏"
+        "Skill-name alias 凯旋 overmatches the race proper name 凯旋门赏",
+        "Skill alias must not overmatch Prix de l'Arc de Triomphe race name 凯旋门赏"
       ],
       "suggested_targets_vi": [],
       "confidence_levels": [
@@ -1366,9 +1367,10 @@
       "reasons": [
         "Skill-name substring overmatches the proper race name Prix de l'Arc de Triomphe; race identity must remain protected.",
         "Same systemic substring overmatch as other L'Arc race item; canonical matcher must distinguish race name from Skill title.",
-        "The reviewed Skill-title lock should not fire inside the proper race name Prix de l'Arc de Triomphe; narrow the matcher before resolving this item."
+        "The reviewed Skill-title lock should not fire inside the proper race name Prix de l'Arc de Triomphe; narrow the matcher before resolving this item.",
+        "Current item is a race objective and the official race name should not be replaced by a Skill-title lock matched on a substring."
       ],
-      "evidence_count": 3,
+      "evidence_count": 4,
       "evidence": [
         {
           "uid": "zhcn:1136cb24b7b89add2e024a3d",
@@ -1417,6 +1419,22 @@
           "current_text": "Cuộc đua đỉnh cao thế giới 『Prix de l'Arc de Triomphe』. Các kẻ thách thức không ngừng\\nhướng tới chiến thắng. “Năm nay nhất định sẽ trở thành số một thế giới!”\\nHọc viện Tracen đã thành lập <color=#FF6D26>『Dự án L'Arc』</color>.\\nHành trình theo đuổi ước mơ và sự lãng mạn giờ chính thức bắt đầu.",
           "proposed_text": null,
           "reported_at": "2026-08-30T13:48:00Z"
+        },
+        {
+          "uid": "zhcn:4ba7e48282072b043003b971",
+          "plan_id": "tr-p3-67f8551f7780-3f37f45f4bd7-2b38b54670-046c7450d5",
+          "batch_id": "tr-p3-67f8551f7780-3f37f45f4bd7-2b38b54670-046c7450d5-b0439",
+          "claim_id": "trc-gpt56sol-auto-20260830T1423Z-b0439",
+          "worker_id": "gpt56sol-auto-20260830T1423Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "131",
+            "297"
+          ],
+          "source_text": "取得尼尔赏、富瓦赏、凯旋门赏的胜利\\n※Reach for the stars L'Arc计划限定",
+          "current_text": "Chiến thắng Prix Niel, Prix Foy và Prix de l'Arc de Triomphe\\n※Chỉ áp dụng cho dự án Reach for the stars L'Arc",
+          "proposed_text": null,
+          "reported_at": "2026-08-30T14:34:00Z"
         }
       ],
       "canonical_resolution": {
@@ -1430,7 +1448,7 @@
         "target_vi": "Khải hoàn"
       },
       "first_seen_at": "2026-08-30T01:06:00Z",
-      "last_seen_at": "2026-08-30T13:48:00Z"
+      "last_seen_at": "2026-08-30T14:34:00Z"
     },
     {
       "finding_id": "cf-a6f9a22d7cf78668",
@@ -2732,6 +2750,53 @@
       "review_resolution": null,
       "first_seen_at": "2026-08-30T04:35:00Z",
       "last_seen_at": "2026-08-30T04:35:00Z"
+    },
+    {
+      "finding_id": "cf-f6302c57277dc9bc",
+      "status": "open",
+      "source_zh_cn": "赛马娘",
+      "match_mode": "contains",
+      "source_paths": [
+        "text_data_dict.json"
+      ],
+      "key_exact": [],
+      "json_path_prefixes": [],
+      "kinds": [
+        "context_rule"
+      ],
+      "concepts": [
+        "Generic Mã Nương term must not overmatch inside Fuchu Himba Stakes proper race name 府中赛马娘锦标"
+      ],
+      "suggested_targets_vi": [],
+      "confidence_levels": [
+        "high"
+      ],
+      "reasons": [
+        "This occurrence belongs to a race proper name, not the generic world/species term; replacing it with Mã Nương would corrupt the established race name."
+      ],
+      "evidence_count": 1,
+      "evidence": [
+        {
+          "uid": "zhcn:80fbc33d786e5d1fb03a869f",
+          "plan_id": "tr-p3-67f8551f7780-3f37f45f4bd7-2b38b54670-046c7450d5",
+          "batch_id": "tr-p3-67f8551f7780-3f37f45f4bd7-2b38b54670-046c7450d5-b0439",
+          "claim_id": "trc-gpt56sol-auto-20260830T1423Z-b0439",
+          "worker_id": "gpt56sol-auto-20260830T1423Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "131",
+            "314"
+          ],
+          "source_text": "取得府中赛马娘锦标（经典级）、秋华赏、英里赛马杯、\\n安田纪念（古马级）、英里冠军赛（古马级）的胜利，\\n基础能力[速度]达到1200以上",
+          "current_text": "Chiến thắng Fuchu Himba Stakes (cấp Classic), Shuka Sho, Milers Cup,\\nYasuda Kinen (cấp Senior) và Mile Championship (cấp Senior),\\nchỉ số cơ bản [Tốc độ] đạt từ 1200 trở lên",
+          "proposed_text": null,
+          "reported_at": "2026-08-30T14:34:00Z"
+        }
+      ],
+      "canonical_resolution": null,
+      "review_resolution": null,
+      "first_seen_at": "2026-08-30T14:34:00Z",
+      "last_seen_at": "2026-08-30T14:34:00Z"
     },
     {
       "finding_id": "cf-f9d07187211a1675",

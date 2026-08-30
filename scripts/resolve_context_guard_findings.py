@@ -4,14 +4,25 @@ import json
 from pathlib import Path
 from typing import Any
 
-from scripts.translation_review_common import community_term_matches, load_community_terms
+from scripts.translation_review_common import (
+    community_term_matches,
+    load_community_terms,
+    load_locked_terms,
+    locked_term_matches,
+)
 
 
 ROOT = Path(__file__).resolve().parents[1]
 GUARDS = {
     "cf-5d23e532c5359881": {
+        "layer": "community",
         "term_id": "common.stat.power",
         "target_vi": "Power",
+    },
+    "cf-d1bcaa0ab582cbdf": {
+        "layer": "locked",
+        "term_id": "currency.jewel",
+        "target_vi": "Jewel",
     },
 }
 
@@ -27,10 +38,18 @@ def _write(path: Path, payload: dict[str, Any]) -> None:
     path.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8", newline="\n")
 
 
+def _key(item: dict[str, Any]) -> str | None:
+    raw_path = item.get("json_path")
+    if item.get("source_path") == "localize_dict.json" and isinstance(raw_path, list) and raw_path:
+        return str(raw_path[-1])
+    return None
+
+
 def resolve(repo_root: Path = ROOT) -> bool:
     path = repo_root / "glossary" / "canonical_findings.json"
     payload = _load(path)
-    terms = load_community_terms(repo_root)
+    community_terms = load_community_terms(repo_root)
+    locked_terms = load_locked_terms(repo_root)
     before = json.dumps(payload, ensure_ascii=False, sort_keys=True)
 
     for finding in payload.get("findings", []):
@@ -45,14 +64,20 @@ def resolve(repo_root: Path = ROOT) -> bool:
         term_id = str(guard["term_id"])
         still_overmatches = False
         for item in evidence:
-            matches = community_term_matches(
-                str(item.get("json_path", [None])[-1]) if item.get("source_path") == "localize_dict.json" and item.get("json_path") else None,
-                str(item.get("source_text") or ""),
-                str(item.get("current_text") or ""),
-                terms,
-                source_path=str(item.get("source_path") or "") or None,
-                json_path=item.get("json_path") if isinstance(item.get("json_path"), list) else None,
-            )
+            source = str(item.get("source_text") or "")
+            target = str(item.get("current_text") or "")
+            source_path = str(item.get("source_path") or "") or None
+            json_path = item.get("json_path") if isinstance(item.get("json_path"), list) else None
+            if guard["layer"] == "community":
+                matches = community_term_matches(
+                    _key(item), source, target, community_terms,
+                    source_path=source_path, json_path=json_path,
+                )
+            else:
+                matches = locked_term_matches(
+                    source, target, locked_terms,
+                    key=_key(item), source_path=source_path, json_path=json_path,
+                )
             if any(str(match.get("id") or "") == term_id for match in matches):
                 still_overmatches = True
                 break

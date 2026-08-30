@@ -1505,6 +1505,60 @@
       "last_seen_at": "2026-08-29T21:40:00Z"
     },
     {
+      "finding_id": "cf-7dc708ce5da6ce03",
+      "status": "open",
+      "source_zh_cn": "开花",
+      "match_mode": "contains",
+      "source_paths": [
+        "localize_dict.json"
+      ],
+      "key_exact": [],
+      "json_path_prefixes": [],
+      "kinds": [
+        "context_rule"
+      ],
+      "concepts": [
+        "Reviewed Skill-name alias 开花 must not match inside 才能开花 progression/system phrases"
+      ],
+      "suggested_targets_vi": [],
+      "confidence_levels": [
+        "high"
+      ],
+      "reasons": [
+        "The current reviewed Skill-name matcher overmatches a longer system phrase in localize_dict.json and falsely requires the Skill title Nở rộ."
+      ],
+      "evidence_count": 1,
+      "evidence": [
+        {
+          "uid": "zhcn:e3a2932af53095dc7fc35fac",
+          "plan_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3",
+          "batch_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3-b0141",
+          "claim_id": "trc-gpt56sol-20260830T232000Z-b0141",
+          "worker_id": "gpt-5.6-sol-20260830T224500Z",
+          "source_path": "localize_dict.json",
+          "json_path": [
+            "Outgame619047"
+          ],
+          "source_text": "因才能开花条件未达成，无法使用画廊钥匙",
+          "current_text": "Không thể dùng Khóa Gallery vì chưa đạt điều kiện khai hoa tài năng",
+          "proposed_text": null,
+          "reported_at": "2026-08-30T23:24:00Z"
+        }
+      ],
+      "canonical_resolution": {
+        "layer": "locked",
+        "term_id": "reviewed.skill_name.0be1f248cf96",
+        "target_vi": "Nở rộ"
+      },
+      "review_resolution": {
+        "decision_id": "parallel.ctx-67f8551f77807292-v1.term-0036.14",
+        "action": "lock",
+        "target_vi": "Nở rộ"
+      },
+      "first_seen_at": "2026-08-30T23:24:00Z",
+      "last_seen_at": "2026-08-30T23:24:00Z"
+    },
+    {
       "finding_id": "cf-83fb4ab95a552f17",
       "status": "open",
       "source_zh_cn": "先行直线○",

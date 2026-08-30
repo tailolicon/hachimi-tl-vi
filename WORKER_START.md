@@ -29,6 +29,20 @@ After the minimum routing reads above, claim or resume useful work as one of the
 
 **Full-session utilization is mandatory.** Do not stop after one batch/unit merely because it produced a clean checkpoint or completion. Before `stop_new_batch_after_minutes`, immediately continue another safe eligible unit whenever one exists. Do not infer that the 25-minute budget is nearly exhausted from subjective effort, token usage, number of tool calls, lease timing, or one rejected operation; use the live configured minute thresholds only. Lease pressure is not an early-handoff reason.
 
+## 1.2 Authoritative wall-clock rule
+
+**Never estimate or simulate elapsed session minutes. Never use model-authored claim/result timestamps as proof that the worker reached minute 21/22/25.**
+
+For a run that can write to GitHub:
+
+1. make the first valid claim/resume/progress commit as early as practical;
+2. fetch that exact commit back from GitHub and record its server `created_at` as the session timing anchor;
+3. after later checkpoint/result/claim commits, fetch the exact commit back and use its GitHub server `created_at` as the current authoritative wall clock;
+4. calculate elapsed session time only from those server timestamps;
+5. before a voluntary time-budget handoff, verify from GitHub server timestamps that at least `handoff_start_minutes` real minutes have elapsed from the anchor.
+
+A timestamp written inside JSON such as `claimed_at`, `heartbeat_at`, `reviewed_at`, `completed_at`, `released_at`, or `expires_at` is coordination metadata, not a trusted clock. Do not knowingly write those timestamps in the future relative to the GitHub server time of the carrying commit. If no exact authoritative current-time source is available, that uncertainty is **not** permission to assume the session is nearly over; continue useful work until a real authoritative cutoff can be verified or the platform itself terminates the run.
+
 ## 2. Mandatory GitHub write discovery
 
 This project is repository-coordinated. Before reporting that GitHub is read-only or that a claim/commit cannot be made, discover/load connected GitHub write operations, fetch current blob/ref SHA for optimistic concurrency, and attempt the required write. Do not use an unrelated test file as the permission check.

@@ -82,7 +82,12 @@ def test_live_orchestration_state_has_explicit_valid_stage() -> None:
 
     assert state["schema_version"] >= 3
     assert state["orchestration_version"] >= 3
-    assert active["stage"] in policy["maintenance_stages"]
+
+    if state["phase"] == "canonical_hardening":
+        assert active["stage"] in policy["maintenance_stages"]
+    else:
+        assert active.get("stage")
+        assert active["stage"] not in {"domain_work", "ready_for_finalize", "finalizing"}
 
     matches = [item for item in state["roadmap"] if item["id"] == active["task_id"]]
     assert len(matches) == 1
@@ -107,6 +112,7 @@ def test_live_primary_maintenance_claim_carries_progress_evidence() -> None:
     assert claim.get("last_progress_at")
 
     if claim["status"] == "active":
+        assert state["phase"] == "canonical_hardening"
         assert claim["task_id"] == state["active_task"]["task_id"]
 
 

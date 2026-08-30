@@ -1,0 +1,70 @@
+name: Repair translation review progress
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/repair_translation_review_progress.py"
+      - "tests/test_review_progress_stability.py"
+      - ".github/workflows/repair-translation-review-progress.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: repair-translation-review-progress
+  cancel-in-progress: false
+
+jobs:
+  repair:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Restore durable audit progress
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            git checkout -B repair-translation-review-progress origin/main
+
+            python -m pip install -e ".[dev]"
+            python scripts/repair_translation_review_progress.py
+            pytest -q \
+              tests/test_review_progress_stability.py \
+              tests/test_translation_review.py \
+              tests/test_translation_review_gate_idempotence.py
+            python scripts/build_translation_review_plan.py --repo-root . --batch-size 20
+
+            git add \
+              scripts/translation_review_common.py \
+              scripts/repair_translation_review_progress.py \
+              tests/test_review_progress_stability.py \
+              work/translation_review \
+              work/parallel_state.json
+
+            if git diff --cached --quiet; then
+              echo "Translation review progress is already repaired."
+              exit 0
+            fi
+
+            git commit -m "Translation review: restore incremental audit progress"
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+
+            echo "Concurrent main update; rebuilding repair from live main ($attempt/5)."
+            sleep $((attempt * 2))
+          done
+
+          echo "Failed to publish translation review progress repair after retries" >&2
+          exit 1

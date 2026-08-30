@@ -92,6 +92,11 @@ def build_block(progress: dict[str, Any], state: dict[str, Any]) -> str:
 
     review_candidates = int(r.get("candidates") or 0)
     review_resolved = int(r.get("resolved_entries") or 0)
+    # active_plan.candidate_count shrinks after resolved entries are removed on
+    # rebuild, so it is the current unresolved candidate count, not the audit
+    # denominator. The current audit scope is the canonical translated corpus.
+    review_total = int(r.get("scope_total_entries") or translated or (review_candidates + review_resolved))
+    review_unresolved = int(r.get("unresolved_entries") or max(review_total - review_resolved, 0))
     ui_candidates = int(u.get("candidates") or 0)
     ui_done = int(u.get("reviewed_items") or 0)
     gate = "LOCKED" if bool(r.get("gate_enabled")) else "OPEN"
@@ -120,7 +125,7 @@ def build_block(progress: dict[str, Any], state: dict[str, Any]) -> str:
             f"| Pinned source coverage | **{translated:,} / {total:,} ({pct(translated, total):.2f}%)** — {remaining_total:,} remaining |",
             f"| Current translation wave | **{translated:,} / {queued:,} ({pct(translated, queued):.2f}%)** — {remaining_queue:,} queued remaining |",
             f"| Deferred pinned entries | **{deferred:,}** — these must be promoted in later deterministic waves, not ignored |",
-            f"| Translation Audit Round 1 | **{review_resolved:,} / {review_candidates:,} resolved ({pct(review_resolved, review_candidates):.2f}%)** — gate **{gate}** |",
+            f"| Translation Audit Round 1 | **{review_resolved:,} / {review_total:,} resolved ({pct(review_resolved, review_total):.2f}%)** — {review_unresolved:,} unresolved; gate **{gate}** |",
             f"| UI review | **{ui_done:,} / {ui_candidates:,} reviewed items ({pct(ui_done, ui_candidates):.2f}%)** |",
             f"| Context curation | Speech **{float(speech.get('merged_percent') or 0):.2f}%**, terminology **{float(terminology.get('merged_percent') or 0):.2f}%** |",
             f"| Active worker claims | **{int(workers.get('active_total') or 0)}** |",

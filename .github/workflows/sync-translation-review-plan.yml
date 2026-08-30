@@ -25,6 +25,7 @@ on:
       - "scripts/harden_race_canon.py"
       - "scripts/build_translation_review_plan.py"
       - "scripts/translation_review_common.py"
+      - "scripts/repair_translation_review_progress.py"
       - "scripts/canonical_findings.py"
       - "scripts/merge_translation_review.py"
       - "scripts/merge_parallel_results.py"
@@ -32,6 +33,7 @@ on:
       - "src/hachimi_tl_vi/translation_guard.py"
       - "src/hachimi_tl_vi/context_categories.py"
       - "tests/test_translation_review.py"
+      - "tests/test_review_progress_stability.py"
       - "tests/test_translation_guard.py"
       - "tests/test_condition_reference_hardening.py"
       - "tests/test_skill_inheritance_hardening.py"
@@ -68,6 +70,10 @@ jobs:
             git fetch origin main
             git checkout -B translation-review-plan origin/main
 
+            # One-time migration plus permanent idempotent source semantics. This
+            # restores valid keep/revise audit results before any plan is rebuilt;
+            # affected entries still reopen through item-context fingerprints.
+            python scripts/repair_translation_review_progress.py
             python scripts/enforce_player_facing_canon.py
             python scripts/harden_audit_findings.py
             python scripts/harden_character_training_ui_canon.py
@@ -117,10 +123,12 @@ jobs:
               scripts/harden_race_canon.py \
               scripts/canonical_findings.py \
               scripts/translation_review_common.py \
+              scripts/repair_translation_review_progress.py \
               scripts/build_translation_review_plan.py \
               scripts/merge_translation_review.py \
               scripts/merge_parallel_results.py \
               scripts/aggregate_parallel_results.py \
+              tests/test_review_progress_stability.py \
               tests/test_race_hardening.py \
               tests/test_translation_review_gate_idempotence.py \
               src/hachimi_tl_vi/translation_guard.py \
@@ -131,7 +139,7 @@ jobs:
               echo "Canonical terminology and translation review plan/gate are already current."
               exit 0
             fi
-            git commit -m "Translation review: enforce canon and sync active plan"
+            git commit -m "Translation review: restore progress and sync active plan"
 
             # Review workers frequently append isolated claim/result commits to main.
             # Rebase this already-validated generated commit over that harmless churn

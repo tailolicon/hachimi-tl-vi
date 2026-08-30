@@ -123,6 +123,22 @@ RECOVERY_SPIRIT_CONDITION = {
     "basis": "Uma Musume JP 5.5th Anniversary Trainer Ability Condition: JP リカバリー精神. Preserve the mixed English/Japanese player-facing identity as Recovery Spirit; scope is limited to the Condition-name table.",
 }
 
+EPIPHANEIA_NO_HOLDING_BACK_CONDITION = {
+    "id": "condition.epiphaneia.no_holding_back",
+    "category": "condition",
+    "source_aliases": ["传至双腿的焦躁"],
+    "preferred": "I Won't Hold Back!!",
+    "compact": [],
+    "accepted": ["I Won't Hold Back!!"],
+    "forbidden": ["Sự nôn nóng lan xuống đôi chân"],
+    "require_accepted": True,
+    "invalidation_scope": "item",
+    "source_paths": ["text_data_dict.json"],
+    "json_path_prefixes": [["142"]],
+    "match_mode": "exact",
+    "basis": "Epiphaneia-specific bad Condition introduced with her JP release. Current JP guides identify アタシは抑えない！！ as the Condition that makes her slightly more prone to 掛かり; zh-CN 传至双腿的焦躁 describes that leg-borne restlessness and is distinct from the other two Epiphaneia Conditions (final-straight speed loss and Wit loss). Use a direct player-facing English rendering of the JP title until an official Global name exists; keep the rule confined to the Condition-name table.",
+}
+
 TRAINER_ABILITY_CONDITION_DECISIONS = (
     {
         "decision_id": "audit.finding.condition-scholar",
@@ -152,6 +168,16 @@ TRAINER_ABILITY_CONDITION_DECISIONS = (
         "note": "Verified as JP リカバリー精神 from the 5.5th Anniversary Trainer Ability system; preserve Recovery Spirit in the scoped Condition-name table.",
     },
 )
+
+EPIPHANEIA_NO_HOLDING_BACK_DECISION = {
+    "decision_id": "audit.finding.condition-epiphaneia-no-holding-back",
+    "source_zh_cn": "传至双腿的焦躁",
+    "action": "lock",
+    "target_vi": "I Won't Hold Back!!",
+    "kind": "condition",
+    "category": "condition",
+    "note": "Mapped to JP アタシは抑えない！！ from Epiphaneia's three release-specific bad Conditions by its unique 掛かり-prone effect; direct English rendering is used because the character is not yet released on Global.",
+}
 
 
 def _load(path: Path, default: dict[str, Any] | None = None) -> dict[str, Any]:
@@ -197,6 +223,7 @@ def harden(repo_root: Path = ROOT) -> bool:
     _upsert(terms, SCHOLAR_CONDITION)
     _upsert(terms, MENTAL_GUARD_CONDITION)
     _upsert(terms, RECOVERY_SPIRIT_CONDITION)
+    _upsert(terms, EPIPHANEIA_NO_HOLDING_BACK_CONDITION)
     if before != json.dumps(community, ensure_ascii=False, sort_keys=True):
         _write(community_path, community)
         changed = True
@@ -211,6 +238,7 @@ def harden(repo_root: Path = ROOT) -> bool:
     _upsert(decisions, MOXIE_SKILL_DECISION, id_field="decision_id")
     for decision in TRAINER_ABILITY_CONDITION_DECISIONS:
         _upsert(decisions, decision, id_field="decision_id")
+    _upsert(decisions, EPIPHANEIA_NO_HOLDING_BACK_DECISION, id_field="decision_id")
     if before != json.dumps(reviews, ensure_ascii=False, sort_keys=True):
         _write(reviews_path, reviews)
         changed = True

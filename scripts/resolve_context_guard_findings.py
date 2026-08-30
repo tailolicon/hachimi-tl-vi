@@ -24,6 +24,11 @@ GUARDS = {
         "term_id": "currency.jewel",
         "target_vi": "Jewel",
     },
+    "cf-97e98b6571188de5": {
+        "layer": "locked",
+        "term_id": "reviewed.condition.97c2a1f26a21",
+        "target_vi": "Recovery Spirit",
+    },
 }
 
 

@@ -18,6 +18,7 @@ on:
       - "scripts/harden_audit_findings.py"
       - "scripts/harden_weekend_challenge_finding.py"
       - "scripts/harden_strongest_team_finding.py"
+      - "scripts/harden_triple_tiara_finding.py"
       - "scripts/harden_full_effort_skill_finding.py"
       - "scripts/harden_room_match_finding.py"
       - "scripts/harden_power_context_finding.py"
@@ -41,6 +42,7 @@ on:
       - "tests/test_audit_finding_hardening.py"
       - "tests/test_weekend_challenge_finding_hardening.py"
       - "tests/test_strongest_team_finding_hardening.py"
+      - "tests/test_triple_tiara_finding_hardening.py"
       - "tests/test_full_effort_skill_finding_hardening.py"
       - "tests/test_room_match_finding_hardening.py"
       - "tests/test_power_context_finding_hardening.py"
@@ -111,6 +113,9 @@ jobs:
 
       - name: Harden Aim for the Stars event finding
         run: python scripts/harden_strongest_team_finding.py
+
+      - name: Harden Triple Tiara finding
+        run: python scripts/harden_triple_tiara_finding.py
 
       - name: Harden full-effort Skill context finding
         run: python scripts/harden_full_effort_skill_finding.py

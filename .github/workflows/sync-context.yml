@@ -12,6 +12,7 @@ on:
       - "scripts/build_observed_term_memory.py"
       - "scripts/build_terminology_review_queue.py"
       - "scripts/canonical_findings.py"
+      - "scripts/resolve_context_guard_findings.py"
       - "scripts/build_source_bridge_risk_registry.py"
       - "scripts/apply_terminology_reviews.py"
       - "scripts/harden_audit_findings.py"
@@ -33,6 +34,7 @@ on:
       - "tests/test_full_effort_skill_finding_hardening.py"
       - "tests/test_room_match_finding_hardening.py"
       - "tests/test_power_context_finding_hardening.py"
+      - "tests/test_context_guard_finding_resolution.py"
       - "tests/test_context_registry.py"
       - "tests/test_context_sync.py"
       - "tests/test_prompt_context.py"
@@ -98,6 +100,9 @@ jobs:
 
       - name: Refresh worker-reported canonical findings
         run: python scripts/canonical_findings.py --repo-root . --refresh
+
+      - name: Resolve context-guard findings
+        run: python scripts/resolve_context_guard_findings.py
 
       - name: Build terminology review queue
         run: python scripts/build_terminology_review_queue.py

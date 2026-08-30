@@ -42,6 +42,7 @@ on:
       - "tests/test_terminology_review.py"
       - "tests/test_apply_terminology_reviews.py"
       - "tests/test_context_sync_workflow_persistence.py"
+      - "tests/test_context_sync_auto_hardener.py"
       - "pyproject.toml"
       - ".github/workflows/sync-context.yml"
 
@@ -87,11 +88,9 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          shopt -s nullglob
-          scripts=(scripts/harden_*_finding.py)
-          for script in "${scripts[@]}"; do
-            echo "Running ${script}"
-            python "${script}"
+          for script in scripts/harden_*_finding.py; do
+            echo "Running $script"
+            python "$script"
           done
 
       - name: Build source-bridge risk registry

@@ -14,6 +14,7 @@ on:
       - "scripts/canonical_findings.py"
       - "scripts/build_source_bridge_risk_registry.py"
       - "scripts/apply_terminology_reviews.py"
+      - "scripts/harden_audit_findings.py"
       - "src/hachimi_tl_vi/context_categories.py"
       - "src/hachimi_tl_vi/context_registry.py"
       - "src/hachimi_tl_vi/translators/prompt.py"
@@ -21,7 +22,9 @@ on:
       - "glossary/observed_terms.json"
       - "glossary/terminology_reviews.json"
       - "glossary/canonical_findings.json"
+      - "glossary/ui_community_terms.json"
       - "glossary/source_bridge_terms.json"
+      - "tests/test_audit_finding_hardening.py"
       - "tests/test_context_registry.py"
       - "tests/test_context_sync.py"
       - "tests/test_prompt_context.py"
@@ -67,6 +70,9 @@ jobs:
       - name: Apply explicit reviewed terminology locks
         run: python scripts/apply_terminology_reviews.py
 
+      - name: Harden audit-discovered canonical rules
+        run: python scripts/harden_audit_findings.py
+
       - name: Build source-bridge risk registry
         run: python scripts/build_source_bridge_risk_registry.py
 
@@ -92,6 +98,7 @@ jobs:
             glossary/term_registry.json \
             glossary/canonical_findings.json \
             glossary/terminology_review_queue.json \
+            glossary/ui_community_terms.json \
             glossary/source_bridge_risks.generated.json
           if git diff --cached --quiet; then
             echo "Context is already current."

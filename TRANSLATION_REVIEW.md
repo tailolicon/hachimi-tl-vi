@@ -208,7 +208,7 @@ If an item reveals a reusable/systemic terminology, proper-name, source-bridge, 
 }
 ```
 
-Use the smallest alias that actually identifies the concept. Default to exact matching; use `contains` only for a clearly reusable concept. Prefer `scope=auto`; broaden to `source_path` only with strong evidence. Omit `suggested_target_vi` rather than guess. Isolated naturalness fixes are not canonical findings.
+Use the smallest alias that actually identifies the concept. `match_mode: "exact"` is valid **only** when `canonical_finding.source_zh_cn` equals the complete reviewed `item.source_text` after normalization. If the alias/name is embedded inside a longer reviewed source string, use `match_mode: "contains"` with the narrowest safe scope; never choose `exact` merely because the alias itself is a stable exact name. `work/worker_session_policy.json.canonical_finding_match_rule` is authoritative if older copied guidance disagrees. Prefer `scope=auto`; broaden to `source_path` only with strong evidence. Omit `suggested_target_vi` rather than guess. Isolated naturalness fixes are not canonical findings.
 
 The merge pipeline deduplicates findings into `glossary/canonical_findings.json`. That ledger is evidence, not canonical. Open findings are item-scoped blocking context, are pushed near the top of the terminology-review queue, and normalize matching `keep`/`revise` decisions to `defer`. When matching canonical context lands, resolution refresh unblocks the finding and affected entries reopen under the new canonical context. Explicit `ignore` unblocks; explicit `defer` remains blocking.
 
@@ -338,4 +338,3 @@ Apply these project-owner audit decisions as hard review policy:
 - a terminology rule discovered by manual audit must be fixed in canonical context first. Do not patch only the sampled line and leave the same wrong mapping reusable elsewhere.
 
 After the game reaches full translation, start additional whole-corpus audit rounds by incrementing `audit_round`. Multiple clean passes are expected because later context, newly translated content, and manual sampling can expose systemic errors that an earlier pass could not see.
-

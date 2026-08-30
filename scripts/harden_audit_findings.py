@@ -75,6 +75,84 @@ MOXIE_SKILL_DECISION = {
     "note": "Verified against JP 勢い任せ and released EN Moxie. Applies to the repeated text_data category-147 skill-title entries only through the scoped community rule.",
 }
 
+SCHOLAR_CONDITION = {
+    "id": "condition.scholar.trainer_ability",
+    "category": "condition",
+    "source_aliases": ["勤勉好学"],
+    "preferred": "Scholar",
+    "compact": [],
+    "accepted": ["Scholar"],
+    "forbidden": ["Siêng năng hiếu học"],
+    "require_accepted": True,
+    "invalidation_scope": "item",
+    "source_paths": ["text_data_dict.json"],
+    "json_path_prefixes": [["142"]],
+    "match_mode": "exact",
+    "basis": "Uma Musume JP 5.5th Anniversary Trainer Ability Condition: JP 勉強家. Current English community label Scholar; scoped to the Condition-name table so generic study/diligence prose is unaffected.",
+}
+
+MENTAL_GUARD_CONDITION = {
+    "id": "condition.mental_guard.trainer_ability",
+    "category": "condition",
+    "source_aliases": ["精神防护"],
+    "preferred": "Mental Guard",
+    "compact": [],
+    "accepted": ["Mental Guard"],
+    "forbidden": ["Bảo vệ tinh thần"],
+    "require_accepted": True,
+    "invalidation_scope": "item",
+    "source_paths": ["text_data_dict.json"],
+    "json_path_prefixes": [["142"]],
+    "match_mode": "exact",
+    "basis": "Uma Musume JP 5.5th Anniversary Trainer Ability Condition: JP メンタルガード. Preserve the player-facing katakana identity as Mental Guard; scope is limited to the Condition-name table.",
+}
+
+RECOVERY_SPIRIT_CONDITION = {
+    "id": "condition.recovery_spirit.trainer_ability",
+    "category": "condition",
+    "source_aliases": ["恢复精神"],
+    "preferred": "Recovery Spirit",
+    "compact": [],
+    "accepted": ["Recovery Spirit"],
+    "forbidden": ["Hồi phục tinh thần"],
+    "require_accepted": True,
+    "invalidation_scope": "item",
+    "source_paths": ["text_data_dict.json"],
+    "json_path_prefixes": [["142"]],
+    "match_mode": "exact",
+    "basis": "Uma Musume JP 5.5th Anniversary Trainer Ability Condition: JP リカバリー精神. Preserve the mixed English/Japanese player-facing identity as Recovery Spirit; scope is limited to the Condition-name table.",
+}
+
+TRAINER_ABILITY_CONDITION_DECISIONS = (
+    {
+        "decision_id": "audit.finding.condition-scholar",
+        "source_zh_cn": "勤勉好学",
+        "action": "lock",
+        "target_vi": "Scholar",
+        "kind": "condition",
+        "category": "condition",
+        "note": "Verified as JP 勉強家 from the 5.5th Anniversary Trainer Ability system; use current English community label Scholar in the scoped Condition-name table.",
+    },
+    {
+        "decision_id": "audit.finding.condition-mental-guard",
+        "source_zh_cn": "精神防护",
+        "action": "lock",
+        "target_vi": "Mental Guard",
+        "kind": "condition",
+        "category": "condition",
+        "note": "Verified as JP メンタルガード from the 5.5th Anniversary Trainer Ability system; preserve Mental Guard in the scoped Condition-name table.",
+    },
+    {
+        "decision_id": "audit.finding.condition-recovery-spirit",
+        "source_zh_cn": "恢复精神",
+        "action": "lock",
+        "target_vi": "Recovery Spirit",
+        "kind": "condition",
+        "category": "condition",
+        "note": "Verified as JP リカバリー精神 from the 5.5th Anniversary Trainer Ability system; preserve Recovery Spirit in the scoped Condition-name table.",
+    },
+)
+
 
 def _load(path: Path, default: dict[str, Any] | None = None) -> dict[str, Any]:
     if not path.exists():
@@ -116,6 +194,9 @@ def harden(repo_root: Path = ROOT) -> bool:
     _upsert(terms, NIGHT_OWL_REFERENCE_VARIANT)
     _upsert(terms, JUNIOR_MAKE_DEBUT)
     _upsert(terms, MOXIE_SKILL)
+    _upsert(terms, SCHOLAR_CONDITION)
+    _upsert(terms, MENTAL_GUARD_CONDITION)
+    _upsert(terms, RECOVERY_SPIRIT_CONDITION)
     if before != json.dumps(community, ensure_ascii=False, sort_keys=True):
         _write(community_path, community)
         changed = True
@@ -128,6 +209,8 @@ def harden(repo_root: Path = ROOT) -> bool:
         raise ValueError("glossary/terminology_reviews.json decisions must be a list")
     _upsert(decisions, JUNIOR_MAKE_DEBUT_DECISION, id_field="decision_id")
     _upsert(decisions, MOXIE_SKILL_DECISION, id_field="decision_id")
+    for decision in TRAINER_ABILITY_CONDITION_DECISIONS:
+        _upsert(decisions, decision, id_field="decision_id")
     if before != json.dumps(reviews, ensure_ascii=False, sort_keys=True):
         _write(reviews_path, reviews)
         changed = True

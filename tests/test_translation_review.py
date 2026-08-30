@@ -1,5 +1,6 @@
 from scripts.merge_translation_review import _validate_result
 import json
+from pathlib import Path
 from scripts.translation_review_common import (
     community_term_matches,
     context_snapshot_hash,
@@ -247,17 +248,13 @@ def test_item_scoped_canon_changes_policy_hash_without_global_context_hash(tmp_p
     ) is None
 
 
-def test_corner_adept_skill_family_matches_reviewed_canonical_lock(tmp_path):
-    glossary = tmp_path / "glossary"
-    glossary.mkdir()
-    style = {
-        "canonical_examples": [
-            {"source_zh_cn": "弯道巧者○", "target_vi": "Thành thạo khúc cua○"},
-            {"source_zh_cn": "弯道巧者×", "target_vi": "Thành thạo khúc cua×"},
-        ]
+def test_corner_adept_skill_family_matches_reviewed_canonical_lock():
+    repo_root = Path(__file__).resolve().parents[1]
+    payload = json.loads((repo_root / "glossary" / "skill_name_style.json").read_text(encoding="utf-8"))
+    examples = {
+        item["source_zh_cn"]: item["target_vi"]
+        for item in payload.get("canonical_examples", [])
+        if isinstance(item, dict) and item.get("source_zh_cn") and item.get("target_vi")
     }
-    (glossary / "skill_name_style.json").write_text(json.dumps(style, ensure_ascii=False), encoding="utf-8")
-    payload = json.loads((glossary / "skill_name_style.json").read_text(encoding="utf-8"))
-    examples = {item["source_zh_cn"]: item["target_vi"] for item in payload["canonical_examples"]}
     assert examples["弯道巧者○"] == "Thành thạo khúc cua○"
     assert examples["弯道巧者×"] == "Thành thạo khúc cua×"

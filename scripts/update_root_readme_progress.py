@@ -102,6 +102,11 @@ def build_block(progress: dict[str, Any], state: dict[str, Any]) -> str:
     review_batches_total = int(r.get("total") or 0)
     review_worker_percent = float(r.get("worker_percent") or pct(review_batches_done, review_batches_total))
     review_item_decisions = int(r.get("reviewed_items_current_plan") or 0)
+    review_ledger = int(r.get("ledger_reviewed_entries") or review_resolved)
+    review_ledger_percent = float(r.get("ledger_reviewed_percent") or pct(review_ledger, review_total))
+    ledger_keep = int(r.get("ledger_keep") or 0)
+    ledger_revise = int(r.get("ledger_revise") or 0)
+    ledger_defer = int(r.get("ledger_defer") or 0)
     ui_candidates = int(u.get("candidates") or 0)
     ui_done = int(u.get("reviewed_items") or 0)
     gate = "LOCKED" if bool(r.get("gate_enabled")) else "OPEN"
@@ -130,7 +135,7 @@ def build_block(progress: dict[str, Any], state: dict[str, Any]) -> str:
             f"| Pinned source coverage | **{translated:,} / {total:,} ({pct(translated, total):.2f}%)** — {remaining_total:,} remaining |",
             f"| Current translation wave | **{translated:,} / {queued:,} ({pct(translated, queued):.2f}%)** — {remaining_queue:,} queued remaining |",
             f"| Deferred pinned entries | **{deferred:,}** — these must be promoted in later deterministic waves, not ignored |",
-            f"| Translation Audit Round 1 | **{review_batches_done:,} / {review_batches_total:,} review batches completed ({review_worker_percent:.2f}%)** — {review_item_decisions:,} merged item decisions in current plan; {review_resolved:,} / {review_total:,} entries resolved ({pct(review_resolved, review_total):.2f}%); {review_unresolved:,} unresolved; gate **{gate}** |",
+            f"| Translation Audit Round 1 | **{review_ledger:,} / {review_total:,} entries reviewed at least once ({review_ledger_percent:.2f}%)** — ledger keep/revise/defer **{ledger_keep:,}/{ledger_revise:,}/{ledger_defer:,}**; {review_resolved:,} / {review_total:,} currently resolved ({pct(review_resolved, review_total):.2f}%); current generation **{review_batches_done:,} / {review_batches_total:,} batches ({review_worker_percent:.2f}%)**, {review_item_decisions:,} merged decisions; {review_unresolved:,} unresolved; gate **{gate}** |",
             f"| Audit merge backlog | **{review_pending_merge} completed batch** awaiting bounded reconciliation (normally ≤5 min) |",
             f"| UI review | **{ui_done:,} / {ui_candidates:,} reviewed items ({pct(ui_done, ui_candidates):.2f}%)** |",
             f"| Context curation | Speech **{float(speech.get('merged_percent') or 0):.2f}%**, terminology **{float(terminology.get('merged_percent') or 0):.2f}%** |",

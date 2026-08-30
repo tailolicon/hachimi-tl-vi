@@ -1254,7 +1254,8 @@
         "context_rule"
       ],
       "concepts": [
-        "Prevent Skill-name alias from matching inside 凯旋门赏 race name"
+        "Prevent Skill-name alias from matching inside 凯旋门赏 race name",
+        "Skill-name alias 凯旋 overmatches the race proper name 凯旋门赏"
       ],
       "suggested_targets_vi": [],
       "confidence_levels": [
@@ -1262,9 +1263,10 @@
       ],
       "reasons": [
         "Skill-name substring overmatches the proper race name Prix de l'Arc de Triomphe; race identity must remain protected.",
-        "Same systemic substring overmatch as other L'Arc race item; canonical matcher must distinguish race name from Skill title."
+        "Same systemic substring overmatch as other L'Arc race item; canonical matcher must distinguish race name from Skill title.",
+        "The reviewed Skill-title lock should not fire inside the proper race name Prix de l'Arc de Triomphe; narrow the matcher before resolving this item."
       ],
-      "evidence_count": 2,
+      "evidence_count": 3,
       "evidence": [
         {
           "uid": "zhcn:1136cb24b7b89add2e024a3d",
@@ -1297,6 +1299,22 @@
           "current_text": "Đối đầu tay đua huyền thoại của Pháp tại Prix de l'Arc de Triomphe và giành chiến thắng\\n※Chỉ áp dụng cho dự án Reach for the stars L'Arc",
           "proposed_text": null,
           "reported_at": "2026-08-30T01:06:00Z"
+        },
+        {
+          "uid": "zhcn:bbbb04cf382f68baef5ada45",
+          "plan_id": "tr-p3-67f8551f7780-9bc1bdf4d304-2b38b54670-6754cffaef",
+          "batch_id": "tr-p3-67f8551f7780-9bc1bdf4d304-2b38b54670-6754cffaef-b0395",
+          "claim_id": "trc-gpt56sol-auto3-b0395",
+          "worker_id": "gpt56sol-auto3",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "120",
+            "6"
+          ],
+          "source_text": "世界最高峰的比赛『凯旋门赏』。不断有挑战者\\n力图赢取胜利。「今年誓要成为世界第一！」\\n特雷森学园设立了<color=#FF6D26>『L'Arc计划』</color>。\\n追寻梦想与浪漫的旅途，现已拉开帷幕。",
+          "current_text": "Cuộc đua đỉnh cao thế giới 『Prix de l'Arc de Triomphe』. Các kẻ thách thức không ngừng\\nhướng tới chiến thắng. “Năm nay nhất định sẽ trở thành số một thế giới!”\\nHọc viện Tracen đã thành lập <color=#FF6D26>『Dự án L'Arc』</color>.\\nHành trình theo đuổi ước mơ và sự lãng mạn giờ chính thức bắt đầu.",
+          "proposed_text": null,
+          "reported_at": "2026-08-30T13:48:00Z"
         }
       ],
       "canonical_resolution": {
@@ -1310,7 +1328,7 @@
         "target_vi": "Khải hoàn"
       },
       "first_seen_at": "2026-08-30T01:06:00Z",
-      "last_seen_at": "2026-08-30T01:06:00Z"
+      "last_seen_at": "2026-08-30T13:48:00Z"
     },
     {
       "finding_id": "cf-a6f9a22d7cf78668",
@@ -1459,6 +1477,61 @@
       },
       "first_seen_at": "2026-08-30T06:56:00Z",
       "last_seen_at": "2026-08-30T06:56:00Z"
+    },
+    {
+      "finding_id": "cf-b4f768868a204826",
+      "status": "open",
+      "source_zh_cn": "全力",
+      "match_mode": "contains",
+      "source_paths": [
+        "text_data_dict.json"
+      ],
+      "key_exact": [],
+      "json_path_prefixes": [],
+      "kinds": [
+        "context_rule"
+      ],
+      "concepts": [
+        "Skill-name alias 全力 overmatches ordinary prose such as 全力支持"
+      ],
+      "suggested_targets_vi": [],
+      "confidence_levels": [
+        "high"
+      ],
+      "reasons": [
+        "The Skill-title lock Dốc hết sức is being applied inside ordinary prose, so the canonical matching rule needs narrower context before this item can resolve."
+      ],
+      "evidence_count": 1,
+      "evidence": [
+        {
+          "uid": "zhcn:9cd244f642d25ce4875a165d",
+          "plan_id": "tr-p3-67f8551f7780-9bc1bdf4d304-2b38b54670-6754cffaef",
+          "batch_id": "tr-p3-67f8551f7780-9bc1bdf4d304-2b38b54670-6754cffaef-b0395",
+          "claim_id": "trc-gpt56sol-auto3-b0395",
+          "worker_id": "gpt56sol-auto3",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "120",
+            "5"
+          ],
+          "source_text": "出现在想要全力支持赛马娘的训练员们\\n面前的是，被冠以三女神之名的\\n助训AI。领受三女神的睿智，\\n以称霸赛马娘界的顶点赛事――\\n<color=#FF6D26>『Grand Masters』</color>为目标！",
+          "current_text": "Xuất hiện trước những Trainer muốn hết lòng hỗ trợ Uma Musume\\nlà AI hỗ trợ huấn luyện mang tên Ba Nữ thần.\\nTiếp nhận trí tuệ của Ba Nữ thần,\\nhãy nhắm tới việc chinh phục giải đấu đỉnh cao của giới Uma Musume――\\n<color=#FF6D26>『Grand Masters』</color>!",
+          "proposed_text": null,
+          "reported_at": "2026-08-30T13:48:00Z"
+        }
+      ],
+      "canonical_resolution": {
+        "layer": "locked",
+        "term_id": "reviewed.skill_name.5907479481a9",
+        "target_vi": "Dốc hết sức"
+      },
+      "review_resolution": {
+        "decision_id": "parallel.ctx-67f8551f77807292-v1.term-0017.11",
+        "action": "lock",
+        "target_vi": "Dốc hết sức"
+      },
+      "first_seen_at": "2026-08-30T13:48:00Z",
+      "last_seen_at": "2026-08-30T13:48:00Z"
     },
     {
       "finding_id": "cf-bbd5eb705be28b90",

@@ -9,13 +9,13 @@
     "growth": "Every accepted retrospective translation revise and accepted UI revise is folded into this file automatically by both review merge workflows."
   },
   "summary": {
-    "merged_markers_scanned": 244,
-    "translation_merged_markers_scanned": 144,
+    "merged_markers_scanned": 245,
+    "translation_merged_markers_scanned": 145,
     "ui_merged_markers_scanned": 100,
-    "accepted_revision_events": 3300,
-    "accepted_translation_revision_events": 1811,
+    "accepted_revision_events": 3303,
+    "accepted_translation_revision_events": 1814,
     "accepted_ui_revision_events": 1489,
-    "regression_identity_count": 3056,
+    "regression_identity_count": 3058,
     "skipped_incomplete_markers": 0,
     "translation_skipped_incomplete_markers": 0,
     "ui_skipped_incomplete_markers": 0
@@ -14060,6 +14060,31 @@
           "claim_id": "trc-chatgpt-20260830T0103Z-b0807",
           "merged_at": "2026-08-30T01:27:15.626503Z",
           "reason": "Chuẩn hóa Training Effectiveness."
+        }
+      ]
+    },
+    {
+      "id": "review.regression.22e5119ee8547137",
+      "uid": "zhcn:25a6c4c79fca4ed722da7777",
+      "scope": "uid",
+      "source_text": "输入的训练员ID和连携密码\n不匹配",
+      "source_fingerprint": "250ee0a4e8c58de0309290195e37aef903bab0517a5eecf97ea55a242f25d787",
+      "rejected_targets": [
+        "ID Huấn luyện viên và mật khẩu liên kết đã nhập\nkhông khớp"
+      ],
+      "approved_target": "ID Trainer và mật khẩu liên kết đã nhập\nkhông khớp",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-f93c6e2897a3-68a7732bb5-8b8da4b995",
+          "batch_id": "tr-p3-67f8551f7780-f93c6e2897a3-68a7732bb5-8b8da4b995-b0006",
+          "claim_id": "trc-sol-auto9-20260830T020955Z-b0006",
+          "merged_at": "2026-08-30T02:11:42.203778Z",
+          "reason": "Bản hiện tại dùng thuật ngữ bị cấm 'Huấn luyện viên'; thay bằng canonical Trainer và giữ xuống dòng."
         }
       ]
     },
@@ -75591,10 +75616,11 @@
       "source_text": "请不要告诉别人连携密码",
       "source_fingerprint": "b683f522febf08dd08d64d88b80410742ac4e12849233823e833ef422d1c61d7",
       "rejected_targets": [
-        "Không chia sẻ mật khẩu liên kết với người khác"
+        "Không chia sẻ mật khẩu"
       ],
-      "approved_target": "Không chia sẻ mật khẩu",
+      "approved_target": "Không chia sẻ mật khẩu liên kết với người khác",
       "origins": [
+        "translation_review",
         "ui_review"
       ],
       "ui_contexts": [
@@ -75617,6 +75643,14 @@
           "reason": "Within the account-link flow the password context is already established; this keeps the warning action and removes unnecessary width.",
           "ui_key": "AccoutDataLink0114",
           "control_type": "short_system_label"
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-f93c6e2897a3-68a7732bb5-8b8da4b995",
+          "batch_id": "tr-p3-67f8551f7780-f93c6e2897a3-68a7732bb5-8b8da4b995-b0006",
+          "claim_id": "trc-sol-auto9-20260830T020955Z-b0006",
+          "merged_at": "2026-08-30T02:11:42.203778Z",
+          "reason": "Nguồn chỉ rõ mật khẩu liên kết và không được cho người khác biết; bản hiện tại lược mất cả hai chi tiết."
         }
       ]
     },
@@ -88743,6 +88777,31 @@
           "reason": "The current sentence is very wide; the revision keeps the requirement-to-unlock-preview meaning without verbose helper wording.",
           "ui_key": "MapEvent497014",
           "control_type": "short_system_label"
+        }
+      ]
+    },
+    {
+      "id": "review.regression.5ce0916ac00c8908",
+      "uid": "zhcn:f0ebc6508d5b3185b28ebb8c",
+      "scope": "uid",
+      "source_text": "请在数据连携时一起输入<color=#ff911c>训练员ID</color>\n请设定连携密码",
+      "source_fingerprint": "14bad74553b42aaddc779911e229484b74bc2c3e06898b0959f3b82027b12c20",
+      "rejected_targets": [
+        "Khi liên kết dữ liệu, hãy nhập cả <color=#ff911c>ID Huấn luyện viên</color>\nVui lòng đặt mật khẩu liên kết"
+      ],
+      "approved_target": "Khi liên kết dữ liệu, hãy nhập cả <color=#ff911c>ID Trainer</color>\nVui lòng đặt mật khẩu liên kết",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-f93c6e2897a3-68a7732bb5-8b8da4b995",
+          "batch_id": "tr-p3-67f8551f7780-f93c6e2897a3-68a7732bb5-8b8da4b995-b0006",
+          "claim_id": "trc-sol-auto9-20260830T020955Z-b0006",
+          "merged_at": "2026-08-30T02:11:42.203778Z",
+          "reason": "Bản hiện tại dùng thuật ngữ bị cấm 'Huấn luyện viên'; thay bằng canonical Trainer và giữ thẻ màu/xuống dòng."
         }
       ]
     },

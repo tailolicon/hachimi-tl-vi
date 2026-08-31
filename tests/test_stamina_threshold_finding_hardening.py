@@ -4,7 +4,7 @@ import json
 from pathlib import Path
 
 from scripts.canonical_findings import refresh_canonical_resolutions
-from scripts.harden_stamina_threshold_finding import STAMINA_THRESHOLD, harden
+from scripts.harden_stamina_threshold_finding import OBSOLETE_DECISION_ID, STAMINA_THRESHOLD, harden
 from scripts.resolve_scoped_canonical_overrides import resolve_scoped_canonical_overrides
 
 
@@ -14,13 +14,22 @@ def _seed(tmp_path: Path) -> None:
     (glossary / "ui_community_terms.json").write_text(json.dumps({"schema_version": 1, "terms": []}), encoding="utf-8")
     (glossary / "terminology_reviews.json").write_text(json.dumps({
         "schema_version": 1,
-        "decisions": [{
-            "decision_id": "existing.energy",
-            "source_zh_cn": "体力",
-            "action": "lock",
-            "target_vi": "Energy",
-            "kind": "terminology",
-        }],
+        "decisions": [
+            {
+                "decision_id": "existing.energy",
+                "source_zh_cn": "体力",
+                "action": "lock",
+                "target_vi": "Energy",
+                "kind": "terminology",
+            },
+            {
+                "decision_id": OBSOLETE_DECISION_ID,
+                "source_zh_cn": "体力",
+                "action": "lock",
+                "target_vi": "Stamina",
+                "kind": "terminology",
+            },
+        ],
     }), encoding="utf-8")
     (glossary / "term_registry.json").write_text(json.dumps({"terms": []}), encoding="utf-8")
     (glossary / "source_bridge_terms.json").write_text(json.dumps({"terms": []}), encoding="utf-8")

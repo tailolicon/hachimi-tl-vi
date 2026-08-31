@@ -18,3 +18,14 @@ def test_sync_context_auto_triggers_and_runs_all_finding_hardeners() -> None:
     assert '"tests/test_*_finding_hardening.py"' in workflow
     assert "for script in scripts/harden_*_finding.py; do" in workflow
     assert 'python "$script"' in workflow
+
+
+def test_translation_review_plan_sync_cannot_drop_finding_hardeners() -> None:
+    workflow = (ROOT / ".github" / "workflows" / "sync-translation-review-plan.yml").read_text(encoding="utf-8")
+    assert '"scripts/harden_*_finding.py"' in workflow
+    assert '"tests/test_*_finding_hardening.py"' in workflow
+    assert '"tests/test_*_context_guard_resolution.py"' in workflow
+    refresh_index = workflow.index("python scripts/canonical_findings.py --repo-root . --refresh")
+    hardener_index = workflow.index("for script in scripts/harden_*_finding.py; do")
+    guard_index = workflow.index("python scripts/resolve_context_guard_findings.py")
+    assert hardener_index < refresh_index < guard_index

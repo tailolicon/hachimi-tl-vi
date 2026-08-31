@@ -17,7 +17,11 @@ def _seed(tmp_path: Path) -> None:
 
 
 def test_unverified_identity_defers_are_idempotent() -> None:
-    assert {item["source_zh_cn"] for item in DEFERRED_IDENTITIES} == {"スタホTV", "热血誓言", "英雄的光辉", "待春之蕾"}
+    assert {item["source_zh_cn"] for item in DEFERRED_IDENTITIES} == {
+        "スタホTV", "热血誓言", "英雄的光辉", "待春之蕾",
+        "空(NPC)", "光(NPC)", "明人(NPC)", "进(NPC)",
+        "彻(NPC)", "望(NPC)", "正人(NPC)", "佳子(NPC)",
+    }
     assert all(item["action"] == "defer" and item["target_vi"] == "" for item in DEFERRED_IDENTITIES)
 
 

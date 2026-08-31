@@ -3,8 +3,9 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
+from scripts.apply_terminology_reviews import apply_reviews
 from scripts.canonical_findings import refresh_canonical_resolutions
-from scripts.harden_star_ascension_finding import STAR_ASCENSION, harden
+from scripts.harden_star_ascension_finding import REVIEWED_TERM_ID, STAR_ASCENSION, harden
 
 
 def _seed(tmp_path: Path) -> None:
@@ -55,3 +56,35 @@ def test_rule_does_not_resolve_same_phrase_outside_character_piece_category(tmp_
     assert harden(tmp_path) is True
     finding = refresh_canonical_resolutions(tmp_path, {"schema_version": 1, "findings": [_finding("147")]})["findings"][0]
     assert finding["canonical_resolution"] is None
+
+
+def test_hardener_migrates_legacy_talent_bloom_lock_before_review_apply(tmp_path: Path) -> None:
+    _seed(tmp_path)
+    registry_path = tmp_path / "glossary" / "term_registry.json"
+    registry_path.write_text(
+        json.dumps({
+            "terms": [{
+                "id": REVIEWED_TERM_ID,
+                "category": "progression",
+                "zh_cn": ["才能开花"],
+                "target_vi": "Talent Bloom",
+                "locked": True,
+                "review": {"decision_id": "legacy.star-ascension", "source": "test"},
+            }]
+        }),
+        encoding="utf-8",
+    )
+
+    assert harden(tmp_path) is True
+    migrated = json.loads(registry_path.read_text(encoding="utf-8"))
+    legacy = next(term for term in migrated["terms"] if term["id"] == REVIEWED_TERM_ID)
+    assert legacy["target_vi"] == "Star Ascension"
+
+    reviews = json.loads((tmp_path / "glossary" / "terminology_reviews.json").read_text(encoding="utf-8"))
+    applied, stats = apply_reviews(migrated, reviews)
+    assert stats["locked_existing"] == 1
+    reviewed = next(term for term in applied["terms"] if term["id"] == REVIEWED_TERM_ID)
+    assert reviewed["target_vi"] == "Star Ascension"
+    assert reviewed["source_paths"] == ["text_data_dict.json"]
+    assert reviewed["json_path_prefixes"] == [["114"]]
+    assert reviewed["match_mode"] == "contains"

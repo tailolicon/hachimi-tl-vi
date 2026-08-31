@@ -5856,7 +5856,8 @@
         "Skill-title alias must not overmatch ordinary narrative phrase 心动的预感",
         "Skill-name alias 心动 must not overmatch ordinary prose such as 心动的预感",
         "Distinguish Skill-name 心动 from ordinary emotional/hashtag prose",
-        "Skill-name alias 心动 overmatches ordinary prose in song descriptions"
+        "Skill-name alias 心动 overmatches ordinary prose in song descriptions",
+        "Skill-name alias 心动 must not overmatch ordinary/stylized title prose"
       ],
       "suggested_targets_vi": [],
       "confidence_levels": [
@@ -5867,9 +5868,10 @@
         "A generic emotional phrase in text_data category 128 is being treated as the named Skill title Nhịp tim rộn ràng.",
         "The item is song-description prose, not a Skill-name field. The reviewed Skill lock is firing inside a normal phrase and needs narrower structural/context scoping.",
         "Bare 心动 can be ordinary expressive language and should not automatically force a Skill-title rendering in song-description hashtags.",
-        "心动的预感 is ordinary prose rather than a Skill reference; the matcher needs contextual narrowing before this item can be resolved safely."
+        "心动的预感 is ordinary prose rather than a Skill reference; the matcher needs contextual narrowing before this item can be resolved safely.",
+        "心动 appears inside a decorative multi-part title where it functions lexically, not as the standalone canonical Skill name."
       ],
-      "evidence_count": 5,
+      "evidence_count": 6,
       "evidence": [
         {
           "uid": "zhcn:996c7568e8341c51f3593486",
@@ -5950,6 +5952,22 @@
           "current_text": "Một ca khúc tràn đầy dũng khí và hy vọng, như ngôi sao sáng nhất đang lao đi rực rỡ.\\nLinh cảm khiến tim rung động――đó chính là tín hiệu cuộc đua bắt đầu.",
           "proposed_text": null,
           "reported_at": "2026-08-31T13:35:10Z"
+        },
+        {
+          "uid": "zhcn:0313be2720d4708180a34a45",
+          "plan_id": "tr-p3-67f8551f7780-ac7390deb11a-b5c0bcb3bd-69d7965ed4",
+          "batch_id": "tr-p3-67f8551f7780-ac7390deb11a-b5c0bcb3bd-69d7965ed4-b0301",
+          "claim_id": "trc-gpt56sol-auto11-20260831T220800Z-b0301",
+          "worker_id": "gpt56sol-auto11-20260831T215825Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "14",
+            "105501"
+          ],
+          "source_text": "☆闪亮★心动☆雀跃∞美妙∞",
+          "current_text": "☆Lấp lánh★Rung động☆Rộn ràng∞Tuyệt diệu∞",
+          "proposed_text": null,
+          "reported_at": "2026-08-31T22:12:00Z"
         }
       ],
       "canonical_resolution": {
@@ -5963,7 +5981,7 @@
         "target_vi": "Nhịp tim rộn ràng"
       },
       "first_seen_at": "2026-08-31T01:01:03Z",
-      "last_seen_at": "2026-08-31T13:35:10Z"
+      "last_seen_at": "2026-08-31T22:12:00Z"
     },
     {
       "finding_id": "cf-9a0b738dae85c3a2",
@@ -8753,16 +8771,21 @@
         "context_rule"
       ],
       "concepts": [
-        "Jewel currency alias must not match inside Daiichi Ruby character name 第一红宝石"
+        "Jewel currency alias must not match inside Daiichi Ruby character name 第一红宝石",
+        "Currency Jewel alias must not overmatch lexical compounds such as 绿宝石",
+        "Currency Jewel alias must not overmatch gemstone compounds"
       ],
       "suggested_targets_vi": [],
       "confidence_levels": [
         "high"
       ],
       "reasons": [
-        "Current locked-term matcher falsely requires Jewel inside a character proper name."
+        "Current locked-term matcher falsely requires Jewel inside a character proper name.",
+        "The reusable alias 宝石 occurs inside the ordinary noun 绿宝石, where it means gemstone/emerald rather than the in-game Jewel currency.",
+        "宝石 appears as part of 蓝宝石, where it denotes a gemstone compound rather than the Jewel currency.",
+        "宝石 occurs within 绿宝石 in a gemstone title, not as the Jewel currency label."
       ],
-      "evidence_count": 1,
+      "evidence_count": 4,
       "evidence": [
         {
           "uid": "zhcn:f5882e4cb7a53a9de9a7ccd1",
@@ -8779,16 +8802,60 @@
           "current_text": "Chocolate thủ công do Daiichi Ruby làm.\\nKhi dùng, hồi 30 TP.",
           "proposed_text": null,
           "reported_at": "2026-08-30T13:14:00Z"
+        },
+        {
+          "uid": "zhcn:a19cb3b2a41977d712772e68",
+          "plan_id": "tr-p3-67f8551f7780-ac7390deb11a-b5c0bcb3bd-69d7965ed4",
+          "batch_id": "tr-p3-67f8551f7780-ac7390deb11a-b5c0bcb3bd-69d7965ed4-b0300",
+          "claim_id": "trc-gpt56sol-auto11-20260831T220400Z-b0300",
+          "worker_id": "gpt56sol-auto11-20260831T215825Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "14",
+            "100230"
+          ],
+          "source_text": "碧波间的绿宝石",
+          "current_text": "Ngọc Lục Bảo Giữa Sóng Biếc",
+          "proposed_text": null,
+          "reported_at": "2026-08-31T22:07:20Z"
+        },
+        {
+          "uid": "zhcn:788fdc95b9f9115ce289489c",
+          "plan_id": "tr-p3-67f8551f7780-ac7390deb11a-b5c0bcb3bd-69d7965ed4",
+          "batch_id": "tr-p3-67f8551f7780-ac7390deb11a-b5c0bcb3bd-69d7965ed4-b0301",
+          "claim_id": "trc-gpt56sol-auto11-20260831T220800Z-b0301",
+          "worker_id": "gpt56sol-auto11-20260831T215825Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "14",
+            "105923"
+          ],
+          "source_text": "假日・蓝宝石",
+          "current_text": "Ngày nghỉ・Sapphire",
+          "proposed_text": null,
+          "reported_at": "2026-08-31T22:12:00Z"
+        },
+        {
+          "uid": "zhcn:81df773f733a29509b82fcad",
+          "plan_id": "tr-p3-67f8551f7780-ac7390deb11a-b5c0bcb3bd-69d7965ed4",
+          "batch_id": "tr-p3-67f8551f7780-ac7390deb11a-b5c0bcb3bd-69d7965ed4-b0301",
+          "claim_id": "trc-gpt56sol-auto11-20260831T220800Z-b0301",
+          "worker_id": "gpt56sol-auto11-20260831T215825Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "14",
+            "106101"
+          ],
+          "source_text": "绿宝石之王",
+          "current_text": "Vua Ngọc Lục Bảo",
+          "proposed_text": null,
+          "reported_at": "2026-08-31T22:12:00Z"
         }
       ],
-      "canonical_resolution": {
-        "layer": "context_guard",
-        "term_id": "currency.jewel",
-        "target_vi": "Jewel"
-      },
+      "canonical_resolution": null,
       "review_resolution": null,
       "first_seen_at": "2026-08-30T13:14:00Z",
-      "last_seen_at": "2026-08-30T13:14:00Z"
+      "last_seen_at": "2026-08-31T22:12:00Z"
     },
     {
       "finding_id": "cf-d39cfe606d4c854c",

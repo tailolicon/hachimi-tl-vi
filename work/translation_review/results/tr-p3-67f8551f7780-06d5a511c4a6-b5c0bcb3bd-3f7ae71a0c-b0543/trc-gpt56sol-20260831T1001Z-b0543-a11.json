@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "status": "partial",
+  "plan_id": "tr-p3-67f8551f7780-06d5a511c4a6-b5c0bcb3bd-3f7ae71a0c",
+  "batch_id": "tr-p3-67f8551f7780-06d5a511c4a6-b5c0bcb3bd-3f7ae71a0c-b0543",
+  "claim_id": "trc-gpt56sol-20260831T1001Z-b0543-a11",
+  "worker_id": "gpt-5.6-sol-a11",
+  "reviewed_at": "2026-08-31T10:04:00Z",
+  "completed_count": 5,
+  "decisions": [
+    {"uid":"zhcn:0f9eb73a9b753403adf999ae","current_fingerprint":"aa3f35dfb9f4d84a5e3919bdb78ba54de7569c8cf1c4340f372bdc68609fb9e2","action":"revise","proposed_text":"Khi trò chuyện với Mã Nương","reason":"text_data category 171 là metadata điều kiện/kích hoạt, nên dùng cấu trúc 'Khi...' thay vì câu hành động; đồng thời chuẩn hóa generic 马娘 thành Mã Nương.","terminology_basis":"TRANSLATION_REVIEW manual-audit rule for category 171 trigger labels and project world term Mã Nương.","confidence":"high"},
+    {"uid":"zhcn:f12c7606c80db6d4d1f7d9e0","current_fingerprint":"92ff38a7acb4ae97c3f05a8a1c1465c7eceaf99bdd80fa1c33c4986939505d78","action":"defer","reason":"Category 171 cần trigger-label rewrite, nhưng embedded locked Skill term 开花→Nở rộ có dấu hiệu overmatch bên trong system phrase 才能开花; không nên khóa một bản dịch cục bộ trước khi canonical matcher được xác nhận.","terminology_basis":"Category 171 trigger-label policy; embedded locked term reviewed.skill_name.0be1f248cf96 conflicts with broader system phrase 才能开花.","canonical_finding":{"kind":"context_rule","source_zh_cn":"开花","concept":"Prevent Skill-name canonical overmatch inside 才能开花 system/progression phrase","match_mode":"contains","scope":"source_path","reason":"开花 is matched as a Skill title inside the longer system phrase 才能开花 in text_data category 171; canonical context should distinguish the progression label from a Skill-name alias.","confidence":"high"},"confidence":"high"},
+    {"uid":"zhcn:f60a24bd97e6ab2884c59bee","current_fingerprint":"0e4d873f13e8dd434325f97da6e31ebfb4d89e69aafa3a39eb9aac76600a1e4f","action":"revise","proposed_text":"Khi trò chuyện với Mã Nương lúc thể lực ở dưới mức nhất định","reason":"Category 171 phải là nhãn điều kiện/kích hoạt; giữ nguyên hướng so sánh dưới ngưỡng và chuẩn hóa generic 马娘.","terminology_basis":"TRANSLATION_REVIEW manual-audit rule for category 171 and project world term Mã Nương.","confidence":"high"},
+    {"uid":"zhcn:47e695cf7e838b0202c0ae0c","current_fingerprint":"b0c1f8b19bc397f6e408e52725aa4f1ac888573396ca2767bd922b948d3d40f6","action":"revise","proposed_text":"Khi trò chuyện với Mã Nương lúc Mood Tuyệt Hảo","reason":"Category 171 cần trigger-label phrasing; 干劲 là player-facing Mood theo embedded canonical/source bridge, không phải 'tâm trạng'.","terminology_basis":"Embedded common.state.mood and source_bridge state.mood require Mood; category 171 manual-audit rule requires condition/trigger label.","confidence":"high"},
+    {"uid":"zhcn:8226d42b6fd26a31b03dcbbd","current_fingerprint":"f8f9e6e72a420f5a4c1726319bd8f53b07702ebbea9fc7f0437d6c96b0d90a90","action":"revise","proposed_text":"Khi trò chuyện với Mã Nương lúc Mood Tốt","reason":"Category 171 cần trigger-label phrasing; 干劲 phải giữ player-facing label Mood theo embedded context.","terminology_basis":"Embedded common.state.mood and source_bridge state.mood require Mood; category 171 manual-audit rule requires condition/trigger label.","confidence":"high"}
+  ]
+}

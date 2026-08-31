@@ -5292,6 +5292,31 @@
       ],
       "match_mode": "contains",
       "basis": "Named setting of the JP training scenario ごくらく♪ゆこま温泉郷. Cygames scenario coverage identifies the main facility/place as ゆこま温泉郷; preserve the distinctive proper name as Yukoma Onsenkyo rather than translating it as a generic hot-springs village. Scope is limited to scenario descriptions in text_data category 120."
+    },
+    {
+      "id": "career.ui.trainee.text_data",
+      "category": "career_ui",
+      "source_aliases": [
+        "育成赛马娘"
+      ],
+      "preferred": "Trainee",
+      "compact": [],
+      "accepted": [
+        "Trainee"
+      ],
+      "forbidden": [
+        "Uma Musume huấn luyện",
+        "Uma Musume Huấn luyện",
+        "Mã Nương huấn luyện"
+      ],
+      "require_accepted": true,
+      "invalidation_scope": "item",
+      "source_paths": [
+        "text_data_dict.json"
+      ],
+      "json_path_prefixes": [],
+      "match_mode": "contains",
+      "basis": "The repository already defines the full compound 育成赛马娘 / 育成ウマ娘 as the player-facing Trainee concept and explicitly excludes it from generic Umamusume matching. Extend that same full-compound identity to text_data descriptions. This does not map bare 育成 or bare 赛马娘 and therefore avoids the ambiguity that required the original localize_dict key scoping."
     }
   ]
 }

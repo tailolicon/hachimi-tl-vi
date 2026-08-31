@@ -9,13 +9,13 @@
     "growth": "Every accepted retrospective translation revise and accepted UI revise is folded into this file automatically by both review merge workflows."
   },
   "summary": {
-    "merged_markers_scanned": 1287,
-    "translation_merged_markers_scanned": 1187,
+    "merged_markers_scanned": 1297,
+    "translation_merged_markers_scanned": 1197,
     "ui_merged_markers_scanned": 100,
-    "accepted_revision_events": 6698,
-    "accepted_translation_revision_events": 5209,
+    "accepted_revision_events": 6726,
+    "accepted_translation_revision_events": 5237,
     "accepted_ui_revision_events": 1489,
-    "regression_identity_count": 5420,
+    "regression_identity_count": 5443,
     "skipped_incomplete_markers": 0,
     "translation_skipped_incomplete_markers": 0,
     "ui_skipped_incomplete_markers": 0
@@ -168,6 +168,31 @@
           "claim_id": "trc-chatgpt-auto4-20260829T194500Z-b0528",
           "merged_at": "2026-08-30T00:48:53.480484Z",
           "reason": "Use canonical Support Card terminology."
+        }
+      ]
+    },
+    {
+      "id": "review.regression.1d280e4c48d89b39",
+      "uid": "zhcn:002e3fc54d90c9125104c7ed",
+      "scope": "uid",
+      "source_text": "未保存的CM视频将在育成后30天自动删除",
+      "source_fingerprint": "8ef734cb5ff8f208ff03ff00543cb655af883e9b34fcbf9dc2d9d87d8edf364f",
+      "rejected_targets": [
+        "Video CM chưa lưu sẽ tự động bị xóa sau 30 ngày kể từ khi huấn luyện"
+      ],
+      "approved_target": "Video CM chưa lưu sẽ tự động bị xóa sau 30 ngày kể từ khi hoàn tất huấn luyện",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768",
+          "batch_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768-b0225",
+          "claim_id": "trc-chatgpt-gpt56sol-20260831T151100Z-b0225",
+          "merged_at": "2026-08-31T15:27:08.519171Z",
+          "reason": "育成后30天 là 30 ngày sau khi hoàn tất huấn luyện; bản hiện tại 'kể từ khi huấn luyện' mơ hồ về điểm bắt đầu. Giữ nguyên giá trị 30."
         }
       ]
     },
@@ -596,6 +621,31 @@
           "reason": "The donation screen already establishes the item category, so the shorter message keeps the receipt action and x{0} placeholder.",
           "ui_key": "Circle0256",
           "control_type": "short_system_label"
+        }
+      ]
+    },
+    {
+      "id": "review.regression.19f8ffd73e8a1606",
+      "uid": "zhcn:0101cca7cb37e45f2b164203",
+      "scope": "uid",
+      "source_text": "<color=#ff911c>育成赛马娘</color>",
+      "source_fingerprint": "472f12beb7aa5b430267c3ebc3e858d9e9fb52c2a1170e81dd611a69a2ddbd85",
+      "rejected_targets": [
+        "<color=#ff911c>Uma Musume huấn luyện</color>"
+      ],
+      "approved_target": "<color=#ff911c>Mã Nương đang huấn luyện</color>",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768",
+          "batch_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768-b0139",
+          "claim_id": "trc-gpt56sol-20260831T151434Z-b0139-r1",
+          "merged_at": "2026-08-31T15:27:08.516232Z",
+          "reason": "育成赛马娘 is a generic training-context Umamusume label, so the current 'Uma Musume' wording conflicts with the project-wide rule requiring Mã Nương for generic 赛马娘; the revision also keeps the color markup intact."
         }
       ]
     },
@@ -2970,10 +3020,11 @@
       "source_text": "满足条件即可解锁比赛",
       "source_fingerprint": "b1953e82e8169061d35039d19c210a890c050da46dd47c4fc828f3f31cda2da6",
       "rejected_targets": [
-        "Đáp ứng điều kiện để mở khóa cuộc đua"
+        "Đủ điều kiện để mở khóa đua"
       ],
-      "approved_target": "Đủ điều kiện để mở khóa đua",
+      "approved_target": "Đáp ứng điều kiện để mở khóa Cuộc đua",
       "origins": [
+        "translation_review",
         "ui_review"
       ],
       "ui_contexts": [
@@ -2996,6 +3047,14 @@
           "reason": "The concise condition wording plus compact 'đua' preserves the race-unlock requirement with substantially less width.",
           "ui_key": "Story626001",
           "control_type": "short_system_label"
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768",
+          "batch_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768-b0226",
+          "claim_id": "trc-chatgpt-gpt56sol-20260831T151600Z-b0226",
+          "merged_at": "2026-08-31T15:27:08.521724Z",
+          "reason": "Bản hiện tại dùng 'đua', không khớp nhãn canonical Cuộc đua cho 比赛; đồng thời 'đáp ứng điều kiện' sát nghĩa 满足条件 hơn."
         }
       ]
     },
@@ -8262,6 +8321,31 @@
           "reason": "Dropping 'Vui lòng' makes the input prompt substantially narrower without losing the distinct link-password meaning.",
           "ui_key": "AccoutDataLink0024",
           "control_type": "setting_label"
+        }
+      ]
+    },
+    {
+      "id": "review.regression.9be2b0cd79c0cd15",
+      "uid": "zhcn:0bd1d91b093f584bcf819a87",
+      "scope": "uid",
+      "source_text": "支援卡活动加成",
+      "source_fingerprint": "641a23cdbb7140aadda2dc063b65f83b8d4d71f77a3092075cd0ba0db6b38791",
+      "rejected_targets": [
+        "Thưởng sự kiện từ Thẻ hỗ trợ"
+      ],
+      "approved_target": "Thưởng sự kiện từ Support Card",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768",
+          "batch_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768-b0226",
+          "claim_id": "trc-chatgpt-gpt56sol-20260831T151600Z-b0226",
+          "merged_at": "2026-08-31T15:27:08.521724Z",
+          "reason": "支援卡 là thuật ngữ player-facing canonical Support Card; 'Thẻ hỗ trợ' bị cấm theo cả community context và source bridge."
         }
       ]
     },
@@ -13827,6 +13911,31 @@
       ]
     },
     {
+      "id": "review.regression.d371b5a85b41f82d",
+      "uid": "zhcn:151f3396894152b524d077f5",
+      "scope": "uid",
+      "source_text": "在{0}篇没有观看CM视频的赛马娘",
+      "source_fingerprint": "06d40956f988687d0ba497f2c39eab0363f808113bd27cbce8a6a9217656ab80",
+      "rejected_targets": [
+        "Không có Uma Musume chưa xem video CM trong phần {0}"
+      ],
+      "approved_target": "Không có Mã Nương chưa xem video CM trong phần {0}",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768",
+          "batch_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768-b0225",
+          "claim_id": "trc-chatgpt-gpt56sol-20260831T151100Z-b0225",
+          "merged_at": "2026-08-31T15:27:08.519171Z",
+          "reason": "Generic 赛马娘 phải dùng canonical Mã Nương thay vì Uma Musume; placeholder được giữ nguyên."
+        }
+      ]
+    },
+    {
       "id": "review.regression.444f782650db369a",
       "uid": "zhcn:1531c24b89878bc42111d124",
       "scope": "uid",
@@ -16147,6 +16256,31 @@
           "claim_id": "trc-chatgpt-sol-20260830-112000-b0468",
           "merged_at": "2026-08-30T04:12:29.739583Z",
           "reason": "Replace forbidden Thẻ hỗ trợ calque with canonical Support Card while preserving ticket use and line structure."
+        }
+      ]
+    },
+    {
+      "id": "review.regression.cb28ed95d4022720",
+      "uid": "zhcn:1917539df2c74e9394ee9a08",
+      "scope": "uid",
+      "source_text": "心驰",
+      "source_fingerprint": "9aadc25e06d83c9be6c3f2395fb832842c98bdd6efa49c0920ad37dd74869c39",
+      "rejected_targets": [
+        "Tâm trí bay xa"
+      ],
+      "approved_target": "Lòng hướng về",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768",
+          "batch_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768-b0393",
+          "claim_id": "trc-auto11-gpt56sol-20260831T151417Z-b0393",
+          "merged_at": "2026-08-31T15:27:08.539460Z",
+          "reason": "Current text conflicts with the embedded reviewed Skill-name lock."
         }
       ]
     },
@@ -20812,6 +20946,31 @@
           "reason": "The current advancement condition is excessively wide; the compact arrow form preserves all placeholders, the win threshold, target group, and final-round meaning.",
           "ui_key": "Champions0006",
           "control_type": "short_system_label"
+        }
+      ]
+    },
+    {
+      "id": "review.regression.a35a072e923c3d36",
+      "uid": "zhcn:2068b7d08fb25a0bf775fea4",
+      "scope": "uid",
+      "source_text": "喷薄的步伐",
+      "source_fingerprint": "2dc4520f07cad21dff84c963b2d6f213828b9bb2d23e94a170bbf8f0b8a65da8",
+      "rejected_targets": [
+        "Bước chạy bùng trào"
+      ],
+      "approved_target": "Bước chân bứt phá",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768",
+          "batch_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768-b0393",
+          "claim_id": "trc-auto11-gpt56sol-20260831T151417Z-b0393",
+          "merged_at": "2026-08-31T15:27:08.539460Z",
+          "reason": "Current text conflicts with the embedded canonical Skill lock."
         }
       ]
     },
@@ -28642,6 +28801,31 @@
       ]
     },
     {
+      "id": "review.regression.63447041388f55d6",
+      "uid": "zhcn:2d5bbd3edf10532d898635a3",
+      "scope": "uid",
+      "source_text": "已跟随并租借朋友的代表赛马娘\n进行了更改",
+      "source_fingerprint": "6b5ec61cee55feef52604401f0800d1a0b711e979417e3a1487e7744af37857e",
+      "rejected_targets": [
+        "Đã theo dõi và thuê Uma Musume đại diện của bạn bè\nrồi thực hiện thay đổi"
+      ],
+      "approved_target": "Đã theo dõi và thuê Mã Nương đại diện của bạn bè\nrồi thực hiện thay đổi",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768",
+          "batch_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768-b0139",
+          "claim_id": "trc-gpt56sol-20260831T151434Z-b0139-r1",
+          "merged_at": "2026-08-31T15:27:08.516232Z",
+          "reason": "The current sentence preserves the source sequence and newline, but generic 赛马娘 is incorrectly rendered as forbidden 'Uma Musume'; replace only that term with the required Mã Nương."
+        }
+      ]
+    },
+    {
       "id": "review.regression.5333955c4b7dcace",
       "uid": "zhcn:2d6595f4b59703beac6f3777",
       "scope": "uid",
@@ -31976,6 +32160,31 @@
           "reason": "The warning can use a shorter active construction while preserving the color markup and the possibility that a race is removed during update.",
           "ui_key": "PracticeRace400128",
           "control_type": "short_system_label"
+        }
+      ]
+    },
+    {
+      "id": "review.regression.57a88448c1d78ffe",
+      "uid": "zhcn:3242cbd2e1a3ea47f1d5928e",
+      "scope": "uid",
+      "source_text": "喷薄的步伐",
+      "source_fingerprint": "2dc4520f07cad21dff84c963b2d6f213828b9bb2d23e94a170bbf8f0b8a65da8",
+      "rejected_targets": [
+        "Bước chạy bùng trào"
+      ],
+      "approved_target": "Bước chân bứt phá",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768",
+          "batch_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768-b0393",
+          "claim_id": "trc-auto11-gpt56sol-20260831T151417Z-b0393",
+          "merged_at": "2026-08-31T15:27:08.539460Z",
+          "reason": "Current text conflicts with the embedded canonical Skill lock."
         }
       ]
     },
@@ -42228,10 +42437,12 @@
       "source_text": "选择训练员指南<color=#ff911c>推荐的剧情</color>",
       "source_fingerprint": "6a8bd48644cb3f3a6c19c6bfea5c9ea0a3593aee06c607e144448db5d1dbf614",
       "rejected_targets": [
+        "Chọn <color=#ff911c>cốt truyện Hướng dẫn đề xuất</color>",
         "Chọn <color=#ff911c>cốt truyện được đề xuất</color> trong Hướng dẫn Trainer"
       ],
-      "approved_target": "Chọn <color=#ff911c>cốt truyện Hướng dẫn đề xuất</color>",
+      "approved_target": "Chọn <color=#ff911c>cốt truyện do Hướng dẫn Trainer đề xuất</color>",
       "origins": [
+        "translation_review",
         "ui_review"
       ],
       "ui_contexts": [
@@ -42254,6 +42465,14 @@
           "reason": "The compact wording keeps the Trainer Guide recommendation relationship while removing the wide trailing phrase; the color markup is preserved exactly.",
           "ui_key": "RaceFitAssisrance648062",
           "control_type": "short_system_label"
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768",
+          "batch_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768-b0139",
+          "claim_id": "trc-gpt56sol-20260831T151434Z-b0139-r1",
+          "merged_at": "2026-08-31T15:27:08.516232Z",
+          "reason": "Current target omits 训练员 entirely; the revision restores Trainer and preserves the color markup around the recommended-story phrase."
         }
       ]
     },
@@ -50414,10 +50633,12 @@
       "source_text": "育成赛马娘活动加成",
       "source_fingerprint": "b105a7dbc930a853f70148ea367d2942d6bbf156029cc64eb7396949abf86843",
       "rejected_targets": [
+        "Thưởng sự kiện từ Uma huấn luyện",
         "Thưởng sự kiện từ Uma Musume huấn luyện"
       ],
-      "approved_target": "Thưởng sự kiện từ Uma huấn luyện",
+      "approved_target": "Thưởng sự kiện từ Mã Nương được huấn luyện",
       "origins": [
+        "translation_review",
         "ui_review"
       ],
       "ui_contexts": [
@@ -50440,6 +50661,14 @@
           "reason": "Canonical compact 'Uma' preserves the trained-character event-bonus category while removing the over-wide full franchise noun.",
           "ui_key": "StoryEvent0006",
           "control_type": "short_system_label"
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768",
+          "batch_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768-b0226",
+          "claim_id": "trc-chatgpt-gpt56sol-20260831T151600Z-b0226",
+          "merged_at": "2026-08-31T15:27:08.521724Z",
+          "reason": "育成赛马娘 chỉ Mã Nương được huấn luyện; bản hiện tại dùng 'Uma' rút gọn, không phù hợp canonical world term và câu cũng thiếu tự nhiên."
         }
       ]
     },
@@ -51530,6 +51759,31 @@
       ]
     },
     {
+      "id": "review.regression.c7984c469da4207d",
+      "uid": "zhcn:5222b4bf2c9fd926b422c853",
+      "scope": "uid",
+      "source_text": "心驰",
+      "source_fingerprint": "9aadc25e06d83c9be6c3f2395fb832842c98bdd6efa49c0920ad37dd74869c39",
+      "rejected_targets": [
+        "Tâm trí bay xa"
+      ],
+      "approved_target": "Lòng hướng về",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768",
+          "batch_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768-b0393",
+          "claim_id": "trc-auto11-gpt56sol-20260831T151417Z-b0393",
+          "merged_at": "2026-08-31T15:27:08.539460Z",
+          "reason": "Current text conflicts with the embedded reviewed Skill-name lock."
+        }
+      ]
+    },
+    {
       "id": "review.regression.f6be0c562a4c1e78",
       "uid": "zhcn:522cda5eb0608001e10a6355",
       "scope": "uid",
@@ -52428,6 +52682,31 @@
           "reason": "A compact header can omit the verbal construction 'sau khi xây dựng' while keeping the post-construction facility-effect meaning.",
           "ui_key": "SingleModeScenarioPioneer585070",
           "control_type": "header"
+        }
+      ]
+    },
+    {
+      "id": "review.regression.3574df504a37fef7",
+      "uid": "zhcn:5349104e42d6c37a278cc6b0",
+      "scope": "uid",
+      "source_text": "喷薄的步伐",
+      "source_fingerprint": "2dc4520f07cad21dff84c963b2d6f213828b9bb2d23e94a170bbf8f0b8a65da8",
+      "rejected_targets": [
+        "Bước chạy bùng trào"
+      ],
+      "approved_target": "Bước chân bứt phá",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768",
+          "batch_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768-b0393",
+          "claim_id": "trc-auto11-gpt56sol-20260831T151417Z-b0393",
+          "merged_at": "2026-08-31T15:27:08.539460Z",
+          "reason": "Current text conflicts with the embedded canonical Skill lock."
         }
       ]
     },
@@ -61337,10 +61616,11 @@
       "source_text": "更新显示中的训练员指南",
       "source_fingerprint": "60d287d8e7960af6f5a318c68602f38bf135025ff911ffe20621b9bed55c519e",
       "rejected_targets": [
-        "Cập nhật Hướng dẫn Trainer đang hiển thị"
+        "Cập nhật Hướng dẫn Trainer"
       ],
-      "approved_target": "Cập nhật Hướng dẫn Trainer",
+      "approved_target": "Cập nhật Hướng dẫn Trainer đang hiển thị",
       "origins": [
+        "translation_review",
         "ui_review"
       ],
       "ui_contexts": [
@@ -61363,6 +61643,14 @@
           "reason": "The displayed guide is implicit in the current screen, so the compact action label keeps the update function without redundant context.",
           "ui_key": "RaceFitAssisrance648061",
           "control_type": "normal_button"
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768",
+          "batch_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768-b0139",
+          "claim_id": "trc-gpt56sol-20260831T151434Z-b0139-r1",
+          "merged_at": "2026-08-31T15:27:08.516232Z",
+          "reason": "Current target drops 显示中的 ('currently displayed'); the revision restores that UI qualifier while preserving the canonical Trainer term."
         }
       ]
     },
@@ -65657,6 +65945,31 @@
       ]
     },
     {
+      "id": "review.regression.50c577e1782f3201",
+      "uid": "zhcn:68491e75fb98280267fadb9d",
+      "scope": "uid",
+      "source_text": "心驰",
+      "source_fingerprint": "9aadc25e06d83c9be6c3f2395fb832842c98bdd6efa49c0920ad37dd74869c39",
+      "rejected_targets": [
+        "Tâm trí bay xa"
+      ],
+      "approved_target": "Lòng hướng về",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768",
+          "batch_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768-b0393",
+          "claim_id": "trc-auto11-gpt56sol-20260831T151417Z-b0393",
+          "merged_at": "2026-08-31T15:27:08.539460Z",
+          "reason": "Current text conflicts with the embedded reviewed Skill-name lock."
+        }
+      ]
+    },
+    {
       "id": "review.regression.d60bcafd1369b818",
       "uid": "zhcn:684a3f96451163648f0a4ec7",
       "scope": "uid",
@@ -69376,6 +69689,31 @@
           "claim_id": "trc-chatgpt-sol-auto2-20260830T1147Z-b0247",
           "merged_at": "2026-08-30T11:50:42.283328Z",
           "reason": "Replace forbidden literal Nhân tố with canonical Spark."
+        }
+      ]
+    },
+    {
+      "id": "review.regression.d76eeafacb4be4a8",
+      "uid": "zhcn:6e4524b8d944e6c304c5aa20",
+      "scope": "uid",
+      "source_text": "从赛马娘身上<color=#FF911C>继承了对特别周的心意</color>！",
+      "source_fingerprint": "7ac27dd3e201bb578ca561d19bd714acee429088de8899a3803a86ef974fe8f0",
+      "rejected_targets": [
+        "Đã <color=#FF911C>kế thừa tình cảm dành cho Special Week</color> từ Uma Musume!"
+      ],
+      "approved_target": "Đã <color=#FF911C>kế thừa tâm ý dành cho Special Week</color> từ Mã Nương!",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768",
+          "batch_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768-b0225",
+          "claim_id": "trc-chatgpt-gpt56sol-20260831T151100Z-b0225",
+          "merged_at": "2026-08-31T15:27:08.519171Z",
+          "reason": "Sửa generic 赛马娘 sang canonical Mã Nương, đồng thời dùng 'tâm ý' để bám sát 心意 và nhất quán với chuỗi inheritance liền kề. Giữ nguyên tag màu."
         }
       ]
     },
@@ -75112,6 +75450,31 @@
       ]
     },
     {
+      "id": "review.regression.741390de6ec4131b",
+      "uid": "zhcn:76a50de5056250b701562800",
+      "scope": "uid",
+      "source_text": "长距离赛",
+      "source_fingerprint": "c35d8fb1558c7ba0a1c036a3c422910309ce72ceefee979bca9c96fd21b55e1e",
+      "rejected_targets": [
+        "Đua cự ly dài"
+      ],
+      "approved_target": "Đua Long",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768",
+          "batch_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768-b0139",
+          "claim_id": "trc-gpt56sol-20260831T151434Z-b0139-r1",
+          "merged_at": "2026-08-31T15:27:08.516232Z",
+          "reason": "长距离 is an established player-facing distance class and the current Vietnamese calque conflicts with the required canonical term Long."
+        }
+      ]
+    },
+    {
       "id": "review.regression.ee589a3650dbd36e",
       "uid": "zhcn:76b33030a20c23190ebc66da",
       "scope": "uid",
@@ -78941,6 +79304,31 @@
       ]
     },
     {
+      "id": "review.regression.7a8ae71d4032a731",
+      "uid": "zhcn:7c1c517ac6a0726c18e1f5a6",
+      "scope": "uid",
+      "source_text": "序曲",
+      "source_fingerprint": "3df5903dbdcd3a11e02fef900a71ec65e2ff4b310299985cd3b80299c0009fb2",
+      "rejected_targets": [
+        "Khúc dạo đầu"
+      ],
+      "approved_target": "Prelude",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768",
+          "batch_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768-b0394",
+          "claim_id": "trc-auto11-gpt56sol-20260831T152230Z-b0394",
+          "merged_at": "2026-08-31T15:27:08.542416Z",
+          "reason": "Current text conflicts with the embedded reviewed Skill-name lock."
+        }
+      ]
+    },
+    {
       "id": "review.regression.6ceee2a3f7ccab30",
       "uid": "zhcn:7c1f96c330bdc09816f2d4d2",
       "scope": "uid",
@@ -82136,6 +82524,31 @@
           "reason": "The polite helper is unnecessary in a compact instruction; the right-side jukebox action remains explicit.",
           "ui_key": "Steam671007",
           "control_type": "short_system_label"
+        }
+      ]
+    },
+    {
+      "id": "review.regression.48168c9c7ebffa65",
+      "uid": "zhcn:804f55a4927a19bd99f3f988",
+      "scope": "uid",
+      "source_text": "如果跟随将推荐继承赛马娘设为代表的训练员\n将能租借该代表赛马娘",
+      "source_fingerprint": "41f752de135d91d5856934bb62198c7a682893c3b360c24e44de86a7eea6afa8",
+      "rejected_targets": [
+        "Nếu theo dõi Trainer đang đặt Uma Musume kế thừa được đề xuất làm đại diện\nbạn có thể thuê Uma Musume đại diện đó"
+      ],
+      "approved_target": "Nếu theo dõi Trainer đang đặt Mã Nương kế thừa được đề xuất làm đại diện\nbạn có thể thuê Mã Nương đại diện đó",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768",
+          "batch_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768-b0139",
+          "claim_id": "trc-gpt56sol-20260831T151434Z-b0139-r1",
+          "merged_at": "2026-08-31T15:27:08.516232Z",
+          "reason": "The current target preserves the conditional meaning and newline, but both generic 赛马娘 occurrences use forbidden 'Uma Musume'; replace them with Mã Nương while retaining canonical Trainer."
         }
       ]
     },
@@ -85495,6 +85908,31 @@
           "claim_id": "trc-gpt56sol-auto5-b0149",
           "merged_at": "2026-08-30T17:28:48.725015Z",
           "reason": "Embedded locked term yêu cầu 开花 → Nở rộ; bản hiện tại không chứa canonical term. Giữ nguyên ★{0}."
+        }
+      ]
+    },
+    {
+      "id": "review.regression.5e1a7cb24cc78ddc",
+      "uid": "zhcn:853cd3e8aa6bcc57da6cdb18",
+      "scope": "uid",
+      "source_text": "中距离赛",
+      "source_fingerprint": "c7ee1a4ce1bb9a6df0c29d34f785bcc4ef4b7c8db1aefdaa3860c08130bda0fd",
+      "rejected_targets": [
+        "Đua cự ly trung"
+      ],
+      "approved_target": "Đua Medium",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768",
+          "batch_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768-b0139",
+          "claim_id": "trc-gpt56sol-20260831T151434Z-b0139-r1",
+          "merged_at": "2026-08-31T15:27:08.516232Z",
+          "reason": "中距离 is an established player-facing distance class; the current Vietnamese calque does not contain the required canonical term Medium."
         }
       ]
     },
@@ -94914,6 +95352,31 @@
           "claim_id": "trc-chatgpt-20260827T120531Z-3a8d6f12",
           "merged_at": "2026-08-28T03:27:25.745861Z",
           "reason": "Use the embedded locked terminology and naturalize the item description while preserving the runtime newline."
+        }
+      ]
+    },
+    {
+      "id": "review.regression.01496abdedb8c438",
+      "uid": "zhcn:94240526efc5ec645bc8edcc",
+      "scope": "uid",
+      "source_text": "序曲",
+      "source_fingerprint": "3df5903dbdcd3a11e02fef900a71ec65e2ff4b310299985cd3b80299c0009fb2",
+      "rejected_targets": [
+        "Khúc dạo đầu"
+      ],
+      "approved_target": "Prelude",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768",
+          "batch_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768-b0394",
+          "claim_id": "trc-auto11-gpt56sol-20260831T152230Z-b0394",
+          "merged_at": "2026-08-31T15:27:08.542416Z",
+          "reason": "Current text conflicts with the embedded reviewed Skill-name lock."
         }
       ]
     },
@@ -105154,6 +105617,31 @@
           "claim_id": "trc-chatgpt-auto3-20260829T193700Z-b0084",
           "merged_at": "2026-08-30T00:48:53.433968Z",
           "reason": "Sửa trainee/resource terms."
+        }
+      ]
+    },
+    {
+      "id": "review.regression.7098d8ba8c5fc2ac",
+      "uid": "zhcn:a56c4aded808e1a6f4c940de",
+      "scope": "uid",
+      "source_text": "没有可选的推荐继承赛马娘\n是否要检索已将推荐继承赛马娘设为代表的训练员？",
+      "source_fingerprint": "1ebe0ed0ac8773ac0b99cd7235ce06e718920fe5885a3da875e9a33619cc236b",
+      "rejected_targets": [
+        "Không có Uma Musume kế thừa được đề xuất nào có thể chọn\nBạn có muốn tìm Trainer đang đặt Uma Musume kế thừa được đề xuất làm đại diện không?"
+      ],
+      "approved_target": "Không có Mã Nương kế thừa được đề xuất nào có thể chọn\nBạn có muốn tìm Trainer đang đặt Mã Nương kế thừa được đề xuất làm đại diện không?",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768",
+          "batch_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768-b0139",
+          "claim_id": "trc-gpt56sol-20260831T151434Z-b0139-r1",
+          "merged_at": "2026-08-31T15:27:08.516232Z",
+          "reason": "The source has both generic 赛马娘 and 训练员; Trainer is already correct, but both 'Uma Musume' occurrences violate the required Mã Nương terminology. The revision preserves the two-line structure and question meaning."
         }
       ]
     },
@@ -136900,6 +137388,31 @@
       ]
     },
     {
+      "id": "review.regression.dbe659ce1cd90d17",
+      "uid": "zhcn:d7d27b1b139becea26d3dae5",
+      "scope": "uid",
+      "source_text": "短距离赛",
+      "source_fingerprint": "26c4aac9563e7d454c93715e68b151f7b8c0a1a2c84544e6be2906de4dddc5fd",
+      "rejected_targets": [
+        "Đua cự ly ngắn"
+      ],
+      "approved_target": "Đua Sprint",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768",
+          "batch_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768-b0139",
+          "claim_id": "trc-gpt56sol-20260831T151434Z-b0139-r1",
+          "merged_at": "2026-08-31T15:27:08.516232Z",
+          "reason": "短距离 is an established player-facing distance class and the current Vietnamese calque conflicts with the required canonical term Sprint."
+        }
+      ]
+    },
+    {
       "id": "review.regression.a964e8b746816703",
       "uid": "zhcn:d7db85625395142e7c98cd84",
       "scope": "uid",
@@ -141517,6 +142030,31 @@
       ]
     },
     {
+      "id": "review.regression.c14fd45813221029",
+      "uid": "zhcn:de7eaef81f73555a5a9c0a6e",
+      "scope": "uid",
+      "source_text": "更改代表赛马娘",
+      "source_fingerprint": "b9dd4784fb581830d590dd8737db1815a65d603eb3f129e1802696703391f8a1",
+      "rejected_targets": [
+        "Thay đổi Uma Musume đại diện"
+      ],
+      "approved_target": "Thay đổi Mã Nương đại diện",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768",
+          "batch_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768-b0139",
+          "claim_id": "trc-gpt56sol-20260831T151434Z-b0139-r1",
+          "merged_at": "2026-08-31T15:27:08.516232Z",
+          "reason": "Current target uses forbidden generic 'Uma Musume' for 赛马娘; project player-facing terminology requires Mã Nương."
+        }
+      ]
+    },
+    {
       "id": "review.regression.060545761ae000bf",
       "uid": "zhcn:de8fdabc83336bccbd2cda48",
       "scope": "uid",
@@ -144013,6 +144551,31 @@
           "reason": "The error label can drop the helper wording and use compact 'Uma' while keeping the information-fetch failure meaning.",
           "ui_key": "Circle249011",
           "control_type": "short_system_label"
+        }
+      ]
+    },
+    {
+      "id": "review.regression.146b2d8e4d615123",
+      "uid": "zhcn:e25179ae522905f7c8cce968",
+      "scope": "uid",
+      "source_text": "已跟随{0}\n是否将代表赛马娘编为租借赛马娘？",
+      "source_fingerprint": "b8757c5f5fa00890224ad3d88370d4a6b1157326ef740b63166e0c2b9491f4c0",
+      "rejected_targets": [
+        "Đã theo dõi {0}\nBạn có muốn xếp Uma Musume đại diện làm Uma Musume thuê không?"
+      ],
+      "approved_target": "Đã theo dõi {0}\nBạn có muốn xếp Mã Nương đại diện làm Mã Nương thuê không?",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768",
+          "batch_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768-b0139",
+          "claim_id": "trc-gpt56sol-20260831T151434Z-b0139-r1",
+          "merged_at": "2026-08-31T15:27:08.516232Z",
+          "reason": "The placeholder and two-line question structure are correct, but both generic 赛马娘 occurrences are rendered with forbidden 'Uma Musume'; the minimal revision replaces only that terminology."
         }
       ]
     },
@@ -148952,6 +149515,31 @@
       ]
     },
     {
+      "id": "review.regression.a7eebd95b2d5c1ec",
+      "uid": "zhcn:e9759bcb76109fa078e085b6",
+      "scope": "uid",
+      "source_text": "因设置为无语音，无法播放",
+      "source_fingerprint": "4b98a601dabb6c79312b70fe405a2da24670e29be13c39dba1bb955db016cc7e",
+      "rejected_targets": [
+        "Không thể phát vì đang đặt thành không có giọng nói"
+      ],
+      "approved_target": "Không thể phát do đã tắt giọng nói",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768",
+          "batch_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768-b0225",
+          "claim_id": "trc-chatgpt-gpt56sol-20260831T151100Z-b0225",
+          "merged_at": "2026-08-31T15:27:08.519171Z",
+          "reason": "Bản hiện tại dịch sát chữ nhưng gượng; 无语音 ở đây là cài đặt không phát voice, nên diễn đạt 'đã tắt giọng nói' tự nhiên và giữ đúng nguyên nhân không thể phát."
+        }
+      ]
+    },
+    {
       "id": "review.regression.9d2ddd5e23e1641f",
       "uid": "zhcn:e979f8034edb8f4bb716968f",
       "scope": "uid",
@@ -152541,10 +153129,11 @@
       "source_text": "目标比赛中追加了<color=#ff5f8d>{0}</color>",
       "source_fingerprint": "d2a0d7985a507025579d4308053332cfe1dcea33722219c9984a9b4ed42bb1d8",
       "rejected_targets": [
-        "Đã thêm <color=#ff5f8d>{0}</color> vào cuộc đua mục tiêu"
+        "Đã thêm <color=#ff5f8d>{0}</color> vào đua mục tiêu"
       ],
-      "approved_target": "Đã thêm <color=#ff5f8d>{0}</color> vào đua mục tiêu",
+      "approved_target": "Đã thêm <color=#ff5f8d>{0}</color> vào Cuộc đua mục tiêu",
       "origins": [
+        "translation_review",
         "ui_review"
       ],
       "ui_contexts": [
@@ -152567,6 +153156,14 @@
           "reason": "The reviewed compact race noun 'đua' preserves the target-race addition while keeping the {0} placeholder and exact color tag unchanged.",
           "ui_key": "Story508001",
           "control_type": "short_system_label"
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768",
+          "batch_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768-b0225",
+          "claim_id": "trc-chatgpt-gpt56sol-20260831T151100Z-b0225",
+          "merged_at": "2026-08-31T15:27:08.519171Z",
+          "reason": "Bản hiện tại dùng 'đua mục tiêu', thiếu nhãn canonical Cuộc đua. Giữ nguyên tag màu và placeholder."
         }
       ]
     },
@@ -159647,6 +160244,31 @@
           "reason": "Uses the same compact three-field wording as the corresponding Room Match header while preserving the source spacing structure.",
           "ui_key": "RoomMatch0171",
           "control_type": "header"
+        }
+      ]
+    },
+    {
+      "id": "review.regression.49ecc6dd819f56bc",
+      "uid": "zhcn:fa3e0a3d5b1e8adbc9802004",
+      "scope": "uid",
+      "source_text": "序曲",
+      "source_fingerprint": "3df5903dbdcd3a11e02fef900a71ec65e2ff4b310299985cd3b80299c0009fb2",
+      "rejected_targets": [
+        "Khúc dạo đầu"
+      ],
+      "approved_target": "Prelude",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768",
+          "batch_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768-b0394",
+          "claim_id": "trc-auto11-gpt56sol-20260831T152230Z-b0394",
+          "merged_at": "2026-08-31T15:27:08.542416Z",
+          "reason": "Current text conflicts with the embedded reviewed Skill-name lock."
         }
       ]
     },

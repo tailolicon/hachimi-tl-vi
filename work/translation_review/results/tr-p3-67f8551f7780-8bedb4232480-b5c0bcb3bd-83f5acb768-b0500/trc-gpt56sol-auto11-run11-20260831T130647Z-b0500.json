@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "status": "partial",
+  "status": "complete",
   "plan_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768",
   "batch_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768-b0500",
   "claim_id": "trc-gpt56sol-auto11-run11-20260831T130647Z-b0500",
   "worker_id": "gpt-5.6-sol-auto11-run11-20260831T130647Z",
-  "reviewed_at": "2026-08-31T13:11:00Z",
-  "completed_count": 15,
+  "reviewed_at": "2026-08-31T13:12:30Z",
+  "completed_count": 20,
   "decisions": [
     {"uid":"zhcn:c9fdf4273554e739dce0f9aa","current_fingerprint":"9611a98fd373e27968687fb587b8eeed8b5636a7b7e21b2f6b9625c3fb2b3819","action":"keep","reason":"Bản dịch đúng nghĩa và tự nhiên; không có ràng buộc thuật ngữ hay cấu trúc bị vi phạm.","confidence":"high"},
     {"uid":"zhcn:2064fe31c34ff2c0a70e9ec3","current_fingerprint":"3bc4e75f4594e7959e7cc625bff9b5d2b636ee14bc8f81efe5e28a031487023d","action":"keep","reason":"Diễn đạt đúng phản xạ khi nghe tiếng kèn và tự nhiên trong tiếng Việt.","confidence":"high"},
@@ -22,6 +22,11 @@
     {"uid":"zhcn:bceb2dc4e1fc548af1bd433d","current_fingerprint":"7c900382cc12ed60068525cd02eb79187ba1109cdba976ec0c4ea3989f266d4d","action":"keep","reason":"Bản dịch giữ đúng ý khi đeo bịt tai cuối cùng thì trạng thái hưng phấn tăng và đã dùng đúng nhãn gameplay 'Mood'.","terminology_basis":"Embedded community/source-bridge rule maps 干劲 to player-facing 'Mood'.","confidence":"high"},
     {"uid":"zhcn:9052c660ae03e667cb596a65","current_fingerprint":"d4cb1287a707457fd944f424f3e0d62780fc986dc3785763f283fc7641b765e0","action":"keep","reason":"Giữ đúng nghĩa có thính giác nhạy nhất trong nhóm 'Tứ Thiên Vương'; không có ràng buộc canonical khác.","confidence":"high"},
     {"uid":"zhcn:7b97bba87aa168a90a34b113","current_fingerprint":"980e7b3a21ad89e219d29d2024e3c44bf3632dd0e996e49279e97d5d15ce0638","action":"keep","reason":"Tên Manhattan Cafe đúng canonical và câu giữ đúng nghĩa giọng nghe rất trong trẻo.","terminology_basis":"Embedded locked term character.manhattan_cafe → Manhattan Cafe.","confidence":"high"},
-    {"uid":"zhcn:fc4755cd6c3924e57d29a2bc","current_fingerprint":"c8cb8a429583f2d4915f1ea5e4f5cbcf2aa4243336277f5606da636502bb1da6","action":"keep","reason":"Tên Symboli Kris S đúng canonical; phần 'tai' được khôi phục hợp lý từ ngữ cảnh mô tả tai và giữ đúng nghĩa nguồn.","terminology_basis":"Embedded locked term character.symboli_kris_s → Symboli Kris S.","confidence":"high"}
+    {"uid":"zhcn:fc4755cd6c3924e57d29a2bc","current_fingerprint":"c8cb8a429583f2d4915f1ea5e4f5cbcf2aa4243336277f5606da636502bb1da6","action":"keep","reason":"Tên Symboli Kris S đúng canonical; phần 'tai' được khôi phục hợp lý từ ngữ cảnh mô tả tai và giữ đúng nghĩa nguồn.","terminology_basis":"Embedded locked term character.symboli_kris_s → Symboli Kris S.","confidence":"high"},
+    {"uid":"zhcn:4e9bab369ea906c1fcc44cd8","current_fingerprint":"de4c347f0b04724d4de5c512fb25203df0a09b0b416f76f88543407992a411a1","action":"defer","reason":"Nguồn dùng 力量 theo nghĩa sức mạnh vật lý trong văn xuôi, nhưng embedded context lại ép alias này sang stat Power và đánh dấu 'Sức mạnh' là forbidden; cần sửa context rule thay vì ép một bản dịch sai nghĩa.","canonical_finding":{"kind":"context_rule","source_zh_cn":"力量","concept":"Disambiguate ordinary physical strength from the Power stat","match_mode":"contains","scope":"source_path","reason":"The reusable alias 力量 is being matched as the Power stat inside ordinary descriptive prose where it means physical strength; the matcher must exclude non-stat contexts.","confidence":"high"},"confidence":"high"},
+    {"uid":"zhcn:8286249068460599d67b3209","current_fingerprint":"326cd4b24956f88ee9ef157c628f97126975e38509801a3b5128bb50f910dc7a","action":"defer","reason":"Câu đang dùng 冷静 theo nghĩa tính từ thông thường 'bình tĩnh', nhưng embedded context nhận nhầm thành tên Skill; cần canonical context-rule disambiguation trước khi chốt.","canonical_finding":{"kind":"context_rule","source_zh_cn":"冷静","concept":"Distinguish ordinary calm/cool-headed prose from the named Skill","match_mode":"contains","scope":"source_path","reason":"The Skill alias 冷静 is matching inside ordinary prose such as 不冷静的时候; named-Skill canonicalization must not fire in generic descriptive text.","confidence":"high"},"confidence":"high"},
+    {"uid":"zhcn:20799ee327b110cf004e09d4","current_fingerprint":"67075004ff4e797c3c5a51b654b2a0f147c6b923e5f8a84d125742f0372e18ab","action":"revise","proposed_text":"Sờ vào có cảm giác tuyệt nhất (đánh giá・từ Kitasan Black)","reason":"'Có cảm giác chạm tuyệt nhất' không tự nhiên; sửa thành diễn đạt trực tiếp về cảm giác khi sờ, đồng thời giữ nguyên nguồn đánh giá và tên nhân vật canonical.","terminology_basis":"Embedded locked term character.kitasan_black → Kitasan Black.","confidence":"high"},
+    {"uid":"zhcn:94c4d8986397fe8d462dc682","current_fingerprint":"3610f2a940ea822dc95de9e89ec748b7645694d322893f47cba976258d872aa0","action":"defer","reason":"Item đang bị canonical finding mở cf-9c092ac1de779e91 chặn đối với 焦躁; theo canonical-first policy không được tự chốt cục bộ trước khi finding được giải quyết.","confidence":"high"},
+    {"uid":"zhcn:c284a3cfaa982d16ed16bfd8","current_fingerprint":"d653e96918445234ea836941e2714af7147c35b614f426d392e53e5a978359d8","action":"keep","reason":"Bản dịch đúng nghĩa đuôi đung đưa trước Fuji Kiseki và tên nhân vật khớp canonical.","terminology_basis":"Embedded locked term character.fuji_kiseki → Fuji Kiseki.","confidence":"high"}
   ]
 }

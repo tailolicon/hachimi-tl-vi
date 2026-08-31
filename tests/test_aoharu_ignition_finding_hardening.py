@@ -4,7 +4,13 @@ import json
 from pathlib import Path
 
 from scripts.canonical_findings import refresh_canonical_resolutions
-from scripts.harden_aoharu_ignition_finding import AOHARU_IGNITION, LEGACY_CONFLICT_ID, harden
+from scripts.harden_aoharu_ignition_finding import (
+    AOHARU_IGNITION,
+    LEGACY_CONFLICT_ID,
+    LEGACY_LOCKED_TERM_ID,
+    LEGACY_REVIEW_DECISION_ID,
+    harden,
+)
 from scripts.translation_review_common import community_term_matches
 
 
@@ -28,9 +34,28 @@ def _seed(tmp_path: Path) -> None:
         "json_path_prefixes": [["147"]],
         "match_mode": "contains",
     }]})
-    _write(glossary / "term_registry.json", {"terms": []})
+    _write(glossary / "term_registry.json", {"terms": [{
+        "id": LEGACY_LOCKED_TERM_ID,
+        "category": "skill_name",
+        "zh_cn": ["点燃青春"],
+        "target_vi": "Ignited Spirit",
+        "locked": True,
+        "review": {"decision_id": LEGACY_REVIEW_DECISION_ID},
+        "source_paths": ["text_data_dict.json"],
+        "json_path_prefixes": [["147"]],
+        "match_mode": "contains",
+    }]})
     _write(glossary / "source_bridge_terms.json", {"terms": []})
-    _write(glossary / "terminology_reviews.json", {"decisions": []})
+    _write(glossary / "terminology_reviews.json", {"decisions": [{
+        "decision_id": LEGACY_REVIEW_DECISION_ID,
+        "source_zh_cn": "点燃青春",
+        "action": "lock",
+        "target_vi": "Ignited Spirit",
+        "kind": "skill_name",
+        "source_paths": ["text_data_dict.json"],
+        "json_path_prefixes": [["147"]],
+        "match_mode": "contains",
+    }]})
     _write(glossary / "canonical_findings.json", {
         "schema_version": 1,
         "findings": [{
@@ -61,6 +86,11 @@ def test_hardener_adds_scoped_ignition_family_removes_conflict_and_is_idempotent
     assert rule["source_paths"] == ["text_data_dict.json"]
     assert rule["json_path_prefixes"] == [["147"]]
     assert rule["match_mode"] == "contains"
+
+    reviews = json.loads((tmp_path / "glossary" / "terminology_reviews.json").read_text(encoding="utf-8"))
+    assert all(decision.get("decision_id") != LEGACY_REVIEW_DECISION_ID for decision in reviews["decisions"])
+    registry = json.loads((tmp_path / "glossary" / "term_registry.json").read_text(encoding="utf-8"))
+    assert all(term.get("id") != LEGACY_LOCKED_TERM_ID for term in registry["terms"])
 
     finding = json.loads((tmp_path / "glossary" / "canonical_findings.json").read_text(encoding="utf-8"))["findings"][0]
     assert finding["suggested_targets_vi"] == ["Thắp lửa thanh xuân"]

@@ -5,8 +5,8 @@
   "batch_id": "tr-p3-67f8551f7780-5866633e0b1c-b5c0bcb3bd-babd4f1703-b0188",
   "claim_id": "trc-gpt56sol-20260831T104940Z-b0188",
   "worker_id": "gpt-5.6-sol-20260831T104940Z",
-  "reviewed_at": "2026-08-31T10:51:33Z",
-  "completed_count": 10,
+  "reviewed_at": "2026-08-31T10:52:19Z",
+  "completed_count": 15,
   "decisions": [
     {
       "uid": "zhcn:db4cfe0b6cd5ef1952ac759c",
@@ -79,6 +79,51 @@
       "current_fingerprint": "63fe7d60b5899a9fbd4eb9d0b4d44f96378efc616bf55bb00f81ed87193cb4a6",
       "action": "keep",
       "reason": "The translation faithfully conveys completing each character's individually assigned objective and preserves the source structure.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:6d9d4747e69193ac679e207e",
+      "current_fingerprint": "cd0b91abee6e492fd54a3755c74a35325025a41fc16ae2477e7480ad7ad750b7",
+      "action": "revise",
+      "proposed_text": "Trước khi xác nhận Spark",
+      "reason": "Current text uses the forbidden Nhân tố label for localize_dict 因子; the revision uses the established Spark UI term.",
+      "terminology_basis": "Embedded common.spark.localize_ui requires Spark/Sparks and forbids Nhân tố/Factor in localize_dict.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:decd7eac50cdfc7c6b47cae1",
+      "current_fingerprint": "f73ed1bc7e2f4a9c93f0a402dc62fc12060950c1d99b7d73a7c8e7b20410abe6",
+      "action": "revise",
+      "proposed_text": "Sau khi xác nhận, không thể nhận lại Spark",
+      "reason": "The current string uses the forbidden Nhân tố label; Spark preserves the canonical localize UI terminology without changing the finalization restriction.",
+      "terminology_basis": "Embedded common.spark.localize_ui requires Spark/Sparks and forbids Nhân tố/Factor in localize_dict.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:24e5d7c739c46b5d08ac2d78",
+      "current_fingerprint": "a03cf43f7325bb125c4f2ed71d0ed17bf5437fefd03e3b15e0e383db3912f92c",
+      "action": "revise",
+      "proposed_text": "Còn thiếu {0} TP để nhận lại Spark\nBạn có muốn hồi phục không?",
+      "reason": "The current string uses forbidden Nhân tố; the revision preserves {0}, TP, the newline and recovery prompt while applying Spark.",
+      "terminology_basis": "Embedded common.spark.localize_ui requires Spark/Sparks and forbids Nhân tố/Factor in localize_dict.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:f696a99778754dd9108e51f8",
+      "current_fingerprint": "bef38860cafbc2aa39b6649f476605d7a37d324d66ae344a9321259c5f1307cc",
+      "action": "revise",
+      "proposed_text": "Sau khi nhận lại, bạn có thể chọn giữa Spark ban đầu và Spark nhận lại",
+      "reason": "Both 因子 occurrences must use the canonical Spark UI term; the original-versus-reacquired choice remains unchanged.",
+      "terminology_basis": "Embedded common.spark.localize_ui requires Spark/Sparks and forbids Nhân tố/Factor in localize_dict.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:99222b534a5fc5ebf4256abb",
+      "current_fingerprint": "811da012e7a36b812f3e1566bcd2866d67f1d6fac81eccae87258ef65b11611d",
+      "action": "revise",
+      "proposed_text": "Xác nhận Spark",
+      "reason": "The current label uses forbidden Nhân tố; this is the concise Spark confirmation UI heading.",
+      "terminology_basis": "Embedded common.spark.localize_ui requires Spark/Sparks and forbids Nhân tố/Factor in localize_dict.",
       "confidence": "high"
     }
   ]

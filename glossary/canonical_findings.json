@@ -3294,7 +3294,9 @@
         "Generic 心动 prose versus named Skill title matcher",
         "Generic emotional phrase versus Skill title 心动",
         "Generic heart-flutter wording versus named Skill title",
-        "Distinguish Skill-title 心动 from generic excitement/heart-flutter wording in prose and hashtags"
+        "Distinguish Skill-title 心动 from generic excitement/heart-flutter wording in prose and hashtags",
+        "Skill-name alias versus ordinary heart-stirring prose",
+        "Skill-name alias versus hashtag/ordinary heart-flutter phrase"
       ],
       "suggested_targets_vi": [],
       "confidence_levels": [
@@ -3305,9 +3307,11 @@
         "The reviewed Skill-name alias 心动 overmatches the prose phrase 心动的预感 in text_data category 128; named Skill terminology must not replace ordinary emotional-description prose.",
         "Skill-title matching for 心动 must not fire automatically inside ordinary descriptive prose unless Skill context is established.",
         "In text_data category 128 song/description text, 心动 may appear in ordinary hashtags/prose and must not automatically inherit the Skill-title lock.",
-        "Here 心动 occurs inside the hashtag 心动不已？ and is not a Skill title."
+        "Here 心动 occurs inside the hashtag 心动不已？ and is not a Skill title.",
+        "In this song-description sentence, 心动 modifies 预感 as ordinary prose rather than naming a Skill; canonical Skill matching needs a negative/context guard.",
+        "In #心动不已？ the token is ordinary expressive hashtag prose, not a Skill name; canonical Skill matching needs a negative guard."
       ],
-      "evidence_count": 5,
+      "evidence_count": 7,
       "evidence": [
         {
           "uid": "zhcn:996c7568e8341c51f3593486",
@@ -3388,6 +3392,38 @@
           "current_text": "“#kawaii” “#mơmàngmềmmại” “#timđậpnhanh?”\\nDễ thương là mật mã có thể truyền tới tận vũ trụ! Nè, bạn có thể thích tôi thêm một chút nữa không?",
           "proposed_text": null,
           "reported_at": "2026-08-31T12:55:00Z"
+        },
+        {
+          "uid": "zhcn:34bcf34bd6b40461dd198bea",
+          "plan_id": "tr-p3-67f8551f7780-c3ab0f625c13-b5c0bcb3bd-759ab9ef8f",
+          "batch_id": "tr-p3-67f8551f7780-c3ab0f625c13-b5c0bcb3bd-759ab9ef8f-b0251",
+          "claim_id": "trc-chatgpt-gpt56sol-auto11-20260831T173200Z-b0251",
+          "worker_id": "chatgpt-gpt56sol-auto11",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "128",
+            "1025"
+          ],
+          "source_text": "疾驰的一等星闪耀着，充满勇气与希望的歌曲。\\n心动的预感――那就是比赛开始的信号",
+          "current_text": "Một ca khúc tràn đầy dũng khí và hy vọng, như ngôi sao sáng nhất đang lao đi rực rỡ.\\nLinh cảm khiến tim rung động――đó chính là tín hiệu cuộc đua bắt đầu.",
+          "proposed_text": null,
+          "reported_at": "2026-08-31T17:35:00Z"
+        },
+        {
+          "uid": "zhcn:996c7568e8341c51f3593486",
+          "plan_id": "tr-p3-67f8551f7780-c3ab0f625c13-b5c0bcb3bd-759ab9ef8f",
+          "batch_id": "tr-p3-67f8551f7780-c3ab0f625c13-b5c0bcb3bd-759ab9ef8f-b0252",
+          "claim_id": "trc-chatgpt-gpt56sol-auto11-b0252",
+          "worker_id": "chatgpt-gpt56sol-auto11",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "128",
+            "1182"
+          ],
+          "source_text": "『#kawaii』『#梦幻柔软』『#心动不已？』\\n可爱是能传达到宇宙的暗号！呐，可以再多喜欢我一点吗？",
+          "current_text": "“#kawaii” “#mơmàngmềmmại” “#timđậpnhanh?”\\nDễ thương là mật mã có thể truyền tới tận vũ trụ! Nè, bạn có thể thích tôi thêm một chút nữa không?",
+          "proposed_text": null,
+          "reported_at": "2026-08-31T17:39:00Z"
         }
       ],
       "canonical_resolution": {
@@ -3401,7 +3437,7 @@
         "target_vi": "Nhịp tim rộn ràng"
       },
       "first_seen_at": "2026-08-31T08:18:00Z",
-      "last_seen_at": "2026-08-31T12:55:00Z"
+      "last_seen_at": "2026-08-31T17:39:00Z"
     },
     {
       "finding_id": "cf-53209016ce00c5d2",
@@ -3449,6 +3485,59 @@
       "review_resolution": null,
       "first_seen_at": "2026-08-31T13:32:00Z",
       "last_seen_at": "2026-08-31T13:32:00Z"
+    },
+    {
+      "finding_id": "cf-552896cb4b769204",
+      "status": "open",
+      "source_zh_cn": "比赛",
+      "match_mode": "contains",
+      "source_paths": [
+        "text_data_dict.json"
+      ],
+      "key_exact": [],
+      "json_path_prefixes": [
+        [
+          "120"
+        ]
+      ],
+      "kinds": [
+        "context_rule"
+      ],
+      "concepts": [
+        "U.A.F. multi-sport competition discipline"
+      ],
+      "suggested_targets_vi": [
+        "môn thi đấu"
+      ],
+      "confidence_levels": [
+        "high"
+      ],
+      "reasons": [
+        "Within the U.A.F. scenario description, 15 比赛 are distinct athletic disciplines, so generic race terminology would overmatch this context."
+      ],
+      "evidence_count": 1,
+      "evidence": [
+        {
+          "uid": "zhcn:4eca0ca8c0b49c1d99268d0e",
+          "plan_id": "tr-p3-67f8551f7780-c3ab0f625c13-b5c0bcb3bd-759ab9ef8f",
+          "batch_id": "tr-p3-67f8551f7780-c3ab0f625c13-b5c0bcb3bd-759ab9ef8f-b0251",
+          "claim_id": "trc-chatgpt-gpt56sol-auto11-20260831T173200Z-b0251",
+          "worker_id": "chatgpt-gpt56sol-auto11",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "120",
+            "7"
+          ],
+          "source_text": "决出No.1运动员赛马娘的\\n综合体育大会<color=#FF6D26>『U.A.F.』</color>开幕！\\n赛马娘们将在15种独特的比赛中\\n挑战自我极限，挥洒汗水！\\n运动员们的灵魂共鸣，请拭目以待！",
+          "current_text": "Đại hội thể thao tổng hợp quyết định Mã Nương vận động viên No.1,\\n<color=#FF6D26>『U.A.F.』</color>, khai mạc!\\nCác Mã Nương sẽ thử thách giới hạn bản thân\\nqua 15 Cuộc đua độc đáo, đổ mồ hôi hết mình!\\nHãy đón xem linh hồn các vận động viên cộng hưởng!",
+          "proposed_text": null,
+          "reported_at": "2026-08-31T17:35:00Z"
+        }
+      ],
+      "canonical_resolution": null,
+      "review_resolution": null,
+      "first_seen_at": "2026-08-31T17:35:00Z",
+      "last_seen_at": "2026-08-31T17:35:00Z"
     },
     {
       "finding_id": "cf-55f0e8a1d70264a2",
@@ -4559,7 +4648,8 @@
       "concepts": [
         "Generic cheer-loudly phrase versus Gran Alegria character alias",
         "Generic cheer-loudly prose versus Gran Alegria character alias",
-        "Distinguish Gran Alegria character alias from generic 'cheer loudly' prose"
+        "Distinguish Gran Alegria character alias from generic 'cheer loudly' prose",
+        "Gran Alegria alias versus ordinary cheering phrase"
       ],
       "suggested_targets_vi": [],
       "confidence_levels": [
@@ -4568,9 +4658,10 @@
       "reasons": [
         "The character alias fires inside ordinary prose 来吧，放声欢呼吧 where it is clearly a verb phrase, not a character mention.",
         "In text_data category 128 descriptive prose, 放声欢呼 can be an ordinary verb phrase and must not automatically resolve to character.gran_alegria.",
-        "This sentence is an imperative to cheer loudly, not a character reference."
+        "This sentence is an imperative to cheer loudly, not a character reference.",
+        "Here 放声欢呼 is a verb phrase meaning to cheer loudly, not a character mention; proper-name matching requires a negative/context guard."
       ],
-      "evidence_count": 3,
+      "evidence_count": 4,
       "evidence": [
         {
           "uid": "zhcn:aff58590375a5f5bcabd374a",
@@ -4619,6 +4710,22 @@
           "current_text": "Xin tuyên bố với tất cả những ai sinh ra trong thời đại này —\\nNào, hãy reo hò thật lớn. Bạn cũng sẽ trở thành tâm bão của “huyền thoại”!",
           "proposed_text": null,
           "reported_at": "2026-08-31T12:55:00Z"
+        },
+        {
+          "uid": "zhcn:aff58590375a5f5bcabd374a",
+          "plan_id": "tr-p3-67f8551f7780-c3ab0f625c13-b5c0bcb3bd-759ab9ef8f",
+          "batch_id": "tr-p3-67f8551f7780-c3ab0f625c13-b5c0bcb3bd-759ab9ef8f-b0252",
+          "claim_id": "trc-chatgpt-gpt56sol-auto11-b0252",
+          "worker_id": "chatgpt-gpt56sol-auto11",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "128",
+            "1151"
+          ],
+          "source_text": "向在这个时代出生的所有人宣告——\\n来吧，放声欢呼吧。你也将成为『传奇』的暴风眼！",
+          "current_text": "Xin tuyên bố với tất cả những ai sinh ra trong thời đại này —\\nNào, hãy reo hò thật lớn. Bạn cũng sẽ trở thành tâm bão của “huyền thoại”!",
+          "proposed_text": null,
+          "reported_at": "2026-08-31T17:39:00Z"
         }
       ],
       "canonical_resolution": {
@@ -4632,7 +4739,7 @@
         "target_vi": "Gran Alegria"
       },
       "first_seen_at": "2026-08-31T08:18:00Z",
-      "last_seen_at": "2026-08-31T12:55:00Z"
+      "last_seen_at": "2026-08-31T17:39:00Z"
     },
     {
       "finding_id": "cf-754c7bc46e60b69e",
@@ -10514,7 +10621,8 @@
         "Generic adjective 光明 versus named Skill title",
         "Generic bright-future prose versus named Skill matcher",
         "Generic bright/light prose versus named Skill title",
-        "Distinguish the named Skill alias 光明 from ordinary 'bright' wording in narrative text"
+        "Distinguish the named Skill alias 光明 from ordinary 'bright' wording in narrative text",
+        "Skill-name alias versus ordinary adjective bright"
       ],
       "suggested_targets_vi": [],
       "confidence_levels": [
@@ -10524,9 +10632,10 @@
         "Skill-title matching fires inside ordinary prose 光明的未来 and would incorrectly force the Skill name Ánh sáng.",
         "The reviewed Skill-name alias 光明 overmatches the ordinary phrase 光明的未来 in text_data category 128; named Skill terminology must not replace descriptive prose.",
         "In text_data category 128 descriptive prose, 光明 can be ordinary wording and must not automatically inherit the Skill-title lock.",
-        "In 光明的未来, 光明 is an adjective meaning a bright future, not the Skill name."
+        "In 光明的未来, 光明 is an adjective meaning a bright future, not the Skill name.",
+        "In 光明的未来, 光明 is ordinary descriptive prose, not the Skill name Ánh sáng; Skill matching must exclude this context."
       ],
-      "evidence_count": 4,
+      "evidence_count": 5,
       "evidence": [
         {
           "uid": "zhcn:e24f509f9ecadbe9bb160b77",
@@ -10591,6 +10700,22 @@
           "current_text": "Nào, lên đường! Hướng tới tương lai tươi sáng.\\n— Chỉ cần ở bên bạn, đi đâu cũng được!",
           "proposed_text": null,
           "reported_at": "2026-08-31T12:55:00Z"
+        },
+        {
+          "uid": "zhcn:e24f509f9ecadbe9bb160b77",
+          "plan_id": "tr-p3-67f8551f7780-c3ab0f625c13-b5c0bcb3bd-759ab9ef8f",
+          "batch_id": "tr-p3-67f8551f7780-c3ab0f625c13-b5c0bcb3bd-759ab9ef8f-b0252",
+          "claim_id": "trc-chatgpt-gpt56sol-auto11-b0252",
+          "worker_id": "chatgpt-gpt56sol-auto11",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "128",
+            "1138"
+          ],
+          "source_text": "来吧，出发！向着光明的未来。\\n——只要和你在一起，无论到哪里！",
+          "current_text": "Nào, lên đường! Hướng tới tương lai tươi sáng.\\n— Chỉ cần ở bên bạn, đi đâu cũng được!",
+          "proposed_text": null,
+          "reported_at": "2026-08-31T17:39:00Z"
         }
       ],
       "canonical_resolution": {
@@ -10604,7 +10729,7 @@
         "target_vi": "Ánh sáng"
       },
       "first_seen_at": "2026-08-31T08:18:00Z",
-      "last_seen_at": "2026-08-31T12:55:00Z"
+      "last_seen_at": "2026-08-31T17:39:00Z"
     },
     {
       "finding_id": "cf-fbbcf5f4a79f6cf8",

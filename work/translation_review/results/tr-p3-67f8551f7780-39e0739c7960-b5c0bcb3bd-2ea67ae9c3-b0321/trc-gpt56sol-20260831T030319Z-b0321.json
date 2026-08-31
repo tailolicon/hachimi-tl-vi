@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "status": "partial",
+  "plan_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3",
+  "batch_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3-b0321",
+  "claim_id": "trc-gpt56sol-20260831T030319Z-b0321",
+  "worker_id": "gpt-5.6-sol-20260831T030319Z",
+  "reviewed_at": "2026-08-31T03:04:03Z",
+  "completed_count": 5,
+  "decisions": [
+    {
+      "uid": "zhcn:3c62778e2608ba0be31db0c7",
+      "current_fingerprint": "d0a1e19bc6d067d4f889ef31bec0ed8ac166537c78d1bdc68b1c8842d0fd9165",
+      "action": "keep",
+      "reason": "Formatting-only numeric placeholder is intentionally language-neutral and structurally unchanged.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:da9cff4ac445fec268288be4",
+      "current_fingerprint": "69fd1771f2fae8680b5f8f064930239c2ca4cf08a98bdd32be2f26aadc7d4abd",
+      "action": "revise",
+      "proposed_text": "Mã Nương huấn luyện đã chọn không trùng với Mã Nương đã đăng ký\ntrong bảng xếp hạng Mã Nương huấn luyện của Kỳ thi Skill.\nBạn có chắc muốn tiếp tục huấn luyện không?",
+      "reason": "Current text uses forbidden generic Kỹ năng and legacy Uma Musume wording; preserve the warning meaning and newline structure while applying player-facing terminology.",
+      "terminology_basis": "Generic 技能 is Skill; generic 赛马娘 is Mã Nương under the live manual-audit policy.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:01744916a43128fe8ec510be",
+      "current_fingerprint": "f747bfe13e23cc09e5f402269bd8e42c4ddfd3319da7189fa4386ba12a55aba9",
+      "action": "revise",
+      "proposed_text": "Xác nhận Mã Nương đăng ký",
+      "reason": "Generic 赛马娘 must use the project world term rather than legacy Uma Musume.",
+      "terminology_basis": "Embedded common.world.umamusume requires Mã Nương and forbids Uma Musume for this generic context.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:6535facdb00446dc2e28e651",
+      "current_fingerprint": "073474d842816f5d13054310c6056046d44ba8acb893e164b017167dd6b35c79",
+      "action": "revise",
+      "proposed_text": "Cài đặt Kỳ thi Skill của Trainer",
+      "reason": "Current wording uses forbidden Kỹ năng; revised UI label keeps Trainer and Skill in established player-facing English.",
+      "terminology_basis": "Embedded common.trainer requires Trainer and common.skill.generic requires Skill.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:e85c2e1eacc020c6d70ca7bd",
+      "current_fingerprint": "9b6b3b9e6473901542041ae0c6ee99e6c240e7d3b83eb552e9ad3cf3f89af72d",
+      "action": "revise",
+      "proposed_text": "Xác nhận Mã Nương đăng ký\ncho bảng xếp hạng từng Mã Nương huấn luyện",
+      "reason": "Current text uses inconsistent shorthand Uma; normalize the generic world term while preserving the two-line UI meaning.",
+      "terminology_basis": "Live manual-audit policy requires generic 赛马娘 as Mã Nương.",
+      "confidence": "high"
+    }
+  ]
+}

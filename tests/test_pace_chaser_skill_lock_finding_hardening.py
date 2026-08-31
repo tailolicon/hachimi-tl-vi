@@ -3,6 +3,7 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
+from scripts.apply_terminology_reviews import apply_reviews
 from scripts.canonical_findings import refresh_canonical_resolutions
 from scripts.harden_pace_chaser_skill_lock_finding import harden
 from scripts.translation_review_common import community_term_matches, locked_term_matches
@@ -54,7 +55,26 @@ def _seed(tmp_path: Path) -> None:
     })
     _write(glossary / "source_bridge_terms.json", {"terms": []})
     _write(glossary / "skill_name_style.json", {"canonical_examples": []})
-    _write(glossary / "terminology_reviews.json", {"decisions": []})
+    _write(glossary / "terminology_reviews.json", {"decisions": [
+        {
+            "decision_id": "pace-control",
+            "term_id": "reviewed.skill_name.f8f77efa84ec",
+            "source_zh_cn": "先行牵制",
+            "target_vi": "Kiềm chế Senko",
+            "action": "lock",
+            "kind": "skill_name",
+            "category": "skill_name",
+        },
+        {
+            "decision_id": "unrelated",
+            "term_id": "reviewed.skill_name.unrelated",
+            "source_zh_cn": "其他技能",
+            "target_vi": "Senko",
+            "action": "lock",
+            "kind": "skill_name",
+            "category": "skill_name",
+        },
+    ]})
     _write(glossary / "canonical_findings.json", {
         "schema_version": 1,
         "findings": [{
@@ -72,16 +92,26 @@ def _seed(tmp_path: Path) -> None:
     })
 
 
-def test_hardener_migrates_only_legacy_senko_skill_locks(tmp_path: Path) -> None:
+def test_hardener_migrates_review_source_and_generated_legacy_senko_locks(tmp_path: Path) -> None:
     _seed(tmp_path)
     assert harden(tmp_path) is True
     assert harden(tmp_path) is False
+
+    reviews = json.loads((tmp_path / "glossary" / "terminology_reviews.json").read_text(encoding="utf-8"))
+    decisions = {decision["decision_id"]: decision for decision in reviews["decisions"]}
+    assert decisions["pace-control"]["target_vi"] == "Kiềm chế Pace Chaser"
+    assert decisions["unrelated"]["target_vi"] == "Senko"
 
     registry = json.loads((tmp_path / "glossary" / "term_registry.json").read_text(encoding="utf-8"))
     by_id = {term["id"]: term for term in registry["terms"]}
     assert by_id["reviewed.skill_name.f8f77efa84ec"]["target_vi"] == "Kiềm chế Pace Chaser"
     assert by_id["reviewed.skill_name.ff328aef1290"]["target_vi"] == "Đường thẳng Pace Chaser ○"
     assert by_id["reviewed.skill_name.unrelated"]["target_vi"] == "Senko"
+
+    # The migrated review source must now be safely re-applicable; this is the
+    # ordering failure that previously broke every later context Sync.
+    reapplied, _ = apply_reviews(registry, reviews)
+    assert next(term for term in reapplied["terms"] if term["id"] == "reviewed.skill_name.f8f77efa84ec")["target_vi"] == "Kiềm chế Pace Chaser"
 
     finding = json.loads((tmp_path / "glossary" / "canonical_findings.json").read_text(encoding="utf-8"))["findings"][0]
     assert finding["suggested_targets_vi"] == ["Pace Chaser"]

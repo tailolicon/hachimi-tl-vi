@@ -1,18 +1,30 @@
 from __future__ import annotations
 
 import argparse
+import copy
 from pathlib import Path
 from typing import Any
 
-from scripts.canonical_findings import (
-    BLOCKING_STATUSES,
-    ROOT,
-    _rule_covers_finding,
-    _rule_matches_finding_source,
-    _strings,
-    read_json,
-    write_json,
-)
+try:
+    from scripts.canonical_findings import (
+        BLOCKING_STATUSES,
+        ROOT,
+        _rule_covers_finding,
+        _rule_matches_finding_source,
+        _strings,
+        read_json,
+        write_json,
+    )
+except ModuleNotFoundError:
+    from canonical_findings import (  # type: ignore[no-redef]
+        BLOCKING_STATUSES,
+        ROOT,
+        _rule_covers_finding,
+        _rule_matches_finding_source,
+        _strings,
+        read_json,
+        write_json,
+    )
 
 
 def _is_scoped(rule: dict[str, Any]) -> bool:
@@ -38,7 +50,7 @@ def resolve_scoped_canonical_overrides(repo_root: Path, ledger: dict[str, Any] |
     community = read_json(repo_root / "glossary/ui_community_terms.json", {}) or {}
     rules = [
         rule
-        for rule in community.get("terms", []) if isinstance(community, dict)
+        for rule in (community.get("terms", []) if isinstance(community, dict) else [])
         if isinstance(rule, dict) and _is_scoped(rule)
     ]
 
@@ -80,7 +92,7 @@ def main() -> int:
     repo_root = args.repo_root.resolve()
     path = repo_root / "glossary/canonical_findings.json"
     ledger = read_json(path, {"schema_version": 1, "findings": []}) or {"schema_version": 1, "findings": []}
-    before = ledger
+    before = copy.deepcopy(ledger)
     resolved = resolve_scoped_canonical_overrides(repo_root, ledger)
     write_json(path, resolved)
     changed = sum(

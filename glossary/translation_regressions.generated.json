@@ -9,13 +9,13 @@
     "growth": "Every accepted retrospective translation revise and accepted UI revise is folded into this file automatically by both review merge workflows."
   },
   "summary": {
-    "merged_markers_scanned": 1209,
-    "translation_merged_markers_scanned": 1109,
+    "merged_markers_scanned": 1222,
+    "translation_merged_markers_scanned": 1122,
     "ui_merged_markers_scanned": 100,
-    "accepted_revision_events": 6556,
-    "accepted_translation_revision_events": 5067,
+    "accepted_revision_events": 6571,
+    "accepted_translation_revision_events": 5082,
     "accepted_ui_revision_events": 1489,
-    "regression_identity_count": 5329,
+    "regression_identity_count": 5341,
     "skipped_incomplete_markers": 0,
     "translation_skipped_incomplete_markers": 0,
     "ui_skipped_incomplete_markers": 0
@@ -4634,10 +4634,12 @@
       "source_text": "预约比赛已被重置",
       "source_fingerprint": "d79e13201d8fb49e57b6fe154a9324cde421ac46529f1797dcd6361bd962db76",
       "rejected_targets": [
+        "Lịch đua đã được đặt lại",
         "Đặt trước cuộc đua đã được đặt lại"
       ],
-      "approved_target": "Lịch đua đã được đặt lại",
+      "approved_target": "Cuộc đua đã đặt lịch đã được đặt lại",
       "origins": [
+        "translation_review",
         "ui_review"
       ],
       "ui_contexts": [
@@ -4660,6 +4662,14 @@
           "reason": "The current phrase redundantly repeats two forms of 'đặt'; the compact status preserves that reserved-race scheduling was reset.",
           "ui_key": "SingleMode508023",
           "control_type": "short_system_label"
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768",
+          "batch_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768-b0184",
+          "claim_id": "trc-gpt56sol-auto11-20260831T123600Z-b0184",
+          "merged_at": "2026-08-31T12:48:07.528746Z",
+          "reason": "Current text misses locked generic race term."
         }
       ]
     },
@@ -10228,6 +10238,31 @@
           "claim_id": "trc-chatgpt-sol-auto-20260830-0741-b0611",
           "merged_at": "2026-08-30T11:29:03.308716Z",
           "reason": "'Vượt qua phía xa' gượng trong tiếng Việt; bản đề xuất giữ ý 超越彼方 nhưng tự nhiên hơn."
+        }
+      ]
+    },
+    {
+      "id": "review.regression.522e67db81650ea1",
+      "uid": "zhcn:0f28218b3d46557d1c97e459",
+      "scope": "uid",
+      "source_text": "技能筛选",
+      "source_fingerprint": "dac7e1a7d2c9198637b666ea8b1a0e4a758f14139e96b0c9fe20508b9b6558c1",
+      "rejected_targets": [
+        "Lọc kỹ năng"
+      ],
+      "approved_target": "Lọc Skill",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768",
+          "batch_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768-b0184",
+          "claim_id": "trc-gpt56sol-auto11-20260831T123600Z-b0184",
+          "merged_at": "2026-08-31T12:48:07.528746Z",
+          "reason": "Generic 技能 gameplay label must remain Skill."
         }
       ]
     },
@@ -23278,6 +23313,31 @@
       ]
     },
     {
+      "id": "review.regression.a9c16a54bc292e7a",
+      "uid": "zhcn:24e5d7c739c46b5d08ac2d78",
+      "scope": "uid",
+      "source_text": "重新获得因子所需的TP还差{0}\n要回复吗？",
+      "source_fingerprint": "1d29bbb4606d65569ee679824bdbaa70a3a3d7f1113ad657f6d09a834961ced9",
+      "rejected_targets": [
+        "Còn thiếu {0} TP cần để nhận lại Nhân tố\nBạn có muốn hồi phục không?"
+      ],
+      "approved_target": "Còn thiếu {0} TP cần để nhận lại Spark\nBạn có muốn hồi phục không?",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768",
+          "batch_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768-b0180",
+          "claim_id": "trc-gpt56sol-auto11-20260831T125000Z-b0180",
+          "merged_at": "2026-08-31T12:48:07.523877Z",
+          "reason": "localize_dict 因子 must use Spark while preserving TP, placeholder and newline."
+        }
+      ]
+    },
+    {
       "id": "review.regression.87b6a464bab739fa",
       "uid": "zhcn:24f2787291e42d5639966fa7",
       "scope": "uid",
@@ -31922,6 +31982,31 @@
       ]
     },
     {
+      "id": "review.regression.9ce6baffb6cfad72",
+      "uid": "zhcn:32e57b0cb8135ce2bcb63321",
+      "scope": "uid",
+      "source_text": "剧本进化技能按<color=#FF911C>各育成剧本</color>\n<color=#FF911C>设定的数量</color>进行进化",
+      "source_fingerprint": "8a243fc8bd41dd2caf1840b00a4c11c6c49bb7acea182bedecbb216cda94c0f3",
+      "rejected_targets": [
+        "Kỹ năng tiến hóa kịch bản sẽ tiến hóa theo <color=#FF911C>mỗi kịch bản huấn luyện</color>\nvới <color=#FF911C>số lượng đã quy định</color>"
+      ],
+      "approved_target": "Evolution Skill kịch bản sẽ tiến hóa theo <color=#FF911C>mỗi kịch bản huấn luyện</color>\nvới <color=#FF911C>số lượng đã quy định</color>",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768",
+          "batch_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768-b0184",
+          "claim_id": "trc-gpt56sol-auto11-20260831T123600Z-b0184",
+          "merged_at": "2026-08-31T12:48:07.528746Z",
+          "reason": "Generic 进化技能 is canonical Evolution Skill."
+        }
+      ]
+    },
+    {
       "id": "review.regression.88b95f4840a9477e",
       "uid": "zhcn:32ea6e2b61c175f7fc018d2d",
       "scope": "uid",
@@ -32641,6 +32726,31 @@
           "claim_id": "trc-chatgpt-sol-auto3-b0421",
           "merged_at": "2026-08-30T11:45:01.620962Z",
           "reason": "Generic 赛马娘 currently uses the forbidden Uma Musume form; ★3 and R2 are preserved."
+        }
+      ]
+    },
+    {
+      "id": "review.regression.50126be89ea2de87",
+      "uid": "zhcn:33e6138e684c25b65ddc590f",
+      "scope": "uid",
+      "source_text": "剧本技能进化",
+      "source_fingerprint": "79dbe8dd5bd01bd7a9d33f850f241732aa8c8700389b04fd9c9f80bb7700bde0",
+      "rejected_targets": [
+        "Tiến hóa kỹ năng kịch bản"
+      ],
+      "approved_target": "Tiến hóa Skill kịch bản",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768",
+          "batch_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768-b0184",
+          "claim_id": "trc-gpt56sol-auto11-20260831T123600Z-b0184",
+          "merged_at": "2026-08-31T12:48:07.528746Z",
+          "reason": "Generic 技能 must use canonical Skill label."
         }
       ]
     },
@@ -38918,6 +39028,31 @@
           "reason": "Dropping the polite helper word gives a direct compact input instruction with unchanged meaning.",
           "ui_key": "PracticeRace400207",
           "control_type": "short_system_label"
+        }
+      ]
+    },
+    {
+      "id": "review.regression.13be630443fa8cfc",
+      "uid": "zhcn:3e473d70eb1cf41956f65010",
+      "scope": "uid",
+      "source_text": "技能演出决胜服（樱花千代王）",
+      "source_fingerprint": "5a653db48ed10c42c72dac2ee33dcd8bee4fe107897f9d0855ed53f2609518ac",
+      "rejected_targets": [
+        "Trang phục chiến thắng trình diễn kỹ năng (Sakura Chiyono O)"
+      ],
+      "approved_target": "Trang phục chiến thắng trình diễn Skill (Sakura Chiyono O)",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768",
+          "batch_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768-b0317",
+          "claim_id": "trc-chatgpt-gpt56sol-20260831T1240Z-b0317",
+          "merged_at": "2026-08-31T12:48:08.684949Z",
+          "reason": "Gameplay label 技能 phải dùng canonical player-facing term Skill; bản hiện tại dùng 'kỹ năng' bị community guard cấm."
         }
       ]
     },
@@ -48146,6 +48281,31 @@
       ]
     },
     {
+      "id": "review.regression.af98d70d44aa4be7",
+      "uid": "zhcn:4e5d8d05a0d70a2beefcd1f1",
+      "scope": "uid",
+      "source_text": "要选择不进化剧本技能\n结束育成吗？",
+      "source_fingerprint": "3ad8faa20aabf34d8aeaae8d17cb960ce5231c8d56e1c8f1237da7fd6ec29fa1",
+      "rejected_targets": [
+        "Bạn có muốn kết thúc huấn luyện\nmà không tiến hóa kỹ năng kịch bản không?"
+      ],
+      "approved_target": "Bạn có muốn kết thúc huấn luyện\nmà không tiến hóa Skill kịch bản không?",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768",
+          "batch_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768-b0184",
+          "claim_id": "trc-gpt56sol-auto11-20260831T123600Z-b0184",
+          "merged_at": "2026-08-31T12:48:07.528746Z",
+          "reason": "Generic 技能 must use Skill; newline structure is preserved."
+        }
+      ]
+    },
+    {
       "id": "review.regression.62286a2fe865bc9d",
       "uid": "zhcn:4e63dd96fa35dd7be8b93db7",
       "scope": "uid",
@@ -54982,10 +55142,12 @@
       "source_text": "剧本技能进化确认",
       "source_fingerprint": "36a938bdf91547bc606ef0a8ba071d5e3fa9978d0fae3cadd916b304e2fa518c",
       "rejected_targets": [
+        "Xác nhận tiến hóa kịch bản",
         "Xác nhận tiến hóa kỹ năng kịch bản"
       ],
-      "approved_target": "Xác nhận tiến hóa kịch bản",
+      "approved_target": "Xác nhận tiến hóa Skill kịch bản",
       "origins": [
+        "translation_review",
         "ui_review"
       ],
       "ui_contexts": [
@@ -55008,6 +55170,14 @@
           "reason": "The skill-evolution flow makes the skill noun redundant, allowing a shorter confirmation title without changing the action.",
           "ui_key": "SingleMode539021",
           "control_type": "dialog_title"
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768",
+          "batch_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768-b0184",
+          "claim_id": "trc-gpt56sol-auto11-20260831T123600Z-b0184",
+          "merged_at": "2026-08-31T12:48:07.528746Z",
+          "reason": "Current text omits the generic Skill concept required by source and embedded canonical context."
         }
       ]
     },
@@ -65163,10 +65333,12 @@
       "source_text": "已选择觉醒技能进化",
       "source_fingerprint": "3012726f7f085f2a81ddef30d690463490bbdd41d0cc8b6ed1546dfaa3a5e04b",
       "rejected_targets": [
-        "Đã chọn tiến hóa kỹ năng Thức tỉnh"
+        "Đã chọn tiến hóa kỹ năng Thức tỉnh",
+        "Đã chọn tiến hóa Thức tỉnh"
       ],
-      "approved_target": "Đã chọn tiến hóa Thức tỉnh",
+      "approved_target": "Đã chọn tiến hóa Skill Thức tỉnh",
       "origins": [
+        "translation_review",
         "ui_review"
       ],
       "ui_contexts": [
@@ -65189,6 +65361,14 @@
           "reason": "The current screen already identifies skills, so removing the repeated skill noun preserves the selected Awakened-evolution state with less width.",
           "ui_key": "SingleMode539018",
           "control_type": "short_system_label"
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768",
+          "batch_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768-b0184",
+          "claim_id": "trc-gpt56sol-auto11-20260831T123600Z-b0184",
+          "merged_at": "2026-08-31T12:48:07.528746Z",
+          "reason": "Source contains generic 技能, so resolved text must include canonical Skill label."
         }
       ]
     },
@@ -67877,6 +68057,31 @@
           "claim_id": "trc-chatgpt-sol-20260830-0958-b0887",
           "merged_at": "2026-08-30T11:29:03.650366Z",
           "reason": "Category 172 uses Spark; current 'nhân tố' is explicitly forbidden while gameplay stat labels are already canonical."
+        }
+      ]
+    },
+    {
+      "id": "review.regression.f741b2bf7d3fbfa5",
+      "uid": "zhcn:6d9d4747e69193ac679e207e",
+      "scope": "uid",
+      "source_text": "确定因子前",
+      "source_fingerprint": "802820ec32df1beb094993b0e49115c92050a66c523fdffcbe57f55a9a2f3173",
+      "rejected_targets": [
+        "Trước khi chốt Nhân tố"
+      ],
+      "approved_target": "Trước khi chốt Spark",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768",
+          "batch_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768-b0180",
+          "claim_id": "trc-gpt56sol-auto11-20260831T125000Z-b0180",
+          "merged_at": "2026-08-31T12:48:07.523877Z",
+          "reason": "localize_dict 因子 is Spark/Legacy UI and must not use Nhân tố."
         }
       ]
     },
@@ -77292,6 +77497,31 @@
           "claim_id": "trc-gpt56sol-auto3-20260830T122152Z-b0235",
           "merged_at": "2026-08-30T12:28:15.647311Z",
           "reason": "The exact career stat-limit status UI requires the player-facing term Stat Cap."
+        }
+      ]
+    },
+    {
+      "id": "review.regression.f31c97333881b6e7",
+      "uid": "zhcn:7b89b250246a993f91ccc6f8",
+      "scope": "uid",
+      "source_text": "<color=#FF911C>【{0}】</color>中，\n可进化剧本技能<color=#FF911C>{1}个</color>",
+      "source_fingerprint": "e1f4272b3d67c47d7cd4f5a0184312cfcf25784f49a73bd1376e7516b6792795",
+      "rejected_targets": [
+        "Trong <color=#FF911C>【{0}】</color>,\ncó thể tiến hóa <color=#FF911C>{1} kỹ năng kịch bản</color>"
+      ],
+      "approved_target": "Trong <color=#FF911C>【{0}】</color>,\ncó thể tiến hóa <color=#FF911C>{1} Skill kịch bản</color>",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768",
+          "batch_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768-b0184",
+          "claim_id": "trc-gpt56sol-auto11-20260831T123600Z-b0184",
+          "merged_at": "2026-08-31T12:48:07.528746Z",
+          "reason": "Generic 技能 must use Skill while preserving placeholders and tags."
         }
       ]
     },
@@ -131600,6 +131830,31 @@
       ]
     },
     {
+      "id": "review.regression.cfd16b968b82aa3c",
+      "uid": "zhcn:d33b15299011af1eabe3cb17",
+      "scope": "uid",
+      "source_text": "剧本技能进化选择",
+      "source_fingerprint": "ace88432bd3b79992fcf63113b19d05a3ab1ada492628073fe97d16d3310b508",
+      "rejected_targets": [
+        "Chọn tiến hóa kỹ năng kịch bản"
+      ],
+      "approved_target": "Chọn tiến hóa Skill kịch bản",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768",
+          "batch_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768-b0184",
+          "claim_id": "trc-gpt56sol-auto11-20260831T123600Z-b0184",
+          "merged_at": "2026-08-31T12:48:07.528746Z",
+          "reason": "Generic 技能 must be Skill rather than kỹ năng."
+        }
+      ]
+    },
+    {
       "id": "review.regression.8063a85d872fca02",
       "uid": "zhcn:d34722a2a61c25440dfcc15d",
       "scope": "uid",
@@ -136965,6 +137220,31 @@
       ]
     },
     {
+      "id": "review.regression.39588a2fe0aae1b4",
+      "uid": "zhcn:db4cfe0b6cd5ef1952ac759c",
+      "scope": "uid",
+      "source_text": "支援赛马娘",
+      "source_fingerprint": "fd01362ecf43c1c2e8d1296612f343a1ca3081a092db08020cc65df7a2650c56",
+      "rejected_targets": [
+        "Uma Musume hỗ trợ"
+      ],
+      "approved_target": "Mã Nương hỗ trợ",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768",
+          "batch_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768-b0180",
+          "claim_id": "trc-gpt56sol-auto11-20260831T125000Z-b0180",
+          "merged_at": "2026-08-31T12:48:07.523877Z",
+          "reason": "Generic 赛马娘 must use the project world term Mã Nương rather than Uma Musume."
+        }
+      ]
+    },
+    {
       "id": "review.regression.92e203753ba25b7f",
       "uid": "zhcn:db582bff104a61f973960e45",
       "scope": "uid",
@@ -139318,6 +139598,31 @@
           "claim_id": "trc-gpt56sol-hourly-20260830T1522Z-b0505",
           "merged_at": "2026-08-30T15:16:08.223392Z",
           "reason": "Giữ locked phrase 'Dốc hết sức' nhưng sửa phần sau từ 'chan chứa thành ý' sang tiếng Việt tự nhiên hơn, vẫn bảo toàn nghĩa thành tâm của nguồn."
+        }
+      ]
+    },
+    {
+      "id": "review.regression.f6f9c504ba63f006",
+      "uid": "zhcn:decd7eac50cdfc7c6b47cae1",
+      "scope": "uid",
+      "source_text": "确定后不可再次重新获得因子",
+      "source_fingerprint": "b8d2fc340038312d40c0f8fc6df1a18607bdd48e311823c229cd75f84ffe2a9a",
+      "rejected_targets": [
+        "Sau khi chốt sẽ không thể nhận lại Nhân tố lần nữa"
+      ],
+      "approved_target": "Sau khi chốt sẽ không thể nhận lại Spark lần nữa",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768",
+          "batch_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768-b0180",
+          "claim_id": "trc-gpt56sol-auto11-20260831T125000Z-b0180",
+          "merged_at": "2026-08-31T12:48:07.523877Z",
+          "reason": "localize_dict 因子 must use canonical Spark."
         }
       ]
     },
@@ -154401,6 +154706,31 @@
           "reason": "The compact unlock wording preserves the exact review-session index placeholder and removes ordinal filler.",
           "ui_key": "SingleModeScenarioBreeders425076",
           "control_type": "short_system_label"
+        }
+      ]
+    },
+    {
+      "id": "review.regression.fe748a62cff0d76b",
+      "uid": "zhcn:f696a99778754dd9108e51f8",
+      "scope": "uid",
+      "source_text": "重新获得后，可从原因子与重新获得因子中进行选择",
+      "source_fingerprint": "95106ce492be4fd2ea50c0212605c2065002697a790b4e86f924cfb2c7cad7f9",
+      "rejected_targets": [
+        "Sau khi nhận lại, bạn có thể chọn giữa Nhân tố ban đầu và Nhân tố nhận lại"
+      ],
+      "approved_target": "Sau khi nhận lại, bạn có thể chọn giữa Spark ban đầu và Spark nhận lại",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768",
+          "batch_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768-b0180",
+          "claim_id": "trc-gpt56sol-auto11-20260831T125000Z-b0180",
+          "merged_at": "2026-08-31T12:48:07.523877Z",
+          "reason": "Both 因子 references in localize UI must use canonical Spark."
         }
       ]
     },

@@ -80,7 +80,11 @@ jobs:
         run: python scripts/build_observed_term_memory.py
 
       - name: Migrate pre-apply reviewed lock compatibility
-        run: python scripts/harden_pace_chaser_skill_lock_finding.py
+        shell: bash
+        run: |
+          set -euo pipefail
+          python scripts/harden_pace_chaser_skill_lock_finding.py
+          python scripts/harden_star_ascension_finding.py
 
       - name: Apply explicit reviewed terminology locks
         shell: bash

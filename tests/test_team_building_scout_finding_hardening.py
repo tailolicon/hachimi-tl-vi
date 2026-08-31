@@ -6,7 +6,9 @@ from pathlib import Path
 from scripts.canonical_findings import refresh_canonical_resolutions
 from scripts.harden_team_building_scout_finding import (
     TEAM_BUILDING_SCOUT,
+    TEAM_BUILDING_SCOUT_DECISION,
     TEAM_BUILDING_SCOUT_POINTS,
+    TEAM_BUILDING_SCOUT_POINTS_DECISION,
     harden,
 )
 
@@ -48,6 +50,11 @@ def test_hardener_resolves_team_building_scout_and_is_idempotent(tmp_path: Path)
     assert "TeamBuilding020022" in scout["key_exact"]
     assert points["preferred"] == "Scout Points"
     assert points["key_exact"] == ["TeamBuilding020023", "TeamBuilding020025"]
+
+    reviews = json.loads((tmp_path / "glossary" / "terminology_reviews.json").read_text(encoding="utf-8"))
+    decisions = {item["decision_id"]: item for item in reviews["decisions"]}
+    assert decisions[TEAM_BUILDING_SCOUT_DECISION["decision_id"]]["target_vi"] == "Scout"
+    assert decisions[TEAM_BUILDING_SCOUT_POINTS_DECISION["decision_id"]]["target_vi"] == "Scout Points"
 
     ledger = {"schema_version": 1, "findings": [_finding(key="TeamBuilding020022")]}
     finding = refresh_canonical_resolutions(tmp_path, ledger)["findings"][0]

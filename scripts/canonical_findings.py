@@ -352,7 +352,17 @@ def _rule_covers_finding(rule: dict[str, Any], finding: dict[str, Any]) -> bool:
     return True
 
 
+def _rule_excludes_finding_source(rule: dict[str, Any], finding: dict[str, Any]) -> bool:
+    source = str(finding.get("source_zh_cn") or "")
+    stripped = source.strip()
+    if any(stripped == value.strip() for value in _strings(rule.get("exclude_source_exact"))):
+        return True
+    return any(value in source for value in _strings(rule.get("exclude_source_contains")))
+
+
 def _rule_matches_finding_source(rule: dict[str, Any], alias_field: str, finding: dict[str, Any]) -> bool:
+    if _rule_excludes_finding_source(rule, finding):
+        return False
     source = str(finding.get("source_zh_cn") or "")
     mode = str(rule.get("match_mode") or "contains")
     return any(_source_matches(source, alias, mode) for alias in _strings(rule.get(alias_field)))

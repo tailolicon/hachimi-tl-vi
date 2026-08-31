@@ -32,6 +32,16 @@ GUARDS = {
         "term_id": "common.stat.power",
         "target_vi": "Power",
     },
+    "cf-a4af27bf832dd765": {
+        "layer": "community",
+        "term_id": "common.stat.power",
+        "target_vi": "Power",
+    },
+    "cf-f6a4d26b3bc63f7c": {
+        "layer": "community",
+        "term_id": "common.stat.power",
+        "target_vi": "Power",
+    },
     "cf-ecde28dd625ae647": {
         "layer": "community",
         "term_id": "common.stat.power",

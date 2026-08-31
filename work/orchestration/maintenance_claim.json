@@ -6,14 +6,14 @@
   "claim_id": "canonical-findings-maintenance-gpt56sol-20260831T0722Z",
   "worker_id": "gpt-5.6-sol",
   "claimed_at": "2026-08-31T07:22:12Z",
-  "heartbeat_at": "2026-08-31T07:25:00Z",
-  "lease_expires_at": "2026-08-31T07:31:00Z",
+  "heartbeat_at": "2026-08-31T07:35:00Z",
+  "lease_expires_at": "2026-08-31T07:41:00Z",
   "branch": "main",
   "handoff_from_claim_id": "canonical-findings-maintenance-gpt56sol-20260831T0654Z",
-  "progress_token": "9671a9c531775243aeb90240bf6d30866b2bb9c8",
-  "progress_kind": "review_plan_finding_hardener_persistence_fix",
-  "progress_ref": ".github/workflows/sync-translation-review-plan.yml",
-  "last_progress_at": "2026-08-31T07:25:00Z",
-  "completed_count": 69,
-  "note": "Found the live regression source: review-plan restore commit c8e4b9bd14dfa85328ea114a477d40e224f76020 reran only legacy hardeners and removed the already-proven Fuchu Himba exclusion plus cf-f630 context_guard resolution. Commit 9671a9c531775243aeb90240bf6d30866b2bb9c8 makes sync-translation-review-plan run every scripts/harden_*_finding.py before canonical refresh, matching sync-context, and watches finding hardener/test changes. Await generated-state restoration/validation, then verify cf-f630 stays resolved and continue the next live blocker."
+  "progress_token": "2c934747bfe9e0cb18934057ded25efbb661e5a2",
+  "progress_kind": "fuchu_context_guard_persistence_verified",
+  "progress_ref": "glossary/ui_community_terms.json + glossary/canonical_findings.json + .github/workflows/sync-translation-review-plan.yml + tests/test_context_sync_workflow_persistence.py",
+  "last_progress_at": "2026-08-31T07:35:00Z",
+  "completed_count": 70,
+  "note": "Verified production persistence after review-plan rebuild commit 2c934747bfe9e0cb18934057ded25efbb661e5a2 and sync-context run 33368875485: common.world.umamusume retains exclude_source_contains 府中赛马娘锦标, cf-f6302c57277dc9bc resolves via context_guard to Mã Nương, all finding hardeners ran, context pipeline tests passed. Continue next unresolved canonical blocker; cf-f57d921afca6a993 exposes Pace Chaser running-style matching inside category-147 Skill titles plus legacy Senko locks."
 }

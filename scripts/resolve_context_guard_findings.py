@@ -126,6 +126,11 @@ def resolve(repo_root: Path = ROOT) -> bool:
         guard = GUARDS.get(str(finding.get("finding_id") or ""))
         if guard is None:
             continue
+        # Context guards are fallback evidence that an old overmatching rule has
+        # been neutralized. Never replace a positive canonical resolution that
+        # already matches the reviewed target; canonical refresh owns that result.
+        if isinstance(finding.get("canonical_resolution"), dict):
+            continue
         evidence = [item for item in finding.get("evidence", []) if isinstance(item, dict)]
         if not evidence:
             continue

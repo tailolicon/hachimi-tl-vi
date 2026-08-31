@@ -7,6 +7,11 @@ style. A small family of reviewed Skill-title locks still embedded the older
 romanization ``Senko``, which makes the exact Skill lock contradict the current
 player-facing running-style rule. Keep the Skill-title wording, but replace only
 that embedded legacy style label.
+
+Both the reviewed decision source and its generated locked registry entry are
+migrated. This is required because ``apply_terminology_reviews.py`` runs before
+the normal finding-hardener sweep during context Sync; leaving the source review
+on Senko would make every later Sync reject the already-hardened registry.
 """
 
 import json
@@ -19,6 +24,10 @@ COMMUNITY_TERM_ID = "common.style.pace_chaser"
 SOURCE_TOKEN = "先行"
 LEGACY_LABEL = "Senko"
 CANONICAL_LABEL = "Pace Chaser"
+MIGRATION_NOTE = (
+    "Canonical hardening: embedded running-style label migrated from "
+    "legacy Senko to player-facing Pace Chaser."
+)
 
 
 def _load(path: Path) -> dict[str, Any]:
@@ -44,6 +53,18 @@ def _strings(value: Any) -> list[str]:
     return []
 
 
+def _migrate_target(record: dict[str, Any], *, source_field: str) -> bool:
+    source = str(record.get(source_field) or "")
+    target = str(record.get("target_vi") or "")
+    if SOURCE_TOKEN not in source or LEGACY_LABEL not in target:
+        return False
+    record["target_vi"] = target.replace(LEGACY_LABEL, CANONICAL_LABEL)
+    note = str(record.get("note") or "").strip()
+    if MIGRATION_NOTE not in note:
+        record["note"] = f"{note} {MIGRATION_NOTE}".strip()
+    return True
+
+
 def harden(repo_root: Path = ROOT) -> bool:
     community_path = repo_root / "glossary" / "ui_community_terms.json"
     community = _load(community_path)
@@ -64,38 +85,33 @@ def harden(repo_root: Path = ROOT) -> bool:
 
     changed = False
 
+    # Migrate the authoritative reviewed decisions first. Context Sync applies
+    # these decisions before the normal finding-hardener sweep.
+    reviews_path = repo_root / "glossary" / "terminology_reviews.json"
+    reviews = _load(reviews_path)
+    reviews_before = json.dumps(reviews, ensure_ascii=False, sort_keys=True)
+    for decision in reviews.get("decisions", []):
+        if not isinstance(decision, dict) or str(decision.get("action") or "") != "lock":
+            continue
+        _migrate_target(decision, source_field="source_zh_cn")
+    if reviews_before != json.dumps(reviews, ensure_ascii=False, sort_keys=True):
+        _write(reviews_path, reviews)
+        changed = True
+
     registry_path = repo_root / "glossary" / "term_registry.json"
     registry = _load(registry_path)
     registry_before = json.dumps(registry, ensure_ascii=False, sort_keys=True)
-    migrated = 0
     for term in registry.get("terms", []):
         if not isinstance(term, dict) or not bool(term.get("locked")):
             continue
         aliases = _strings(term.get("zh_cn"))
         target = str(term.get("target_vi") or "")
-        if not any(SOURCE_TOKEN in alias for alias in aliases):
-            continue
-        if LEGACY_LABEL not in target:
+        if not any(SOURCE_TOKEN in alias for alias in aliases) or LEGACY_LABEL not in target:
             continue
         term["target_vi"] = target.replace(LEGACY_LABEL, CANONICAL_LABEL)
         note = str(term.get("note") or "").strip()
-        migration_note = (
-            "Canonical hardening: embedded running-style label migrated from "
-            "legacy Senko to player-facing Pace Chaser."
-        )
-        if migration_note not in note:
-            term["note"] = f"{note} {migration_note}".strip()
-        migrated += 1
-    if migrated == 0:
-        # Idempotent reruns are valid only when no conflicting lock remains.
-        if any(
-            isinstance(term, dict)
-            and bool(term.get("locked"))
-            and any(SOURCE_TOKEN in alias for alias in _strings(term.get("zh_cn")))
-            and LEGACY_LABEL in str(term.get("target_vi") or "")
-            for term in registry.get("terms", [])
-        ):
-            raise AssertionError("legacy Senko Skill lock remained after migration")
+        if MIGRATION_NOTE not in note:
+            term["note"] = f"{note} {MIGRATION_NOTE}".strip()
     if registry_before != json.dumps(registry, ensure_ascii=False, sort_keys=True):
         _write(registry_path, registry)
         changed = True

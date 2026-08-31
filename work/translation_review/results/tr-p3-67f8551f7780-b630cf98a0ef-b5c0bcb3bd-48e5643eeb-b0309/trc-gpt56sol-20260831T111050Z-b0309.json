@@ -5,8 +5,8 @@
   "batch_id": "tr-p3-67f8551f7780-b630cf98a0ef-b5c0bcb3bd-48e5643eeb-b0309",
   "claim_id": "trc-gpt56sol-20260831T111050Z-b0309",
   "worker_id": "gpt-5.6-sol-20260831T111050Z",
-  "reviewed_at": "2026-08-31T11:14:00Z",
-  "completed_count": 10,
+  "reviewed_at": "2026-08-31T11:17:00Z",
+  "completed_count": 15,
   "decisions": [
     {
       "uid": "zhcn:f6431ce3f23c0f1aea5ac7a5",
@@ -88,6 +88,56 @@
       "action": "keep",
       "reason": "The six-win G1 condition, three named races, and 480000 fan threshold are faithfully preserved.",
       "terminology_basis": "Embedded race.generic, progress.fans, and common.race_grade.g1 are all satisfied.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:f2d46eadaa73127df6727327",
+      "current_fingerprint": "2186f45ba3dec77dd81d7dcb9bbeaa30db75fd3fd63e8a3d8591707451b5f5a2",
+      "action": "revise",
+      "proposed_text": "Giữ Mood ở 【Great】 và tham gia ít nhất 15 cuộc đua cấp G2 hoặc G1,\\n giành 3 chiến thắng liên tiếp ở các giải từ G2 trở lên, bao gồm Kikuka Sho",
+      "reason": "绝好调 is a named Mood level whose canonical player-facing label is Great; the current Tuyệt hảo is noncanonical.",
+      "terminology_basis": "source_bridge_terms state.mood requires Mood and state.mood.great maps 绝好调 exactly to Great; embedded G1/G2 labels are already correct.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:9fabd1ed50d8948e19ffcf4e",
+      "current_fingerprint": "2b0d4c5f50b738b65cc2c2a1537f31154004b0448601bb918299b061fea10149",
+      "action": "defer",
+      "reason": "焦躁 is a recurring race-state/mechanic label, but the current repository context does not provide a verified canonical player-facing mapping for this usage; a one-off literal Vietnamese label would risk systemic inconsistency.",
+      "terminology_basis": "race.generic is satisfied; no canonical label for this 焦躁 race-state usage is embedded or found in the scoped repository search.",
+      "canonical_finding": {
+        "kind": "system_label",
+        "source_zh_cn": "焦躁",
+        "concept": "Race-state mechanic occurring during a race",
+        "match_mode": "contains",
+        "scope": "source_path",
+        "reason": "Repeated player-facing race-state/mechanic needs one verified canonical label instead of literal per-line translation.",
+        "confidence": "high"
+      },
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:33c6ede90428f9e150d5e967",
+      "current_fingerprint": "66f4d987eb8178cd720000886d5293295116cfa2fa599fc0bd3fc8518bbbd902",
+      "action": "keep",
+      "reason": "It correctly requires three third-place finishes in G1 races and a fan threshold of 320000.",
+      "terminology_basis": "Embedded race.generic, progress.fans, and common.race_grade.g1 are satisfied.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:cfea039fa1ff6c78f54819db",
+      "current_fingerprint": "6f2e977066e07b27ae303e0be823f514b657da021915a455bacc1bbd2b4f6cc8",
+      "action": "keep",
+      "reason": "The Mejiro-name requirement, at-least-one G1 win, three named race wins, and 240000 fan threshold are all preserved.",
+      "terminology_basis": "Embedded Mã Nương, race.generic, progress.fans, and G1 requirements are satisfied.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:8693c05be650a5df82bd5f57",
+      "current_fingerprint": "9bfdcc3d753bd9b53d326678ff7ebeedc618caf926028bb389f90d51625bc8f7",
+      "action": "defer",
+      "reason": "The objective contains 重赏, which remains blocked by the shared open canonical finding; the rest of the Mile/rain/margin conditions are readable but cannot close review yet.",
+      "terminology_basis": "Embedded cf-bf5645acbcfad6a9 blocks 重赏; common.distance.mile and race.generic are otherwise satisfied.",
       "confidence": "high"
     }
   ]

@@ -9,13 +9,13 @@
     "growth": "Every accepted retrospective translation revise and accepted UI revise is folded into this file automatically by both review merge workflows."
   },
   "summary": {
-    "merged_markers_scanned": 1280,
-    "translation_merged_markers_scanned": 1180,
+    "merged_markers_scanned": 1281,
+    "translation_merged_markers_scanned": 1181,
     "ui_merged_markers_scanned": 100,
-    "accepted_revision_events": 6679,
-    "accepted_translation_revision_events": 5190,
+    "accepted_revision_events": 6684,
+    "accepted_translation_revision_events": 5195,
     "accepted_ui_revision_events": 1489,
-    "regression_identity_count": 5406,
+    "regression_identity_count": 5409,
     "skipped_incomplete_markers": 0,
     "translation_skipped_incomplete_markers": 0,
     "ui_skipped_incomplete_markers": 0
@@ -2646,6 +2646,31 @@
           "claim_id": "trc-chatgpt-auto-20260830T065030Z-b0894",
           "merged_at": "2026-08-30T11:29:03.687318Z",
           "reason": "Category 172 is inheritance/Spark description context; 因子 must use Spark rather than Nhân tố."
+        }
+      ]
+    },
+    {
+      "id": "review.regression.b6b11dc68c5e2e0c",
+      "uid": "zhcn:03be75371b9a5967d4228e7a",
+      "scope": "uid",
+      "source_text": "所需金币",
+      "source_fingerprint": "bd78fe0d6e49d87875baf318f63b8ec1444f823e7159383d2df8d1f30f74331f",
+      "rejected_targets": [
+        "Coin cần thiết"
+      ],
+      "approved_target": "Monies cần thiết",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768",
+          "batch_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768-b0171",
+          "claim_id": "trc-gpt56sol-auto11b-20260831T145200Z-b0171",
+          "merged_at": "2026-08-31T14:58:24.403310Z",
+          "reason": "金币 is the player-facing bridge for the game's Monies currency, not Coin."
         }
       ]
     },
@@ -13777,6 +13802,31 @@
       ]
     },
     {
+      "id": "review.regression.14ff6d96777dda9e",
+      "uid": "zhcn:14f38091fb415f9e2f8e86c0",
+      "scope": "uid",
+      "source_text": "重赏比赛以上",
+      "source_fingerprint": "ef09bf90fb8586e3217558b323e522ff80e7e450c5beaa476a4642c4d93cbc6b",
+      "rejected_targets": [
+        "Cuộc đua trọng thưởng trở lên"
+      ],
+      "approved_target": "Cuộc đua graded trở lên",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768",
+          "batch_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768-b0171",
+          "claim_id": "trc-gpt56sol-auto11b-20260831T145200Z-b0171",
+          "merged_at": "2026-08-31T14:58:24.403310Z",
+          "reason": "Current trọng thưởng is noncanonical for 重赏 in this review context."
+        }
+      ]
+    },
+    {
       "id": "review.regression.444f782650db369a",
       "uid": "zhcn:1531c24b89878bc42111d124",
       "scope": "uid",
@@ -23382,10 +23432,12 @@
       "source_text": "开始育成时将消耗金币",
       "source_fingerprint": "54edde4c197c17ac86038f617b5a8807473e007c5739aadf3910d0111eb5f664",
       "rejected_targets": [
-        "Bắt đầu huấn luyện sẽ tiêu hao Coin"
+        "Bắt đầu huấn luyện sẽ tiêu hao Coin",
+        "Bắt đầu huấn luyện tốn Coin"
       ],
-      "approved_target": "Bắt đầu huấn luyện tốn Coin",
+      "approved_target": "Bắt đầu Career sẽ tốn Monies",
       "origins": [
+        "translation_review",
         "ui_review"
       ],
       "ui_contexts": [
@@ -23408,6 +23460,14 @@
           "reason": "Replacing the verbose future construction with a direct cost statement preserves that Coin is consumed when training starts.",
           "ui_key": "SingleMode0526",
           "control_type": "short_system_label"
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768",
+          "batch_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768-b0171",
+          "claim_id": "trc-gpt56sol-auto11b-20260831T145200Z-b0171",
+          "merged_at": "2026-08-31T14:58:24.403310Z",
+          "reason": "Current text misses both canonical Career terminology for 育成 and the Monies currency mapping for 金币."
         }
       ]
     },
@@ -45755,9 +45815,10 @@
       "source_text": "获得各重赏比赛的奖杯",
       "source_fingerprint": "e0a336fb43bcb8957b08c142bf49dde0e90cd1ad8449a6c1aca8e25057a55f2e",
       "rejected_targets": [
-        "Nhận cúp các giải trọng thưởng"
+        "Nhận cúp các giải trọng thưởng",
+        "Nhận cúp của các cuộc đua trọng thưởng"
       ],
-      "approved_target": "Nhận cúp của các cuộc đua trọng thưởng",
+      "approved_target": "Nhận cúp của các Cuộc đua graded",
       "origins": [
         "translation_review",
         "ui_review"
@@ -45790,6 +45851,14 @@
           "claim_id": "trc-gpt56sol-20260831T104345Z-b0178",
           "merged_at": "2026-08-31T10:51:48.692920Z",
           "reason": "The current wording omits the explicit 比赛/race concept; the revision preserves both the trophy objective and the required player-facing race label."
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768",
+          "batch_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768-b0171",
+          "claim_id": "trc-gpt56sol-auto11b-20260831T145200Z-b0171",
+          "merged_at": "2026-08-31T14:58:24.403310Z",
+          "reason": "Current trọng thưởng is a noncanonical rendering of 重赏 in this review context."
         }
       ]
     },
@@ -53778,6 +53847,31 @@
           "claim_id": "trc-chatgpt-sol-auto-20260830-0553-b0258",
           "merged_at": "2026-08-30T05:58:49.782327Z",
           "reason": "This is the generic player-facing Career gameplay label; project audit policy preserves Training in English."
+        }
+      ]
+    },
+    {
+      "id": "review.regression.d9dfafe0b826c4b5",
+      "uid": "zhcn:55eae1c876a588a4266988e7",
+      "scope": "uid",
+      "source_text": "要编入租借赛马娘吗？",
+      "source_fingerprint": "ae1ff200fbded9850d8573945c5192d7aeb7dcaf4faeca8e8999cdf7c94b8ec2",
+      "rejected_targets": [
+        "Bạn có muốn thêm Uma Musume thuê vào đội không?"
+      ],
+      "approved_target": "Bạn có muốn thêm Mã Nương thuê vào đội không?",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768",
+          "batch_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768-b0171",
+          "claim_id": "trc-gpt56sol-auto11b-20260831T145200Z-b0171",
+          "merged_at": "2026-08-31T14:58:24.403310Z",
+          "reason": "Generic 赛马娘 must use the project world term Mã Nương rather than Uma Musume."
         }
       ]
     },

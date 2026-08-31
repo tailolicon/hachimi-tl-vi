@@ -1,10 +1,14 @@
 from __future__ import annotations
 
 import json
+import subprocess
+import sys
 from pathlib import Path
 
 from scripts.canonical_findings import refresh_canonical_resolutions
 from scripts.resolve_scoped_canonical_overrides import resolve_scoped_canonical_overrides
+
+ROOT = Path(__file__).resolve().parents[1]
 
 
 def _seed(tmp_path: Path, *, scoped: bool = True) -> None:
@@ -76,3 +80,20 @@ def test_unscoped_community_rule_cannot_override_review_lock(tmp_path: Path) -> 
     ledger = refresh_canonical_resolutions(tmp_path, {"schema_version": 1, "findings": [_finding()]})
     ledger = resolve_scoped_canonical_overrides(tmp_path, ledger)
     assert ledger["findings"][0]["canonical_resolution"] is None
+
+
+def test_direct_script_entrypoint_resolves_and_reports_change(tmp_path: Path) -> None:
+    _seed(tmp_path)
+    ledger = refresh_canonical_resolutions(tmp_path, {"schema_version": 1, "findings": [_finding()]})
+    (tmp_path / "glossary" / "canonical_findings.json").write_text(json.dumps(ledger), encoding="utf-8")
+
+    completed = subprocess.run(
+        [sys.executable, str(ROOT / "scripts" / "resolve_scoped_canonical_overrides.py"), "--repo-root", str(tmp_path)],
+        cwd=ROOT,
+        check=True,
+        capture_output=True,
+        text=True,
+    )
+    assert "scoped_canonical_overrides_resolved=1" in completed.stdout
+    persisted = json.loads((tmp_path / "glossary" / "canonical_findings.json").read_text(encoding="utf-8"))
+    assert persisted["findings"][0]["canonical_resolution"]["target_vi"] == "Stamina"

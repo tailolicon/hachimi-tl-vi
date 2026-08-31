@@ -5,6 +5,7 @@ from pathlib import Path
 from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
+OBSOLETE_DECISION_ID = "audit.finding.stamina-achievement-threshold"
 
 STAMINA_THRESHOLD = {
     "id": "stat.stamina.achievement_threshold",
@@ -48,14 +49,31 @@ def _upsert(items: list[Any], record: dict[str, Any], *, id_field: str) -> None:
 
 
 def harden(repo_root: Path = ROOT) -> bool:
+    changed = False
+
     community_path = repo_root / "glossary" / "ui_community_terms.json"
     community = _load(community_path, {"schema_version": 1, "terms": []})
     before = json.dumps(community, ensure_ascii=False, sort_keys=True)
     _upsert(community.setdefault("terms", []), STAMINA_THRESHOLD, id_field="id")
-    if before == json.dumps(community, ensure_ascii=False, sort_keys=True):
-        return False
-    _write(community_path, community)
-    return True
+    if before != json.dumps(community, ensure_ascii=False, sort_keys=True):
+        _write(community_path, community)
+        changed = True
+
+    reviews_path = repo_root / "glossary" / "terminology_reviews.json"
+    reviews = _load(reviews_path, {"schema_version": 1, "decisions": []})
+    decisions = reviews.setdefault("decisions", [])
+    if not isinstance(decisions, list):
+        raise ValueError("glossary/terminology_reviews.json decisions must be a list")
+    filtered = [
+        item for item in decisions
+        if not (isinstance(item, dict) and str(item.get("decision_id") or "") == OBSOLETE_DECISION_ID)
+    ]
+    if len(filtered) != len(decisions):
+        reviews["decisions"] = filtered
+        _write(reviews_path, reviews)
+        changed = True
+
+    return changed
 
 
 def main() -> int:

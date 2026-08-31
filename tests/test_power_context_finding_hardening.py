@@ -63,7 +63,16 @@ def test_power_context_hardening_preserves_stat_and_excludes_narrative(tmp_path:
         source_path="text_data_dict.json",
         json_path=["10", "110"],
     )
+    physical_strength = community_term_matches(
+        None,
+        "有着能够依靠尾巴来支撑自己的力量……据说",
+        "Nghe nói có sức mạnh đủ để dùng đuôi chống đỡ cả cơ thể……",
+        terms,
+        source_path="text_data_dict.json",
+        json_path=["167", "1026"],
+    )
     assert stat[0]["id"] == TERM_ID
     assert stat[0]["preferred"] == "Power"
     assert narrative_title == []
     assert narrative_item == []
+    assert physical_strength == []

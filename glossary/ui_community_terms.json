@@ -5590,6 +5590,33 @@
       ],
       "match_mode": "contains",
       "basis": "Named trainee progression mechanic. JP 才能開花 consumes Character Pieces to raise a trainee's star rarity; released Global player-facing terminology uses Star Ascension. Scope is restricted to text_data category 114 Character Piece descriptions so the separate Skill title 开花 and generic bloom/talent prose are unaffected."
+    },
+    {
+      "id": "stat.stamina.achievement_threshold",
+      "category": "stat",
+      "source_aliases": [
+        "体力"
+      ],
+      "preferred": "Stamina",
+      "compact": [],
+      "accepted": [
+        "Stamina"
+      ],
+      "forbidden": [
+        "Thể lực"
+      ],
+      "require_accepted": true,
+      "invalidation_scope": "item",
+      "source_paths": [
+        "text_data_dict.json"
+      ],
+      "json_path_prefixes": [
+        [
+          "131"
+        ]
+      ],
+      "match_mode": "contains",
+      "basis": "In text_data category 131 achievement conditions, bracketed 体力 with a numeric threshold such as 1200 is the trainable Stamina stat. The training energy gauge cannot take four-digit stat values. Scope is restricted to achievement-condition category 131 so ordinary 体力 meaning energy/physical condition elsewhere is unaffected."
     }
   ]
 }

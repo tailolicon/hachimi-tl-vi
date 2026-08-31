@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "status": "partial",
+  "plan_id": "tr-p3-67f8551f7780-5866633e0b1c-b5c0bcb3bd-babd4f1703",
+  "batch_id": "tr-p3-67f8551f7780-5866633e0b1c-b5c0bcb3bd-babd4f1703-b0178",
+  "claim_id": "trc-gpt56sol-20260831T104345Z-b0178",
+  "worker_id": "gpt-5.6-sol-20260831T104345Z",
+  "reviewed_at": "2026-08-31T10:45:05Z",
+  "completed_count": 5,
+  "decisions": [
+    {
+      "uid": "zhcn:1f7f772bb9134e558c9a5060",
+      "current_fingerprint": "92e78eeb137ebe758de6a82ba2819baf3c932eccd42f1ecb104abf698745d315",
+      "action": "revise",
+      "proposed_text": "Chưa đáp ứng điều kiện tham gia, không thể đặt lịch cuộc đua",
+      "reason": "未满足 carries an explicit not-yet/unmet state; using Chưa restores that aspect while preserving the race-booking restriction.",
+      "terminology_basis": "Embedded locked term race.generic requires 比赛 -> Cuộc đua, which is preserved.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:4b38d4af09c0a855823f7338",
+      "current_fingerprint": "a7ffb6035f273384cf6b2732b7fdfa20884d4d2c322df850a2e8690d12e7d625",
+      "action": "revise",
+      "proposed_text": "Support Card đang được thiết lập",
+      "reason": "Current text uses the forbidden literal Vietnamese label for 支援卡; the revision restores the required player-facing Support Card term.",
+      "terminology_basis": "Embedded common.support_card and source-bridge system.support_card require Support Card and forbid Thẻ hỗ trợ.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:18b79a6e7653eedd358a9a3a",
+      "current_fingerprint": "66cf3178a0f085fd45deaf5e16a01a82d5df9b7f60b2d75ca0a8e95c7e5a2acb",
+      "action": "revise",
+      "proposed_text": "Không thể chọn Support Card trùng lặp",
+      "reason": "The current text drops the explicit 支援卡 object and therefore fails the required player-facing Support Card terminology.",
+      "terminology_basis": "Embedded common.support_card and source-bridge system.support_card require Support Card and forbid Thẻ hỗ trợ.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:78b76014b4bbc1e868a81f25",
+      "current_fingerprint": "1ea5af0186e2c98b22ef7e4dfae26a144e93d5482765cc59d2a95af44302b4a3",
+      "action": "keep",
+      "reason": "The translation faithfully preserves winning any debut or maiden/unwon race and is natural in this objective-style UI context.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:7122e486fe1ae405731b317f",
+      "current_fingerprint": "b8183ab72ff8dbca3e4ee7478c52f87446215aa614117576d246004dcf0ccfca",
+      "action": "revise",
+      "proposed_text": "Giành chiến thắng trong bất kỳ cuộc đua Pre-OP nào",
+      "reason": "The source says any Pre-OP race and contains no numeric token; the current text introduces an unsupported digit 1.",
+      "terminology_basis": "Embedded locked term race.generic requires 比赛 -> Cuộc đua, which is preserved.",
+      "confidence": "high"
+    }
+  ]
+}

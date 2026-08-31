@@ -37,6 +37,11 @@ GUARDS = {
         "term_id": "race.generic",
         "target_vi": "Cuộc đua",
     },
+    "cf-552896cb4b769204": {
+        "layer": "locked",
+        "term_id": "race.generic",
+        "target_vi": "Cuộc đua",
+    },
     "cf-5d23e532c5359881": {
         "layer": "community",
         "term_id": "common.stat.power",

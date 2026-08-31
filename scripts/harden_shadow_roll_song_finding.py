@@ -40,6 +40,16 @@ SHADOW_ROLL_DECISION = {
     "note": "Preserve the verified Romanized Japanese title plus its original English parenthetical rather than inventing a translated proper title.",
 }
 
+SHADOW_ROLL_ASCII_DECISION = {
+    "decision_id": "audit.finding.song-shadow-roll-no-chikai-ascii",
+    "source_zh_cn": "シャドーロールの誓い (The Solid Revision)",
+    "action": "lock",
+    "target_vi": "Shadow Roll no Chikai (The Solid Revision)",
+    "kind": "proper_name",
+    "category": "song",
+    "note": "ASCII-parenthesis source variant of the same verified song title; use the identical Romanized target.",
+}
+
 
 def _load(path: Path, default: dict[str, Any] | None = None) -> dict[str, Any]:
     if not path.exists():
@@ -85,6 +95,7 @@ def harden(repo_root: Path = ROOT) -> bool:
         raise ValueError("glossary/terminology_reviews.json decisions must be a list")
     before = json.dumps(reviews, ensure_ascii=False, sort_keys=True)
     _upsert(decisions, SHADOW_ROLL_DECISION, id_field="decision_id")
+    _upsert(decisions, SHADOW_ROLL_ASCII_DECISION, id_field="decision_id")
     if before != json.dumps(reviews, ensure_ascii=False, sort_keys=True):
         _write(reviews_path, reviews)
         changed = True

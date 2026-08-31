@@ -24,6 +24,7 @@ def test_shadow_roll_resolves_song_title_table(tmp_path: Path) -> None:
     rule = next(item for item in community["terms"] if item["id"] == SHADOW_ROLL["id"])
     assert rule["preferred"] == "Shadow Roll no Chikai (The Solid Revision)"
     assert rule["json_path_prefixes"] == [["16"]]
+    assert "シャドーロールの誓い (The Solid Revision)" in rule["source_aliases"]
     reviews = json.loads((tmp_path / "glossary" / "terminology_reviews.json").read_text(encoding="utf-8"))
     decision = next(item for item in reviews["decisions"] if item["decision_id"] == SHADOW_ROLL_DECISION["decision_id"])
     assert decision["target_vi"] == "Shadow Roll no Chikai (The Solid Revision)"
@@ -35,6 +36,19 @@ def test_shadow_roll_resolves_song_title_table(tmp_path: Path) -> None:
     }]}
     finding = refresh_canonical_resolutions(tmp_path, ledger)["findings"][0]
     assert finding["review_resolution"]["target_vi"] == "Shadow Roll no Chikai (The Solid Revision)"
+    assert finding["canonical_resolution"] == {"layer": "community", "term_id": "song.shadow_roll_no_chikai_the_solid_revision", "target_vi": "Shadow Roll no Chikai (The Solid Revision)"}
+
+
+def test_shadow_roll_ascii_parentheses_resolve_same_song(tmp_path: Path) -> None:
+    _seed(tmp_path)
+    assert harden(tmp_path) is True
+    ledger = {"schema_version": 1, "findings": [{
+        "finding_id": "cf-719d8f9aff4c9211", "status": "open", "source_zh_cn": "シャドーロールの誓い (The Solid Revision)",
+        "match_mode": "exact", "source_paths": ["text_data_dict.json"], "key_exact": [],
+        "json_path_prefixes": [["16"]], "suggested_targets_vi": [],
+        "canonical_resolution": None, "review_resolution": None,
+    }]}
+    finding = refresh_canonical_resolutions(tmp_path, ledger)["findings"][0]
     assert finding["canonical_resolution"] == {"layer": "community", "term_id": "song.shadow_roll_no_chikai_the_solid_revision", "target_vi": "Shadow Roll no Chikai (The Solid Revision)"}
 
 

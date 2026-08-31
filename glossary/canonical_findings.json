@@ -1434,7 +1434,7 @@
         }
       ],
       "canonical_resolution": {
-        "layer": "context_guard",
+        "layer": "locked",
         "term_id": "reviewed.skill_name.5dffb471df59",
         "target_vi": "Đổi mới"
       },
@@ -1768,11 +1768,7 @@
           "reported_at": "2026-08-30T13:27:00Z"
         }
       ],
-      "canonical_resolution": {
-        "layer": "context_guard",
-        "term_id": "common.stat.power",
-        "target_vi": "Power"
-      },
+      "canonical_resolution": null,
       "review_resolution": null,
       "first_seen_at": "2026-08-30T13:27:00Z",
       "last_seen_at": "2026-08-30T13:27:00Z"
@@ -2733,11 +2729,7 @@
           "reported_at": "2026-08-30T14:07:00Z"
         }
       ],
-      "canonical_resolution": {
-        "layer": "context_guard",
-        "term_id": "reviewed.condition.97c2a1f26a21",
-        "target_vi": "Recovery Spirit"
-      },
+      "canonical_resolution": null,
       "review_resolution": {
         "decision_id": "audit.finding.condition-recovery-spirit",
         "action": "lock",
@@ -3258,7 +3250,7 @@
         }
       ],
       "canonical_resolution": {
-        "layer": "context_guard",
+        "layer": "locked",
         "term_id": "reviewed.skill_name.1c68057834c9",
         "target_vi": "Khải hoàn"
       },
@@ -3695,7 +3687,7 @@
         }
       ],
       "canonical_resolution": {
-        "layer": "context_guard",
+        "layer": "locked",
         "term_id": "reviewed.skill_name.e778cffef185",
         "target_vi": "Một bước vượt lên"
       },
@@ -4539,11 +4531,7 @@
           "reported_at": "2026-08-30T13:14:00Z"
         }
       ],
-      "canonical_resolution": {
-        "layer": "context_guard",
-        "term_id": "currency.jewel",
-        "target_vi": "Jewel"
-      },
+      "canonical_resolution": null,
       "review_resolution": null,
       "first_seen_at": "2026-08-30T13:14:00Z",
       "last_seen_at": "2026-08-30T13:14:00Z"
@@ -4773,6 +4761,69 @@
       },
       "first_seen_at": "2026-08-30T19:30:15Z",
       "last_seen_at": "2026-08-30T19:30:15Z"
+    },
+    {
+      "finding_id": "cf-de8d8180f7fd53b8",
+      "status": "open",
+      "source_zh_cn": "马娘偶像",
+      "match_mode": "contains",
+      "source_paths": [
+        "text_data_dict.json"
+      ],
+      "key_exact": [],
+      "json_path_prefixes": [],
+      "kinds": [
+        "source_bridge"
+      ],
+      "concepts": [
+        "zh-CN shorthand 马娘 in generic Mã Nương idol references"
+      ],
+      "suggested_targets_vi": [],
+      "confidence_levels": [
+        "high"
+      ],
+      "reasons": [
+        "The bridge shorthand is not covered by the embedded Mã Nương alias and should be canonicalized narrowly before repairing individual idol-description lines."
+      ],
+      "evidence_count": 2,
+      "evidence": [
+        {
+          "uid": "zhcn:4fe4b4180bed948266ec76a9",
+          "plan_id": "tr-p3-67f8551f7780-7fcce93aa5ff-b5c0bcb3bd-6fba275eea",
+          "batch_id": "tr-p3-67f8551f7780-7fcce93aa5ff-b5c0bcb3bd-6fba275eea-b0295",
+          "claim_id": "trc-gpt56sol-20260831T065208Z-b0295-e41b",
+          "worker_id": "gpt-5.6-sol-20260831T065208Z-e41b",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "128",
+            "1044"
+          ],
+          "source_text": "目标是，顶尖马娘偶像！拿起麦克风，以愉快的心情\\n用可爱又活泼♪的笑容来唱歌吧☆",
+          "current_text": "Mục tiêu là trở thành thần tượng Uma Musume hàng đầu! Cầm lấy micro, với tâm trạng thật vui vẻ,\\nhãy hát bằng nụ cười đáng yêu và tràn đầy sức sống♪☆",
+          "proposed_text": null,
+          "reported_at": "2026-08-31T06:56:02Z"
+        },
+        {
+          "uid": "zhcn:ea682e017009b260a37994e7",
+          "plan_id": "tr-p3-67f8551f7780-7fcce93aa5ff-b5c0bcb3bd-6fba275eea",
+          "batch_id": "tr-p3-67f8551f7780-7fcce93aa5ff-b5c0bcb3bd-6fba275eea-b0295",
+          "claim_id": "trc-gpt56sol-20260831T065208Z-b0295-e41b",
+          "worker_id": "gpt-5.6-sol-20260831T065208Z-e41b",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "128",
+            "1057"
+          ],
+          "source_text": "一首伴着汗水与泪水的闪耀歌曲！闪闪发亮的可爱马娘偶像\\n背后是踏踏实实的努力☆",
+          "current_text": "Một ca khúc lấp lánh cùng mồ hôi và nước mắt! Phía sau thần tượng Uma Musume đáng yêu, tỏa sáng rực rỡ\\nlà những nỗ lực bền bỉ và chắc chắn☆",
+          "proposed_text": null,
+          "reported_at": "2026-08-31T06:56:02Z"
+        }
+      ],
+      "canonical_resolution": null,
+      "review_resolution": null,
+      "first_seen_at": "2026-08-31T06:56:02Z",
+      "last_seen_at": "2026-08-31T06:56:02Z"
     },
     {
       "finding_id": "cf-e037547aac6d0e61",
@@ -5013,11 +5064,7 @@
           "reported_at": "2026-08-30T12:26:00Z"
         }
       ],
-      "canonical_resolution": {
-        "layer": "context_guard",
-        "term_id": "common.stat.power",
-        "target_vi": "Power"
-      },
+      "canonical_resolution": null,
       "review_resolution": null,
       "first_seen_at": "2026-08-30T12:26:00Z",
       "last_seen_at": "2026-08-30T12:26:00Z"

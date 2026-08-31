@@ -737,6 +737,53 @@
       "last_seen_at": "2026-08-30T12:26:00Z"
     },
     {
+      "finding_id": "cf-28cf7c0b1249e7f2",
+      "status": "open",
+      "source_zh_cn": "汤驹浪漫纯情派",
+      "match_mode": "contains",
+      "source_paths": [
+        "text_data_dict.json"
+      ],
+      "key_exact": [],
+      "json_path_prefixes": [],
+      "kinds": [
+        "proper_name"
+      ],
+      "concepts": [
+        "Named song/title 汤驹浪漫纯情派"
+      ],
+      "suggested_targets_vi": [],
+      "confidence_levels": [
+        "medium"
+      ],
+      "reasons": [
+        "Named song/title requires a verified player-facing international or Romanized identity rather than a literal bridge-language calque."
+      ],
+      "evidence_count": 1,
+      "evidence": [
+        {
+          "uid": "zhcn:7587cfed32520cc283a11d62",
+          "plan_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3",
+          "batch_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3-b0394",
+          "claim_id": "trc-sol-20260831T0053Z-b0394",
+          "worker_id": "chatgpt-sol-20260831T0049Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "128",
+            "1157"
+          ],
+          "source_text": "那日的记忆在蒸汽般飘荡，令人难忘，但又模糊不清……\\n请听「汤驹浪漫纯情派」。",
+          "current_text": "Ký ức ngày ấy bồng bềnh như hơi nước, khó quên mà lại mơ hồ…\\nXin mời lắng nghe “Khúc lãng mạn thuần tình của Ngựa Suối Nóng”.",
+          "proposed_text": null,
+          "reported_at": "2026-08-31T00:54:59Z"
+        }
+      ],
+      "canonical_resolution": null,
+      "review_resolution": null,
+      "first_seen_at": "2026-08-31T00:54:59Z",
+      "last_seen_at": "2026-08-31T00:54:59Z"
+    },
+    {
       "finding_id": "cf-38883d78621f9f54",
       "status": "open",
       "source_zh_cn": "空のほほえみ方",
@@ -794,6 +841,61 @@
       },
       "first_seen_at": "2026-08-30T19:30:15Z",
       "last_seen_at": "2026-08-30T19:30:15Z"
+    },
+    {
+      "finding_id": "cf-3e4a12e4080429cf",
+      "status": "open",
+      "source_zh_cn": "放声欢呼",
+      "match_mode": "contains",
+      "source_paths": [
+        "text_data_dict.json"
+      ],
+      "key_exact": [],
+      "json_path_prefixes": [],
+      "kinds": [
+        "context_rule"
+      ],
+      "concepts": [
+        "Gran Alegria alias must not match ordinary imperative prose"
+      ],
+      "suggested_targets_vi": [],
+      "confidence_levels": [
+        "high"
+      ],
+      "reasons": [
+        "Character alias matching must distinguish the proper-name bridge from the ordinary phrase 放声欢呼 in narrative/system prose."
+      ],
+      "evidence_count": 1,
+      "evidence": [
+        {
+          "uid": "zhcn:aff58590375a5f5bcabd374a",
+          "plan_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3",
+          "batch_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3-b0394",
+          "claim_id": "trc-sol-20260831T0053Z-b0394",
+          "worker_id": "chatgpt-sol-20260831T0049Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "128",
+            "1151"
+          ],
+          "source_text": "向在这个时代出生的所有人宣告——\\n来吧，放声欢呼吧。你也将成为『传奇』的暴风眼！",
+          "current_text": "Xin tuyên bố với tất cả những ai sinh ra trong thời đại này —\\nNào, hãy reo hò thật lớn. Bạn cũng sẽ trở thành tâm bão của “huyền thoại”!",
+          "proposed_text": null,
+          "reported_at": "2026-08-31T00:54:59Z"
+        }
+      ],
+      "canonical_resolution": {
+        "layer": "locked",
+        "term_id": "character.gran_alegria",
+        "target_vi": "Gran Alegria"
+      },
+      "review_resolution": {
+        "decision_id": "parallel.ctx-67f8551f77807292-v1.term-0229.05",
+        "action": "lock",
+        "target_vi": "Gran Alegria"
+      },
+      "first_seen_at": "2026-08-31T00:54:59Z",
+      "last_seen_at": "2026-08-31T00:54:59Z"
     },
     {
       "finding_id": "cf-4247246a96780f8b",
@@ -2074,6 +2176,61 @@
       },
       "first_seen_at": "2026-08-30T14:07:00Z",
       "last_seen_at": "2026-08-30T14:07:00Z"
+    },
+    {
+      "finding_id": "cf-99675ebe1a70bf77",
+      "status": "open",
+      "source_zh_cn": "心动",
+      "match_mode": "contains",
+      "source_paths": [
+        "text_data_dict.json"
+      ],
+      "key_exact": [],
+      "json_path_prefixes": [],
+      "kinds": [
+        "context_rule"
+      ],
+      "concepts": [
+        "Generic emotional 心动 versus reviewed Skill-title matcher"
+      ],
+      "suggested_targets_vi": [],
+      "confidence_levels": [
+        "high"
+      ],
+      "reasons": [
+        "Reviewed Skill matcher must not force a Skill title when 心动 appears inside ordinary expressive prose or hashtags."
+      ],
+      "evidence_count": 1,
+      "evidence": [
+        {
+          "uid": "zhcn:996c7568e8341c51f3593486",
+          "plan_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3",
+          "batch_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3-b0396",
+          "claim_id": "trc-sol-20260831T0058Z-b0396",
+          "worker_id": "chatgpt-sol-20260831T0049Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "128",
+            "1182"
+          ],
+          "source_text": "『#kawaii』『#梦幻柔软』『#心动不已？』\\n可爱是能传达到宇宙的暗号！呐，可以再多喜欢我一点吗？",
+          "current_text": "“#kawaii” “#mơmàngmềmmại” “#timđậpnhanh?”\\nDễ thương là mật mã có thể truyền tới tận vũ trụ! Nè, bạn có thể thích tôi thêm một chút nữa không?",
+          "proposed_text": null,
+          "reported_at": "2026-08-31T01:01:03Z"
+        }
+      ],
+      "canonical_resolution": {
+        "layer": "locked",
+        "term_id": "reviewed.skill_name.3346bd209f49",
+        "target_vi": "Nhịp tim rộn ràng"
+      },
+      "review_resolution": {
+        "decision_id": "parallel.ctx-67f8551f77807292-v1.term-0038.15",
+        "action": "lock",
+        "target_vi": "Nhịp tim rộn ràng"
+      },
+      "first_seen_at": "2026-08-31T01:01:03Z",
+      "last_seen_at": "2026-08-31T01:01:03Z"
     },
     {
       "finding_id": "cf-9a86980e7d3756f4",
@@ -3462,6 +3619,120 @@
       "last_seen_at": "2026-08-29T23:41:00Z"
     },
     {
+      "finding_id": "cf-c443cdb477c9c443",
+      "status": "open",
+      "source_zh_cn": "ダービースタリオン マスターズ",
+      "match_mode": "contains",
+      "source_paths": [
+        "text_data_dict.json"
+      ],
+      "key_exact": [],
+      "json_path_prefixes": [],
+      "kinds": [
+        "proper_name"
+      ],
+      "concepts": [
+        "Game title Derby Stallion Masters"
+      ],
+      "suggested_targets_vi": [
+        "Derby Stallion Masters"
+      ],
+      "confidence_levels": [
+        "high"
+      ],
+      "reasons": [
+        "A named game title should use a stable Latin-script identity instead of leaving the Japanese katakana title in Vietnamese output.",
+        "A named game title should use a stable Latin-script identity instead of Japanese katakana in Vietnamese output."
+      ],
+      "evidence_count": 5,
+      "evidence": [
+        {
+          "uid": "zhcn:4f3111e6b58d38db3678e5dc",
+          "plan_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3",
+          "batch_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3-b0396",
+          "claim_id": "trc-sol-20260831T0058Z-b0396",
+          "worker_id": "chatgpt-sol-20260831T0049Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "128",
+            "8506"
+          ],
+          "source_text": "ダービースタリオン マスターズ春の１曲。\\nそのハーモニーは新たな生命の息吹を感じさせる。",
+          "current_text": "Một ca khúc mùa xuân của ダービースタリオン マスターズ.\\nPhần hòa âm khiến ta cảm nhận hơi thở của một sinh mệnh mới.",
+          "proposed_text": null,
+          "reported_at": "2026-08-31T01:01:03Z"
+        },
+        {
+          "uid": "zhcn:2a20b550318ee5cde16fe76d",
+          "plan_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3",
+          "batch_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3-b0397",
+          "claim_id": "trc-sol-20260831T0102Z-b0397",
+          "worker_id": "chatgpt-sol-20260831T0049Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "128",
+            "8507"
+          ],
+          "source_text": "ダービースタリオン マスターズ夏の１曲。\\nそのリズムは降り注ぐ太陽の煌きを感じさせる。",
+          "current_text": "Một ca khúc mùa hè của ダービースタリオン マスターズ.\\nNhịp điệu khiến ta cảm nhận ánh mặt trời rực rỡ tuôn xuống.",
+          "proposed_text": null,
+          "reported_at": "2026-08-31T01:04:42Z"
+        },
+        {
+          "uid": "zhcn:6c684e9076ead3727b6a3faf",
+          "plan_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3",
+          "batch_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3-b0397",
+          "claim_id": "trc-sol-20260831T0102Z-b0397",
+          "worker_id": "chatgpt-sol-20260831T0049Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "128",
+            "8508"
+          ],
+          "source_text": "ダービースタリオン マスターズ秋の１曲。\\n切ないラインは美しい紅葉の騒めきを感じさせる。",
+          "current_text": "Một ca khúc mùa thu của ダービースタリオン マスターズ.\\nDòng giai điệu da diết khiến ta cảm nhận tiếng xào xạc của lá đỏ tuyệt đẹp.",
+          "proposed_text": null,
+          "reported_at": "2026-08-31T01:04:42Z"
+        },
+        {
+          "uid": "zhcn:ae0b5e7b0ff57c90f0490b59",
+          "plan_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3",
+          "batch_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3-b0397",
+          "claim_id": "trc-sol-20260831T0102Z-b0397",
+          "worker_id": "chatgpt-sol-20260831T0049Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "128",
+            "8509"
+          ],
+          "source_text": "ダービースタリオン マスターズ冬の１曲。\\n繊細な旋律は白銀に染まる冬暁を感じさせる。",
+          "current_text": "Một ca khúc mùa đông của ダービースタリオン マスターズ.\\nGiai điệu tinh tế khiến ta cảm nhận bình minh mùa đông nhuộm màu bạc trắng.",
+          "proposed_text": null,
+          "reported_at": "2026-08-31T01:04:42Z"
+        },
+        {
+          "uid": "zhcn:50880d9e7494a9e76faf7c62",
+          "plan_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3",
+          "batch_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3-b0397",
+          "claim_id": "trc-sol-20260831T0102Z-b0397",
+          "worker_id": "chatgpt-sol-20260831T0049Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "128",
+            "8510"
+          ],
+          "source_text": "ダービースタリオン マスターズの超決戦で流れるＢＧＭ。\\n決意と共に白熱する激闘の熱気を感じさせる１曲。",
+          "current_text": "BGM phát trong Siêu Quyết Chiến của ダービースタリオン マスターズ.\\nMột ca khúc khiến ta cảm nhận sức nóng của trận chiến quyết liệt bùng cháy cùng quyết tâm.",
+          "proposed_text": null,
+          "reported_at": "2026-08-31T01:04:42Z"
+        }
+      ],
+      "canonical_resolution": null,
+      "review_resolution": null,
+      "first_seen_at": "2026-08-31T01:01:03Z",
+      "last_seen_at": "2026-08-31T01:04:42Z"
+    },
+    {
       "finding_id": "cf-c507decbef6769ce",
       "status": "open",
       "source_zh_cn": "育成等级",
@@ -3677,6 +3948,61 @@
       "review_resolution": null,
       "first_seen_at": "2026-08-30T13:14:00Z",
       "last_seen_at": "2026-08-30T13:14:00Z"
+    },
+    {
+      "finding_id": "cf-d39cfe606d4c854c",
+      "status": "open",
+      "source_zh_cn": "光明",
+      "match_mode": "contains",
+      "source_paths": [
+        "text_data_dict.json"
+      ],
+      "key_exact": [],
+      "json_path_prefixes": [],
+      "kinds": [
+        "context_rule"
+      ],
+      "concepts": [
+        "Generic prose brightness versus reviewed Skill title Ánh sáng"
+      ],
+      "suggested_targets_vi": [],
+      "confidence_levels": [
+        "high"
+      ],
+      "reasons": [
+        "Reviewed Skill matcher must not force a Skill title when 光明 appears inside ordinary narrative prose such as 光明的未来."
+      ],
+      "evidence_count": 1,
+      "evidence": [
+        {
+          "uid": "zhcn:e24f509f9ecadbe9bb160b77",
+          "plan_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3",
+          "batch_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3-b0394",
+          "claim_id": "trc-sol-20260831T0053Z-b0394",
+          "worker_id": "chatgpt-sol-20260831T0049Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "128",
+            "1138"
+          ],
+          "source_text": "来吧，出发！向着光明的未来。\\n——只要和你在一起，无论到哪里！",
+          "current_text": "Nào, lên đường! Hướng tới tương lai tươi sáng.\\n— Chỉ cần ở bên bạn, đi đâu cũng được!",
+          "proposed_text": null,
+          "reported_at": "2026-08-31T00:54:59Z"
+        }
+      ],
+      "canonical_resolution": {
+        "layer": "locked",
+        "term_id": "reviewed.skill_name.6b9641d2417b",
+        "target_vi": "Ánh sáng"
+      },
+      "review_resolution": {
+        "decision_id": "parallel.ctx-67f8551f77807292-v1.term-0017.01",
+        "action": "lock",
+        "target_vi": "Ánh sáng"
+      },
+      "first_seen_at": "2026-08-31T00:54:59Z",
+      "last_seen_at": "2026-08-31T00:54:59Z"
     },
     {
       "finding_id": "cf-d3dd61a3ce1f7dd6",

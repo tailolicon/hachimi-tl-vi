@@ -15,6 +15,8 @@ NARRATIVE_EXCLUSIONS = [
     "将情谊化为力量",
     "力量的传道者",
     "充满力量的乐曲",
+    "将最大力量献给你",
+    "宿敌赋予了我们力量",
 ]
 
 
@@ -46,9 +48,9 @@ def harden(repo_root: Path = ROOT) -> bool:
         term["exclude_source_contains"] = list(dict.fromkeys([*existing, *NARRATIVE_EXCLUSIONS]))
         term["basis"] = (
             "Common EN-version Power stat label. The zh-CN alias 力量 is ambiguous in ordinary prose and can also "
-            "occur inside proper names such as 莱茵力量 (Rhein Kraft); known non-stat compounds, names, narrative "
-            "metaphors, descriptive titles such as 力量的传道者, and phrases such as 充满力量的乐曲 are explicitly "
-            "excluded so physical/metaphorical power and character identities are not normalized to the stat label."
+            "occur inside proper names such as 莱茵力量 (Rhein Kraft); known non-stat compounds, names, descriptive "
+            "titles, and narrative/metaphorical phrases are explicitly excluded so physical or emotional strength "
+            "is not normalized to the stat label."
         )
         break
     if not matched:

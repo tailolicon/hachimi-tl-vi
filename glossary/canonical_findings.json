@@ -2117,7 +2117,8 @@
         "Generic narrative power versus Power stat",
         "Power stat alias must not match ordinary metaphorical prose",
         "Power stat rule must not match ordinary strength or 力量石 resource-name prose",
-        "Distinguish stat Power from ordinary prose strength"
+        "Distinguish stat Power from ordinary prose strength",
+        "Power stat alias must exclude generic descriptive phrase 不可思议力量"
       ],
       "suggested_targets_vi": [],
       "confidence_levels": [
@@ -2127,9 +2128,11 @@
         "Stat matcher overmatches narrative title text.",
         "The sentence 将情谊化为力量 is narrative metaphor, not a stat reference. Canonical matching needs stronger stat-context scoping/negative coverage.",
         "The reusable alias 力量 is firing inside 超越极限力量 and 力量石 in category-10 item descriptions, where it denotes ordinary strength/resource naming rather than the Power stat. Narrow exclusions/context are required before review can safely resolve these entries.",
-        "The bare alias 力量 is ambiguous and currently forces stat Power inside song-description prose where it means ordinary strength."
+        "The bare alias 力量 is ambiguous and currently forces stat Power inside song-description prose where it means ordinary strength.",
+        "This item describes a mysterious ability/power, not the gameplay Power stat, so forcing Power would corrupt prose.",
+        "The bare alias 力量 is ambiguous and currently forces stat Power in ordinary non-stat labels/prose."
       ],
-      "evidence_count": 7,
+      "evidence_count": 9,
       "evidence": [
         {
           "uid": "zhcn:c7764341e6086330eea7872a",
@@ -2242,6 +2245,38 @@
           "current_text": "Khúc nhạc của quyết tâm kiên định, nơi ý chí của những thiếu nữ trú ngụ.\\nBởi kình địch đã trao cho chúng ta sức mạnh—dù đi đâu, hãy cùng nhau tiến bước.",
           "proposed_text": null,
           "reported_at": "2026-08-31T10:03:30Z"
+        },
+        {
+          "uid": "zhcn:66b940ceac6481d37e1e3c92",
+          "plan_id": "tr-p3-67f8551f7780-5866633e0b1c-b5c0bcb3bd-babd4f1703",
+          "batch_id": "tr-p3-67f8551f7780-5866633e0b1c-b5c0bcb3bd-babd4f1703-b0253",
+          "claim_id": "trc-sol-a11-b0253-20260831T100520Z",
+          "worker_id": "chatgpt-sol-a11-20260831T095608Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "10",
+            "110"
+          ],
+          "source_text": "具有激发不可思议力量的能力。\\n可用于支援卡的强化。",
+          "current_text": "Có khả năng khơi dậy sức mạnh kỳ diệu.\\nCó thể dùng để nâng cấp Thẻ hỗ trợ.",
+          "proposed_text": null,
+          "reported_at": "2026-08-31T10:09:00Z"
+        },
+        {
+          "uid": "zhcn:c7764341e6086330eea7872a",
+          "plan_id": "tr-p3-67f8551f7780-5866633e0b1c-b5c0bcb3bd-babd4f1703",
+          "batch_id": "tr-p3-67f8551f7780-5866633e0b1c-b5c0bcb3bd-babd4f1703-b0301",
+          "claim_id": "trc-sol-a11-b0301-20260831T100400Z",
+          "worker_id": "chatgpt-sol-a11-20260831T095904Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "130",
+            "181"
+          ],
+          "source_text": "商品的力量",
+          "current_text": "Sức mạnh của hàng hóa",
+          "proposed_text": null,
+          "reported_at": "2026-08-31T10:07:30Z"
         }
       ],
       "canonical_resolution": {
@@ -2251,7 +2286,7 @@
       },
       "review_resolution": null,
       "first_seen_at": "2026-08-30T13:27:00Z",
-      "last_seen_at": "2026-08-31T10:03:30Z"
+      "last_seen_at": "2026-08-31T10:07:30Z"
     },
     {
       "finding_id": "cf-5f122ded4af0e4b5",
@@ -3225,6 +3260,52 @@
       },
       "first_seen_at": "2026-08-31T03:37:00Z",
       "last_seen_at": "2026-08-31T03:37:00Z"
+    },
+    {
+      "finding_id": "cf-913299e1b4c3dfee",
+      "status": "open",
+      "source_zh_cn": "才能开花",
+      "match_mode": "exact",
+      "source_paths": [
+        "localize_dict.json"
+      ],
+      "key_exact": [],
+      "json_path_prefixes": [],
+      "kinds": [
+        "context_rule"
+      ],
+      "concepts": [
+        "Talent/Star Ascension system label versus Skill alias 开花"
+      ],
+      "suggested_targets_vi": [],
+      "confidence_levels": [
+        "high"
+      ],
+      "reasons": [
+        "System UI label must not inherit a Skill-name lock solely from the embedded substring 开花."
+      ],
+      "evidence_count": 1,
+      "evidence": [
+        {
+          "uid": "zhcn:399576cd34d5ebefa8d24c0e",
+          "plan_id": "tr-p3-67f8551f7780-5866633e0b1c-b5c0bcb3bd-babd4f1703",
+          "batch_id": "tr-p3-67f8551f7780-5866633e0b1c-b5c0bcb3bd-babd4f1703-b0045",
+          "claim_id": "trc-gpt56sol-auto11-20260831T101100Z-b0045",
+          "worker_id": "gpt-5.6-sol-auto11-20260831T101100Z",
+          "source_path": "localize_dict.json",
+          "json_path": [
+            "Common0187"
+          ],
+          "source_text": "才能开花",
+          "current_text": "Khai hoa tài năng",
+          "proposed_text": null,
+          "reported_at": "2026-08-31T10:17:00Z"
+        }
+      ],
+      "canonical_resolution": null,
+      "review_resolution": null,
+      "first_seen_at": "2026-08-31T10:17:00Z",
+      "last_seen_at": "2026-08-31T10:17:00Z"
     },
     {
       "finding_id": "cf-97e98b6571188de5",
@@ -4851,6 +4932,150 @@
       "last_seen_at": "2026-08-30T10:42:00Z"
     },
     {
+      "finding_id": "cf-bf5645acbcfad6a9",
+      "status": "open",
+      "source_zh_cn": "重赏",
+      "match_mode": "contains",
+      "source_paths": [
+        "text_data_dict.json"
+      ],
+      "key_exact": [],
+      "json_path_prefixes": [],
+      "kinds": [
+        "terminology"
+      ],
+      "concepts": [
+        "Japanese graded/major stakes race category"
+      ],
+      "suggested_targets_vi": [],
+      "confidence_levels": [
+        "high"
+      ],
+      "reasons": [
+        "Repeated player-facing racing category currently appears as literal 'trọng thưởng'; establish one verified canonical label before revising matching labels and conditions.",
+        "Establish one verified canonical Vietnamese label for 重赏 and apply it consistently across title and condition text."
+      ],
+      "evidence_count": 7,
+      "evidence": [
+        {
+          "uid": "zhcn:e82f3cefe22a13b63fe62229",
+          "plan_id": "tr-p3-67f8551f7780-5866633e0b1c-b5c0bcb3bd-babd4f1703",
+          "batch_id": "tr-p3-67f8551f7780-5866633e0b1c-b5c0bcb3bd-babd4f1703-b0316",
+          "claim_id": "trc-sol-a11-b0316-20260831T100800Z",
+          "worker_id": "chatgpt-sol-a11-20260831T095904Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "131",
+            "116"
+          ],
+          "source_text": "在短距离、英里、中距离、长距离、沙土的重赏比赛中，\\n各获得一次胜利",
+          "current_text": "Trong các cuộc đua trọng thưởng Sprint, Mile, Medium, Long và Dirt,\\ngiành 1 chiến thắng ở mỗi loại",
+          "proposed_text": null,
+          "reported_at": "2026-08-31T10:12:00Z"
+        },
+        {
+          "uid": "zhcn:d26eb4e38cb7b05a4ab6c66d",
+          "plan_id": "tr-p3-67f8551f7780-5866633e0b1c-b5c0bcb3bd-babd4f1703",
+          "batch_id": "tr-p3-67f8551f7780-5866633e0b1c-b5c0bcb3bd-babd4f1703-b0316",
+          "claim_id": "trc-sol-a11-b0316-20260831T100800Z",
+          "worker_id": "chatgpt-sol-a11-20260831T095904Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "131",
+            "119"
+          ],
+          "source_text": "使用作战【领放】【先行】【居中】【追赶】\\n各取得1次重赏胜利",
+          "current_text": "Dùng mỗi chiến thuật 【Front Runner】【Pace Chaser】【Late Surger】【End Closer】\\nđể giành 1 chiến thắng ở cuộc đua trọng thưởng",
+          "proposed_text": null,
+          "reported_at": "2026-08-31T10:12:00Z"
+        },
+        {
+          "uid": "zhcn:f6431ce3f23c0f1aea5ac7a5",
+          "plan_id": "tr-p3-67f8551f7780-5866633e0b1c-b5c0bcb3bd-babd4f1703",
+          "batch_id": "tr-p3-67f8551f7780-5866633e0b1c-b5c0bcb3bd-babd4f1703-b0329",
+          "claim_id": "trc-sol-a11-b0329-20260831T101600Z",
+          "worker_id": "chatgpt-sol-a11-20260831T095904Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "131",
+            "67"
+          ],
+          "source_text": "在人气第一的情况下使用作战【领放】保持连胜且在重赏中取得6胜，\\n其中在宝冢纪念从起跑200m开始保持第1直到比赛结束",
+          "current_text": "Khi là lựa chọn số 1, dùng chiến thuật 【Front Runner】 để duy trì chuỗi thắng và giành 6 chiến thắng ở các Cuộc đua phân hạng,\\ntrong đó ở Takarazuka Kinen phải giữ vị trí số 1 từ mốc 200m sau khi xuất phát cho đến khi kết thúc",
+          "proposed_text": null,
+          "reported_at": "2026-08-31T10:19:40Z"
+        },
+        {
+          "uid": "zhcn:15862b2d0984ea162a79a082",
+          "plan_id": "tr-p3-67f8551f7780-5866633e0b1c-b5c0bcb3bd-babd4f1703",
+          "batch_id": "tr-p3-67f8551f7780-5866633e0b1c-b5c0bcb3bd-babd4f1703-b0329",
+          "claim_id": "trc-sol-a11-b0329-20260831T101600Z",
+          "worker_id": "chatgpt-sol-a11-20260831T095904Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "131",
+            "75"
+          ],
+          "source_text": "从育成过程中曾于皋月赏获胜的赛马娘身上继承心意，\\n赢得包含樱花赏、秋华赏、伊丽莎白女王杯的10次重赏比赛，\\n并且每场竞赛成绩都在前两名以内",
+          "current_text": "Kế thừa tâm ý từ một Mã Nương từng thắng Satsuki Sho trong quá trình Huấn luyện,\\nthắng 10 cuộc đua graded bao gồm Oka Sho, Shuka Sho và Queen Elizabeth II Cup,\\nđồng thời mọi kết quả cuộc đua đều nằm trong top 2",
+          "proposed_text": null,
+          "reported_at": "2026-08-31T10:19:40Z"
+        },
+        {
+          "uid": "zhcn:8693c05be650a5df82bd5f57",
+          "plan_id": "tr-p3-67f8551f7780-5866633e0b1c-b5c0bcb3bd-babd4f1703",
+          "batch_id": "tr-p3-67f8551f7780-5866633e0b1c-b5c0bcb3bd-babd4f1703-b0329",
+          "claim_id": "trc-sol-a11-b0329-20260831T101600Z",
+          "worker_id": "chatgpt-sol-a11-20260831T095904Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "131",
+            "83"
+          ],
+          "source_text": "在包括独角兽锦标、安田纪念的英里重赏比赛中取得5次以上胜利，\\n其中有1次以上是雨天，\\n并在英里冠军赛中以5马身以上差距取得胜利",
+          "current_text": "Giành ít nhất 5 chiến thắng ở các cuộc đua trọng thưởng Mile, bao gồm Unicorn Stakes và Yasuda Kinen,\\ntrong đó có ít nhất 1 lần trời mưa,\\nvà thắng Mile Championship với cách biệt ít nhất 5 thân ngựa",
+          "proposed_text": null,
+          "reported_at": "2026-08-31T10:19:40Z"
+        },
+        {
+          "uid": "zhcn:5639cd1676eb2115ded55a5a",
+          "plan_id": "tr-p3-67f8551f7780-5866633e0b1c-b5c0bcb3bd-babd4f1703",
+          "batch_id": "tr-p3-67f8551f7780-5866633e0b1c-b5c0bcb3bd-babd4f1703-b0329",
+          "claim_id": "trc-sol-a11-b0329-20260831T101600Z",
+          "worker_id": "chatgpt-sol-a11-20260831T095904Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "131",
+            "85"
+          ],
+          "source_text": "使用作战「追赶」且以人气第1保持连胜并取得重赏比赛6胜以上，\\n其中至少要有2场在最终直线超越5人以上取胜",
+          "current_text": "Dùng chiến thuật 「End Closer」, giữ chuỗi thắng với độ nổi tiếng hạng 1 và giành ít nhất 6 chiến thắng ở cuộc đua trọng thưởng,\\ntrong đó ít nhất 2 cuộc phải vượt qua từ 5 đối thủ trở lên ở đoạn thẳng cuối để giành chiến thắng",
+          "proposed_text": null,
+          "reported_at": "2026-08-31T10:19:40Z"
+        },
+        {
+          "uid": "zhcn:b7dae5fe5e02bd720af8634a",
+          "plan_id": "tr-p3-67f8551f7780-5866633e0b1c-b5c0bcb3bd-babd4f1703",
+          "batch_id": "tr-p3-67f8551f7780-5866633e0b1c-b5c0bcb3bd-babd4f1703-b0329",
+          "claim_id": "trc-sol-a11-b0329-20260831T101600Z",
+          "worker_id": "chatgpt-sol-a11-20260831T095904Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "131",
+            "86"
+          ],
+          "source_text": "保持连胜并在包括天皇赏(春)、宝冢纪念、天皇赏(秋)、\\n日本杯、有马纪念的重赏中取得8次以上胜利",
+          "current_text": "Giữ chuỗi thắng và giành ít nhất 8 chiến thắng ở các giải trọng thưởng, bao gồm Tenno Sho (Xuân), Takarazuka Kinen, Tenno Sho (Thu),\\n Japan Cup và Arima Kinen",
+          "proposed_text": null,
+          "reported_at": "2026-08-31T10:19:40Z"
+        }
+      ],
+      "canonical_resolution": null,
+      "review_resolution": null,
+      "first_seen_at": "2026-08-31T10:12:00Z",
+      "last_seen_at": "2026-08-31T10:19:40Z"
+    },
+    {
       "finding_id": "cf-c4337c5258c3020a",
       "status": "open",
       "source_zh_cn": "随势而动",
@@ -5416,7 +5641,8 @@
       ],
       "concepts": [
         "Generic prose brightness versus reviewed Skill title Ánh sáng",
-        "Distinguish Skill-name 光明 from ordinary bright/light prose"
+        "Distinguish Skill-name 光明 from ordinary bright/light prose",
+        "Skill-name alias 光明 must not match inside character name 目白光明"
       ],
       "suggested_targets_vi": [],
       "confidence_levels": [
@@ -5424,9 +5650,10 @@
       ],
       "reasons": [
         "Reviewed Skill matcher must not force a Skill title when 光明 appears inside ordinary narrative prose such as 光明的未来.",
-        "Bare 光明 currently triggers a reviewed Skill-name lock inside ordinary song-description prose such as 光明的未来."
+        "Bare 光明 currently triggers a reviewed Skill-name lock inside ordinary song-description prose such as 光明的未来.",
+        "The current locked Skill alias fires inside Mejiro Bright's full character name in item descriptions, conflicting with the verified character mapping."
       ],
-      "evidence_count": 2,
+      "evidence_count": 6,
       "evidence": [
         {
           "uid": "zhcn:e24f509f9ecadbe9bb160b77",
@@ -5459,6 +5686,70 @@
           "current_text": "Nào, lên đường! Hướng tới tương lai tươi sáng.\\n— Chỉ cần ở bên bạn, đi đâu cũng được!",
           "proposed_text": null,
           "reported_at": "2026-08-31T10:03:30Z"
+        },
+        {
+          "uid": "zhcn:29c0bf26b2b22b56c96a0671",
+          "plan_id": "tr-p3-67f8551f7780-5866633e0b1c-b5c0bcb3bd-babd4f1703",
+          "batch_id": "tr-p3-67f8551f7780-5866633e0b1c-b5c0bcb3bd-babd4f1703-b0253",
+          "claim_id": "trc-sol-a11-b0253-20260831T100520Z",
+          "worker_id": "chatgpt-sol-a11-20260831T095608Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "10",
+            "1007401"
+          ],
+          "source_text": "目白光明制作的特别巧克力。\\n使用后TP恢复30。",
+          "current_text": "Chocolate đặc biệt do Mejiro Bright làm.\\nSau khi dùng, hồi 30 TP.",
+          "proposed_text": null,
+          "reported_at": "2026-08-31T10:09:00Z"
+        },
+        {
+          "uid": "zhcn:ec2d2f2673322ec74b682b98",
+          "plan_id": "tr-p3-67f8551f7780-5866633e0b1c-b5c0bcb3bd-babd4f1703",
+          "batch_id": "tr-p3-67f8551f7780-5866633e0b1c-b5c0bcb3bd-babd4f1703-b0253",
+          "claim_id": "trc-sol-a11-b0253-20260831T100520Z",
+          "worker_id": "chatgpt-sol-a11-20260831T095608Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "10",
+            "1007402"
+          ],
+          "source_text": "目白光明制作的特别巧克力。\\n使用后TP恢复30。",
+          "current_text": "Chocolate đặc biệt do Mejiro Bright làm.\\nSau khi dùng, hồi 30 TP.",
+          "proposed_text": null,
+          "reported_at": "2026-08-31T10:09:00Z"
+        },
+        {
+          "uid": "zhcn:cfbbc38ad571f77430a9e398",
+          "plan_id": "tr-p3-67f8551f7780-5866633e0b1c-b5c0bcb3bd-babd4f1703",
+          "batch_id": "tr-p3-67f8551f7780-5866633e0b1c-b5c0bcb3bd-babd4f1703-b0253",
+          "claim_id": "trc-sol-a11-b0253-20260831T100520Z",
+          "worker_id": "chatgpt-sol-a11-20260831T095608Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "10",
+            "10111"
+          ],
+          "source_text": "目白光明制作的手工巧克力。\\n使用后TP恢复30。",
+          "current_text": "Chocolate thủ công do Mejiro Bright làm.\\nKhi dùng, hồi 30 TP.",
+          "proposed_text": null,
+          "reported_at": "2026-08-31T10:09:00Z"
+        },
+        {
+          "uid": "zhcn:a4fe18e80c822dc91e30eb5f",
+          "plan_id": "tr-p3-67f8551f7780-5866633e0b1c-b5c0bcb3bd-babd4f1703",
+          "batch_id": "tr-p3-67f8551f7780-5866633e0b1c-b5c0bcb3bd-babd4f1703-b0253",
+          "claim_id": "trc-sol-a11-b0253-20260831T100520Z",
+          "worker_id": "chatgpt-sol-a11-20260831T095608Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "10",
+            "10142"
+          ],
+          "source_text": "目白光明制作的手工巧克力。\\n使用后TP恢复30。",
+          "current_text": "Chocolate thủ công do Mejiro Bright làm.\\nKhi dùng, hồi 30 TP.",
+          "proposed_text": null,
+          "reported_at": "2026-08-31T10:09:00Z"
         }
       ],
       "canonical_resolution": {
@@ -5472,7 +5763,7 @@
         "target_vi": "Ánh sáng"
       },
       "first_seen_at": "2026-08-31T00:54:59Z",
-      "last_seen_at": "2026-08-31T10:03:30Z"
+      "last_seen_at": "2026-08-31T10:09:00Z"
     },
     {
       "finding_id": "cf-d3dd61a3ce1f7dd6",

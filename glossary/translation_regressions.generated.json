@@ -9,13 +9,13 @@
     "growth": "Every accepted retrospective translation revise and accepted UI revise is folded into this file automatically by both review merge workflows."
   },
   "summary": {
-    "merged_markers_scanned": 1158,
-    "translation_merged_markers_scanned": 1058,
+    "merged_markers_scanned": 1165,
+    "translation_merged_markers_scanned": 1065,
     "ui_merged_markers_scanned": 100,
-    "accepted_revision_events": 6520,
-    "accepted_translation_revision_events": 5031,
+    "accepted_revision_events": 6551,
+    "accepted_translation_revision_events": 5062,
     "accepted_ui_revision_events": 1489,
-    "regression_identity_count": 5311,
+    "regression_identity_count": 5325,
     "skipped_incomplete_markers": 0,
     "translation_skipped_incomplete_markers": 0,
     "ui_skipped_incomplete_markers": 0
@@ -2097,10 +2097,12 @@
       "source_text": "因子强化确认",
       "source_fingerprint": "f0067c19603ec8e4147b245ea55765bc17a94a1ffe86e1e72ec9112af6e926de",
       "rejected_targets": [
+        "Cường hóa Nhân tố",
         "Xác nhận nâng cấp Nhân tố"
       ],
-      "approved_target": "Cường hóa Nhân tố",
+      "approved_target": "Xác nhận cường hóa Spark",
       "origins": [
+        "translation_review",
         "ui_review"
       ],
       "ui_contexts": [
@@ -2122,6 +2124,14 @@
           "reason": "Reviewed UI already uses the canonical 'cường hóa Nhân tố' mechanic; a confirmation title can omit the redundant 'Xác nhận' prefix.",
           "ui_key": "FactorResearch483004",
           "control_type": "dialog_title"
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-5866633e0b1c-b5c0bcb3bd-babd4f1703",
+          "batch_id": "tr-p3-67f8551f7780-5866633e0b1c-b5c0bcb3bd-babd4f1703-b0058",
+          "claim_id": "trc-gpt56sol-20260831T104900Z-b0058",
+          "merged_at": "2026-08-31T10:51:48.689546Z",
+          "reason": "Bản hiện tại vừa dùng Nhân tố trái rule Spark vừa bỏ mất 确认 trong nhãn xác nhận."
         }
       ]
     },
@@ -5593,6 +5603,31 @@
       ]
     },
     {
+      "id": "review.regression.589390d903559383",
+      "uid": "zhcn:07d79a8350f50f57bae79c52",
+      "scope": "uid",
+      "source_text": "获得技能",
+      "source_fingerprint": "2ccf494a480df031659d1690319d136beb50b7e244c04e5e2a1fbe100f45bdeb",
+      "rejected_targets": [
+        "Kỹ năng đã nhận"
+      ],
+      "approved_target": "Skill đã nhận",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-5866633e0b1c-b5c0bcb3bd-babd4f1703",
+          "batch_id": "tr-p3-67f8551f7780-5866633e0b1c-b5c0bcb3bd-babd4f1703-b0245",
+          "claim_id": "trc-gpt56sol-20260831T111000Z-b0245",
+          "merged_at": "2026-08-31T10:51:48.699381Z",
+          "reason": "Generic 技能 must remain Skill; current Kỹ năng is explicitly forbidden."
+        }
+      ]
+    },
+    {
       "id": "review.regression.6dd71f4ede14dafb",
       "uid": "zhcn:07d8de0575422f835e39156e",
       "scope": "uid",
@@ -6874,6 +6909,31 @@
           "claim_id": "trc-gpt56sol-20260830T173617Z-b0480",
           "merged_at": "2026-08-30T17:42:30.800893Z",
           "reason": "歌剧式呼吸法 means an opera-style breathing method; the current text Phương pháp thở opera omits the 式 (style/type) relation, while kiểu opera restores it naturally."
+        }
+      ]
+    },
+    {
+      "id": "review.regression.ff0fe1866057f51d",
+      "uid": "zhcn:09f8a866bf287c75cbc3e69b",
+      "scope": "uid",
+      "source_text": "达成条件",
+      "source_fingerprint": "46b070a178e6ffc6b3b56a36d70c1dd8afb2f0423398d1fe8b659b05b7e1e753",
+      "rejected_targets": [
+        "Điều kiện đạt được"
+      ],
+      "approved_target": "Điều kiện hoàn thành",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-5866633e0b1c-b5c0bcb3bd-babd4f1703",
+          "batch_id": "tr-p3-67f8551f7780-5866633e0b1c-b5c0bcb3bd-babd4f1703-b0178",
+          "claim_id": "trc-gpt56sol-20260831T104345Z-b0178",
+          "merged_at": "2026-08-31T10:51:48.692920Z",
+          "reason": "Điều kiện đạt được is unnatural Vietnamese for the UI heading 达成条件; Điều kiện hoàn thành preserves the achievement/completion-condition meaning cleanly."
         }
       ]
     },
@@ -10433,10 +10493,12 @@
       "source_text": "请选择要强化的因子",
       "source_fingerprint": "064d7d0d72ccf629a1d9932c71d7b8198374f430dcba398f6b285dbbf223cb12",
       "rejected_targets": [
+        "Chọn Nhân tố để cường hóa",
         "Hãy chọn Nhân tố muốn cường hóa"
       ],
-      "approved_target": "Chọn Nhân tố để cường hóa",
+      "approved_target": "Chọn Spark để cường hóa",
       "origins": [
+        "translation_review",
         "ui_review"
       ],
       "ui_contexts": [
@@ -10459,6 +10521,14 @@
           "reason": "Removes the unnecessary polite lead-in and keeps the selection action and enhancement mechanic explicit.",
           "ui_key": "FactorResearch424008",
           "control_type": "short_system_label"
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-5866633e0b1c-b5c0bcb3bd-babd4f1703",
+          "batch_id": "tr-p3-67f8551f7780-5866633e0b1c-b5c0bcb3bd-babd4f1703-b0058",
+          "claim_id": "trc-gpt56sol-20260831T104900Z-b0058",
+          "merged_at": "2026-08-31T10:51:48.689546Z",
+          "reason": "Trong localize_dict, 因子 phải dùng Spark; bản hiện tại dùng Nhân tố bị embedded community rule cấm."
         }
       ]
     },
@@ -12908,6 +12978,31 @@
       ]
     },
     {
+      "id": "review.regression.b3643138829cb938",
+      "uid": "zhcn:13d6022be2795c7c8cbd0c8a",
+      "scope": "uid",
+      "source_text": "要强化此赛马娘的因子吗？",
+      "source_fingerprint": "88846748da80c3fd06b689c5e89ea614b903b8652ddc08a5842e638203a79593",
+      "rejected_targets": [
+        "Bạn có muốn nâng cấp Nhân tố của Uma Musume này không?"
+      ],
+      "approved_target": "Bạn có muốn cường hóa Spark của Mã Nương này không?",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-5866633e0b1c-b5c0bcb3bd-babd4f1703",
+          "batch_id": "tr-p3-67f8551f7780-5866633e0b1c-b5c0bcb3bd-babd4f1703-b0058",
+          "claim_id": "trc-gpt56sol-20260831T104900Z-b0058",
+          "merged_at": "2026-08-31T10:51:48.689546Z",
+          "reason": "Bản hiện tại dùng cả Nhân tố và Uma Musume cho hai thuật ngữ đã khóa; đồng thời 强化 phù hợp với 'cường hóa'."
+        }
+      ]
+    },
+    {
       "id": "review.regression.aac6774da82de8cd",
       "uid": "zhcn:13d9a08dce575627e382560d",
       "scope": "uid",
@@ -13275,6 +13370,31 @@
           "claim_id": "trc-gpt56sol-auto3-20260830T124200Z-b0243",
           "merged_at": "2026-08-30T12:40:10.251305Z",
           "reason": "The generic gameplay label must remain Skill."
+        }
+      ]
+    },
+    {
+      "id": "review.regression.c44ab7081376f053",
+      "uid": "zhcn:14ac91119074167fa3fd94db",
+      "scope": "uid",
+      "source_text": "根据适性挑战\n各种考试的活动",
+      "source_fingerprint": "9eab5ee2a36af2952cf0bd6709fba998a845132cbe1b3dba9d381fcb1a003d62",
+      "rejected_targets": [
+        "Sự kiện với nhiều kỳ thi\ntheo thử thách thích nghi"
+      ],
+      "approved_target": "Sự kiện với nhiều kỳ thi\ntheo thử thách Aptitude",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-5866633e0b1c-b5c0bcb3bd-babd4f1703",
+          "batch_id": "tr-p3-67f8551f7780-5866633e0b1c-b5c0bcb3bd-babd4f1703-b0244",
+          "claim_id": "trc-gpt56sol-20260831T110200Z-b0244",
+          "merged_at": "2026-08-31T10:51:48.696087Z",
+          "reason": "Source 适性 requires canonical Aptitude."
         }
       ]
     },
@@ -15466,10 +15586,12 @@
       "source_text": "无法选择重复的支援卡",
       "source_fingerprint": "58160248f0d61c2d82aadcb39f3c7b6e0c32c8fefeb8fa5f414dde42e4339b2d",
       "rejected_targets": [
-        "Không thể chọn Thẻ Hỗ trợ trùng lặp"
+        "Không thể chọn Thẻ Hỗ trợ trùng lặp",
+        "Không thể chọn thẻ trùng"
       ],
-      "approved_target": "Không thể chọn thẻ trùng",
+      "approved_target": "Không thể chọn Support Card trùng lặp",
       "origins": [
+        "translation_review",
         "ui_review"
       ],
       "ui_contexts": [
@@ -15492,6 +15614,14 @@
           "reason": "The support-card selection context makes the full noun redundant; the compact canonical micro form preserves the duplicate-card restriction.",
           "ui_key": "SingleMode0481",
           "control_type": "short_system_label"
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-5866633e0b1c-b5c0bcb3bd-babd4f1703",
+          "batch_id": "tr-p3-67f8551f7780-5866633e0b1c-b5c0bcb3bd-babd4f1703-b0178",
+          "claim_id": "trc-gpt56sol-20260831T104345Z-b0178",
+          "merged_at": "2026-08-31T10:51:48.692920Z",
+          "reason": "The current text drops the explicit 支援卡 object and therefore fails the required player-facing Support Card terminology."
         }
       ]
     },
@@ -17016,10 +17146,12 @@
       "source_text": "选择要强化的因子",
       "source_fingerprint": "1790bc940b361f426eb53d57b5524d557775014e80499acca11a7305853d8096",
       "rejected_targets": [
-        "Chọn Nhân tố muốn nâng cấp"
+        "Chọn Nhân tố muốn nâng cấp",
+        "Chọn Nhân tố để cường hóa"
       ],
-      "approved_target": "Chọn Nhân tố để cường hóa",
+      "approved_target": "Chọn Spark để cường hóa",
       "origins": [
+        "translation_review",
         "ui_review"
       ],
       "ui_contexts": [
@@ -17041,6 +17173,14 @@
           "reason": "This matches the established reviewed Factor Research phrasing and removes the inconsistent 'nâng cấp' wording.",
           "ui_key": "FactorResearch424010",
           "control_type": "header"
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-5866633e0b1c-b5c0bcb3bd-babd4f1703",
+          "batch_id": "tr-p3-67f8551f7780-5866633e0b1c-b5c0bcb3bd-babd4f1703-b0058",
+          "claim_id": "trc-gpt56sol-20260831T104900Z-b0058",
+          "merged_at": "2026-08-31T10:51:48.689546Z",
+          "reason": "Trong localize_dict, 因子 phải dùng Spark; bản hiện tại dùng Nhân tố bị embedded community rule cấm."
         }
       ]
     },
@@ -19627,6 +19767,31 @@
           "claim_id": "trc-chatgpt-sol-auto3-20260830T122800Z-b0237",
           "merged_at": "2026-08-30T12:10:44.402275Z",
           "reason": "技能 là generic gameplay label Skill; bản hiện tại dùng từ cấm 'kỹ năng'."
+        }
+      ]
+    },
+    {
+      "id": "review.regression.5f7e45cad18efa26",
+      "uid": "zhcn:1f7f772bb9134e558c9a5060",
+      "scope": "uid",
+      "source_text": "未满足参赛条件，无法预约比赛",
+      "source_fingerprint": "d640535d3c5ae9a5f8a2df32870e7d17fdab2c12bdafe42c6bdab1925105a7de",
+      "rejected_targets": [
+        "Không đáp ứng điều kiện tham gia, không thể đặt lịch cuộc đua"
+      ],
+      "approved_target": "Chưa đáp ứng điều kiện tham gia, không thể đặt lịch cuộc đua",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-5866633e0b1c-b5c0bcb3bd-babd4f1703",
+          "batch_id": "tr-p3-67f8551f7780-5866633e0b1c-b5c0bcb3bd-babd4f1703-b0178",
+          "claim_id": "trc-gpt56sol-20260831T104345Z-b0178",
+          "merged_at": "2026-08-31T10:51:48.692920Z",
+          "reason": "未满足 carries an explicit not-yet/unmet state; using Chưa restores that aspect while preserving the race-booking restriction."
         }
       ]
     },
@@ -25933,10 +26098,12 @@
       "source_text": "确认选择赛马娘",
       "source_fingerprint": "f08db8077ca18db1baead8ffa5c69cf8c09e846eac0140482af9970e49aaf556",
       "rejected_targets": [
+        "Xác nhận chọn Uma",
         "Xác nhận chọn Uma Musume"
       ],
-      "approved_target": "Xác nhận chọn Uma",
+      "approved_target": "Xác nhận chọn Mã Nương",
       "origins": [
+        "translation_review",
         "ui_review"
       ],
       "ui_contexts": [
@@ -25958,6 +26125,14 @@
           "reason": "The canonical compact 'Uma' form is appropriate in this fixed confirmation title.",
           "ui_key": "FactorResearch483002",
           "control_type": "dialog_title"
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-5866633e0b1c-b5c0bcb3bd-babd4f1703",
+          "batch_id": "tr-p3-67f8551f7780-5866633e0b1c-b5c0bcb3bd-babd4f1703-b0058",
+          "claim_id": "trc-gpt56sol-20260831T104900Z-b0058",
+          "merged_at": "2026-08-31T10:51:48.689546Z",
+          "reason": "赛马娘 là thuật ngữ thế giới chung; dùng Mã Nương thay cho Uma theo policy player-facing."
         }
       ]
     },
@@ -27690,10 +27865,12 @@
       "source_text": "请选择两名继承赛马娘",
       "source_fingerprint": "478482e06554c74b726b7094392dabec22ea81c1eb6054189a213778717d765d",
       "rejected_targets": [
+        "Chọn 2 Uma kế thừa",
         "Hãy chọn hai Uma Musume kế thừa"
       ],
-      "approved_target": "Chọn 2 Uma kế thừa",
+      "approved_target": "Hãy chọn hai Mã Nương kế thừa",
       "origins": [
+        "translation_review",
         "ui_review"
       ],
       "ui_contexts": [
@@ -27716,6 +27893,14 @@
           "reason": "Removing polite wording and using canonical compact 'Uma' preserves the instruction to choose exactly two inheritance characters.",
           "ui_key": "SingleMode0490",
           "control_type": "short_system_label"
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-5866633e0b1c-b5c0bcb3bd-babd4f1703",
+          "batch_id": "tr-p3-67f8551f7780-5866633e0b1c-b5c0bcb3bd-babd4f1703-b0178",
+          "claim_id": "trc-gpt56sol-20260831T104345Z-b0178",
+          "merged_at": "2026-08-31T10:51:48.692920Z",
+          "reason": "Generic 赛马娘 must use the project world term Mã Nương; spelling out hai also avoids introducing a digit absent from the source."
         }
       ]
     },
@@ -44875,10 +45060,11 @@
       "source_text": "获得各重赏比赛的奖杯",
       "source_fingerprint": "e0a336fb43bcb8957b08c142bf49dde0e90cd1ad8449a6c1aca8e25057a55f2e",
       "rejected_targets": [
-        "Nhận cúp của các cuộc đua trọng thưởng"
+        "Nhận cúp các giải trọng thưởng"
       ],
-      "approved_target": "Nhận cúp các giải trọng thưởng",
+      "approved_target": "Nhận cúp của các cuộc đua trọng thưởng",
       "origins": [
+        "translation_review",
         "ui_review"
       ],
       "ui_contexts": [
@@ -44901,6 +45087,14 @@
           "reason": "The mission-style wording removes the redundant full race phrase while preserving the requirement to obtain trophies from graded races.",
           "ui_key": "SingleMode0487",
           "control_type": "short_system_label"
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-5866633e0b1c-b5c0bcb3bd-babd4f1703",
+          "batch_id": "tr-p3-67f8551f7780-5866633e0b1c-b5c0bcb3bd-babd4f1703-b0178",
+          "claim_id": "trc-gpt56sol-20260831T104345Z-b0178",
+          "merged_at": "2026-08-31T10:51:48.692920Z",
+          "reason": "The current wording omits the explicit 比赛/race concept; the revision preserves both the trophy objective and the required player-facing race label."
         }
       ]
     },
@@ -46013,6 +46207,31 @@
       ]
     },
     {
+      "id": "review.regression.bfb8c726d2dd83a9",
+      "uid": "zhcn:4b38d4af09c0a855823f7338",
+      "scope": "uid",
+      "source_text": "设定中的支援卡",
+      "source_fingerprint": "12344483f187cdfa9b3cfc062ac32a1c776eb7f839bdbfd3dd6b2c31315184b9",
+      "rejected_targets": [
+        "Thẻ Hỗ trợ đang thiết lập"
+      ],
+      "approved_target": "Support Card đang được thiết lập",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-5866633e0b1c-b5c0bcb3bd-babd4f1703",
+          "batch_id": "tr-p3-67f8551f7780-5866633e0b1c-b5c0bcb3bd-babd4f1703-b0178",
+          "claim_id": "trc-gpt56sol-20260831T104345Z-b0178",
+          "merged_at": "2026-08-31T10:51:48.692920Z",
+          "reason": "Current text uses the forbidden literal Vietnamese label for 支援卡; the revision restores the required player-facing Support Card term."
+        }
+      ]
+    },
+    {
       "id": "review.regression.ce9088ae3ba3ab55",
       "uid": "zhcn:4b448bf04d6017afbf893f52",
       "scope": "uid",
@@ -46823,10 +47042,12 @@
       "source_text": "挑战训练员技能考试",
       "source_fingerprint": "4185ed9b9fb142c13dedb08bc66a5b78e7d49bb84665a1ed09fb6c434e2023e8",
       "rejected_targets": [
+        "Thi Kỹ năng Trainer",
         "Thử thách Kỳ thi Kỹ năng Huấn luyện viên"
       ],
-      "approved_target": "Thi Kỹ năng Trainer",
+      "approved_target": "Thi Skill Trainer",
       "origins": [
+        "translation_review",
         "ui_review"
       ],
       "ui_contexts": [
@@ -46849,6 +47070,14 @@
           "reason": "A compact challenge entry can state the Trainer Skill exam action directly without repeating challenge/exam nouns.",
           "ui_key": "TrainingChallenge4180404",
           "control_type": "menu_tile"
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-5866633e0b1c-b5c0bcb3bd-babd4f1703",
+          "batch_id": "tr-p3-67f8551f7780-5866633e0b1c-b5c0bcb3bd-babd4f1703-b0244",
+          "claim_id": "trc-gpt56sol-20260831T110200Z-b0244",
+          "merged_at": "2026-08-31T10:51:48.696087Z",
+          "reason": "Generic 技能 must remain Skill; Kỹ năng is forbidden."
         }
       ]
     },
@@ -49312,6 +49541,31 @@
           "reason": "Canonical compact 'Uma' preserves the trained-character event-bonus category while removing the over-wide full franchise noun.",
           "ui_key": "StoryEvent0006",
           "control_type": "short_system_label"
+        }
+      ]
+    },
+    {
+      "id": "review.regression.75b7ca2f4999e178",
+      "uid": "zhcn:502979d7e1b7459cc5561ef3",
+      "scope": "uid",
+      "source_text": "GⅠ猎手",
+      "source_fingerprint": "e50c02b8012fd2d1e8aaad3b0754ae8883afc4c2febeacb4257dd3b20bbafc33",
+      "rejected_targets": [
+        "Thợ săn GⅠ"
+      ],
+      "approved_target": "Thợ săn G1",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-5866633e0b1c-b5c0bcb3bd-babd4f1703",
+          "batch_id": "tr-p3-67f8551f7780-5866633e0b1c-b5c0bcb3bd-babd4f1703-b0314",
+          "claim_id": "trc-gpt56sol-20260831T1100Z-b0314",
+          "merged_at": "2026-08-31T10:51:48.716725Z",
+          "reason": "Ký hiệu GⅠ trong target hiện tại là dạng bị cấm; player-facing race grade phải dùng G1."
         }
       ]
     },
@@ -52347,10 +52601,12 @@
       "source_text": "不挑战训练员技能考试\n将变为普通育成",
       "source_fingerprint": "c45b89731fdbc5126500602a9a65b97ca68750e5681e382345c7e400596b546e",
       "rejected_targets": [
+        "Không tham gia Kỳ thi Kỹ năng Trainer\nsẽ chuyển sang huấn luyện thường",
         "Không thử thách Kỳ thi Kỹ năng Huấn luyện viên\nsẽ chuyển thành huấn luyện thường"
       ],
-      "approved_target": "Không tham gia Kỳ thi Kỹ năng Trainer\nsẽ chuyển sang huấn luyện thường",
+      "approved_target": "Không tham gia Kỳ thi Skill Trainer\nsẽ chuyển sang huấn luyện thường",
       "origins": [
+        "translation_review",
         "ui_review"
       ],
       "ui_contexts": [
@@ -52373,6 +52629,14 @@
           "reason": "Canonical compact 'Trainer' substantially reduces the first line while preserving the consequence of skipping the Trainer Skill Exam; the source's single newline is retained.",
           "ui_key": "TrainingChallenge4180408",
           "control_type": "short_system_label"
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-5866633e0b1c-b5c0bcb3bd-babd4f1703",
+          "batch_id": "tr-p3-67f8551f7780-5866633e0b1c-b5c0bcb3bd-babd4f1703-b0244",
+          "claim_id": "trc-gpt56sol-20260831T110200Z-b0244",
+          "merged_at": "2026-08-31T10:51:48.696087Z",
+          "reason": "Generic 技能 requires Skill instead of forbidden Kỹ năng; Trainer and line break are preserved."
         }
       ]
     },
@@ -55171,6 +55435,31 @@
           "claim_id": "trc-sol-live-20260830-r2-b0666",
           "merged_at": "2026-08-31T00:48:53.687721Z",
           "reason": "Use the same expanded school-division label for identical source text across this table."
+        }
+      ]
+    },
+    {
+      "id": "review.regression.dc4bcb34d5a13f87",
+      "uid": "zhcn:59eb9ca21b231f388147802e",
+      "scope": "uid",
+      "source_text": "技能大师",
+      "source_fingerprint": "c12fbc9579960f4a6b25a2505ddd7ba3f058f303c977a2058a784bd90b4da7b0",
+      "rejected_targets": [
+        "Bậc thầy kỹ năng"
+      ],
+      "approved_target": "Bậc thầy Skill",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-5866633e0b1c-b5c0bcb3bd-babd4f1703",
+          "batch_id": "tr-p3-67f8551f7780-5866633e0b1c-b5c0bcb3bd-babd4f1703-b0314",
+          "claim_id": "trc-gpt56sol-20260831T1100Z-b0314",
+          "merged_at": "2026-08-31T10:51:48.716725Z",
+          "reason": "技能 là generic gameplay label và community policy yêu cầu dùng Skill; Kỹ năng là dạng bị cấm."
         }
       ]
     },
@@ -69570,10 +69859,11 @@
       "source_text": "在任意Pre-OP比赛中获胜",
       "source_fingerprint": "87e9e236dd326a4c1641804c778f8bd41ccd0b4ae5afa18a5f47bbca005c18e8",
       "rejected_targets": [
-        "Giành chiến thắng trong bất kỳ cuộc đua Pre-OP nào"
+        "Thắng 1 cuộc đua Pre-OP"
       ],
-      "approved_target": "Thắng 1 cuộc đua Pre-OP",
+      "approved_target": "Giành chiến thắng trong bất kỳ cuộc đua Pre-OP nào",
       "origins": [
+        "translation_review",
         "ui_review"
       ],
       "ui_contexts": [
@@ -69596,6 +69886,14 @@
           "reason": "The objective only requires a win in any one Pre-OP race; the compact mission-style wording preserves that requirement with far less width.",
           "ui_key": "SingleMode0485",
           "control_type": "short_system_label"
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-5866633e0b1c-b5c0bcb3bd-babd4f1703",
+          "batch_id": "tr-p3-67f8551f7780-5866633e0b1c-b5c0bcb3bd-babd4f1703-b0178",
+          "claim_id": "trc-gpt56sol-20260831T104345Z-b0178",
+          "merged_at": "2026-08-31T10:51:48.692920Z",
+          "reason": "The source says any Pre-OP race and contains no numeric token; the current text introduces an unsupported digit 1."
         }
       ]
     },
@@ -69935,10 +70233,11 @@
       "source_text": "未冠赛第1名",
       "source_fingerprint": "a29cbd6231e3514195767e36f1cfce0ee2c9379b50f57ddc96b7b84a40ce7d5f",
       "rejected_targets": [
-        "Hạng 1 cuộc đua Chưa đăng quang"
+        "Hạng 1 đua Chưa đăng quang"
       ],
-      "approved_target": "Hạng 1 đua Chưa đăng quang",
+      "approved_target": "Hạng 1 cuộc đua Chưa đăng quang",
       "origins": [
+        "translation_review",
         "ui_review"
       ],
       "ui_contexts": [
@@ -69961,6 +70260,14 @@
           "reason": "Removing the redundant full race noun keeps the first-place maiden-race condition clear with substantially less width.",
           "ui_key": "SingleMode0489",
           "control_type": "short_system_label"
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-5866633e0b1c-b5c0bcb3bd-babd4f1703",
+          "batch_id": "tr-p3-67f8551f7780-5866633e0b1c-b5c0bcb3bd-babd4f1703-b0178",
+          "claim_id": "trc-gpt56sol-20260831T104345Z-b0178",
+          "merged_at": "2026-08-31T10:51:48.692920Z",
+          "reason": "The current wording is clipped and unnatural; adding cuộc đua restores a complete Vietnamese race-result label while preserving the source's rank 1 token."
         }
       ]
     },
@@ -70086,6 +70393,31 @@
           "claim_id": "trc-chatgpt-20260827T105434Z-51c7a2e9",
           "merged_at": "2026-08-28T03:27:25.772982Z",
           "reason": "Embedded player-facing surface terminology requires Turf instead of Sân cỏ."
+        }
+      ]
+    },
+    {
+      "id": "review.regression.9ebfd56757d7605c",
+      "uid": "zhcn:71ce582c4d67c066ea51e602",
+      "scope": "uid",
+      "source_text": "英里女王",
+      "source_fingerprint": "c78a5a193e8fd45e8abaa63c6e9a335f3e535580475abe3fc497b272a201ba0a",
+      "rejected_targets": [
+        "Nữ vương dặm"
+      ],
+      "approved_target": "Nữ vương Mile",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-5866633e0b1c-b5c0bcb3bd-babd4f1703",
+          "batch_id": "tr-p3-67f8551f7780-5866633e0b1c-b5c0bcb3bd-babd4f1703-b0314",
+          "claim_id": "trc-gpt56sol-20260831T1100Z-b0314",
+          "merged_at": "2026-08-31T10:51:48.716725Z",
+          "reason": "英里 là distance class player-facing và community policy yêu cầu dùng Mile thay vì dịch thành dặm."
         }
       ]
     },
@@ -75879,6 +76211,31 @@
           "claim_id": "trc-chatgpt-sol-20260830-1657-r1-b0643",
           "merged_at": "2026-08-30T11:29:03.335232Z",
           "reason": "Bản hiện tại dùng calque 'Bám đuổi' cho running style; batch bắt buộc nhãn player-facing End Closer."
+        }
+      ]
+    },
+    {
+      "id": "review.regression.6573af15ec0d8ec6",
+      "uid": "zhcn:7a75565bb6fc72bb7c6c936d",
+      "scope": "uid",
+      "source_text": "赛马娘\n排名",
+      "source_fingerprint": "e5cb2c6109e9010c5c58c82133ab8552a89bbee67cf798543aafb0be26785f2a",
+      "rejected_targets": [
+        "Uma Musume\nXếp hạng"
+      ],
+      "approved_target": "Mã Nương\nXếp hạng",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-5866633e0b1c-b5c0bcb3bd-babd4f1703",
+          "batch_id": "tr-p3-67f8551f7780-5866633e0b1c-b5c0bcb3bd-babd4f1703-b0244",
+          "claim_id": "trc-gpt56sol-20260831T110200Z-b0244",
+          "merged_at": "2026-08-31T10:51:48.696087Z",
+          "reason": "Replace forbidden generic Uma Musume wording; line break preserved."
         }
       ]
     },
@@ -82250,6 +82607,31 @@
       ]
     },
     {
+      "id": "review.regression.037eada1c311cb44",
+      "uid": "zhcn:82e74f6fa71db313b377f8ea",
+      "scope": "uid",
+      "source_text": "没有可租借的赛马娘",
+      "source_fingerprint": "df67c2196e39cb249744b11baeffe10a640c5af47a1f37363b52aaeb7f6a5de1",
+      "rejected_targets": [
+        "Không có Uma Musume có thể thuê"
+      ],
+      "approved_target": "Không có Mã Nương có thể thuê",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-5866633e0b1c-b5c0bcb3bd-babd4f1703",
+          "batch_id": "tr-p3-67f8551f7780-5866633e0b1c-b5c0bcb3bd-babd4f1703-b0244",
+          "claim_id": "trc-gpt56sol-20260831T110200Z-b0244",
+          "merged_at": "2026-08-31T10:51:48.696087Z",
+          "reason": "Current target uses forbidden generic Uma Musume wording."
+        }
+      ]
+    },
+    {
       "id": "review.regression.fc4bfac16c9b2f1a",
       "uid": "zhcn:83054f16a5c9c0a1bb24df5e",
       "scope": "uid",
@@ -84282,10 +84664,11 @@
       "source_text": "积累研究量表",
       "source_fingerprint": "960f878dbbdcbc1f0ced872f8eac7b64e1af02883456c7fe5cc6d084818cf780",
       "rejected_targets": [
-        "Tích lũy Thanh Nghiên cứu"
+        "Tích Thanh Nghiên cứu"
       ],
-      "approved_target": "Tích Thanh Nghiên cứu",
+      "approved_target": "Tích lũy Thanh Nghiên cứu",
       "origins": [
+        "translation_review",
         "ui_review"
       ],
       "ui_contexts": [
@@ -84307,6 +84690,14 @@
           "reason": "Dropping the redundant verbal expansion keeps the named Research Gauge concept while reducing width.",
           "ui_key": "FactorResearch483001",
           "control_type": "header"
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-5866633e0b1c-b5c0bcb3bd-babd4f1703",
+          "batch_id": "tr-p3-67f8551f7780-5866633e0b1c-b5c0bcb3bd-babd4f1703-b0058",
+          "claim_id": "trc-gpt56sol-20260831T104900Z-b0058",
+          "merged_at": "2026-08-31T10:51:48.689546Z",
+          "reason": "积累 là tích lũy; bản hiện tại 'Tích Thanh Nghiên cứu' bị cụt nghĩa và không tự nhiên."
         }
       ]
     },
@@ -84497,10 +84888,11 @@
       "source_text": "研究成果奖励",
       "source_fingerprint": "2e6df9a90075447d6054c20557a6a4ce7788a0835d7fd6ab0360729e99d4c93d",
       "rejected_targets": [
-        "Phần thưởng thành quả nghiên cứu"
+        "Thưởng nghiên cứu"
       ],
-      "approved_target": "Thưởng nghiên cứu",
+      "approved_target": "Phần thưởng thành quả nghiên cứu",
       "origins": [
+        "translation_review",
         "ui_review"
       ],
       "ui_contexts": [
@@ -84523,6 +84915,14 @@
           "reason": "The current label redundantly says 'reward for research results'; the compact header preserves the reward category clearly.",
           "ui_key": "FactorResearch483009",
           "control_type": "header"
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-5866633e0b1c-b5c0bcb3bd-babd4f1703",
+          "batch_id": "tr-p3-67f8551f7780-5866633e0b1c-b5c0bcb3bd-babd4f1703-b0058",
+          "claim_id": "trc-gpt56sol-20260831T104900Z-b0058",
+          "merged_at": "2026-08-31T10:51:48.689546Z",
+          "reason": "研究成果奖励 là phần thưởng cho thành quả nghiên cứu; bản 'Thưởng nghiên cứu' rút mất 成果 và kém chính xác."
         }
       ]
     },
@@ -94838,10 +95238,11 @@
       "source_text": "在任意OP比赛中获胜",
       "source_fingerprint": "ddcc4a1155f8da9eb6c9e76439fa69d2a8088bc39392d4796db659da48422825",
       "rejected_targets": [
-        "Giành chiến thắng trong bất kỳ cuộc đua OP nào"
+        "Thắng 1 cuộc đua OP"
       ],
-      "approved_target": "Thắng 1 cuộc đua OP",
+      "approved_target": "Giành chiến thắng trong bất kỳ cuộc đua OP nào",
       "origins": [
+        "translation_review",
         "ui_review"
       ],
       "ui_contexts": [
@@ -94864,6 +95265,14 @@
           "reason": "The objective only requires a win in any one OP race; the compact mission-style wording preserves that requirement with far less width.",
           "ui_key": "SingleMode0486",
           "control_type": "short_system_label"
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-5866633e0b1c-b5c0bcb3bd-babd4f1703",
+          "batch_id": "tr-p3-67f8551f7780-5866633e0b1c-b5c0bcb3bd-babd4f1703-b0178",
+          "claim_id": "trc-gpt56sol-20260831T104345Z-b0178",
+          "merged_at": "2026-08-31T10:51:48.692920Z",
+          "reason": "The source says any OP race and contains no numeric token; the current text introduces an unsupported digit 1."
         }
       ]
     },
@@ -100604,10 +101013,11 @@
       "source_text": "出道・未冠赛比赛",
       "source_fingerprint": "f27875a8ad4048cd4dac27a87892e02c86d82af6f09fbc09f0d5e1f3ca01eaaf",
       "rejected_targets": [
-        "Cuộc đua Ra mắt・Chưa đăng quang"
+        "Đua Ra mắt・Chưa đăng quang"
       ],
-      "approved_target": "Đua Ra mắt・Chưa đăng quang",
+      "approved_target": "Cuộc đua Ra mắt・Chưa đăng quang",
       "origins": [
+        "translation_review",
         "ui_review"
       ],
       "ui_contexts": [
@@ -100630,6 +101040,14 @@
           "reason": "The compact category label drops the redundant 'Cuộc' while preserving both debut and maiden-race categories and the source separator.",
           "ui_key": "SingleMode0492",
           "control_type": "short_system_label"
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-5866633e0b1c-b5c0bcb3bd-babd4f1703",
+          "batch_id": "tr-p3-67f8551f7780-5866633e0b1c-b5c0bcb3bd-babd4f1703-b0178",
+          "claim_id": "trc-gpt56sol-20260831T104345Z-b0178",
+          "merged_at": "2026-08-31T10:51:48.692920Z",
+          "reason": "The current text uses Đua and therefore fails the embedded player-facing race label required by the explicit 比赛 token."
         }
       ]
     },
@@ -107679,6 +108097,31 @@
       ]
     },
     {
+      "id": "review.regression.16458b93e0c80409",
+      "uid": "zhcn:acff6a9a9a3cc6f99bb47102",
+      "scope": "uid",
+      "source_text": "凯斯奇迹的特殊服装",
+      "source_fingerprint": "f3f80cf012129682f4cb957c9cef3a7abffb4945c88d2d46627c970c280acf52",
+      "rejected_targets": [
+        "Trang phục đặc biệt (K.S.Miracle)"
+      ],
+      "approved_target": "Trang phục đặc biệt (K.S. Miracle)",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-5866633e0b1c-b5c0bcb3bd-babd4f1703",
+          "batch_id": "tr-p3-67f8551f7780-5866633e0b1c-b5c0bcb3bd-babd4f1703-b0444",
+          "claim_id": "trc-gpt56sol-20260831T1049Z-b0444",
+          "merged_at": "2026-08-31T10:51:48.720516Z",
+          "reason": "Tên hiện tại thiếu khoảng trắng sau dấu chấm; locked character name yêu cầu chính xác K.S. Miracle."
+        }
+      ]
+    },
+    {
       "id": "review.regression.5a1f41e1a55cc66e",
       "uid": "zhcn:ad00f3ead5ec084ad20ce1a4",
       "scope": "uid",
@@ -108745,6 +109188,31 @@
           "claim_id": "trc-gpt56sol-20260831T035200Z-b0004",
           "merged_at": "2026-08-31T03:49:02.145374Z",
           "reason": "Bản hiện tại dùng ‘Đua’ cho 比赛 và vi phạm locked generic race term."
+        }
+      ]
+    },
+    {
+      "id": "review.regression.089071ec86bd5c87",
+      "uid": "zhcn:aea4b4169faaf5086813386d",
+      "scope": "uid",
+      "source_text": "要消费 {1} 个{0}进行因子强化吗？",
+      "source_fingerprint": "5fd5ead2d14ea59da0fc931a97893550b9e16d36ff7528c97fdea4d43daf727d",
+      "rejected_targets": [
+        "Dùng {1} {0} để nâng cấp Nhân tố chứ?"
+      ],
+      "approved_target": "Dùng {1} {0} để cường hóa Spark chứ?",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-5866633e0b1c-b5c0bcb3bd-babd4f1703",
+          "batch_id": "tr-p3-67f8551f7780-5866633e0b1c-b5c0bcb3bd-babd4f1703-b0058",
+          "claim_id": "trc-gpt56sol-20260831T104900Z-b0058",
+          "merged_at": "2026-08-31T10:51:48.689546Z",
+          "reason": "Giữ nguyên thứ tự placeholder {1} và {0}, đồng thời thay Nhân tố bằng Spark theo embedded rule và dùng nhất quán cường hóa cho 强化."
         }
       ]
     },
@@ -122868,10 +123336,12 @@
       "source_text": "此因子不能被强化",
       "source_fingerprint": "2db36f6b845530fb51015cdb4129d8d99ba2b3b91d76c71ed0c2fdf0c6b402a2",
       "rejected_targets": [
+        "Không thể cường hóa Nhân tố này",
         "Nhân tố này không thể được cường hóa"
       ],
-      "approved_target": "Không thể cường hóa Nhân tố này",
+      "approved_target": "Không thể cường hóa Spark này",
       "origins": [
+        "translation_review",
         "ui_review"
       ],
       "ui_contexts": [
@@ -122894,6 +123364,14 @@
           "reason": "Removes the awkward passive construction and shortens the fixed system message without changing the restriction.",
           "ui_key": "FactorResearch424005",
           "control_type": "short_system_label"
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-5866633e0b1c-b5c0bcb3bd-babd4f1703",
+          "batch_id": "tr-p3-67f8551f7780-5866633e0b1c-b5c0bcb3bd-babd4f1703-b0058",
+          "claim_id": "trc-gpt56sol-20260831T104900Z-b0058",
+          "merged_at": "2026-08-31T10:51:48.689546Z",
+          "reason": "Trong localize_dict, 因子 phải dùng Spark; bản hiện tại dùng Nhân tố bị embedded community rule cấm."
         }
       ]
     },
@@ -132593,10 +133071,11 @@
       "source_text": "奖励一览",
       "source_fingerprint": "67cadb1dd1f6a54a95a5b7c8fa175d52724e01c49c5b8c15a84df96860f4fd14",
       "rejected_targets": [
-        "Danh sách phần thưởng"
+        "Phần thưởng"
       ],
-      "approved_target": "Phần thưởng",
+      "approved_target": "Danh sách phần thưởng",
       "origins": [
+        "translation_review",
         "ui_review"
       ],
       "ui_contexts": [
@@ -132618,6 +133097,14 @@
           "reason": "The reward-list screen makes 'Danh sách' redundant; the category header alone is clear and compact.",
           "ui_key": "FactorResearch483008",
           "control_type": "header"
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-5866633e0b1c-b5c0bcb3bd-babd4f1703",
+          "batch_id": "tr-p3-67f8551f7780-5866633e0b1c-b5c0bcb3bd-babd4f1703-b0058",
+          "claim_id": "trc-gpt56sol-20260831T104900Z-b0058",
+          "merged_at": "2026-08-31T10:51:48.689546Z",
+          "reason": "奖励一览 là danh sách/tổng quan phần thưởng; bản hiện tại chỉ 'Phần thưởng' làm mất ý 一览."
         }
       ]
     },
@@ -138881,6 +139368,31 @@
           "claim_id": "trc-chatgpt-sol-auto-20260830-0759-b0210",
           "merged_at": "2026-08-30T11:29:02.587497Z",
           "reason": "Sửa cả generic 技能 → Skill và 赛马娘 → Mã Nương theo canonical, giữ nguyên cấu trúc xuống dòng."
+        }
+      ]
+    },
+    {
+      "id": "review.regression.6f74efa565f70c41",
+      "uid": "zhcn:def98ab3e98ec1e075c6bf43",
+      "scope": "uid",
+      "source_text": "技能百货店",
+      "source_fingerprint": "d2913e2f43de1ddc39a3609a280ce58599f9a5861eef4970ac7453ad43837f1d",
+      "rejected_targets": [
+        "Bách hóa kỹ năng"
+      ],
+      "approved_target": "Bách hóa Skill",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-5866633e0b1c-b5c0bcb3bd-babd4f1703",
+          "batch_id": "tr-p3-67f8551f7780-5866633e0b1c-b5c0bcb3bd-babd4f1703-b0314",
+          "claim_id": "trc-gpt56sol-20260831T1100Z-b0314",
+          "merged_at": "2026-08-31T10:51:48.716725Z",
+          "reason": "技能 là generic gameplay label và community policy yêu cầu dùng Skill; Kỹ năng là dạng bị cấm."
         }
       ]
     },

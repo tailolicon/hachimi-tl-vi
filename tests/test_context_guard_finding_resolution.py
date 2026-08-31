@@ -4,6 +4,7 @@ import json
 from pathlib import Path
 
 from scripts.resolve_context_guard_findings import resolve
+from scripts.translation_review_common import community_term_matches, load_community_terms
 
 
 def _write(root: Path, *, exclusions: list[str]) -> None:
@@ -61,3 +62,30 @@ def test_resolves_only_after_evidence_is_guarded(tmp_path: Path) -> None:
         "term_id": "common.stat.power",
         "target_vi": "Power",
     }
+
+
+def test_narrative_guard_preserves_real_power_stat_context(tmp_path: Path) -> None:
+    _write(tmp_path, exclusions=["商品的力量"])
+    terms = load_community_terms(tmp_path)
+
+    narrative = community_term_matches(
+        None,
+        "商品的力量",
+        "Sức mạnh của hàng hóa",
+        terms,
+        source_path="text_data_dict.json",
+        json_path=["130", "181"],
+    )
+    assert not any(match["id"] == "common.stat.power" for match in narrative)
+
+    stat_cap = community_term_matches(
+        None,
+        "力量上限和智力上限提升",
+        "Giới hạn Power và Wit tăng",
+        terms,
+        source_path="text_data_dict.json",
+        json_path=["172", "10980101"],
+    )
+    power = next(match for match in stat_cap if match["id"] == "common.stat.power")
+    assert power["accepted_present"] is True
+    assert power["forbidden_present"] is False

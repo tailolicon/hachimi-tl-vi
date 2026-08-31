@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "status": "partial",
+  "status": "complete",
   "plan_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3",
   "batch_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3-b0200",
   "claim_id": "trc-gpt56sol-20260831T005000Z-b0200",
   "worker_id": "gpt-5.6-sol-20260831T005000Z",
-  "reviewed_at": "2026-08-31T00:56:00Z",
-  "completed_count": 15,
+  "reviewed_at": "2026-08-31T00:59:00Z",
+  "completed_count": 20,
   "decisions": [
     {"uid":"zhcn:eba3331d4f46d649dadafd9c","current_fingerprint":"ee9018e4e4e5fb51ba9b8f856c509f0e1855adf4e05d5ec3a8d71d6b2bfb582c","action":"keep","reason":"Meaning, placeholder, atlas tag, and free-Jewel distinction are preserved.","terminology_basis":"Locked currency.jewel=Jewel; source bridge accepts Jewel miễn phí for 免费宝石.","confidence":"high"},
     {"uid":"zhcn:1e8aa8ccae0d61928765fb15","current_fingerprint":"34a97b98ec4d2d4e8e0a1dc98cccebe39c896f609ccb6a54c0319ddb1eab4f4a","action":"keep","reason":"Natural Vietnamese preserves the {0} threshold and additional-purchase meaning.","confidence":"high"},
@@ -18,10 +18,15 @@
     {"uid":"zhcn:2296be682e04eb9ad5357245","current_fingerprint":"6b36cd1034a672c8d25019338ebdc95f3c8c1f07e8ed024d2338313072a559d7","action":"keep","reason":"Concise shop-state label correctly means already exchanged.","confidence":"high"},
     {"uid":"zhcn:0d0edc156b0c070257552fc0","current_fingerprint":"dfbf25c699c5fbb1ffd4f547f222c2b62d65d8b663264e171391d255d74c7201","action":"keep","reason":"Correctly states that the exchange voucher is not owned.","confidence":"high"},
     {"uid":"zhcn:38389eee28d55d5277ccb49e","current_fingerprint":"6c8f5eaa662d4e20e3e847fecf313806eccf3922363c7695b622b2d688e5abf0","action":"keep","reason":"Accurately and naturally renders the details-display label.","confidence":"high"},
+    {"uid":"zhcn:621810c36900a8880a096087","current_fingerprint":"5c4a9d39febfa0ee2c441e39b72373f406f73acad903c351f0c134755cd45b82","action":"defer","reason":"The translation correctly distinguishes free and paid Jewels, but embedded bridge metadata marks each valid co-occurring term as forbidden by the other rule. This needs a context-rule fix before a resolved review decision is safe.","canonical_finding":{"kind":"context_rule","source_zh_cn":"将先使用免费宝石\n按购买顺序使用付费宝石","concept":"Free and paid Jewel labels co-occurring in one shop message","match_mode":"exact","scope":"source_path","reason":"Paid/free Jewel bridge guards mutually flag the other valid term as forbidden when both concepts legitimately occur in the same string.","confidence":"high"},"confidence":"high"},
     {"uid":"zhcn:c554da77a97f6560db80d7d3","current_fingerprint":"e2e6ec9e812ce6a6ede3bea9316be06b73f398dfd8ed530ad0a6eb81fc9aea8b","action":"keep","reason":"Correct paid-Jewel details label.","terminology_basis":"Locked Jewel plus embedded paid-Jewel bridge accepts Jewel trả phí.","confidence":"high"},
     {"uid":"zhcn:abb71ff28a049c53f1c37634","current_fingerprint":"51cb444871c74bf8c312aadb7779bf8f204aef7f72b1809353add292cdf50e78","action":"keep","reason":"Preserves DMM Points, placeholders, newline structure, color tag, and DMM-only Jewel restriction.","terminology_basis":"Locked currency.jewel=Jewel is present.","confidence":"high"},
     {"uid":"zhcn:d6631b9d5439f94d61e09538","current_fingerprint":"55f2b8a7c3544368e92149e3b20ada499b45cb9020c7ced28877cc7c49e08e77","action":"keep","reason":"Correctly labels cancellation of Jewel/item purchases.","terminology_basis":"Locked currency.jewel=Jewel is preserved.","confidence":"high"},
     {"uid":"zhcn:9a733686497fc99c0d7671cd","current_fingerprint":"3010a40cbb2487b890458efe65753301e4eb5673b699a14c104e5e821dbc4e44","action":"keep","reason":"Meaning, warning polarity, repeated purchase-cancellation references, and paragraph structure are preserved.","terminology_basis":"Locked currency.jewel=Jewel is preserved throughout.","confidence":"high"},
-    {"uid":"zhcn:9638fc933aa70883345d8ba7","current_fingerprint":"d0adc386d3be0f13dee0c226b3860ca256eef8992c6935ad5cc5fa4210e4c8b6","action":"keep","reason":"Correctly preserves Google Play Points benefit, {0}, and Jewel resource label.","terminology_basis":"Locked currency.jewel=Jewel is preserved.","confidence":"high"}
+    {"uid":"zhcn:9638fc933aa70883345d8ba7","current_fingerprint":"d0adc386d3be0f13dee0c226b3860ca256eef8992c6935ad5cc5fa4210e4c8b6","action":"keep","reason":"Correctly preserves Google Play Points benefit, {0}, and Jewel resource label.","terminology_basis":"Locked currency.jewel=Jewel is preserved.","confidence":"high"},
+    {"uid":"zhcn:218f9f3c631fbea5a4a9e64c","current_fingerprint":"01ac82e8b17c46907eb68a7f081eafd764c6bb45824b23ba905dcf641f643138","action":"keep","reason":"Meaning is correct and the required player-facing Support Card term is preserved.","terminology_basis":"Embedded common.support_card and system.support_card both require Support Card and forbid Thẻ hỗ trợ.","confidence":"high"},
+    {"uid":"zhcn:c8b2d8bb82ac08bff608b421","current_fingerprint":"8e0dd01296cbb4650d88c118ea462303663012ab8cfe27a0624aa6881efdeec3","action":"keep","reason":"Correctly states that max-limit-broken Support Cards are sent to storage.","terminology_basis":"Embedded Support Card canonical/community rule is satisfied.","confidence":"high"},
+    {"uid":"zhcn:cbd9954139b4d9d4fb6bb8be","current_fingerprint":"f5bd535e1279e8bbb373f6c7cc733d5f1e94b00efbb5eb8cae00d31c494b5186","action":"keep","reason":"Meaning and formatting tags are preserved; Support Card terminology is correct.","terminology_basis":"Embedded Support Card canonical/community rule is satisfied.","confidence":"high"},
+    {"uid":"zhcn:28f498a2a3860a8371ead064","current_fingerprint":"0cbf47f041873bb9c2e986630071c4cf15460b7bee40c248b5aff494cff83dd0","action":"keep","reason":"Natural instruction correctly asks the player to choose a Support Card to exchange.","terminology_basis":"Embedded Support Card canonical/community rule is satisfied.","confidence":"high"}
   ]
 }

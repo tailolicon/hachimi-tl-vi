@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "status": "partial",
+  "plan_id": "tr-p3-67f8551f7780-ac7390deb11a-b5c0bcb3bd-69d7965ed4",
+  "batch_id": "tr-p3-67f8551f7780-ac7390deb11a-b5c0bcb3bd-69d7965ed4-b0445",
+  "claim_id": "trc-gpt56sol-auto11-20260831T222912Z-b0445",
+  "worker_id": "gpt56sol-auto11-20260831T222912Z",
+  "reviewed_at": "2026-08-31T22:30:00Z",
+  "completed_count": 5,
+  "decisions": [
+    {"uid":"zhcn:8480805725123092506f7c5d","current_fingerprint":"3baff76432ef10f073509984c056716b8121264351f3a92ca655e4ffc84a8746","action":"keep","reason":"Credit labels are correctly translated and creator names are proper nouns preserved as written; newline structure is intact.","confidence":"high"},
+    {"uid":"zhcn:1681e1255baf51590fc2eb44","current_fingerprint":"7c55e78a0aeff1882265f47b5c183f1761ba093a38e04fffd63032f433b64013","action":"defer","reason":"Embedded locked-term matching treats 正道 inside the staff name 永井正道 as the Skill alias 'Chính đạo'. Applying that lock would corrupt a proper name, so this needs a context-rule fix rather than a local translation.","canonical_finding":{"kind":"context_rule","source_zh_cn":"永井正道","concept":"Exclude staff/creator names from Skill alias matching","match_mode":"contains","scope":"source_path","reason":"In song-credit text, 正道 occurs only as part of creator name 永井正道, but the embedded context incorrectly matches skill.righteous_path. Staff names must not trigger Skill terminology locks.","confidence":"high"},"confidence":"high"},
+    {"uid":"zhcn:2169305031aac43a98ebbfa5","current_fingerprint":"a72b2e46042a49bf991142b36a2aa4fff8339b31b1447d93c1f52ca60f41af52","action":"keep","reason":"Song-credit roles and season reference preserve the source meaning and line structure; creator names remain proper nouns.","confidence":"high"},
+    {"uid":"zhcn:2fbe4d8817add5aca5f9ef7d","current_fingerprint":"2410ed2550e5b8017e45e8d35c8d3cbc20beb5d0a390f71f16314debf0dc7607","action":"keep","reason":"Credit roles are correctly translated; names, source attribution, and newline structure are preserved.","confidence":"high"},
+    {"uid":"zhcn:4306ef5b109724ea16b5f5e5","current_fingerprint":"2d4b2269420033379774dd61b19a1ef03d44893c4414049caa815ad3d81563a6","action":"keep","reason":"Credit roles are correctly translated; creator and translator names are proper nouns preserved as written.","confidence":"high"}
+  ]
+}

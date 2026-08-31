@@ -5,8 +5,8 @@
   "batch_id": "tr-p3-67f8551f7780-b630cf98a0ef-b5c0bcb3bd-48e5643eeb-b0309",
   "claim_id": "trc-gpt56sol-20260831T111050Z-b0309",
   "worker_id": "gpt-5.6-sol-20260831T111050Z",
-  "reviewed_at": "2026-08-31T11:12:00Z",
-  "completed_count": 5,
+  "reviewed_at": "2026-08-31T11:14:00Z",
+  "completed_count": 10,
   "decisions": [
     {
       "uid": "zhcn:f6431ce3f23c0f1aea5ac7a5",
@@ -48,6 +48,46 @@
       "proposed_text": "Giành ít nhất 3 chiến thắng ở các cuộc đua G1 trên Turf và ít nhất 3 chiến thắng ở các cuộc đua G1 trên Dirt",
       "reason": "The semantic counts are correct, but 沙土 is the established player-facing Dirt surface label rather than the literal sân cát.",
       "terminology_basis": "Manual-audit policy requires Turf and Dirt; embedded common.surface.turf and common.race_grade.g1 are preserved.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:27806783b0b1e7fa6395aa6d",
+      "current_fingerprint": "7364212719fe2c37afe84d476f61dfea9f9a2b73a9ed5db7fc9f5ceb20cc5f72",
+      "action": "keep",
+      "reason": "The translation preserves the five-length Kikuka Sho margin, the six-win requirement, the 2400m lower bound, and inclusion of Tenno Sho (Spring).",
+      "terminology_basis": "Embedded race.generic is satisfied by the race wording.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:847780f92335c4880ed1aad7",
+      "current_fingerprint": "54c115de5e0de40f9c8c58ba7c0f1be91dd0c81a5650d201e77cc6a0edfe9eaf",
+      "action": "keep",
+      "reason": "The seven-win G1 requirement and all five named races are preserved with the source newline structure.",
+      "terminology_basis": "Embedded race.generic, common.race_grade.g1, and the Mile label in Victoria Mile are satisfied.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:15862b2d0984ea162a79a082",
+      "current_fingerprint": "8149fdcd60e59edc0f3fb503b0fbbbf3c1e0cbe9cbd5b7c5a05652ff848fc8ea",
+      "action": "defer",
+      "reason": "The sentence contains the unresolved shared race-category term 重赏; the existing open canonical finding blocks a clean keep or revise even though the rest of the objective is intelligible.",
+      "terminology_basis": "Embedded cf-bf5645acbcfad6a9 blocks 重赏; common.world.umamusume correctly requires Mã Nương.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:4b00d7ef6dec92ec8322ba19",
+      "current_fingerprint": "6333b52bef79e502447618bb8dd101b83eee0d4b2807bba4d1486940f279c968",
+      "action": "keep",
+      "reason": "The inherited seven-G1-win prerequisite, popularity-1 four-win condition, undefeated Satsuki Sho/Japanese Derby clause, and Senior Class Arima Kinen win are all preserved.",
+      "terminology_basis": "Embedded Mã Nương, G1, and Senior Class requirements are satisfied.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:c6e0dafea17a307b22f85af4",
+      "current_fingerprint": "b378242b5b87d292fe4c7cae2e424886630dcef1e4198fec99cbb2fbba283323",
+      "action": "keep",
+      "reason": "The six-win G1 condition, three named races, and 480000 fan threshold are faithfully preserved.",
+      "terminology_basis": "Embedded race.generic, progress.fans, and common.race_grade.g1 are all satisfied.",
       "confidence": "high"
     }
   ]

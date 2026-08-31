@@ -17,9 +17,9 @@ DERBY_STALLION_MASTERS = {
     "require_accepted": True,
     "invalidation_scope": "item",
     "source_paths": ["text_data_dict.json"],
-    "json_path_prefixes": [["128"]],
+    "json_path_prefixes": [],
     "match_mode": "contains",
-    "basis": "Official English product name used by publisher Drecom for ダービースタリオン マスターズ. Preserve Derby Stallion Masters in Latin script in collaboration descriptions.",
+    "basis": "Official English product name used by publisher Drecom for ダービースタリオン マスターズ. The title is distinctive enough to match within text_data collaboration descriptions without a category prefix; preserve Derby Stallion Masters in Latin script.",
 }
 
 DERBY_STALLION_MASTERS_DECISION = {

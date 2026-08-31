@@ -5,8 +5,8 @@
   "batch_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3-b0389",
   "claim_id": "trc-gpt56sol-20260831T021721Z-b0389",
   "worker_id": "gpt-5.6-sol-20260831T021721Z",
-  "reviewed_at": "2026-08-31T02:18:03Z",
-  "completed_count": 5,
+  "reviewed_at": "2026-08-31T02:18:44Z",
+  "completed_count": 10,
   "decisions": [
     {
       "uid": "zhcn:082c951d547d52abdfc82222",
@@ -45,6 +45,53 @@
       "current_fingerprint": "1aa9f9c2d7a47059142e035a481af00a7717b9a61eaa5b9a98a51ebf5c527f45",
       "action": "keep",
       "reason": "The energetic meaning, English title fragment, punctuation, and line structure are preserved.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:2af1dcfb7fbeb84d4e7b2a54",
+      "current_fingerprint": "4a38cfec3eb73d6a48d20622bf3a3cc907c6c29b46c22b65af14ecfd8713aa60",
+      "action": "keep",
+      "reason": "The source meaning, numeric quantity, and line structure are preserved; the locked 光明 rendering is present in context.",
+      "terminology_basis": "Embedded reviewed.skill_name.6b9641d2417b requires Ánh sáng, which is present.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:6dc6c1ef4029f090a2ee316c",
+      "current_fingerprint": "9ba548ebb8896b02fd6c4dba60257d0a1c4bcbb2d0d30b2dddee48ea3121e4f8",
+      "action": "keep",
+      "reason": "The Japanese source meaning, emphatic rhythm, punctuation, and two-line structure are preserved naturally.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:9a08773c1635145f9c653503",
+      "current_fingerprint": "d50943b49266dc3da19722a30ea9daeb620a43c5383af4c4c66c88cf1c8785ff",
+      "action": "revise",
+      "proposed_text": "Thường xuyên cãi nhau, cũng chẳng ai chịu xin lỗi――nhưng vẫn muốn mãi mãi cùng nhau cười vui.\\nĐây là khúc cổ vũ tình bạn non trẻ mà hơi đắng chát của chúng ta.",
+      "reason": "The current text adds 'ngọt ngào', which is not present in 青涩而又略带苦涩; removing it restores the source contrast accurately.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:4356f25f4741607a818a6b75",
+      "current_fingerprint": "73dc7e30ccd2ffd9d165db5708e35142d471fffebbff151b99ca88210a541b01",
+      "action": "keep",
+      "reason": "Meaning, quoted emphasis, punctuation, and line structure are preserved naturally.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:34bcf34bd6b40461dd198bea",
+      "current_fingerprint": "9a0436d1ef50634a9cc894907485e10d5ab237a05d56d2442d24f8d6d05917e1",
+      "action": "defer",
+      "reason": "The locked Skill-title matcher for 心动 fires inside ordinary song-description prose (心动的预感), so this item cannot be safely resolved until that reusable context overmatch is fixed.",
+      "terminology_basis": "race.generic is satisfied; reviewed.skill_name.3346bd209f49 is a false positive in this narrative context.",
+      "canonical_finding": {
+        "kind": "context_rule",
+        "source_zh_cn": "心动",
+        "concept": "Skill-title alias must not overmatch ordinary narrative phrase 心动的预感",
+        "match_mode": "contains",
+        "scope": "source_path",
+        "reason": "A generic emotional phrase in text_data category 128 is being treated as the named Skill title Nhịp tim rộn ràng.",
+        "confidence": "high"
+      },
       "confidence": "high"
     }
   ]

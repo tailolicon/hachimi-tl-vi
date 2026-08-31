@@ -4545,7 +4545,7 @@
         "TeamBuilding030008"
       ],
       "match_mode": "contains",
-      "basis": "In the Aim for the Stars!/Team Building event, this action is the player-facing scouting mechanic, not literal contract signing. GameTora's event guide consistently describes spending Scout Points to scout characters. The rule is restricted to the four proven TeamBuilding UI keys so ordinary contract language remains unaffected."
+      "basis": "At source commit 67f8551f77807292cebd2b20b2c752b652393835, every 签约 occurrence in localize_dict.json is inside TeamBuilding* UI and belongs to the Aim for the Stars!/Team Building scouting mechanic (Scout Race, Scout Points, scouting state/action). Source-path scoping therefore covers the live aggregate finding while excluding story/assets and other source files where literal contract language could occur."
     },
     {
       "id": "event.aim_for_the_stars.scout_points",
@@ -4576,7 +4576,7 @@
         "TeamBuilding020025"
       ],
       "match_mode": "contains",
-      "basis": "Aim for the Stars! uses Scout Points as the event currency for scouting characters. Scope is limited to the proven TeamBuilding UI keys containing 签约Pt."
+      "basis": "Aim for the Stars! uses Scout Points as the event currency for scouting characters. At the pinned zh-CN source commit, all 签约Pt occurrences in localize_dict.json are TeamBuilding event UI, so a source-path guard is sufficient and remains isolated from non-UI source files."
     }
   ]
 }

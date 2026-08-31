@@ -5,8 +5,8 @@
   "batch_id": "tr-p3-67f8551f7780-5866633e0b1c-b5c0bcb3bd-babd4f1703-b0117",
   "claim_id": "trc-gpt56sol-20260831T103321Z-b0117",
   "worker_id": "gpt-5.6-sol-20260831T103321Z",
-  "reviewed_at": "2026-08-31T10:35:06Z",
-  "completed_count": 10,
+  "reviewed_at": "2026-08-31T10:38:24Z",
+  "completed_count": 15,
   "decisions": [
     {
       "uid": "zhcn:d40193644ddb04928148aced",
@@ -63,28 +63,70 @@
     {
       "uid": "zhcn:d90e4cb1ee6a7fdfc4dcafc8",
       "current_fingerprint": "9ba8facf788f1e3f5439a14606157ba473b4af8ce03ef4dde17f67870ac98f5f",
-      "action": "revise",
-      "proposed_text": "Khi phát cuộc đua",
-      "reason": "播放 means play/display here; phát lại adds an unsupported replay/again meaning.",
-      "terminology_basis": "Embedded locked term race.generic maps 比赛 to Cuộc đua.",
+      "action": "keep",
+      "reason": "In this playback-settings context, phát lại correctly expresses 播放, and the race condition remains intact.",
+      "terminology_basis": "Embedded locked term race.generic maps 比赛 to Cuộc đua and is satisfied by cuộc đua.",
       "confidence": "high"
     },
     {
       "uid": "zhcn:07e06c5e24d6f7383fd5ce03",
       "current_fingerprint": "6f1e190c2e94cc28b068ba233dcb420f5eadf09d691ccc865c142e62c9aaeb38",
-      "action": "revise",
-      "proposed_text": "Khi đặt mục này thành OFF, thông báo xác nhận sẽ không hiển thị khi phát cuộc đua",
-      "reason": "The current text incorrectly adds a replay meaning to 播放; the revision keeps the OFF-condition and confirmation-message semantics intact.",
-      "terminology_basis": "Embedded locked term race.generic maps 比赛 to Cuộc đua.",
+      "action": "keep",
+      "reason": "The OFF state, confirmation-message suppression and race-playback condition are all preserved naturally.",
+      "terminology_basis": "Embedded locked term race.generic maps 比赛 to Cuộc đua and is satisfied by cuộc đua.",
       "confidence": "high"
     },
     {
       "uid": "zhcn:c5c90aedd0a361c7eca0721d",
       "current_fingerprint": "3dfd6a5a19c13e3901a2a87b0036bbc43edd4843eee964b7254ef8cad2a119ab",
-      "action": "revise",
-      "proposed_text": "Khi đặt mục này thành ON, lúc phát cuộc đua có nội dung 「Góc quay động」 tương ứng,\n「Góc quay động」 sẽ được ưu tiên chọn",
-      "reason": "The current text adds an unsupported replay sense to 播放比赛; the revision removes it while preserving the dynamic-camera preference and newline structure.",
-      "terminology_basis": "Embedded locked term race.generic maps 比赛 to Cuộc đua.",
+      "action": "keep",
+      "reason": "The ON behavior, dynamic-camera preference, newline structure and race-playback meaning are preserved.",
+      "terminology_basis": "Embedded locked term race.generic maps 比赛 to Cuộc đua and is satisfied by cuộc đua.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:76ca60fe60e95570e91d9589",
+      "current_fingerprint": "a85f3fcae299c1d169cb5f23b7b12721c640f31dbec45b6d6a3696526d40484b",
+      "action": "keep",
+      "reason": "As a compact title, Hành trình của sức nóng preserves both the trajectory/path sense of 轨迹 and the heat/hype sense of 热度 without structural loss.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:243d6174a148ac19608aeb52",
+      "current_fingerprint": "a85f3fcae299c1d169cb5f23b7b12721c640f31dbec45b6d6a3696526d40484b",
+      "action": "keep",
+      "reason": "This duplicate title uses the same faithful rendering of 热度的轨迹 and has no contrary embedded context.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:d0b051ac4c43bf601262d4eb",
+      "current_fingerprint": "ad0f7de79e12bcb2d98cdb9f2b90c60baf19620fe9622ff03c6c6e1745766104",
+      "action": "keep",
+      "reason": "Thách thức vương đạo is a concise title-form rendering that directly preserves 挑战 plus the established Sino-Vietnamese concept 王道, with no conflicting canonical guard.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:afa2968af5d72cc2cc9d17b0",
+      "current_fingerprint": "f6b2580e5b0ddb790ae447a1840fac5ab622fa6a7299d9294ecc353ae5f3b491",
+      "action": "defer",
+      "reason": "性能解放 is a recurring Support Card progression mechanic and the batch supplies no canonical player-facing Vietnamese label; choosing between tiềm năng, hiệu năng, or another system label would be speculative.",
+      "canonical_finding": {
+        "kind": "system_label",
+        "source_zh_cn": "性能解放",
+        "concept": "Support Card performance/limit-break mechanic",
+        "match_mode": "contains",
+        "scope": "source_path",
+        "reason": "Recurring player-facing mechanic needs one canonical Vietnamese label before this status label can be resolved confidently.",
+        "confidence": "high"
+      },
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:2ff7b99bf7276fe1c49fd729",
+      "current_fingerprint": "b162ad63b099d387c2353d1d31f4a39004bec48f9af6fb6f3b7a3f6430a93abb",
+      "action": "keep",
+      "reason": "The compact UI wording preserves the high-quality Main Story event-race presentation meaning and keeps the source newline count.",
+      "terminology_basis": "Embedded locked term race.generic maps 比赛 to Cuộc đua, which is present.",
       "confidence": "high"
     }
   ]

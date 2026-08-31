@@ -107,6 +107,11 @@ GUARDS = {
         "term_id": "reviewed.skill_name.1c68057834c9",
         "target_vi": "Khải hoàn",
     },
+    "cf-857f68c97ee8efed": {
+        "layer": "locked",
+        "term_id": "skill.201072",
+        "target_vi": "Không chịu thua",
+    },
 }
 
 

@@ -4,8 +4,9 @@ from __future__ import annotations
 
 The pinned zh-CN source uses 点燃青春 for アオハル点火. Historical review
 context conflated its + variants with the distinct アオハル燃焼 / 燃烧青春
-family, producing both "Thắp lửa thanh xuân" and "Bùng cháy thanh xuân" for
-the same 点燃青春 base. Keep the two JP families distinct.
+family, and a later legacy community rule also attempted to preserve the Global
+name Ignited Spirit. Individual Skill names in this repository are localized,
+so keep one Vietnamese canonical family and remove that conflicting legacy rule.
 """
 
 import json
@@ -15,6 +16,7 @@ from typing import Any
 ROOT = Path(__file__).resolve().parents[1]
 FINDING_ID = "cf-d3dd61a3ce1f7dd6"
 PREFERRED = "Thắp lửa thanh xuân"
+LEGACY_CONFLICT_ID = "skill.aoharu.ignited_spirit.family"
 
 AOHARU_IGNITION = {
     "id": "skill.aoharu_ignition.family",
@@ -23,7 +25,7 @@ AOHARU_IGNITION = {
     "preferred": PREFERRED,
     "compact": [],
     "accepted": [PREFERRED],
-    "forbidden": ["Bùng cháy thanh xuân"],
+    "forbidden": ["Bùng cháy thanh xuân", "Ignited Spirit"],
     "require_accepted": True,
     "invalidation_scope": "item",
     "source_paths": ["text_data_dict.json"],
@@ -31,9 +33,10 @@ AOHARU_IGNITION = {
     "match_mode": "contains",
     "basis": (
         "Verified JP identity: zh-CN 点燃青春 is アオハル点火 (Aoharu Ignition), "
-        "distinct from アオハル燃焼 / 燃烧青春. Preserve the established Vietnamese "
-        "ignition-family base Thắp lửa thanh xuân and forbid the combustion-family base "
-        "Bùng cháy thanh xuân only for 点燃青春 Skill titles in category 147."
+        "distinct from アオハル燃焼 / 燃烧青春. Individual Skill names are localized "
+        "under repository policy, so preserve the established Vietnamese ignition-family "
+        "base Thắp lửa thanh xuân and reject both combustion-family wording and the "
+        "conflicting keep-English legacy rule only for 点燃青春 Skill titles in category 147."
     ),
 }
 
@@ -73,6 +76,11 @@ def harden(repo_root: Path = ROOT) -> bool:
     if not isinstance(terms, list):
         raise ValueError("glossary/ui_community_terms.json terms must be a list")
     before = json.dumps(community, ensure_ascii=False, sort_keys=True)
+    terms[:] = [
+        term
+        for term in terms
+        if not (isinstance(term, dict) and str(term.get("id") or "") == LEGACY_CONFLICT_ID)
+    ]
     _upsert(terms, AOHARU_IGNITION, id_field="id")
     if before != json.dumps(community, ensure_ascii=False, sort_keys=True):
         _write(community_path, community)
@@ -87,6 +95,7 @@ def harden(repo_root: Path = ROOT) -> bool:
             continue
         matched = True
         suggestions = [str(value) for value in finding.get("suggested_targets_vi", []) if str(value)]
+        suggestions = [value for value in suggestions if value != "Ignited Spirit"]
         if PREFERRED not in suggestions:
             suggestions.append(PREFERRED)
         finding["suggested_targets_vi"] = suggestions

@@ -12,6 +12,7 @@ on:
       - "scripts/build_observed_term_memory.py"
       - "scripts/build_terminology_review_queue.py"
       - "scripts/canonical_findings.py"
+      - "scripts/resolve_scoped_canonical_overrides.py"
       - "scripts/resolve_context_guard_findings.py"
       - "scripts/build_source_bridge_risk_registry.py"
       - "scripts/apply_terminology_reviews.py"
@@ -28,6 +29,7 @@ on:
       - "glossary/source_bridge_terms.json"
       - "tests/test_audit_finding_hardening.py"
       - "tests/test_*_finding_hardening.py"
+      - "tests/test_scoped_canonical_override_resolution.py"
       - "tests/test_fast_step_context_guard_resolution.py"
       - "tests/test_context_guard_finding_resolution.py"
       - "tests/test_jewel_context_guard_resolution.py"
@@ -118,6 +120,9 @@ jobs:
 
       - name: Refresh worker-reported canonical findings
         run: python scripts/canonical_findings.py --repo-root . --refresh
+
+      - name: Resolve scoped canonical overrides
+        run: python scripts/resolve_scoped_canonical_overrides.py --repo-root .
 
       - name: Resolve context-guard findings
         run: python scripts/resolve_context_guard_findings.py

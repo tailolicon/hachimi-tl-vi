@@ -5,6 +5,7 @@ from pathlib import Path
 from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
+SOURCE = "才能开花"
 REVIEWED_TERM_ID = "reviewed.system_label.b91773563cec"
 LEGACY_TARGET = "Talent Bloom"
 CANONICAL_TARGET = "Star Ascension"
@@ -13,7 +14,7 @@ MIGRATION_NOTE = "Canonical hardening: migrated legacy Talent Bloom label to rel
 STAR_ASCENSION = {
     "id": "system.star_ascension.character_piece_description",
     "category": "progression",
-    "source_aliases": ["才能开花"],
+    "source_aliases": [SOURCE],
     "preferred": CANONICAL_TARGET,
     "compact": [],
     "accepted": [CANONICAL_TARGET],
@@ -28,7 +29,7 @@ STAR_ASCENSION = {
 
 STAR_ASCENSION_DECISION = {
     "decision_id": "audit.finding.system-star-ascension",
-    "source_zh_cn": "才能开花",
+    "source_zh_cn": SOURCE,
     "action": "lock",
     "target_vi": CANONICAL_TARGET,
     "kind": "system_label",
@@ -65,6 +66,12 @@ def _upsert(items: list[Any], record: dict[str, Any], id_field: str) -> None:
     items.append(dict(record))
 
 
+def _append_migration_note(record: dict[str, Any]) -> None:
+    note = str(record.get("note") or "").strip()
+    if MIGRATION_NOTE not in note:
+        record["note"] = f"{note} {MIGRATION_NOTE}".strip()
+
+
 def _migrate_legacy_registry_lock(registry: dict[str, Any]) -> bool:
     changed = False
     for term in registry.get("terms", []):
@@ -75,9 +82,7 @@ def _migrate_legacy_registry_lock(registry: dict[str, Any]) -> bool:
         target = str(term.get("target_vi") or "")
         if target == LEGACY_TARGET:
             term["target_vi"] = CANONICAL_TARGET
-            note = str(term.get("note") or "").strip()
-            if MIGRATION_NOTE not in note:
-                term["note"] = f"{note} {MIGRATION_NOTE}".strip()
+            _append_migration_note(term)
             changed = True
         elif target != CANONICAL_TARGET:
             raise ValueError(
@@ -87,20 +92,52 @@ def _migrate_legacy_registry_lock(registry: dict[str, Any]) -> bool:
     return changed
 
 
+def _migrate_legacy_review_decisions(reviews: dict[str, Any]) -> bool:
+    changed = False
+    for decision in reviews.get("decisions", []):
+        if not isinstance(decision, dict):
+            continue
+        if str(decision.get("action") or "").strip().lower() != "lock":
+            continue
+        if str(decision.get("source_zh_cn") or "").strip() != SOURCE:
+            continue
+        if str(decision.get("kind") or "").strip().lower() != "system_label":
+            continue
+        target = str(decision.get("target_vi") or "")
+        if target == LEGACY_TARGET:
+            decision["target_vi"] = CANONICAL_TARGET
+            _append_migration_note(decision)
+            changed = True
+        elif target != CANONICAL_TARGET:
+            raise ValueError(
+                f"review decision {decision.get('decision_id')!r} for {SOURCE} maps to unexpected target {target!r}"
+            )
+    return changed
+
+
 def harden(repo_root: Path = ROOT) -> bool:
     changed = False
 
-    # This migration is intentionally part of the hardener because Context Sync
-    # can invoke it before apply_terminology_reviews.py. The stable reviewed term
-    # id already existed with the older Talent Bloom wording; changing a reviewed
-    # target without migrating that lock would make the safe apply step reject
-    # the canonical update before the normal hardener sweep can run.
+    # Context Sync applies reviewed locks before the normal hardener sweep. The
+    # stable reviewed id for 才能开花 already existed with the legacy Talent
+    # Bloom wording, and an older reviewed decision carried the same target.
+    # Migrate both authoritative surfaces explicitly so safe review application
+    # can remain strict instead of silently rewriting an existing lock.
     registry_path = repo_root / "glossary" / "term_registry.json"
     registry = _load(registry_path, {"terms": []})
     before = json.dumps(registry, ensure_ascii=False, sort_keys=True)
     _migrate_legacy_registry_lock(registry)
     if before != json.dumps(registry, ensure_ascii=False, sort_keys=True):
         _write(registry_path, registry)
+        changed = True
+
+    reviews_path = repo_root / "glossary" / "terminology_reviews.json"
+    reviews = _load(reviews_path, {"schema_version": 1, "decisions": []})
+    before = json.dumps(reviews, ensure_ascii=False, sort_keys=True)
+    _migrate_legacy_review_decisions(reviews)
+    _upsert(reviews.setdefault("decisions", []), STAR_ASCENSION_DECISION, "decision_id")
+    if before != json.dumps(reviews, ensure_ascii=False, sort_keys=True):
+        _write(reviews_path, reviews)
         changed = True
 
     community_path = repo_root / "glossary" / "ui_community_terms.json"
@@ -111,13 +148,6 @@ def harden(repo_root: Path = ROOT) -> bool:
         _write(community_path, community)
         changed = True
 
-    reviews_path = repo_root / "glossary" / "terminology_reviews.json"
-    reviews = _load(reviews_path, {"schema_version": 1, "decisions": []})
-    before = json.dumps(reviews, ensure_ascii=False, sort_keys=True)
-    _upsert(reviews.setdefault("decisions", []), STAR_ASCENSION_DECISION, "decision_id")
-    if before != json.dumps(reviews, ensure_ascii=False, sort_keys=True):
-        _write(reviews_path, reviews)
-        changed = True
     return changed
 
 

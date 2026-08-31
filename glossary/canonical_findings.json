@@ -61,6 +61,61 @@
       "last_seen_at": "2026-08-30T18:15:00Z"
     },
     {
+      "finding_id": "cf-0784e69ca33d7bee",
+      "status": "open",
+      "source_zh_cn": "中距离直线○",
+      "match_mode": "exact",
+      "source_paths": [
+        "text_data_dict.json"
+      ],
+      "key_exact": [],
+      "json_path_prefixes": [],
+      "kinds": [
+        "context_rule"
+      ],
+      "concepts": [
+        "Skill-title lock must override generic distance label inside named Skill titles"
+      ],
+      "suggested_targets_vi": [],
+      "confidence_levels": [
+        "high"
+      ],
+      "reasons": [
+        "Exact Skill lock requires the Vietnamese Skill title while generic 中距离→Medium matching also fires inside the same title. Canonical context needs precedence/exclusion so named Skill identity is not contradicted by generic gameplay-label rules."
+      ],
+      "evidence_count": 1,
+      "evidence": [
+        {
+          "uid": "zhcn:dbffb7be3dd3a66f8ab612f4",
+          "plan_id": "tr-p3-67f8551f7780-06d5a511c4a6-b5c0bcb3bd-3f7ae71a0c",
+          "batch_id": "tr-p3-67f8551f7780-06d5a511c4a6-b5c0bcb3bd-3f7ae71a0c-b0387",
+          "claim_id": "trc-chatgpt-auto11-20260831T093650Z-b0387",
+          "worker_id": "chatgpt-auto11-20260831T093650Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "147",
+            "2011001"
+          ],
+          "source_text": "中距离直线○",
+          "current_text": "Đường thẳng cự ly trung○",
+          "proposed_text": null,
+          "reported_at": "2026-08-31T09:45:00Z"
+        }
+      ],
+      "canonical_resolution": {
+        "layer": "locked",
+        "term_id": "reviewed.skill_name.7ea02e89037d",
+        "target_vi": "Đường thẳng Cự ly trung bình○"
+      },
+      "review_resolution": {
+        "decision_id": "parallel.ctx-67f8551f77807292-v1.term-0012.04",
+        "action": "lock",
+        "target_vi": "Đường thẳng Cự ly trung bình○"
+      },
+      "first_seen_at": "2026-08-31T09:45:00Z",
+      "last_seen_at": "2026-08-31T09:45:00Z"
+    },
+    {
       "finding_id": "cf-08840c22564d5b33",
       "status": "open",
       "source_zh_cn": "中距离直线○",
@@ -1803,16 +1858,18 @@
         "context_rule"
       ],
       "concepts": [
-        "Generic excitement phrase versus named Skill title"
+        "Generic excitement phrase versus named Skill title",
+        "Generic 心动 prose versus named Skill title matcher"
       ],
       "suggested_targets_vi": [],
       "confidence_levels": [
         "high"
       ],
       "reasons": [
-        "Skill-title matching fires inside hashtag prose 心动不已 and would incorrectly force the named Skill target."
+        "Skill-title matching fires inside hashtag prose 心动不已 and would incorrectly force the named Skill target.",
+        "The reviewed Skill-name alias 心动 overmatches the prose phrase 心动的预感 in text_data category 128; named Skill terminology must not replace ordinary emotional-description prose."
       ],
-      "evidence_count": 1,
+      "evidence_count": 2,
       "evidence": [
         {
           "uid": "zhcn:996c7568e8341c51f3593486",
@@ -1829,6 +1886,22 @@
           "current_text": "“#kawaii” “#mơmàngmềmmại” “#timđậpnhanh?”\\nDễ thương là mật mã có thể truyền tới tận vũ trụ! Nè, bạn có thể thích tôi thêm một chút nữa không?",
           "proposed_text": null,
           "reported_at": "2026-08-31T08:18:00Z"
+        },
+        {
+          "uid": "zhcn:34bcf34bd6b40461dd198bea",
+          "plan_id": "tr-p3-67f8551f7780-06d5a511c4a6-b5c0bcb3bd-3f7ae71a0c",
+          "batch_id": "tr-p3-67f8551f7780-06d5a511c4a6-b5c0bcb3bd-3f7ae71a0c-b0289",
+          "claim_id": "trc-gpt56sol-20260831T0936Z-b0289-a10",
+          "worker_id": "gpt-5.6-sol-a10",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "128",
+            "1025"
+          ],
+          "source_text": "疾驰的一等星闪耀着，充满勇气与希望的歌曲。\\n心动的预感――那就是比赛开始的信号",
+          "current_text": "Một ca khúc tràn đầy dũng khí và hy vọng, như ngôi sao sáng nhất đang lao đi rực rỡ.\\nLinh cảm khiến tim rung động――đó chính là tín hiệu cuộc đua bắt đầu.",
+          "proposed_text": null,
+          "reported_at": "2026-08-31T09:44:00Z"
         }
       ],
       "canonical_resolution": {
@@ -1842,7 +1915,7 @@
         "target_vi": "Nhịp tim rộn ràng"
       },
       "first_seen_at": "2026-08-31T08:18:00Z",
-      "last_seen_at": "2026-08-31T08:18:00Z"
+      "last_seen_at": "2026-08-31T09:44:00Z"
     },
     {
       "finding_id": "cf-55f0e8a1d70264a2",
@@ -2024,7 +2097,8 @@
       ],
       "concepts": [
         "Generic narrative power versus Power stat",
-        "Power stat alias must not match ordinary metaphorical prose"
+        "Power stat alias must not match ordinary metaphorical prose",
+        "Power stat rule must not match ordinary strength or 力量石 resource-name prose"
       ],
       "suggested_targets_vi": [],
       "confidence_levels": [
@@ -2032,9 +2106,10 @@
       ],
       "reasons": [
         "Stat matcher overmatches narrative title text.",
-        "The sentence 将情谊化为力量 is narrative metaphor, not a stat reference. Canonical matching needs stronger stat-context scoping/negative coverage."
+        "The sentence 将情谊化为力量 is narrative metaphor, not a stat reference. Canonical matching needs stronger stat-context scoping/negative coverage.",
+        "The reusable alias 力量 is firing inside 超越极限力量 and 力量石 in category-10 item descriptions, where it denotes ordinary strength/resource naming rather than the Power stat. Narrow exclusions/context are required before review can safely resolve these entries."
       ],
-      "evidence_count": 2,
+      "evidence_count": 3,
       "evidence": [
         {
           "uid": "zhcn:c7764341e6086330eea7872a",
@@ -2067,6 +2142,22 @@
           "current_text": "Điều tôi muốn không chỉ là lý thuyết, mà còn là tương lai chỉ có thể cùng bạn chạm tới.\\nBiến tình cảm gắn bó thành sức mạnh, vượt qua số phận không thể đo lường.",
           "proposed_text": null,
           "reported_at": "2026-08-31T08:27:30Z"
+        },
+        {
+          "uid": "zhcn:479b975a3e72c9a0d09507c8",
+          "plan_id": "tr-p3-67f8551f7780-06d5a511c4a6-b5c0bcb3bd-3f7ae71a0c",
+          "batch_id": "tr-p3-67f8551f7780-06d5a511c4a6-b5c0bcb3bd-3f7ae71a0c-b0254",
+          "claim_id": "trc-chatgpt-auto11-20260831T094600Z-b0254",
+          "worker_id": "chatgpt-auto11-20260831T094600Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "10",
+            "144"
+          ],
+          "source_text": "据说是可以激发出超越极限力量的\\n彩虹色力量石。\\n可解锁SSR支援卡的上限。",
+          "current_text": "Người ta nói đây là viên đá sức mạnh màu cầu vồng\\ncó thể khơi dậy sức mạnh vượt qua giới hạn.\\nCó thể dùng để phá giới hạn thẻ hỗ trợ SSR.",
+          "proposed_text": null,
+          "reported_at": "2026-08-31T09:55:00Z"
         }
       ],
       "canonical_resolution": {
@@ -2076,7 +2167,7 @@
       },
       "review_resolution": null,
       "first_seen_at": "2026-08-30T13:27:00Z",
-      "last_seen_at": "2026-08-31T08:27:30Z"
+      "last_seen_at": "2026-08-31T09:55:00Z"
     },
     {
       "finding_id": "cf-5f122ded4af0e4b5",
@@ -5282,7 +5373,8 @@
       ],
       "concepts": [
         "点燃青春 skill-title family",
-        "Conflicting Aoharu Ignition family canonical targets"
+        "Conflicting Aoharu Ignition family canonical targets",
+        "Aoharu Ignition / Ignited Spirit player-facing Skill family conflict"
       ],
       "suggested_targets_vi": [
         "Thắp lửa thanh xuân",
@@ -5293,9 +5385,10 @@
       ],
       "reasons": [
         "The same reusable title base appears as both Thắp lửa thanh xuân and Bùng cháy thanh xuân; one canonical family base is required.",
-        "Live category-147 context simultaneously supplies Thắp lửa thanh xuân and Ignited Spirit for the same alias; canonical maintenance must remove the conflict before local review."
+        "Live category-147 context simultaneously supplies Thắp lửa thanh xuân and Ignited Spirit for the same alias; canonical maintenance must remove the conflict before local review.",
+        "Category-147 Skill titles embed two mutually incompatible community requirements for 点燃青春: skill.aoharu_ignition.family requires Thắp lửa thanh xuân while skill.aoharu.ignited_spirit.family requires Ignited Spirit. Review cannot choose a local standard until canonical context is reconciled."
       ],
-      "evidence_count": 14,
+      "evidence_count": 15,
       "evidence": [
         {
           "uid": "zhcn:2843835cce2293ffd3fe6c71",
@@ -5520,6 +5613,22 @@
           "current_text": "Bùng cháy thanh xuân・Trí tuệ＋",
           "proposed_text": null,
           "reported_at": "2026-08-31T08:24:00Z"
+        },
+        {
+          "uid": "zhcn:2843835cce2293ffd3fe6c71",
+          "plan_id": "tr-p3-67f8551f7780-06d5a511c4a6-b5c0bcb3bd-3f7ae71a0c",
+          "batch_id": "tr-p3-67f8551f7780-06d5a511c4a6-b5c0bcb3bd-3f7ae71a0c-b0423",
+          "claim_id": "trc-gpt56sol-20260831T0945Z-b0423-a10",
+          "worker_id": "gpt-5.6-sol-a10",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "147",
+            "2102101"
+          ],
+          "source_text": "点燃青春・速＋",
+          "current_text": "Bùng cháy thanh xuân・Tốc độ＋",
+          "proposed_text": null,
+          "reported_at": "2026-08-31T09:51:30Z"
         }
       ],
       "canonical_resolution": {
@@ -5533,7 +5642,7 @@
         "target_vi": "Ignited Spirit"
       },
       "first_seen_at": "2026-08-30T17:40:00Z",
-      "last_seen_at": "2026-08-31T08:24:00Z"
+      "last_seen_at": "2026-08-31T09:51:30Z"
     },
     {
       "finding_id": "cf-d884bd73b0c0120f",
@@ -6418,16 +6527,18 @@
         "context_rule"
       ],
       "concepts": [
-        "Narrative 力量 versus Power stat"
+        "Narrative 力量 versus Power stat",
+        "Narrative strength versus Power stat matcher in song descriptions"
       ],
       "suggested_targets_vi": [],
       "confidence_levels": [
         "high"
       ],
       "reasons": [
-        "Power-stat matching still fires in category-128 narrative prose where 力量 means ordinary strength/power."
+        "Power-stat matching still fires in category-128 narrative prose where 力量 means ordinary strength/power.",
+        "In text_data category 128, 将情谊化为力量 means turning bonds into strength; forcing the Power stat label would be semantically wrong. The stat matcher needs a negative/prose scope guard."
       ],
-      "evidence_count": 3,
+      "evidence_count": 4,
       "evidence": [
         {
           "uid": "zhcn:896b56be0adb3987b5b003f6",
@@ -6476,6 +6587,22 @@
           "current_text": "Khúc nhạc của quyết tâm kiên định, nơi ý chí của những thiếu nữ trú ngụ.\\nBởi kình địch đã trao cho chúng ta sức mạnh—dù đi đâu, hãy cùng nhau tiến bước.",
           "proposed_text": null,
           "reported_at": "2026-08-31T08:18:00Z"
+        },
+        {
+          "uid": "zhcn:8d1ff68eb5fec7c73dc89ccd",
+          "plan_id": "tr-p3-67f8551f7780-06d5a511c4a6-b5c0bcb3bd-3f7ae71a0c",
+          "batch_id": "tr-p3-67f8551f7780-06d5a511c4a6-b5c0bcb3bd-3f7ae71a0c-b0289",
+          "claim_id": "trc-gpt56sol-20260831T0936Z-b0289-a10",
+          "worker_id": "gpt-5.6-sol-a10",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "128",
+            "1104"
+          ],
+          "source_text": "想要的并不只是理论，还有只能和你一起抵达的未来。\\n将情谊化为力量，超越无法估量的命运。",
+          "current_text": "Điều tôi muốn không chỉ là lý thuyết, mà còn là tương lai chỉ có thể cùng bạn chạm tới.\\nBiến tình cảm gắn bó thành sức mạnh, vượt qua số phận không thể đo lường.",
+          "proposed_text": null,
+          "reported_at": "2026-08-31T09:44:00Z"
         }
       ],
       "canonical_resolution": {
@@ -6485,7 +6612,7 @@
       },
       "review_resolution": null,
       "first_seen_at": "2026-08-31T08:18:00Z",
-      "last_seen_at": "2026-08-31T08:18:00Z"
+      "last_seen_at": "2026-08-31T09:44:00Z"
     },
     {
       "finding_id": "cf-f88f76ad39a6446c",
@@ -6615,16 +6742,18 @@
         "context_rule"
       ],
       "concepts": [
-        "Generic adjective 光明 versus named Skill title"
+        "Generic adjective 光明 versus named Skill title",
+        "Generic bright-future prose versus named Skill matcher"
       ],
       "suggested_targets_vi": [],
       "confidence_levels": [
         "high"
       ],
       "reasons": [
-        "Skill-title matching fires inside ordinary prose 光明的未来 and would incorrectly force the Skill name Ánh sáng."
+        "Skill-title matching fires inside ordinary prose 光明的未来 and would incorrectly force the Skill name Ánh sáng.",
+        "The reviewed Skill-name alias 光明 overmatches the ordinary phrase 光明的未来 in text_data category 128; named Skill terminology must not replace descriptive prose."
       ],
-      "evidence_count": 1,
+      "evidence_count": 2,
       "evidence": [
         {
           "uid": "zhcn:e24f509f9ecadbe9bb160b77",
@@ -6641,6 +6770,22 @@
           "current_text": "Nào, lên đường! Hướng tới tương lai tươi sáng.\\n— Chỉ cần ở bên bạn, đi đâu cũng được!",
           "proposed_text": null,
           "reported_at": "2026-08-31T08:18:00Z"
+        },
+        {
+          "uid": "zhcn:e24f509f9ecadbe9bb160b77",
+          "plan_id": "tr-p3-67f8551f7780-06d5a511c4a6-b5c0bcb3bd-3f7ae71a0c",
+          "batch_id": "tr-p3-67f8551f7780-06d5a511c4a6-b5c0bcb3bd-3f7ae71a0c-b0289",
+          "claim_id": "trc-gpt56sol-20260831T0936Z-b0289-a10",
+          "worker_id": "gpt-5.6-sol-a10",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "128",
+            "1138"
+          ],
+          "source_text": "来吧，出发！向着光明的未来。\\n——只要和你在一起，无论到哪里！",
+          "current_text": "Nào, lên đường! Hướng tới tương lai tươi sáng.\\n— Chỉ cần ở bên bạn, đi đâu cũng được!",
+          "proposed_text": null,
+          "reported_at": "2026-08-31T09:44:00Z"
         }
       ],
       "canonical_resolution": {
@@ -6654,7 +6799,7 @@
         "target_vi": "Ánh sáng"
       },
       "first_seen_at": "2026-08-31T08:18:00Z",
-      "last_seen_at": "2026-08-31T08:18:00Z"
+      "last_seen_at": "2026-08-31T09:44:00Z"
     }
   ]
 }

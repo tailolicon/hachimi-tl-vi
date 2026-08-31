@@ -36,13 +36,14 @@ def _is_scoped(rule: dict[str, Any]) -> bool:
 
 
 def resolve_scoped_canonical_overrides(repo_root: Path, ledger: dict[str, Any] | None = None) -> dict[str, Any]:
-    """Resolve context-specific community rules that intentionally override a generic reviewed lock.
+    """Resolve findings from explicit context-scoped community canonical rules.
 
-    A reviewed terminology lock is source-wide, while some zh-CN aliases are polysemous in
-    narrowly identifiable UI categories. The normal canonical resolver correctly refuses a
-    conflicting target. This pass permits the conflict only when a community rule carries an
-    explicit item/category scope and that scope fully covers the worker finding. Unscoped
-    community rules can never override a reviewed lock here.
+    The normal resolver intentionally requires exactly one reviewed/suggested target before a
+    canonical rule may resolve a finding. Some polysemous source aliases cannot safely receive
+    a source-wide reviewed lock at all, but can still be canonical inside a narrow proven UI
+    scope. This pass accepts only community rules with an explicit item/category scope that
+    fully covers the finding. Unscoped rules are never eligible, and explicit defer/ignore
+    decisions remain blocking/ignored rather than being overridden here.
     """
     if ledger is None:
         ledger = read_json(repo_root / "glossary/canonical_findings.json", {}) or {}
@@ -61,12 +62,16 @@ def resolve_scoped_canonical_overrides(repo_root: Path, ledger: dict[str, Any] |
             continue
         if finding.get("canonical_resolution"):
             continue
+
         review = finding.get("review_resolution")
-        if not isinstance(review, dict) or str(review.get("action") or "") != "lock":
+        review_action = str(review.get("action") or "") if isinstance(review, dict) else ""
+        if review_action in {"defer", "ignore"}:
             continue
-        reviewed_target = str(review.get("target_vi") or "").strip().casefold()
-        if not reviewed_target:
-            continue
+        reviewed_target = (
+            str(review.get("target_vi") or "").strip().casefold()
+            if isinstance(review, dict) and review_action == "lock"
+            else ""
+        )
 
         for rule in rules:
             if not _rule_covers_finding(rule, finding):
@@ -74,7 +79,9 @@ def resolve_scoped_canonical_overrides(repo_root: Path, ledger: dict[str, Any] |
             if not _rule_matches_finding_source(rule, "source_aliases", finding):
                 continue
             preferred = str(rule.get("preferred") or "").strip()
-            if not preferred or preferred.casefold() == reviewed_target:
+            if not preferred:
+                continue
+            if reviewed_target and preferred.casefold() == reviewed_target:
                 continue
             finding["canonical_resolution"] = {
                 "layer": "community",
@@ -86,7 +93,7 @@ def resolve_scoped_canonical_overrides(repo_root: Path, ledger: dict[str, Any] |
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="Resolve explicitly scoped community overrides of generic reviewed locks.")
+    parser = argparse.ArgumentParser(description="Resolve canonical findings from explicitly scoped community context rules.")
     parser.add_argument("--repo-root", type=Path, default=ROOT)
     args = parser.parse_args()
     repo_root = args.repo_root.resolve()

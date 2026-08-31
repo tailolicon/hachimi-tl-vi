@@ -27,6 +27,22 @@ STAR_ASCENSION = {
     "basis": "Named trainee progression mechanic. JP 才能開花 consumes Character Pieces to raise a trainee's star rarity; released Global player-facing terminology uses Star Ascension. Scope is restricted to text_data category 114 Character Piece descriptions so the separate Skill title 开花 and generic bloom/talent prose are unaffected.",
 }
 
+STAR_ASCENSION_COMMON_LABEL = {
+    "id": "system.star_ascension.common0187",
+    "category": "progression",
+    "source_aliases": [SOURCE],
+    "preferred": CANONICAL_TARGET,
+    "compact": [],
+    "accepted": [CANONICAL_TARGET],
+    "forbidden": ["Nở rộ tài năng", "Khai hoa tài năng"],
+    "require_accepted": True,
+    "invalidation_scope": "item",
+    "source_paths": ["localize_dict.json"],
+    "key_exact": ["Common0187"],
+    "match_mode": "exact",
+    "basis": "Standalone player-facing label for the same JP 才能開花 star-rarity progression mechanic. Keep this exception pinned to proven localize key Common0187 so the separate Skill title 开花 and generic bloom/talent prose elsewhere remain unaffected.",
+}
+
 STAR_ASCENSION_DECISION = {
     "decision_id": "audit.finding.system-star-ascension",
     "source_zh_cn": SOURCE,
@@ -38,7 +54,7 @@ STAR_ASCENSION_DECISION = {
     "source_paths": ["text_data_dict.json"],
     "json_path_prefixes": [["114"]],
     "match_mode": "contains",
-    "note": "JP 才能開花 is the Character Piece star-rarity progression mechanic; preserve released Global player-facing label Star Ascension in category-114 Character Piece descriptions.",
+    "note": "JP 才能開花 is the Character Piece star-rarity progression mechanic; preserve released Global player-facing label Star Ascension in category-114 Character Piece descriptions. The standalone Common0187 label is covered separately by an item-scoped community rule.",
 }
 
 
@@ -144,6 +160,7 @@ def harden(repo_root: Path = ROOT) -> bool:
     community = _load(community_path, {"schema_version": 1, "terms": []})
     before = json.dumps(community, ensure_ascii=False, sort_keys=True)
     _upsert(community.setdefault("terms", []), STAR_ASCENSION, "id")
+    _upsert(community.setdefault("terms", []), STAR_ASCENSION_COMMON_LABEL, "id")
     if before != json.dumps(community, ensure_ascii=False, sort_keys=True):
         _write(community_path, community)
         changed = True

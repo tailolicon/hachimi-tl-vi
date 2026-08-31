@@ -181,7 +181,10 @@
         "Trí tuệ"
       ],
       "require_accepted": true,
-      "basis": "Common EN-version stat label."
+      "basis": "Common EN-version Wit stat label. The zh-CN alias 智力 is context-sensitive and must not canonicalize ordinary compounds such as 智力扣 (a disentanglement puzzle/toy).",
+      "exclude_source_contains": [
+        "智力扣"
+      ]
     },
     {
       "id": "common.aptitude",
@@ -5186,6 +5189,53 @@
       ],
       "match_mode": "contains",
       "basis": "Run! Mecha Umamusume scenario mechanic with an Overdrive Gauge. Established English guides call the stored/activated mechanic Overdrive."
+    },
+    {
+      "id": "race.crown.classic_triple_crown",
+      "category": "race",
+      "source_aliases": [
+        "经典三冠"
+      ],
+      "preferred": "Classic Triple Crown",
+      "compact": [],
+      "accepted": [
+        "Classic Triple Crown"
+      ],
+      "forbidden": [
+        "Tam quán Cổ điển",
+        "Tam quán cổ điển"
+      ],
+      "require_accepted": true,
+      "invalidation_scope": "item",
+      "source_paths": [
+        "localize_dict.json"
+      ],
+      "match_mode": "exact",
+      "basis": "Established player-facing name for the Satsuki Sho, Tokyo Yushun (Japan Derby), and Kikuka Sho crown set; preserve Classic Triple Crown instead of a Vietnamese calque."
+    },
+    {
+      "id": "legacy.spark_enhancement",
+      "category": "legacy",
+      "source_aliases": [
+        "因子强化"
+      ],
+      "preferred": "Spark Enhancement",
+      "compact": [],
+      "accepted": [
+        "Spark Enhancement"
+      ],
+      "forbidden": [
+        "Nhân tố",
+        "Tăng cường Nhân tố",
+        "tăng cường Nhân tố"
+      ],
+      "require_accepted": true,
+      "invalidation_scope": "item",
+      "source_paths": [
+        "text_data_dict.json"
+      ],
+      "match_mode": "contains",
+      "basis": "Project inheritance terminology uses Spark for 因子. The reusable Agnes Tachyon research mechanic 因子强化 is therefore Spark Enhancement rather than a literal Nhân tố label."
     }
   ]
 }

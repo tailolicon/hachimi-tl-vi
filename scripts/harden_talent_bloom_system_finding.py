@@ -5,46 +5,51 @@ from pathlib import Path
 from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
+CANONICAL_TARGET = "Star Ascension"
 
+# Compatibility hardener for the older Talent Bloom rule IDs. These IDs are
+# already durable in generated registries, so keep them but migrate their
+# target to the current canonical player-facing label instead of allowing the
+# later alphabetic hardener pass to re-introduce the obsolete wording.
 TALENT_BLOOM_CATEGORY_114 = {
     "id": "system.talent_bloom.text114",
     "category": "system_label",
     "source_aliases": ["才能开花"],
-    "preferred": "Talent Bloom",
+    "preferred": CANONICAL_TARGET,
     "compact": [],
-    "accepted": ["Talent Bloom"],
-    "forbidden": ["Nở rộ tài năng", "nở rộ tài năng", "Khai hoa tài năng", "khai hoa tài năng"],
+    "accepted": [CANONICAL_TARGET],
+    "forbidden": ["Talent Bloom", "Nở rộ tài năng", "nở rộ tài năng", "Khai hoa tài năng", "khai hoa tài năng"],
     "require_accepted": True,
     "invalidation_scope": "item",
     "source_paths": ["text_data_dict.json"],
     "json_path_prefixes": [["114"]],
     "match_mode": "contains",
-    "basis": "Named character star-progression mechanic that consumes character pieces to unlock/raise a trainee's stars. Player-facing English usage is Talent Bloom. Scope category 114 so the unrelated Skill title 开花 cannot bleed into progression prose.",
+    "basis": "Compatibility rule for the named star-rarity progression mechanic. Released Global terminology is Star Ascension; keep the historical rule id but no longer emit the obsolete Talent Bloom target. Scope remains category 114 so the unrelated Skill title 开花 cannot bleed into progression prose.",
 }
 
 TALENT_BLOOM_LOCALIZE = {
     "id": "system.talent_bloom.localize",
     "category": "system_label",
     "source_aliases": ["才能开花"],
-    "preferred": "Talent Bloom",
+    "preferred": CANONICAL_TARGET,
     "compact": [],
-    "accepted": ["Talent Bloom"],
-    "forbidden": ["Nở rộ tài năng", "nở rộ tài năng", "Khai hoa tài năng", "khai hoa tài năng"],
+    "accepted": [CANONICAL_TARGET],
+    "forbidden": ["Talent Bloom", "Nở rộ tài năng", "nở rộ tài năng", "Khai hoa tài năng", "khai hoa tài năng"],
     "require_accepted": True,
     "invalidation_scope": "item",
     "source_paths": ["localize_dict.json"],
-    "match_mode": "contains",
-    "basis": "Named character star-progression mechanic in localize controls/status text. The complete alias 才能开花 is distinct from the exact Skill title 开花, whose canonical matcher is separately exact-only.",
+    "match_mode": "exact",
+    "basis": "Compatibility rule for standalone localize labels using the complete 才能开花 phrase. Released Global terminology is Star Ascension. Exact phrase matching keeps the separate Skill title 开花 and generic bloom prose unaffected while covering legacy worker findings that were reported source-path-wide.",
 }
 
 TALENT_BLOOM_DECISION = {
     "decision_id": "audit.finding.talent-bloom-system",
     "source_zh_cn": "才能开花",
     "action": "lock",
-    "target_vi": "Talent Bloom",
+    "target_vi": CANONICAL_TARGET,
     "kind": "system_label",
     "category": "system_label",
-    "note": "Use the player-facing Talent Bloom mechanic name for 才能开花. Keep the separate Skill title 开花 exact-only so progression prose is not treated as a Skill name.",
+    "note": "Compatibility migration: 才能开花 uses released Global player-facing label Star Ascension, superseding the obsolete Talent Bloom wording. The separate Skill title 开花 remains exact-only.",
 }
 
 

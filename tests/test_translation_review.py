@@ -1,6 +1,7 @@
 from scripts.merge_translation_review import _validate_result
 import json
 from pathlib import Path
+from scripts.canonical_findings import active_findings
 from scripts.translation_review_common import (
     community_term_matches,
     context_snapshot_hash,
@@ -258,3 +259,28 @@ def test_corner_adept_skill_family_matches_reviewed_canonical_lock():
     }
     assert examples["弯道巧者○"] == "Thành thạo khúc cua○"
     assert examples["弯道巧者×"] == "Thành thạo khúc cua×"
+
+
+def test_resolved_context_guard_finding_is_not_an_active_review_blocker():
+    base = {
+        "finding_id": "cf-power",
+        "status": "open",
+        "source_zh_cn": "力量",
+        "match_mode": "contains",
+        "source_paths": ["text_data_dict.json"],
+        "key_exact": [],
+        "json_path_prefixes": [],
+        "review_resolution": None,
+    }
+    unresolved = {**base, "canonical_resolution": None}
+    resolved = {
+        **base,
+        "canonical_resolution": {
+            "layer": "context_guard",
+            "term_id": "common.stat.power",
+            "target_vi": "Power",
+        },
+    }
+
+    assert active_findings({"findings": [unresolved]}) == [unresolved]
+    assert active_findings({"findings": [resolved]}) == []

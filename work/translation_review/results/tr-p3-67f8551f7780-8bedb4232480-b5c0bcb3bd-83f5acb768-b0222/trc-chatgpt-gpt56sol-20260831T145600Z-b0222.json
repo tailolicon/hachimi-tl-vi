@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "status": "partial",
+  "status": "complete",
   "plan_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768",
   "batch_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768-b0222",
   "claim_id": "trc-chatgpt-gpt56sol-20260831T145600Z-b0222",
   "worker_id": "chatgpt-gpt56sol-20260831T145600Z",
-  "reviewed_at": "2026-08-31T14:59:00Z",
-  "completed_count": 15,
+  "reviewed_at": "2026-08-31T15:00:00Z",
+  "completed_count": 20,
   "decisions": [
     {"uid":"zhcn:c4efb7fbba006e566cc2b859","current_fingerprint":"0e7629ecfbc71ca51a8f1b3de0dadfd8f45a00d5f802a6135c9b67fcb26acc5b","action":"keep","reason":"Bản dịch tự nhiên, đúng nghĩa 'xem' và giữ nguyên đầy đủ placeholder cùng cấu trúc xuống dòng.","confidence":"high"},
     {"uid":"zhcn:c6770111006f5da8b5775f5c","current_fingerprint":"fa3fc92c32dd16b045ebd0c28cae4b0107e2789b2094a7a3346a162b53388a68","action":"keep","reason":"Diễn đạt đúng yêu cầu chiến thắng, tự nhiên trong tiếng Việt và bảo toàn toàn bộ placeholder/newline.","confidence":"high"},
@@ -22,6 +22,11 @@
     {"uid":"zhcn:ca2cdfe24eb90c450d8f435e","current_fingerprint":"1a369415c3380342a5ce79b8d3fcfde861fb904abf21eb53726c448d066e0ac1","action":"keep","reason":"'và {0}' đúng nghĩa 和{0}, tự nhiên trong ngữ cảnh ghép chuỗi và giữ nguyên placeholder.","confidence":"high"},
     {"uid":"zhcn:328e9ba32cce15ae10add6ce","current_fingerprint":"c54ebfe31e2a0cd8cfccd6b821af0368549644c783828f33986fdd7d8c707de7","action":"keep","reason":"'{0} chiến thắng' đúng nghĩa {0}获胜 và giữ nguyên placeholder.","confidence":"high"},
     {"uid":"zhcn:a0dae7fc36d01484f5e19b9d","current_fingerprint":"40f9c118a0584893bac12f53ecc19f74d6bf3bbfe7b90821df87d7b6d63e0f0b","action":"keep","reason":"'Hiệu ứng' là bản dịch trực tiếp, tự nhiên của 效果 trong nhãn UI này.","confidence":"high"},
-    {"uid":"zhcn:3dda3b1b3cf21738b3b9eb3c","current_fingerprint":"2d157977e9afba4897031596c7132a0fa745c3b62431a97707c2d9c5d82c91a3","action":"keep","reason":"'Chương' đúng nghĩa 章 và phù hợp nhãn UI.","confidence":"high"}
+    {"uid":"zhcn:3dda3b1b3cf21738b3b9eb3c","current_fingerprint":"2d157977e9afba4897031596c7132a0fa745c3b62431a97707c2d9c5d82c91a3","action":"keep","reason":"'Chương' đúng nghĩa 章 và phù hợp nhãn UI.","confidence":"high"},
+    {"uid":"zhcn:d27407e96c467b278e4eb212","current_fingerprint":"c627c09c14e58e44bc51622dac392958ec88244e414b508020634f53cfcd1e69","action":"keep","reason":"NONE là sentinel/nhãn kỹ thuật đã được giữ nguyên; dịch nó sẽ làm thay đổi giá trị đặc biệt.","confidence":"high"},
+    {"uid":"zhcn:b0d60cd026488fbfe77f0e8d","current_fingerprint":"5eb1447ea1d25e0f1de7d86f0cdae591aef14e1da3998ceb93cd8dea3764a5da","action":"revise","proposed_text":"Chọn Mã Nương kế thừa","reason":"赛马娘 ở đây là danh từ thế giới chung, phải dùng canonical Mã Nương thay vì Uma Musume.","terminology_basis":"common.world.umamusume => Mã Nương; generic 赛马娘 must not use Uma Musume.","confidence":"high"},
+    {"uid":"zhcn:8d814b69a746fbd2d1d179df","current_fingerprint":"5e162fd48d332698ebcb0f991ccbb34e7b276465484905d23272fdfd5f64778f","action":"revise","proposed_text":"Trong Cuộc đua này, Special Week sẽ tham gia,\nsau khi <color=#ff911c>kế thừa tâm ý</color> từ các Mã Nương khác.","reason":"Bản hiện tại vừa dùng Uma Musume trái canonical Mã Nương vừa gãy ngữ pháp ở cấu trúc 'đã ... sẽ'. Bản sửa giữ nguyên tag màu, một newline và đầy đủ ý Special Week kế thừa tâm ý rồi tham gia cuộc đua.","terminology_basis":"race.generic => Cuộc đua; common.world.umamusume => Mã Nương.","confidence":"high"},
+    {"uid":"zhcn:e849480be272e55b61648d61","current_fingerprint":"cedf7d1677c55d602093b24cd8ffb6c6ba65330712e2c60d4157f13c272ee235","action":"keep","reason":"Đúng nghĩa: tâm ý kế thừa làm thay đổi diễn biến cuộc đua; câu tiếng Việt tự nhiên.","terminology_basis":"race.generic => Cuộc đua; bản hiện tại đã dùng 'cuộc đua' đúng khái niệm canonical.","confidence":"high"},
+    {"uid":"zhcn:6be787151e9c61d52ff90f51","current_fingerprint":"6d832f01ab69fbeb9510babdea292f4756429c57212c8c70d02725c1dc396bfd","action":"revise","proposed_text":"Mã Nương tham gia","reason":"赛马娘 là danh từ thế giới chung, canonical bắt buộc Mã Nương thay cho Uma Musume.","terminology_basis":"common.world.umamusume => Mã Nương.","confidence":"high"}
   ]
 }

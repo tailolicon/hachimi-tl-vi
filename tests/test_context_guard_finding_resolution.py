@@ -89,3 +89,22 @@ def test_narrative_guard_preserves_real_power_stat_context(tmp_path: Path) -> No
     power = next(match for match in stat_cap if match["id"] == "common.stat.power")
     assert power["accepted_present"] is True
     assert power["forbidden_present"] is False
+
+
+def test_context_guard_does_not_overwrite_positive_canonical_resolution(tmp_path: Path) -> None:
+    _write(tmp_path, exclusions=["商品的力量"])
+    payload = json.loads((tmp_path / "glossary" / "canonical_findings.json").read_text(encoding="utf-8"))
+    payload["findings"][0]["canonical_resolution"] = {
+        "layer": "community",
+        "term_id": "system.example.positive",
+        "target_vi": "Positive System Label",
+    }
+    (tmp_path / "glossary" / "canonical_findings.json").write_text(json.dumps(payload, ensure_ascii=False), encoding="utf-8")
+
+    assert resolve(tmp_path) is False
+    resolved = json.loads((tmp_path / "glossary" / "canonical_findings.json").read_text(encoding="utf-8"))
+    assert resolved["findings"][0]["canonical_resolution"] == {
+        "layer": "community",
+        "term_id": "system.example.positive",
+        "target_vi": "Positive System Label",
+    }

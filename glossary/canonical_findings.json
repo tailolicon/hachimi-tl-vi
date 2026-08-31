@@ -2652,6 +2652,57 @@
       "last_seen_at": "2026-08-31T11:11:00Z"
     },
     {
+      "finding_id": "cf-36f01160a6498749",
+      "status": "open",
+      "source_zh_cn": "光明的征兆",
+      "match_mode": "exact",
+      "source_paths": [
+        "text_data_dict.json"
+      ],
+      "key_exact": [],
+      "json_path_prefixes": [],
+      "kinds": [
+        "context_rule"
+      ],
+      "concepts": [
+        "Do not apply the standalone 光明 Skill lock inside distinct longer Skill titles"
+      ],
+      "suggested_targets_vi": [],
+      "confidence_levels": [
+        "high"
+      ],
+      "reasons": [
+        "The embedded reviewed.skill_name lock matches only the substring 光明 within 光明的征兆 and reports a mismatch although this is a separate title. Skill-name locks should not bleed into longer titles without explicit alias evidence."
+      ],
+      "evidence_count": 1,
+      "evidence": [
+        {
+          "uid": "zhcn:15a24792f78489f8e57ba534",
+          "plan_id": "tr-p3-67f8551f7780-ac7390deb11a-b5c0bcb3bd-69d7965ed4",
+          "batch_id": "tr-p3-67f8551f7780-ac7390deb11a-b5c0bcb3bd-69d7965ed4-b0340",
+          "claim_id": "trc-gpt56sol-auto11-20260831T224600Z-b0340",
+          "worker_id": "gpt56sol-auto11-20260831T222912Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "147",
+            "2022601"
+          ],
+          "source_text": "光明的征兆",
+          "current_text": "Điềm sáng",
+          "proposed_text": null,
+          "reported_at": "2026-08-31T22:50:00Z"
+        }
+      ],
+      "canonical_resolution": null,
+      "review_resolution": {
+        "decision_id": "parallel.ctx-67f8551f77807292-v1.term-0017.02",
+        "action": "defer",
+        "target_vi": null
+      },
+      "first_seen_at": "2026-08-31T22:50:00Z",
+      "last_seen_at": "2026-08-31T22:50:00Z"
+    },
+    {
       "finding_id": "cf-38883d78621f9f54",
       "status": "open",
       "source_zh_cn": "空のほほえみ方",
@@ -9500,6 +9551,57 @@
       },
       "first_seen_at": "2026-08-30T19:30:15Z",
       "last_seen_at": "2026-08-30T19:30:15Z"
+    },
+    {
+      "finding_id": "cf-d91595f0ee324d4a",
+      "status": "open",
+      "source_zh_cn": "干劲十足",
+      "match_mode": "exact",
+      "source_paths": [
+        "text_data_dict.json"
+      ],
+      "key_exact": [],
+      "json_path_prefixes": [],
+      "kinds": [
+        "context_rule"
+      ],
+      "concepts": [
+        "Exclude distinct Skill titles from generic Mood alias matching"
+      ],
+      "suggested_targets_vi": [],
+      "confidence_levels": [
+        "high"
+      ],
+      "reasons": [
+        "干劲十足 is a full Skill title, while embedded generic state.mood matches only the 干劲 substring. Generic player-state terminology must not override a distinct Skill title without explicit title-level evidence."
+      ],
+      "evidence_count": 1,
+      "evidence": [
+        {
+          "uid": "zhcn:0c1d01b54faddd27f4ab96e9",
+          "plan_id": "tr-p3-67f8551f7780-ac7390deb11a-b5c0bcb3bd-69d7965ed4",
+          "batch_id": "tr-p3-67f8551f7780-ac7390deb11a-b5c0bcb3bd-69d7965ed4-b0340",
+          "claim_id": "trc-gpt56sol-auto11-20260831T224600Z-b0340",
+          "worker_id": "gpt56sol-auto11-20260831T222912Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "147",
+            "2023101"
+          ],
+          "source_text": "干劲十足",
+          "current_text": "Tràn đầy khí thế",
+          "proposed_text": null,
+          "reported_at": "2026-08-31T22:50:00Z"
+        }
+      ],
+      "canonical_resolution": null,
+      "review_resolution": {
+        "decision_id": "parallel.ctx-67f8551f77807292-v1.term-0035.17",
+        "action": "defer",
+        "target_vi": null
+      },
+      "first_seen_at": "2026-08-31T22:50:00Z",
+      "last_seen_at": "2026-08-31T22:50:00Z"
     },
     {
       "finding_id": "cf-daad507f1b0d4acc",

@@ -11,7 +11,7 @@ from scripts.resolve_scoped_canonical_overrides import resolve_scoped_canonical_
 ROOT = Path(__file__).resolve().parents[1]
 
 
-def _seed(tmp_path: Path, *, scoped: bool = True) -> None:
+def _seed(tmp_path: Path, *, scoped: bool = True, review_action: str | None = "lock") -> None:
     glossary = tmp_path / "glossary"
     glossary.mkdir()
     rule = {
@@ -25,16 +25,16 @@ def _seed(tmp_path: Path, *, scoped: bool = True) -> None:
     if scoped:
         rule["json_path_prefixes"] = [["131"]]
     (glossary / "ui_community_terms.json").write_text(json.dumps({"schema_version": 1, "terms": [rule]}), encoding="utf-8")
-    (glossary / "terminology_reviews.json").write_text(json.dumps({
-        "schema_version": 1,
-        "decisions": [{
+    decisions = []
+    if review_action is not None:
+        decisions.append({
             "decision_id": "existing.energy",
             "source_zh_cn": "体力",
-            "action": "lock",
-            "target_vi": "Energy",
+            "action": review_action,
+            "target_vi": "Energy" if review_action == "lock" else "",
             "kind": "terminology",
-        }],
-    }), encoding="utf-8")
+        })
+    (glossary / "terminology_reviews.json").write_text(json.dumps({"schema_version": 1, "decisions": decisions}), encoding="utf-8")
     (glossary / "term_registry.json").write_text(json.dumps({"terms": []}), encoding="utf-8")
     (glossary / "source_bridge_terms.json").write_text(json.dumps({"terms": []}), encoding="utf-8")
 
@@ -68,22 +68,44 @@ def test_scoped_community_rule_can_override_generic_review_lock(tmp_path: Path) 
     }
 
 
+def test_scoped_community_rule_resolves_without_review_target(tmp_path: Path) -> None:
+    _seed(tmp_path, review_action=None)
+    ledger = refresh_canonical_resolutions(tmp_path, {"schema_version": 1, "findings": [_finding()]})
+    assert ledger["findings"][0]["review_resolution"] is None
+    assert ledger["findings"][0]["canonical_resolution"] is None
+
+    ledger = resolve_scoped_canonical_overrides(tmp_path, ledger)
+    assert ledger["findings"][0]["canonical_resolution"] == {
+        "layer": "community",
+        "term_id": "stat.stamina.achievement_threshold",
+        "target_vi": "Stamina",
+    }
+
+
+def test_explicit_defer_is_not_overridden(tmp_path: Path) -> None:
+    _seed(tmp_path, review_action="defer")
+    ledger = refresh_canonical_resolutions(tmp_path, {"schema_version": 1, "findings": [_finding()]})
+    assert ledger["findings"][0]["review_resolution"]["action"] == "defer"
+    ledger = resolve_scoped_canonical_overrides(tmp_path, ledger)
+    assert ledger["findings"][0]["canonical_resolution"] is None
+
+
 def test_scoped_override_must_cover_finding_scope(tmp_path: Path) -> None:
-    _seed(tmp_path)
+    _seed(tmp_path, review_action=None)
     ledger = refresh_canonical_resolutions(tmp_path, {"schema_version": 1, "findings": [_finding("143")]})
     ledger = resolve_scoped_canonical_overrides(tmp_path, ledger)
     assert ledger["findings"][0]["canonical_resolution"] is None
 
 
-def test_unscoped_community_rule_cannot_override_review_lock(tmp_path: Path) -> None:
-    _seed(tmp_path, scoped=False)
+def test_unscoped_community_rule_cannot_resolve_finding(tmp_path: Path) -> None:
+    _seed(tmp_path, scoped=False, review_action=None)
     ledger = refresh_canonical_resolutions(tmp_path, {"schema_version": 1, "findings": [_finding()]})
     ledger = resolve_scoped_canonical_overrides(tmp_path, ledger)
     assert ledger["findings"][0]["canonical_resolution"] is None
 
 
 def test_direct_script_entrypoint_resolves_and_reports_change(tmp_path: Path) -> None:
-    _seed(tmp_path)
+    _seed(tmp_path, review_action=None)
     ledger = refresh_canonical_resolutions(tmp_path, {"schema_version": 1, "findings": [_finding()]})
     (tmp_path / "glossary" / "canonical_findings.json").write_text(json.dumps(ledger), encoding="utf-8")
 

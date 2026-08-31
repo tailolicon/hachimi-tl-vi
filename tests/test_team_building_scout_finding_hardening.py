@@ -22,14 +22,14 @@ def _seed(tmp_path: Path) -> None:
     (glossary / "source_bridge_terms.json").write_text(json.dumps({"terms": []}), encoding="utf-8")
 
 
-def _finding(*, key: str) -> dict:
+def _finding(*, source_path: str = "localize_dict.json") -> dict:
     return {
         "finding_id": "cf-test-team-building-scout",
         "status": "open",
         "source_zh_cn": "签约",
         "match_mode": "contains",
-        "source_paths": ["localize_dict.json"],
-        "key_exact": [key],
+        "source_paths": [source_path],
+        "key_exact": [],
         "json_path_prefixes": [],
         "suggested_targets_vi": [],
         "canonical_resolution": None,
@@ -37,7 +37,7 @@ def _finding(*, key: str) -> dict:
     }
 
 
-def test_hardener_resolves_team_building_scout_and_is_idempotent(tmp_path: Path) -> None:
+def test_hardener_resolves_live_shape_and_is_idempotent(tmp_path: Path) -> None:
     _seed(tmp_path)
     assert harden(tmp_path) is True
     assert harden(tmp_path) is False
@@ -47,16 +47,17 @@ def test_hardener_resolves_team_building_scout_and_is_idempotent(tmp_path: Path)
     points = next(item for item in community["terms"] if item["id"] == TEAM_BUILDING_SCOUT_POINTS["id"])
     assert scout["preferred"] == "Scout"
     assert scout["source_paths"] == ["localize_dict.json"]
-    assert "TeamBuilding020022" in scout["key_exact"]
+    assert "key_exact" not in scout
     assert points["preferred"] == "Scout Points"
-    assert points["key_exact"] == ["TeamBuilding020023", "TeamBuilding020025"]
+    assert points["source_paths"] == ["localize_dict.json"]
+    assert "key_exact" not in points
 
     reviews = json.loads((tmp_path / "glossary" / "terminology_reviews.json").read_text(encoding="utf-8"))
     decisions = {item["decision_id"]: item for item in reviews["decisions"]}
     assert decisions[TEAM_BUILDING_SCOUT_DECISION["decision_id"]]["target_vi"] == "Scout"
     assert decisions[TEAM_BUILDING_SCOUT_POINTS_DECISION["decision_id"]]["target_vi"] == "Scout Points"
 
-    ledger = {"schema_version": 1, "findings": [_finding(key="TeamBuilding020022")]}
+    ledger = {"schema_version": 1, "findings": [_finding()]}
     finding = refresh_canonical_resolutions(tmp_path, ledger)["findings"][0]
     assert finding["review_resolution"]["target_vi"] == "Scout"
     assert finding["canonical_resolution"] == {
@@ -66,9 +67,9 @@ def test_hardener_resolves_team_building_scout_and_is_idempotent(tmp_path: Path)
     }
 
 
-def test_rule_does_not_resolve_same_alias_outside_team_building_keys(tmp_path: Path) -> None:
+def test_source_path_guard_does_not_resolve_same_alias_in_other_domains(tmp_path: Path) -> None:
     _seed(tmp_path)
     assert harden(tmp_path) is True
-    ledger = {"schema_version": 1, "findings": [_finding(key="UnrelatedContract001")]}
+    ledger = {"schema_version": 1, "findings": [_finding(source_path="text_data_dict.json")]}
     finding = refresh_canonical_resolutions(tmp_path, ledger)["findings"][0]
     assert finding["canonical_resolution"] is None

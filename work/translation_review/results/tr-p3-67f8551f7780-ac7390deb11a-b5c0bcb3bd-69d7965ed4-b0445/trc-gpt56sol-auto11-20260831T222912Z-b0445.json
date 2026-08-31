@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "status": "partial",
+  "status": "complete",
   "plan_id": "tr-p3-67f8551f7780-ac7390deb11a-b5c0bcb3bd-69d7965ed4",
   "batch_id": "tr-p3-67f8551f7780-ac7390deb11a-b5c0bcb3bd-69d7965ed4-b0445",
   "claim_id": "trc-gpt56sol-auto11-20260831T222912Z-b0445",
   "worker_id": "gpt56sol-auto11-20260831T222912Z",
-  "reviewed_at": "2026-08-31T22:33:00Z",
-  "completed_count": 15,
+  "reviewed_at": "2026-08-31T22:34:00Z",
+  "completed_count": 20,
   "decisions": [
     {"uid":"zhcn:8480805725123092506f7c5d","current_fingerprint":"3baff76432ef10f073509984c056716b8121264351f3a92ca655e4ffc84a8746","action":"keep","reason":"Credit labels are correctly translated and creator names are proper nouns preserved as written; newline structure is intact.","confidence":"high"},
     {"uid":"zhcn:1681e1255baf51590fc2eb44","current_fingerprint":"7c55e78a0aeff1882265f47b5c183f1761ba093a38e04fffd63032f433b64013","action":"defer","reason":"Embedded locked-term matching treats 正道 inside the staff name 永井正道 as the Skill alias 'Chính đạo'. Applying that lock would corrupt a proper name, so this needs a context-rule fix rather than a local translation.","canonical_finding":{"kind":"context_rule","source_zh_cn":"永井正道","concept":"Exclude staff/creator names from Skill alias matching","match_mode":"contains","scope":"source_path","reason":"In song-credit text, 正道 occurs only as part of creator name 永井正道, but the embedded context incorrectly matches skill.righteous_path. Staff names must not trigger Skill terminology locks.","confidence":"high"},"confidence":"high"},
@@ -22,6 +22,11 @@
     {"uid":"zhcn:bf65dd967b9142529d7a7900","current_fingerprint":"64dc59aea00c4dc05c020e98fa7c280e75f347a8b3afefee3eb83a300b9eb43f","action":"keep","reason":"Lyricist, composer, arranger, and translator credits all preserve the source meaning and line breaks.","confidence":"high"},
     {"uid":"zhcn:3490944989ad9a8eca8c3042","current_fingerprint":"456dc0afa1d0a46cf2b80bceddb7e53c1d410ef4a8fc9617bb1c93ae2c6799f0","action":"keep","reason":"Credit roles, affiliations, attribution, and line structure preserve the source; names are proper nouns.","confidence":"high"},
     {"uid":"zhcn:a36fe10be0aeff49c5e63d7a","current_fingerprint":"ca99276e67aa3e8faa49cdd1fcc9d0dee24c4fa41686fe6f285a7e877693eeea","action":"keep","reason":"Credit roles and translator attribution preserve the source; proper names remain intact.","confidence":"high"},
-    {"uid":"zhcn:c40cee982f5609ed30d477fd","current_fingerprint":"5c29881e0ef1814e3cdff9e3d2352f7d99a7379ecfb47a650873c2e109db5b48","action":"keep","reason":"Lyricist, composer, and arranger labels are correctly translated and the proper names/affiliation are preserved.","confidence":"high"}
+    {"uid":"zhcn:c40cee982f5609ed30d477fd","current_fingerprint":"5c29881e0ef1814e3cdff9e3d2352f7d99a7379ecfb47a650873c2e109db5b48","action":"keep","reason":"Lyricist, composer, and arranger labels are correctly translated and the proper names/affiliation are preserved.","confidence":"high"},
+    {"uid":"zhcn:1a74c7144a89b0c8bebc9406","current_fingerprint":"fbc3fb06e26e4af94b148d755a97de7be0236eca39384c0809074c24fba884f9","action":"keep","reason":"Lyricist/composer/arranger roles are correctly translated and creator names are preserved as proper nouns.","confidence":"high"},
+    {"uid":"zhcn:3396bd18c3941a907b78e5c0","current_fingerprint":"9059ec3d9d14866546dfa5a195a73f828900f4839dd405abee3d8b9cc91506df","action":"keep","reason":"Credit labels, affiliations, proper names, and newline structure preserve the source accurately.","confidence":"high"},
+    {"uid":"zhcn:8ff7961ca1907fa4820134ad","current_fingerprint":"9cbb669a94daa3c65b5aed8810548bc8a6cd19cb430169e74204802ea15879bd","action":"keep","reason":"Credit labels and affiliations are accurately translated/preserved; creator names remain proper nouns.","confidence":"high"},
+    {"uid":"zhcn:9ba82b29605badd9a560d5b1","current_fingerprint":"6a11b71ad37ff001cab0ab699997169903be9c6ba58adfa15f67b604c7b4bca1","action":"keep","reason":"Lyricist, composer, and arranger roles are correctly translated with proper names and line structure preserved.","confidence":"high"},
+    {"uid":"zhcn:c7a436626eeeb3e6bd41fca5","current_fingerprint":"6ec1dab8cbaf62729de60789d0ed1b1c9232b21532249ebfa17bb33e58b5a2ff","action":"keep","reason":"Credit roles, Arte Refact affiliations, translator attribution, and line structure preserve the source.","confidence":"high"}
   ]
 }

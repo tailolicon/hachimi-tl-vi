@@ -25,10 +25,32 @@ def _seed(tmp_path: Path) -> None:
             "不可思议力量",
             "超越极限力量",
             "莱茵力量",
+            "将情谊化为力量",
         ],
     }]})
     _write(tmp_path / "glossary" / "term_registry.json", {"terms": []})
     _write(tmp_path / "glossary" / "canonical_findings.json", {"findings": [
+        {
+            "finding_id": "cf-5d23e532c5359881",
+            "status": "open",
+            "source_zh_cn": "力量",
+            "canonical_resolution": None,
+            "review_resolution": None,
+            "evidence": [
+                {
+                    "source_path": "text_data_dict.json",
+                    "json_path": ["130", "181"],
+                    "source_text": "商品的力量会让大家露出笑容。",
+                    "current_text": "Sức mạnh của sản phẩm sẽ khiến mọi người mỉm cười.",
+                },
+                {
+                    "source_path": "text_data_dict.json",
+                    "json_path": ["128", "1104"],
+                    "source_text": "将情谊化为力量，超越无法估量的命运。",
+                    "current_text": "Biến tình cảm gắn bó thành sức mạnh, vượt qua số phận.",
+                },
+            ],
+        },
         {
             "finding_id": "cf-ecde28dd625ae647",
             "status": "open",
@@ -90,11 +112,11 @@ def test_narrative_and_proper_name_power_findings_resolve_without_disabling_powe
     terms = load_community_terms(tmp_path)
     narrative = community_term_matches(
         None,
-        "具有激发不可思议力量的能力。",
-        "Có khả năng khơi dậy sức mạnh kỳ diệu.",
+        "将情谊化为力量，超越无法估量的命运。",
+        "Biến tình cảm gắn bó thành sức mạnh, vượt qua số phận.",
         terms,
         source_path="text_data_dict.json",
-        json_path=["10", "110"],
+        json_path=["128", "1104"],
     )
     assert not any(match["id"] == "common.stat.power" for match in narrative)
 

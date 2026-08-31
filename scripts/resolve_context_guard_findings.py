@@ -22,6 +22,11 @@ except ModuleNotFoundError:
 
 ROOT = Path(__file__).resolve().parents[1]
 GUARDS = {
+    "cf-0477e3b1d68a9798": {
+        "layer": "locked",
+        "term_id": "reviewed.skill_name.0be1f248cf96",
+        "target_vi": "Nở rộ",
+    },
     "cf-04aeb4f2712eb3c6": {
         "layer": "locked",
         "term_id": "reviewed.skill_name.5907479481a9",

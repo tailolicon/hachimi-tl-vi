@@ -3086,7 +3086,8 @@
         "Power stat alias must not match ordinary metaphorical prose",
         "Power stat rule must not match ordinary strength or 力量石 resource-name prose",
         "Distinguish stat Power from ordinary prose strength",
-        "Power stat alias must exclude generic descriptive phrase 不可思议力量"
+        "Power stat alias must exclude generic descriptive phrase 不可思议力量",
+        "Disambiguate ordinary physical strength from the Power stat"
       ],
       "suggested_targets_vi": [],
       "confidence_levels": [
@@ -3098,9 +3099,10 @@
         "The reusable alias 力量 is firing inside 超越极限力量 and 力量石 in category-10 item descriptions, where it denotes ordinary strength/resource naming rather than the Power stat. Narrow exclusions/context are required before review can safely resolve these entries.",
         "The bare alias 力量 is ambiguous and currently forces stat Power inside song-description prose where it means ordinary strength.",
         "This item describes a mysterious ability/power, not the gameplay Power stat, so forcing Power would corrupt prose.",
-        "The bare alias 力量 is ambiguous and currently forces stat Power in ordinary non-stat labels/prose."
+        "The bare alias 力量 is ambiguous and currently forces stat Power in ordinary non-stat labels/prose.",
+        "The reusable alias 力量 is being matched as the Power stat inside ordinary descriptive prose where it means physical strength; the matcher must exclude non-stat contexts."
       ],
-      "evidence_count": 9,
+      "evidence_count": 10,
       "evidence": [
         {
           "uid": "zhcn:c7764341e6086330eea7872a",
@@ -3245,16 +3247,28 @@
           "current_text": "Sức mạnh của hàng hóa",
           "proposed_text": null,
           "reported_at": "2026-08-31T10:07:30Z"
+        },
+        {
+          "uid": "zhcn:4e9bab369ea906c1fcc44cd8",
+          "plan_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768",
+          "batch_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768-b0500",
+          "claim_id": "trc-gpt56sol-auto11-run11-20260831T130647Z-b0500",
+          "worker_id": "gpt-5.6-sol-auto11-run11-20260831T130647Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "167",
+            "1026"
+          ],
+          "source_text": "有着能够依靠尾巴来支撑自己的力量……据说",
+          "current_text": "Nghe nói có sức mạnh đủ để dùng đuôi chống đỡ cả cơ thể……",
+          "proposed_text": null,
+          "reported_at": "2026-08-31T13:12:30Z"
         }
       ],
-      "canonical_resolution": {
-        "layer": "context_guard",
-        "term_id": "common.stat.power",
-        "target_vi": "Power"
-      },
+      "canonical_resolution": null,
       "review_resolution": null,
       "first_seen_at": "2026-08-30T13:27:00Z",
-      "last_seen_at": "2026-08-31T10:07:30Z"
+      "last_seen_at": "2026-08-31T13:12:30Z"
     },
     {
       "finding_id": "cf-5f122ded4af0e4b5",
@@ -4623,6 +4637,63 @@
       "last_seen_at": "2026-08-31T10:17:00Z"
     },
     {
+      "finding_id": "cf-91ffb5af5ac979a8",
+      "status": "open",
+      "source_zh_cn": "府中赛马娘锦标",
+      "match_mode": "contains",
+      "source_paths": [
+        "text_data_dict.json"
+      ],
+      "key_exact": [],
+      "json_path_prefixes": [
+        [
+          "131"
+        ]
+      ],
+      "kinds": [
+        "context_rule"
+      ],
+      "concepts": [
+        "Fuchu Himba Stakes proper race name must exclude generic 赛马娘/Mã Nương matching"
+      ],
+      "suggested_targets_vi": [
+        "Fuchu Himba Stakes"
+      ],
+      "confidence_levels": [
+        "high"
+      ],
+      "reasons": [
+        "The embedded world.umamusume lock overmatches 赛马娘 inside the established proper race name 府中赛马娘锦标; canonical context must exclude this name before review can resolve the item safely."
+      ],
+      "evidence_count": 1,
+      "evidence": [
+        {
+          "uid": "zhcn:80fbc33d786e5d1fb03a869f",
+          "plan_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768",
+          "batch_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768-b0308",
+          "claim_id": "trc-chatgpt-gpt56sol-20260831T130100Z-b0308",
+          "worker_id": "chatgpt-gpt56sol-20260831T130100Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "131",
+            "314"
+          ],
+          "source_text": "取得府中赛马娘锦标（经典级）、秋华赏、英里赛马杯、\\n安田纪念（古马级）、英里冠军赛（古马级）的胜利，\\n基础能力[速度]达到1200以上",
+          "current_text": "Chiến thắng Fuchu Himba Stakes (cấp Classic), Shuka Sho, Milers Cup,\\nYasuda Kinen (cấp Senior) và Mile Championship (cấp Senior),\\nchỉ số cơ bản [Tốc độ] đạt từ 1200 trở lên",
+          "proposed_text": null,
+          "reported_at": "2026-08-31T13:12:00Z"
+        }
+      ],
+      "canonical_resolution": null,
+      "review_resolution": {
+        "decision_id": "parallel.ctx-67f8551f77807292-v1.term-0106.02",
+        "action": "lock",
+        "target_vi": "Fuchu Uma Musume Stakes"
+      },
+      "first_seen_at": "2026-08-31T13:12:00Z",
+      "last_seen_at": "2026-08-31T13:12:00Z"
+    },
+    {
       "finding_id": "cf-97e98b6571188de5",
       "status": "open",
       "source_zh_cn": "恢复精神",
@@ -5030,6 +5101,61 @@
       },
       "first_seen_at": "2026-08-30T12:15:00Z",
       "last_seen_at": "2026-08-30T12:15:00Z"
+    },
+    {
+      "finding_id": "cf-9f35db4cdc752bcb",
+      "status": "open",
+      "source_zh_cn": "冷静",
+      "match_mode": "contains",
+      "source_paths": [
+        "text_data_dict.json"
+      ],
+      "key_exact": [],
+      "json_path_prefixes": [],
+      "kinds": [
+        "context_rule"
+      ],
+      "concepts": [
+        "Distinguish ordinary calm/cool-headed prose from the named Skill"
+      ],
+      "suggested_targets_vi": [],
+      "confidence_levels": [
+        "high"
+      ],
+      "reasons": [
+        "The Skill alias 冷静 is matching inside ordinary prose such as 不冷静的时候; named-Skill canonicalization must not fire in generic descriptive text."
+      ],
+      "evidence_count": 1,
+      "evidence": [
+        {
+          "uid": "zhcn:8286249068460599d67b3209",
+          "plan_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768",
+          "batch_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768-b0500",
+          "claim_id": "trc-gpt56sol-auto11-run11-20260831T130647Z-b0500",
+          "worker_id": "gpt-5.6-sol-auto11-run11-20260831T130647Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "167",
+            "1066"
+          ],
+          "source_text": "不冷静的时候，会到处摇来摇去",
+          "current_text": "Khi mất bình tĩnh, đuôi sẽ vung qua vung lại khắp nơi",
+          "proposed_text": null,
+          "reported_at": "2026-08-31T13:12:30Z"
+        }
+      ],
+      "canonical_resolution": {
+        "layer": "locked",
+        "term_id": "reviewed.skill_name.87e408f23b4f",
+        "target_vi": "Bình tĩnh"
+      },
+      "review_resolution": {
+        "decision_id": "parallel.ctx-67f8551f77807292-v1.term-0019.15",
+        "action": "lock",
+        "target_vi": "Bình tĩnh"
+      },
+      "first_seen_at": "2026-08-31T13:12:30Z",
+      "last_seen_at": "2026-08-31T13:12:30Z"
     },
     {
       "finding_id": "cf-a0c8767983424e78",

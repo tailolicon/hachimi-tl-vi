@@ -7,6 +7,8 @@ from scripts.harden_wit_puzzle_context_finding import TERM_ID, harden
 from scripts.resolve_context_guard_findings import resolve
 from scripts.translation_review_common import community_term_matches, load_community_terms
 
+FINDING_ID = "cf-fbbcf5f4a79f6cf8"
+
 
 def _seed(root: Path) -> None:
     glossary = root / "glossary"
@@ -22,7 +24,7 @@ def _seed(root: Path) -> None:
     (glossary / "canonical_findings.json").write_text(json.dumps({
         "schema_version": 1,
         "findings": [{
-            "finding_id": "cf-test-wit-puzzle",
+            "finding_id": FINDING_ID,
             "status": "open",
             "source_zh_cn": "智力",
             "kinds": ["context_rule"],

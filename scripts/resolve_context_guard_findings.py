@@ -62,6 +62,21 @@ GUARDS = {
         "term_id": "common.stat.power",
         "target_vi": "Power",
     },
+    "cf-cde74f30fa07e6a6": {
+        "layer": "community",
+        "term_id": "common.stat.power",
+        "target_vi": "Power",
+    },
+    "cf-2a3675dd079cad04": {
+        "layer": "community",
+        "term_id": "common.stat.power",
+        "target_vi": "Power",
+    },
+    "cf-daad507f1b0d4acc": {
+        "layer": "community",
+        "term_id": "common.stat.speed",
+        "target_vi": "Speed",
+    },
     "cf-f6302c57277dc9bc": {
         "layer": "community",
         "term_id": "common.world.umamusume",

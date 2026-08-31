@@ -6,14 +6,14 @@
   "claim_id": "canonical-findings-maintenance-gpt56sol-20260831T0654Z",
   "worker_id": "gpt-5.6-sol-20260831T0654Z",
   "claimed_at": "2026-08-31T06:54:09Z",
-  "heartbeat_at": "2026-08-31T07:05:27Z",
-  "lease_expires_at": "2026-08-31T07:11:27Z",
+  "heartbeat_at": "2026-08-31T07:08:21Z",
+  "lease_expires_at": "2026-08-31T07:14:21Z",
   "branch": "main",
   "handoff_from_claim_id": "canonical-findings-maintenance-gpt56sol-20260831T0623Z",
-  "progress_token": "sync-noop-33366792676",
-  "progress_kind": "canonical_finding_resolved_noop_verified",
-  "progress_ref": "cf-ecde28dd625ae647 actions/run/33366699479+33366792676 context/ca2daabf9c0b002c677ddeced630eaaec02bf7bb",
-  "last_progress_at": "2026-08-31T07:05:27Z",
-  "completed_count": 70,
-  "note": "Completed cf-ecde28dd625ae647: production Sync 33366699479 persisted context_guard common.stat.power resolution in ca2daabf9c0b002c677ddeced630eaaec02bf7bb; restored resolver source in 2fee0819dc36f2e6d0483e446d9ce60a564e3d12; second Sync 33366792676 passed 380 tests and reported Context is already current. Continue next active canonical finding."
+  "progress_token": "90489560c11a8ccfb748f449a989818e81a09cb6",
+  "progress_kind": "review_merge_context_guard_race_fix",
+  "progress_ref": ".github/workflows/merge-translation-review.yml + tests/test_translation_review_merge_workflow.py",
+  "last_progress_at": "2026-08-31T07:08:21Z",
+  "completed_count": 69,
+  "note": "Live-main review merge ec35d4d9f174e28e400d22c1e7e2293dfaff3e94 raced after cf-ecde Sync and stripped generated context_guard resolutions, so cf-ecde is not counted complete on current main yet. Added permanent review-merge fix 90489560c11a8ccfb748f449a989818e81a09cb6 plus regression test so canonical_findings refresh is immediately followed by resolve_context_guard_findings before queue/validation. Merge run 33367059060 and Validate 33367059053 are verifying/restoring live state."
 }

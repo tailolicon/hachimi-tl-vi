@@ -9,13 +9,13 @@
     "growth": "Every accepted retrospective translation revise and accepted UI revise is folded into this file automatically by both review merge workflows."
   },
   "summary": {
-    "merged_markers_scanned": 933,
-    "translation_merged_markers_scanned": 833,
+    "merged_markers_scanned": 940,
+    "translation_merged_markers_scanned": 840,
     "ui_merged_markers_scanned": 100,
-    "accepted_revision_events": 6091,
-    "accepted_translation_revision_events": 4602,
+    "accepted_revision_events": 6127,
+    "accepted_translation_revision_events": 4638,
     "accepted_ui_revision_events": 1489,
-    "regression_identity_count": 4967,
+    "regression_identity_count": 4976,
     "skipped_incomplete_markers": 0,
     "translation_skipped_incomplete_markers": 0,
     "ui_skipped_incomplete_markers": 0
@@ -581,10 +581,12 @@
       "source_text": "参加赛马娘选择",
       "source_fingerprint": "9d37df95ed1e1234bf2b5f9c347d843a05416db1d2f177c065757715e055737a",
       "rejected_targets": [
-        "Chọn Uma Musume tham gia"
+        "Chọn Uma Musume tham gia",
+        "Chọn Uma tham gia"
       ],
-      "approved_target": "Chọn Uma tham gia",
+      "approved_target": "Chọn Mã Nương tham gia",
       "origins": [
+        "translation_review",
         "ui_review"
       ],
       "ui_contexts": [
@@ -606,6 +608,14 @@
           "reason": "Canonical compact 'Uma' keeps the participant-selection meaning while substantially reducing this constrained label.",
           "ui_key": "Jobs408012",
           "control_type": "header"
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3",
+          "batch_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3-b0100",
+          "claim_id": "trc-gpt56sol-20260831T011400Z-b0100",
+          "merged_at": "2026-08-31T01:41:35.775928Z",
+          "reason": "参加赛马娘选择 là chọn Mã Nương tham gia; 'Uma' hiện tại không khớp canonical."
         }
       ]
     },
@@ -6155,6 +6165,31 @@
           "claim_id": "trc-gpt56sol-auto6-newplan-b0738",
           "merged_at": "2026-08-30T12:23:06.086988Z",
           "reason": "马娘 is a generic horse-girl reference in player-facing prose; use the project-standard Mã Nương rather than Uma Musume."
+        }
+      ]
+    },
+    {
+      "id": "review.regression.d7ceeb8e115e7693",
+      "uid": "zhcn:096d136f2f28f239f9f5ff8f",
+      "scope": "uid",
+      "source_text": "・已关注训练员的代表赛马娘",
+      "source_fingerprint": "f81b45a93fbed23bbb97ea9402f80bb4f41d618de672e5806054d7173cdc30d6",
+      "rejected_targets": [
+        "・Uma Musume đại diện của Trainer đang theo dõi"
+      ],
+      "approved_target": "・Mã Nương đại diện của Trainer đang theo dõi",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3",
+          "batch_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3-b0228",
+          "claim_id": "trc-gpt56sol-20260831T013800Z-b0228",
+          "merged_at": "2026-08-31T01:41:35.800908Z",
+          "reason": "Trainer is already canonical, but generic 赛马娘 is still rendered as forbidden Uma Musume."
         }
       ]
     },
@@ -12263,10 +12298,11 @@
       "source_text": "选择不能超过最大参加人数",
       "source_fingerprint": "5ee46562194404c5a0a157b534ec3d1dde7a1dd45d747e0495e83ee15ba722e5",
       "rejected_targets": [
-        "Không thể chọn vượt quá số người tham gia tối đa"
+        "Không thể chọn quá số tối đa"
       ],
-      "approved_target": "Không thể chọn quá số tối đa",
+      "approved_target": "Không thể chọn vượt quá số người tham gia tối đa",
       "origins": [
+        "translation_review",
         "ui_review"
       ],
       "ui_contexts": [
@@ -12289,6 +12325,14 @@
           "reason": "The participant-selection context already identifies what the count refers to; the compact wording preserves the maximum-selection rule.",
           "ui_key": "Jobs408021",
           "control_type": "short_system_label"
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3",
+          "batch_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3-b0100",
+          "claim_id": "trc-gpt56sol-20260831T011400Z-b0100",
+          "merged_at": "2026-08-31T01:41:35.775928Z",
+          "reason": "Nguồn nêu rõ giới hạn là 最大参加人数; bản hiện tại 'số tối đa' lược mất đối tượng người tham gia."
         }
       ]
     },
@@ -14200,10 +14244,12 @@
       "source_text": "前往限定巡演选择",
       "source_fingerprint": "032f503a592a2a3fd7916a5f842c1b733974c145ead4c6c53ce8ff4812df6b29",
       "rejected_targets": [
+        "Chọn tour giới hạn",
         "Đến chọn lưu diễn giới hạn"
       ],
-      "approved_target": "Chọn tour giới hạn",
+      "approved_target": "Đến bước chọn lưu diễn giới hạn",
       "origins": [
+        "translation_review",
         "ui_review"
       ],
       "ui_contexts": [
@@ -14225,6 +14271,14 @@
           "reason": "The control already navigates to selection, so the helper verb is redundant; the compact form preserves the destination and matches neighboring UI.",
           "ui_key": "Jobs408064",
           "control_type": "normal_button"
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3",
+          "batch_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3-b0103",
+          "claim_id": "trc-gpt56sol-20260831T014000Z-b0103",
+          "merged_at": "2026-08-31T01:41:35.788304Z",
+          "reason": "Giữ nghĩa điều hướng 前往."
         }
       ]
     },
@@ -17783,10 +17837,11 @@
       "source_text": "巡演时间缩短",
       "source_fingerprint": "3023626e60913edc7e4fa4b849e892f157cd652c42b5a719ae18659696c81d36",
       "rejected_targets": [
-        "Rút ngắn thời gian lưu diễn"
+        "Giảm thời gian tour"
       ],
-      "approved_target": "Giảm thời gian tour",
+      "approved_target": "Rút ngắn thời gian lưu diễn",
       "origins": [
+        "translation_review",
         "ui_review"
       ],
       "ui_contexts": [
@@ -17808,6 +17863,14 @@
           "reason": "This compact wording preserves tour-time reduction and aligns with the shorter 'Giảm thời gian' action already used in the feature.",
           "ui_key": "Jobs600001",
           "control_type": "header"
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3",
+          "batch_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3-b0103",
+          "claim_id": "trc-gpt56sol-20260831T014000Z-b0103",
+          "merged_at": "2026-08-31T01:41:35.788304Z",
+          "reason": "缩短 là rút ngắn; bản hiện tại kém chính xác."
         }
       ]
     },
@@ -25132,6 +25195,31 @@
       ]
     },
     {
+      "id": "review.regression.20cbca8fa6f39eaf",
+      "uid": "zhcn:2b0dd250d6f60614fc42127b",
+      "scope": "uid",
+      "source_text": "还可选择 {0} 个",
+      "source_fingerprint": "b06b19532df0c0f1b4b3714c08efc98eee5b8813fa79d20999fb678c8e6de0f5",
+      "rejected_targets": [
+        "Có thể chọn thêm {0} kỹ năng"
+      ],
+      "approved_target": "Có thể chọn thêm {0} Skill",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3",
+          "batch_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3-b0228",
+          "claim_id": "trc-gpt56sol-20260831T013800Z-b0228",
+          "merged_at": "2026-08-31T01:41:35.800908Z",
+          "reason": "This counter is in the immediately adjacent Skill-evolution selection UI; current text uses the noncanonical player-facing term 'kỹ năng'."
+        }
+      ]
+    },
+    {
       "id": "review.regression.554ac90b3549afad",
       "uid": "zhcn:2b221bdbe4fd29a6a3ec2516",
       "scope": "uid",
@@ -25687,6 +25775,31 @@
           "claim_id": "trc-gpt56sol-auto-20260830T0236Z-b0961",
           "merged_at": "2026-08-30T02:31:27.852008Z",
           "reason": "Category 172 is inheritance/Spark description; current text uses forbidden 'Nhân tố'."
+        }
+      ]
+    },
+    {
+      "id": "review.regression.1c3be65fd9d549bc",
+      "uid": "zhcn:2c6d7cbe3c2363faaf9e2336",
+      "scope": "uid",
+      "source_text": "已选择同样的赛马娘",
+      "source_fingerprint": "5fcc1d428fbfb9431d369c97f00239a3403b7166b52b1a0a7c3f341c54265e22",
+      "rejected_targets": [
+        "Đã chọn cùng một Uma Musume"
+      ],
+      "approved_target": "Đã chọn cùng một Mã Nương",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3",
+          "batch_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3-b0100",
+          "claim_id": "trc-gpt56sol-20260831T011400Z-b0100",
+          "merged_at": "2026-08-31T01:41:35.775928Z",
+          "reason": "Generic 赛马娘 phải dùng 'Mã Nương'; cấu trúc còn lại đúng nghĩa đã chọn trùng cùng đối tượng."
         }
       ]
     },
@@ -28767,10 +28880,11 @@
       "source_text": "时间缩短",
       "source_fingerprint": "8ac6bfef668d8d8b958642dda64bb373928c69ce938c9741c68511055c47269a",
       "rejected_targets": [
-        "Rút ngắn thời gian"
+        "Giảm thời gian"
       ],
-      "approved_target": "Giảm thời gian",
+      "approved_target": "Rút ngắn thời gian",
       "origins": [
+        "translation_review",
         "ui_review"
       ],
       "ui_contexts": [
@@ -28792,6 +28906,14 @@
           "reason": "This matches the compact time-shortening action used elsewhere in the same tour flow and substantially reduces width.",
           "ui_key": "Jobs600015",
           "control_type": "normal_button"
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3",
+          "batch_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3-b0104",
+          "claim_id": "trc-gpt56sol-20260831T014900Z-b0104",
+          "merged_at": "2026-08-31T01:41:35.792308Z",
+          "reason": "缩短 mang nghĩa rút ngắn; cách này chính xác và nhất quán hơn 'Giảm thời gian'."
         }
       ]
     },
@@ -36549,10 +36671,11 @@
       "source_text": "全国巡演首页",
       "source_fingerprint": "3ab2bb3bb98185116c0d6e79222ff45e9b0826f0b8b50a0741e26f67dfed61f1",
       "rejected_targets": [
-        "Trang chủ Lưu diễn toàn quốc"
+        "Trang chủ tour"
       ],
-      "approved_target": "Trang chủ tour",
+      "approved_target": "Trang chủ lưu diễn toàn quốc",
       "origins": [
+        "translation_review",
         "ui_review"
       ],
       "ui_contexts": [
@@ -36574,6 +36697,14 @@
           "reason": "Within the nationwide-tour feature, 'toàn quốc' is redundant screen context; the compact home label preserves the navigation destination.",
           "ui_key": "Jobs408036",
           "control_type": "bottom_nav"
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3",
+          "batch_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3-b0101",
+          "claim_id": "trc-gpt56sol-20260831T012300Z-b0101",
+          "merged_at": "2026-08-31T01:41:35.780431Z",
+          "reason": "全国巡演 có phạm vi 'toàn quốc'; bản hiện tại lược mất thành phần này."
         }
       ]
     },
@@ -38345,6 +38476,31 @@
           "claim_id": "trc-chatgpt-20260827T123000Z-9b2e4c61",
           "merged_at": "2026-08-28T03:27:25.720695Z",
           "reason": "'Thoại sinh nhật' is an unnatural shortening; 'hội thoại' matches the surrounding gallery terminology."
+        }
+      ]
+    },
+    {
+      "id": "review.regression.6c81bdfaabe7d839",
+      "uid": "zhcn:41d24e5c19c95e1106c07478",
+      "scope": "uid",
+      "source_text": "・包含在上次育成时编组中的继承赛马娘",
+      "source_fingerprint": "199910587ca1543bdbb636170ff2d4e0b737a4a2ac04651f72964dcb84602d78",
+      "rejected_targets": [
+        "・Uma Musume kế thừa có trong đội hình ở lần huấn luyện trước"
+      ],
+      "approved_target": "・Mã Nương kế thừa có trong đội hình ở lần huấn luyện trước",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3",
+          "batch_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3-b0228",
+          "claim_id": "trc-gpt56sol-20260831T013800Z-b0228",
+          "merged_at": "2026-08-31T01:41:35.800908Z",
+          "reason": "Generic 赛马娘 is currently rendered as forbidden Uma Musume."
         }
       ]
     },
@@ -42773,10 +42929,12 @@
       "source_text": "未选择赛马娘",
       "source_fingerprint": "255b459e7aa2015fa0017a649a75f6064b1b4895e434d715ae7e12f8bb7c81ce",
       "rejected_targets": [
+        "Chưa chọn Uma",
         "Chưa chọn Uma Musume"
       ],
-      "approved_target": "Chưa chọn Uma",
+      "approved_target": "Chưa chọn Mã Nương",
       "origins": [
+        "translation_review",
         "ui_review"
       ],
       "ui_contexts": [
@@ -42798,6 +42956,14 @@
           "reason": "Canonical compact 'Uma' preserves the not-selected status and makes the label far more suitable for fixed UI.",
           "ui_key": "Jobs600018",
           "control_type": "short_system_label"
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3",
+          "batch_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3-b0104",
+          "claim_id": "trc-gpt56sol-20260831T014900Z-b0104",
+          "merged_at": "2026-08-31T01:41:35.792308Z",
+          "reason": "Generic 赛马娘 phải dùng thuật ngữ player-facing 'Mã Nương'."
         }
       ]
     },
@@ -44877,6 +45043,31 @@
           "reason": "The compact status preserves the facility-level increase, placeholder, and both color tags exactly while removing the verbose possessive construction.",
           "ui_key": "SingleMode0301",
           "control_type": "short_system_label"
+        }
+      ]
+    },
+    {
+      "id": "review.regression.62286a2fe865bc9d",
+      "uid": "zhcn:4e63dd96fa35dd7be8b93db7",
+      "scope": "uid",
+      "source_text": "请选择{0}名赛马娘",
+      "source_fingerprint": "2c84c631c8469c3ef41732642127491f0a18e971ca705b88df5af17987defee2",
+      "rejected_targets": [
+        "Hãy chọn {0} Uma Musume"
+      ],
+      "approved_target": "Hãy chọn {0} Mã Nương",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3",
+          "batch_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3-b0100",
+          "claim_id": "trc-gpt56sol-20260831T011400Z-b0100",
+          "merged_at": "2026-08-31T01:41:35.775928Z",
+          "reason": "Generic 赛马娘 phải là 'Mã Nương'; giữ nguyên placeholder {0} biểu thị số lượng."
         }
       ]
     },
@@ -54236,10 +54427,12 @@
       "source_text": "批量\n缩短时间",
       "source_fingerprint": "69375f2e26b327241a0d121a28a7a45487f3472c1075ed6b3944a1a8493eb677",
       "rejected_targets": [
+        "Hàng loạt\nGiảm thời gian",
         "Rút ngắn thời gian\nhàng loạt"
       ],
-      "approved_target": "Hàng loạt\nGiảm thời gian",
+      "approved_target": "Hàng loạt\nRút ngắn thời gian",
       "origins": [
+        "translation_review",
         "ui_review"
       ],
       "ui_contexts": [
@@ -54261,6 +54454,14 @@
           "reason": "The revision preserves the single source newline, restores the source's batch/action line order, and shortens the time-reduction action.",
           "ui_key": "Jobs408004",
           "control_type": "normal_button"
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3",
+          "batch_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3-b0100",
+          "claim_id": "trc-gpt56sol-20260831T011400Z-b0100",
+          "merged_at": "2026-08-31T01:41:35.775928Z",
+          "reason": "缩短时间 là rút ngắn thời gian; cách hiện tại 'Giảm thời gian' kém tự nhiên và kém chính xác hơn. Giữ nguyên cấu trúc xuống dòng."
         }
       ]
     },
@@ -54561,10 +54762,12 @@
       "source_text": "觉醒技能进化选择",
       "source_fingerprint": "26c446f831c0a1639035d3b33c2416b91e92c6229b8bd5c64b140ca6175780d4",
       "rejected_targets": [
-        "Chọn tiến hóa kỹ năng Thức tỉnh"
+        "Chọn tiến hóa kỹ năng Thức tỉnh",
+        "Chọn tiến hóa Thức tỉnh"
       ],
-      "approved_target": "Chọn tiến hóa Thức tỉnh",
+      "approved_target": "Chọn tiến hóa Skill Thức tỉnh",
       "origins": [
+        "translation_review",
         "ui_review"
       ],
       "ui_contexts": [
@@ -54587,6 +54790,14 @@
           "reason": "The skill-evolution screen supplies the skill noun, allowing a compact header that preserves the Awakened-evolution selection meaning.",
           "ui_key": "SingleMode539008",
           "control_type": "header"
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3",
+          "batch_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3-b0228",
+          "claim_id": "trc-gpt56sol-20260831T013800Z-b0228",
+          "merged_at": "2026-08-31T01:41:35.800908Z",
+          "reason": "Current text drops the explicit 技能/Skill noun from '觉醒技能进化选择'."
         }
       ]
     },
@@ -62264,10 +62475,11 @@
       "source_text": "乐曲信息",
       "source_fingerprint": "2e5e1c7bcc2ed05d364cae2fbdcfabe1d573a97743986c8e5c2849361a537b98",
       "rejected_targets": [
-        "Thông tin bài hát"
+        "Thông tin nhạc"
       ],
-      "approved_target": "Thông tin nhạc",
+      "approved_target": "Thông tin bài hát",
       "origins": [
+        "translation_review",
         "ui_review"
       ],
       "ui_contexts": [
@@ -62289,6 +62501,14 @@
           "reason": "The current label is wider than needed; 'Thông tin nhạc' naturally preserves song-information meaning in the Live Theater context.",
           "ui_key": "LiveTheater0008",
           "control_type": "header"
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3",
+          "batch_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3-b0105",
+          "claim_id": "trc-gpt56sol-20260831T015900Z-b0105",
+          "merged_at": "2026-08-31T01:41:35.796164Z",
+          "reason": "乐曲 là bài hát trong cùng màn LIVE; cách này tự nhiên và nhất quán hơn 'Thông tin nhạc'."
         }
       ]
     },
@@ -63874,10 +64094,12 @@
       "source_text": "前往赛马娘选择",
       "source_fingerprint": "fb0c9d58948f6c01ee17fadbe0541d8adcf1c4e9495fe43b3583a51b03daa7c4",
       "rejected_targets": [
+        "Chọn Uma",
         "Đi tới chọn Uma Musume"
       ],
-      "approved_target": "Chọn Uma",
+      "approved_target": "Đến bước chọn Mã Nương",
       "origins": [
+        "translation_review",
         "ui_review"
       ],
       "ui_contexts": [
@@ -63899,6 +64121,14 @@
           "reason": "The button already navigates to selection; removing the helper phrase and using canonical compact 'Uma' preserves the action with much less width.",
           "ui_key": "Jobs408011",
           "control_type": "normal_button"
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3",
+          "batch_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3-b0100",
+          "claim_id": "trc-gpt56sol-20260831T011400Z-b0100",
+          "merged_at": "2026-08-31T01:41:35.775928Z",
+          "reason": "前往表示 chuyển tới bước chọn, còn generic 赛马娘 phải dùng 'Mã Nương'; bản hiện tại vừa lược nghĩa vừa sai canonical."
         }
       ]
     },
@@ -67531,6 +67761,31 @@
           "claim_id": "trc-chatgpt-hourly3-b0663-20260830T194118Z",
           "merged_at": "2026-08-30T19:44:03.718168Z",
           "reason": "The embedded community rule requires the established player-facing surface label Turf and explicitly forbids Sân cỏ."
+        }
+      ]
+    },
+    {
+      "id": "review.regression.2e6141ac575d6211",
+      "uid": "zhcn:744ebce8179de0e1538edd25",
+      "scope": "uid",
+      "source_text": "・包含在已保存编组中的继承赛马娘",
+      "source_fingerprint": "f6ce4cf9ebfdfabb35c1010e0a6bbbe8d203df6a1c1274697c6ab73f0643ffa2",
+      "rejected_targets": [
+        "・Uma Musume kế thừa có trong đội hình đã lưu"
+      ],
+      "approved_target": "・Mã Nương kế thừa có trong đội hình đã lưu",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3",
+          "batch_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3-b0228",
+          "claim_id": "trc-gpt56sol-20260831T013800Z-b0228",
+          "merged_at": "2026-08-31T01:41:35.800908Z",
+          "reason": "Generic 赛马娘 is currently rendered as forbidden Uma Musume."
         }
       ]
     },
@@ -78086,6 +78341,31 @@
       ]
     },
     {
+      "id": "review.regression.b9ec31081c1cee64",
+      "uid": "zhcn:8406f3fbbe3567fb8c456bf3",
+      "scope": "uid",
+      "source_text": "未获得灵感",
+      "source_fingerprint": "544ffd7e3fde4421d0d4803966ea30d03351074d3c11c072250b6c9fe57562c3",
+      "rejected_targets": [
+        "Chưa nhận gợi ý"
+      ],
+      "approved_target": "Chưa nhận cảm hứng",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3",
+          "batch_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3-b0228",
+          "claim_id": "trc-gpt56sol-20260831T013800Z-b0228",
+          "merged_at": "2026-08-31T01:41:35.800908Z",
+          "reason": "灵感 means inspiration; current 'gợi ý' shifts the meaning toward a hint rather than inspiration."
+        }
+      ]
+    },
+    {
       "id": "review.regression.deda3678fe05facf",
       "uid": "zhcn:840bbe55843b6b458a1029c1",
       "scope": "uid",
@@ -79014,10 +79294,12 @@
       "source_text": "前往确认",
       "source_fingerprint": "1fa7230e444ab9fa3d49f10eb79c76b567ebcae0b9e598fe413f6ace1f82ae7d",
       "rejected_targets": [
+        "Xác nhận",
         "Đi tới xác nhận"
       ],
-      "approved_target": "Xác nhận",
+      "approved_target": "Đến bước xác nhận",
       "origins": [
+        "translation_review",
         "ui_review"
       ],
       "ui_contexts": [
@@ -79039,6 +79321,14 @@
           "reason": "The navigation/helper wording is redundant on a confirmation button; the compact action remains unambiguous.",
           "ui_key": "Jobs408013",
           "control_type": "normal_button"
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3",
+          "batch_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3-b0100",
+          "claim_id": "trc-gpt56sol-20260831T011400Z-b0100",
+          "merged_at": "2026-08-31T01:41:35.775928Z",
+          "reason": "前往确认 mang nghĩa chuyển/đi tới bước xác nhận; bản hiện tại chỉ còn 'Xác nhận' và lược mất quan hệ điều hướng."
         }
       ]
     },
@@ -82956,10 +83246,12 @@
       "source_text": "没有可随机选择的赛马娘",
       "source_fingerprint": "239913940ce9b0f2d2c30d240927b0786e58a1c96e82c37e7773a4706c9a6db0",
       "rejected_targets": [
-        "Không có Uma Musume có thể chọn ngẫu nhiên"
+        "Không có Uma Musume có thể chọn ngẫu nhiên",
+        "Không có Uma để chọn ngẫu nhiên"
       ],
-      "approved_target": "Không có Uma để chọn ngẫu nhiên",
+      "approved_target": "Không có Mã Nương để chọn ngẫu nhiên",
       "origins": [
+        "translation_review",
         "ui_review"
       ],
       "ui_contexts": [
@@ -82982,6 +83274,14 @@
           "reason": "The empty-state message can use compact 'Uma' and drop the helper phrase 'có thể' without changing the random-selection meaning.",
           "ui_key": "Jobs600011",
           "control_type": "short_system_label"
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3",
+          "batch_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3-b0103",
+          "claim_id": "trc-gpt56sol-20260831T014000Z-b0103",
+          "merged_at": "2026-08-31T01:41:35.788304Z",
+          "reason": "Generic 赛马娘 phải dùng 'Mã Nương'; phần còn lại đúng nghĩa."
         }
       ]
     },
@@ -84924,10 +85224,11 @@
       "source_text": "限定巡演举办期间已结束",
       "source_fingerprint": "54cfbe5d0054192ef12ecdfc305a875746848e3b40d2e3c153d6afb896c08cb1",
       "rejected_targets": [
-        "Thời gian tổ chức lưu diễn giới hạn đã kết thúc"
+        "Lưu diễn giới hạn đã kết thúc"
       ],
-      "approved_target": "Lưu diễn giới hạn đã kết thúc",
+      "approved_target": "Thời gian tổ chức lưu diễn giới hạn đã kết thúc",
       "origins": [
+        "translation_review",
         "ui_review"
       ],
       "ui_contexts": [
@@ -84950,6 +85251,14 @@
           "reason": "The current status repeats the verbose 'thời gian tổ chức' wrapper; the compact wording preserves that the limited tour period has ended.",
           "ui_key": "Jobs408065",
           "control_type": "short_system_label"
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3",
+          "batch_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3-b0103",
+          "claim_id": "trc-gpt56sol-20260831T014000Z-b0103",
+          "merged_at": "2026-08-31T01:41:35.788304Z",
+          "reason": "Đối tượng kết thúc là thời gian tổ chức."
         }
       ]
     },
@@ -90277,10 +90586,12 @@
       "source_text": "<atlas=PreIn sprite=utx_ico_notice_00/><color=#ff4400>亦可进行剧本进化的技能</color>",
       "source_fingerprint": "a3edc45c3754360deaaf4a8d1bd7d2dff73ecbcc2f767d94244ee86863516599",
       "rejected_targets": [
+        "<atlas=PreIn sprite=utx_ico_notice_00/><color=#ff4400>Cũng có thể tiến hóa theo kịch bản</color>",
         "<atlas=PreIn sprite=utx_ico_notice_00/><color=#ff4400>Kỹ năng cũng có thể tiến hóa theo kịch bản</color>"
       ],
-      "approved_target": "<atlas=PreIn sprite=utx_ico_notice_00/><color=#ff4400>Cũng có thể tiến hóa theo kịch bản</color>",
+      "approved_target": "<atlas=PreIn sprite=utx_ico_notice_00/><color=#ff4400>Skill cũng có thể tiến hóa theo kịch bản</color>",
       "origins": [
+        "translation_review",
         "ui_review"
       ],
       "ui_contexts": [
@@ -90303,6 +90614,14 @@
           "reason": "The surrounding skill list makes the repeated 'Kỹ năng' unnecessary; the compact notice preserves both markup tags and the scenario-evolution availability.",
           "ui_key": "SingleMode539009",
           "control_type": "short_system_label"
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3",
+          "batch_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3-b0228",
+          "claim_id": "trc-gpt56sol-20260831T013800Z-b0228",
+          "merged_at": "2026-08-31T01:41:35.800908Z",
+          "reason": "Current text drops the source noun 技能 entirely; the atlas/color markup must remain unchanged."
         }
       ]
     },
@@ -90770,6 +91089,31 @@
           "claim_id": "trc-chatgpt-sol-auto-20260830T084100Z-b0401",
           "merged_at": "2026-08-30T11:29:02.897003Z",
           "reason": "Replace forbidden generic Uma Musume wording with the canonical Vietnamese world term."
+        }
+      ]
+    },
+    {
+      "id": "review.regression.0d685605d2936b7f",
+      "uid": "zhcn:9a25687d9bfcfe861ec0c74f",
+      "scope": "uid",
+      "source_text": "时间缩短所需的TP不足\n要回复吗？",
+      "source_fingerprint": "5d53e37fc592bc9b182fb23adb44c0af8d17c7ee1a373035fe7aafa46cc67ff0",
+      "rejected_targets": [
+        "Không đủ TP cần để rút ngắn thời gian\nBạn có muốn hồi không?"
+      ],
+      "approved_target": "Không đủ TP để rút ngắn thời gian\nBạn có muốn hồi TP không?",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3",
+          "batch_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3-b0100",
+          "claim_id": "trc-gpt56sol-20260831T011400Z-b0100",
+          "merged_at": "2026-08-31T01:41:35.775928Z",
+          "reason": "Bản hiện tại cứng và câu hỏi 'hồi' thiếu đối tượng; nguồn hỏi có hồi lượng TP thiếu hay không. Giữ nguyên một xuống dòng và TP."
         }
       ]
     },
@@ -98005,6 +98349,31 @@
       ]
     },
     {
+      "id": "review.regression.35274ad7b8e28160",
+      "uid": "zhcn:a731d6374db562502530af04",
+      "scope": "uid",
+      "source_text": "无法获得技能",
+      "source_fingerprint": "98aa2151295487d0f733c5d93737ba1916d00720d493ae4160c67a63c6a8b069",
+      "rejected_targets": [
+        "Không thể nhận kỹ năng"
+      ],
+      "approved_target": "Không thể nhận Skill",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3",
+          "batch_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3-b0228",
+          "claim_id": "trc-gpt56sol-20260831T013800Z-b0228",
+          "merged_at": "2026-08-31T01:41:35.800908Z",
+          "reason": "Generic 技能 is currently rendered as forbidden 'kỹ năng'."
+        }
+      ]
+    },
+    {
       "id": "review.regression.a9e994af57dd2c9a",
       "uid": "zhcn:a7393a52449ad04a21196e51",
       "scope": "uid",
@@ -98745,10 +99114,12 @@
       "source_text": "没有符合的赛马娘",
       "source_fingerprint": "945d3163a38cbaa4a9e9d9ede9040975de951a787c8efeeac25978630c0608fc",
       "rejected_targets": [
-        "Không có Uma Musume phù hợp"
+        "Không có Uma Musume phù hợp",
+        "Không có Uma phù hợp"
       ],
-      "approved_target": "Không có Uma phù hợp",
+      "approved_target": "Không có Mã Nương phù hợp",
       "origins": [
+        "translation_review",
         "ui_review"
       ],
       "ui_contexts": [
@@ -98770,6 +99141,14 @@
           "reason": "Canonical compact 'Uma' is appropriate in this constrained UI and preserves the no-matching-character meaning with much less width.",
           "ui_key": "Jobs600006",
           "control_type": "short_system_label"
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3",
+          "batch_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3-b0103",
+          "claim_id": "trc-gpt56sol-20260831T014000Z-b0103",
+          "merged_at": "2026-08-31T01:41:35.788304Z",
+          "reason": "Generic 赛马娘 phải dùng 'Mã Nương'."
         }
       ]
     },
@@ -103274,10 +103653,11 @@
       "source_text": "举办期间",
       "source_fingerprint": "af0134315c7e77ef2c132d85726cfec3ea1c28552b431b4dc25bad55ba42d420",
       "rejected_targets": [
-        "Thời gian tổ chức"
+        "Thời gian mở"
       ],
-      "approved_target": "Thời gian mở",
+      "approved_target": "Thời gian tổ chức",
       "origins": [
+        "translation_review",
         "ui_review"
       ],
       "ui_contexts": [
@@ -103299,6 +103679,14 @@
           "reason": "In the limited-tour UI, this naturally conveys the availability/holding period and is materially narrower than the current phrase.",
           "ui_key": "Jobs408063",
           "control_type": "setting_label"
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3",
+          "batch_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3-b0103",
+          "claim_id": "trc-gpt56sol-20260831T014000Z-b0103",
+          "merged_at": "2026-08-31T01:41:35.788304Z",
+          "reason": "举办期间 là thời gian tổ chức."
         }
       ]
     },
@@ -104870,10 +105258,12 @@
       "source_text": "不能获得奖励",
       "source_fingerprint": "ff3687ca29dd3b64c835772b9d206c9bfbb81126f654b76838e7abbd00e044d9",
       "rejected_targets": [
+        "Không nhận được thưởng",
         "Không thể nhận phần thưởng"
       ],
-      "approved_target": "Không nhận được thưởng",
+      "approved_target": "Không thể nhận thưởng",
       "origins": [
+        "translation_review",
         "ui_review"
       ],
       "ui_contexts": [
@@ -104895,6 +105285,14 @@
           "reason": "This matches the compact reward-receipt failure wording used in the same tour feature and removes the wide noun phrase.",
           "ui_key": "Jobs408035",
           "control_type": "short_system_label"
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3",
+          "batch_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3-b0101",
+          "claim_id": "trc-gpt56sol-20260831T012300Z-b0101",
+          "merged_at": "2026-08-31T01:41:35.780431Z",
+          "reason": "不能获得 biểu thị không thể nhận; bản hiện tại dễ bị hiểu thành sự việc đã không nhận."
         }
       ]
     },
@@ -106984,10 +107382,11 @@
       "source_text": "所需时间",
       "source_fingerprint": "a71cc30ce0606819a9b2b63262ccbe49801691e3ee58edfd46736cab5cbd4977",
       "rejected_targets": [
-        "Thời gian cần thiết"
+        "Thời gian cần"
       ],
-      "approved_target": "Thời gian cần",
+      "approved_target": "Thời gian cần thiết",
       "origins": [
+        "translation_review",
         "ui_review"
       ],
       "ui_contexts": [
@@ -107009,6 +107408,14 @@
           "reason": "This matches the compact required-time label used in the same tour flow and removes the verbose adjectival ending.",
           "ui_key": "Jobs408010",
           "control_type": "setting_label"
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3",
+          "batch_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3-b0100",
+          "claim_id": "trc-gpt56sol-20260831T011400Z-b0100",
+          "merged_at": "2026-08-31T01:41:35.775928Z",
+          "reason": "所需时间 là thời gian cần thiết; thêm 'thiết' giúp nhãn tự nhiên và đầy đủ hơn."
         }
       ]
     },
@@ -116911,10 +117318,12 @@
       "source_text": "使用觉醒素材的赛马娘",
       "source_fingerprint": "4c414cce361c9139c4113107dddfaa7eeaa6b56d477d176879e86b2688906a1d",
       "rejected_targets": [
+        "Uma dùng nguyên liệu Thức tỉnh",
         "Uma Musume sử dụng nguyên liệu thức tỉnh"
       ],
-      "approved_target": "Uma dùng nguyên liệu Thức tỉnh",
+      "approved_target": "Mã Nương dùng nguyên liệu Thức tỉnh",
       "origins": [
+        "translation_review",
         "ui_review"
       ],
       "ui_contexts": [
@@ -116937,6 +117346,14 @@
           "reason": "Compact 'Uma' is allowed in constrained UI and the shorter verb preserves that these characters use Awakening materials.",
           "ui_key": "Jobs600004",
           "control_type": "header"
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3",
+          "batch_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3-b0103",
+          "claim_id": "trc-gpt56sol-20260831T014000Z-b0103",
+          "merged_at": "2026-08-31T01:41:35.788304Z",
+          "reason": "Generic 赛马娘 phải dùng 'Mã Nương'."
         }
       ]
     },
@@ -119873,10 +120290,11 @@
       "source_text": "全国巡演完成",
       "source_fingerprint": "496e438304a25c29868de3d2fbabfd55c42e73cece320fcd778eb116cccdd4bb",
       "rejected_targets": [
-        "Hoàn thành lưu diễn toàn quốc"
+        "Hoàn thành Tour toàn quốc"
       ],
-      "approved_target": "Hoàn thành Tour toàn quốc",
+      "approved_target": "Hoàn thành lưu diễn toàn quốc",
       "origins": [
+        "translation_review",
         "ui_review"
       ],
       "ui_contexts": [
@@ -119898,6 +120316,14 @@
           "reason": "The compact established tour name preserves nationwide-tour completion while removing the overly wide 'lưu diễn' wording.",
           "ui_key": "Jobs600005",
           "control_type": "short_system_label"
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3",
+          "batch_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3-b0103",
+          "claim_id": "trc-gpt56sol-20260831T014000Z-b0103",
+          "merged_at": "2026-08-31T01:41:35.788304Z",
+          "reason": "Dùng 'lưu diễn' nhất quán với cùng hệ thống; giữ đủ nghĩa."
         }
       ]
     },
@@ -124406,10 +124832,12 @@
       "source_text": "所有限定巡演已完成",
       "source_fingerprint": "2ea61800b8cedbdb3f8bc977b4ec201dee9b97e1c46768e6fa937bfb22d98049",
       "rejected_targets": [
-        "Đã hoàn thành tất cả lưu diễn giới hạn"
+        "Đã hoàn thành tất cả lưu diễn giới hạn",
+        "Đã xong mọi lưu diễn giới hạn"
       ],
-      "approved_target": "Đã xong mọi lưu diễn giới hạn",
+      "approved_target": "Đã hoàn thành mọi lưu diễn giới hạn",
       "origins": [
+        "translation_review",
         "ui_review"
       ],
       "ui_contexts": [
@@ -124432,6 +124860,14 @@
           "reason": "Keeps the all-limited-tours-complete state while using a substantially shorter completion form.",
           "ui_key": "Jobs408060",
           "control_type": "short_system_label"
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3",
+          "batch_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3-b0102",
+          "claim_id": "trc-gpt56sol-20260831T013100Z-b0102",
+          "merged_at": "2026-08-31T01:41:35.784341Z",
+          "reason": "所有限定巡演已完成 là trạng thái đã hoàn thành toàn bộ; 'đã xong' kém nhất quán và kém tự nhiên hơn trong nhãn hệ thống."
         }
       ]
     },
@@ -125778,10 +126214,11 @@
       "source_text": "确认开始限定巡演",
       "source_fingerprint": "7186d8ac1901fd5ddd2aabf42c56d58631d6d39e7d9e12cedd88cf4afe82a387",
       "rejected_targets": [
-        "Xác nhận bắt đầu lưu diễn giới hạn"
+        "Xác nhận lưu diễn giới hạn"
       ],
-      "approved_target": "Xác nhận lưu diễn giới hạn",
+      "approved_target": "Xác nhận bắt đầu lưu diễn giới hạn",
       "origins": [
+        "translation_review",
         "ui_review"
       ],
       "ui_contexts": [
@@ -125804,6 +126241,14 @@
           "reason": "For a confirmation dialog title, the start action is evident from the flow; removing 'bắt đầu' reduces width while retaining the limited-tour identity.",
           "ui_key": "Jobs408070",
           "control_type": "dialog_title"
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3",
+          "batch_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3-b0103",
+          "claim_id": "trc-gpt56sol-20260831T014000Z-b0103",
+          "merged_at": "2026-08-31T01:41:35.788304Z",
+          "reason": "Nguồn có 开始; bản hiện tại lược mất hành động bắt đầu."
         }
       ]
     },
@@ -136682,10 +137127,12 @@
       "source_text": "可获得转盘币",
       "source_fingerprint": "4750fdbe83ac3de0cb9af9d265674e253c6b505677070bdccee9b18ec9e9e7c1",
       "rejected_targets": [
+        "Xu Roulette có thể nhận",
         "Xu vòng quay có thể nhận"
       ],
-      "approved_target": "Xu Roulette có thể nhận",
+      "approved_target": "Có thể nhận Xu Roulette",
       "origins": [
+        "translation_review",
         "ui_review"
       ],
       "ui_contexts": [
@@ -136707,6 +137154,14 @@
           "reason": "A neighboring label establishes 'Xu Roulette'; using it here preserves the obtainable-coin meaning while improving both consistency and width.",
           "ui_key": "Jobs408054",
           "control_type": "short_system_label"
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3",
+          "batch_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3-b0102",
+          "claim_id": "trc-gpt56sol-20260831T013100Z-b0102",
+          "merged_at": "2026-08-31T01:41:35.784341Z",
+          "reason": "Đảo trật tự từ để câu UI tự nhiên hơn trong tiếng Việt mà giữ nguyên nghĩa 可获得转盘币."
         }
       ]
     },
@@ -145217,10 +145672,11 @@
       "source_text": "完成全国巡演",
       "source_fingerprint": "682c3e69d620bd5fd25089ce99224e4c20c4727f15b1256c91153a2d4bd84f13",
       "rejected_targets": [
-        "Hoàn thành lưu diễn toàn quốc"
+        "Hoàn thành Tour toàn quốc"
       ],
-      "approved_target": "Hoàn thành Tour toàn quốc",
+      "approved_target": "Hoàn thành lưu diễn toàn quốc",
       "origins": [
+        "translation_review",
         "ui_review"
       ],
       "ui_contexts": [
@@ -145242,6 +145698,14 @@
           "reason": "The compact established tour name preserves the complete-nationwide-tour action/status while substantially reducing width.",
           "ui_key": "Jobs600007",
           "control_type": "short_system_label"
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3",
+          "batch_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3-b0103",
+          "claim_id": "trc-gpt56sol-20260831T014000Z-b0103",
+          "merged_at": "2026-08-31T01:41:35.788304Z",
+          "reason": "Dùng 'lưu diễn' nhất quán và đúng nghĩa 完成全国巡演."
         }
       ]
     },
@@ -146625,10 +147089,12 @@
       "source_text": "演唱赛马娘",
       "source_fingerprint": "8760308fe646c27ec42689213289e18009cc79bd6bc515d3943efe00a85f87a3",
       "rejected_targets": [
+        "Uma hát",
         "Uma Musume biểu diễn"
       ],
-      "approved_target": "Uma hát",
+      "approved_target": "Mã Nương biểu diễn",
       "origins": [
+        "translation_review",
         "ui_review"
       ],
       "ui_contexts": [
@@ -146650,6 +147116,14 @@
           "reason": "Canonical compact 'Uma' is appropriate in this constrained UI, and 'hát' preserves the singing-character meaning more directly than the wider current wording.",
           "ui_key": "LiveTheater0009",
           "control_type": "header"
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3",
+          "batch_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3-b0105",
+          "claim_id": "trc-gpt56sol-20260831T015900Z-b0105",
+          "merged_at": "2026-08-31T01:41:35.796164Z",
+          "reason": "演唱赛马娘 là Mã Nương đảm nhiệm phần biểu diễn/hát; generic 赛马娘 phải dùng 'Mã Nương'."
         }
       ]
     },
@@ -148601,10 +149075,12 @@
       "source_text": "批量\n确认结束",
       "source_fingerprint": "9533d4ada3fae9ea607793bd67ee504c97f3a11eb06b991cf9fa611eb70eee93",
       "rejected_targets": [
+        "Hàng loạt\nXác nhận xong",
         "Xác nhận kết thúc\nhàng loạt"
       ],
-      "approved_target": "Hàng loạt\nXác nhận xong",
+      "approved_target": "Hàng loạt\nXác nhận kết thúc",
       "origins": [
+        "translation_review",
         "ui_review"
       ],
       "ui_contexts": [
@@ -148626,6 +149102,14 @@
           "reason": "The compact two-line form preserves the source newline and batch-confirm-completion action while avoiding the overly wide current first line.",
           "ui_key": "Jobs408005",
           "control_type": "normal_button"
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3",
+          "batch_id": "tr-p3-67f8551f7780-39e0739c7960-b5c0bcb3bd-2ea67ae9c3-b0100",
+          "claim_id": "trc-gpt56sol-20260831T011400Z-b0100",
+          "merged_at": "2026-08-31T01:41:35.775928Z",
+          "reason": "确认结束 là xác nhận kết thúc; 'Xác nhận xong' làm mờ đối tượng hành động. Giữ nguyên cấu trúc xuống dòng."
         }
       ]
     },

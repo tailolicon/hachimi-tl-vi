@@ -4685,13 +4685,34 @@
       "source_paths": [
         "text_data_dict.json"
       ],
-      "json_path_prefixes": [
-        [
-          "128"
-        ]
-      ],
+      "json_path_prefixes": [],
       "match_mode": "contains",
-      "basis": "Official English product name used by publisher Drecom for ダービースタリオン マスターズ. Preserve Derby Stallion Masters in Latin script in collaboration descriptions."
+      "basis": "Official English product name used by publisher Drecom for ダービースタリオン マスターズ. The title is distinctive enough to match within text_data collaboration descriptions without a category prefix; preserve Derby Stallion Masters in Latin script."
+    },
+    {
+      "id": "mode.team_trials",
+      "category": "system_label",
+      "source_aliases": [
+        "团队竞技场"
+      ],
+      "preferred": "Team Trials",
+      "compact": [],
+      "accepted": [
+        "Team Trials"
+      ],
+      "forbidden": [
+        "Đấu trường Đội",
+        "Đấu trường đội",
+        "Team Arena"
+      ],
+      "require_accepted": true,
+      "invalidation_scope": "item",
+      "source_paths": [
+        "localize_dict.json"
+      ],
+      "json_path_prefixes": [],
+      "match_mode": "exact",
+      "basis": "Established Global player-facing name for the competitive PvP mode: Team Trials."
     }
   ]
 }

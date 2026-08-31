@@ -4,7 +4,7 @@ import json
 from pathlib import Path
 
 from scripts.canonical_findings import refresh_canonical_resolutions
-from scripts.harden_uaf_discipline_findings import DISCIPLINES, harden
+from scripts.harden_uaf_discipline_finding import DISCIPLINES, harden
 
 
 def _seed(tmp_path: Path) -> None:

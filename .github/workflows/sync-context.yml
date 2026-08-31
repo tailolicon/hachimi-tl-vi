@@ -83,7 +83,19 @@ jobs:
         run: python scripts/harden_pace_chaser_skill_lock_finding.py
 
       - name: Apply explicit reviewed terminology locks
-        run: python scripts/apply_terminology_reviews.py
+        shell: bash
+        run: |
+          set -o pipefail
+          python scripts/apply_terminology_reviews.py 2>&1 | tee /tmp/apply-terminology-reviews.log
+
+      - name: Upload terminology review apply diagnostics
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: terminology-review-apply-diagnostics-${{ github.run_id }}
+          path: /tmp/apply-terminology-reviews.log
+          retention-days: 3
+          if-no-files-found: ignore
 
       - name: Harden audit-discovered canonical rules
         run: python scripts/harden_audit_findings.py

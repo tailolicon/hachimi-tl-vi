@@ -9,17 +9,25 @@ ROOT = Path(__file__).resolve().parents[1]
 SHADOW_ROLL = {
     "id": "song.shadow_roll_no_chikai_the_solid_revision",
     "category": "song",
-    "source_aliases": ["シャドーロールの誓い（The Solid Revision）"],
+    "source_aliases": [
+        "シャドーロールの誓い（The Solid Revision）",
+        "シャドーロールの誓い (The Solid Revision)",
+    ],
     "preferred": "Shadow Roll no Chikai (The Solid Revision)",
     "compact": [],
     "accepted": ["Shadow Roll no Chikai (The Solid Revision)"],
-    "forbidden": ["Lời thề Shadow Roll (The Solid Revision)", "Vow of Shadow Roll (The Solid Revision)"],
+    "forbidden": [
+        "シャドーロールの誓い（The Solid Revision）",
+        "シャドーロールの誓い (The Solid Revision)",
+        "Lời thề Shadow Roll (The Solid Revision)",
+        "Vow of Shadow Roll (The Solid Revision)",
+    ],
     "require_accepted": True,
     "invalidation_scope": "item",
     "source_paths": ["text_data_dict.json"],
     "json_path_prefixes": [["16"]],
     "match_mode": "exact",
-    "basis": "Named song title シャドーロールの誓い（The Solid Revision）. Preserve the stable Romanized Japanese identity Shadow Roll no Chikai together with the title's existing English parenthetical, avoiding an unverified semantic English/Vietnamese translation.",
+    "basis": "Named song title シャドーロールの誓い（The Solid Revision）. Preserve the stable Romanized Japanese identity Shadow Roll no Chikai together with the title's existing English parenthetical, avoiding an unverified semantic English/Vietnamese translation. Treat ASCII- and full-width-parenthesis source variants as the same title identity.",
 }
 
 SHADOW_ROLL_DECISION = {

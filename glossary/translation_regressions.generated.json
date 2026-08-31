@@ -9,13 +9,13 @@
     "growth": "Every accepted retrospective translation revise and accepted UI revise is folded into this file automatically by both review merge workflows."
   },
   "summary": {
-    "merged_markers_scanned": 1281,
-    "translation_merged_markers_scanned": 1181,
+    "merged_markers_scanned": 1287,
+    "translation_merged_markers_scanned": 1187,
     "ui_merged_markers_scanned": 100,
-    "accepted_revision_events": 6684,
-    "accepted_translation_revision_events": 5195,
+    "accepted_revision_events": 6698,
+    "accepted_translation_revision_events": 5209,
     "accepted_ui_revision_events": 1489,
-    "regression_identity_count": 5409,
+    "regression_identity_count": 5420,
     "skipped_incomplete_markers": 0,
     "translation_skipped_incomplete_markers": 0,
     "ui_skipped_incomplete_markers": 0
@@ -30662,6 +30662,31 @@
       ]
     },
     {
+      "id": "review.regression.a5dd20addfc78bae",
+      "uid": "zhcn:3042abbdf95c6e349ac73036",
+      "scope": "uid",
+      "source_text": "将保存所选赛马娘的CM视频，\n确定吗？",
+      "source_fingerprint": "d85693b865d81aeb3fc75571b092a8b1c198dc8492c74b2276fd78cf951e9e06",
+      "rejected_targets": [
+        "Sẽ lưu video CM của Uma Musume đã chọn,\nbạn có chắc không?"
+      ],
+      "approved_target": "Sẽ lưu video CM của Mã Nương đã chọn,\nbạn có chắc không?",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768",
+          "batch_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768-b0224",
+          "claim_id": "trc-chatgpt-gpt56sol-20260831T150600Z-b0224",
+          "merged_at": "2026-08-31T15:14:17.292187Z",
+          "reason": "Generic 赛马娘 phải dùng canonical Mã Nương thay vì Uma Musume; newline được giữ nguyên."
+        }
+      ]
+    },
+    {
       "id": "review.regression.9ff16a35a05f187a",
       "uid": "zhcn:304c280c86cbfa0b925d86fa",
       "scope": "uid",
@@ -32652,10 +32677,12 @@
       "source_text": "在{0}\n没有观看CM视频的赛马娘",
       "source_fingerprint": "e9aa1859f1c4247a1adddab0b0e4905cc1b25b2fda30472857de5513fc2c89e2",
       "rejected_targets": [
+        "Ở {0}\nkhông có Uma chưa xem video CM",
         "Ở {0}\nkhông có Uma Musume chưa xem video CM"
       ],
-      "approved_target": "Ở {0}\nkhông có Uma chưa xem video CM",
+      "approved_target": "Ở {0}\nkhông có Mã Nương chưa xem video CM",
       "origins": [
+        "translation_review",
         "ui_review"
       ],
       "ui_contexts": [
@@ -32678,6 +32705,14 @@
           "reason": "Canonical compact 'Uma' removes the unnecessary full franchise noun; the revision preserves {0}, the CM-video condition, and the source's single newline.",
           "ui_key": "Story4080005",
           "control_type": "short_system_label"
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768",
+          "batch_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768-b0224",
+          "claim_id": "trc-chatgpt-gpt56sol-20260831T150600Z-b0224",
+          "merged_at": "2026-08-31T15:14:17.292187Z",
+          "reason": "赛马娘 là danh từ thế giới chung, canonical yêu cầu Mã Nương; bản hiện tại dùng 'Uma' không đạt thuật ngữ bắt buộc. Placeholder và newline được giữ nguyên."
         }
       ]
     },
@@ -43889,6 +43924,31 @@
       ]
     },
     {
+      "id": "review.regression.b6c399eec9f3d929",
+      "uid": "zhcn:45b8f0e2957d7504347e7857",
+      "scope": "uid",
+      "source_text": "请选择要保存CM视频的赛马娘",
+      "source_fingerprint": "46010f5a638ebecb789f8c32157bd4c51334bb600d732d1461e4059ad8f6f54f",
+      "rejected_targets": [
+        "Hãy chọn Uma Musume muốn lưu video CM"
+      ],
+      "approved_target": "Hãy chọn Mã Nương muốn lưu video CM",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768",
+          "batch_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768-b0224",
+          "claim_id": "trc-chatgpt-gpt56sol-20260831T150600Z-b0224",
+          "merged_at": "2026-08-31T15:14:17.292187Z",
+          "reason": "Generic 赛马娘 phải dùng canonical Mã Nương thay vì Uma Musume."
+        }
+      ]
+    },
+    {
       "id": "review.regression.c02737501d215f76",
       "uid": "zhcn:45f2a0daeb0aa23372bda34a",
       "scope": "uid",
@@ -51894,6 +51954,31 @@
           "reason": "The direct UI verb expresses the same do-not-display state in substantially less width.",
           "ui_key": "SingleMode425023",
           "control_type": "setting_label"
+        }
+      ]
+    },
+    {
+      "id": "review.regression.d8adbbcbe784c07f",
+      "uid": "zhcn:529040a4d2c32446e8b28380",
+      "scope": "uid",
+      "source_text": "古马级中长距离",
+      "source_fingerprint": "27c0623fd53ba5555004381ab2a51336fca9136f6c86ccde85a1083f86a3dfc2",
+      "rejected_targets": [
+        "Cự ly trung-dài hạng ngựa trưởng thành"
+      ],
+      "approved_target": "Hạng ngựa trưởng thành: Medium & Long",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768",
+          "batch_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768-b0224",
+          "claim_id": "trc-chatgpt-gpt56sol-20260831T150600Z-b0224",
+          "merged_at": "2026-08-31T15:14:17.292187Z",
+          "reason": "Bản hiện tại dùng calque cự ly. Giữ nghĩa hạng ngựa trưởng thành nhưng chuyển nhãn cự ly player-facing sang Medium & Long theo policy canonical."
         }
       ]
     },
@@ -61920,6 +62005,31 @@
       ]
     },
     {
+      "id": "review.regression.c03deebcd0ec63e2",
+      "uid": "zhcn:6241cb32f76622950de05482",
+      "scope": "uid",
+      "source_text": "短距离&英里",
+      "source_fingerprint": "6bdb000ca122d817868e3653e7cd2b6775ee1ea7b8c67594550c3e2c9735e4a2",
+      "rejected_targets": [
+        "Cự ly ngắn & Mile"
+      ],
+      "approved_target": "Sprint & Mile",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768",
+          "batch_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768-b0224",
+          "claim_id": "trc-chatgpt-gpt56sol-20260831T150600Z-b0224",
+          "merged_at": "2026-08-31T15:14:17.292187Z",
+          "reason": "短距离 và 英里 là hai lớp cự ly gameplay canonical Sprint và Mile; 'Cự ly ngắn' bị cấm bởi context nhúng."
+        }
+      ]
+    },
+    {
       "id": "review.regression.b939493a2cdc8e2e",
       "uid": "zhcn:6248c4ecece2419a242077ee",
       "scope": "uid",
@@ -67852,6 +67962,31 @@
           "claim_id": "trc-chatgpt-a2-20260830-1038-b0821",
           "merged_at": "2026-08-30T03:38:21.179999Z",
           "reason": "Chuẩn hóa hai Support Effect labels."
+        }
+      ]
+    },
+    {
+      "id": "review.regression.23e5e06f438337bf",
+      "uid": "zhcn:6be787151e9c61d52ff90f51",
+      "scope": "uid",
+      "source_text": "参赛赛马娘",
+      "source_fingerprint": "be790caa29d4e5d9937e69d47a91f26339ddf5e4474e1a350ee20facc12d5482",
+      "rejected_targets": [
+        "Uma Musume tham gia"
+      ],
+      "approved_target": "Mã Nương tham gia",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768",
+          "batch_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768-b0222",
+          "claim_id": "trc-chatgpt-gpt56sol-20260831T145600Z-b0222",
+          "merged_at": "2026-08-31T15:14:16.858094Z",
+          "reason": "赛马娘 là danh từ thế giới chung, canonical bắt buộc Mã Nương thay cho Uma Musume."
         }
       ]
     },
@@ -80884,10 +81019,12 @@
       "source_text": "{0}解锁条件：前{1}名以内",
       "source_fingerprint": "065db71dcc4e3550d7527c84b4f3c89d7075057f9058a2ece605b1741ef076b8",
       "rejected_targets": [
+        "{0} mở khóa: top {1}",
         "Điều kiện mở khóa {0}: Trong top {1}"
       ],
-      "approved_target": "{0} mở khóa: top {1}",
+      "approved_target": "Điều kiện mở khóa {0}: Top {1}",
       "origins": [
+        "translation_review",
         "ui_review"
       ],
       "ui_contexts": [
@@ -80910,6 +81047,14 @@
           "reason": "The compact unlock-condition label preserves both placeholders and the required top-{1} placement.",
           "ui_key": "Story0079",
           "control_type": "short_system_label"
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768",
+          "batch_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768-b0222",
+          "claim_id": "trc-chatgpt-gpt56sol-20260831T145600Z-b0222",
+          "merged_at": "2026-08-31T15:14:16.858094Z",
+          "reason": "Nguồn ghi rõ 'điều kiện mở khóa'; bản hiện tại lược mất nhãn này. Giữ nguyên ý giới hạn trong top {1}."
         }
       ]
     },
@@ -90459,6 +90604,31 @@
       ]
     },
     {
+      "id": "review.regression.6773cc6d073e6cc3",
+      "uid": "zhcn:8d814b69a746fbd2d1d179df",
+      "scope": "uid",
+      "source_text": "本场比赛，将由从其他赛马娘身上<color=#ff911c>继承了心意</color>的\n特别周参赛。",
+      "source_fingerprint": "26bac44be617def717c0b831e84eb5b08b151c6462aea7246636a2a4f2664af5",
+      "rejected_targets": [
+        "Trong cuộc đua này, Special Week đã <color=#ff911c>kế thừa tâm ý</color> từ Uma Musume khác\nsẽ tham gia thi đấu."
+      ],
+      "approved_target": "Trong Cuộc đua này, Special Week sẽ tham gia,\nsau khi <color=#ff911c>kế thừa tâm ý</color> từ các Mã Nương khác.",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768",
+          "batch_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768-b0222",
+          "claim_id": "trc-chatgpt-gpt56sol-20260831T145600Z-b0222",
+          "merged_at": "2026-08-31T15:14:16.858094Z",
+          "reason": "Bản hiện tại vừa dùng Uma Musume trái canonical Mã Nương vừa gãy ngữ pháp ở cấu trúc 'đã ... sẽ'. Bản sửa giữ nguyên tag màu, một newline và đầy đủ ý Special Week kế thừa tâm ý rồi tham gia cuộc đua."
+        }
+      ]
+    },
+    {
       "id": "review.regression.5a26d0695fdc0bec",
       "uid": "zhcn:8d884b92cbb1644c7ac9e6fe",
       "scope": "uid",
@@ -98649,6 +98819,31 @@
           "claim_id": "trc-chatgpt-auto3-20260829T193300Z-b0537",
           "merged_at": "2026-08-30T00:48:53.504104Z",
           "reason": "Support Card là thuật ngữ player-facing canonical; bản hiện tại dùng calque bị cấm."
+        }
+      ]
+    },
+    {
+      "id": "review.regression.f7b5852ee941f4af",
+      "uid": "zhcn:9a63f211e99c9046b6a693a8",
+      "scope": "uid",
+      "source_text": "适性・效果",
+      "source_fingerprint": "1bef02a8b7cde88b488d75d905bf8cb877ebe9b0357db4d6b4702cddb6e322da",
+      "rejected_targets": [
+        "Thích nghi・Hiệu ứng"
+      ],
+      "approved_target": "Aptitude・Hiệu ứng",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768",
+          "batch_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768-b0222",
+          "claim_id": "trc-chatgpt-gpt56sol-20260831T145600Z-b0222",
+          "merged_at": "2026-08-31T15:14:16.858094Z",
+          "reason": "适性 là nhãn hệ thống canonical Aptitude; 'Thích nghi' hiện tại không khớp thuật ngữ bắt buộc."
         }
       ]
     },
@@ -112377,6 +112572,31 @@
           "claim_id": "trc-chatgpt-sol-20260830-1657-r3-b0179",
           "merged_at": "2026-08-30T11:29:02.574679Z",
           "reason": "Bản hiện tại dùng forbidden calque 'Tốc độ'; stat label phải là Speed."
+        }
+      ]
+    },
+    {
+      "id": "review.regression.ac9c1cba1b7ae56b",
+      "uid": "zhcn:b0d60cd026488fbfe77f0e8d",
+      "scope": "uid",
+      "source_text": "选择继承赛马娘",
+      "source_fingerprint": "b406a01e4ed0da17ba45393215ad5de8134f7faa7c34d946e9800d52c99492cd",
+      "rejected_targets": [
+        "Chọn Uma Musume kế thừa"
+      ],
+      "approved_target": "Chọn Mã Nương kế thừa",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768",
+          "batch_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768-b0222",
+          "claim_id": "trc-chatgpt-gpt56sol-20260831T145600Z-b0222",
+          "merged_at": "2026-08-31T15:14:16.858094Z",
+          "reason": "赛马娘 ở đây là danh từ thế giới chung, phải dùng canonical Mã Nương thay vì Uma Musume."
         }
       ]
     },
@@ -128427,6 +128647,31 @@
       ]
     },
     {
+      "id": "review.regression.20a07a039855aedd",
+      "uid": "zhcn:cb0b2895bc3932000d7411c8",
+      "scope": "uid",
+      "source_text": "干劲变为",
+      "source_fingerprint": "26d521c483065b293c29e693ec62d571f886c175f3b435cb2f2256f7d474b4e4",
+      "rejected_targets": [
+        "Tinh thần trở thành"
+      ],
+      "approved_target": "Mood thay đổi thành",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768",
+          "batch_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768-b0222",
+          "claim_id": "trc-chatgpt-gpt56sol-20260831T145600Z-b0222",
+          "merged_at": "2026-08-31T15:14:16.858094Z",
+          "reason": "干劲 là player-facing Mood; 'Tinh thần' là calque bị cấm theo cả community term và source-bridge context."
+        }
+      ]
+    },
+    {
       "id": "review.regression.f6b2e112d553516a",
       "uid": "zhcn:cb333979b62db07c6c18dc76",
       "scope": "uid",
@@ -134073,10 +134318,12 @@
       "source_text": "此为<color=#FF911C>比赛限定</color>技能",
       "source_fingerprint": "d7f20daf0ccdac6397c7a7de122e15f9d45f5a216389f1c9091e28f5aba88d01",
       "rejected_targets": [
+        "Kỹ năng <color=#FF911C>chỉ dùng khi đua</color>",
         "Đây là kỹ năng <color=#FF911C>chỉ dùng trong cuộc đua</color>"
       ],
-      "approved_target": "Kỹ năng <color=#FF911C>chỉ dùng khi đua</color>",
+      "approved_target": "Đây là Skill <color=#FF911C>chỉ dùng trong Cuộc đua</color>",
       "origins": [
+        "translation_review",
         "ui_review"
       ],
       "ui_contexts": [
@@ -134099,6 +134346,14 @@
           "reason": "The introductory 'Đây là' and full race noun are unnecessary; the compact form preserves the race-only restriction and markup.",
           "ui_key": "Story0082",
           "control_type": "short_system_label"
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768",
+          "batch_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768-b0222",
+          "claim_id": "trc-chatgpt-gpt56sol-20260831T145600Z-b0222",
+          "merged_at": "2026-08-31T15:14:16.858094Z",
+          "reason": "Bản hiện tại dùng 'Kỹ năng', trái canonical generic Skill, đồng thời không dùng nhãn canonical Cuộc đua cho 比赛. Bản sửa giữ nguyên tag màu và nghĩa giới hạn trong cuộc đua."
         }
       ]
     },
@@ -138982,6 +139237,31 @@
           "claim_id": "trc-gpt56sol-auto11-20260831T125000Z-b0180",
           "merged_at": "2026-08-31T12:48:07.523877Z",
           "reason": "Generic 赛马娘 must use the project world term Mã Nương rather than Uma Musume."
+        }
+      ]
+    },
+    {
+      "id": "review.regression.faf4dc620dffb717",
+      "uid": "zhcn:db52421d674486eb6cd0c686",
+      "scope": "uid",
+      "source_text": "三后冠",
+      "source_fingerprint": "9f541f7b6e30b3c89dd5133a426d80c478cb8103ea0a842c436285287bdee792",
+      "rejected_targets": [
+        "Tam hậu quán"
+      ],
+      "approved_target": "Triple Tiara",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768",
+          "batch_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768-b0224",
+          "claim_id": "trc-chatgpt-gpt56sol-20260831T150600Z-b0224",
+          "merged_at": "2026-08-31T15:14:17.292187Z",
+          "reason": "Bản hiện tại là calque 'Tam hậu quán'; batch đã khóa trực tiếp thuật ngữ player-facing thành Triple Tiara."
         }
       ]
     },
@@ -148415,6 +148695,31 @@
           "claim_id": "trc-chatgpt-sol-auto2-20260830-1343-b0434",
           "merged_at": "2026-08-30T11:29:02.955406Z",
           "reason": "The named/generic gameplay labels use forbidden Vietnamese calques for Trainer and Skill."
+        }
+      ]
+    },
+    {
+      "id": "review.regression.12f3c2ff2f911905",
+      "uid": "zhcn:e9002e6079ba06b9e740b7ed",
+      "scope": "uid",
+      "source_text": "以下赛马娘已育成超过30天\n是否要解除保存？",
+      "source_fingerprint": "79e67419cde56da59471ea12dacc1e6ab24e2b522c007e14c507d72c68285d14",
+      "rejected_targets": [
+        "Các Uma Musume sau đã được huấn luyện hơn 30 ngày\nBạn có muốn bỏ lưu không?"
+      ],
+      "approved_target": "Các Mã Nương sau đã được huấn luyện hơn 30 ngày\nBạn có muốn bỏ lưu không?",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768",
+          "batch_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768-b0224",
+          "claim_id": "trc-chatgpt-gpt56sol-20260831T150600Z-b0224",
+          "merged_at": "2026-08-31T15:14:17.292187Z",
+          "reason": "Giữ đúng ngưỡng 'hơn 30 ngày' và newline; chỉ sửa generic 赛马娘 từ Uma Musume sang canonical Mã Nương."
         }
       ]
     },

@@ -6,14 +6,14 @@
   "claim_id": "canonical-findings-maintenance-gpt56sol-20260831T0514Z",
   "worker_id": "gpt-5.6-sol",
   "claimed_at": "2026-08-31T05:14:00Z",
-  "heartbeat_at": "2026-08-31T05:16:00Z",
-  "lease_expires_at": "2026-08-31T05:22:00Z",
+  "heartbeat_at": "2026-08-31T05:18:00Z",
+  "lease_expires_at": "2026-08-31T05:24:00Z",
   "branch": "main",
   "handoff_from_claim_id": "canonical-findings-maintenance-gpt56sol-20260831T0504Z",
-  "progress_token": "17e0cd91b0552a8626f6b680b3c1f1ed9f6121ab",
+  "progress_token": "758a27fb59fadc333184383c8272addebcf3163d",
   "progress_kind": "commit",
-  "progress_ref": ".github/workflows/sync-translation-review-plan.yml",
-  "last_progress_at": "2026-08-31T05:16:00Z",
+  "progress_ref": "tests/test_refresh_translation_review_batch_findings.py",
+  "last_progress_at": "2026-08-31T05:18:00Z",
   "completed_count": 61,
-  "note": "Review-plan sync now invokes resolve_context_guard_findings.py immediately after canonical_findings --refresh and tracks the resolver as a workflow input, preventing derived context-guard resolutions from being dropped before plan construction."
+  "note": "Added unresolved-active-batch canonical-finding snapshot refresher, wired it into review-plan sync after context-guard resolution, and added regression coverage that removes resolved findings from unmerged batches while leaving merged batches immutable."
 }

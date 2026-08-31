@@ -6,14 +6,14 @@
   "claim_id": "canonical-findings-maintenance-gpt56sol-20260831T0547Z",
   "worker_id": "gpt-5.6-sol",
   "claimed_at": "2026-08-31T05:47:19Z",
-  "heartbeat_at": "2026-08-31T06:01:12Z",
-  "lease_expires_at": "2026-08-31T06:07:12Z",
+  "heartbeat_at": "2026-08-31T06:04:40Z",
+  "lease_expires_at": "2026-08-31T06:10:40Z",
   "branch": "main",
   "handoff_from_claim_id": "canonical-findings-maintenance-gpt56sol-20260831T0523Z",
-  "progress_token": "e6c59bdcd7280168a973f92545a224a751ee0ad1",
-  "progress_kind": "finding_hardener_test_commit",
-  "progress_ref": "tests/test_shadow_roll_song_finding_hardening.py",
-  "last_progress_at": "2026-08-31T06:01:12Z",
+  "progress_token": "17ced3c6c73bd9f380b079a04d86b2d01167095c",
+  "progress_kind": "finding_resolver_compatible_lock_commit",
+  "progress_ref": "scripts/harden_shadow_roll_song_finding.py#ascii-review-lock",
+  "last_progress_at": "2026-08-31T06:04:40Z",
   "completed_count": 65,
-  "note": "Resolved the durable cause for cf-719d8f9aff4c9211: Shadow Roll song rule now accepts both full-width and ASCII parenthesis source variants, with regression coverage. Await production Sync/live ledger before counting finding 66; deliberately deferred rank-medal and other evidence-poor findings remain unchanged rather than guessed."
+  "note": "Initial ASCII alias regression exposed that canonical resolution also needs a deterministic expected target. Added an explicit ASCII-source review lock to the existing Shadow Roll canonical identity. Validate/Sync for commit 17ced3c6c73bd9f380b079a04d86b2d01167095c are running; count finding 66 only after green validation and live-ledger confirmation."
 }

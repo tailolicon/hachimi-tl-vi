@@ -9,13 +9,13 @@
     "growth": "Every accepted retrospective translation revise and accepted UI revise is folded into this file automatically by both review merge workflows."
   },
   "summary": {
-    "merged_markers_scanned": 1278,
-    "translation_merged_markers_scanned": 1178,
+    "merged_markers_scanned": 1279,
+    "translation_merged_markers_scanned": 1179,
     "ui_merged_markers_scanned": 100,
-    "accepted_revision_events": 6668,
-    "accepted_translation_revision_events": 5179,
+    "accepted_revision_events": 6672,
+    "accepted_translation_revision_events": 5183,
     "accepted_ui_revision_events": 1489,
-    "regression_identity_count": 5403,
+    "regression_identity_count": 5405,
     "skipped_incomplete_markers": 0,
     "translation_skipped_incomplete_markers": 0,
     "ui_skipped_incomplete_markers": 0
@@ -62535,10 +62535,12 @@
       "source_text": "此商品无法重复使用",
       "source_fingerprint": "1914a7ff03dcf12b7d0710ba22a3914eb137af471506f17c3ae5765f8bdd379f",
       "rejected_targets": [
-        "Không thể sử dụng vật phẩm này nhiều lần"
+        "Không thể sử dụng vật phẩm này nhiều lần",
+        "Vật phẩm này chỉ dùng 1 lần"
       ],
-      "approved_target": "Vật phẩm này chỉ dùng 1 lần",
+      "approved_target": "Vật phẩm này không thể dùng lại",
       "origins": [
+        "translation_review",
         "ui_review"
       ],
       "ui_contexts": [
@@ -62561,6 +62563,14 @@
           "reason": "The current sentence is unnecessarily wide; the compact form preserves the one-use restriction directly.",
           "ui_key": "SingleModeScenarioFree419052",
           "control_type": "short_system_label"
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768",
+          "batch_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768-b0201",
+          "claim_id": "trc-gpt56sol-20260831T143940Z-b0201",
+          "merged_at": "2026-08-31T14:46:58.874988Z",
+          "reason": "The source states that the item cannot be reused; the current text introduces a numeric '1' that is not present in the source and is unnecessary."
         }
       ]
     },
@@ -94955,10 +94965,12 @@
       "source_text": "目前的干劲已达最大值",
       "source_fingerprint": "a772aed3f7a4928bbd927e5cfcbdf4951bcd3ac786975f441ce9d7161d1aa133",
       "rejected_targets": [
-        "Hứng khởi hiện tại đã đạt tối đa"
+        "Hứng khởi hiện tại đã đạt tối đa",
+        "Hứng khởi đã tối đa"
       ],
-      "approved_target": "Hứng khởi đã tối đa",
+      "approved_target": "Mood hiện tại đã đạt tối đa",
       "origins": [
+        "translation_review",
         "ui_review"
       ],
       "ui_contexts": [
@@ -94981,6 +94993,14 @@
           "reason": "The current label repeats temporal context; the shorter status keeps the maximum-motivation meaning.",
           "ui_key": "SingleModeScenarioFree419058",
           "control_type": "short_system_label"
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768",
+          "batch_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768-b0201",
+          "claim_id": "trc-gpt56sol-20260831T143940Z-b0201",
+          "merged_at": "2026-08-31T14:46:58.874988Z",
+          "reason": "The maximum-state meaning is correct, but the current translation uses the forbidden player-facing term Hứng khởi."
         }
       ]
     },
@@ -98433,6 +98453,31 @@
           "claim_id": "trc-chatgpt-sol-auto-20260830-0826-b0027",
           "merged_at": "2026-08-30T11:29:02.518595Z",
           "reason": "金币 trong UI này phải dùng canonical Monies."
+        }
+      ]
+    },
+    {
+      "id": "review.regression.01387134deb7c343",
+      "uid": "zhcn:9a4fd007328fc63a2ee0b7d4",
+      "scope": "uid",
+      "source_text": "{0}已经是最高干劲",
+      "source_fingerprint": "bef32ba141da7fbafe8f40e5226b5719b880ab7c631bf5b55936376a1258f350",
+      "rejected_targets": [
+        "{0} đã ở mức Hứng khởi cao nhất"
+      ],
+      "approved_target": "{0} đã ở mức Mood cao nhất",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768",
+          "batch_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768-b0201",
+          "claim_id": "trc-gpt56sol-20260831T143940Z-b0201",
+          "merged_at": "2026-08-31T14:46:58.874988Z",
+          "reason": "The placeholder and maximum-state meaning are correct, but the current player-facing state term is forbidden."
         }
       ]
     },
@@ -149573,6 +149618,31 @@
           "claim_id": "trc-chatgpt-sol-20260830T0212Z-b0941",
           "merged_at": "2026-08-30T02:14:15.048382Z",
           "reason": "Stats and locked Skill title are already canonical; replace legacy inheritance and Skill Hint calques."
+        }
+      ]
+    },
+    {
+      "id": "review.regression.2e4d820e464c727e",
+      "uid": "zhcn:eb350f7ab9f0668a2fa961c7",
+      "scope": "uid",
+      "source_text": "已经获得，或技能Lv已达最大",
+      "source_fingerprint": "0095c87fa43e719009f2ae0dc3bd37a549fa3d5c21e00c3b148dfb3156ca8315",
+      "rejected_targets": [
+        "Đã nhận, hoặc Lv kỹ năng đã đạt tối đa"
+      ],
+      "approved_target": "Đã nhận, hoặc Lv Skill đã đạt tối đa",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768",
+          "batch_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768-b0201",
+          "claim_id": "trc-gpt56sol-20260831T143940Z-b0201",
+          "merged_at": "2026-08-31T14:46:58.874988Z",
+          "reason": "The meaning and Lv notation are correct, but the generic gameplay label uses forbidden Vietnamese wording."
         }
       ]
     },

@@ -4,14 +4,23 @@ import json
 from pathlib import Path
 
 from scripts.canonical_findings import refresh_canonical_resolutions
-from scripts.harden_stamina_threshold_finding import STAMINA_THRESHOLD, STAMINA_THRESHOLD_DECISION, harden
+from scripts.harden_stamina_threshold_finding import STAMINA_THRESHOLD, harden
 
 
 def _seed(tmp_path: Path) -> None:
     glossary = tmp_path / "glossary"
     glossary.mkdir()
     (glossary / "ui_community_terms.json").write_text(json.dumps({"schema_version": 1, "terms": []}), encoding="utf-8")
-    (glossary / "terminology_reviews.json").write_text(json.dumps({"schema_version": 1, "decisions": []}), encoding="utf-8")
+    (glossary / "terminology_reviews.json").write_text(json.dumps({
+        "schema_version": 1,
+        "decisions": [{
+            "decision_id": "existing.energy",
+            "source_zh_cn": "体力",
+            "action": "lock",
+            "target_vi": "Energy",
+            "kind": "terminology",
+        }],
+    }), encoding="utf-8")
     (glossary / "term_registry.json").write_text(json.dumps({"terms": []}), encoding="utf-8")
     (glossary / "source_bridge_terms.json").write_text(json.dumps({"terms": []}), encoding="utf-8")
 
@@ -42,11 +51,16 @@ def test_hardener_resolves_category_131_stamina_threshold_and_is_idempotent(tmp_
     assert rule["json_path_prefixes"] == [["131"]]
 
     reviews = json.loads((tmp_path / "glossary" / "terminology_reviews.json").read_text(encoding="utf-8"))
-    decision = next(item for item in reviews["decisions"] if item["decision_id"] == STAMINA_THRESHOLD_DECISION["decision_id"])
-    assert decision["target_vi"] == "Stamina"
+    assert reviews["decisions"] == [{
+        "decision_id": "existing.energy",
+        "source_zh_cn": "体力",
+        "action": "lock",
+        "target_vi": "Energy",
+        "kind": "terminology",
+    }]
 
     finding = refresh_canonical_resolutions(tmp_path, {"schema_version": 1, "findings": [_finding("131")]})["findings"][0]
-    assert finding["review_resolution"]["target_vi"] == "Stamina"
+    assert finding["review_resolution"]["target_vi"] == "Energy"
     assert finding["canonical_resolution"] == {
         "layer": "community",
         "term_id": "stat.stamina.achievement_threshold",
@@ -54,8 +68,9 @@ def test_hardener_resolves_category_131_stamina_threshold_and_is_idempotent(tmp_
     }
 
 
-def test_rule_does_not_resolve_energy_gauge_word_outside_achievement_category(tmp_path: Path) -> None:
+def test_rule_does_not_override_energy_outside_achievement_category(tmp_path: Path) -> None:
     _seed(tmp_path)
     assert harden(tmp_path) is True
     finding = refresh_canonical_resolutions(tmp_path, {"schema_version": 1, "findings": [_finding("143")]})["findings"][0]
+    assert finding["review_resolution"]["target_vi"] == "Energy"
     assert finding["canonical_resolution"] is None

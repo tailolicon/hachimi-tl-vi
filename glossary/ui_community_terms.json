@@ -5317,6 +5317,30 @@
       "json_path_prefixes": [],
       "match_mode": "contains",
       "basis": "The repository already defines the full compound 育成赛马娘 / 育成ウマ娘 as the player-facing Trainee concept and explicitly excludes it from generic Umamusume matching. Extend that same full-compound identity to text_data descriptions. This does not map bare 育成 or bare 赛马娘 and therefore avoids the ambiguity that required the original localize_dict key scoping."
+    },
+    {
+      "id": "state.mood.great.text_data",
+      "category": "state",
+      "source_aliases": [
+        "绝好调"
+      ],
+      "preferred": "Great",
+      "compact": [],
+      "accepted": [
+        "Great"
+      ],
+      "forbidden": [
+        "Tuyệt hảo",
+        "Rất tốt"
+      ],
+      "require_accepted": true,
+      "invalidation_scope": "item",
+      "source_paths": [
+        "text_data_dict.json"
+      ],
+      "json_path_prefixes": [],
+      "match_mode": "contains",
+      "basis": "The canonical player-facing Mood ladder already defines JP 絶好調 / zh-CN 绝好调 as Great (Race0634). Reuse the same fixed gameplay state in text_data requirements and descriptions; the full state token is specific enough to match without promoting generic 好调 prose."
     }
   ]
 }

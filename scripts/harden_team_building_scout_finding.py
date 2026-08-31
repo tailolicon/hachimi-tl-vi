@@ -6,12 +6,6 @@ from typing import Any
 
 
 ROOT = Path(__file__).resolve().parents[1]
-TEAM_BUILDING_KEYS = [
-    "TeamBuilding020022",
-    "TeamBuilding020023",
-    "TeamBuilding020025",
-    "TeamBuilding030008",
-]
 
 TEAM_BUILDING_SCOUT = {
     "id": "event.aim_for_the_stars.scout",
@@ -24,9 +18,8 @@ TEAM_BUILDING_SCOUT = {
     "require_accepted": True,
     "invalidation_scope": "item",
     "source_paths": ["localize_dict.json"],
-    "key_exact": TEAM_BUILDING_KEYS,
     "match_mode": "contains",
-    "basis": "In the Aim for the Stars!/Team Building event, this action is the player-facing scouting mechanic, not literal contract signing. GameTora's event guide consistently describes spending Scout Points to scout characters. The rule is restricted to the four proven TeamBuilding UI keys so ordinary contract language remains unaffected.",
+    "basis": "At source commit 67f8551f77807292cebd2b20b2c752b652393835, every 签约 occurrence in localize_dict.json is inside TeamBuilding* UI and belongs to the Aim for the Stars!/Team Building scouting mechanic (Scout Race, Scout Points, scouting state/action). Source-path scoping therefore covers the live aggregate finding while excluding story/assets and other source files where literal contract language could occur.",
 }
 
 TEAM_BUILDING_SCOUT_POINTS = {
@@ -40,9 +33,8 @@ TEAM_BUILDING_SCOUT_POINTS = {
     "require_accepted": True,
     "invalidation_scope": "item",
     "source_paths": ["localize_dict.json"],
-    "key_exact": ["TeamBuilding020023", "TeamBuilding020025"],
     "match_mode": "contains",
-    "basis": "Aim for the Stars! uses Scout Points as the event currency for scouting characters. Scope is limited to the proven TeamBuilding UI keys containing 签约Pt.",
+    "basis": "Aim for the Stars! uses Scout Points as the event currency for scouting characters. At the pinned zh-CN source commit, all 签约Pt occurrences in localize_dict.json are TeamBuilding event UI, so a source-path guard is sufficient and remains isolated from non-UI source files.",
 }
 
 TEAM_BUILDING_SCOUT_DECISION = {
@@ -52,7 +44,7 @@ TEAM_BUILDING_SCOUT_DECISION = {
     "target_vi": "Scout",
     "kind": "terminology",
     "category": "event",
-    "note": "Aim for the Stars!/Team Building scouting action. Do not translate this scoped event use as literal contract signing; event-specific matching is enforced by event.aim_for_the_stars.scout.",
+    "note": "Aim for the Stars!/Team Building scouting action. In localize_dict.json at the pinned source snapshot, all 签约 occurrences belong to this event mechanic; do not render them as literal contract signing.",
 }
 
 TEAM_BUILDING_SCOUT_POINTS_DECISION = {
@@ -62,7 +54,7 @@ TEAM_BUILDING_SCOUT_POINTS_DECISION = {
     "target_vi": "Scout Points",
     "kind": "terminology",
     "category": "event_resource",
-    "note": "Player-facing Aim for the Stars! event currency used to scout characters; scoped community rule prevents unrelated 签约 uses from matching.",
+    "note": "Player-facing Aim for the Stars! event currency used to scout characters; source-path scoping keeps unrelated source domains unaffected.",
 }
 
 

@@ -40,13 +40,13 @@ def test_derby_stallion_masters_resolves_collaboration_descriptions(tmp_path: Pa
     }
 
 
-def test_derby_stallion_masters_does_not_resolve_other_text_category(tmp_path: Path) -> None:
+def test_derby_stallion_masters_does_not_resolve_other_source_path(tmp_path: Path) -> None:
     _seed(tmp_path)
     assert harden(tmp_path) is True
     ledger = {"schema_version": 1, "findings": [{
         "finding_id": "cf-test-dabimas-wrong", "status": "open", "source_zh_cn": "ダービースタリオン マスターズ",
-        "match_mode": "contains", "source_paths": ["text_data_dict.json"], "key_exact": [],
-        "json_path_prefixes": [["16"]], "suggested_targets_vi": ["Derby Stallion Masters"],
+        "match_mode": "contains", "source_paths": ["localize_dict.json"], "key_exact": [],
+        "json_path_prefixes": [], "suggested_targets_vi": ["Derby Stallion Masters"],
         "canonical_resolution": None, "review_resolution": None,
     }]}
     assert refresh_canonical_resolutions(tmp_path, ledger)["findings"][0]["canonical_resolution"] is None

@@ -141,5 +141,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-
-# canonical-findings maintenance sync trigger: cf-ecde28dd625ae647

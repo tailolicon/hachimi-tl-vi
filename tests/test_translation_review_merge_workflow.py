@@ -25,3 +25,13 @@ def test_review_merge_can_publish_across_harmless_worker_checkpoint_churn() -> N
     assert "git rebase origin/main" in text
     assert "work/translation_review/(claims|results|completions)/" in text
     assert "Main changed in validation-sensitive paths; recomputing" in text
+
+
+def test_review_merge_reapplies_context_guard_resolutions_after_finding_refresh() -> None:
+    text = _workflow_text()
+    refresh = "python scripts/canonical_findings.py --repo-root . --refresh"
+    resolve = "python scripts/resolve_context_guard_findings.py"
+    queue = "python scripts/build_terminology_review_queue.py"
+    assert refresh in text
+    assert resolve in text
+    assert text.index(refresh) < text.index(resolve) < text.index(queue)

@@ -26,6 +26,8 @@ def _seed(tmp_path: Path) -> None:
             "超越极限力量",
             "莱茵力量",
             "将情谊化为力量",
+            "力量的传道者",
+            "充满力量的乐曲",
         ],
     }]})
     _write(tmp_path / "glossary" / "term_registry.json", {"terms": []})
@@ -50,6 +52,32 @@ def _seed(tmp_path: Path) -> None:
                     "current_text": "Biến tình cảm gắn bó thành sức mạnh, vượt qua số phận.",
                 },
             ],
+        },
+        {
+            "finding_id": "cf-a4af27bf832dd765",
+            "status": "open",
+            "source_zh_cn": "力量",
+            "canonical_resolution": None,
+            "review_resolution": None,
+            "evidence": [{
+                "source_path": "text_data_dict.json",
+                "json_path": ["130", "277"],
+                "source_text": "力量的传道者",
+                "current_text": "Người truyền bá sức mạnh",
+            }],
+        },
+        {
+            "finding_id": "cf-f6a4d26b3bc63f7c",
+            "status": "open",
+            "source_zh_cn": "力量",
+            "canonical_resolution": None,
+            "review_resolution": None,
+            "evidence": [{
+                "source_path": "text_data_dict.json",
+                "json_path": ["128", "1187"],
+                "source_text": "华丽、优雅、勇敢！点燃内心的充满力量的乐曲！",
+                "current_text": "Rực rỡ, thanh lịch, dũng cảm! Một khúc nhạc tràn đầy sức mạnh thắp sáng trái tim!",
+            }],
         },
         {
             "finding_id": "cf-ecde28dd625ae647",
@@ -110,15 +138,16 @@ def test_narrative_and_proper_name_power_findings_resolve_without_disabling_powe
         }
 
     terms = load_community_terms(tmp_path)
-    narrative = community_term_matches(
-        None,
-        "将情谊化为力量，超越无法估量的命运。",
-        "Biến tình cảm gắn bó thành sức mạnh, vượt qua số phận.",
-        terms,
-        source_path="text_data_dict.json",
-        json_path=["128", "1104"],
-    )
-    assert not any(match["id"] == "common.stat.power" for match in narrative)
+    for source, target, path in [
+        ("将情谊化为力量，超越无法估量的命运。", "Biến tình cảm gắn bó thành sức mạnh, vượt qua số phận.", ["128", "1104"]),
+        ("力量的传道者", "Người truyền bá sức mạnh", ["130", "277"]),
+        ("华丽、优雅、勇敢！点燃内心的充满力量的乐曲！", "Một khúc nhạc tràn đầy sức mạnh", ["128", "1187"]),
+    ]:
+        matches = community_term_matches(
+            None, source, target, terms,
+            source_path="text_data_dict.json", json_path=path,
+        )
+        assert not any(match["id"] == "common.stat.power" for match in matches)
 
     proper_name = community_term_matches(
         None,

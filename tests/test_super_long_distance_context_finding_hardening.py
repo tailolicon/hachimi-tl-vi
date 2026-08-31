@@ -7,6 +7,8 @@ from scripts.harden_super_long_distance_context_finding import TERM_ID, harden
 from scripts.resolve_context_guard_findings import resolve
 from scripts.translation_review_common import community_term_matches, load_community_terms
 
+FINDING_ID = "cf-1db30364f26517a5"
+
 
 def _seed(root: Path) -> None:
     glossary = root / "glossary"
@@ -27,7 +29,7 @@ def _seed(root: Path) -> None:
         json.dumps({
             "schema_version": 1,
             "findings": [{
-                "finding_id": "cf-test-super-long-distance",
+                "finding_id": FINDING_ID,
                 "status": "open",
                 "source_zh_cn": "长距离",
                 "kinds": ["context_rule"],

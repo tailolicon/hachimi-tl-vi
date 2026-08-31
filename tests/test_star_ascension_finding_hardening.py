@@ -58,7 +58,7 @@ def test_rule_does_not_resolve_same_phrase_outside_character_piece_category(tmp_
     assert finding["canonical_resolution"] is None
 
 
-def test_hardener_migrates_legacy_talent_bloom_lock_before_review_apply(tmp_path: Path) -> None:
+def test_hardener_migrates_legacy_talent_bloom_lock_and_decision_before_review_apply(tmp_path: Path) -> None:
     _seed(tmp_path)
     registry_path = tmp_path / "glossary" / "term_registry.json"
     registry_path.write_text(
@@ -74,15 +74,32 @@ def test_hardener_migrates_legacy_talent_bloom_lock_before_review_apply(tmp_path
         }),
         encoding="utf-8",
     )
+    reviews_path = tmp_path / "glossary" / "terminology_reviews.json"
+    reviews_path.write_text(
+        json.dumps({
+            "schema_version": 1,
+            "decisions": [{
+                "decision_id": "audit.finding.talent-bloom-system",
+                "source_zh_cn": "才能开花",
+                "action": "lock",
+                "target_vi": "Talent Bloom",
+                "kind": "system_label",
+                "category": "progression",
+            }],
+        }),
+        encoding="utf-8",
+    )
 
     assert harden(tmp_path) is True
     migrated = json.loads(registry_path.read_text(encoding="utf-8"))
     legacy = next(term for term in migrated["terms"] if term["id"] == REVIEWED_TERM_ID)
     assert legacy["target_vi"] == "Star Ascension"
 
-    reviews = json.loads((tmp_path / "glossary" / "terminology_reviews.json").read_text(encoding="utf-8"))
+    reviews = json.loads(reviews_path.read_text(encoding="utf-8"))
+    old_decision = next(item for item in reviews["decisions"] if item["decision_id"] == "audit.finding.talent-bloom-system")
+    assert old_decision["target_vi"] == "Star Ascension"
     applied, stats = apply_reviews(migrated, reviews)
-    assert stats["locked_existing"] == 1
+    assert stats["locked_existing"] == 2
     reviewed = next(term for term in applied["terms"] if term["id"] == REVIEWED_TERM_ID)
     assert reviewed["target_vi"] == "Star Ascension"
     assert reviewed["source_paths"] == ["text_data_dict.json"]

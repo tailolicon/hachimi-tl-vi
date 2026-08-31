@@ -1,5 +1,11 @@
 from __future__ import annotations
 
+"""Narrow context guard for the Fuchu Himba Stakes proper-name overmatch.
+
+This file is intentionally a production finding hardener: the sync-context workflow
+runs every ``scripts/harden_*_finding.py`` file before resolving canonical findings.
+"""
+
 import json
 from pathlib import Path
 from typing import Any

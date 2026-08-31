@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "status": "partial",
+  "status": "complete",
   "plan_id": "tr-p3-67f8551f7780-b630cf98a0ef-b5c0bcb3bd-48e5643eeb",
   "batch_id": "tr-p3-67f8551f7780-b630cf98a0ef-b5c0bcb3bd-48e5643eeb-b0309",
   "claim_id": "trc-gpt56sol-20260831T111050Z-b0309",
   "worker_id": "gpt-5.6-sol-20260831T111050Z",
-  "reviewed_at": "2026-08-31T11:17:00Z",
-  "completed_count": 15,
+  "reviewed_at": "2026-08-31T11:19:30Z",
+  "completed_count": 20,
   "decisions": [
     {
       "uid": "zhcn:f6431ce3f23c0f1aea5ac7a5",
@@ -138,6 +138,47 @@
       "action": "defer",
       "reason": "The objective contains 重赏, which remains blocked by the shared open canonical finding; the rest of the Mile/rain/margin conditions are readable but cannot close review yet.",
       "terminology_basis": "Embedded cf-bf5645acbcfad6a9 blocks 重赏; common.distance.mile and race.generic are otherwise satisfied.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:223ef12b397b2bfc5848403a",
+      "current_fingerprint": "50809deead785cae24cad627fa880e76167bc05610914a14ba7e9bc2b79e473f",
+      "action": "keep",
+      "reason": "The six popularity-rank-1 G1 participations, three named race wins, and 240000 fan threshold are all preserved.",
+      "terminology_basis": "Embedded race.generic, progress.fans, common.distance.mile, and common.race_grade.g1 are satisfied.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:5639cd1676eb2115ded55a5a",
+      "current_fingerprint": "adb43842dd645d9868056e4e2973c048e220cf326ee4332079db1217abd3162d",
+      "action": "defer",
+      "reason": "The objective contains 重赏, which is blocked by the existing canonical terminology finding; the End Closer, popularity, streak, and final-straight overtake conditions cannot close review until that shared label is resolved.",
+      "terminology_basis": "Embedded cf-bf5645acbcfad6a9 blocks 重赏; common.style.end_closer is otherwise correctly satisfied.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:b7dae5fe5e02bd720af8634a",
+      "current_fingerprint": "82b2b5eeb9fc4ded4745b2a3be6a8e89c878845af51868cc855c8edd705fba16",
+      "action": "defer",
+      "reason": "The objective contains the same unresolved 重赏 category, so the existing canonical finding blocks a resolved keep/revise decision despite the named-race list and eight-win threshold being otherwise clear.",
+      "terminology_basis": "Embedded cf-bf5645acbcfad6a9 blocks 重赏.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:b4f9fc4783daca0fb3ab8ca9",
+      "current_fingerprint": "c7b76ea6fa2ada0bb915b062bdfa35aee3c6af5781f902659feac8d95584ee7b",
+      "action": "revise",
+      "proposed_text": "Dùng chiến thuật 「Front Runner」 và duy trì bất bại, giành chiến thắng với độ nổi tiếng hạng 1 tại Asahi Hai Futurity Stakes, Satsuki Sho và Japanese Derby,\\nđồng thời Stamina đạt từ 1200 trở lên",
+      "reason": "The current translation uses the literal running-style label Dẫn đầu and the inconsistent proper-race form Japan Derby; the player-facing style is Front Runner and the established race name used by repository review context is Japanese Derby.",
+      "terminology_basis": "Manual-audit policy requires Front Runner and established English race identities; embedded common.stat.stamina requires Stamina, which is preserved.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:7b7760e7585eba233f43accb",
+      "current_fingerprint": "40db70dde1155f709bbe89fb51b6f280b60d9308aba142b481fe149e01e0b076",
+      "action": "defer",
+      "reason": "The sentence contains the unresolved 重赏 category, so it remains blocked even though Front Runner and Dirt should replace the current literal Dẫn đầu/sân đất wording once the shared race-category finding is resolved.",
+      "terminology_basis": "Embedded cf-bf5645acbcfad6a9 blocks 重赏; manual-audit policy requires Front Runner and Dirt, while embedded G1/G2/G3 labels and race.generic are otherwise satisfied.",
       "confidence": "high"
     }
   ]

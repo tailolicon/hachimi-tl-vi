@@ -112,6 +112,16 @@ GUARDS = {
         "term_id": "skill.201072",
         "target_vi": "Không chịu thua",
     },
+    "cf-1db30364f26517a5": {
+        "layer": "community",
+        "term_id": "common.distance.long",
+        "target_vi": "Long",
+    },
+    "cf-fbbcf5f4a79f6cf8": {
+        "layer": "community",
+        "term_id": "common.stat.wit",
+        "target_vi": "Wit",
+    },
 }
 
 

@@ -22,6 +22,11 @@ except ModuleNotFoundError:
 
 ROOT = Path(__file__).resolve().parents[1]
 GUARDS = {
+    "cf-2b8709d527abc360": {
+        "layer": "locked",
+        "term_id": "race.generic",
+        "target_vi": "Cuộc đua",
+    },
     "cf-5d23e532c5359881": {
         "layer": "community",
         "term_id": "common.stat.power",

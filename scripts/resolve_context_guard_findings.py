@@ -27,6 +27,11 @@ GUARDS = {
         "term_id": "common.stat.power",
         "target_vi": "Power",
     },
+    "cf-f6302c57277dc9bc": {
+        "layer": "community",
+        "term_id": "common.world.umamusume",
+        "target_vi": "Mã Nương",
+    },
     "cf-d1bcaa0ab582cbdf": {
         "layer": "locked",
         "term_id": "currency.jewel",

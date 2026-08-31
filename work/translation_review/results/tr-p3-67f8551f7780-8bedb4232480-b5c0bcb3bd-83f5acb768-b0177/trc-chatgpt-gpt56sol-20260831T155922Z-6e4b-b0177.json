@@ -5,13 +5,18 @@
   "batch_id": "tr-p3-67f8551f7780-8bedb4232480-b5c0bcb3bd-83f5acb768-b0177",
   "claim_id": "trc-chatgpt-gpt56sol-20260831T155922Z-6e4b-b0177",
   "worker_id": "chatgpt-gpt56sol-20260831T155922Z-6e4b",
-  "reviewed_at": "2026-08-31T16:00:00Z",
-  "completed_count": 5,
+  "reviewed_at": "2026-08-31T16:00:38Z",
+  "completed_count": 10,
   "decisions": [
     {"uid":"zhcn:fdd57e245a459099220eaf46","current_fingerprint":"451360a4aa32b895b85755b8b8ceb3c78691bf784f9264b01482094102aaca79","action":"keep","reason":"Điều kiện thông thường accurately renders 通常条件 as a generic condition label; only target length is flagged.","confidence":"high"},
     {"uid":"zhcn:746cc50ff8cb7d594a7fbb4c","current_fingerprint":"e63a4c49d125fd89bd1233e98c2e5a6586423de6314a0f8395802230e77eeaef","action":"keep","reason":"Điều kiện riêng của kịch bản accurately renders 剧本专用条件 as a scenario-specific condition label; only target length is flagged.","confidence":"high"},
     {"uid":"zhcn:48426c692423b77780b81881","current_fingerprint":"55ad20ac7e489c7d4965d71b5d0f53a7bcab43945d0bec782481891271d27f4b","action":"keep","reason":"The target correctly states that in some training scenarios evolution is also possible by satisfying that scenario's specific condition, preserving the color tag and newline.","confidence":"high"},
     {"uid":"zhcn:b2b5cdc50fe1cf9621ce006f","current_fingerprint":"ce6587dea7956b59e52ac3d2c0b860d4d0a4400ba569dcd118dde0c5d54eca85","action":"keep","reason":"The target correctly states that evolution becomes possible after satisfying either the normal or scenario-specific condition and preserves the newline structure.","confidence":"high"},
-    {"uid":"zhcn:405801f0a29abfc647dd1717","current_fingerprint":"aaadafabb45af5d1e9d73ebf3dac8cde4570c6dc9ecb559e9565914296a2c248","action":"keep","reason":"The target preserves the exceeded-challenge-count condition and the resulting inability to obtain the reward; only target length and absence risk are flagged.","confidence":"high"}
+    {"uid":"zhcn:405801f0a29abfc647dd1717","current_fingerprint":"aaadafabb45af5d1e9d73ebf3dac8cde4570c6dc9ecb559e9565914296a2c248","action":"keep","reason":"The target preserves the exceeded-challenge-count condition and the resulting inability to obtain the reward; only target length and absence risk are flagged.","confidence":"high"},
+    {"uid":"zhcn:c936ebeb41797ce01ac6a74c","current_fingerprint":"d01f3088d97ca1e717ed1be2a2c22417490a4fd344357c912e61c49338271215","action":"keep","reason":"Tất cả kịch bản accurately renders 全部剧本; only target length is flagged.","confidence":"high"},
+    {"uid":"zhcn:1f7b0f49578310b3d4612032","current_fingerprint":"0b0d0a800baa73df6905b80b5182aab91ae534e9f57853bbbc639523738795a5","action":"revise","proposed_text":"Còn {0} lượt thuê","reason":"The current Thuê còn {0} lần is understandable but unnatural. The revision preserves the remaining-rental count and placeholder in compact Vietnamese.","confidence":"high"},
+    {"uid":"zhcn:6e53c1e6925804747823adf6","current_fingerprint":"b7097cc3fafedd50a6fd8ebecbada35d10207494f4b7eccc8dcfb39eb995f094","action":"keep","reason":"Thuê trùng lặp is a concise label for duplicate/repeated rental and no embedded context safely supports a more specific interpretation; only target length is flagged.","confidence":"medium"},
+    {"uid":"zhcn:07dce440c82542b093752943","current_fingerprint":"790e7d710b4e051d008275fefcc081e548d87cc3945d20b0d8f8467c94c54e2f","action":"revise","proposed_text":"Chỉ có thể thuê 1 Support Card","reason":"The current target uses the explicitly forbidden literal thẻ hỗ trợ. Preserve the one-card rental limit while applying the canonical Support Card term.","terminology_basis":"Embedded common.support_card and source-bridge system.support_card require Support Card and forbid Thẻ hỗ trợ.","confidence":"high"},
+    {"uid":"zhcn:a325d4857fbe52471fc17a0d","current_fingerprint":"f5cb1a128ff6d96c5e18fba860cb4b043b0b8b7a9e2dbc0c1e751c4fd900ed32","action":"keep","reason":"Giới hạn thuê accurately renders 租借上限 as a rental-limit label; only target length is flagged.","confidence":"high"}
   ]
 }

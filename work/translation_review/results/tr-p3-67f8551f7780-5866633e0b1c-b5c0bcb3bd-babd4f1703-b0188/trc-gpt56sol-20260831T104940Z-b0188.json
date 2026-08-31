@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "status": "partial",
+  "status": "complete",
   "plan_id": "tr-p3-67f8551f7780-5866633e0b1c-b5c0bcb3bd-babd4f1703",
   "batch_id": "tr-p3-67f8551f7780-5866633e0b1c-b5c0bcb3bd-babd4f1703-b0188",
   "claim_id": "trc-gpt56sol-20260831T104940Z-b0188",
   "worker_id": "gpt-5.6-sol-20260831T104940Z",
-  "reviewed_at": "2026-08-31T10:52:19Z",
-  "completed_count": 15,
+  "reviewed_at": "2026-08-31T10:53:19Z",
+  "completed_count": 20,
   "decisions": [
     {
       "uid": "zhcn:db4cfe0b6cd5ef1952ac759c",
@@ -124,6 +124,51 @@
       "proposed_text": "Xác nhận Spark",
       "reason": "The current label uses forbidden Nhân tố; this is the concise Spark confirmation UI heading.",
       "terminology_basis": "Embedded common.spark.localize_ui requires Spark/Sparks and forbids Nhân tố/Factor in localize_dict.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:3fc5ece4bcc639e5212e2e8a",
+      "current_fingerprint": "aed26f70a141678d13cee5ba19067f7af585f916ffda371d4344504d98597298",
+      "action": "keep",
+      "reason": "The update message preserves the {0} placeholder, color tag, newline and completed-update state exactly.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:dcec61de33fb5035d3356f08",
+      "current_fingerprint": "4ce95ef866c2e016b485de2c48eac50084c3d6115a04b0fd282bfef84b304bb6",
+      "action": "keep",
+      "reason": "Cập nhật kịch bản is the direct and natural UI label for 剧本更新.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:887b8595db35a79f97b0f88d",
+      "current_fingerprint": "29049058af97d032f086fa9685de16a5bf8fd4a01303be744d65b86b6d870f91",
+      "action": "keep",
+      "reason": "The learned-state meaning, {0} placeholder, Japanese-style quotes and color tag are preserved.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:23ffcdd43aa16d8748afc8b6",
+      "current_fingerprint": "f4cf1c4efed8dacbc577685de99d6468bf82f012911d86ba7b4b1e4d2223bec0",
+      "action": "keep",
+      "reason": "The next-turn timing, {0}/{1} placeholders, specialty-rate increase and color tag are all preserved accurately.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:b959db1550b020783d7be460",
+      "current_fingerprint": "621e3169452019c9ddd553489990c80918021a69d346cfe0855c1dd83dbf04d9",
+      "action": "defer",
+      "reason": "The current Vietnamese correctly uses tốc độ for 跳过速度 (skip speed), but the embedded common.stat.speed rule incorrectly treats the substring 速度 as the Speed stat and forbids Tốc độ. This reusable context conflict should be resolved canonically before the item is closed.",
+      "terminology_basis": "Embedded common.stat.speed is not semantically applicable to the compound 跳过速度; forcing Speed here would mistranslate a playback/skip-rate setting as a character stat.",
+      "canonical_finding": {
+        "kind": "context_rule",
+        "source_zh_cn": "跳过速度",
+        "concept": "Skip/playback speed versus Speed character stat",
+        "match_mode": "contains",
+        "scope": "source_path",
+        "reason": "The generic 速度 -> Speed stat guard must not fire inside 跳过速度, where 速度 is ordinary skip/playback speed.",
+        "confidence": "high"
+      },
       "confidence": "high"
     }
   ]

@@ -5,6 +5,7 @@ from pathlib import Path
 
 from scripts.canonical_findings import refresh_canonical_resolutions
 from scripts.harden_stamina_threshold_finding import STAMINA_THRESHOLD, harden
+from scripts.resolve_scoped_canonical_overrides import resolve_scoped_canonical_overrides
 
 
 def _seed(tmp_path: Path) -> None:
@@ -40,6 +41,11 @@ def _finding(prefix: str) -> dict:
     }
 
 
+def _resolve(tmp_path: Path, prefix: str) -> dict:
+    ledger = refresh_canonical_resolutions(tmp_path, {"schema_version": 1, "findings": [_finding(prefix)]})
+    return resolve_scoped_canonical_overrides(tmp_path, ledger)["findings"][0]
+
+
 def test_hardener_resolves_category_131_stamina_threshold_and_is_idempotent(tmp_path: Path) -> None:
     _seed(tmp_path)
     assert harden(tmp_path) is True
@@ -59,7 +65,7 @@ def test_hardener_resolves_category_131_stamina_threshold_and_is_idempotent(tmp_
         "kind": "terminology",
     }]
 
-    finding = refresh_canonical_resolutions(tmp_path, {"schema_version": 1, "findings": [_finding("131")]})["findings"][0]
+    finding = _resolve(tmp_path, "131")
     assert finding["review_resolution"]["target_vi"] == "Energy"
     assert finding["canonical_resolution"] == {
         "layer": "community",
@@ -71,6 +77,6 @@ def test_hardener_resolves_category_131_stamina_threshold_and_is_idempotent(tmp_
 def test_rule_does_not_override_energy_outside_achievement_category(tmp_path: Path) -> None:
     _seed(tmp_path)
     assert harden(tmp_path) is True
-    finding = refresh_canonical_resolutions(tmp_path, {"schema_version": 1, "findings": [_finding("143")]})["findings"][0]
+    finding = _resolve(tmp_path, "143")
     assert finding["review_resolution"]["target_vi"] == "Energy"
     assert finding["canonical_resolution"] is None

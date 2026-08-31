@@ -79,6 +79,9 @@ jobs:
       - name: Refresh observed entity terminology
         run: python scripts/build_observed_term_memory.py
 
+      - name: Migrate pre-apply reviewed lock compatibility
+        run: python scripts/harden_pace_chaser_skill_lock_finding.py
+
       - name: Apply explicit reviewed terminology locks
         run: python scripts/apply_terminology_reviews.py
 

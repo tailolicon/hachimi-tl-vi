@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "status": "partial",
+  "plan_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047",
+  "batch_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047-b0149",
+  "claim_id": "trc-gpt56sol-hourly-20260901T160436Z-b0149",
+  "worker_id": "gpt56sol-hourly-20260901T160436Z",
+  "reviewed_at": "2026-09-01T16:05:30Z",
+  "completed_count": 5,
+  "decisions": [
+    {
+      "uid": "zhcn:8bb5f212516ee8900a400bdf",
+      "current_fingerprint": "e99136f0e53234ceb0d7c0f6a68b0bc213c9e3bebcb8b2d3c2b18f0f43027070",
+      "action": "revise",
+      "proposed_text": "Từ nay về sau, hãy tiếp tục gánh vác trách nhiệm của một Trainer,\\nvà chân thành đồng hành cùng Mã Nương bằng tất cả nhiệt huyết.",
+      "reason": "Generic 训练员 and 赛马娘 use the project player-facing terms Trainer and Mã Nương; the rest of the sentence is faithful and natural.",
+      "terminology_basis": "Embedded community terms common.trainer and common.world.umamusume require Trainer and Mã Nương and explicitly forbid Huấn luyện viên and Uma Musume here.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:886d486e85a00446d0ea664d",
+      "current_fingerprint": "fef8c0dee58c43a13d2efdbcb8152edd886d0612c6730525d81d92d5fdc989b5",
+      "action": "defer",
+      "reason": "Here 速度 is part of ordinary prose 成长速度 (growth rate/speed), not the gameplay Speed stat. The embedded community matcher overmatches this lexical context, so a canonical context rule is needed before resolving the item.",
+      "canonical_finding": {
+        "kind": "context_rule",
+        "source_zh_cn": "速度",
+        "concept": "Generic 速度 inside lexical compounds or prose must not be forced to the Speed stat label",
+        "match_mode": "contains",
+        "scope": "source_path",
+        "reason": "成长速度 means growth speed/rate in prose; replacing Tốc độ with the gameplay label Speed would be a false positive from an overly broad alias.",
+        "confidence": "high"
+      },
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:a9f47107b276bd1bd69402bf",
+      "current_fingerprint": "02ca2cb6d69fc399a886e57bb98ba1a89a742d9608d3b58010de8c13df41ca03",
+      "action": "revise",
+      "proposed_text": "Đại diện cho giới đua ngựa\\nchính là cặp Mã Nương và Trainer này nhỉ!",
+      "reason": "The sentence meaning is already correct, but both generic project terms are noncanonical in the current Vietnamese.",
+      "terminology_basis": "Embedded common.world.umamusume requires Mã Nương for generic 赛马娘 and common.trainer requires Trainer for 训练员.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:306b1bb88f1a0e3ffbfe3915",
+      "current_fingerprint": "71d62bd7ac1a9058fe6eda157280e08c5be1e9b1710b692b046e2a408d32a21a",
+      "action": "keep",
+      "reason": "Vô Thanh Vô Tì is a concise, faithful Sino-Vietnamese rendering of 无声无瑕 and preserves the title-like structure.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:a19cb3b2a41977d712772e68",
+      "current_fingerprint": "683cc7d669964d88d271df6b53f07c0b6830c0df86f03745c29e26340f121f8f",
+      "action": "defer",
+      "reason": "The item is explicitly blocked by open canonical finding cf-d1bcaa0ab582cbdf: 宝石 must not overmatch gemstone compounds such as 绿宝石 as the Jewel currency. The current lexical gemstone rendering is plausible, but the canonical context must resolve first.",
+      "confidence": "high"
+    }
+  ]
+}

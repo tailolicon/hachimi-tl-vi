@@ -9,13 +9,13 @@
     "growth": "Every accepted retrospective translation revise and accepted UI revise is folded into this file automatically by both review merge workflows."
   },
   "summary": {
-    "merged_markers_scanned": 1716,
-    "translation_merged_markers_scanned": 1616,
+    "merged_markers_scanned": 1724,
+    "translation_merged_markers_scanned": 1624,
     "ui_merged_markers_scanned": 100,
-    "accepted_revision_events": 7346,
-    "accepted_translation_revision_events": 5857,
+    "accepted_revision_events": 7355,
+    "accepted_translation_revision_events": 5866,
     "accepted_ui_revision_events": 1489,
-    "regression_identity_count": 5860,
+    "regression_identity_count": 5867,
     "skipped_incomplete_markers": 0,
     "translation_skipped_incomplete_markers": 0,
     "ui_skipped_incomplete_markers": 0
@@ -3755,10 +3755,12 @@
       "source_text": "此比赛不允许观战",
       "source_fingerprint": "89d6f028b4dcdf0a20ed22f862b4037eebef80e7c4e3ef59b9d422407b6cdac3",
       "rejected_targets": [
-        "Cuộc đua này không cho phép xem"
+        "Cuộc đua này không cho phép xem",
+        "Không thể xem đua này"
       ],
-      "approved_target": "Không thể xem đua này",
+      "approved_target": "Không thể xem Cuộc đua này",
       "origins": [
+        "translation_review",
         "ui_review"
       ],
       "ui_contexts": [
@@ -3781,6 +3783,14 @@
           "reason": "Uses a direct compact spectator restriction instead of the longer permission construction.",
           "ui_key": "RoomMatch0094",
           "control_type": "short_system_label"
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454",
+          "batch_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454-b0134",
+          "claim_id": "trc-gpt56sol-20260901T045100Z-b0134-8c21",
+          "merged_at": "2026-09-01T04:54:29.847811Z",
+          "reason": "The current target uses generic đua and fails the locked race term. Restore Cuộc đua while preserving the spectating prohibition."
         }
       ]
     },
@@ -8728,6 +8738,31 @@
           "claim_id": "trc-chatgpt-gpt56sol-20260831T151600Z-b0226",
           "merged_at": "2026-08-31T15:27:08.521724Z",
           "reason": "支援卡 là thuật ngữ player-facing canonical Support Card; 'Thẻ hỗ trợ' bị cấm theo cả community context và source bridge."
+        }
+      ]
+    },
+    {
+      "id": "review.regression.3aec4ecd173dd4de",
+      "uid": "zhcn:0befaad8f1683a1f6521f43a",
+      "scope": "uid",
+      "source_text": "已登记观战房间竞赛",
+      "source_fingerprint": "48a4a2a7ba731117878f2d269c92b4e1c18b4e9377d465b8644ae2258a46dc58",
+      "rejected_targets": [
+        "Đã đăng ký xem Đua Phòng"
+      ],
+      "approved_target": "Đã đăng ký xem Room Match",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454",
+          "batch_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454-b0134",
+          "claim_id": "trc-gpt56sol-20260901T045100Z-b0134-8c21",
+          "merged_at": "2026-09-01T04:54:29.847811Z",
+          "reason": "Replace the inconsistent literal mode name with the established Room Match identity."
         }
       ]
     },
@@ -14609,6 +14644,31 @@
           "claim_id": "trc-sol-live-20260830-r2-b0664",
           "merged_at": "2026-08-31T00:48:53.678829Z",
           "reason": "Distance-class labels must use established player-facing English vocabulary."
+        }
+      ]
+    },
+    {
+      "id": "review.regression.e5623bd9dd9d6bf6",
+      "uid": "zhcn:14ddaca8f0cc32456b4c1497",
+      "scope": "uid",
+      "source_text": "将登记参加此房间竞赛\n确定吗？",
+      "source_fingerprint": "3ff8b3650555e188c360049d3351c157720325315867d8226b78d53167c04f5a",
+      "rejected_targets": [
+        "Bạn sẽ đăng ký tham gia Đua Phòng này\nBạn chắc chứ?"
+      ],
+      "approved_target": "Bạn sẽ đăng ký tham gia Room Match này\nBạn chắc chứ?",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454",
+          "batch_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454-b0134",
+          "claim_id": "trc-gpt56sol-20260901T045100Z-b0134-8c21",
+          "merged_at": "2026-09-01T04:54:29.847811Z",
+          "reason": "房间竞赛 is the established Room Match mode name; replace the inconsistent Đua Phòng calque while preserving the confirmation structure and newline."
         }
       ]
     },
@@ -54621,6 +54681,31 @@
           "claim_id": "trc-chatgpt-sol-auto4-20260830-1012-b0303",
           "merged_at": "2026-08-30T11:29:02.808794Z",
           "reason": "Current text uses a shortened generic rendering that misses the embedded canonical race term."
+        }
+      ]
+    },
+    {
+      "id": "review.regression.ca5c0fe5bec94ac8",
+      "uid": "zhcn:50fae2f8cc2eb435fe49a337",
+      "scope": "uid",
+      "source_text": "将登记观战此房间竞赛\n确定吗？",
+      "source_fingerprint": "2f594bca99b1f398c3bc2947bcdffdda93c05b0448c19e1a2dec223f0579593b",
+      "rejected_targets": [
+        "Bạn sẽ đăng ký xem Đua Phòng này\nBạn chắc chứ?"
+      ],
+      "approved_target": "Bạn sẽ đăng ký xem Room Match này\nBạn chắc chứ?",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454",
+          "batch_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454-b0134",
+          "claim_id": "trc-gpt56sol-20260901T045100Z-b0134-8c21",
+          "merged_at": "2026-09-01T04:54:29.847811Z",
+          "reason": "Replace the inconsistent Đua Phòng mode name with Room Match while preserving the spectating-registration meaning and newline."
         }
       ]
     },
@@ -138558,6 +138643,31 @@
       ]
     },
     {
+      "id": "review.regression.86b2a63c04640a58",
+      "uid": "zhcn:caf9b0ce8f3a242f0bd39cea",
+      "scope": "uid",
+      "source_text": "スタホTV",
+      "source_fingerprint": "835fe6a97b7a055d393cb3db773b0dfb21adfc6aacbe36be5f068a0e87aa4eb5",
+      "rejected_targets": [
+        "StarHorse TV"
+      ],
+      "approved_target": "スタホTV",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454",
+          "batch_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454-b0408",
+          "claim_id": "trc-gpt56sol-20260901T045200Z-b0408",
+          "merged_at": "2026-09-01T04:54:30.626406Z",
+          "reason": "Embedded proper-name canonical explicitly preserves SEGA's official display form and forbids the unsupported StarHorse TV expansion."
+        }
+      ]
+    },
+    {
       "id": "review.regression.bda4a64ea07955fb",
       "uid": "zhcn:caff85c821a04a32fc70398e",
       "scope": "uid",
@@ -138678,6 +138788,31 @@
       ]
     },
     {
+      "id": "review.regression.11a09c019c8e6083",
+      "uid": "zhcn:cb23c07a728d7977ad2e9395",
+      "scope": "uid",
+      "source_text": "出赛赛马娘",
+      "source_fingerprint": "04b3eb1779cc987cc491cea22cc502cd2bfff3316832eaaec201723a3eb650b8",
+      "rejected_targets": [
+        "Uma Musume thi đấu"
+      ],
+      "approved_target": "Mã Nương thi đấu",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454",
+          "batch_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454-b0134",
+          "claim_id": "trc-gpt56sol-20260901T045100Z-b0134-8c21",
+          "merged_at": "2026-09-01T04:54:29.847811Z",
+          "reason": "The current generic Uma Musume form is explicitly forbidden for 赛马娘 in project world terminology."
+        }
+      ]
+    },
+    {
       "id": "review.regression.f6b2e112d553516a",
       "uid": "zhcn:cb333979b62db07c6c18dc76",
       "scope": "uid",
@@ -138758,6 +138893,31 @@
           "claim_id": "trc-chatgpt-sol-hourly-20260830-1517-b0774",
           "merged_at": "2026-08-30T11:29:03.500539Z",
           "reason": "Skill and Power are canonical, but the support-effect compound must be Power Bonus rather than Thưởng Power."
+        }
+      ]
+    },
+    {
+      "id": "review.regression.dc9d7005ceae287f",
+      "uid": "zhcn:cb5ade58f429ac21aee604e3",
+      "scope": "uid",
+      "source_text": "已登记参加房间竞赛",
+      "source_fingerprint": "5e5136138c598f283ec4658b31cc03776f24032caf6f4bba6ba6d123a3307f01",
+      "rejected_targets": [
+        "Đã đăng ký tham gia Đua Phòng"
+      ],
+      "approved_target": "Đã đăng ký tham gia Room Match",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454",
+          "batch_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454-b0134",
+          "claim_id": "trc-gpt56sol-20260901T045100Z-b0134-8c21",
+          "merged_at": "2026-09-01T04:54:29.847811Z",
+          "reason": "Replace the inconsistent literal Đua Phòng mode name with the established Room Match identity."
         }
       ]
     },
@@ -154153,6 +154313,31 @@
           "claim_id": "trc-chatgpt-sol-auto-20260830T080100Z-b0475",
           "merged_at": "2026-08-30T11:29:02.987761Z",
           "reason": "Cùng chuỗi nguồn; cần sửa thuật ngữ chung và locked term."
+        }
+      ]
+    },
+    {
+      "id": "review.regression.2ef968a551520cf2",
+      "uid": "zhcn:e064e6c381c93c33826f8031",
+      "scope": "uid",
+      "source_text": "我是玉藻十字！我们呢，只要比赛一直\\n赢啊赢啊赢啊就能够出名了！\\n说什么个子小啊，可别小看我啊！",
+      "source_fingerprint": "201c74be6b98bc129bf6a318aae8f338633f3c41f4093927a8b2baf920ce644d",
+      "rejected_targets": [
+        "Tôi là Tamamo Cross! Bọn tôi chỉ cần cứ thắng\\nthắng thắng thắng mãi là sẽ nổi tiếng!\\nĐừng có coi thường tôi chỉ vì nhỏ con nhé!"
+      ],
+      "approved_target": "Tôi là Tamamo Cross! Bọn tôi chỉ cần cứ thắng Cuộc đua,\\nthắng thắng thắng mãi là sẽ nổi tiếng!\\nĐừng có coi thường tôi chỉ vì nhỏ con nhé!",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454",
+          "batch_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454-b0409",
+          "claim_id": "trc-gpt56sol-20260901T050200Z-b0409",
+          "merged_at": "2026-09-01T04:54:31.380997Z",
+          "reason": "The current text omits the explicit 比赛 concept; restore canonical Cuộc đua while preserving the repeated-win emphasis and Tamamo Cross identity."
         }
       ]
     },
@@ -169677,10 +169862,12 @@
       "source_text": "已经登记过这个比赛了",
       "source_fingerprint": "8d74e678d64e8f8e0aa895318e92758edf67118fd27d6b20ac5452ca2a81b7a7",
       "rejected_targets": [
-        "Bạn đã đăng ký cuộc đua này rồi"
+        "Bạn đã đăng ký cuộc đua này rồi",
+        "Đã đăng ký đua này"
       ],
-      "approved_target": "Đã đăng ký đua này",
+      "approved_target": "Đã đăng ký Cuộc đua này",
       "origins": [
+        "translation_review",
         "ui_review"
       ],
       "ui_contexts": [
@@ -169703,6 +169890,14 @@
           "reason": "Removes the unnecessary pronoun and sentence-final filler while preserving the already-registered state.",
           "ui_key": "RoomMatch0093",
           "control_type": "short_system_label"
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454",
+          "batch_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454-b0134",
+          "claim_id": "trc-gpt56sol-20260901T045100Z-b0134-8c21",
+          "merged_at": "2026-09-01T04:54:29.847811Z",
+          "reason": "The current target drops the canonical generic race term. Restore Cuộc đua while preserving the already-registered state."
         }
       ]
     },

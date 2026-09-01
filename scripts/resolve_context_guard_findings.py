@@ -77,6 +77,11 @@ GUARDS = {
         "term_id": "common.stat.power",
         "target_vi": "Power",
     },
+    "cf-03be28442492e3b1": {
+        "layer": "community",
+        "term_id": "common.stat.power",
+        "target_vi": "Power",
+    },
     "cf-daad507f1b0d4acc": {
         "layer": "community",
         "term_id": "common.stat.speed",

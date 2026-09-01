@@ -10,6 +10,7 @@ from scripts.resolve_context_guard_findings import resolve
 CASES = (
     ("cf-cde74f30fa07e6a6", "获得相应的力量", "common.stat.power", "Power"),
     ("cf-2a3675dd079cad04", "坚定不移的力量", "common.stat.power", "Power"),
+    ("cf-03be28442492e3b1", "力量感", "common.stat.power", "Power"),
     ("cf-daad507f1b0d4acc", "融会贯通的速度", "common.stat.speed", "Speed"),
 )
 

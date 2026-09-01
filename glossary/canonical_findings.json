@@ -623,6 +623,52 @@
       "last_seen_at": "2026-09-01T00:11:00Z"
     },
     {
+      "finding_id": "cf-05c9322de1d55ada",
+      "status": "open",
+      "source_zh_cn": "主赛段",
+      "match_mode": "contains",
+      "source_paths": [
+        "localize_dict.json"
+      ],
+      "key_exact": [],
+      "json_path_prefixes": [],
+      "kinds": [
+        "terminology"
+      ],
+      "concepts": [
+        "League of Heroes Main Stage alias"
+      ],
+      "suggested_targets_vi": [],
+      "confidence_levels": [
+        "high"
+      ],
+      "reasons": [
+        "Event-specific alias appears in a top-96 Main Stage reward notice but is not covered by the embedded 主要阶段 -> Main Stage rule; establish it centrally to prevent calque drift."
+      ],
+      "evidence_count": 1,
+      "evidence": [
+        {
+          "uid": "zhcn:23a7099255f079ed48d03db0",
+          "plan_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454",
+          "batch_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454-b0064",
+          "claim_id": "trc-gpt56sol-20260901T041200Z-b0064-7f3c",
+          "worker_id": "gpt56sol-20260901T033600Z-7f3c",
+          "source_path": "localize_dict.json",
+          "json_path": [
+            "Heroes467008"
+          ],
+          "source_text": "由于在主赛段中进入了前96名，\n<color=#ff9900>您可以获得特别奖励！</color>\n\n领取指南将于日后发布，\n请在那之后进行确认！",
+          "current_text": "Vì đã lọt vào top 96 ở Giai đoạn chính,\n<color=#ff9900>bạn có thể nhận phần thưởng đặc biệt!</color>\n\nHướng dẫn nhận thưởng sẽ được công bố sau,\nvui lòng kiểm tra khi đó!",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T04:16:00Z"
+        }
+      ],
+      "canonical_resolution": null,
+      "review_resolution": null,
+      "first_seen_at": "2026-09-01T04:16:00Z",
+      "last_seen_at": "2026-09-01T04:16:00Z"
+    },
+    {
       "finding_id": "cf-05ee17c3f625371f",
       "status": "open",
       "source_zh_cn": "如同阳光一般温暖你的心。不用焦躁，慢慢来──\\n一步一脚印地前进，梦想正在彼方等着我们。",
@@ -4171,7 +4217,8 @@
         "context_rule"
       ],
       "concepts": [
-        "Speed stat alias must not override locked compound skill/title 速度之星"
+        "Speed stat alias must not override locked compound skill/title 速度之星",
+        "Speed stat alias must not overmatch ordinary prose compounds such as 成长速度"
       ],
       "suggested_targets_vi": [
         "Speed"
@@ -4180,9 +4227,10 @@
         "high"
       ],
       "reasons": [
-        "The generic stat alias is embedded inside a more-specific locked title phrase and should yield to the longer canonical match."
+        "The generic stat alias is embedded inside a more-specific locked title phrase and should yield to the longer canonical match.",
+        "In 成长速度 the word means rate/speed of growth, not the gameplay Speed stat."
       ],
-      "evidence_count": 1,
+      "evidence_count": 2,
       "evidence": [
         {
           "uid": "zhcn:0954921267fc40c4003cf418",
@@ -4199,6 +4247,22 @@
           "current_text": "Ngôi sao tốc độ đường đất",
           "proposed_text": null,
           "reported_at": "2026-09-01T02:21:00Z"
+        },
+        {
+          "uid": "zhcn:886d486e85a00446d0ea664d",
+          "plan_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454",
+          "batch_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454-b0286",
+          "claim_id": "trc-gpt56sol-chat-20260901T041900Z-b0286",
+          "worker_id": "gpt56sol-chat-20260901T033500Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "139",
+            "5"
+          ],
+          "source_text": "这种成长速度……灿烂的眼神……\\n啊啊！　真是太～～棒了！！",
+          "current_text": "Tốc độ trưởng thành này... ánh mắt rực rỡ này...\\nAaa! Thật～～tuyệt vời!!",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T04:23:30Z"
         }
       ],
       "canonical_resolution": {
@@ -4208,7 +4272,7 @@
       },
       "review_resolution": null,
       "first_seen_at": "2026-09-01T02:21:00Z",
-      "last_seen_at": "2026-09-01T02:21:00Z"
+      "last_seen_at": "2026-09-01T04:23:30Z"
     },
     {
       "finding_id": "cf-3c2d3f6971b1f60a",
@@ -6039,6 +6103,52 @@
       },
       "first_seen_at": "2026-08-31T10:36:00Z",
       "last_seen_at": "2026-08-31T10:36:00Z"
+    },
+    {
+      "finding_id": "cf-61d905f4d2327086",
+      "status": "open",
+      "source_zh_cn": "英雄联赛",
+      "match_mode": "contains",
+      "source_paths": [
+        "localize_dict.json"
+      ],
+      "key_exact": [],
+      "json_path_prefixes": [],
+      "kinds": [
+        "terminology"
+      ],
+      "concepts": [
+        "League of Heroes event name alias"
+      ],
+      "suggested_targets_vi": [],
+      "confidence_levels": [
+        "high"
+      ],
+      "reasons": [
+        "Named event string currently renders as Hero League, while repository UI elsewhere uses League of Heroes; glossary lacks this Chinese alias, so establish the canonical mapping centrally before resolving affected strings."
+      ],
+      "evidence_count": 1,
+      "evidence": [
+        {
+          "uid": "zhcn:50b92d2531df9fe6e4f298a9",
+          "plan_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454",
+          "batch_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454-b0064",
+          "claim_id": "trc-gpt56sol-20260901T041200Z-b0064-7f3c",
+          "worker_id": "gpt56sol-20260901T033600Z-7f3c",
+          "source_path": "localize_dict.json",
+          "json_path": [
+            "Heroes467001"
+          ],
+          "source_text": "英雄联赛\n特别奖励的<color=#ff9900>领取截止日期临近</color>",
+          "current_text": "Hero League\n<color=#ff9900>Hạn chót nhận</color> phần thưởng đặc biệt sắp đến",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T04:16:00Z"
+        }
+      ],
+      "canonical_resolution": null,
+      "review_resolution": null,
+      "first_seen_at": "2026-09-01T04:16:00Z",
+      "last_seen_at": "2026-09-01T04:16:00Z"
     },
     {
       "finding_id": "cf-6249af28f2c7bc34",
@@ -15217,6 +15327,54 @@
       "review_resolution": null,
       "first_seen_at": "2026-09-01T03:47:00Z",
       "last_seen_at": "2026-09-01T03:47:00Z"
+    },
+    {
+      "finding_id": "cf-f333ff6a5cd11893",
+      "status": "open",
+      "source_zh_cn": "资质",
+      "match_mode": "contains",
+      "source_paths": [
+        "localize_dict.json"
+      ],
+      "key_exact": [],
+      "json_path_prefixes": [],
+      "kinds": [
+        "terminology"
+      ],
+      "concepts": [
+        "Race aptitude"
+      ],
+      "suggested_targets_vi": [
+        "Aptitude"
+      ],
+      "confidence_levels": [
+        "high"
+      ],
+      "reasons": [
+        "Reusable gameplay concept 资质 should use the established player-facing Aptitude term instead of Vietnamese calques such as tư chất; this item refers to entering a race with low aptitude."
+      ],
+      "evidence_count": 1,
+      "evidence": [
+        {
+          "uid": "zhcn:f4650f8879c6cf7346de9435",
+          "plan_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454",
+          "batch_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454-b0172",
+          "claim_id": "trc-gpt56sol-b0172-20260901T042200Z",
+          "worker_id": "gpt-5.6-sol",
+          "source_path": "localize_dict.json",
+          "json_path": [
+            "SingleMode701028"
+          ],
+          "source_text": "由于要出战资质较低的比赛，\n可能会消耗大量闹钟。\n是否直接开始？",
+          "current_text": "Vì sẽ tham gia Cuộc đua có tư chất thấp,\ncó thể tiêu tốn nhiều Đồng hồ báo thức.\nBạn có muốn bắt đầu ngay không?",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T04:26:00Z"
+        }
+      ],
+      "canonical_resolution": null,
+      "review_resolution": null,
+      "first_seen_at": "2026-09-01T04:26:00Z",
+      "last_seen_at": "2026-09-01T04:26:00Z"
     },
     {
       "finding_id": "cf-f547453d071aadd3",

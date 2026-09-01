@@ -6903,7 +6903,8 @@
         "Power stat alias must exclude generic descriptive phrase 不可思议力量",
         "Disambiguate ordinary physical strength from the Power stat",
         "Power stat alias must not overmatch narrative 力量感 describing force/powerfulness",
-        "Power stat alias must not overmatch inside Rhein Kraft character name 莱茵力量"
+        "Power stat alias must not overmatch inside Rhein Kraft character name 莱茵力量",
+        "Generic narrative 力量 must not automatically normalize to the gameplay stat Power"
       ],
       "suggested_targets_vi": [],
       "confidence_levels": [
@@ -6918,9 +6919,10 @@
         "The bare alias 力量 is ambiguous and currently forces stat Power in ordinary non-stat labels/prose.",
         "The reusable alias 力量 is being matched as the Power stat inside ordinary descriptive prose where it means physical strength; the matcher must exclude non-stat contexts.",
         "In 充满力量感的赛跑, 力量 means a sense of power/force in narrative prose, not the Power stat.",
-        "Reusable stat alias currently matches a substring of a character proper name in text_data character-piece labels."
+        "Reusable stat alias currently matches a substring of a character proper name in text_data character-piece labels.",
+        "This dialogue uses 力量 inside 力量感 to describe the feel of a race, not the Power stat."
       ],
-      "evidence_count": 13,
+      "evidence_count": 14,
       "evidence": [
         {
           "uid": "zhcn:c7764341e6086330eea7872a",
@@ -7129,6 +7131,22 @@
           "current_text": "Mảnh của Rhein Kraft",
           "proposed_text": null,
           "reported_at": "2026-09-01T08:27:43Z"
+        },
+        {
+          "uid": "zhcn:7900c0f94aa9aaa582cd2f8a",
+          "plan_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047",
+          "batch_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047-b0224",
+          "claim_id": "trc-gpt56sol-hourly-20260901T093000Z-b0224",
+          "worker_id": "gpt56sol-hourly-20260901T093000Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "163",
+            "1010"
+          ],
+          "source_text": "Howdy！我叫大树快车！\\n我要用我充满力量感的赛跑给大家带来Happy！",
+          "current_text": "Howdy! Tôi là Taiki Shuttle!\\nTôi sẽ mang Happy đến cho mọi người bằng những cuộc đua đầy Power của mình!",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T09:36:00Z"
         }
       ],
       "canonical_resolution": {
@@ -7138,7 +7156,7 @@
       },
       "review_resolution": null,
       "first_seen_at": "2026-08-30T13:27:00Z",
-      "last_seen_at": "2026-09-01T08:27:43Z"
+      "last_seen_at": "2026-09-01T09:36:00Z"
     },
     {
       "finding_id": "cf-5e687a2cba04839b",
@@ -15936,6 +15954,53 @@
       "review_resolution": null,
       "first_seen_at": "2026-09-01T08:08:00Z",
       "last_seen_at": "2026-09-01T08:08:00Z"
+    },
+    {
+      "finding_id": "cf-c1b8c2da5791de2e",
+      "status": "open",
+      "source_zh_cn": "菜月(NPC)",
+      "match_mode": "exact",
+      "source_paths": [
+        "text_data_dict.json"
+      ],
+      "key_exact": [],
+      "json_path_prefixes": [],
+      "kinds": [
+        "proper_name"
+      ],
+      "concepts": [
+        "NPC display name 菜月"
+      ],
+      "suggested_targets_vi": [],
+      "confidence_levels": [
+        "high"
+      ],
+      "reasons": [
+        "Repeated player-facing NPC display name requires verified canonical reading before acceptance."
+      ],
+      "evidence_count": 1,
+      "evidence": [
+        {
+          "uid": "zhcn:0ff03c2c78ee8ac3db1998e1",
+          "plan_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047",
+          "batch_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047-b0206",
+          "claim_id": "trc-gpt56sol-hourly-20260901T092801Z-b0206",
+          "worker_id": "gpt56sol-hourly-20260901T092801Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "152",
+            "112"
+          ],
+          "source_text": "菜月(NPC)",
+          "current_text": "Natsuki (NPC)",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T09:37:00Z"
+        }
+      ],
+      "canonical_resolution": null,
+      "review_resolution": null,
+      "first_seen_at": "2026-09-01T09:37:00Z",
+      "last_seen_at": "2026-09-01T09:37:00Z"
     },
     {
       "finding_id": "cf-c38c5812d3989165",

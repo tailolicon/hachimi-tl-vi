@@ -20387,6 +20387,67 @@
       "last_seen_at": "2026-09-01T15:40:30Z"
     },
     {
+      "finding_id": "cf-cd75b83ed7a2c84b",
+      "status": "open",
+      "source_zh_cn": "每日杯新马锦标",
+      "match_mode": "exact",
+      "source_paths": [
+        "text_data_dict.json"
+      ],
+      "key_exact": [],
+      "json_path_prefixes": [
+        [
+          "111"
+        ]
+      ],
+      "kinds": [
+        "context_rule"
+      ],
+      "concepts": [
+        "Prevent the shorter Mainichi Hai race alias from overmatching inside Daily Hai Junior Stakes"
+      ],
+      "suggested_targets_vi": [
+        "Daily Hai Junior Stakes"
+      ],
+      "confidence_levels": [
+        "high"
+      ],
+      "reasons": [
+        "The full-source reviewed race mapping and the shorter 每日杯 mapping cannot both be required on this item; the specific full race identity must be scoped separately."
+      ],
+      "evidence_count": 1,
+      "evidence": [
+        {
+          "uid": "zhcn:19efb9a458ab0270af7e7881",
+          "plan_id": "tr-p3-67f8551f7780-9e982cb2b45d-b5c0bcb3bd-ce1c207047",
+          "batch_id": "tr-p3-67f8551f7780-9e982cb2b45d-b5c0bcb3bd-ce1c207047-b0013",
+          "claim_id": "trc-gpt56sol-chat-20260901T184030Z-b0013",
+          "worker_id": "gpt56sol-chat-20260901T183630Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "111",
+            "71"
+          ],
+          "source_text": "每日杯新马锦标",
+          "current_text": "Daily Hai Nisai Stakes",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T18:45:00Z"
+        }
+      ],
+      "canonical_resolution": {
+        "layer": "locked",
+        "term_id": "reviewed.race_name.3b5a9de8fcb3",
+        "target_vi": "Daily Hai Junior Stakes"
+      },
+      "review_resolution": {
+        "decision_id": "parallel.ctx-67f8551f77807292-v1.term-0111.03",
+        "action": "lock",
+        "target_vi": "Daily Hai Junior Stakes"
+      },
+      "first_seen_at": "2026-09-01T18:45:00Z",
+      "last_seen_at": "2026-09-01T18:45:00Z"
+    },
+    {
       "finding_id": "cf-cde74f30fa07e6a6",
       "status": "open",
       "source_zh_cn": "获得相应的力量",
@@ -25331,6 +25392,67 @@
       },
       "first_seen_at": "2026-08-31T12:34:58Z",
       "last_seen_at": "2026-08-31T12:34:58Z"
+    },
+    {
+      "finding_id": "cf-feec30790d428722",
+      "status": "open",
+      "source_zh_cn": "圣列特纪念",
+      "match_mode": "exact",
+      "source_paths": [
+        "text_data_dict.json"
+      ],
+      "key_exact": [],
+      "json_path_prefixes": [
+        [
+          "111"
+        ]
+      ],
+      "kinds": [
+        "context_rule"
+      ],
+      "concepts": [
+        "Prevent Saint Lite character alias from overmatching inside the St. Lite Kinen race name"
+      ],
+      "suggested_targets_vi": [
+        "St. Lite Kinen"
+      ],
+      "confidence_levels": [
+        "high"
+      ],
+      "reasons": [
+        "The full race lock is correct while the shorter character alias produces a contradictory locked-term mismatch on the same source."
+      ],
+      "evidence_count": 1,
+      "evidence": [
+        {
+          "uid": "zhcn:47dfc6f069820d21c99aa10d",
+          "plan_id": "tr-p3-67f8551f7780-9e982cb2b45d-b5c0bcb3bd-ce1c207047",
+          "batch_id": "tr-p3-67f8551f7780-9e982cb2b45d-b5c0bcb3bd-ce1c207047-b0013",
+          "claim_id": "trc-gpt56sol-chat-20260901T184030Z-b0013",
+          "worker_id": "gpt56sol-chat-20260901T183630Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "111",
+            "62"
+          ],
+          "source_text": "圣列特纪念",
+          "current_text": "St. Lite Kinen",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T18:45:00Z"
+        }
+      ],
+      "canonical_resolution": {
+        "layer": "locked",
+        "term_id": "race.st_lite_kinen",
+        "target_vi": "St. Lite Kinen"
+      },
+      "review_resolution": {
+        "decision_id": "parallel.ctx-67f8551f77807292-v1.term-0102.14",
+        "action": "lock",
+        "target_vi": "St. Lite Kinen"
+      },
+      "first_seen_at": "2026-09-01T18:45:00Z",
+      "last_seen_at": "2026-09-01T18:45:00Z"
     }
   ]
 }

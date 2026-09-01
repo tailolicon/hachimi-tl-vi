@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "status": "partial",
+  "plan_id": "tr-p3-67f8551f7780-5e45c4dc80a8-b5c0bcb3bd-9bb2b41843",
+  "batch_id": "tr-p3-67f8551f7780-5e45c4dc80a8-b5c0bcb3bd-9bb2b41843-b0192",
+  "claim_id": "trc-gpt56sol-auto2-20260901T083120Z-b0192",
+  "worker_id": "gpt56sol-auto2-20260901T083120Z",
+  "reviewed_at": "2026-09-01T08:35:43Z",
+  "completed_count": 5,
+  "decisions": [
+    {
+      "uid": "zhcn:1f8fc1f04cba07ff9eb02f08",
+      "current_fingerprint": "ac32ec932340fa64d30c39ad623a70452213cbf795607d025e12f9aab3ac12f3",
+      "action": "defer",
+      "reason": "Repository evidence establishes Mecha Umamusume as the player-facing scenario proper name, while the generic 赛马娘→Mã Nương rule currently overmatches this compound. Canonical context must distinguish the scenario name before this item is resolved.",
+      "terminology_basis": "Embedded common.world.umamusume conflicts with repository evidence for the proper scenario name Run! Mecha Umamusume; canonical-first policy requires deferral rather than a one-off exception.",
+      "canonical_finding": {
+        "kind": "context_rule",
+        "source_zh_cn": "机械赛马娘",
+        "suggested_target_vi": "Mecha Umamusume",
+        "concept": "Mecha Umamusume scenario proper name must not be rewritten by the generic 赛马娘 world-term rule.",
+        "match_mode": "contains",
+        "scope": "source_path",
+        "reason": "Established repository scenario terminology uses Mecha Umamusume; the generic Mã Nương rule is firing inside this proper scenario name.",
+        "confidence": "high"
+      },
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:23771fd26f3c75be1474abca",
+      "current_fingerprint": "55a1359116d38522955404c73c2ec7b8ba0df1fb5f24e656edcd99b81cb2512a",
+      "action": "keep",
+      "reason": "The label correctly means casual clothes for Mejiro Bright and preserves the full canonical character name.",
+      "terminology_basis": "character.mejiro_bright applies to the complete proper name 目白光明; the embedded skill-name match 光明 is only a substring inside that character name and is not a Skill here.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:f12f9715189bd972d562413f",
+      "current_fingerprint": "228a100f343faac2f69f4beb0fcd8007975960ea1074c109cbb7a1a0b7f80054",
+      "action": "defer",
+      "reason": "The current text is semantically plausible, but this item is explicitly blocked by the open canonical finding about 宝石 overmatching inside 第一红宝石. It must remain unresolved until canonical context is fixed.",
+      "terminology_basis": "character.daiichi_ruby is present, but open canonical finding cf-d1bcaa0ab582cbdf remains blocking for this exact item.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:fde8bb1f452c5037c19ff7ca",
+      "current_fingerprint": "6854c57473e67d6740c1ef8f1b2e986149a995288dc4367690e5f3cad5605161",
+      "action": "revise",
+      "proposed_text": "Trang phục thường (Rhein Kraft)",
+      "reason": "The current transliteration 'Line Kraft' is incorrect for the canonical character name Rhein Kraft; the clothing label is otherwise straightforward.",
+      "terminology_basis": "character.rhein_kraft supplies Rhein Kraft for the full proper name 莱茵力量. stat.power is an inapplicable substring match inside that proper name.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:e04565bffeb6efcce8bd1fe3",
+      "current_fingerprint": "097fd8f6a5a58bcb090e55ca0d5eef21b7e688039d4c0509c316fa7b556081ab",
+      "action": "keep",
+      "reason": "Meaning, level number, star range, and activation wording are preserved, and the player-facing Unique Skill label is canonical.",
+      "terminology_basis": "Embedded common.skill.unique requires 'Unique Skill' and common.skill.generic requires English 'Skill'; both are satisfied.",
+      "confidence": "high"
+    }
+  ]
+}

@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "status": "partial",
+  "status": "complete",
   "plan_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454",
   "batch_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454-b0172",
   "claim_id": "trc-gpt56sol-b0172-20260901T042200Z",
   "worker_id": "gpt-5.6-sol",
-  "reviewed_at": "2026-09-01T04:25:00Z",
-  "completed_count": 15,
+  "reviewed_at": "2026-09-01T04:26:00Z",
+  "completed_count": 20,
   "decisions": [
     {"uid":"zhcn:8dad6eda9dd543ff4a5c444d","current_fingerprint":"6bea9cd807f8a71797a4740a98121bdc54df35e1add51393ced765de599041c0","action":"keep","reason":"Thông báo reset làm thông tin Cuộc đua đã đặt lịch không thể khôi phục đúng nghĩa.","terminology_basis":"Embedded race.generic xác nhận Cuộc đua.","confidence":"high"},
     {"uid":"zhcn:760b5599897ff966583449ea","current_fingerprint":"86b2e5d6e4db1b0faaa71359a4fb9057ef8d6533ef2f15125d5148ee766347d1","action":"keep","reason":"Giữ nguyên atlas/color tag, placeholder {0} và canonical Jewel.","terminology_basis":"Embedded currency.jewel yêu cầu Jewel.","confidence":"high"},
@@ -22,6 +22,11 @@
     {"uid":"zhcn:929eff368d4c523473b878ed","current_fingerprint":"384d7195f601579503ca175c8bce333494a5e3a8dd2284f435c1c34de09fe328","action":"keep","reason":"Câu hỏi tham gia Cuộc đua và phát sự kiện đúng nghĩa, giữ color tag.","terminology_basis":"Embedded race.generic xác nhận Cuộc đua.","confidence":"high"},
     {"uid":"zhcn:b81f9e45ea8ff01bc18a551d","current_fingerprint":"d83510cd23a415a052d27f824d5ac52e106d39f4ce516614d1e40c62e84c9e6d","action":"keep","reason":"Nhãn điều kiện khi chọn Cuộc đua ở lượt đặc biệt đúng nghĩa.","terminology_basis":"Embedded race.generic xác nhận Cuộc đua.","confidence":"high"},
     {"uid":"zhcn:24f2787291e42d5639966fa7","current_fingerprint":"b2be26dfb080c8fe6e6c897ce68cf0ba65b05dc29dc595c516f1270d396587aa","action":"keep","reason":"Hướng dẫn tắt xác nhận ở lượt đặc biệt giữ đúng Cuộc đua và Mã Nương.","terminology_basis":"Embedded race.generic yêu cầu Cuộc đua; common.world.umamusume yêu cầu Mã Nương.","confidence":"high"},
-    {"uid":"zhcn:71ca1b0e8315fff143b9e416","current_fingerprint":"28d3840d99ce86b42eae889f21705bd53aa1c0f7f3482b08d4547df52cbbf223","action":"keep","reason":"Thông báo hủy reservation vì không thể tham gia Cuộc đua đã đặt trước đúng nghĩa và giữ hai dòng.","terminology_basis":"Embedded race.generic xác nhận Cuộc đua.","confidence":"high"}
+    {"uid":"zhcn:71ca1b0e8315fff143b9e416","current_fingerprint":"28d3840d99ce86b42eae889f21705bd53aa1c0f7f3482b08d4547df52cbbf223","action":"keep","reason":"Thông báo hủy reservation vì không thể tham gia Cuộc đua đã đặt trước đúng nghĩa và giữ hai dòng.","terminology_basis":"Embedded race.generic xác nhận Cuộc đua.","confidence":"high"},
+    {"uid":"zhcn:8cb5f15bf2f9d744766fc3f9","current_fingerprint":"8f20d0cf0d7710fc781ef2a024c460b54646f5ef536bc67911d44fc8ada6ddf7","action":"keep","reason":"Thông báo không thể đặt trước Cuộc đua đúng nghĩa.","terminology_basis":"Embedded race.generic xác nhận Cuộc đua.","confidence":"high"},
+    {"uid":"zhcn:0a38dc82140f5097fd5633f9","current_fingerprint":"bb5b7cc4d8f214032e19dfb8046d985c8893974ccbad855a5b64507cdc6568fa","action":"keep","reason":"Nhãn thiết lập chiến thuật cho Mã Nương cùng tên đúng nghĩa.","confidence":"high"},
+    {"uid":"zhcn:3c69393c51e0c62816dcac5f","current_fingerprint":"9afa2bb4f7ed5ca302b0932c526ab8ece0c26a2ab82606462d43968afae9b5ce","action":"keep","reason":"Mô tả tái sử dụng thiết lập chiến thuật cho Mã Nương cùng tên đúng nghĩa.","terminology_basis":"Embedded common.world.umamusume yêu cầu Mã Nương.","confidence":"high"},
+    {"uid":"zhcn:e9e705a6a113c72fb57c1bcb","current_fingerprint":"145740e72b6fcd741274494f3e5bd1f4ac02eed8f3a8efc6c3519873bb29ac7b","action":"keep","reason":"Giữ đúng atlas, canonical Jewel và giới hạn 20 lần mỗi ngày.","terminology_basis":"Embedded currency.jewel yêu cầu Jewel.","confidence":"high"},
+    {"uid":"zhcn:f4650f8879c6cf7346de9435","current_fingerprint":"d223b8261429ff680adbb60ec89521916011c40f4896278c5a3ff203e16e749a","action":"defer","reason":"资质 là khái niệm Aptitude trong ngữ cảnh điều kiện Cuộc đua; bản hiện tại dùng calque 'tư chất', nhưng batch chưa có canonical guard cho alias này nên cần canonical maintenance trước.","terminology_basis":"Cuộc đua đã được embedded race.generic khóa; riêng 资质 chưa có embedded canonical term.","canonical_finding":{"kind":"terminology","source_zh_cn":"资质","suggested_target_vi":"Aptitude","concept":"Race aptitude","match_mode":"contains","scope":"source_path","reason":"Reusable gameplay concept 资质 should use the established player-facing Aptitude term instead of Vietnamese calques such as tư chất; this item refers to entering a race with low aptitude.","confidence":"high"},"confidence":"high"}
   ]
 }

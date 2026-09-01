@@ -4498,7 +4498,8 @@
       "concepts": [
         "Speed stat alias must not override locked compound skill/title 速度之星",
         "Speed stat alias must not overmatch ordinary prose compounds such as 成长速度",
-        "Ordinary narrative speed/quickness must not automatically normalize to gameplay stat Speed"
+        "Ordinary narrative speed/quickness must not automatically normalize to gameplay stat Speed",
+        "Speed stat alias must not overmatch ordinary narrative references to physical running speed"
       ],
       "suggested_targets_vi": [
         "Speed"
@@ -4509,9 +4510,10 @@
       "reasons": [
         "The generic stat alias is embedded inside a more-specific locked title phrase and should yield to the longer canonical match.",
         "In 成长速度 the word means rate/speed of growth, not the gameplay Speed stat.",
-        "Here Agnes Tachyon asks how fast a Mã Nương can run; it is descriptive dialogue rather than a stat label or stat-value context."
+        "Here Agnes Tachyon asks how fast a Mã Nương can run; it is descriptive dialogue rather than a stat label or stat-value context.",
+        "In 赛马娘的速度究竟能快到什么程度, 速度 is literal physical speed in dialogue rather than the Speed stat label."
       ],
-      "evidence_count": 3,
+      "evidence_count": 4,
       "evidence": [
         {
           "uid": "zhcn:0954921267fc40c4003cf418",
@@ -4560,6 +4562,22 @@
           "current_text": "Bạn không tò mò xem tốc độ của Uma Musume rốt cuộc có thể nhanh đến mức nào sao?\\nNhưng nếu có hứng thú…… thì hãy trở thành\\nchuột lang của tôi, Agnes Tachyon nhé.",
           "proposed_text": null,
           "reported_at": "2026-09-01T05:20:00Z"
+        },
+        {
+          "uid": "zhcn:7f9a27606d13648ba71cd8c6",
+          "plan_id": "tr-p3-67f8551f7780-5e45c4dc80a8-b5c0bcb3bd-9bb2b41843",
+          "batch_id": "tr-p3-67f8551f7780-5e45c4dc80a8-b5c0bcb3bd-9bb2b41843-b0285",
+          "claim_id": "trc-gpt56sol-chat-b0285-7f21",
+          "worker_id": "gpt56sol-chat-7f21",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "163",
+            "1032"
+          ],
+          "source_text": "你对赛马娘的速度究竟能快到什么程度也不感兴趣吗。\\n但如果你对此有兴趣的话……就请成为我，\\n爱丽速子的豚鼠吧。",
+          "current_text": "Bạn không tò mò xem tốc độ của Uma Musume rốt cuộc có thể nhanh đến mức nào sao?\\nNhưng nếu có hứng thú…… thì hãy trở thành\\nchuột lang của tôi, Agnes Tachyon nhé.",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T06:00:00Z"
         }
       ],
       "canonical_resolution": {
@@ -4569,7 +4587,7 @@
       },
       "review_resolution": null,
       "first_seen_at": "2026-09-01T02:21:00Z",
-      "last_seen_at": "2026-09-01T05:20:00Z"
+      "last_seen_at": "2026-09-01T06:00:00Z"
     },
     {
       "finding_id": "cf-3c2d3f6971b1f60a",
@@ -6019,7 +6037,8 @@
         "Power stat rule must not match ordinary strength or 力量石 resource-name prose",
         "Distinguish stat Power from ordinary prose strength",
         "Power stat alias must exclude generic descriptive phrase 不可思议力量",
-        "Disambiguate ordinary physical strength from the Power stat"
+        "Disambiguate ordinary physical strength from the Power stat",
+        "Power stat alias must not overmatch narrative 力量感 describing force/powerfulness"
       ],
       "suggested_targets_vi": [],
       "confidence_levels": [
@@ -6032,9 +6051,10 @@
         "The bare alias 力量 is ambiguous and currently forces stat Power inside song-description prose where it means ordinary strength.",
         "This item describes a mysterious ability/power, not the gameplay Power stat, so forcing Power would corrupt prose.",
         "The bare alias 力量 is ambiguous and currently forces stat Power in ordinary non-stat labels/prose.",
-        "The reusable alias 力量 is being matched as the Power stat inside ordinary descriptive prose where it means physical strength; the matcher must exclude non-stat contexts."
+        "The reusable alias 力量 is being matched as the Power stat inside ordinary descriptive prose where it means physical strength; the matcher must exclude non-stat contexts.",
+        "In 充满力量感的赛跑, 力量 means a sense of power/force in narrative prose, not the Power stat."
       ],
-      "evidence_count": 10,
+      "evidence_count": 11,
       "evidence": [
         {
           "uid": "zhcn:c7764341e6086330eea7872a",
@@ -6195,6 +6215,22 @@
           "current_text": "Nghe nói có sức mạnh đủ để dùng đuôi chống đỡ cả cơ thể……",
           "proposed_text": null,
           "reported_at": "2026-08-31T13:12:30Z"
+        },
+        {
+          "uid": "zhcn:7900c0f94aa9aaa582cd2f8a",
+          "plan_id": "tr-p3-67f8551f7780-5e45c4dc80a8-b5c0bcb3bd-9bb2b41843",
+          "batch_id": "tr-p3-67f8551f7780-5e45c4dc80a8-b5c0bcb3bd-9bb2b41843-b0285",
+          "claim_id": "trc-gpt56sol-chat-b0285-7f21",
+          "worker_id": "gpt56sol-chat-7f21",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "163",
+            "1010"
+          ],
+          "source_text": "Howdy！我叫大树快车！\\n我要用我充满力量感的赛跑给大家带来Happy！",
+          "current_text": "Howdy! Tôi là Taiki Shuttle!\\nTôi sẽ mang Happy đến cho mọi người bằng những cuộc đua đầy Power của mình!",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T06:00:00Z"
         }
       ],
       "canonical_resolution": {
@@ -6204,7 +6240,7 @@
       },
       "review_resolution": null,
       "first_seen_at": "2026-08-30T13:27:00Z",
-      "last_seen_at": "2026-08-31T13:12:30Z"
+      "last_seen_at": "2026-09-01T06:00:00Z"
     },
     {
       "finding_id": "cf-5f122ded4af0e4b5",
@@ -10188,7 +10224,8 @@
         "Distinguish Skill-name 心动 from ordinary emotional/hashtag prose",
         "Skill-name alias 心动 overmatches ordinary prose in song descriptions",
         "Skill-name alias 心动 must not overmatch ordinary/stylized title prose",
-        "Ordinary emotional 心动 in dialogue must not automatically normalize to the Skill title Nhịp tim rộn ràng"
+        "Ordinary emotional 心动 in dialogue must not automatically normalize to the Skill title Nhịp tim rộn ràng",
+        "Skill alias 心动 must not overmatch ordinary emotional prose such as 心动不已"
       ],
       "suggested_targets_vi": [],
       "confidence_levels": [
@@ -10201,9 +10238,10 @@
         "Bare 心动 can be ordinary expressive language and should not automatically force a Skill-title rendering in song-description hashtags.",
         "心动的预感 is ordinary prose rather than a Skill reference; the matcher needs contextual narrowing before this item can be resolved safely.",
         "心动 appears inside a decorative multi-part title where it functions lexically, not as the standalone canonical Skill name.",
-        "This occurrence means feeling thrilled/heart-pounding and is not a named Skill reference."
+        "This occurrence means feeling thrilled/heart-pounding and is not a named Skill reference.",
+        "This dialogue uses 心动 as an emotional sensation, not a Skill name."
       ],
-      "evidence_count": 7,
+      "evidence_count": 8,
       "evidence": [
         {
           "uid": "zhcn:996c7568e8341c51f3593486",
@@ -10316,6 +10354,22 @@
           "current_text": "Ê hê hê, Maya-chan đây—☆\\nMình thích nhất cảm giác tim đập thình thịch và những chuyện kích thích♪ Mong được giúp đỡ!",
           "proposed_text": null,
           "reported_at": "2026-09-01T05:10:00Z"
+        },
+        {
+          "uid": "zhcn:e837deb220b7be97d6a32405",
+          "plan_id": "tr-p3-67f8551f7780-5e45c4dc80a8-b5c0bcb3bd-9bb2b41843",
+          "batch_id": "tr-p3-67f8551f7780-5e45c4dc80a8-b5c0bcb3bd-9bb2b41843-b0285",
+          "claim_id": "trc-gpt56sol-chat-b0285-7f21",
+          "worker_id": "gpt56sol-chat-7f21",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "163",
+            "1024"
+          ],
+          "source_text": "诶嘿嘿，是Maya亲哟—☆\\n最喜欢心动不已，和刺激的事情啦♪请多指教！",
+          "current_text": "Ê hê hê, Maya-chan đây—☆\\nMình thích nhất cảm giác tim đập thình thịch và những chuyện kích thích♪ Mong được giúp đỡ!",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T06:00:00Z"
         }
       ],
       "canonical_resolution": {
@@ -10329,7 +10383,7 @@
         "target_vi": "Nhịp tim rộn ràng"
       },
       "first_seen_at": "2026-08-31T01:01:03Z",
-      "last_seen_at": "2026-09-01T05:10:00Z"
+      "last_seen_at": "2026-09-01T06:00:00Z"
     },
     {
       "finding_id": "cf-9a0b738dae85c3a2",

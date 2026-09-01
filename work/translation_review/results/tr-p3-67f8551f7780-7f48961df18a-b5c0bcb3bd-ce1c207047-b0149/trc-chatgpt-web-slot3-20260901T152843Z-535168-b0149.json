@@ -5,58 +5,18 @@
   "batch_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047-b0149",
   "claim_id": "trc-chatgpt-web-slot3-20260901T152843Z-535168-b0149",
   "worker_id": "chatgpt-web-slot3-20260901T152843Z-535168",
-  "reviewed_at": "2026-09-01T15:32:14Z",
-  "completed_count": 5,
+  "reviewed_at": "2026-09-01T15:33:09Z",
+  "completed_count": 10,
   "decisions": [
-    {
-      "uid": "zhcn:8bb5f212516ee8900a400bdf",
-      "current_fingerprint": "e99136f0e53234ceb0d7c0f6a68b0bc213c9e3bebcb8b2d3c2b18f0f43027070",
-      "action": "revise",
-      "proposed_text": "Từ nay về sau, hãy tiếp tục gánh vác trách nhiệm của một Trainer,\\nvà chân thành đồng hành cùng Mã Nương bằng tất cả nhiệt huyết.",
-      "reason": "Bản hiện tại đúng nghĩa tổng thể nhưng dùng hai wording bị cấm cho thuật ngữ player-facing: 'Huấn luyện viên' và generic 'Uma Musume'.",
-      "terminology_basis": "Embedded community terms require Trainer for 训练员 and Mã Nương for generic 赛马娘.",
-      "confidence": "high"
-    },
-    {
-      "uid": "zhcn:886d486e85a00446d0ea664d",
-      "current_fingerprint": "fef8c0dee58c43a13d2efdbcb8152edd886d0612c6730525d81d92d5fdc989b5",
-      "action": "defer",
-      "reason": "Trong cụm 成长速度, 速度 mang nghĩa từ vựng 'tốc độ/nhịp độ trưởng thành', không đủ bằng chứng đây là stat Speed. Embedded community rule đang ép canonical stat lên ngữ cảnh văn xuôi, nên cần sửa context rule trước thay vì đổi câu thành 'Speed trưởng thành'.",
-      "terminology_basis": "Embedded common.stat.speed marks the current wording as mismatched, but the local phrase is generic 成长速度 rather than an explicit gameplay stat label.",
-      "canonical_finding": {
-        "kind": "context_rule",
-        "source_zh_cn": "成长速度",
-        "concept": "Speed stat alias must not overmatch generic growth-rate prose",
-        "match_mode": "contains",
-        "scope": "source_path",
-        "reason": "成长速度 is ordinary prose meaning growth rate/speed; mapping it to the player-facing stat label Speed would distort meaning.",
-        "confidence": "high"
-      },
-      "confidence": "high"
-    },
-    {
-      "uid": "zhcn:a9f47107b276bd1bd69402bf",
-      "current_fingerprint": "02ca2cb6d69e0399a886e57bb98ba1a89a742d9608d3b58010de8c13df41ca03",
-      "action": "revise",
-      "proposed_text": "Đại diện cho giới đua ngựa\\nchính là cặp Mã Nương và Trainer này nhỉ!",
-      "reason": "Nội dung đúng nhưng cả generic 赛马娘 và 训练员 đang dùng wording bị cấm trong registry embedded.",
-      "terminology_basis": "Embedded community terms require Mã Nương for generic 赛马娘 and Trainer for 训练员.",
-      "confidence": "high"
-    },
-    {
-      "uid": "zhcn:306b1bb88f1a0e3ffbfe3915",
-      "current_fingerprint": "71d62bd7ac1a9058fe6eda157280e08c5be1e9b1710b692b046e2a408d32a21a",
-      "action": "keep",
-      "reason": "'Vô Thanh Vô Tì' bảo toàn ý vô thanh/vô khuyết của tiêu đề ngắn, không có token hay thuật ngữ canonical bị vi phạm.",
-      "confidence": "high"
-    },
-    {
-      "uid": "zhcn:a19cb3b2a41977d712772e68",
-      "current_fingerprint": "683cc7d669964d88d271df6b53f07c0b6830c0df86f03745c29e26340f121f8f",
-      "action": "defer",
-      "reason": "Current 'Ngọc Lục Bảo Giữa Sóng Biếc' phù hợp nghĩa 绿宝石, nhưng locked currency alias 宝石 đang overmatch bên trong từ ghép 绿宝石. Batch đã gắn canonical finding mở cho chính lỗi context này, nên mục phải chờ canonical resolution.",
-      "terminology_basis": "Locked currency.jewel says Jewel, while embedded open finding cf-d1bcaa0ab582cbdf explicitly states 宝石 must not overmatch lexical compounds such as 绿宝石.",
-      "confidence": "high"
-    }
+    {"uid":"zhcn:8bb5f212516ee8900a400bdf","current_fingerprint":"e99136f0e53234ceb0d7c0f6a68b0bc213c9e3bebcb8b2d3c2b18f0f43027070","action":"revise","proposed_text":"Từ nay về sau, hãy tiếp tục gánh vác trách nhiệm của một Trainer,\\nvà chân thành đồng hành cùng Mã Nương bằng tất cả nhiệt huyết.","reason":"Bản hiện tại đúng nghĩa tổng thể nhưng dùng hai wording bị cấm cho thuật ngữ player-facing: 'Huấn luyện viên' và generic 'Uma Musume'.","terminology_basis":"Embedded community terms require Trainer for 训练员 and Mã Nương for generic 赛马娘.","confidence":"high"},
+    {"uid":"zhcn:886d486e85a00446d0ea664d","current_fingerprint":"fef8c0dee58c43a13d2efdbcb8152edd886d0612c6730525d81d92d5fdc989b5","action":"defer","reason":"Trong cụm 成长速度, 速度 là nghĩa từ vựng 'tốc độ/nhịp độ trưởng thành', không đủ bằng chứng đây là stat Speed; cần sửa context rule trước.","terminology_basis":"Embedded common.stat.speed overmatches generic 成长速度 in prose.","canonical_finding":{"kind":"context_rule","source_zh_cn":"成长速度","concept":"Speed stat alias must not overmatch generic growth-rate prose","match_mode":"contains","scope":"source_path","reason":"成长速度 is ordinary prose meaning growth rate/speed; mapping it to the stat label Speed would distort meaning.","confidence":"high"},"confidence":"high"},
+    {"uid":"zhcn:a9f47107b276bd1bd69402bf","current_fingerprint":"02ca2cb6d69e0399a886e57bb98ba1a89a742d9608d3b58010de8c13df41ca03","action":"revise","proposed_text":"Đại diện cho giới đua ngựa\\nchính là cặp Mã Nương và Trainer này nhỉ!","reason":"Generic 赛马娘 và 训练员 đang dùng wording bị cấm.","terminology_basis":"Embedded community terms require Mã Nương and Trainer.","confidence":"high"},
+    {"uid":"zhcn:306b1bb88f1a0e3ffbfe3915","current_fingerprint":"71d62bd7ac1a9058fe6eda157280e08c5be1e9b1710b692b046e2a408d32a21a","action":"keep","reason":"'Vô Thanh Vô Tì' bảo toàn ý vô thanh/vô khuyết của tiêu đề ngắn.","confidence":"high"},
+    {"uid":"zhcn:a19cb3b2a41977d712772e68","current_fingerprint":"683cc7d669964d88d271df6b53f07c0b6830c0df86f03745c29e26340f121f8f","action":"defer","reason":"Current text phù hợp nghĩa 绿宝石 nhưng locked currency alias 宝石 đang overmatch; batch đã có canonical finding mở cho lỗi context này.","terminology_basis":"Locked currency.jewel conflicts with open finding cf-d1bcaa0ab582cbdf stating 宝石 must not overmatch 绿宝石.","confidence":"high"},
+    {"uid":"zhcn:205dc2bb7d5813c6ee6208b8","current_fingerprint":"b02e7980bc0c54bfd118725e463c4d55028897e3c000d18678dfcab522153ef8","action":"revise","proposed_text":"Cúc Marguerite・Latte","reason":"木茼蒿 là tên thực vật chỉ cúc Marguerite; 'Tần ô' tương ứng 茼蒿 và làm sai loài/tên gọi.","confidence":"high"},
+    {"uid":"zhcn:8cb6dc0447817d7f7c75ae7e","current_fingerprint":"082a61ba3795e1a9214162dbe983f4401ef4147862342dcbc0ecb5634e6cbeda","action":"keep","reason":"'Bé tuyết của tiệc trà' giữ đúng hình ảnh 茶点 + 雪童子 và tự nhiên như tiêu đề.","confidence":"high"},
+    {"uid":"zhcn:957d8a627585cda4b012f763","current_fingerprint":"1c4acd01fb31f40b52fe990d24523d9744c243ad1e511687bbef8fe63121f0aa","action":"keep","reason":"Suikan Nadeshiko bảo toàn hai thành tố văn hóa 水干 và 抚子 theo dạng romanized title hợp lý.","confidence":"high"},
+    {"uid":"zhcn:5955175e1d2959b7ea08dddb","current_fingerprint":"fafc04c808fd1b8dd092826aff19cb303f57564e5233cd98ee51f56f1ae509ea","action":"keep","reason":"'Hoa ảnh trong mưa lành' truyền đủ ý 慈雨 và 华影, tự nhiên trong tiêu đề thơ.","confidence":"high"},
+    {"uid":"zhcn:02b1bc1c98b9b435e51b75a9","current_fingerprint":"60361fd467452b9841c925b16037defdadde006410c99a9a7d78bd66765aee83","action":"keep","reason":"'Siêu điều khiển mê quang' giữ đủ hai thành tố 迷光 và 超控 của tiêu đề cách điệu.","confidence":"high"}
   ]
 }

@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "status": "partial",
+  "plan_id": "tr-p3-67f8551f7780-5e45c4dc80a8-b5c0bcb3bd-9bb2b41843",
+  "batch_id": "tr-p3-67f8551f7780-5e45c4dc80a8-b5c0bcb3bd-9bb2b41843-b0221",
+  "claim_id": "trc-chatgpt-web-s3-20260901T091412Z-22e1",
+  "worker_id": "chatgpt-web-slot-3-20260901T091412Z-22e1",
+  "reviewed_at": "2026-09-01T09:15:29Z",
+  "completed_count": 5,
+  "decisions": [
+    {
+      "uid": "zhcn:e237e975e25f4b175316f960",
+      "current_fingerprint": "2cf8f6032412cda3b432a51b5cdc0a0261cc2982a9cb2225eb0524106938ac7e",
+      "action": "defer",
+      "reason": "Exact full-Skill lock yêu cầu 'Nôn nóng Pace Chaser' và hiện tại đã khớp, nhưng cùng packet lại yêu cầu component 焦躁 = 'Rushed'. Hai locked constraints không thể cùng được thỏa bằng một title tự nhiên; không nên phá full-Skill lock để đoán lại canonical title.",
+      "canonical_finding": {
+        "kind": "conflict",
+        "source_zh_cn": "先行焦躁",
+        "concept": "Skill title 先行焦躁",
+        "match_mode": "exact",
+        "scope": "item",
+        "reason": "reviewed.skill_name.26476439bb04 => 'Nôn nóng Pace Chaser' xung đột với reviewed.system_label.841121610784 => 'Rushed' cho 焦躁.",
+        "confidence": "high"
+      },
+      "confidence": "low"
+    },
+    {
+      "uid": "zhcn:396453fba8da250c812b8361",
+      "current_fingerprint": "8c94a1a949dfbe69b46ef715c756eb0cec8bdf502a32ecfcce71a236465ac549",
+      "action": "revise",
+      "revised_text": "Late Surger Rushed",
+      "reason": "Packet cung cấp hai constraint không xung đột: 居中 phải dùng community label 'Late Surger' và 焦躁 dùng locked system label 'Rushed'. Bản hiện tại không thỏa cả hai.",
+      "terminology_basis": "common.style.late_surger => Late Surger; reviewed.system_label.841121610784 => Rushed; giữ thứ tự source 居中 + 焦躁.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:02fc9a35c33c2879603a0de5",
+      "current_fingerprint": "8c94a1a949dfbe69b46ef715c756eb0cec8bdf502a32ecfcce71a236465ac549",
+      "action": "revise",
+      "revised_text": "Late Surger Rushed",
+      "reason": "Packet cung cấp hai constraint không xung đột: 居中 phải dùng community label 'Late Surger' và 焦躁 dùng locked system label 'Rushed'. Bản hiện tại không thỏa cả hai.",
+      "terminology_basis": "common.style.late_surger => Late Surger; reviewed.system_label.841121610784 => Rushed; giữ thứ tự source 居中 + 焦躁.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:dbffb7be3dd3a66f8ab612f4",
+      "current_fingerprint": "c234d6e5d92a66a5df9a822ddfcfd52c3aa1ca3b11972d65e0a95fb45f2b690f",
+      "action": "defer",
+      "reason": "Exact full-Skill lock yêu cầu 'Đường thẳng Cự ly trung bình○', trong khi community constraint cho 中距离 bắt buộc 'Medium' và còn cấm 'Cự ly trung bình'. Evidence trong packet tự mâu thuẫn nên không có revision chắc chắn thỏa policy.",
+      "canonical_finding": {
+        "kind": "conflict",
+        "source_zh_cn": "中距离直线○",
+        "concept": "Skill title 中距离直线○",
+        "match_mode": "exact",
+        "scope": "item",
+        "reason": "reviewed.skill_name.7ea02e89037d xung đột trực tiếp với common.distance.medium.",
+        "confidence": "high"
+      },
+      "confidence": "low"
+    },
+    {
+      "uid": "zhcn:60865fd731fc8949c849cb3d",
+      "current_fingerprint": "c234d6e5d92a66a5df9a822ddfcfd52c3aa1ca3b11972d65e0a95fb45f2b690f",
+      "action": "defer",
+      "reason": "Exact full-Skill lock yêu cầu 'Đường thẳng Cự ly trung bình○', trong khi community constraint cho 中距离 bắt buộc 'Medium' và còn cấm 'Cự ly trung bình'. Evidence trong packet tự mâu thuẫn nên không có revision chắc chắn thỏa policy.",
+      "canonical_finding": {
+        "kind": "conflict",
+        "source_zh_cn": "中距离直线○",
+        "concept": "Skill title 中距离直线○",
+        "match_mode": "exact",
+        "scope": "item",
+        "reason": "reviewed.skill_name.7ea02e89037d xung đột trực tiếp với common.distance.medium.",
+        "confidence": "high"
+      },
+      "confidence": "low"
+    }
+  ]
+}

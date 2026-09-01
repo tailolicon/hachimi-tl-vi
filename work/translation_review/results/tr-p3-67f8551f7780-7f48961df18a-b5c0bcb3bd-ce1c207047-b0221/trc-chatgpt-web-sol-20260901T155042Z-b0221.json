@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "status": "partial",
+  "plan_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047",
+  "batch_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047-b0221",
+  "claim_id": "trc-chatgpt-web-sol-20260901T155042Z-b0221",
+  "worker_id": "chatgpt-web-sol-20260901T155042Z-b0221",
+  "reviewed_at": "2026-09-01T15:50:42Z",
+  "completed_count": 5,
+  "decisions": [
+    {
+      "uid": "zhcn:0cc9bcfa5fb8587e628b4c2e",
+      "current_fingerprint": "cc66b18c046e54e66e31e8e92196dccd58adeee20e119a3a9b005b74f32521a7",
+      "action": "keep",
+      "reason": "4月15日 is correctly rendered as the Vietnamese date '15 tháng 4'; the apparent numeric-token order change is required by Vietnamese date order.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:8f98cbe3ae27c278226b70fd",
+      "current_fingerprint": "739cdb17b523db48b455dea2eed784540c266a95548764872ad3066e49c96bac",
+      "action": "keep",
+      "reason": "5月8日 is correctly rendered as '8 tháng 5'; the numeric values and meaning are preserved despite reordered date tokens.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:7f1eb1d9f20c50ae94a63b4f",
+      "current_fingerprint": "bf2a2211c709c78b89276ac1ad4d4c7b2052c435cb76129f8bfad734747ab8ff",
+      "action": "defer",
+      "reason": "This is a named song title with an open proper-name canonical finding. The current target leaves CJK in player-facing Vietnamese, but the verified Latin/Romanized identity is not embedded, so a one-off guess would violate canonical-first policy.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:92917939e5ecf037eec41fab",
+      "current_fingerprint": "1087da1706a279436150a747edf7f4f8ad85baa6e35038995c7c05b7c5d370bd",
+      "action": "revise",
+      "proposed_text": "Nigekiri! Fallin' Love",
+      "reason": "The song-title-specific community canonical explicitly requires the established Latin-script title; leaving the Japanese title is forbidden. The generic Front Runner alias match is incidental inside this proper name and must not be injected into the song title.",
+      "terminology_basis": "community term song.nigekiri_fallin_love: preferred/accepted 'Nigekiri! Fallin' Love'; its embedded basis identifies this as the named Umayon ending song.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:0627a7058ad3b19b57416f62",
+      "current_fingerprint": "3ce1de28f06bc2275ffcf75396cb74c68e314e88672c7b06f54dcc0c2d232609",
+      "action": "defer",
+      "reason": "The item is a named song title with an open proper-name canonical finding requiring a verified Latin/Romanized identity. The current semantic translation cannot be approved without that canonical evidence.",
+      "confidence": "high"
+    }
+  ]
+}

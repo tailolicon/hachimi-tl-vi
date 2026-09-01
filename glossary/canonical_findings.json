@@ -3370,6 +3370,57 @@
       "last_seen_at": "2026-09-01T00:11:00Z"
     },
     {
+      "finding_id": "cf-1daec5ebd9895c48",
+      "status": "open",
+      "source_zh_cn": "毅力",
+      "match_mode": "contains",
+      "source_paths": [
+        "text_data_dict.json"
+      ],
+      "key_exact": [],
+      "json_path_prefixes": [
+        [
+          "144"
+        ]
+      ],
+      "kinds": [
+        "context_rule"
+      ],
+      "concepts": [
+        "Literal perseverance in prose must not automatically normalize to the Guts stat label"
+      ],
+      "suggested_targets_vi": [],
+      "confidence_levels": [
+        "high"
+      ],
+      "reasons": [
+        "The phrase 充满毅力 describes personality/tenacity in prose, where rendering 毅力 as Guts produces an unnatural stat-label insertion."
+      ],
+      "evidence_count": 1,
+      "evidence": [
+        {
+          "uid": "zhcn:9806461def522f7cabed4446",
+          "plan_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047",
+          "batch_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047-b0158",
+          "claim_id": "trc-gpt56sol-hourly-auto5-20260901T153655Z-b0158",
+          "worker_id": "gpt56sol-hourly-auto5-20260901T1534Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "144",
+            "1100"
+          ],
+          "source_text": "悠然自得、不骄不躁而又充满毅力。\\n永不言弃的有骨气的赛马娘",
+          "current_text": "Ung dung tự tại, không kiêu căng cũng chẳng nóng vội, tràn đầy Guts.\\nMã Nương đầy khí phách, không bao giờ bỏ cuộc",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T15:40:30Z"
+        }
+      ],
+      "canonical_resolution": null,
+      "review_resolution": null,
+      "first_seen_at": "2026-09-01T15:40:30Z",
+      "last_seen_at": "2026-09-01T15:40:30Z"
+    },
+    {
       "finding_id": "cf-1db30364f26517a5",
       "status": "open",
       "source_zh_cn": "长距离",
@@ -17593,19 +17644,24 @@
       "key_exact": [],
       "json_path_prefixes": [],
       "kinds": [
-        "context_rule"
+        "context_rule",
+        "terminology"
       ],
       "concepts": [
-        "Late Surger hint Skill title conflicts with legacy Sashi exact lock"
+        "Late Surger hint Skill title conflicts with legacy Sashi exact lock",
+        "Skill title must align with canonical Late Surger running-style vocabulary instead of legacy Sashi wording"
       ],
-      "suggested_targets_vi": [],
+      "suggested_targets_vi": [
+        "Mẹo Late Surger○"
+      ],
       "confidence_levels": [
         "high"
       ],
       "reasons": [
-        "The player-facing running-style rule and old exact Skill lock are mutually incompatible."
+        "The player-facing running-style rule and old exact Skill lock are mutually incompatible.",
+        "The embedded reviewed Skill lock conflicts with the current hard community terminology rule; updating only this item would leave reusable canonical context inconsistent."
       ],
-      "evidence_count": 1,
+      "evidence_count": 4,
       "evidence": [
         {
           "uid": "zhcn:21d87bb367482829534ff79c",
@@ -17622,6 +17678,54 @@
           "current_text": "Mẹo Sashi○",
           "proposed_text": null,
           "reported_at": "2026-09-01T02:50:00Z"
+        },
+        {
+          "uid": "zhcn:21d87bb367482829534ff79c",
+          "plan_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047",
+          "batch_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047-b0179",
+          "claim_id": "trc-chatgpt-web-20260901T154011Z-b0179",
+          "worker_id": "chatgpt-web-20260901T154011Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "147",
+            "2015401"
+          ],
+          "source_text": "居中诀窍○",
+          "current_text": "Mẹo Sashi○",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T15:41:55Z"
+        },
+        {
+          "uid": "zhcn:a32e5d389d75867c847c173d",
+          "plan_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047",
+          "batch_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047-b0179",
+          "claim_id": "trc-chatgpt-web-20260901T154011Z-b0179",
+          "worker_id": "chatgpt-web-20260901T154011Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "147",
+            "2015402"
+          ],
+          "source_text": "居中诀窍○",
+          "current_text": "Mẹo Sashi○",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T15:41:55Z"
+        },
+        {
+          "uid": "zhcn:91ddd11382caf94c05638455",
+          "plan_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047",
+          "batch_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047-b0179",
+          "claim_id": "trc-chatgpt-web-20260901T154011Z-b0179",
+          "worker_id": "chatgpt-web-20260901T154011Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "147",
+            "2015403"
+          ],
+          "source_text": "居中诀窍○",
+          "current_text": "Mẹo Sashi○",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T15:41:55Z"
         }
       ],
       "canonical_resolution": {
@@ -17635,7 +17739,7 @@
         "target_vi": "Mẹo Sashi○"
       },
       "first_seen_at": "2026-09-01T02:50:00Z",
-      "last_seen_at": "2026-09-01T02:50:00Z"
+      "last_seen_at": "2026-09-01T15:41:55Z"
     },
     {
       "finding_id": "cf-b620a9b9adbb1efa",
@@ -19572,6 +19676,59 @@
       },
       "first_seen_at": "2026-09-01T00:17:00Z",
       "last_seen_at": "2026-09-01T00:17:00Z"
+    },
+    {
+      "finding_id": "cf-cd337bc7f688a0d4",
+      "status": "open",
+      "source_zh_cn": "马娘",
+      "match_mode": "contains",
+      "source_paths": [
+        "text_data_dict.json"
+      ],
+      "key_exact": [],
+      "json_path_prefixes": [
+        [
+          "144"
+        ]
+      ],
+      "kinds": [
+        "terminology"
+      ],
+      "concepts": [
+        "Generic horse-girl species shorthand"
+      ],
+      "suggested_targets_vi": [
+        "Mã Nương"
+      ],
+      "confidence_levels": [
+        "high"
+      ],
+      "reasons": [
+        "马娘 is used here as a generic species shorthand and should be aligned with the established Mã Nương world term instead of remaining Uma Musume."
+      ],
+      "evidence_count": 1,
+      "evidence": [
+        {
+          "uid": "zhcn:49bd88acdc7b9617b20ce843",
+          "plan_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047",
+          "batch_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047-b0158",
+          "claim_id": "trc-gpt56sol-hourly-auto5-20260901T153655Z-b0158",
+          "worker_id": "gpt56sol-hourly-auto5-20260901T1534Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "144",
+            "1095"
+          ],
+          "source_text": "『最速』即为技艺精湛\\n坚忍不拔的匠人马娘",
+          "current_text": "『Nhanh nhất』chính là đỉnh cao kỹ nghệ\\nUma Musume nghệ nhân kiên cường bất khuất",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T15:40:30Z"
+        }
+      ],
+      "canonical_resolution": null,
+      "review_resolution": null,
+      "first_seen_at": "2026-09-01T15:40:30Z",
+      "last_seen_at": "2026-09-01T15:40:30Z"
     },
     {
       "finding_id": "cf-cde74f30fa07e6a6",

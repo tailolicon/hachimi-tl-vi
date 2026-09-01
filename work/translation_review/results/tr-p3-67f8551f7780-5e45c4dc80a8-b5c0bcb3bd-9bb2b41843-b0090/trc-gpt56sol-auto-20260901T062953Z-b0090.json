@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "status": "partial",
+  "status": "complete",
   "plan_id": "tr-p3-67f8551f7780-5e45c4dc80a8-b5c0bcb3bd-9bb2b41843",
   "batch_id": "tr-p3-67f8551f7780-5e45c4dc80a8-b5c0bcb3bd-9bb2b41843-b0090",
   "claim_id": "trc-gpt56sol-auto-20260901T062953Z-b0090",
   "worker_id": "gpt56sol-auto-20260901T062513Z",
-  "reviewed_at": "2026-09-01T06:31:22Z",
-  "completed_count": 15,
+  "reviewed_at": "2026-09-01T06:31:58Z",
+  "completed_count": 20,
   "decisions": [
     {"uid":"zhcn:936bafaf7a1b9f68fb1d8972","current_fingerprint":"19baf8bf3fdad564cf1f3028c3976105714e6b858b62f29204a7a0bccc7e8c4a","action":"keep","reason":"Bản hiện tại đúng trạng thái 'chưa được đặt làm đối tượng hướng dẫn'.","confidence":"high"},
     {"uid":"zhcn:c8eb5a8f6ad72efe91b655fd","current_fingerprint":"1c359335d72646a065914346af3f0b6f1c050449906d9fcee1dfa16b72d3d1a7","action":"keep","reason":"'Đang diễn ra' đúng nghĩa 开赛中 trong nhãn trạng thái.","confidence":"high"},
@@ -22,6 +22,11 @@
     {"uid":"zhcn:12c55e8ad645d66b5c0ce933","current_fingerprint":"e26a1157d3b2e87689a1f4fbe7c2999399d7191882bf6ff7112fa86105547a4f","action":"keep","reason":"'Cuộc đua có cập nhật' đúng nghĩa 有更新的比赛 và giữ canonical race term.","terminology_basis":"Embedded locked term race.generic is present as 'Cuộc đua'.","confidence":"high"},
     {"uid":"zhcn:333aa5f5d8b5480295fb1584","current_fingerprint":"4c776f122cbc6cdfddbb4f45315095bd7f6b9d68ad7a2d4f90107ec7dfd8325c","action":"keep","reason":"Câu hỏi đúng nghĩa và đã dùng đúng player-facing term 'Trainer'.","terminology_basis":"Embedded community term common.trainer requires 'Trainer'.","confidence":"high"},
     {"uid":"zhcn:24bbe931c75452ef29edffc0","current_fingerprint":"089eead6a63e31dc81911cd806062ff687b19e5a043234fd4f27b77eb860d22e","action":"keep","reason":"Bản hiện tại đúng nghĩa không có cuộc đua phù hợp để đặt làm đối tượng Trainer Guide.","terminology_basis":"Embedded locked race.generic and community common.trainer are both satisfied.","confidence":"high"},
-    {"uid":"zhcn:39c1075c04b6e812ad643c9e","current_fingerprint":"e43bac0602632809f0743c9eb7d4a89975d793955d2f79e888623b79214ec0dd","action":"revise","proposed_text":"Đối với cuộc đua mục tiêu hướng dẫn, bạn đã chọn\n{0} có Aptitude thấp. Tiếp tục xếp đội mà không đổi lựa chọn?","reason":"适性 là canonical player-facing term 'Aptitude'; giữ nguyên placeholder, newline và nghĩa cảnh báo.","terminology_basis":"Embedded community term common.aptitude requires 'Aptitude'; locked race.generic remains represented as 'cuộc đua'.","confidence":"high"}
+    {"uid":"zhcn:39c1075c04b6e812ad643c9e","current_fingerprint":"e43bac0602632809f0743c9eb7d4a89975d793955d2f79e888623b79214ec0dd","action":"revise","proposed_text":"Đối với cuộc đua mục tiêu hướng dẫn, bạn đã chọn\n{0} có Aptitude thấp. Tiếp tục xếp đội mà không đổi lựa chọn?","reason":"适性 là canonical player-facing term 'Aptitude'; giữ nguyên placeholder, newline và nghĩa cảnh báo.","terminology_basis":"Embedded community term common.aptitude requires 'Aptitude'; locked race.generic remains represented as 'cuộc đua'.","confidence":"high"},
+    {"uid":"zhcn:681fbaf2d7323683f91f92bb","current_fingerprint":"ed4c36d6afc60bde70818068580d14f27494753b4898ed239666148a0ebb9990","action":"keep","reason":"Bản hiện tại đúng nghĩa hiển thị popup Trainer Guide và giữ đúng 'Trainer'.","terminology_basis":"Embedded community term common.trainer requires 'Trainer'.","confidence":"high"},
+    {"uid":"zhcn:24996e69d181b01808643258","current_fingerprint":"46eb6f049d4db14854cfe3fc5baa6449b8439bb820db42930494747ab7d4532f","action":"keep","reason":"Bản hiện tại giữ đúng điều kiện OFF, cấu trúc newline và hành vi không hiện popup Trainer Guide.","terminology_basis":"Embedded community term common.trainer requires 'Trainer'.","confidence":"high"},
+    {"uid":"zhcn:17e05160cac5f0b0761dd160","current_fingerprint":"bc07370ce1ecce565d9699b24d848d0d354daf668935822b03f4782bc6e64da8","action":"revise","proposed_text":"Kiểm tra Aptitude của Hướng dẫn Trainer","reason":"适性 phải giữ player-facing canonical 'Aptitude'; bản hiện tại dịch thành 'thích nghi'.","terminology_basis":"Embedded community terms common.trainer and common.aptitude require 'Trainer' and 'Aptitude'.","confidence":"high"},
+    {"uid":"zhcn:8670d4511ff68b752f580272","current_fingerprint":"86ff5833b3cf9b6bf0dc3235322064ee81a9bb7ac2dab55e1b261f455e5869be","action":"revise","proposed_text":"Khi đặt mục này thành ON, hệ thống sẽ kiểm tra xem bạn đã chọn\nkịch bản hoặc Mã Nương để huấn luyện có Aptitude cao phù hợp với cuộc đua mục tiêu hướng dẫn hay chưa","reason":"Sửa hai lỗi canonical: generic 赛马娘 phải là 'Mã Nương' và 适性 phải là 'Aptitude'; giữ nguyên newline và nghĩa kiểm tra.","terminology_basis":"TRANSLATION_REVIEW manual rule requires generic 赛马娘 = 'Mã Nương'; embedded common.aptitude requires 'Aptitude'; locked race.generic remains present.","confidence":"high"},
+    {"uid":"zhcn:8eb4805b6fa6f214dd50251a","current_fingerprint":"fff37f8894127e08849c5df8ef2020a3de20f027c6897145c1236abe6f043f76","action":"keep","reason":"Bản hiện tại đúng nghĩa tự động chuyển ON khi đổi cuộc đua mục tiêu hướng dẫn.","terminology_basis":"Embedded locked term race.generic is present in the current text.","confidence":"high"}
   ]
 }

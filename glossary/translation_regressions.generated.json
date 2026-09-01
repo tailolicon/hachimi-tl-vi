@@ -9,13 +9,13 @@
     "growth": "Every accepted retrospective translation revise and accepted UI revise is folded into this file automatically by both review merge workflows."
   },
   "summary": {
-    "merged_markers_scanned": 2000,
-    "translation_merged_markers_scanned": 1900,
+    "merged_markers_scanned": 2003,
+    "translation_merged_markers_scanned": 1903,
     "ui_merged_markers_scanned": 100,
-    "accepted_revision_events": 7683,
-    "accepted_translation_revision_events": 6194,
+    "accepted_revision_events": 7686,
+    "accepted_translation_revision_events": 6197,
     "accepted_ui_revision_events": 1489,
-    "regression_identity_count": 6085,
+    "regression_identity_count": 6086,
     "skipped_incomplete_markers": 0,
     "translation_skipped_incomplete_markers": 0,
     "ui_skipped_incomplete_markers": 0
@@ -88221,10 +88221,11 @@
       "source_text": "需要解锁育成事件「{0}」",
       "source_fingerprint": "d78a724f1952c4adcde9c94d9c21d426453d211ba33517d32e69505617fb3046",
       "rejected_targets": [
-        "Cần mở khóa sự kiện huấn luyện「{0}」"
+        "Mở khóa sự kiện huấn luyện「{0}」"
       ],
-      "approved_target": "Mở khóa sự kiện huấn luyện「{0}」",
+      "approved_target": "Cần mở khóa sự kiện huấn luyện「{0}」",
       "origins": [
+        "translation_review",
         "ui_review"
       ],
       "ui_contexts": [
@@ -88247,6 +88248,14 @@
           "reason": "The requirement label can omit the modal 'Cần' while preserving the unlock action, training-event concept, and placeholder.",
           "ui_key": "Outgame352032",
           "control_type": "short_system_label"
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047",
+          "batch_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047-b0045",
+          "claim_id": "trc-gpt56sol-auto6-20260901T124154Z-b0045",
+          "merged_at": "2026-09-01T12:52:11.324700Z",
+          "reason": "Source is a requirement label (需要解锁), so adding Cần preserves the required-state meaning instead of reading as an imperative."
         }
       ]
     },
@@ -163486,9 +163495,10 @@
       "source_text": "活动期间限定一次，\n<color=#ff911c>无论亲密度值如何</color>，都可选择任意育成赛马娘\n来领取<color=#ff911c>特别巧克力</color>",
       "source_fingerprint": "0a58743288fa2371d9378608d70df633e8fd4d7dd52f2df0cbf7716a5e363a7a",
       "rejected_targets": [
+        "Chỉ một lần trong thời gian sự kiện,\n<color=#ff911c>bất kể giá trị thân mật</color>, bạn có thể chọn bất kỳ Uma Musume nào có thể huấn luyện\nđể nhận <color=#ff911c>Sô-cô-la đặc biệt</color>",
         "Chỉ một lần trong thời gian sự kiện,\n<color=#ff911c>bất kể mức thân mật</color>, bạn có thể chọn bất kỳ Uma Musume nào có thể Huấn luyện\nđể nhận <color=#ff911c>Sô-cô-la đặc biệt</color>"
       ],
-      "approved_target": "Chỉ một lần trong thời gian sự kiện,\n<color=#ff911c>bất kể giá trị thân mật</color>, bạn có thể chọn bất kỳ Uma Musume nào có thể huấn luyện\nđể nhận <color=#ff911c>Sô-cô-la đặc biệt</color>",
+      "approved_target": "Chỉ một lần trong thời gian sự kiện,\n<color=#ff911c>bất kể giá trị thân mật</color>, bạn có thể chọn bất kỳ Mã Nương nào có thể huấn luyện\nđể nhận <color=#ff911c>Sô-cô-la đặc biệt</color>",
       "origins": [
         "translation_review"
       ],
@@ -163501,6 +163511,14 @@
           "claim_id": "trc-gpt56sol-20260831T103321Z-b0117",
           "merged_at": "2026-08-31T10:46:02.761192Z",
           "reason": "亲密度值 explicitly means the intimacy value; the revision restores that omitted nuance and smooths the trainable-character phrase while preserving tags and newlines."
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047",
+          "batch_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047-b0045",
+          "claim_id": "trc-gpt56sol-auto6-20260901T124154Z-b0045",
+          "merged_at": "2026-09-01T12:52:11.324700Z",
+          "reason": "Meaning, line breaks, and color tags are otherwise preserved, but generic 育成赛马娘 must not be rendered as Uma Musume; use Mã Nương."
         }
       ]
     },
@@ -182987,6 +183005,31 @@
           "claim_id": "trc-chatgpt-20260830T0100Z-b0473",
           "merged_at": "2026-08-30T01:27:15.490316Z",
           "reason": "Chuẩn hóa Sprint và G1."
+        }
+      ]
+    },
+    {
+      "id": "review.regression.9cd1b37a080448f5",
+      "uid": "zhcn:fffc371b5ec29ad359f9b4aa",
+      "scope": "uid",
+      "source_text": "拍摄赛马娘选择",
+      "source_fingerprint": "3fa51a4967d4f0c4e379db616b41e22960b7d2f850729531bf960ddc9348d83e",
+      "rejected_targets": [
+        "Chọn Uma Musume để chụp"
+      ],
+      "approved_target": "Chọn Mã Nương để chụp",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047",
+          "batch_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047-b0045",
+          "claim_id": "trc-gpt56sol-auto6-20260901T124154Z-b0045",
+          "merged_at": "2026-09-01T12:52:11.324700Z",
+          "reason": "Generic 赛马娘 must use the canonical world/species term Mã Nương; current text uses forbidden Uma Musume."
         }
       ]
     }

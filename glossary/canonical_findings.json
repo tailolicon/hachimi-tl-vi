@@ -5546,7 +5546,8 @@
         "Generic Speed stat matching must not fire inside locked Skill title 速度之星",
         "Generic Speed stat alias must not match ordinary prose phrases such as 成长速度 (growth rate)",
         "Generic narrative 速度 must not automatically normalize to the gameplay stat Speed",
-        "Generic Speed stat matching must not fire inside locked Skill/title 速度之星"
+        "Generic Speed stat matching must not fire inside locked Skill/title 速度之星",
+        "Generic 速度 inside lexical compounds or prose must not be forced to the Speed stat label"
       ],
       "suggested_targets_vi": [
         "Speed"
@@ -5562,9 +5563,10 @@
         "The nested generic stat guard conflicts with the more specific locked Skill-name identity and needs exclusion/scoping before review can resolve the item.",
         "The generic stat guard overmatches non-stat prose and would force an incorrect player-facing Speed label into ordinary dialogue.",
         "Agnes Tachyon is discussing literal running speed in prose rather than a numeric/player-facing stat label.",
-        "The generic stat guard conflicts with a more specific locked title identity and needs exclusion/scoping before this item can be resolved."
+        "The generic stat guard conflicts with a more specific locked title identity and needs exclusion/scoping before this item can be resolved.",
+        "成长速度 means growth speed/rate in prose; replacing Tốc độ with the gameplay label Speed would be a false positive from an overly broad alias."
       ],
-      "evidence_count": 8,
+      "evidence_count": 9,
       "evidence": [
         {
           "uid": "zhcn:0954921267fc40c4003cf418",
@@ -5693,6 +5695,22 @@
           "current_text": "Ngôi sao tốc độ đường đất",
           "proposed_text": null,
           "reported_at": "2026-09-01T11:45:00Z"
+        },
+        {
+          "uid": "zhcn:886d486e85a00446d0ea664d",
+          "plan_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047",
+          "batch_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047-b0149",
+          "claim_id": "trc-gpt56sol-hourly-20260901T160436Z-b0149",
+          "worker_id": "gpt56sol-hourly-20260901T160436Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "139",
+            "5"
+          ],
+          "source_text": "这种成长速度……灿烂的眼神……\\n啊啊！　真是太～～棒了！！",
+          "current_text": "Tốc độ trưởng thành này... ánh mắt rực rỡ này...\\nAaa! Thật～～tuyệt vời!!",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T16:07:46Z"
         }
       ],
       "canonical_resolution": {
@@ -5702,7 +5720,7 @@
       },
       "review_resolution": null,
       "first_seen_at": "2026-09-01T02:21:00Z",
-      "last_seen_at": "2026-09-01T11:45:00Z"
+      "last_seen_at": "2026-09-01T16:07:46Z"
     },
     {
       "finding_id": "cf-3a4b945b9d461490",

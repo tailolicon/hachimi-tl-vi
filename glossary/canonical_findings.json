@@ -2367,6 +2367,52 @@
       "last_seen_at": "2026-08-30T19:30:15Z"
     },
     {
+      "finding_id": "cf-10ef1d1f7bea118d",
+      "status": "open",
+      "source_zh_cn": "公开联赛",
+      "match_mode": "exact",
+      "source_paths": [
+        "localize_dict.json"
+      ],
+      "key_exact": [],
+      "json_path_prefixes": [],
+      "kinds": [
+        "system_label"
+      ],
+      "concepts": [
+        "Champions Meeting Open League label"
+      ],
+      "suggested_targets_vi": [],
+      "confidence_levels": [
+        "high"
+      ],
+      "reasons": [
+        "Named league labels should be canonicalized consistently."
+      ],
+      "evidence_count": 1,
+      "evidence": [
+        {
+          "uid": "zhcn:b6273be7ea633440483aa400",
+          "plan_id": "tr-p3-67f8551f7780-5e45c4dc80a8-b5c0bcb3bd-9bb2b41843",
+          "batch_id": "tr-p3-67f8551f7780-5e45c4dc80a8-b5c0bcb3bd-9bb2b41843-b0001",
+          "claim_id": "trc-gpt56sol-hourly-20260901T075900Z-b0001",
+          "worker_id": "gpt56sol-hourly-20260901T075900Z",
+          "source_path": "localize_dict.json",
+          "json_path": [
+            "Champions0601"
+          ],
+          "source_text": "公开联赛",
+          "current_text": "Giải đấu mở",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T08:08:00Z"
+        }
+      ],
+      "canonical_resolution": null,
+      "review_resolution": null,
+      "first_seen_at": "2026-09-01T08:08:00Z",
+      "last_seen_at": "2026-09-01T08:08:00Z"
+    },
+    {
       "finding_id": "cf-12f9d460488182c5",
       "status": "open",
       "source_zh_cn": "巨山灌篮",
@@ -2659,6 +2705,54 @@
       },
       "first_seen_at": "2026-09-01T01:49:40Z",
       "last_seen_at": "2026-09-01T01:49:40Z"
+    },
+    {
+      "finding_id": "cf-17893bf4fbdc7e87",
+      "status": "open",
+      "source_zh_cn": "马娘计划",
+      "match_mode": "contains",
+      "source_paths": [
+        "localize_dict.json"
+      ],
+      "key_exact": [
+        "Character608001"
+      ],
+      "json_path_prefixes": [],
+      "kinds": [
+        "system_label"
+      ],
+      "concepts": [
+        "Uma Musume plan/purchase feature name"
+      ],
+      "suggested_targets_vi": [],
+      "confidence_levels": [
+        "high"
+      ],
+      "reasons": [
+        "Named purchase/system plan should have one canonical player-facing form."
+      ],
+      "evidence_count": 1,
+      "evidence": [
+        {
+          "uid": "zhcn:5fc9a41e8d63b576877ee6d5",
+          "plan_id": "tr-p3-67f8551f7780-5e45c4dc80a8-b5c0bcb3bd-9bb2b41843",
+          "batch_id": "tr-p3-67f8551f7780-5e45c4dc80a8-b5c0bcb3bd-9bb2b41843-b0003",
+          "claim_id": "trc-gpt56sol-hourly-20260901T082200Z-b0003",
+          "worker_id": "gpt56sol-hourly-20260901T075900Z",
+          "source_path": "localize_dict.json",
+          "json_path": [
+            "Character608001"
+          ],
+          "source_text": "购买马娘计划后解锁",
+          "current_text": "Mở khóa sau khi mua Gói Umamusume",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T08:32:00Z"
+        }
+      ],
+      "canonical_resolution": null,
+      "review_resolution": null,
+      "first_seen_at": "2026-09-01T08:32:00Z",
+      "last_seen_at": "2026-09-01T08:32:00Z"
     },
     {
       "finding_id": "cf-184e3b01bc42e58b",
@@ -4784,7 +4878,9 @@
         "Speed stat alias must not override locked compound skill/title 速度之星",
         "Speed stat alias must not overmatch ordinary prose compounds such as 成长速度",
         "Ordinary narrative speed/quickness must not automatically normalize to gameplay stat Speed",
-        "Speed stat alias must not overmatch ordinary narrative references to physical running speed"
+        "Speed stat alias must not overmatch ordinary narrative references to physical running speed",
+        "Generic Speed stat matching must not fire inside locked Skill title 速度之星",
+        "Generic Speed stat alias must not match ordinary prose phrases such as 成长速度 (growth rate)"
       ],
       "suggested_targets_vi": [
         "Speed"
@@ -4796,9 +4892,11 @@
         "The generic stat alias is embedded inside a more-specific locked title phrase and should yield to the longer canonical match.",
         "In 成长速度 the word means rate/speed of growth, not the gameplay Speed stat.",
         "Here Agnes Tachyon asks how fast a Mã Nương can run; it is descriptive dialogue rather than a stat label or stat-value context.",
-        "In 赛马娘的速度究竟能快到什么程度, 速度 is literal physical speed in dialogue rather than the Speed stat label."
+        "In 赛马娘的速度究竟能快到什么程度, 速度 is literal physical speed in dialogue rather than the Speed stat label.",
+        "The nested generic stat guard conflicts with the more specific locked Skill-name identity and needs exclusion/scoping before review can resolve the item.",
+        "The generic stat guard overmatches non-stat prose and would force an incorrect player-facing Speed label into ordinary dialogue."
       ],
-      "evidence_count": 4,
+      "evidence_count": 6,
       "evidence": [
         {
           "uid": "zhcn:0954921267fc40c4003cf418",
@@ -4863,6 +4961,38 @@
           "current_text": "Bạn không tò mò xem tốc độ của Uma Musume rốt cuộc có thể nhanh đến mức nào sao?\\nNhưng nếu có hứng thú…… thì hãy trở thành\\nchuột lang của tôi, Agnes Tachyon nhé.",
           "proposed_text": null,
           "reported_at": "2026-09-01T06:00:00Z"
+        },
+        {
+          "uid": "zhcn:0954921267fc40c4003cf418",
+          "plan_id": "tr-p3-67f8551f7780-5e45c4dc80a8-b5c0bcb3bd-9bb2b41843",
+          "batch_id": "tr-p3-67f8551f7780-5e45c4dc80a8-b5c0bcb3bd-9bb2b41843-b0174",
+          "claim_id": "trc-gpt56sol-20260901T080400Z-b0174",
+          "worker_id": "gpt56sol-20260901T075900Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "130",
+            "252"
+          ],
+          "source_text": "沙土速度之星",
+          "current_text": "Ngôi sao tốc độ đường đất",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T08:07:00Z"
+        },
+        {
+          "uid": "zhcn:886d486e85a00446d0ea664d",
+          "plan_id": "tr-p3-67f8551f7780-5e45c4dc80a8-b5c0bcb3bd-9bb2b41843",
+          "batch_id": "tr-p3-67f8551f7780-5e45c4dc80a8-b5c0bcb3bd-9bb2b41843-b0190",
+          "claim_id": "trc-gpt56sol-20260901T081300Z-b0190",
+          "worker_id": "gpt56sol-20260901T075900Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "139",
+            "5"
+          ],
+          "source_text": "这种成长速度……灿烂的眼神……\\n啊啊！　真是太～～棒了！！",
+          "current_text": "Tốc độ trưởng thành này... ánh mắt rực rỡ này...\\nAaa! Thật～～tuyệt vời!!",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T08:17:00Z"
         }
       ],
       "canonical_resolution": {
@@ -4872,7 +5002,7 @@
       },
       "review_resolution": null,
       "first_seen_at": "2026-09-01T02:21:00Z",
-      "last_seen_at": "2026-09-01T06:00:00Z"
+      "last_seen_at": "2026-09-01T08:17:00Z"
     },
     {
       "finding_id": "cf-3b73be2cd42ac2ac",
@@ -4979,6 +5109,100 @@
       "last_seen_at": "2026-08-31T15:50:00Z"
     },
     {
+      "finding_id": "cf-3caafd7a2224e00e",
+      "status": "open",
+      "source_zh_cn": "奖池",
+      "match_mode": "exact",
+      "source_paths": [
+        "localize_dict.json"
+      ],
+      "key_exact": [],
+      "json_path_prefixes": [],
+      "kinds": [
+        "system_label"
+      ],
+      "concepts": [
+        "Prize pool UI label"
+      ],
+      "suggested_targets_vi": [],
+      "confidence_levels": [
+        "high"
+      ],
+      "reasons": [
+        "Reusable prize-pool label should be canonicalized before a one-off rewrite."
+      ],
+      "evidence_count": 1,
+      "evidence": [
+        {
+          "uid": "zhcn:2c3cb5b884049e99cf37192e",
+          "plan_id": "tr-p3-67f8551f7780-5e45c4dc80a8-b5c0bcb3bd-9bb2b41843",
+          "batch_id": "tr-p3-67f8551f7780-5e45c4dc80a8-b5c0bcb3bd-9bb2b41843-b0002",
+          "claim_id": "trc-gpt56sol-hourly-20260901T081000Z-b0002",
+          "worker_id": "gpt56sol-hourly-20260901T075900Z",
+          "source_path": "localize_dict.json",
+          "json_path": [
+            "Character0146"
+          ],
+          "source_text": "奖池",
+          "current_text": "Kho quà",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T08:21:00Z"
+        }
+      ],
+      "canonical_resolution": null,
+      "review_resolution": null,
+      "first_seen_at": "2026-09-01T08:21:00Z",
+      "last_seen_at": "2026-09-01T08:21:00Z"
+    },
+    {
+      "finding_id": "cf-3d858d453b1065a8",
+      "status": "open",
+      "source_zh_cn": "马娘计划",
+      "match_mode": "contains",
+      "source_paths": [
+        "localize_dict.json"
+      ],
+      "key_exact": [
+        "Character701022"
+      ],
+      "json_path_prefixes": [],
+      "kinds": [
+        "system_label"
+      ],
+      "concepts": [
+        "Uma Musume plan/purchase feature name"
+      ],
+      "suggested_targets_vi": [],
+      "confidence_levels": [
+        "high"
+      ],
+      "reasons": [
+        "Named purchase/system plan should have one canonical player-facing form."
+      ],
+      "evidence_count": 1,
+      "evidence": [
+        {
+          "uid": "zhcn:1f3bef14830d9b4e856f5ba0",
+          "plan_id": "tr-p3-67f8551f7780-5e45c4dc80a8-b5c0bcb3bd-9bb2b41843",
+          "batch_id": "tr-p3-67f8551f7780-5e45c4dc80a8-b5c0bcb3bd-9bb2b41843-b0003",
+          "claim_id": "trc-gpt56sol-hourly-20260901T082200Z-b0003",
+          "worker_id": "gpt56sol-hourly-20260901T075900Z",
+          "source_path": "localize_dict.json",
+          "json_path": [
+            "Character701022"
+          ],
+          "source_text": "<atlas=PreIn sprite=utx_ico_notice_00/>将消耗马娘计划的单日使用次数",
+          "current_text": "<atlas=PreIn sprite=utx_ico_notice_00/>Sẽ tiêu hao số lượt sử dụng Kế hoạch Uma Musume trong ngày",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T08:32:00Z"
+        }
+      ],
+      "canonical_resolution": null,
+      "review_resolution": null,
+      "first_seen_at": "2026-09-01T08:32:00Z",
+      "last_seen_at": "2026-09-01T08:32:00Z"
+    },
+    {
       "finding_id": "cf-3e4a12e4080429cf",
       "status": "open",
       "source_zh_cn": "放声欢呼",
@@ -5050,6 +5274,54 @@
       },
       "first_seen_at": "2026-08-31T00:54:59Z",
       "last_seen_at": "2026-08-31T10:03:30Z"
+    },
+    {
+      "finding_id": "cf-3f76c45986ceefe6",
+      "status": "open",
+      "source_zh_cn": "月刊Twinkle",
+      "match_mode": "contains",
+      "source_paths": [
+        "localize_dict.json"
+      ],
+      "key_exact": [
+        "Champions187003"
+      ],
+      "json_path_prefixes": [],
+      "kinds": [
+        "proper_name"
+      ],
+      "concepts": [
+        "Twinkle monthly publication title"
+      ],
+      "suggested_targets_vi": [],
+      "confidence_levels": [
+        "high"
+      ],
+      "reasons": [
+        "Recurring in-world publication title needs one canonical rendering."
+      ],
+      "evidence_count": 1,
+      "evidence": [
+        {
+          "uid": "zhcn:0c01f548324f5f2a2d458b0e",
+          "plan_id": "tr-p3-67f8551f7780-5e45c4dc80a8-b5c0bcb3bd-9bb2b41843",
+          "batch_id": "tr-p3-67f8551f7780-5e45c4dc80a8-b5c0bcb3bd-9bb2b41843-b0002",
+          "claim_id": "trc-gpt56sol-hourly-20260901T081000Z-b0002",
+          "worker_id": "gpt56sol-hourly-20260901T075900Z",
+          "source_path": "localize_dict.json",
+          "json_path": [
+            "Champions187003"
+          ],
+          "source_text": "月刊Twinkle 号外",
+          "current_text": "Đặc san Twinkle",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T08:21:00Z"
+        }
+      ],
+      "canonical_resolution": null,
+      "review_resolution": null,
+      "first_seen_at": "2026-09-01T08:21:00Z",
+      "last_seen_at": "2026-09-01T08:21:00Z"
     },
     {
       "finding_id": "cf-40e8f5e44cc6a98e",
@@ -5523,6 +5795,65 @@
       },
       "first_seen_at": "2026-08-30T19:30:15Z",
       "last_seen_at": "2026-08-30T19:30:15Z"
+    },
+    {
+      "finding_id": "cf-4cdac2dc133ac8e4",
+      "status": "open",
+      "source_zh_cn": "营养补给",
+      "match_mode": "contains",
+      "source_paths": [
+        "text_data_dict.json"
+      ],
+      "key_exact": [],
+      "json_path_prefixes": [
+        [
+          "150"
+        ]
+      ],
+      "kinds": [
+        "context_rule"
+      ],
+      "concepts": [
+        "Skill-name alias overmatch inside longer support-effect title"
+      ],
+      "suggested_targets_vi": [],
+      "confidence_levels": [
+        "high"
+      ],
+      "reasons": [
+        "The reusable Skill-name alias should not automatically override an established full support-effect title when it appears only as a substring."
+      ],
+      "evidence_count": 1,
+      "evidence": [
+        {
+          "uid": "zhcn:eca19b6fa146ea5980f009fb",
+          "plan_id": "tr-p3-67f8551f7780-5e45c4dc80a8-b5c0bcb3bd-9bb2b41843",
+          "batch_id": "tr-p3-67f8551f7780-5e45c4dc80a8-b5c0bcb3bd-9bb2b41843-b0253",
+          "claim_id": "trc-gpt56sol-auto-20260901T081224Z-b0253",
+          "worker_id": "gpt56sol-auto-20260901T075527Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "150",
+            "30141"
+          ],
+          "source_text": "Mission『心灵的营养补给』",
+          "current_text": "Mission『Tiếp tế dinh dưỡng cho tâm hồn』",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T08:16:12Z"
+        }
+      ],
+      "canonical_resolution": {
+        "layer": "locked",
+        "term_id": "reviewed.skill_name.5553bd077c0f",
+        "target_vi": "Bổ sung dinh dưỡng"
+      },
+      "review_resolution": {
+        "decision_id": "parallel.ctx-67f8551f77807292-v1.term-0077.18",
+        "action": "lock",
+        "target_vi": "Bổ sung dinh dưỡng"
+      },
+      "first_seen_at": "2026-09-01T08:16:12Z",
+      "last_seen_at": "2026-09-01T08:16:12Z"
     },
     {
       "finding_id": "cf-4f751c4f35d7c237",
@@ -6175,6 +6506,52 @@
       "last_seen_at": "2026-08-30T08:38:00Z"
     },
     {
+      "finding_id": "cf-55f8aa69cee34bce",
+      "status": "open",
+      "source_zh_cn": "固有",
+      "match_mode": "exact",
+      "source_paths": [
+        "localize_dict.json"
+      ],
+      "key_exact": [],
+      "json_path_prefixes": [],
+      "kinds": [
+        "system_label"
+      ],
+      "concepts": [
+        "Character unique/inherent category label"
+      ],
+      "suggested_targets_vi": [],
+      "confidence_levels": [
+        "high"
+      ],
+      "reasons": [
+        "Standalone reusable system label requires one canonical player-facing form."
+      ],
+      "evidence_count": 1,
+      "evidence": [
+        {
+          "uid": "zhcn:a5601555e91e21ecd496a11d",
+          "plan_id": "tr-p3-67f8551f7780-5e45c4dc80a8-b5c0bcb3bd-9bb2b41843",
+          "batch_id": "tr-p3-67f8551f7780-5e45c4dc80a8-b5c0bcb3bd-9bb2b41843-b0003",
+          "claim_id": "trc-gpt56sol-hourly-20260901T082200Z-b0003",
+          "worker_id": "gpt56sol-hourly-20260901T075900Z",
+          "source_path": "localize_dict.json",
+          "json_path": [
+            "Character701065"
+          ],
+          "source_text": "固有",
+          "current_text": "Độc nhất",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T08:32:00Z"
+        }
+      ],
+      "canonical_resolution": null,
+      "review_resolution": null,
+      "first_seen_at": "2026-09-01T08:32:00Z",
+      "last_seen_at": "2026-09-01T08:32:00Z"
+    },
+    {
       "finding_id": "cf-56f201174e84a443",
       "status": "open",
       "source_zh_cn": "スタホTV",
@@ -6385,6 +6762,54 @@
       "review_resolution": null,
       "first_seen_at": "2026-09-01T06:58:00Z",
       "last_seen_at": "2026-09-01T06:58:00Z"
+    },
+    {
+      "finding_id": "cf-5cc239af1c9d7710",
+      "status": "open",
+      "source_zh_cn": "固有加成",
+      "match_mode": "contains",
+      "source_paths": [
+        "localize_dict.json"
+      ],
+      "key_exact": [
+        "Character0196"
+      ],
+      "json_path_prefixes": [],
+      "kinds": [
+        "system_label"
+      ],
+      "concepts": [
+        "Character inherent/unique bonus label"
+      ],
+      "suggested_targets_vi": [],
+      "confidence_levels": [
+        "high"
+      ],
+      "reasons": [
+        "The reusable bonus label needs one canonical form shared with the base label."
+      ],
+      "evidence_count": 1,
+      "evidence": [
+        {
+          "uid": "zhcn:cb7b1f876dfff8485b93e960",
+          "plan_id": "tr-p3-67f8551f7780-5e45c4dc80a8-b5c0bcb3bd-9bb2b41843",
+          "batch_id": "tr-p3-67f8551f7780-5e45c4dc80a8-b5c0bcb3bd-9bb2b41843-b0002",
+          "claim_id": "trc-gpt56sol-hourly-20260901T081000Z-b0002",
+          "worker_id": "gpt56sol-hourly-20260901T075900Z",
+          "source_path": "localize_dict.json",
+          "json_path": [
+            "Character0196"
+          ],
+          "source_text": "固有加成详情",
+          "current_text": "Chi tiết bonus riêng",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T08:21:00Z"
+        }
+      ],
+      "canonical_resolution": null,
+      "review_resolution": null,
+      "first_seen_at": "2026-09-01T08:21:00Z",
+      "last_seen_at": "2026-09-01T08:21:00Z"
     },
     {
       "finding_id": "cf-5cdb4af7b36cbbe0",
@@ -8008,6 +8433,54 @@
       "last_seen_at": "2026-09-01T00:23:00Z"
     },
     {
+      "finding_id": "cf-6f1b22f01d3e293a",
+      "status": "open",
+      "source_zh_cn": "每日传奇比赛",
+      "match_mode": "contains",
+      "source_paths": [
+        "localize_dict.json"
+      ],
+      "key_exact": [
+        "Character408001"
+      ],
+      "json_path_prefixes": [],
+      "kinds": [
+        "proper_name"
+      ],
+      "concepts": [
+        "Daily Legend Race game mode/event name"
+      ],
+      "suggested_targets_vi": [],
+      "confidence_levels": [
+        "high"
+      ],
+      "reasons": [
+        "Named daily game mode/event should use one canonical player-facing form across UI strings."
+      ],
+      "evidence_count": 1,
+      "evidence": [
+        {
+          "uid": "zhcn:099c420b0dd8e14b04cbfc5d",
+          "plan_id": "tr-p3-67f8551f7780-5e45c4dc80a8-b5c0bcb3bd-9bb2b41843",
+          "batch_id": "tr-p3-67f8551f7780-5e45c4dc80a8-b5c0bcb3bd-9bb2b41843-b0003",
+          "claim_id": "trc-gpt56sol-hourly-20260901T082200Z-b0003",
+          "worker_id": "gpt56sol-hourly-20260901T075900Z",
+          "source_path": "localize_dict.json",
+          "json_path": [
+            "Character408001"
+          ],
+          "source_text": "每日传奇比赛参赛中，无法移籍",
+          "current_text": "Không thể chuyển nhượng khi đang tham gia Đua Huyền thoại Hằng ngày",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T08:32:00Z"
+        }
+      ],
+      "canonical_resolution": null,
+      "review_resolution": null,
+      "first_seen_at": "2026-09-01T08:32:00Z",
+      "last_seen_at": "2026-09-01T08:32:00Z"
+    },
+    {
       "finding_id": "cf-704e653261dc3150",
       "status": "open",
       "source_zh_cn": "惊叹的饕餮盛宴！",
@@ -8461,6 +8934,62 @@
       "review_resolution": null,
       "first_seen_at": "2026-09-01T05:00:00Z",
       "last_seen_at": "2026-09-01T05:00:00Z"
+    },
+    {
+      "finding_id": "cf-7387c3c38c10d37d",
+      "status": "open",
+      "source_zh_cn": "才能开花",
+      "match_mode": "contains",
+      "source_paths": [
+        "localize_dict.json"
+      ],
+      "key_exact": [
+        "Character626008"
+      ],
+      "json_path_prefixes": [],
+      "kinds": [
+        "system_label"
+      ],
+      "concepts": [
+        "Character talent/star progression label"
+      ],
+      "suggested_targets_vi": [],
+      "confidence_levels": [
+        "high"
+      ],
+      "reasons": [
+        "Reusable character progression label requires one canonical player-facing rendering."
+      ],
+      "evidence_count": 1,
+      "evidence": [
+        {
+          "uid": "zhcn:97e279d34610be11049d6363",
+          "plan_id": "tr-p3-67f8551f7780-5e45c4dc80a8-b5c0bcb3bd-9bb2b41843",
+          "batch_id": "tr-p3-67f8551f7780-5e45c4dc80a8-b5c0bcb3bd-9bb2b41843-b0003",
+          "claim_id": "trc-gpt56sol-hourly-20260901T082200Z-b0003",
+          "worker_id": "gpt56sol-hourly-20260901T075900Z",
+          "source_path": "localize_dict.json",
+          "json_path": [
+            "Character626008"
+          ],
+          "source_text": "可进行才能开花",
+          "current_text": "Có thể Khai hoa Tài năng",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T08:32:00Z"
+        }
+      ],
+      "canonical_resolution": {
+        "layer": "community",
+        "term_id": "system.talent_bloom.localize",
+        "target_vi": "Star Ascension"
+      },
+      "review_resolution": {
+        "decision_id": "audit.finding.system-star-ascension",
+        "action": "lock",
+        "target_vi": "Star Ascension"
+      },
+      "first_seen_at": "2026-09-01T08:32:00Z",
+      "last_seen_at": "2026-09-01T08:32:00Z"
     },
     {
       "finding_id": "cf-73f7016990538048",
@@ -9646,6 +10175,52 @@
       },
       "first_seen_at": "2026-09-01T05:48:00Z",
       "last_seen_at": "2026-09-01T05:48:00Z"
+    },
+    {
+      "finding_id": "cf-823a42e63df66f92",
+      "status": "open",
+      "source_zh_cn": "固有加成",
+      "match_mode": "exact",
+      "source_paths": [
+        "localize_dict.json"
+      ],
+      "key_exact": [],
+      "json_path_prefixes": [],
+      "kinds": [
+        "system_label"
+      ],
+      "concepts": [
+        "Character inherent/unique bonus label"
+      ],
+      "suggested_targets_vi": [],
+      "confidence_levels": [
+        "high"
+      ],
+      "reasons": [
+        "Reusable character bonus label requires one canonical player-facing form."
+      ],
+      "evidence_count": 1,
+      "evidence": [
+        {
+          "uid": "zhcn:26546cfbee2ad52a18089d7d",
+          "plan_id": "tr-p3-67f8551f7780-5e45c4dc80a8-b5c0bcb3bd-9bb2b41843",
+          "batch_id": "tr-p3-67f8551f7780-5e45c4dc80a8-b5c0bcb3bd-9bb2b41843-b0002",
+          "claim_id": "trc-gpt56sol-hourly-20260901T081000Z-b0002",
+          "worker_id": "gpt56sol-hourly-20260901T075900Z",
+          "source_path": "localize_dict.json",
+          "json_path": [
+            "Character0050"
+          ],
+          "source_text": "固有加成",
+          "current_text": "Bonus riêng",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T08:21:00Z"
+        }
+      ],
+      "canonical_resolution": null,
+      "review_resolution": null,
+      "first_seen_at": "2026-09-01T08:21:00Z",
+      "last_seen_at": "2026-09-01T08:21:00Z"
     },
     {
       "finding_id": "cf-836c3861f2d917ca",
@@ -15222,6 +15797,52 @@
       "last_seen_at": "2026-08-31T10:19:40Z"
     },
     {
+      "finding_id": "cf-c0936acad5f22c2f",
+      "status": "open",
+      "source_zh_cn": "等级联赛",
+      "match_mode": "exact",
+      "source_paths": [
+        "localize_dict.json"
+      ],
+      "key_exact": [],
+      "json_path_prefixes": [],
+      "kinds": [
+        "system_label"
+      ],
+      "concepts": [
+        "Champions Meeting Graded League label"
+      ],
+      "suggested_targets_vi": [],
+      "confidence_levels": [
+        "high"
+      ],
+      "reasons": [
+        "Named league labels should use one canonical player-facing form."
+      ],
+      "evidence_count": 1,
+      "evidence": [
+        {
+          "uid": "zhcn:51f242226a0db443edf99970",
+          "plan_id": "tr-p3-67f8551f7780-5e45c4dc80a8-b5c0bcb3bd-9bb2b41843",
+          "batch_id": "tr-p3-67f8551f7780-5e45c4dc80a8-b5c0bcb3bd-9bb2b41843-b0001",
+          "claim_id": "trc-gpt56sol-hourly-20260901T075900Z-b0001",
+          "worker_id": "gpt56sol-hourly-20260901T075900Z",
+          "source_path": "localize_dict.json",
+          "json_path": [
+            "Champions0602"
+          ],
+          "source_text": "等级联赛",
+          "current_text": "Giải đấu theo hạng",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T08:08:00Z"
+        }
+      ],
+      "canonical_resolution": null,
+      "review_resolution": null,
+      "first_seen_at": "2026-09-01T08:08:00Z",
+      "last_seen_at": "2026-09-01T08:08:00Z"
+    },
+    {
       "finding_id": "cf-c38c5812d3989165",
       "status": "open",
       "source_zh_cn": "中距离弯道○",
@@ -15988,6 +16609,62 @@
       "last_seen_at": "2026-09-01T00:11:00Z"
     },
     {
+      "finding_id": "cf-c7d9ea9da6e1ae1e",
+      "status": "open",
+      "source_zh_cn": "才能开花",
+      "match_mode": "contains",
+      "source_paths": [
+        "localize_dict.json"
+      ],
+      "key_exact": [
+        "Character0204"
+      ],
+      "json_path_prefixes": [],
+      "kinds": [
+        "system_label"
+      ],
+      "concepts": [
+        "Character talent/star progression label"
+      ],
+      "suggested_targets_vi": [],
+      "confidence_levels": [
+        "high"
+      ],
+      "reasons": [
+        "Reusable character progression label requires one canonical player-facing rendering."
+      ],
+      "evidence_count": 1,
+      "evidence": [
+        {
+          "uid": "zhcn:98cf540a04e176635bce9e38",
+          "plan_id": "tr-p3-67f8551f7780-5e45c4dc80a8-b5c0bcb3bd-9bb2b41843",
+          "batch_id": "tr-p3-67f8551f7780-5e45c4dc80a8-b5c0bcb3bd-9bb2b41843-b0003",
+          "claim_id": "trc-gpt56sol-hourly-20260901T082200Z-b0003",
+          "worker_id": "gpt56sol-hourly-20260901T075900Z",
+          "source_path": "localize_dict.json",
+          "json_path": [
+            "Character0204"
+          ],
+          "source_text": "已经是最大的才能开花阶段了",
+          "current_text": "Đã ở giai đoạn Khai hoa tài năng cao nhất",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T08:32:00Z"
+        }
+      ],
+      "canonical_resolution": {
+        "layer": "community",
+        "term_id": "system.talent_bloom.localize",
+        "target_vi": "Star Ascension"
+      },
+      "review_resolution": {
+        "decision_id": "audit.finding.system-star-ascension",
+        "action": "lock",
+        "target_vi": "Star Ascension"
+      },
+      "first_seen_at": "2026-09-01T08:32:00Z",
+      "last_seen_at": "2026-09-01T08:32:00Z"
+    },
+    {
       "finding_id": "cf-c83afa810e490d16",
       "status": "open",
       "source_zh_cn": "素顔のココロ",
@@ -16440,6 +17117,58 @@
       "review_resolution": null,
       "first_seen_at": "2026-08-31T11:18:31Z",
       "last_seen_at": "2026-08-31T11:18:31Z"
+    },
+    {
+      "finding_id": "cf-cf51d5270ed06b18",
+      "status": "open",
+      "source_zh_cn": "传奇比赛",
+      "match_mode": "contains",
+      "source_paths": [
+        "localize_dict.json"
+      ],
+      "key_exact": [
+        "Character0335"
+      ],
+      "json_path_prefixes": [],
+      "kinds": [
+        "proper_name"
+      ],
+      "concepts": [
+        "Legend Race game mode/event name"
+      ],
+      "suggested_targets_vi": [],
+      "confidence_levels": [
+        "high"
+      ],
+      "reasons": [
+        "Named game mode/event should use one canonical player-facing form across UI strings."
+      ],
+      "evidence_count": 1,
+      "evidence": [
+        {
+          "uid": "zhcn:79c778fb3a0279effa897d38",
+          "plan_id": "tr-p3-67f8551f7780-5e45c4dc80a8-b5c0bcb3bd-9bb2b41843",
+          "batch_id": "tr-p3-67f8551f7780-5e45c4dc80a8-b5c0bcb3bd-9bb2b41843-b0003",
+          "claim_id": "trc-gpt56sol-hourly-20260901T082200Z-b0003",
+          "worker_id": "gpt56sol-hourly-20260901T075900Z",
+          "source_path": "localize_dict.json",
+          "json_path": [
+            "Character0335"
+          ],
+          "source_text": "传奇比赛参赛中，无法移籍",
+          "current_text": "Đang tham gia Giải đấu Huyền thoại, không thể chuyển nhượng",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T08:32:00Z"
+        }
+      ],
+      "canonical_resolution": null,
+      "review_resolution": {
+        "decision_id": "parallel.ctx-67f8551f77807292-v1.term-0128.10",
+        "action": "defer",
+        "target_vi": null
+      },
+      "first_seen_at": "2026-09-01T08:32:00Z",
+      "last_seen_at": "2026-09-01T08:32:00Z"
     },
     {
       "finding_id": "cf-d0c0313f2d6bcaa2",
@@ -20003,6 +20732,62 @@
       "last_seen_at": "2026-09-01T00:23:00Z"
     },
     {
+      "finding_id": "cf-fa13650ec3507551",
+      "status": "open",
+      "source_zh_cn": "才能开花",
+      "match_mode": "contains",
+      "source_paths": [
+        "localize_dict.json"
+      ],
+      "key_exact": [
+        "Character0205"
+      ],
+      "json_path_prefixes": [],
+      "kinds": [
+        "system_label"
+      ],
+      "concepts": [
+        "Character talent/star progression label"
+      ],
+      "suggested_targets_vi": [],
+      "confidence_levels": [
+        "high"
+      ],
+      "reasons": [
+        "Reusable character progression label requires one canonical player-facing rendering."
+      ],
+      "evidence_count": 1,
+      "evidence": [
+        {
+          "uid": "zhcn:aa3dd1ab4b51695aeda497aa",
+          "plan_id": "tr-p3-67f8551f7780-5e45c4dc80a8-b5c0bcb3bd-9bb2b41843",
+          "batch_id": "tr-p3-67f8551f7780-5e45c4dc80a8-b5c0bcb3bd-9bb2b41843-b0003",
+          "claim_id": "trc-gpt56sol-hourly-20260901T082200Z-b0003",
+          "worker_id": "gpt56sol-hourly-20260901T075900Z",
+          "source_path": "localize_dict.json",
+          "json_path": [
+            "Character0205"
+          ],
+          "source_text": "已才能开花至最高阶段",
+          "current_text": "Khai hoa tài năng tối đa",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T08:32:00Z"
+        }
+      ],
+      "canonical_resolution": {
+        "layer": "community",
+        "term_id": "system.talent_bloom.localize",
+        "target_vi": "Star Ascension"
+      },
+      "review_resolution": {
+        "decision_id": "audit.finding.system-star-ascension",
+        "action": "lock",
+        "target_vi": "Star Ascension"
+      },
+      "first_seen_at": "2026-09-01T08:32:00Z",
+      "last_seen_at": "2026-09-01T08:32:00Z"
+    },
+    {
       "finding_id": "cf-fa3b4a8c89c84ce6",
       "status": "open",
       "source_zh_cn": "光明",
@@ -20296,6 +21081,54 @@
       },
       "first_seen_at": "2026-08-31T15:10:00Z",
       "last_seen_at": "2026-08-31T15:10:00Z"
+    },
+    {
+      "finding_id": "cf-fc0ace892355f4ce",
+      "status": "open",
+      "source_zh_cn": "月刊Twinkle",
+      "match_mode": "contains",
+      "source_paths": [
+        "localize_dict.json"
+      ],
+      "key_exact": [
+        "Champions0507"
+      ],
+      "json_path_prefixes": [],
+      "kinds": [
+        "proper_name"
+      ],
+      "concepts": [
+        "Twinkle monthly publication title"
+      ],
+      "suggested_targets_vi": [],
+      "confidence_levels": [
+        "high"
+      ],
+      "reasons": [
+        "Recurring in-world publication title needs one canonical rendering."
+      ],
+      "evidence_count": 1,
+      "evidence": [
+        {
+          "uid": "zhcn:a7741497dd0b4a55f838f1ee",
+          "plan_id": "tr-p3-67f8551f7780-5e45c4dc80a8-b5c0bcb3bd-9bb2b41843",
+          "batch_id": "tr-p3-67f8551f7780-5e45c4dc80a8-b5c0bcb3bd-9bb2b41843-b0001",
+          "claim_id": "trc-gpt56sol-hourly-20260901T075900Z-b0001",
+          "worker_id": "gpt56sol-hourly-20260901T075900Z",
+          "source_path": "localize_dict.json",
+          "json_path": [
+            "Champions0507"
+          ],
+          "source_text": "月刊Twinkle 增刊",
+          "current_text": "Twinkle - Đặc san",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T08:08:00Z"
+        }
+      ],
+      "canonical_resolution": null,
+      "review_resolution": null,
+      "first_seen_at": "2026-09-01T08:08:00Z",
+      "last_seen_at": "2026-09-01T08:08:00Z"
     },
     {
       "finding_id": "cf-fd88ae2ea3b1898e",

@@ -5,16 +5,18 @@ from pathlib import Path
 from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
+FINDING_ID = "cf-027a0f62d9583a5f"
+SOURCE = "イチバン星が駆ける空"
 
 ICHIBANBOSHI = {
     "id": "song.ichibanboshi_ga_kakeru_sora",
     "category": "song",
-    "source_aliases": ["イチバン星が駆ける空"],
+    "source_aliases": [SOURCE],
     "preferred": "Ichibanboshi ga Kakeru Sora",
     "compact": [],
     "accepted": ["Ichibanboshi ga Kakeru Sora"],
     "forbidden": [
-        "イチバン星が駆ける空",
+        SOURCE,
         "Bầu trời nơi ngôi sao số một lao đi",
         "The First Star Across the Sky",
     ],
@@ -28,7 +30,7 @@ ICHIBANBOSHI = {
 
 ICHIBANBOSHI_DECISION = {
     "decision_id": "audit.finding.song-ichibanboshi-ga-kakeru-sora",
-    "source_zh_cn": "イチバン星が駆ける空",
+    "source_zh_cn": SOURCE,
     "action": "lock",
     "target_vi": "Ichibanboshi ga Kakeru Sora",
     "kind": "proper_name",
@@ -61,8 +63,56 @@ def _upsert(items: list[Any], record: dict[str, Any], *, id_field: str) -> None:
     items.append(dict(record))
 
 
-def harden(repo_root: Path = ROOT) -> bool:
+def _repair_live_finding_scope(repo_root: Path) -> bool:
+    """Recover the category scope omitted by the original worker finding.
+
+    The durable evidence for this finding points at text_data_dict.json/16/1099,
+    while the finding itself was emitted with an empty json_path_prefixes list.
+    Only repair that malformed row when every retained evidence record proves
+    category 16, so the canonical song rule never broadens beyond its table.
+    """
+    ledger_path = repo_root / "glossary" / "canonical_findings.json"
+    if not ledger_path.exists():
+        return False
+    ledger = _load(ledger_path, {"schema_version": 1, "findings": []})
+    findings = ledger.get("findings", [])
+    if not isinstance(findings, list):
+        raise ValueError("glossary/canonical_findings.json findings must be a list")
+
     changed = False
+    for finding in findings:
+        if not isinstance(finding, dict):
+            continue
+        if str(finding.get("finding_id") or "") != FINDING_ID:
+            continue
+        if str(finding.get("source_zh_cn") or "") != SOURCE:
+            continue
+        if finding.get("source_paths") != ["text_data_dict.json"]:
+            continue
+        if finding.get("json_path_prefixes"):
+            continue
+        evidence = [item for item in finding.get("evidence", []) if isinstance(item, dict)]
+        if not evidence:
+            continue
+        if not all(
+            item.get("source_path") == "text_data_dict.json"
+            and isinstance(item.get("json_path"), list)
+            and item["json_path"]
+            and str(item["json_path"][0]) == "16"
+            for item in evidence
+        ):
+            continue
+        finding["json_path_prefixes"] = [["16"]]
+        changed = True
+
+    if changed:
+        _write(ledger_path, ledger)
+    return changed
+
+
+def harden(repo_root: Path = ROOT) -> bool:
+    changed = _repair_live_finding_scope(repo_root)
+
     community_path = repo_root / "glossary" / "ui_community_terms.json"
     community = _load(community_path, {"schema_version": 1, "terms": []})
     terms = community.setdefault("terms", [])

@@ -3984,6 +3984,53 @@
       "last_seen_at": "2026-08-31T23:51:00Z"
     },
     {
+      "finding_id": "cf-2549c5753263451d",
+      "status": "open",
+      "source_zh_cn": "华丽、优雅、勇敢！点燃内心的充满力量的乐曲！\\n无论遇到什么困难都不会屈服——这才是公主应有的姿态！",
+      "match_mode": "exact",
+      "source_paths": [
+        "text_data_dict.json"
+      ],
+      "key_exact": [],
+      "json_path_prefixes": [],
+      "kinds": [
+        "context_rule"
+      ],
+      "concepts": [
+        "Exclude generic prose 力量 from Power-stat matching"
+      ],
+      "suggested_targets_vi": [],
+      "confidence_levels": [
+        "high"
+      ],
+      "reasons": [
+        "The phrase describes a powerful piece of music, not the gameplay Power stat."
+      ],
+      "evidence_count": 1,
+      "evidence": [
+        {
+          "uid": "zhcn:896b56be0adb3987b5b003f6",
+          "plan_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047",
+          "batch_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047-b0122",
+          "claim_id": "trc-gpt56sol-hourly-20260901T110014Z-b0122",
+          "worker_id": "gpt56sol-hourly-20260901T110014Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "128",
+            "1187"
+          ],
+          "source_text": "华丽、优雅、勇敢！点燃内心的充满力量的乐曲！\\n无论遇到什么困难都不会屈服——这才是公主应有的姿态！",
+          "current_text": "Rực rỡ, thanh lịch, dũng cảm! Một khúc nhạc tràn đầy sức mạnh thắp sáng trái tim!\\nDù gặp bất cứ khó khăn nào cũng không khuất phục—đó mới là dáng vẻ của một công chúa!",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T11:05:00Z"
+        }
+      ],
+      "canonical_resolution": null,
+      "review_resolution": null,
+      "first_seen_at": "2026-09-01T11:05:00Z",
+      "last_seen_at": "2026-09-01T11:05:00Z"
+    },
+    {
       "finding_id": "cf-278788d056d288ca",
       "status": "open",
       "source_zh_cn": "领放彷徨",
@@ -4156,7 +4203,7 @@
         "This prose phrase is an explicit false-positive for Power-stat normalization in text_data.",
         "This phrase occurs in narrative prose with no stat gain/threshold/UI context; Power is an overmatch here."
       ],
-      "evidence_count": 2,
+      "evidence_count": 3,
       "evidence": [
         {
           "uid": "zhcn:919fbdb11c7fb6264cc7286d",
@@ -4189,6 +4236,22 @@
           "current_text": "Trong trận quyết chiến lấy quê hương hồi sinh làm sân khấu, để mở ra tương lai cho mọi người\\nmang theo tình yêu dành cho Funabashi và thể hiện Power không lay chuyển",
           "proposed_text": null,
           "reported_at": "2026-09-01T04:48:00Z"
+        },
+        {
+          "uid": "zhcn:919fbdb11c7fb6264cc7286d",
+          "plan_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047",
+          "batch_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047-b0155",
+          "claim_id": "trc-chatgpt-web-s2-20260901T110400Z-b0155",
+          "worker_id": "chatgpt-web-slot-2-20260901T110400Z-b0155",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "143",
+            "35"
+          ],
+          "source_text": "在复苏的故乡作为舞台的决战中，为了开拓大家的未来\\n怀揣着对船桥的热爱，展现出坚定不移的力量",
+          "current_text": "Trong trận quyết chiến lấy quê hương hồi sinh làm sân khấu, để mở ra tương lai cho mọi người\\nmang theo tình yêu dành cho Funabashi và thể hiện Power không lay chuyển",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T11:08:20Z"
         }
       ],
       "canonical_resolution": {
@@ -4198,7 +4261,7 @@
       },
       "review_resolution": null,
       "first_seen_at": "2026-08-31T11:21:00Z",
-      "last_seen_at": "2026-09-01T04:48:00Z"
+      "last_seen_at": "2026-09-01T11:08:20Z"
     },
     {
       "finding_id": "cf-2a8fd2f0a0deb318",
@@ -4550,6 +4613,85 @@
       },
       "first_seen_at": "2026-09-01T00:17:00Z",
       "last_seen_at": "2026-09-01T00:17:00Z"
+    },
+    {
+      "finding_id": "cf-331266d60d876889",
+      "status": "open",
+      "source_zh_cn": "汝等,瞻仰皇帝之神威吧",
+      "match_mode": "exact",
+      "source_paths": [
+        "text_data_dict.json"
+      ],
+      "key_exact": [],
+      "json_path_prefixes": [],
+      "kinds": [
+        "proper_name"
+      ],
+      "concepts": [
+        "Skill name 汝等,瞻仰皇帝之神威吧"
+      ],
+      "suggested_targets_vi": [],
+      "confidence_levels": [
+        "high"
+      ],
+      "reasons": [
+        "Repeated category 147 title needs JP-backed canonical Skill identity rather than a zh-CN semantic calque."
+      ],
+      "evidence_count": 3,
+      "evidence": [
+        {
+          "uid": "zhcn:03e91a9830486f88e3839901",
+          "plan_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047",
+          "batch_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047-b0166",
+          "claim_id": "trc-gpt56sol-hourly-20260901T110700Z-b0166",
+          "worker_id": "gpt56sol-hourly-20260901T110014Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "147",
+            "10170101"
+          ],
+          "source_text": "汝等,瞻仰皇帝之神威吧",
+          "current_text": "Hỡi các ngươi, hãy chiêm ngưỡng thần uy của Hoàng đế",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T11:14:30Z"
+        },
+        {
+          "uid": "zhcn:1775a7d72012de506344118d",
+          "plan_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047",
+          "batch_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047-b0166",
+          "claim_id": "trc-gpt56sol-hourly-20260901T110700Z-b0166",
+          "worker_id": "gpt56sol-hourly-20260901T110014Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "147",
+            "10170102"
+          ],
+          "source_text": "汝等,瞻仰皇帝之神威吧",
+          "current_text": "Hỡi các ngươi, hãy chiêm ngưỡng thần uy của Hoàng đế",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T11:14:30Z"
+        },
+        {
+          "uid": "zhcn:e65c49a6aa68c7f073269dde",
+          "plan_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047",
+          "batch_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047-b0166",
+          "claim_id": "trc-gpt56sol-hourly-20260901T110700Z-b0166",
+          "worker_id": "gpt56sol-hourly-20260901T110014Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "147",
+            "10170103"
+          ],
+          "source_text": "汝等,瞻仰皇帝之神威吧",
+          "current_text": "Hỡi các ngươi, hãy chiêm ngưỡng thần uy của Hoàng đế",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T11:14:30Z"
+        }
+      ],
+      "canonical_resolution": null,
+      "review_resolution": null,
+      "first_seen_at": "2026-09-01T11:14:30Z",
+      "last_seen_at": "2026-09-01T11:14:30Z"
     },
     {
       "finding_id": "cf-33179a9c092b7da2",
@@ -5079,6 +5221,136 @@
       "review_resolution": null,
       "first_seen_at": "2026-09-01T02:21:00Z",
       "last_seen_at": "2026-09-01T10:49:00Z"
+    },
+    {
+      "finding_id": "cf-3a4b945b9d461490",
+      "status": "open",
+      "source_zh_cn": "击退,喧鸣之箭",
+      "match_mode": "exact",
+      "source_paths": [
+        "text_data_dict.json"
+      ],
+      "key_exact": [],
+      "json_path_prefixes": [],
+      "kinds": [
+        "proper_name"
+      ],
+      "concepts": [
+        "Skill name 击退,喧鸣之箭"
+      ],
+      "suggested_targets_vi": [],
+      "confidence_levels": [
+        "high"
+      ],
+      "reasons": [
+        "Repeated category 147 title needs JP-backed canonical Skill identity instead of a guessed Vietnamese calque."
+      ],
+      "evidence_count": 3,
+      "evidence": [
+        {
+          "uid": "zhcn:4f291bf7f755d2e2e6e653d4",
+          "plan_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047",
+          "batch_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047-b0166",
+          "claim_id": "trc-gpt56sol-hourly-20260901T110700Z-b0166",
+          "worker_id": "gpt56sol-hourly-20260901T110014Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "147",
+            "10170201"
+          ],
+          "source_text": "击退,喧鸣之箭",
+          "current_text": "Đánh lui, mũi tên vang dội",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T11:14:30Z"
+        },
+        {
+          "uid": "zhcn:748f89d810d60f0ae4545a74",
+          "plan_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047",
+          "batch_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047-b0166",
+          "claim_id": "trc-gpt56sol-hourly-20260901T110700Z-b0166",
+          "worker_id": "gpt56sol-hourly-20260901T110014Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "147",
+            "10170202"
+          ],
+          "source_text": "击退,喧鸣之箭",
+          "current_text": "Đánh lui, mũi tên vang dội",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T11:14:30Z"
+        },
+        {
+          "uid": "zhcn:daba01e590080663f2e9e529",
+          "plan_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047",
+          "batch_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047-b0166",
+          "claim_id": "trc-gpt56sol-hourly-20260901T110700Z-b0166",
+          "worker_id": "gpt56sol-hourly-20260901T110014Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "147",
+            "10170203"
+          ],
+          "source_text": "击退,喧鸣之箭",
+          "current_text": "Đánh lui, mũi tên vang dội",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T11:14:30Z"
+        }
+      ],
+      "canonical_resolution": null,
+      "review_resolution": null,
+      "first_seen_at": "2026-09-01T11:14:30Z",
+      "last_seen_at": "2026-09-01T11:14:30Z"
+    },
+    {
+      "finding_id": "cf-3b6a33d1c2346de5",
+      "status": "open",
+      "source_zh_cn": "荣耀之刃",
+      "match_mode": "exact",
+      "source_paths": [
+        "text_data_dict.json"
+      ],
+      "key_exact": [],
+      "json_path_prefixes": [],
+      "kinds": [
+        "proper_name"
+      ],
+      "concepts": [
+        "Skill name 荣耀之刃"
+      ],
+      "suggested_targets_vi": [],
+      "confidence_levels": [
+        "high"
+      ],
+      "reasons": [
+        "Category 147 Skill/title needs JP-backed canonical identity before locking a Vietnamese title."
+      ],
+      "evidence_count": 1,
+      "evidence": [
+        {
+          "uid": "zhcn:4bff64cfb6556b651549baa6",
+          "plan_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047",
+          "batch_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047-b0166",
+          "claim_id": "trc-gpt56sol-hourly-20260901T110700Z-b0166",
+          "worker_id": "gpt56sol-hourly-20260901T110014Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "147",
+            "10180101"
+          ],
+          "source_text": "荣耀之刃",
+          "current_text": "Lưỡi đao vinh quang",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T11:14:30Z"
+        }
+      ],
+      "canonical_resolution": null,
+      "review_resolution": {
+        "decision_id": "parallel.ctx-67f8551f77807292-v1.term-0077.16",
+        "action": "defer",
+        "target_vi": null
+      },
+      "first_seen_at": "2026-09-01T11:14:30Z",
+      "last_seen_at": "2026-09-01T11:14:30Z"
     },
     {
       "finding_id": "cf-3b73be2cd42ac2ac",
@@ -6514,6 +6786,53 @@
       },
       "first_seen_at": "2026-08-31T13:32:00Z",
       "last_seen_at": "2026-08-31T13:32:00Z"
+    },
+    {
+      "finding_id": "cf-53deea84a131c5c1",
+      "status": "open",
+      "source_zh_cn": "寄宿着觉悟的少女们，坚定不移的决心之曲。\\n因为宿敌赋予了我们力量——无论到哪里，都一起前行吧。",
+      "match_mode": "exact",
+      "source_paths": [
+        "text_data_dict.json"
+      ],
+      "key_exact": [],
+      "json_path_prefixes": [],
+      "kinds": [
+        "context_rule"
+      ],
+      "concepts": [
+        "Exclude generic prose 力量 from Power-stat matching"
+      ],
+      "suggested_targets_vi": [],
+      "confidence_levels": [
+        "high"
+      ],
+      "reasons": [
+        "力量 denotes ordinary motivational strength granted by a rival, not the gameplay Power stat."
+      ],
+      "evidence_count": 1,
+      "evidence": [
+        {
+          "uid": "zhcn:5211f4e063be40a6a9173da2",
+          "plan_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047",
+          "batch_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047-b0122",
+          "claim_id": "trc-gpt56sol-hourly-20260901T110014Z-b0122",
+          "worker_id": "gpt56sol-hourly-20260901T110014Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "128",
+            "1192"
+          ],
+          "source_text": "寄宿着觉悟的少女们，坚定不移的决心之曲。\\n因为宿敌赋予了我们力量——无论到哪里，都一起前行吧。",
+          "current_text": "Khúc nhạc của quyết tâm kiên định, nơi ý chí của những thiếu nữ trú ngụ.\\nBởi kình địch đã trao cho chúng ta sức mạnh—dù đi đâu, hãy cùng nhau tiến bước.",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T11:05:00Z"
+        }
+      ],
+      "canonical_resolution": null,
+      "review_resolution": null,
+      "first_seen_at": "2026-09-01T11:05:00Z",
+      "last_seen_at": "2026-09-01T11:05:00Z"
     },
     {
       "finding_id": "cf-552896cb4b769204",
@@ -11966,6 +12285,89 @@
       "last_seen_at": "2026-08-31T14:16:00Z"
     },
     {
+      "finding_id": "cf-9432191995346d92",
+      "status": "open",
+      "source_zh_cn": "尊☆最终冲—(ﾟ∀ﾟ)—刺!",
+      "match_mode": "exact",
+      "source_paths": [
+        "text_data_dict.json"
+      ],
+      "key_exact": [],
+      "json_path_prefixes": [],
+      "kinds": [
+        "proper_name"
+      ],
+      "concepts": [
+        "Skill name 尊☆最终冲—(ﾟ∀ﾟ)—刺!"
+      ],
+      "suggested_targets_vi": [],
+      "confidence_levels": [
+        "high"
+      ],
+      "reasons": [
+        "Stylized repeated Skill/title requires JP-backed wording and one canonical Vietnamese title; current zh-CN-derived target is unreliable."
+      ],
+      "evidence_count": 3,
+      "evidence": [
+        {
+          "uid": "zhcn:90960f919f75cb8551ac7b5d",
+          "plan_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047",
+          "batch_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047-b0166",
+          "claim_id": "trc-gpt56sol-hourly-20260901T110700Z-b0166",
+          "worker_id": "gpt56sol-hourly-20260901T110014Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "147",
+            "10190101"
+          ],
+          "source_text": "尊☆最终冲—(ﾟ∀ﾟ)—刺!",
+          "current_text": "Đỉnh☆Nước r—(ﾟ∀ﾟ)—út cuối!",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T11:14:30Z"
+        },
+        {
+          "uid": "zhcn:075b01b0d7c4426560f622ab",
+          "plan_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047",
+          "batch_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047-b0166",
+          "claim_id": "trc-gpt56sol-hourly-20260901T110700Z-b0166",
+          "worker_id": "gpt56sol-hourly-20260901T110014Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "147",
+            "10190102"
+          ],
+          "source_text": "尊☆最终冲—(ﾟ∀ﾟ)—刺!",
+          "current_text": "Đỉnh☆Nước r—(ﾟ∀ﾟ)—út cuối!",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T11:14:30Z"
+        },
+        {
+          "uid": "zhcn:93917576d317d04a7cc3e69c",
+          "plan_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047",
+          "batch_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047-b0166",
+          "claim_id": "trc-gpt56sol-hourly-20260901T110700Z-b0166",
+          "worker_id": "gpt56sol-hourly-20260901T110014Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "147",
+            "10190103"
+          ],
+          "source_text": "尊☆最终冲—(ﾟ∀ﾟ)—刺!",
+          "current_text": "Đỉnh☆Nước r—(ﾟ∀ﾟ)—út cuối!",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T11:14:30Z"
+        }
+      ],
+      "canonical_resolution": null,
+      "review_resolution": {
+        "decision_id": "parallel.ctx-67f8551f77807292-v1.term-0033.14",
+        "action": "defer",
+        "target_vi": null
+      },
+      "first_seen_at": "2026-09-01T11:14:30Z",
+      "last_seen_at": "2026-09-01T11:14:30Z"
+    },
+    {
       "finding_id": "cf-9465edb0748c1dd8",
       "status": "open",
       "source_zh_cn": "我们的归途",
@@ -12796,6 +13198,69 @@
       },
       "first_seen_at": "2026-08-30T12:26:00Z",
       "last_seen_at": "2026-08-30T12:26:00Z"
+    },
+    {
+      "finding_id": "cf-9acf7ae6c0c968ce",
+      "status": "open",
+      "source_zh_cn": "莱茵力量的特殊服装",
+      "match_mode": "exact",
+      "source_paths": [
+        "text_data_dict.json"
+      ],
+      "key_exact": [],
+      "json_path_prefixes": [],
+      "kinds": [
+        "context_rule"
+      ],
+      "concepts": [
+        "Power stat alias must not match inside Rhein Kraft character name 莱茵力量"
+      ],
+      "suggested_targets_vi": [],
+      "confidence_levels": [
+        "high"
+      ],
+      "reasons": [
+        "力量 is part of the established proper name 莱茵力量/Rhein Kraft in this full source, not the gameplay Power stat."
+      ],
+      "evidence_count": 2,
+      "evidence": [
+        {
+          "uid": "zhcn:96a1ad50faf3a58debea05f1",
+          "plan_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047",
+          "batch_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047-b0197",
+          "claim_id": "trc-gpt56sol-hourly-20260901T111600Z-b0197",
+          "worker_id": "gpt56sol-hourly-20260901T110014Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "15",
+            "110901"
+          ],
+          "source_text": "莱茵力量的特殊服装",
+          "current_text": "Trang phục đặc biệt (Rhein Kraft)",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T11:23:30Z"
+        },
+        {
+          "uid": "zhcn:08f9e52cbf0c129ba9d3c069",
+          "plan_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047",
+          "batch_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047-b0197",
+          "claim_id": "trc-gpt56sol-hourly-20260901T111600Z-b0197",
+          "worker_id": "gpt56sol-hourly-20260901T110014Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "15",
+            "110902"
+          ],
+          "source_text": "莱茵力量的特殊服装",
+          "current_text": "Trang phục đặc biệt (Rhein Kraft)",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T11:23:30Z"
+        }
+      ],
+      "canonical_resolution": null,
+      "review_resolution": null,
+      "first_seen_at": "2026-09-01T11:23:30Z",
+      "last_seen_at": "2026-09-01T11:23:30Z"
     },
     {
       "finding_id": "cf-9b54f5a3c1dcb88f",
@@ -14043,6 +14508,53 @@
       },
       "first_seen_at": "2026-08-30T01:06:00Z",
       "last_seen_at": "2026-08-30T19:25:10Z"
+    },
+    {
+      "finding_id": "cf-a6c1bdfd933a9e86",
+      "status": "open",
+      "source_zh_cn": "传递☆我们的全力应援！将最大力量献给你♪\\n我们相信！你就是最强！！直到极限Pom Pon!!!",
+      "match_mode": "exact",
+      "source_paths": [
+        "text_data_dict.json"
+      ],
+      "key_exact": [],
+      "json_path_prefixes": [],
+      "kinds": [
+        "context_rule"
+      ],
+      "concepts": [
+        "Exclude generic cheer prose 力量 from Power-stat matching"
+      ],
+      "suggested_targets_vi": [],
+      "confidence_levels": [
+        "high"
+      ],
+      "reasons": [
+        "力量 expresses ordinary strength in a cheer lyric/description, not a stat label."
+      ],
+      "evidence_count": 1,
+      "evidence": [
+        {
+          "uid": "zhcn:21ac70eddf577f31a7e0b58b",
+          "plan_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047",
+          "batch_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047-b0122",
+          "claim_id": "trc-gpt56sol-hourly-20260901T110014Z-b0122",
+          "worker_id": "gpt56sol-hourly-20260901T110014Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "128",
+            "1190"
+          ],
+          "source_text": "传递☆我们的全力应援！将最大力量献给你♪\\n我们相信！你就是最强！！直到极限Pom Pon!!!",
+          "current_text": "Trao gửi☆toàn bộ lời cổ vũ của chúng tôi! Dành sức mạnh lớn nhất cho bạn♪\\nChúng tôi tin! Bạn chính là mạnh nhất!! Cổ vũ hết mình, Pom Pon!!!",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T11:05:00Z"
+        }
+      ],
+      "canonical_resolution": null,
+      "review_resolution": null,
+      "first_seen_at": "2026-09-01T11:05:00Z",
+      "last_seen_at": "2026-09-01T11:05:00Z"
     },
     {
       "finding_id": "cf-a6f9a22d7cf78668",
@@ -15751,6 +16263,57 @@
       "review_resolution": null,
       "first_seen_at": "2026-09-01T07:51:00Z",
       "last_seen_at": "2026-09-01T07:51:00Z"
+    },
+    {
+      "finding_id": "cf-b59eaced2bdd8b98",
+      "status": "open",
+      "source_zh_cn": "灰色的临界点",
+      "match_mode": "exact",
+      "source_paths": [
+        "text_data_dict.json"
+      ],
+      "key_exact": [],
+      "json_path_prefixes": [],
+      "kinds": [
+        "proper_name"
+      ],
+      "concepts": [
+        "Skill name 灰色的临界点"
+      ],
+      "suggested_targets_vi": [],
+      "confidence_levels": [
+        "high"
+      ],
+      "reasons": [
+        "Category 147 title-like entry needs one JP-backed canonical Skill identity before a Vietnamese title is locked."
+      ],
+      "evidence_count": 1,
+      "evidence": [
+        {
+          "uid": "zhcn:bddb8434b34b906fbeff1b14",
+          "plan_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047",
+          "batch_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047-b0166",
+          "claim_id": "trc-gpt56sol-hourly-20260901T110700Z-b0166",
+          "worker_id": "gpt56sol-hourly-20260901T110014Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "147",
+            "10160203"
+          ],
+          "source_text": "灰色的临界点",
+          "current_text": "Điểm tới hạn màu xám",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T11:14:30Z"
+        }
+      ],
+      "canonical_resolution": null,
+      "review_resolution": {
+        "decision_id": "parallel.ctx-67f8551f77807292-v1.term-0059.06",
+        "action": "defer",
+        "target_vi": null
+      },
+      "first_seen_at": "2026-09-01T11:14:30Z",
+      "last_seen_at": "2026-09-01T11:14:30Z"
     },
     {
       "finding_id": "cf-b5b4efe029e4fb75",
@@ -20137,6 +20700,53 @@
       "review_resolution": null,
       "first_seen_at": "2026-09-01T06:18:00Z",
       "last_seen_at": "2026-09-01T06:18:00Z"
+    },
+    {
+      "finding_id": "cf-ec86f01eef199b82",
+      "status": "open",
+      "source_zh_cn": "『#kawaii』『#梦幻柔软』『#心动不已？』\\n可爱是能传达到宇宙的暗号！呐，可以再多喜欢我一点吗？",
+      "match_mode": "exact",
+      "source_paths": [
+        "text_data_dict.json"
+      ],
+      "key_exact": [],
+      "json_path_prefixes": [],
+      "kinds": [
+        "context_rule"
+      ],
+      "concepts": [
+        "Exclude hashtag/prose 心动 from Skill-title matching"
+      ],
+      "suggested_targets_vi": [],
+      "confidence_levels": [
+        "high"
+      ],
+      "reasons": [
+        "Full item uses 心动 as an emotional hashtag, not a Skill identity; current Skill-title lock is a false positive."
+      ],
+      "evidence_count": 1,
+      "evidence": [
+        {
+          "uid": "zhcn:996c7568e8341c51f3593486",
+          "plan_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047",
+          "batch_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047-b0122",
+          "claim_id": "trc-gpt56sol-hourly-20260901T110014Z-b0122",
+          "worker_id": "gpt56sol-hourly-20260901T110014Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "128",
+            "1182"
+          ],
+          "source_text": "『#kawaii』『#梦幻柔软』『#心动不已？』\\n可爱是能传达到宇宙的暗号！呐，可以再多喜欢我一点吗？",
+          "current_text": "“#kawaii” “#mơmàngmềmmại” “#timđậpnhanh?”\\nDễ thương là mật mã có thể truyền tới tận vũ trụ! Nè, bạn có thể thích tôi thêm một chút nữa không?",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T11:05:00Z"
+        }
+      ],
+      "canonical_resolution": null,
+      "review_resolution": null,
+      "first_seen_at": "2026-09-01T11:05:00Z",
+      "last_seen_at": "2026-09-01T11:05:00Z"
     },
     {
       "finding_id": "cf-eccb855f3ae45b49",

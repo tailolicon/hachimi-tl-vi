@@ -15702,7 +15702,8 @@
         "Ordinary emotional 心动 in dialogue must not automatically normalize to the Skill title Nhịp tim rộn ràng",
         "Skill alias 心动 must not overmatch ordinary emotional prose such as 心动不已",
         "Generic narrative 心动 must not automatically normalize to the Skill title Nhịp tim rộn ràng",
-        "Skill-name aliases must not overmatch inside the support unique-effect title 怦然心动的记忆♪"
+        "Skill-name aliases must not overmatch inside the support unique-effect title 怦然心动的记忆♪",
+        "Skill-name matcher must not fire on ordinary emotional prose using 心动"
       ],
       "suggested_targets_vi": [],
       "confidence_levels": [
@@ -15718,9 +15719,10 @@
         "This occurrence means feeling thrilled/heart-pounding and is not a named Skill reference.",
         "This dialogue uses 心动 as an emotional sensation, not a Skill name.",
         "Mayano's self-introduction uses 心动不已 as an emotional phrase, not a player-facing Skill title.",
-        "Longer support unique-effect titles must not be rewritten by standalone Skill-title mappings that match 心动 as a substring."
+        "Longer support unique-effect titles must not be rewritten by standalone Skill-title mappings that match 心动 as a substring.",
+        "This dialogue uses 心动 as ordinary 'heart-fluttering/excited' prose, not the named Skill; canonical matching must be scoped so generic prose is not rewritten as a Skill title."
       ],
-      "evidence_count": 10,
+      "evidence_count": 11,
       "evidence": [
         {
           "uid": "zhcn:996c7568e8341c51f3593486",
@@ -15881,6 +15883,22 @@
           "current_text": "Ký ức khiến tim rung động♪",
           "proposed_text": null,
           "reported_at": "2026-09-01T19:18:30Z"
+        },
+        {
+          "uid": "zhcn:e837deb220b7be97d6a32405",
+          "plan_id": "tr-p3-67f8551f7780-9e982cb2b45d-b5c0bcb3bd-ce1c207047",
+          "batch_id": "tr-p3-67f8551f7780-9e982cb2b45d-b5c0bcb3bd-ce1c207047-b0091",
+          "claim_id": "trc-gpt56sol-hourly-20260901T214949Z-b0091",
+          "worker_id": "gpt56sol-hourly-20260901T214949Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "163",
+            "1024"
+          ],
+          "source_text": "诶嘿嘿，是Maya亲哟—☆\\n最喜欢心动不已，和刺激的事情啦♪请多指教！",
+          "current_text": "Ê hê hê, Maya-chan đây—☆\\nMình thích nhất cảm giác tim đập thình thịch và những chuyện kích thích♪ Mong được giúp đỡ!",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T21:51:38Z"
         }
       ],
       "canonical_resolution": {
@@ -15894,7 +15912,7 @@
         "target_vi": "Nhịp tim rộn ràng"
       },
       "first_seen_at": "2026-08-31T01:01:03Z",
-      "last_seen_at": "2026-09-01T19:18:30Z"
+      "last_seen_at": "2026-09-01T21:51:38Z"
     },
     {
       "finding_id": "cf-9a0b738dae85c3a2",

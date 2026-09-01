@@ -5750,6 +5750,52 @@
       "last_seen_at": "2026-08-30T18:36:00Z"
     },
     {
+      "finding_id": "cf-493004166ae49fae",
+      "status": "open",
+      "source_zh_cn": "1600万下",
+      "match_mode": "exact",
+      "source_paths": [
+        "localize_dict.json"
+      ],
+      "key_exact": [],
+      "json_path_prefixes": [],
+      "kinds": [
+        "system_label"
+      ],
+      "concepts": [
+        "Historical race class label"
+      ],
+      "suggested_targets_vi": [],
+      "confidence_levels": [
+        "high"
+      ],
+      "reasons": [
+        "Historical race-class labels need one canonical player-facing mapping instead of ad-hoc numeric expansion."
+      ],
+      "evidence_count": 1,
+      "evidence": [
+        {
+          "uid": "zhcn:1b26b909d198fd539510695b",
+          "plan_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047",
+          "batch_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047-b0058",
+          "claim_id": "trc-chatgpt-web-s1-20260901T093755Z-b0058",
+          "worker_id": "chatgpt-web-slot-1-20260901T093417Z",
+          "source_path": "localize_dict.json",
+          "json_path": [
+            "Race0026"
+          ],
+          "source_text": "1600万下",
+          "current_text": "Dưới 16 triệu",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T09:41:00Z"
+        }
+      ],
+      "canonical_resolution": null,
+      "review_resolution": null,
+      "first_seen_at": "2026-09-01T09:41:00Z",
+      "last_seen_at": "2026-09-01T09:41:00Z"
+    },
+    {
       "finding_id": "cf-4be2a57cad577473",
       "status": "open",
       "source_zh_cn": "GOCHISO様",
@@ -6904,7 +6950,8 @@
         "Disambiguate ordinary physical strength from the Power stat",
         "Power stat alias must not overmatch narrative 力量感 describing force/powerfulness",
         "Power stat alias must not overmatch inside Rhein Kraft character name 莱茵力量",
-        "Generic narrative 力量 must not automatically normalize to the gameplay stat Power"
+        "Generic narrative 力量 must not automatically normalize to the gameplay stat Power",
+        "Generic item/narrative 力量 must not automatically normalize to the gameplay stat Power"
       ],
       "suggested_targets_vi": [],
       "confidence_levels": [
@@ -6920,9 +6967,10 @@
         "The reusable alias 力量 is being matched as the Power stat inside ordinary descriptive prose where it means physical strength; the matcher must exclude non-stat contexts.",
         "In 充满力量感的赛跑, 力量 means a sense of power/force in narrative prose, not the Power stat.",
         "Reusable stat alias currently matches a substring of a character proper name in text_data character-piece labels.",
-        "This dialogue uses 力量 inside 力量感 to describe the feel of a race, not the Power stat."
+        "This dialogue uses 力量 inside 力量感 to describe the feel of a race, not the Power stat.",
+        "The phrase describes mysterious strength as an item property, while 支援卡 separately maps to Support Card."
       ],
-      "evidence_count": 14,
+      "evidence_count": 15,
       "evidence": [
         {
           "uid": "zhcn:c7764341e6086330eea7872a",
@@ -7147,6 +7195,22 @@
           "current_text": "Howdy! Tôi là Taiki Shuttle!\\nTôi sẽ mang Happy đến cho mọi người bằng những cuộc đua đầy Power của mình!",
           "proposed_text": null,
           "reported_at": "2026-09-01T09:36:00Z"
+        },
+        {
+          "uid": "zhcn:66b940ceac6481d37e1e3c92",
+          "plan_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047",
+          "batch_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047-b0097",
+          "claim_id": "trc-gpt56sol-hourly-20260901T095400Z-b0097",
+          "worker_id": "gpt56sol-hourly-20260901T093000Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "10",
+            "110"
+          ],
+          "source_text": "具有激发不可思议力量的能力。\\n可用于支援卡的强化。",
+          "current_text": "Có khả năng khơi dậy sức mạnh kỳ diệu.\\nCó thể dùng để nâng cấp Thẻ hỗ trợ.",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T10:00:00Z"
         }
       ],
       "canonical_resolution": {
@@ -7156,7 +7220,7 @@
       },
       "review_resolution": null,
       "first_seen_at": "2026-08-30T13:27:00Z",
-      "last_seen_at": "2026-09-01T09:36:00Z"
+      "last_seen_at": "2026-09-01T10:00:00Z"
     },
     {
       "finding_id": "cf-5e687a2cba04839b",
@@ -7207,6 +7271,52 @@
       "review_resolution": null,
       "first_seen_at": "2026-09-01T07:49:30Z",
       "last_seen_at": "2026-09-01T07:49:30Z"
+    },
+    {
+      "finding_id": "cf-5ecc43bad2d7a505",
+      "status": "open",
+      "source_zh_cn": "超盛况",
+      "match_mode": "exact",
+      "source_paths": [
+        "localize_dict.json"
+      ],
+      "key_exact": [],
+      "json_path_prefixes": [],
+      "kinds": [
+        "system_label"
+      ],
+      "concepts": [
+        "Ramen scenario system label 超盛况"
+      ],
+      "suggested_targets_vi": [],
+      "confidence_levels": [
+        "medium"
+      ],
+      "reasons": [
+        "Player-facing scenario state label needs canonical terminology instead of an unverified literal rendering."
+      ],
+      "evidence_count": 1,
+      "evidence": [
+        {
+          "uid": "zhcn:ebd264b21129e4780899697b",
+          "plan_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047",
+          "batch_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047-b0083",
+          "claim_id": "trc-gpt56sol-hourly-20260901T100800Z-b0083",
+          "worker_id": "gpt56sol-hourly-20260901T093000Z",
+          "source_path": "localize_dict.json",
+          "json_path": [
+            "SingleModeScenarioRamen619110"
+          ],
+          "source_text": "超盛况",
+          "current_text": "Siêu đông khách",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T10:14:00Z"
+        }
+      ],
+      "canonical_resolution": null,
+      "review_resolution": null,
+      "first_seen_at": "2026-09-01T10:14:00Z",
+      "last_seen_at": "2026-09-01T10:14:00Z"
     },
     {
       "finding_id": "cf-5f122ded4af0e4b5",
@@ -7308,6 +7418,57 @@
       "review_resolution": null,
       "first_seen_at": "2026-09-01T06:58:00Z",
       "last_seen_at": "2026-09-01T06:58:00Z"
+    },
+    {
+      "finding_id": "cf-5f92ce6e499363dd",
+      "status": "open",
+      "source_zh_cn": "以攻为守",
+      "match_mode": "exact",
+      "source_paths": [
+        "text_data_dict.json"
+      ],
+      "key_exact": [],
+      "json_path_prefixes": [],
+      "kinds": [
+        "proper_name"
+      ],
+      "concepts": [
+        "Skill 203222 / JP アグレッシブ"
+      ],
+      "suggested_targets_vi": [],
+      "confidence_levels": [
+        "high"
+      ],
+      "reasons": [
+        "Recurring Skill title is backed by an untrusted zh-CN bridge and requires a verified JP-backed Vietnamese canonical name."
+      ],
+      "evidence_count": 1,
+      "evidence": [
+        {
+          "uid": "zhcn:97d049f0c7e367af686814c6",
+          "plan_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047",
+          "batch_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047-b0181",
+          "claim_id": "trc-gpt56sol-hourly-20260901T103300Z-b0181",
+          "worker_id": "gpt56sol-hourly-20260901T092801Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "147",
+            "2032201"
+          ],
+          "source_text": "以攻为守",
+          "current_text": "Lấy công làm thủ",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T10:39:00Z"
+        }
+      ],
+      "canonical_resolution": null,
+      "review_resolution": {
+        "decision_id": "parallel.ctx-67f8551f77807292-v1.term-0014.02",
+        "action": "defer",
+        "target_vi": null
+      },
+      "first_seen_at": "2026-09-01T10:39:00Z",
+      "last_seen_at": "2026-09-01T10:39:00Z"
     },
     {
       "finding_id": "cf-5fe21392eb60849a",
@@ -7905,6 +8066,52 @@
       "last_seen_at": "2026-09-01T01:49:40Z"
     },
     {
+      "finding_id": "cf-6723bdf7d915f74d",
+      "status": "open",
+      "source_zh_cn": "距反应可靠",
+      "match_mode": "exact",
+      "source_paths": [
+        "localize_dict.json"
+      ],
+      "key_exact": [],
+      "json_path_prefixes": [],
+      "kinds": [
+        "system_label"
+      ],
+      "concepts": [
+        "Mecha scenario system label 距反应可靠"
+      ],
+      "suggested_targets_vi": [],
+      "confidence_levels": [
+        "medium"
+      ],
+      "reasons": [
+        "The terse system label is ambiguous in isolation and needs scenario-backed terminology before accepting a durable Vietnamese label."
+      ],
+      "evidence_count": 1,
+      "evidence": [
+        {
+          "uid": "zhcn:10168dc3fe22f4e7d72166a1",
+          "plan_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047",
+          "batch_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047-b0083",
+          "claim_id": "trc-gpt56sol-hourly-20260901T100800Z-b0083",
+          "worker_id": "gpt56sol-hourly-20260901T093000Z",
+          "source_path": "localize_dict.json",
+          "json_path": [
+            "SingleModeScenarioMecha194077"
+          ],
+          "source_text": "距反应可靠",
+          "current_text": "Phản ứng cự ly đáng tin cậy",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T10:14:00Z"
+        }
+      ],
+      "canonical_resolution": null,
+      "review_resolution": null,
+      "first_seen_at": "2026-09-01T10:14:00Z",
+      "last_seen_at": "2026-09-01T10:14:00Z"
+    },
+    {
       "finding_id": "cf-67403114b93c9fec",
       "status": "open",
       "source_zh_cn": "宇宙走娘＜コスモピュエラ＞　銀河冒険譚",
@@ -8412,6 +8619,52 @@
       "review_resolution": null,
       "first_seen_at": "2026-08-31T14:08:49Z",
       "last_seen_at": "2026-08-31T14:08:49Z"
+    },
+    {
+      "finding_id": "cf-6dde20fdd8a4d79c",
+      "status": "open",
+      "source_zh_cn": "1000万下",
+      "match_mode": "exact",
+      "source_paths": [
+        "localize_dict.json"
+      ],
+      "key_exact": [],
+      "json_path_prefixes": [],
+      "kinds": [
+        "system_label"
+      ],
+      "concepts": [
+        "Historical race class label"
+      ],
+      "suggested_targets_vi": [],
+      "confidence_levels": [
+        "high"
+      ],
+      "reasons": [
+        "Historical race-class labels need one canonical player-facing mapping instead of ad-hoc numeric expansion."
+      ],
+      "evidence_count": 1,
+      "evidence": [
+        {
+          "uid": "zhcn:e899c3a430c35056d0414a1b",
+          "plan_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047",
+          "batch_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047-b0058",
+          "claim_id": "trc-chatgpt-web-s1-20260901T093755Z-b0058",
+          "worker_id": "chatgpt-web-slot-1-20260901T093417Z",
+          "source_path": "localize_dict.json",
+          "json_path": [
+            "Race0027"
+          ],
+          "source_text": "1000万下",
+          "current_text": "Dưới 10 triệu",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T09:41:00Z"
+        }
+      ],
+      "canonical_resolution": null,
+      "review_resolution": null,
+      "first_seen_at": "2026-09-01T09:41:00Z",
+      "last_seen_at": "2026-09-01T09:41:00Z"
     },
     {
       "finding_id": "cf-6e9ce1ab478d60de",
@@ -14846,6 +15099,52 @@
       "last_seen_at": "2026-08-30T17:44:00Z"
     },
     {
+      "finding_id": "cf-b42d17e3249f4950",
+      "status": "open",
+      "source_zh_cn": "习得槽",
+      "match_mode": "exact",
+      "source_paths": [
+        "localize_dict.json"
+      ],
+      "key_exact": [],
+      "json_path_prefixes": [],
+      "kinds": [
+        "system_label"
+      ],
+      "concepts": [
+        "Ramen scenario system label 习得槽"
+      ],
+      "suggested_targets_vi": [],
+      "confidence_levels": [
+        "medium"
+      ],
+      "reasons": [
+        "Player-facing scenario mechanic label needs canonical terminology instead of an unverified literal rendering."
+      ],
+      "evidence_count": 1,
+      "evidence": [
+        {
+          "uid": "zhcn:960e01ad53c6f93b15b1972e",
+          "plan_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047",
+          "batch_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047-b0083",
+          "claim_id": "trc-gpt56sol-hourly-20260901T100800Z-b0083",
+          "worker_id": "gpt56sol-hourly-20260901T093000Z",
+          "source_path": "localize_dict.json",
+          "json_path": [
+            "SingleModeScenarioRamen619076"
+          ],
+          "source_text": "习得槽",
+          "current_text": "Thanh lĩnh hội",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T10:14:00Z"
+        }
+      ],
+      "canonical_resolution": null,
+      "review_resolution": null,
+      "first_seen_at": "2026-09-01T10:14:00Z",
+      "last_seen_at": "2026-09-01T10:14:00Z"
+    },
+    {
       "finding_id": "cf-b4ddf0728febc08f",
       "status": "open",
       "source_zh_cn": "快人一步",
@@ -17711,7 +18010,8 @@
         "Distinguish Skill-name 光明 from ordinary bright/light prose",
         "Skill-name alias 光明 must not match inside character name 目白光明",
         "Skill alias must not match inside Mejiro Bright proper name",
-        "Skill-name alias must not overmatch inside Mejiro Bright character name 目白光明"
+        "Skill-name alias must not overmatch inside Mejiro Bright character name 目白光明",
+        "Skill alias 光明 must not match inside the character name 目白光明 / Mejiro Bright"
       ],
       "suggested_targets_vi": [],
       "confidence_levels": [
@@ -17722,9 +18022,11 @@
         "Bare 光明 currently triggers a reviewed Skill-name lock inside ordinary song-description prose such as 光明的未来.",
         "The current locked Skill alias fires inside Mejiro Bright's full character name in item descriptions, conflicting with the verified character mapping.",
         "Reusable Skill alias 光明 is embedded in 目白光明 and causes a false locked-term mismatch.",
-        "Reusable Skill alias currently matches a substring of a character proper name in text_data character-piece labels."
+        "Reusable Skill alias currently matches a substring of a character proper name in text_data character-piece labels.",
+        "This item is authored by Mejiro Bright; forcing the standalone Skill translation Ánh sáng inside her name would corrupt the character identity.",
+        "This is a Mejiro Bright character-piece label, not the standalone Skill 光明."
       ],
-      "evidence_count": 11,
+      "evidence_count": 18,
       "evidence": [
         {
           "uid": "zhcn:e24f509f9ecadbe9bb160b77",
@@ -17901,6 +18203,118 @@
           "current_text": "Mảnh Mejiro Bright",
           "proposed_text": null,
           "reported_at": "2026-09-01T08:27:43Z"
+        },
+        {
+          "uid": "zhcn:29c0bf26b2b22b56c96a0671",
+          "plan_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047",
+          "batch_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047-b0097",
+          "claim_id": "trc-gpt56sol-hourly-20260901T095400Z-b0097",
+          "worker_id": "gpt56sol-hourly-20260901T093000Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "10",
+            "1007401"
+          ],
+          "source_text": "目白光明制作的特别巧克力。\\n使用后TP恢复30。",
+          "current_text": "Chocolate đặc biệt do Mejiro Bright làm.\\nSau khi dùng, hồi 30 TP.",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T10:00:00Z"
+        },
+        {
+          "uid": "zhcn:ec2d2f2673322ec74b682b98",
+          "plan_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047",
+          "batch_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047-b0097",
+          "claim_id": "trc-gpt56sol-hourly-20260901T095400Z-b0097",
+          "worker_id": "gpt56sol-hourly-20260901T093000Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "10",
+            "1007402"
+          ],
+          "source_text": "目白光明制作的特别巧克力。\\n使用后TP恢复30。",
+          "current_text": "Chocolate đặc biệt do Mejiro Bright làm.\\nSau khi dùng, hồi 30 TP.",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T10:00:00Z"
+        },
+        {
+          "uid": "zhcn:cfbbc38ad571f77430a9e398",
+          "plan_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047",
+          "batch_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047-b0097",
+          "claim_id": "trc-gpt56sol-hourly-20260901T095400Z-b0097",
+          "worker_id": "gpt56sol-hourly-20260901T093000Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "10",
+            "10111"
+          ],
+          "source_text": "目白光明制作的手工巧克力。\\n使用后TP恢复30。",
+          "current_text": "Chocolate thủ công do Mejiro Bright làm.\\nKhi dùng, hồi 30 TP.",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T10:00:00Z"
+        },
+        {
+          "uid": "zhcn:a4fe18e80c822dc91e30eb5f",
+          "plan_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047",
+          "batch_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047-b0097",
+          "claim_id": "trc-gpt56sol-hourly-20260901T095400Z-b0097",
+          "worker_id": "gpt56sol-hourly-20260901T093000Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "10",
+            "10142"
+          ],
+          "source_text": "目白光明制作的手工巧克力。\\n使用后TP恢复30。",
+          "current_text": "Chocolate thủ công do Mejiro Bright làm.\\nKhi dùng, hồi 30 TP.",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T10:00:00Z"
+        },
+        {
+          "uid": "zhcn:b41f3be602471fae27ddc365",
+          "plan_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047",
+          "batch_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047-b0107",
+          "claim_id": "trc-gpt56sol-hourly-20260901T100100Z-b0107",
+          "worker_id": "gpt56sol-hourly-20260901T093000Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "113",
+            "107401"
+          ],
+          "source_text": "目白光明的碎片",
+          "current_text": "Mảnh Mejiro Bright",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T10:07:00Z"
+        },
+        {
+          "uid": "zhcn:e18838e8066d7ae1f15b19b8",
+          "plan_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047",
+          "batch_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047-b0107",
+          "claim_id": "trc-gpt56sol-hourly-20260901T100100Z-b0107",
+          "worker_id": "gpt56sol-hourly-20260901T093000Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "113",
+            "107402"
+          ],
+          "source_text": "目白光明的碎片",
+          "current_text": "Mảnh Mejiro Bright",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T10:07:00Z"
+        },
+        {
+          "uid": "zhcn:e7eb60eebe749233724b353c",
+          "plan_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047",
+          "batch_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047-b0107",
+          "claim_id": "trc-gpt56sol-hourly-20260901T100100Z-b0107",
+          "worker_id": "gpt56sol-hourly-20260901T093000Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "113",
+            "107403"
+          ],
+          "source_text": "目白光明的碎片",
+          "current_text": "Mảnh Mejiro Bright",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T10:07:00Z"
         }
       ],
       "canonical_resolution": {
@@ -17914,7 +18328,7 @@
         "target_vi": "Ánh sáng"
       },
       "first_seen_at": "2026-08-31T00:54:59Z",
-      "last_seen_at": "2026-09-01T08:27:43Z"
+      "last_seen_at": "2026-09-01T10:07:00Z"
     },
     {
       "finding_id": "cf-d3dd61a3ce1f7dd6",

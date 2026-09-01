@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "status": "partial",
+  "plan_id": "tr-p3-67f8551f7780-5e45c4dc80a8-b5c0bcb3bd-9bb2b41843",
+  "batch_id": "tr-p3-67f8551f7780-5e45c4dc80a8-b5c0bcb3bd-9bb2b41843-b0174",
+  "claim_id": "trc-gpt56sol-20260901T080400Z-b0174",
+  "worker_id": "gpt56sol-20260901T075900Z",
+  "reviewed_at": "2026-09-01T08:04:00Z",
+  "completed_count": 5,
+  "decisions": [
+    {"uid":"zhcn:0954921267fc40c4003cf418","current_fingerprint":"2d9c72217068288f1c7e63011821d63bf2ae7e72d7f2933801999c2fd4a034b7","action":"defer","reason":"Embedded context is internally conflicting: reviewed.skill_name.07581ce49acd requires the complete alias 速度之星 to remain Ngôi sao tốc độ, while common.stat.speed simultaneously requires the nested 速度 substring to appear as Speed. A single target cannot satisfy both guards without corrupting the locked Skill title.","canonical_finding":{"kind":"context_rule","source_zh_cn":"速度","concept":"Generic Speed stat matching must not fire inside locked Skill title 速度之星","match_mode":"contains","scope":"source_path","reason":"The nested generic stat guard conflicts with the more specific locked Skill-name identity and needs exclusion/scoping before review can resolve the item.","confidence":"high"},"confidence":"high"},
+    {"uid":"zhcn:fec53bb0147bd9aa99303cee","current_fingerprint":"9a300acc7abacc4d0bed91e66d7131a181633d16fe3ac93c70c1406a493b1e06","action":"keep","reason":"The epithet preserves the source image of a transcendent figure on sand/dirt and has no embedded canonical constraint requiring a different label.","confidence":"medium"},
+    {"uid":"zhcn:b22465f28c46f41d1b0ee16b","current_fingerprint":"782c3e7dd596c476f033758b97510268e1ef2344f16601c5f0d580d517d2ab4c","action":"keep","reason":"The title naturally preserves the source meaning 'favored child of the sand' and has no embedded canonical mismatch.","confidence":"medium"},
+    {"uid":"zhcn:e48491c895348c146b4728d1","current_fingerprint":"d9cfdc60db7f9f5b8caa8c368730b7a40c30381d99bad25641c0849f326fe13c","action":"keep","reason":"The concise epithet preserves the source meaning and has no structural or canonical guard conflict.","confidence":"medium"},
+    {"uid":"zhcn:49486a1a067fbf1cfd9c2335","current_fingerprint":"a2e5c55763e26dcaa0698c4b36a56763a8fd7011a45544f86f4b420984ad8029","action":"revise","proposed_text":"Mã Nương song quan","reason":"The title's generic 赛马娘 must use the project world term Mã Nương rather than forbidden Uma Musume; the double-crown descriptor is otherwise preserved.","terminology_basis":"common.world.umamusume and world.umamusume.shorthand.text130 require the generic world/species term Mã Nương.","confidence":"high"}
+  ]
+}

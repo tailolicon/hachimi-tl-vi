@@ -9,13 +9,13 @@
     "growth": "Every accepted retrospective translation revise and accepted UI revise is folded into this file automatically by both review merge workflows."
   },
   "summary": {
-    "merged_markers_scanned": 2107,
-    "translation_merged_markers_scanned": 2007,
+    "merged_markers_scanned": 2117,
+    "translation_merged_markers_scanned": 2017,
     "ui_merged_markers_scanned": 100,
-    "accepted_revision_events": 7911,
-    "accepted_translation_revision_events": 6422,
+    "accepted_revision_events": 7932,
+    "accepted_translation_revision_events": 6443,
     "accepted_ui_revision_events": 1489,
-    "regression_identity_count": 6250,
+    "regression_identity_count": 6262,
     "skipped_incomplete_markers": 0,
     "translation_skipped_incomplete_markers": 0,
     "ui_skipped_incomplete_markers": 0
@@ -4593,6 +4593,31 @@
       ]
     },
     {
+      "id": "review.regression.b3d7bbdace473c67",
+      "uid": "zhcn:056999e6bd37b1fa681cc420",
+      "scope": "uid",
+      "source_text": "支援点数",
+      "source_fingerprint": "eba9699e73bc3676f4b0af0bd351c9a87686ca58a3ced9ba7eefbb2827da8354",
+      "rejected_targets": [
+        "Điểm Hỗ trợ"
+      ],
+      "approved_target": "Support Pt",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047",
+          "batch_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047-b0013",
+          "claim_id": "trc-gpt56sol-auto8-20260901T164600Z-b0013",
+          "merged_at": "2026-09-01T16:57:50.458578Z",
+          "reason": "The current literal Vietnamese label conflicts with the embedded player-facing resource terminology."
+        }
+      ]
+    },
+    {
       "id": "review.regression.c9e911cb6d1b15df",
       "uid": "zhcn:056c12308eee79bdd1e90cf0",
       "scope": "uid",
@@ -7145,10 +7170,12 @@
       "source_text": "购买马娘订阅\n可获得多种特典",
       "source_fingerprint": "51fc76d8b7e754bec1d506ee5c5f32f043786ab3cedb1830c3716aefb027fe2c",
       "rejected_targets": [
+        "Mua gói Uma\nnhận nhiều đặc quyền",
         "Mua gói đăng ký Uma Musume\nđể nhận nhiều đặc quyền"
       ],
-      "approved_target": "Mua gói Uma\nnhận nhiều đặc quyền",
+      "approved_target": "Mua gói đăng ký Uma Musume\nnhận nhiều đặc quyền",
       "origins": [
+        "translation_review",
         "ui_review"
       ],
       "ui_contexts": [
@@ -7170,6 +7197,14 @@
           "reason": "The subscription context is already visible; compacting the package name and dropping helper wording preserves both lines and meaning.",
           "ui_key": "Common626011",
           "control_type": "short_system_label"
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047",
+          "batch_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047-b0014",
+          "claim_id": "trc-gpt56sol-auto8-20260901T165100Z-b0014",
+          "merged_at": "2026-09-01T16:57:50.465122Z",
+          "reason": "The current text shortens 马娘订阅 to gói Uma, losing both the Uma Musume name and explicit subscription meaning."
         }
       ]
     },
@@ -9264,6 +9299,31 @@
           "reason": "The special-edition title can be expressed as a compact magazine header without the verbose 'Nguyệt san ... Số đặc biệt' construction.",
           "ui_key": "Champions187003",
           "control_type": "header"
+        }
+      ]
+    },
+    {
+      "id": "review.regression.d7d866cdb896f184",
+      "uid": "zhcn:0c0be499b2f568709d90d30a",
+      "scope": "uid",
+      "source_text": "需要手动编队时，请将自动编队设为OFF",
+      "source_fingerprint": "c0b6f8af6ca1cdb16c523d41bdad699f8e74ca4eba03aaf374cbd9b9bc59c2bb",
+      "rejected_targets": [
+        "Khi cần tự xếp đội thủ công, hãy đặt Tự động xếp đội thành OFF"
+      ],
+      "approved_target": "Khi cần xếp đội thủ công, hãy đặt Tự động xếp đội thành OFF",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047",
+          "batch_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047-b0085",
+          "claim_id": "trc-gpt56sol-20260901T165327Z-b0085",
+          "merged_at": "2026-09-01T16:57:50.486860Z",
+          "reason": "Bản hiện tại có cụm thừa và không tự nhiên 'tự xếp đội thủ công'; nguồn chỉ nói khi cần xếp đội thủ công thì tắt auto formation."
         }
       ]
     },
@@ -29380,10 +29440,11 @@
       "source_text": "自动续费失败",
       "source_fingerprint": "0a4ea03f430649500399841e2eff45ba299b7b7db1eb4889fb339f749bf736c1",
       "rejected_targets": [
-        "Gia hạn tự động thất bại"
+        "Lỗi gia hạn tự động"
       ],
-      "approved_target": "Lỗi gia hạn tự động",
+      "approved_target": "Gia hạn tự động thất bại",
       "origins": [
+        "translation_review",
         "ui_review"
       ],
       "ui_contexts": [
@@ -29405,6 +29466,14 @@
           "reason": "The current failure status is sentence-like and wide; the compact error label preserves automatic-renewal failure.",
           "ui_key": "Common626016",
           "control_type": "short_system_label"
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047",
+          "batch_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047-b0015",
+          "claim_id": "trc-gpt56sol-auto8-20260901T165600Z-b0015",
+          "merged_at": "2026-09-01T16:57:50.471780Z",
+          "reason": "自动续费失败 explicitly reports auto-renewal failure; the current Lỗi gia hạn tự động is understandable but less exact about the failed operation."
         }
       ]
     },
@@ -41803,6 +41872,31 @@
       ]
     },
     {
+      "id": "review.regression.f02788e38d1b01f9",
+      "uid": "zhcn:399576cd34d5ebefa8d24c0e",
+      "scope": "uid",
+      "source_text": "才能开花",
+      "source_fingerprint": "b91773563cec3e268a341bf7a9c61d58b66b28529b11ea3a799be030edd4d046",
+      "rejected_targets": [
+        "Khai hoa tài năng"
+      ],
+      "approved_target": "Star Ascension",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047",
+          "batch_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047-b0013",
+          "claim_id": "trc-gpt56sol-auto8-20260901T164600Z-b0013",
+          "merged_at": "2026-09-01T16:57:50.458578Z",
+          "reason": "The current literal translation conflicts with two embedded player-facing canonical rules for the standalone 才能开花 progression label."
+        }
+      ]
+    },
+    {
       "id": "review.regression.9ed8fe399366c573",
       "uid": "zhcn:39a3cdf9a6dff4fe51efc0cb",
       "scope": "uid",
@@ -50614,6 +50708,31 @@
       ]
     },
     {
+      "id": "review.regression.37d7c7fc3e0baaef",
+      "uid": "zhcn:46a8a8e496a6a48228ceaa74",
+      "scope": "uid",
+      "source_text": "好像没有对队伍感兴趣的赛马娘",
+      "source_fingerprint": "433e657af2a0d89118c116917a20d2fc896beb9fef223de130755946eefefbf8",
+      "rejected_targets": [
+        "Có vẻ không có Uma Musume nào quan tâm đến đội"
+      ],
+      "approved_target": "Có vẻ không có Mã Nương nào quan tâm đến đội",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047",
+          "batch_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047-b0085",
+          "claim_id": "trc-gpt56sol-20260901T165327Z-b0085",
+          "merged_at": "2026-09-01T16:57:50.486860Z",
+          "reason": "Nội dung chính đúng nhưng bản hiện tại dùng forbidden generic world term Uma Musume; canonical yêu cầu Mã Nương."
+        }
+      ]
+    },
+    {
       "id": "review.regression.a44b7148a1c66bd8",
       "uid": "zhcn:46aabf3880ff7672ea9609e3",
       "scope": "uid",
@@ -52310,6 +52429,31 @@
           "claim_id": "trc-sol-live-20260830-r2-b0666",
           "merged_at": "2026-08-31T00:48:53.687721Z",
           "reason": "Use the same expanded school-division label for identical source text across this table."
+        }
+      ]
+    },
+    {
+      "id": "review.regression.4515f65862543736",
+      "uid": "zhcn:492bb04fc0ff0d8deb5d58a9",
+      "scope": "uid",
+      "source_text": "与对自己队伍感兴趣的赛马娘\n一同训练，将其拉入队伍吧",
+      "source_fingerprint": "bd82d44faf66173697f48918dc43552081b94e24ea8f03a877c6aa1e09e6fd53",
+      "rejected_targets": [
+        "Hãy huấn luyện cùng Uma Musume quan tâm đến đội của mình\nvà chiêu mộ cô ấy vào đội"
+      ],
+      "approved_target": "Hãy huấn luyện cùng Mã Nương quan tâm đến đội của mình\nvà chiêu mộ cô ấy vào đội",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047",
+          "batch_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047-b0084",
+          "claim_id": "trc-gpt56sol-20260901T164854Z-b0084",
+          "merged_at": "2026-09-01T16:57:50.480596Z",
+          "reason": "Nội dung đúng nhưng bản hiện tại dùng forbidden world term Uma Musume; phải dùng canonical Mã Nương."
         }
       ]
     },
@@ -63805,6 +63949,31 @@
       ]
     },
     {
+      "id": "review.regression.270799abd0536e30",
+      "uid": "zhcn:58ee3e6c89ab4c1b944b3494",
+      "scope": "uid",
+      "source_text": "队伍成员不满10人，无法编队",
+      "source_fingerprint": "4861d587a126d057210c75c94f923871915bbc5c7777762a59676597695dffcf",
+      "rejected_targets": [
+        "Đội có chưa đủ 10 thành viên, không thể xếp đội"
+      ],
+      "approved_target": "Đội chưa đủ 10 thành viên, không thể xếp đội",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047",
+          "batch_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047-b0085",
+          "claim_id": "trc-gpt56sol-20260901T165327Z-b0085",
+          "merged_at": "2026-09-01T16:57:50.486860Z",
+          "reason": "Bản hiện tại mắc lỗi ngữ pháp 'Đội có chưa đủ'; sửa câu trong khi giữ nguyên điều kiện dưới 10 thành viên và hệ quả không thể xếp đội."
+        }
+      ]
+    },
+    {
       "id": "review.regression.1d86150992a8dff8",
       "uid": "zhcn:58eed83646a65eea856dd13a",
       "scope": "uid",
@@ -74670,6 +74839,31 @@
       ]
     },
     {
+      "id": "review.regression.f52af7e4b142dc02",
+      "uid": "zhcn:67b6390b99c923cfca2d889b",
+      "scope": "uid",
+      "source_text": "根性",
+      "source_fingerprint": "f42efdb38f3aa9dfb9499c24b7782a76b7450e54d8f5e7cff68e18af4628546b",
+      "rejected_targets": [
+        "Ý chí"
+      ],
+      "approved_target": "Guts",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047",
+          "batch_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047-b0014",
+          "claim_id": "trc-gpt56sol-auto8-20260901T165100Z-b0014",
+          "merged_at": "2026-09-01T16:57:50.465122Z",
+          "reason": "The current literal Vietnamese stat label conflicts with the embedded player-facing canonical terminology."
+        }
+      ]
+    },
+    {
       "id": "review.regression.88b11fb8e548a715",
       "uid": "zhcn:67bb59186a6256672b2bd381",
       "scope": "uid",
@@ -79728,10 +79922,11 @@
       "source_text": "已设为收藏",
       "source_fingerprint": "3aa8cb253cd1509736096617e4820f6a4e5327923e2728d1e7207e780ec5fdd1",
       "rejected_targets": [
-        "Đã thêm vào yêu thích"
+        "Đã yêu thích"
       ],
-      "approved_target": "Đã yêu thích",
+      "approved_target": "Đã thêm vào yêu thích",
       "origins": [
+        "translation_review",
         "ui_review"
       ],
       "ui_contexts": [
@@ -79753,6 +79948,14 @@
           "reason": "The current completion status is unnecessarily wide; the shorter state wording naturally conveys that the item is now favorited.",
           "ui_key": "Common0297",
           "control_type": "short_system_label"
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047",
+          "batch_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047-b0014",
+          "claim_id": "trc-gpt56sol-auto8-20260901T165100Z-b0014",
+          "merged_at": "2026-09-01T16:57:50.465122Z",
+          "reason": "已设为收藏 means the item has been set/added as a favorite; the current Đã yêu thích is less precise as a state/action confirmation."
         }
       ]
     },
@@ -80488,6 +80691,31 @@
       ]
     },
     {
+      "id": "review.regression.1617b51f2b8906d3",
+      "uid": "zhcn:6fcce87aec6617c4de966d68",
+      "scope": "uid",
+      "source_text": "青春杯　季前赛 第{0}战",
+      "source_fingerprint": "1bd320326c4d7cb7d3dff0c2d8afdbbcaf19eacae75ad36bb41a714754263482",
+      "rejected_targets": [
+        "Aoharu Cup  Preseason trận {0}"
+      ],
+      "approved_target": "Aoharu Cup  Preseason - Trận {0}",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047",
+          "batch_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047-b0084",
+          "claim_id": "trc-gpt56sol-20260901T164854Z-b0084",
+          "merged_at": "2026-09-01T16:57:50.480596Z",
+          "reason": "Giữ nguyên Aoharu Cup, Preseason và placeholder {0} nhưng chỉnh trật tự/điểm nối để nhãn trận tự nhiên, rõ ràng hơn bằng tiếng Việt."
+        }
+      ]
+    },
+    {
       "id": "review.regression.9fee80878ce1b426",
       "uid": "zhcn:6fdbec113fa59b1a8f8ad810",
       "scope": "uid",
@@ -80793,6 +81021,31 @@
           "claim_id": "trc-sol-20260830T015139Z-b0936",
           "merged_at": "2026-08-30T01:54:48.136308Z",
           "reason": "Chuẩn hóa Power/Wit/Skill Hint/Spark."
+        }
+      ]
+    },
+    {
+      "id": "review.regression.11a0e6a5a2226c66",
+      "uid": "zhcn:70171f377c23507477924dcc",
+      "scope": "uid",
+      "source_text": "对象的特定剧本",
+      "source_fingerprint": "fd624501a3cc43ff2890a8ceea14a716cf7bb947c71b96e863cf9aaae986b5d7",
+      "rejected_targets": [
+        "Kịch bản cụ thể áp dụng"
+      ],
+      "approved_target": "Kịch bản cụ thể được áp dụng",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047",
+          "batch_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047-b0015",
+          "claim_id": "trc-gpt56sol-auto8-20260901T165600Z-b0015",
+          "merged_at": "2026-09-01T16:57:50.471780Z",
+          "reason": "The current Kịch bản cụ thể áp dụng is grammatically compressed; adding được makes the target/applicable-scenario meaning clear and natural."
         }
       ]
     },
@@ -82165,10 +82418,12 @@
       "source_text": "{0}\n适用于上述育成剧本",
       "source_fingerprint": "194c354e54474e204b80963841471f5ca654fb1934e2839aeb8a7cad646f5e4a",
       "rejected_targets": [
+        "{0}\nDùng cho kịch bản trên",
         "{0}\nÁp dụng cho các kịch bản huấn luyện trên"
       ],
-      "approved_target": "{0}\nDùng cho kịch bản trên",
+      "approved_target": "{0}\nÁp dụng cho kịch bản huấn luyện trên",
       "origins": [
+        "translation_review",
         "ui_review"
       ],
       "ui_contexts": [
@@ -82191,6 +82446,14 @@
           "reason": "The second line is much wider than the source; the compact wording preserves the applicability-to-above-scenario meaning and the single source newline.",
           "ui_key": "Common661003",
           "control_type": "short_system_label"
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047",
+          "batch_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047-b0015",
+          "claim_id": "trc-gpt56sol-auto8-20260901T165600Z-b0015",
+          "merged_at": "2026-09-01T16:57:50.471780Z",
+          "reason": "The source explicitly says it applies to the above training scenario; the current text omits the training/育成 qualifier."
         }
       ]
     },
@@ -98182,10 +98445,12 @@
       "source_text": "马娘订阅特典",
       "source_fingerprint": "3952f16d7bf3fbeea9e3351143031968b16499aa48b5b694f1083cfffb6058cb",
       "rejected_targets": [
+        "Đặc quyền gói Uma",
         "Đặc quyền đăng ký Uma Musume"
       ],
-      "approved_target": "Đặc quyền gói Uma",
+      "approved_target": "Đặc quyền gói đăng ký Uma Musume",
       "origins": [
+        "translation_review",
         "ui_review"
       ],
       "ui_contexts": [
@@ -98207,6 +98472,14 @@
           "reason": "The fixed header can use the compact package form while retaining that these perks belong to the Uma subscription package.",
           "ui_key": "Common626015",
           "control_type": "header"
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047",
+          "batch_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047-b0015",
+          "claim_id": "trc-gpt56sol-auto8-20260901T165600Z-b0015",
+          "merged_at": "2026-09-01T16:57:50.471780Z",
+          "reason": "The current label shortens 马娘订阅 to gói Uma and loses the explicit subscription meaning and full Uma Musume name."
         }
       ]
     },
@@ -99387,6 +99660,31 @@
           "reason": "The canonical compact outfit-change wording preserves the action while removing the wider 'Thay đổi' construction.",
           "ui_key": "LiveTheater0045",
           "control_type": "normal_button"
+        }
+      ]
+    },
+    {
+      "id": "review.regression.ce475d5cb3d0dd9e",
+      "uid": "zhcn:87f90158d393c80563eab790",
+      "scope": "uid",
+      "source_text": "智力",
+      "source_fingerprint": "d789646eda8f037953ed6a8b92f712db576b46d82fb37735c48ece5e1b495359",
+      "rejected_targets": [
+        "Trí tuệ"
+      ],
+      "approved_target": "Wit",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047",
+          "batch_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047-b0014",
+          "claim_id": "trc-gpt56sol-auto8-20260901T165100Z-b0014",
+          "merged_at": "2026-09-01T16:57:50.465122Z",
+          "reason": "The current literal Vietnamese stat label conflicts with the embedded player-facing canonical terminology."
         }
       ]
     },
@@ -115979,6 +116277,31 @@
           "claim_id": "trc-chatgpt-sol-20260830-110000-b0284",
           "merged_at": "2026-08-30T04:03:52.756116Z",
           "reason": "Use canonical Spark terminology and preserve both runtime placeholders plus newline structure."
+        }
+      ]
+    },
+    {
+      "id": "review.regression.cc3f34fb0405d01c",
+      "uid": "zhcn:9ec8b170d684c8234d6b93c4",
+      "scope": "uid",
+      "source_text": "有效期间内再次获得因子不消耗TP和宝石！",
+      "source_fingerprint": "006bd18188d790c9d9fe28547e6b37b5dfe5ae4e8730276e01e6ac196ffaeb1b",
+      "rejected_targets": [
+        "Trong thời hạn hiệu lực, nhận lại nhân tố không tiêu tốn TP và Jewel!"
+      ],
+      "approved_target": "Trong thời hạn hiệu lực, nhận lại Spark không tiêu tốn TP và Jewel!",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047",
+          "batch_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047-b0015",
+          "claim_id": "trc-gpt56sol-auto8-20260901T165600Z-b0015",
+          "merged_at": "2026-09-01T16:57:50.471780Z",
+          "reason": "The current text uses the forbidden literal nhân tố for 因子 while Jewel is already correctly preserved."
         }
       ]
     },
@@ -144444,10 +144767,12 @@
       "source_text": "不支持此操作",
       "source_fingerprint": "530be03d38fe9d93550b2f7429fec44e9981bfe967df617e7e52d170d3420e16",
       "rejected_targets": [
+        "Không hỗ trợ thao tác",
         "Thao tác này không được hỗ trợ"
       ],
-      "approved_target": "Không hỗ trợ thao tác",
+      "approved_target": "Không hỗ trợ thao tác này",
       "origins": [
+        "translation_review",
         "ui_review"
       ],
       "ui_contexts": [
@@ -144469,6 +144794,14 @@
           "reason": "The current passive sentence is substantially over-wide; the compact active warning preserves that the attempted operation is unsupported.",
           "ui_key": "Common0169",
           "control_type": "short_system_label"
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047",
+          "batch_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047-b0013",
+          "claim_id": "trc-gpt56sol-auto8-20260901T164600Z-b0013",
+          "merged_at": "2026-09-01T16:57:50.458578Z",
+          "reason": "The source explicitly says this operation is unsupported; adding này preserves the demonstrative and produces a natural complete UI message."
         }
       ]
     },
@@ -152917,6 +153250,31 @@
       ]
     },
     {
+      "id": "review.regression.49063832b86b8de8",
+      "uid": "zhcn:d290343356041734d51a5cb6",
+      "scope": "uid",
+      "source_text": "有效期间内指定因子不消耗宝石！",
+      "source_fingerprint": "7b74223f566789109b994ea585ca1eb387e868a06f13c4cb0874af3c9806f106",
+      "rejected_targets": [
+        "Trong thời hạn hiệu lực, chỉ định nhân tố không tiêu tốn Jewel!"
+      ],
+      "approved_target": "Trong thời hạn hiệu lực, chỉ định Spark không tiêu tốn Jewel!",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047",
+          "batch_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047-b0015",
+          "claim_id": "trc-gpt56sol-auto8-20260901T165600Z-b0015",
+          "merged_at": "2026-09-01T16:57:50.471780Z",
+          "reason": "The current text uses the forbidden literal nhân tố for 因子 while Jewel is already correctly preserved."
+        }
+      ]
+    },
+    {
       "id": "review.regression.b2f674e7e90fabc6",
       "uid": "zhcn:d291bcaa7391bb39fd39c234",
       "scope": "uid",
@@ -160844,10 +161202,11 @@
       "source_text": "要播放YouTube的视频\n需要连接到外部网站",
       "source_fingerprint": "301a4c3b365006d56d56c33b829bbd278d62069d8cd2c917d76bd08140093546",
       "rejected_targets": [
-        "Để phát video YouTube\ncần kết nối tới trang web bên ngoài"
+        "Để phát video YouTube\ncần mở trang web ngoài"
       ],
-      "approved_target": "Để phát video YouTube\ncần mở trang web ngoài",
+      "approved_target": "Để phát video YouTube\ncần kết nối tới trang web bên ngoài",
       "origins": [
+        "translation_review",
         "ui_review"
       ],
       "ui_contexts": [
@@ -160870,6 +161229,14 @@
           "reason": "Keeps YouTube and the required external-site meaning, preserves one newline, and shortens both displayed lines.",
           "ui_key": "Common0162",
           "control_type": "short_system_label"
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047",
+          "batch_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047-b0013",
+          "claim_id": "trc-gpt56sol-auto8-20260901T164600Z-b0013",
+          "merged_at": "2026-09-01T16:57:50.458578Z",
+          "reason": "The source states that playing the YouTube video requires connecting to an external website; mở trang web ngoài weakens the explicit connection requirement."
         }
       ]
     },
@@ -167472,10 +167839,11 @@
       "source_text": "<atlas=PreIn sprite=utx_ico_notice_00/>本平台无法购买马娘订阅",
       "source_fingerprint": "1b92714910de923c595846fd6388a8543a6772d6b81b18acb7f57d6399c43f2c",
       "rejected_targets": [
-        "<atlas=PreIn sprite=utx_ico_notice_00/>Không thể mua gói đăng ký Uma Musume trên nền tảng này"
+        "<atlas=PreIn sprite=utx_ico_notice_00/>Không mua được gói Uma tại đây"
       ],
-      "approved_target": "<atlas=PreIn sprite=utx_ico_notice_00/>Không mua được gói Uma tại đây",
+      "approved_target": "<atlas=PreIn sprite=utx_ico_notice_00/>Không thể mua gói đăng ký Uma Musume trên nền tảng này",
       "origins": [
+        "translation_review",
         "ui_review"
       ],
       "ui_contexts": [
@@ -167498,6 +167866,14 @@
           "reason": "Preserves the notice tag, uses the allowed cramped-UI form 'Uma', and keeps the platform purchase restriction in a much shorter label.",
           "ui_key": "Common626012",
           "control_type": "short_system_label"
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047",
+          "batch_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047-b0014",
+          "claim_id": "trc-gpt56sol-auto8-20260901T165100Z-b0014",
+          "merged_at": "2026-09-01T16:57:50.465122Z",
+          "reason": "The source explicitly says this platform cannot purchase the Uma Musume subscription; the current text shortens the product name and turns platform capability into a vague tại đây statement."
         }
       ]
     },
@@ -171152,10 +171528,11 @@
       "source_text": "购买马娘订阅后可获得特典",
       "source_fingerprint": "b1573ae4b82d966054d1ed9389d4a703169f4bd726c5269356275ac7bbf2bf3c",
       "rejected_targets": [
-        "Mua gói đăng ký Uma Musume để nhận đặc quyền"
+        "Mua gói Uma để nhận đặc quyền"
       ],
-      "approved_target": "Mua gói Uma để nhận đặc quyền",
+      "approved_target": "Mua gói đăng ký Uma Musume để nhận đặc quyền",
       "origins": [
+        "translation_review",
         "ui_review"
       ],
       "ui_contexts": [
@@ -171178,6 +171555,14 @@
           "reason": "Uses the permitted compact 'Uma' form and removes unnecessary registration wording while preserving purchase-for-benefits meaning.",
           "ui_key": "Common626013",
           "control_type": "short_system_label"
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047",
+          "batch_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047-b0015",
+          "claim_id": "trc-gpt56sol-auto8-20260901T165600Z-b0015",
+          "merged_at": "2026-09-01T16:57:50.471780Z",
+          "reason": "The current wording shortens 马娘订阅 to gói Uma and loses the explicit subscription meaning and full product name."
         }
       ]
     },

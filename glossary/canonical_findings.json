@@ -3262,6 +3262,52 @@
       "last_seen_at": "2026-09-01T07:49:30Z"
     },
     {
+      "finding_id": "cf-1de7f10f817c5866",
+      "status": "open",
+      "source_zh_cn": "群英\n月赛",
+      "match_mode": "exact",
+      "source_paths": [
+        "localize_dict.json"
+      ],
+      "key_exact": [],
+      "json_path_prefixes": [],
+      "kinds": [
+        "system_label"
+      ],
+      "concepts": [
+        "Named Room Match/competition label 群英月赛"
+      ],
+      "suggested_targets_vi": [],
+      "confidence_levels": [
+        "medium"
+      ],
+      "reasons": [
+        "Named player-facing mode/event labels require a stable canonical identity rather than an unverified generic rendering."
+      ],
+      "evidence_count": 1,
+      "evidence": [
+        {
+          "uid": "zhcn:cc72b46846b9cbcdd171756e",
+          "plan_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047",
+          "batch_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047-b0072",
+          "claim_id": "trc-gpt56sol-hourly-20260901T102900Z-b0072",
+          "worker_id": "gpt56sol-hourly-20260901T093000Z",
+          "source_path": "localize_dict.json",
+          "json_path": [
+            "RoomMatch600018"
+          ],
+          "source_text": "群英\n月赛",
+          "current_text": "Giải đấu\ntháng",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T10:35:00Z"
+        }
+      ],
+      "canonical_resolution": null,
+      "review_resolution": null,
+      "first_seen_at": "2026-09-01T10:35:00Z",
+      "last_seen_at": "2026-09-01T10:35:00Z"
+    },
+    {
       "finding_id": "cf-1e27154bb898948c",
       "status": "open",
       "source_zh_cn": "霹雳中的奥伏赫变",
@@ -4892,7 +4938,8 @@
         "Ordinary narrative speed/quickness must not automatically normalize to gameplay stat Speed",
         "Speed stat alias must not overmatch ordinary narrative references to physical running speed",
         "Generic Speed stat matching must not fire inside locked Skill title 速度之星",
-        "Generic Speed stat alias must not match ordinary prose phrases such as 成长速度 (growth rate)"
+        "Generic Speed stat alias must not match ordinary prose phrases such as 成长速度 (growth rate)",
+        "Generic narrative 速度 must not automatically normalize to the gameplay stat Speed"
       ],
       "suggested_targets_vi": [
         "Speed"
@@ -4906,9 +4953,10 @@
         "Here Agnes Tachyon asks how fast a Mã Nương can run; it is descriptive dialogue rather than a stat label or stat-value context.",
         "In 赛马娘的速度究竟能快到什么程度, 速度 is literal physical speed in dialogue rather than the Speed stat label.",
         "The nested generic stat guard conflicts with the more specific locked Skill-name identity and needs exclusion/scoping before review can resolve the item.",
-        "The generic stat guard overmatches non-stat prose and would force an incorrect player-facing Speed label into ordinary dialogue."
+        "The generic stat guard overmatches non-stat prose and would force an incorrect player-facing Speed label into ordinary dialogue.",
+        "Agnes Tachyon is discussing literal running speed in prose rather than a numeric/player-facing stat label."
       ],
-      "evidence_count": 6,
+      "evidence_count": 7,
       "evidence": [
         {
           "uid": "zhcn:0954921267fc40c4003cf418",
@@ -5005,6 +5053,22 @@
           "current_text": "Tốc độ trưởng thành này... ánh mắt rực rỡ này...\\nAaa! Thật～～tuyệt vời!!",
           "proposed_text": null,
           "reported_at": "2026-09-01T08:17:00Z"
+        },
+        {
+          "uid": "zhcn:7f9a27606d13648ba71cd8c6",
+          "plan_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047",
+          "batch_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047-b0225",
+          "claim_id": "trc-gpt56sol-hourly-20260901T104300Z-b0225",
+          "worker_id": "gpt56sol-hourly-20260901T093000Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "163",
+            "1032"
+          ],
+          "source_text": "你对赛马娘的速度究竟能快到什么程度也不感兴趣吗。\\n但如果你对此有兴趣的话……就请成为我，\\n爱丽速子的豚鼠吧。",
+          "current_text": "Bạn không tò mò xem tốc độ của Uma Musume rốt cuộc có thể nhanh đến mức nào sao?\\nNhưng nếu có hứng thú…… thì hãy trở thành\\nchuột lang của tôi, Agnes Tachyon nhé.",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T10:49:00Z"
         }
       ],
       "canonical_resolution": {
@@ -5014,7 +5078,7 @@
       },
       "review_resolution": null,
       "first_seen_at": "2026-09-01T02:21:00Z",
-      "last_seen_at": "2026-09-01T08:17:00Z"
+      "last_seen_at": "2026-09-01T10:49:00Z"
     },
     {
       "finding_id": "cf-3b73be2cd42ac2ac",
@@ -6663,6 +6727,85 @@
       },
       "first_seen_at": "2026-08-30T15:34:00Z",
       "last_seen_at": "2026-08-30T15:34:00Z"
+    },
+    {
+      "finding_id": "cf-59246d563b15dad8",
+      "status": "open",
+      "source_zh_cn": "世代变革者",
+      "match_mode": "exact",
+      "source_paths": [
+        "text_data_dict.json"
+      ],
+      "key_exact": [],
+      "json_path_prefixes": [],
+      "kinds": [
+        "proper_name"
+      ],
+      "concepts": [
+        "Skill name 世代变革者"
+      ],
+      "suggested_targets_vi": [],
+      "confidence_levels": [
+        "high"
+      ],
+      "reasons": [
+        "A player-facing Skill title needs canonical identity rather than an unverified literal zh-CN-derived title."
+      ],
+      "evidence_count": 3,
+      "evidence": [
+        {
+          "uid": "zhcn:2c57640e6c66e10e86a2c9a1",
+          "plan_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047",
+          "batch_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047-b0188",
+          "claim_id": "trc-gpt56sol-hourly-20260901T102200Z-b0188",
+          "worker_id": "gpt56sol-hourly-20260901T093000Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "147",
+            "2103501"
+          ],
+          "source_text": "世代变革者",
+          "current_text": "Người cải cách thế hệ",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T10:28:00Z"
+        },
+        {
+          "uid": "zhcn:19fb51630e690a9fb1d5a1ab",
+          "plan_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047",
+          "batch_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047-b0188",
+          "claim_id": "trc-gpt56sol-hourly-20260901T102200Z-b0188",
+          "worker_id": "gpt56sol-hourly-20260901T093000Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "147",
+            "2103502"
+          ],
+          "source_text": "世代变革者",
+          "current_text": "Người cải cách thế hệ",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T10:28:00Z"
+        },
+        {
+          "uid": "zhcn:102c4f47529d75f251bb5348",
+          "plan_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047",
+          "batch_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047-b0188",
+          "claim_id": "trc-gpt56sol-hourly-20260901T102200Z-b0188",
+          "worker_id": "gpt56sol-hourly-20260901T093000Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "147",
+            "2103503"
+          ],
+          "source_text": "世代变革者",
+          "current_text": "Người cải cách thế hệ",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T10:28:00Z"
+        }
+      ],
+      "canonical_resolution": null,
+      "review_resolution": null,
+      "first_seen_at": "2026-09-01T10:28:00Z",
+      "last_seen_at": "2026-09-01T10:28:00Z"
     },
     {
       "finding_id": "cf-5a4fc36878a870f0",
@@ -12302,7 +12445,8 @@
         "Skill-name alias 心动 overmatches ordinary prose in song descriptions",
         "Skill-name alias 心动 must not overmatch ordinary/stylized title prose",
         "Ordinary emotional 心动 in dialogue must not automatically normalize to the Skill title Nhịp tim rộn ràng",
-        "Skill alias 心动 must not overmatch ordinary emotional prose such as 心动不已"
+        "Skill alias 心动 must not overmatch ordinary emotional prose such as 心动不已",
+        "Generic narrative 心动 must not automatically normalize to the Skill title Nhịp tim rộn ràng"
       ],
       "suggested_targets_vi": [],
       "confidence_levels": [
@@ -12316,9 +12460,10 @@
         "心动的预感 is ordinary prose rather than a Skill reference; the matcher needs contextual narrowing before this item can be resolved safely.",
         "心动 appears inside a decorative multi-part title where it functions lexically, not as the standalone canonical Skill name.",
         "This occurrence means feeling thrilled/heart-pounding and is not a named Skill reference.",
-        "This dialogue uses 心动 as an emotional sensation, not a Skill name."
+        "This dialogue uses 心动 as an emotional sensation, not a Skill name.",
+        "Mayano's self-introduction uses 心动不已 as an emotional phrase, not a player-facing Skill title."
       ],
-      "evidence_count": 8,
+      "evidence_count": 9,
       "evidence": [
         {
           "uid": "zhcn:996c7568e8341c51f3593486",
@@ -12447,6 +12592,22 @@
           "current_text": "Ê hê hê, Maya-chan đây—☆\\nMình thích nhất cảm giác tim đập thình thịch và những chuyện kích thích♪ Mong được giúp đỡ!",
           "proposed_text": null,
           "reported_at": "2026-09-01T06:00:00Z"
+        },
+        {
+          "uid": "zhcn:e837deb220b7be97d6a32405",
+          "plan_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047",
+          "batch_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047-b0225",
+          "claim_id": "trc-gpt56sol-hourly-20260901T104300Z-b0225",
+          "worker_id": "gpt56sol-hourly-20260901T093000Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "163",
+            "1024"
+          ],
+          "source_text": "诶嘿嘿，是Maya亲哟—☆\\n最喜欢心动不已，和刺激的事情啦♪请多指教！",
+          "current_text": "Ê hê hê, Maya-chan đây—☆\\nMình thích nhất cảm giác tim đập thình thịch và những chuyện kích thích♪ Mong được giúp đỡ!",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T10:49:00Z"
         }
       ],
       "canonical_resolution": {
@@ -12460,7 +12621,7 @@
         "target_vi": "Nhịp tim rộn ràng"
       },
       "first_seen_at": "2026-08-31T01:01:03Z",
-      "last_seen_at": "2026-09-01T06:00:00Z"
+      "last_seen_at": "2026-09-01T10:49:00Z"
     },
     {
       "finding_id": "cf-9a0b738dae85c3a2",
@@ -13019,6 +13180,156 @@
       "review_resolution": null,
       "first_seen_at": "2026-09-01T00:08:00Z",
       "last_seen_at": "2026-09-01T00:08:00Z"
+    },
+    {
+      "finding_id": "cf-9cb56398dc0b0a22",
+      "status": "open",
+      "source_zh_cn": "健健康康",
+      "match_mode": "exact",
+      "source_paths": [
+        "text_data_dict.json"
+      ],
+      "key_exact": [],
+      "json_path_prefixes": [],
+      "kinds": [
+        "proper_name"
+      ],
+      "concepts": [
+        "Skill name 健健康康"
+      ],
+      "suggested_targets_vi": [],
+      "confidence_levels": [
+        "high"
+      ],
+      "reasons": [
+        "A player-facing Skill title needs one canonical identity rather than promoting an unverified literal zh-CN-derived name."
+      ],
+      "evidence_count": 3,
+      "evidence": [
+        {
+          "uid": "zhcn:4386c2215a4763ad71d703d1",
+          "plan_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047",
+          "batch_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047-b0188",
+          "claim_id": "trc-gpt56sol-hourly-20260901T102200Z-b0188",
+          "worker_id": "gpt56sol-hourly-20260901T093000Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "147",
+            "2103201"
+          ],
+          "source_text": "健健康康",
+          "current_text": "Khỏe mạnh",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T10:28:00Z"
+        },
+        {
+          "uid": "zhcn:728e5c430c356b8a2b929a8e",
+          "plan_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047",
+          "batch_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047-b0188",
+          "claim_id": "trc-gpt56sol-hourly-20260901T102200Z-b0188",
+          "worker_id": "gpt56sol-hourly-20260901T093000Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "147",
+            "2103202"
+          ],
+          "source_text": "健健康康",
+          "current_text": "Khỏe mạnh",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T10:28:00Z"
+        },
+        {
+          "uid": "zhcn:1030ef14e311a46f0cfa1040",
+          "plan_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047",
+          "batch_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047-b0188",
+          "claim_id": "trc-gpt56sol-hourly-20260901T102200Z-b0188",
+          "worker_id": "gpt56sol-hourly-20260901T093000Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "147",
+            "2103203"
+          ],
+          "source_text": "健健康康",
+          "current_text": "Khỏe mạnh",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T10:28:00Z"
+        }
+      ],
+      "canonical_resolution": null,
+      "review_resolution": {
+        "decision_id": "parallel.ctx-67f8551f77807292-v1.term-0015.18",
+        "action": "defer",
+        "target_vi": null
+      },
+      "first_seen_at": "2026-09-01T10:28:00Z",
+      "last_seen_at": "2026-09-01T10:28:00Z"
+    },
+    {
+      "finding_id": "cf-9d5cbb793365ceca",
+      "status": "open",
+      "source_zh_cn": "原原本本",
+      "match_mode": "exact",
+      "source_paths": [
+        "text_data_dict.json"
+      ],
+      "key_exact": [],
+      "json_path_prefixes": [],
+      "kinds": [
+        "proper_name"
+      ],
+      "concepts": [
+        "Skill name 原原本本"
+      ],
+      "suggested_targets_vi": [],
+      "confidence_levels": [
+        "high"
+      ],
+      "reasons": [
+        "A player-facing Skill title needs canonical identity rather than an unverified literal zh-CN-derived title."
+      ],
+      "evidence_count": 2,
+      "evidence": [
+        {
+          "uid": "zhcn:9e5438b734a029765a94b4df",
+          "plan_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047",
+          "batch_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047-b0188",
+          "claim_id": "trc-gpt56sol-hourly-20260901T102200Z-b0188",
+          "worker_id": "gpt56sol-hourly-20260901T093000Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "147",
+            "2103601"
+          ],
+          "source_text": "原原本本",
+          "current_text": "Nguyên bản",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T10:28:00Z"
+        },
+        {
+          "uid": "zhcn:a4fdfd2bcf7115d5fa19a109",
+          "plan_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047",
+          "batch_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047-b0188",
+          "claim_id": "trc-gpt56sol-hourly-20260901T102200Z-b0188",
+          "worker_id": "gpt56sol-hourly-20260901T093000Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "147",
+            "2103602"
+          ],
+          "source_text": "原原本本",
+          "current_text": "Nguyên bản",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T10:28:00Z"
+        }
+      ],
+      "canonical_resolution": null,
+      "review_resolution": {
+        "decision_id": "parallel.ctx-67f8551f77807292-v1.term-0023.20",
+        "action": "defer",
+        "target_vi": null
+      },
+      "first_seen_at": "2026-09-01T10:28:00Z",
+      "last_seen_at": "2026-09-01T10:28:00Z"
     },
     {
       "finding_id": "cf-9d62c7356ce3bb6d",
@@ -18024,9 +18335,10 @@
         "Reusable Skill alias 光明 is embedded in 目白光明 and causes a false locked-term mismatch.",
         "Reusable Skill alias currently matches a substring of a character proper name in text_data character-piece labels.",
         "This item is authored by Mejiro Bright; forcing the standalone Skill translation Ánh sáng inside her name would corrupt the character identity.",
-        "This is a Mejiro Bright character-piece label, not the standalone Skill 光明."
+        "This is a Mejiro Bright character-piece label, not the standalone Skill 光明.",
+        "This is Mejiro Bright's self-introduction, not the standalone Skill 光明."
       ],
-      "evidence_count": 18,
+      "evidence_count": 19,
       "evidence": [
         {
           "uid": "zhcn:e24f509f9ecadbe9bb160b77",
@@ -18315,6 +18627,22 @@
           "current_text": "Mảnh Mejiro Bright",
           "proposed_text": null,
           "reported_at": "2026-09-01T10:07:00Z"
+        },
+        {
+          "uid": "zhcn:837dfc7b8e8a707c06c332be",
+          "plan_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047",
+          "batch_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047-b0225",
+          "claim_id": "trc-gpt56sol-hourly-20260901T104300Z-b0225",
+          "worker_id": "gpt56sol-hourly-20260901T093000Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "163",
+            "1074"
+          ],
+          "source_text": "…………嘛？到了自我介绍的时间了吗？\\n呼呼，我的名字是目白光明。\\n作为目白家的一员，我会努力的～。",
+          "current_text": "…………Ơ? Đến giờ tự giới thiệu rồi sao?\\nFufu, tên tôi là Mejiro Bright.\\nLà một thành viên của nhà Mejiro, tôi sẽ cố gắng～.",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T10:49:00Z"
         }
       ],
       "canonical_resolution": {
@@ -18328,7 +18656,7 @@
         "target_vi": "Ánh sáng"
       },
       "first_seen_at": "2026-08-31T00:54:59Z",
-      "last_seen_at": "2026-09-01T10:07:00Z"
+      "last_seen_at": "2026-09-01T10:49:00Z"
     },
     {
       "finding_id": "cf-d3dd61a3ce1f7dd6",

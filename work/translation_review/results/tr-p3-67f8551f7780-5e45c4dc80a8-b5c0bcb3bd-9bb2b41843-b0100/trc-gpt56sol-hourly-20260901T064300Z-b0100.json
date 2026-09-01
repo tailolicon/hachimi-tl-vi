@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "status": "partial",
+  "status": "complete",
   "plan_id": "tr-p3-67f8551f7780-5e45c4dc80a8-b5c0bcb3bd-9bb2b41843",
   "batch_id": "tr-p3-67f8551f7780-5e45c4dc80a8-b5c0bcb3bd-9bb2b41843-b0100",
   "claim_id": "trc-gpt56sol-hourly-20260901T064300Z-b0100",
   "worker_id": "gpt56sol-hourly-20260901T062622Z",
-  "reviewed_at": "2026-09-01T06:46:00Z",
-  "completed_count": 15,
+  "reviewed_at": "2026-09-01T06:47:00Z",
+  "completed_count": 20,
   "decisions": [
     {"uid":"zhcn:c567feef45ce84e5399fb633","current_fingerprint":"fcff732c2b5872474e2c88dc6c9697867a1648d33ea545064769fe47a28a1497","action":"revise","proposed_text":"Không có điều kiện cuộc đua đề xuất","reason":"The embedded locked term requires 比赛 to be rendered with canonical Cuộc đua; current điều kiện đua does not satisfy it.","terminology_basis":"race.generic = Cuộc đua.","confidence":"high"},
     {"uid":"zhcn:cc72b46846b9cbcdd171756e","current_fingerprint":"7ac9a137bdc89bab6533c0ddb6328310df143393b13b5765c698927e3b1f2df9","action":"keep","reason":"Meaning and the two-line compact UI structure are preserved; no conflicting embedded canonical term applies.","confidence":"medium"},
@@ -22,6 +22,11 @@
     {"uid":"zhcn:cfcde02f2ddd6a5881ab9e22","current_fingerprint":"435352b1ab46e9b1bb09b266ddeffc711d5b838ed4d6cf8f1ec889ec1354c1dd","action":"keep","reason":"Correct prompt to select a save slot/location.","confidence":"high"},
     {"uid":"zhcn:3ae5604156b3730e9096af50","current_fingerprint":"90a5dfa5af928e5e93b79598365ea53890c68ea6504cf2335bd9d6242b41c073","action":"keep","reason":"Overwrite confirmation meaning is accurate and canonical race terminology is present.","terminology_basis":"race.generic = Cuộc đua.","confidence":"high"},
     {"uid":"zhcn:441c2ffae585e5cd8056d976","current_fingerprint":"dc8d266303282b29341e81fb34c9ab623f8078143a6326b808c15bf13781c532","action":"keep","reason":"Irreversible-overwrite warning and atlas token are preserved with canonical race terminology.","terminology_basis":"race.generic = Cuộc đua.","confidence":"high"},
-    {"uid":"zhcn:b1c36ec4f091a63c53728e15","current_fingerprint":"41f064083b2c67e72269c019172972673835787031f6b2f80055a95a643d1092","action":"keep","reason":"Correctly identifies the currently selected race conditions using canonical race terminology.","terminology_basis":"race.generic = Cuộc đua.","confidence":"high"}
+    {"uid":"zhcn:b1c36ec4f091a63c53728e15","current_fingerprint":"41f064083b2c67e72269c019172972673835787031f6b2f80055a95a643d1092","action":"keep","reason":"Correctly identifies the currently selected race conditions using canonical race terminology.","terminology_basis":"race.generic = Cuộc đua.","confidence":"high"},
+    {"uid":"zhcn:272941b38ef7527157b3b6d9","current_fingerprint":"810f55bb22367be6902aed3ff8067e8d24598c241148348acb05586f03584e52","action":"keep","reason":"Correct save-race-conditions label and canonical race terminology is present.","terminology_basis":"race.generic = Cuộc đua.","confidence":"high"},
+    {"uid":"zhcn:f0ecd3f1e29918786254cb01","current_fingerprint":"f6867e89e64bd7e920d4da74c5fb8423ef52ad533adec349bd00b21d08a64124","action":"defer","reason":"This item contains both a clear Mã Nương terminology error and the unresolved reusable 房间赛 mode label. The systemic Room Match label must be canonicalized before approving a final correction.","terminology_basis":"common.world.umamusume = Mã Nương; race.generic = Cuộc đua. 房间赛 has no embedded canonical target.","canonical_finding":{"kind":"system_label","source_zh_cn":"房间赛","concept":"Room Match mode label","match_mode":"contains","scope":"auto","reason":"Reusable Room Match mode alias appears as Đua Phòng while nearby strings use conflicting labels; resolve canonically before item-level revision.","confidence":"high"},"confidence":"high"},
+    {"uid":"zhcn:8894a71bd380edddb7194664","current_fingerprint":"ecfddae9f44894cf580b0b43a349f35a9de606c6472d37b6b6d636063af7b880","action":"defer","reason":"房间赛 is the unresolved reusable Room Match mode label; approving Đua Phòng here would establish a one-off choice before canonical maintenance resolves the conflict.","canonical_finding":{"kind":"system_label","source_zh_cn":"房间赛","concept":"Room Match mode label","match_mode":"contains","scope":"auto","reason":"Reusable Room Match mode alias needs one canonical player-facing target across Room Match UI.","confidence":"high"},"confidence":"high"},
+    {"uid":"zhcn:f42eb6463bdecb54e3aeb0c0","current_fingerprint":"fa7f53fcf523b2a4af2facccf08caefcad47ecf5a7caa90a55b2e328b7f82836","action":"revise","proposed_text":"Hãy chỉ định ít nhất {0} Mã Nương đã vào Điện Danh Vọng","reason":"Generic 赛马娘 must use the project world/species term Mã Nương; the {0} placeholder is preserved.","terminology_basis":"common.world.umamusume = Mã Nương; Uma Musume is forbidden in generic world/species context.","confidence":"high"},
+    {"uid":"zhcn:332f0b362839e3da8f9d64d0","current_fingerprint":"672a22b6a06574ab18f049ebd66b4eb76f7b8288aaa2201784960d8c7b4affd0","action":"revise","proposed_text":"Số người đăng ký không được vượt quá số Mã Nương tham gia đã chỉ định","reason":"Generic 赛马娘 must use the canonical Mã Nương term; quantity/constraint meaning is otherwise preserved.","terminology_basis":"common.world.umamusume = Mã Nương; Uma Musume is forbidden in generic world/species context.","confidence":"high"}
   ]
 }

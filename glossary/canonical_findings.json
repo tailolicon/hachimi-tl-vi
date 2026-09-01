@@ -674,6 +674,57 @@
       "last_seen_at": "2026-08-31T23:51:00Z"
     },
     {
+      "finding_id": "cf-072fd00f345e81cb",
+      "status": "open",
+      "source_zh_cn": "超长距离",
+      "match_mode": "contains",
+      "source_paths": [
+        "text_data_dict.json"
+      ],
+      "key_exact": [],
+      "json_path_prefixes": [
+        [
+          "147"
+        ]
+      ],
+      "kinds": [
+        "context_rule"
+      ],
+      "concepts": [
+        "Generic Long alias must not overmatch the distinct super-long-distance Skill compound"
+      ],
+      "suggested_targets_vi": [],
+      "confidence_levels": [
+        "high"
+      ],
+      "reasons": [
+        "长距离 inside 超长距离 is part of a distinct Skill-title compound; applying generic Long breaks the exact Skill canonical."
+      ],
+      "evidence_count": 1,
+      "evidence": [
+        {
+          "uid": "zhcn:291054f3cc9c00403375d6f0",
+          "plan_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454",
+          "batch_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454-b0340",
+          "claim_id": "trc-gpt56sol-auto11-20260901T021900Z-b0340",
+          "worker_id": "gpt56sol-auto11-20260901T020300Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "147",
+            "2042901"
+          ],
+          "source_text": "超长距离恢复○",
+          "current_text": "Hồi phục cự ly siêu dài ○",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T02:23:00Z"
+        }
+      ],
+      "canonical_resolution": null,
+      "review_resolution": null,
+      "first_seen_at": "2026-09-01T02:23:00Z",
+      "last_seen_at": "2026-09-01T02:23:00Z"
+    },
+    {
       "finding_id": "cf-0784e69ca33d7bee",
       "status": "open",
       "source_zh_cn": "中距离直线○",
@@ -687,16 +738,18 @@
         "context_rule"
       ],
       "concepts": [
-        "Skill-title lock must override generic distance label inside named Skill titles"
+        "Skill-title lock must override generic distance label inside named Skill titles",
+        "Medium Skill-title canonical conflicts with legacy Vietnamese exact lock"
       ],
       "suggested_targets_vi": [],
       "confidence_levels": [
         "high"
       ],
       "reasons": [
-        "Exact Skill lock requires the Vietnamese Skill title while generic 中距离→Medium matching also fires inside the same title. Canonical context needs precedence/exclusion so named Skill identity is not contradicted by generic gameplay-label rules."
+        "Exact Skill lock requires the Vietnamese Skill title while generic 中距离→Medium matching also fires inside the same title. Canonical context needs precedence/exclusion so named Skill identity is not contradicted by generic gameplay-label rules.",
+        "Player-facing Medium rule and old exact Skill lock cannot both be satisfied; canonical Skill title must be rebuilt consistently."
       ],
-      "evidence_count": 1,
+      "evidence_count": 2,
       "evidence": [
         {
           "uid": "zhcn:dbffb7be3dd3a66f8ab612f4",
@@ -713,6 +766,22 @@
           "current_text": "Đường thẳng cự ly trung○",
           "proposed_text": null,
           "reported_at": "2026-08-31T09:45:00Z"
+        },
+        {
+          "uid": "zhcn:dbffb7be3dd3a66f8ab612f4",
+          "plan_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454",
+          "batch_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454-b0318",
+          "claim_id": "trc-gpt56sol-auto11-20260901T022500Z-b0318",
+          "worker_id": "gpt56sol-auto11-20260901T020300Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "147",
+            "2011001"
+          ],
+          "source_text": "中距离直线○",
+          "current_text": "Đường thẳng cự ly trung○",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T02:30:00Z"
         }
       ],
       "canonical_resolution": {
@@ -726,7 +795,7 @@
         "target_vi": "Đường thẳng Cự ly trung bình○"
       },
       "first_seen_at": "2026-08-31T09:45:00Z",
-      "last_seen_at": "2026-08-31T09:45:00Z"
+      "last_seen_at": "2026-09-01T02:30:00Z"
     },
     {
       "finding_id": "cf-08840c22564d5b33",
@@ -968,6 +1037,55 @@
       },
       "first_seen_at": "2026-08-31T03:56:20Z",
       "last_seen_at": "2026-08-31T12:34:50Z"
+    },
+    {
+      "finding_id": "cf-089a8926cf1c98c5",
+      "status": "open",
+      "source_zh_cn": "心理值",
+      "match_mode": "contains",
+      "source_paths": [
+        "text_data_dict.json"
+      ],
+      "key_exact": [],
+      "json_path_prefixes": [],
+      "kinds": [
+        "system_label"
+      ],
+      "concepts": [
+        "Grand Live performance stat: Mental"
+      ],
+      "suggested_targets_vi": [
+        "Mental"
+      ],
+      "confidence_levels": [
+        "high"
+      ],
+      "reasons": [
+        "Repeated Grand Live system label needs one canonical player-facing term."
+      ],
+      "evidence_count": 1,
+      "evidence": [
+        {
+          "uid": "zhcn:171a91e96f57b2012d1c39b6",
+          "plan_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454",
+          "batch_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454-b0276",
+          "claim_id": "trc-gpt56sol-auto11-20260901T020100Z-b0276",
+          "worker_id": "gpt56sol-auto11-20260901T015829Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "131",
+            "241"
+          ],
+          "source_text": "获得合计300点以上心理值完成育成\\n※相连、相辉、相映。属于我们的『Grand Live』限定",
+          "current_text": "Đạt tổng cộng ít nhất 300 điểm Tinh thần và hoàn thành huấn luyện\\n※Chỉ áp dụng cho kịch bản 『Grand Live』 của chúng ta: kết nối, tỏa sáng và phản chiếu",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T02:04:00Z"
+        }
+      ],
+      "canonical_resolution": null,
+      "review_resolution": null,
+      "first_seen_at": "2026-09-01T02:04:00Z",
+      "last_seen_at": "2026-09-01T02:04:00Z"
     },
     {
       "finding_id": "cf-096e09d8c05dcc89",
@@ -3363,16 +3481,20 @@
         "context_rule"
       ],
       "concepts": [
-        "U.A.F. sports competition context must not be forced to race.generic Cuộc đua"
+        "U.A.F. sports competition context must not be forced to race.generic Cuộc đua",
+        "race.generic must not match across compound boundaries in 德比赛马娘"
       ],
-      "suggested_targets_vi": [],
+      "suggested_targets_vi": [
+        "Cuộc đua"
+      ],
       "confidence_levels": [
         "high"
       ],
       "reasons": [
-        "The U.A.F. description explicitly refers to 15 sports disciplines/competitions; the generic race matcher overmatches this non-racing sports context and needs narrower scoping."
+        "The U.A.F. description explicitly refers to 15 sports disciplines/competitions; the generic race matcher overmatches this non-racing sports context and needs narrower scoping.",
+        "Substring 比赛 is accidental across 德比 + 赛马娘 and does not denote a generic race here."
       ],
-      "evidence_count": 1,
+      "evidence_count": 2,
       "evidence": [
         {
           "uid": "zhcn:4eca0ca8c0b49c1d99268d0e",
@@ -3389,16 +3511,32 @@
           "current_text": "Đại hội thể thao tổng hợp quyết định Mã Nương vận động viên No.1,\\n<color=#FF6D26>『U.A.F.』</color>, khai mạc!\\nCác Mã Nương sẽ thử thách giới hạn bản thân\\nqua 15 Cuộc đua độc đáo, đổ mồ hôi hết mình!\\nHãy đón xem linh hồn các vận động viên cộng hưởng!",
           "proposed_text": null,
           "reported_at": "2026-08-31T08:27:30Z"
+        },
+        {
+          "uid": "zhcn:3edbbef0513569f502b9e447",
+          "plan_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454",
+          "batch_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454-b0263",
+          "claim_id": "trc-gpt56sol-auto11-b0263-20260901",
+          "worker_id": "gpt56sol-auto11-20260901T015829Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "130",
+            "24"
+          ],
+          "source_text": "德比赛马娘",
+          "current_text": "Uma Musume Derby",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T02:21:00Z"
         }
       ],
       "canonical_resolution": {
-        "layer": "context_guard",
+        "layer": "locked",
         "term_id": "race.generic",
         "target_vi": "Cuộc đua"
       },
       "review_resolution": null,
       "first_seen_at": "2026-08-31T08:27:30Z",
-      "last_seen_at": "2026-08-31T08:27:30Z"
+      "last_seen_at": "2026-09-01T02:21:00Z"
     },
     {
       "finding_id": "cf-2bb0d562f4d904c4",
@@ -4002,6 +4140,59 @@
       "last_seen_at": "2026-08-30T19:30:15Z"
     },
     {
+      "finding_id": "cf-3948185c431f97e2",
+      "status": "open",
+      "source_zh_cn": "速度",
+      "match_mode": "contains",
+      "source_paths": [
+        "text_data_dict.json"
+      ],
+      "key_exact": [],
+      "json_path_prefixes": [],
+      "kinds": [
+        "context_rule"
+      ],
+      "concepts": [
+        "Speed stat alias must not override locked compound skill/title 速度之星"
+      ],
+      "suggested_targets_vi": [
+        "Speed"
+      ],
+      "confidence_levels": [
+        "high"
+      ],
+      "reasons": [
+        "The generic stat alias is embedded inside a more-specific locked title phrase and should yield to the longer canonical match."
+      ],
+      "evidence_count": 1,
+      "evidence": [
+        {
+          "uid": "zhcn:0954921267fc40c4003cf418",
+          "plan_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454",
+          "batch_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454-b0263",
+          "claim_id": "trc-gpt56sol-auto11-b0263-20260901",
+          "worker_id": "gpt56sol-auto11-20260901T015829Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "130",
+            "252"
+          ],
+          "source_text": "沙土速度之星",
+          "current_text": "Ngôi sao tốc độ đường đất",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T02:21:00Z"
+        }
+      ],
+      "canonical_resolution": {
+        "layer": "locked",
+        "term_id": "stat.speed",
+        "target_vi": "Speed"
+      },
+      "review_resolution": null,
+      "first_seen_at": "2026-09-01T02:21:00Z",
+      "last_seen_at": "2026-09-01T02:21:00Z"
+    },
+    {
       "finding_id": "cf-3c2d3f6971b1f60a",
       "status": "open",
       "source_zh_cn": "目白光明",
@@ -4130,6 +4321,65 @@
       },
       "first_seen_at": "2026-08-31T00:54:59Z",
       "last_seen_at": "2026-08-31T10:03:30Z"
+    },
+    {
+      "finding_id": "cf-40e8f5e44cc6a98e",
+      "status": "open",
+      "source_zh_cn": "莱茵力量",
+      "match_mode": "contains",
+      "source_paths": [
+        "text_data_dict.json"
+      ],
+      "key_exact": [],
+      "json_path_prefixes": [
+        [
+          "15"
+        ]
+      ],
+      "kinds": [
+        "context_rule"
+      ],
+      "concepts": [
+        "Power stat alias must not overmatch Rhein Kraft character name"
+      ],
+      "suggested_targets_vi": [],
+      "confidence_levels": [
+        "high"
+      ],
+      "reasons": [
+        "力量 is lexical content inside the proper name here, not a gameplay Power stat occurrence."
+      ],
+      "evidence_count": 1,
+      "evidence": [
+        {
+          "uid": "zhcn:96a1ad50faf3a58debea05f1",
+          "plan_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454",
+          "batch_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454-b0359",
+          "claim_id": "trc-gpt56sol-auto11-20260901T023900Z-b0359",
+          "worker_id": "gpt56sol-auto11-20260901T020300Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "15",
+            "110901"
+          ],
+          "source_text": "莱茵力量的特殊服装",
+          "current_text": "Trang phục đặc biệt (Rhein Kraft)",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T02:44:00Z"
+        }
+      ],
+      "canonical_resolution": {
+        "layer": "locked",
+        "term_id": "character.rhein_kraft",
+        "target_vi": "Rhein Kraft"
+      },
+      "review_resolution": {
+        "decision_id": "parallel.ctx-67f8551f77807292-v1.term-0231.19",
+        "action": "lock",
+        "target_vi": "Rhein Kraft"
+      },
+      "first_seen_at": "2026-09-01T02:44:00Z",
+      "last_seen_at": "2026-09-01T02:44:00Z"
     },
     {
       "finding_id": "cf-418e723cca9d411b",
@@ -4652,6 +4902,53 @@
       },
       "first_seen_at": "2026-08-31T14:08:49Z",
       "last_seen_at": "2026-08-31T14:08:49Z"
+    },
+    {
+      "finding_id": "cf-5026b367a0d84413",
+      "status": "open",
+      "source_zh_cn": "不可动摇的热血誓言",
+      "match_mode": "contains",
+      "source_paths": [
+        "text_data_dict.json"
+      ],
+      "key_exact": [],
+      "json_path_prefixes": [],
+      "kinds": [
+        "context_rule"
+      ],
+      "concepts": [
+        "Passionate Vow family alias must not overmatch Unyielding Vow variants"
+      ],
+      "suggested_targets_vi": [],
+      "confidence_levels": [
+        "high"
+      ],
+      "reasons": [
+        "热血誓言 is lexical material inside the distinct full Condition 不可动摇的热血誓言; exact Unyielding rules must take precedence."
+      ],
+      "evidence_count": 1,
+      "evidence": [
+        {
+          "uid": "zhcn:d43940e7b776e67aa3defeb0",
+          "plan_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454",
+          "batch_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454-b0295",
+          "claim_id": "trc-gpt56sol-auto11-20260901T023200Z-b0295",
+          "worker_id": "gpt56sol-auto11-20260901T020300Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "142",
+            "28"
+          ],
+          "source_text": "不可动摇的热血誓言・短距离",
+          "current_text": "Lời thề nhiệt huyết không lay chuyển・Cự ly ngắn",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T02:37:00Z"
+        }
+      ],
+      "canonical_resolution": null,
+      "review_resolution": null,
+      "first_seen_at": "2026-09-01T02:37:00Z",
+      "last_seen_at": "2026-09-01T02:37:00Z"
     },
     {
       "finding_id": "cf-5204eca8a2e00ad5",
@@ -5266,6 +5563,65 @@
       "last_seen_at": "2026-08-30T19:30:15Z"
     },
     {
+      "finding_id": "cf-5cdb4af7b36cbbe0",
+      "status": "open",
+      "source_zh_cn": "莱茵力量",
+      "match_mode": "contains",
+      "source_paths": [
+        "text_data_dict.json"
+      ],
+      "key_exact": [],
+      "json_path_prefixes": [
+        [
+          "113"
+        ]
+      ],
+      "kinds": [
+        "context_rule"
+      ],
+      "concepts": [
+        "Power stat alias must not overmatch Rhein Kraft character name"
+      ],
+      "suggested_targets_vi": [],
+      "confidence_levels": [
+        "high"
+      ],
+      "reasons": [
+        "力量 is lexical content inside the proper name here, not the gameplay Power stat."
+      ],
+      "evidence_count": 1,
+      "evidence": [
+        {
+          "uid": "zhcn:24d266d0ceb31b5e4b133bee",
+          "plan_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454",
+          "batch_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454-b0234",
+          "claim_id": "trc-gpt56sol-auto11-20260901T025200Z-b0234",
+          "worker_id": "gpt56sol-auto11-20260901T020300Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "113",
+            "110902"
+          ],
+          "source_text": "莱茵力量的碎片",
+          "current_text": "Mảnh của Rhein Kraft",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T02:57:00Z"
+        }
+      ],
+      "canonical_resolution": {
+        "layer": "locked",
+        "term_id": "character.rhein_kraft",
+        "target_vi": "Rhein Kraft"
+      },
+      "review_resolution": {
+        "decision_id": "parallel.ctx-67f8551f77807292-v1.term-0231.19",
+        "action": "lock",
+        "target_vi": "Rhein Kraft"
+      },
+      "first_seen_at": "2026-09-01T02:57:00Z",
+      "last_seen_at": "2026-09-01T02:57:00Z"
+    },
+    {
       "finding_id": "cf-5d23e532c5359881",
       "status": "open",
       "source_zh_cn": "力量",
@@ -5667,6 +6023,61 @@
       "last_seen_at": "2026-08-31T10:36:00Z"
     },
     {
+      "finding_id": "cf-6249af28f2c7bc34",
+      "status": "open",
+      "source_zh_cn": "领放直线○",
+      "match_mode": "exact",
+      "source_paths": [
+        "text_data_dict.json"
+      ],
+      "key_exact": [],
+      "json_path_prefixes": [],
+      "kinds": [
+        "context_rule"
+      ],
+      "concepts": [
+        "Front Runner Skill title conflicts with legacy Nige exact lock"
+      ],
+      "suggested_targets_vi": [],
+      "confidence_levels": [
+        "high"
+      ],
+      "reasons": [
+        "The player-facing running-style rule forbids Nige, but the old exact Skill lock requires it."
+      ],
+      "evidence_count": 1,
+      "evidence": [
+        {
+          "uid": "zhcn:c19117aa7ef0a056763e2362",
+          "plan_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454",
+          "batch_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454-b0318",
+          "claim_id": "trc-gpt56sol-auto11-20260901T022500Z-b0318",
+          "worker_id": "gpt56sol-auto11-20260901T020300Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "147",
+            "2012401"
+          ],
+          "source_text": "领放直线○",
+          "current_text": "Đường thẳng Nige ○",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T02:30:00Z"
+        }
+      ],
+      "canonical_resolution": {
+        "layer": "locked",
+        "term_id": "reviewed.skill_name.c2d45d16e522",
+        "target_vi": "Đường thẳng Nige ○"
+      },
+      "review_resolution": {
+        "decision_id": "parallel.ctx-67f8551f77807292-v1.term-0093.17",
+        "action": "lock",
+        "target_vi": "Đường thẳng Nige ○"
+      },
+      "first_seen_at": "2026-09-01T02:30:00Z",
+      "last_seen_at": "2026-09-01T02:30:00Z"
+    },
+    {
       "finding_id": "cf-62610c0599d7a197",
       "status": "open",
       "source_zh_cn": "沙土",
@@ -6039,6 +6450,99 @@
       },
       "first_seen_at": "2026-08-30T18:42:00Z",
       "last_seen_at": "2026-08-30T18:42:00Z"
+    },
+    {
+      "finding_id": "cf-688a9d7a0cbbb578",
+      "status": "open",
+      "source_zh_cn": "莱茵力量",
+      "match_mode": "contains",
+      "source_paths": [
+        "text_data_dict.json"
+      ],
+      "key_exact": [],
+      "json_path_prefixes": [
+        [
+          "14"
+        ]
+      ],
+      "kinds": [
+        "context_rule"
+      ],
+      "concepts": [
+        "Power stat alias must not overmatch Rhein Kraft character name"
+      ],
+      "suggested_targets_vi": [],
+      "confidence_levels": [
+        "high"
+      ],
+      "reasons": [
+        "力量 is lexical content inside the zh-CN proper name 莱茵力量 here, not the Power gameplay stat.",
+        "力量 inside 莱茵力量 is part of the character proper name, not a stat mention.",
+        "The proper name contains 力量 lexically; this occurrence is not the gameplay Power stat."
+      ],
+      "evidence_count": 3,
+      "evidence": [
+        {
+          "uid": "zhcn:cce8f8c0881b45ee673a9e5b",
+          "plan_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454",
+          "batch_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454-b0288",
+          "claim_id": "trc-gpt56sol-auto11-20260901T020300Z-b0288",
+          "worker_id": "gpt56sol-auto11-20260901T020300Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "14",
+            "110901"
+          ],
+          "source_text": "决胜服（莱茵力量）",
+          "current_text": "Trang phục chiến thắng (Rhein Kraft)",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T02:06:00Z"
+        },
+        {
+          "uid": "zhcn:d7c20444d444302801e3e2e9",
+          "plan_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454",
+          "batch_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454-b0288",
+          "claim_id": "trc-gpt56sol-auto11-20260901T020300Z-b0288",
+          "worker_id": "gpt56sol-auto11-20260901T020300Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "14",
+            "110902"
+          ],
+          "source_text": "主线故事决胜服（莱茵力量）",
+          "current_text": "Trang phục chiến thắng cốt truyện chính (Rhein Kraft)",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T02:06:00Z"
+        },
+        {
+          "uid": "zhcn:fde8bb1f452c5037c19ff7ca",
+          "plan_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454",
+          "batch_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454-b0288",
+          "claim_id": "trc-gpt56sol-auto11-20260901T020300Z-b0288",
+          "worker_id": "gpt56sol-auto11-20260901T020300Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "14",
+            "901109"
+          ],
+          "source_text": "私服（莱茵力量）",
+          "current_text": "Thường phục (Line Kraft)",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T02:06:00Z"
+        }
+      ],
+      "canonical_resolution": {
+        "layer": "locked",
+        "term_id": "character.rhein_kraft",
+        "target_vi": "Rhein Kraft"
+      },
+      "review_resolution": {
+        "decision_id": "parallel.ctx-67f8551f77807292-v1.term-0231.19",
+        "action": "lock",
+        "target_vi": "Rhein Kraft"
+      },
+      "first_seen_at": "2026-09-01T02:06:00Z",
+      "last_seen_at": "2026-09-01T02:06:00Z"
     },
     {
       "finding_id": "cf-69b86b4ce3b871d1",
@@ -6634,6 +7138,61 @@
       "last_seen_at": "2026-08-31T17:39:00Z"
     },
     {
+      "finding_id": "cf-73140fe8c9d7d71d",
+      "status": "open",
+      "source_zh_cn": "居中弯道○",
+      "match_mode": "exact",
+      "source_paths": [
+        "text_data_dict.json"
+      ],
+      "key_exact": [],
+      "json_path_prefixes": [],
+      "kinds": [
+        "context_rule"
+      ],
+      "concepts": [
+        "Late Surger corner Skill title conflicts with legacy Sashi exact lock"
+      ],
+      "suggested_targets_vi": [],
+      "confidence_levels": [
+        "high"
+      ],
+      "reasons": [
+        "The running-style canonical and exact Skill lock are mutually incompatible."
+      ],
+      "evidence_count": 1,
+      "evidence": [
+        {
+          "uid": "zhcn:fc874d72fd571f2cb9668cdf",
+          "plan_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454",
+          "batch_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454-b0319",
+          "claim_id": "trc-gpt56sol-auto11-20260901T024600Z-b0319",
+          "worker_id": "gpt56sol-auto11-20260901T020300Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "147",
+            "2013901"
+          ],
+          "source_text": "居中弯道○",
+          "current_text": "Khúc cua Sashi○",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T02:50:00Z"
+        }
+      ],
+      "canonical_resolution": {
+        "layer": "locked",
+        "term_id": "reviewed.skill_name.74fdbecde176",
+        "target_vi": "Khúc cua Sashi○"
+      },
+      "review_resolution": {
+        "decision_id": "parallel.ctx-67f8551f77807292-v1.term-0034.09",
+        "action": "lock",
+        "target_vi": "Khúc cua Sashi○"
+      },
+      "first_seen_at": "2026-09-01T02:50:00Z",
+      "last_seen_at": "2026-09-01T02:50:00Z"
+    },
+    {
       "finding_id": "cf-754c7bc46e60b69e",
       "status": "open",
       "source_zh_cn": "英雄的光辉",
@@ -6811,6 +7370,53 @@
       "last_seen_at": "2026-08-29T21:40:00Z"
     },
     {
+      "finding_id": "cf-7894d0578d8c8a02",
+      "status": "open",
+      "source_zh_cn": "点燃青春",
+      "match_mode": "contains",
+      "source_paths": [
+        "text_data_dict.json"
+      ],
+      "key_exact": [],
+      "json_path_prefixes": [],
+      "kinds": [
+        "context_rule"
+      ],
+      "concepts": [
+        "Aoharu Ignition Skill family must use JP-backed Vietnamese localization instead of conflicting legacy Ignited Spirit locks"
+      ],
+      "suggested_targets_vi": [],
+      "confidence_levels": [
+        "high"
+      ],
+      "reasons": [
+        "Category 147 community rule is JP-backed and explicitly rejects the old keep-English family locks, but those exact locks are still embedded and block clean review."
+      ],
+      "evidence_count": 1,
+      "evidence": [
+        {
+          "uid": "zhcn:e3034ec43da89a0512f077b6",
+          "plan_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454",
+          "batch_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454-b0340",
+          "claim_id": "trc-gpt56sol-auto11-20260901T021900Z-b0340",
+          "worker_id": "gpt56sol-auto11-20260901T020300Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "147",
+            "2100101"
+          ],
+          "source_text": "点燃青春・速",
+          "current_text": "Thắp lửa thanh xuân・Tốc độ",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T02:23:00Z"
+        }
+      ],
+      "canonical_resolution": null,
+      "review_resolution": null,
+      "first_seen_at": "2026-09-01T02:23:00Z",
+      "last_seen_at": "2026-09-01T02:23:00Z"
+    },
+    {
       "finding_id": "cf-78fd1f6eb5a24b5a",
       "status": "open",
       "source_zh_cn": "每当独自奔跑时，就会感受到有如针刺的疼痛，以及焦躁……\\n即使如此也不停下脚步，就算可能性低于零也是。",
@@ -6860,6 +7466,61 @@
       "review_resolution": null,
       "first_seen_at": "2026-08-31T23:51:00Z",
       "last_seen_at": "2026-08-31T23:51:00Z"
+    },
+    {
+      "finding_id": "cf-7a4972cc6a5b7413",
+      "status": "open",
+      "source_zh_cn": "领放诀窍○",
+      "match_mode": "exact",
+      "source_paths": [
+        "text_data_dict.json"
+      ],
+      "key_exact": [],
+      "json_path_prefixes": [],
+      "kinds": [
+        "context_rule"
+      ],
+      "concepts": [
+        "Front Runner hint Skill title conflicts with legacy Nige exact lock"
+      ],
+      "suggested_targets_vi": [],
+      "confidence_levels": [
+        "high"
+      ],
+      "reasons": [
+        "The community running-style rule and legacy exact Skill lock cannot both be satisfied."
+      ],
+      "evidence_count": 1,
+      "evidence": [
+        {
+          "uid": "zhcn:c5f12558517d9dc464ea3abe",
+          "plan_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454",
+          "batch_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454-b0319",
+          "claim_id": "trc-gpt56sol-auto11-20260901T024600Z-b0319",
+          "worker_id": "gpt56sol-auto11-20260901T020300Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "147",
+            "2015201"
+          ],
+          "source_text": "领放诀窍○",
+          "current_text": "Mẹo Nige ○",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T02:50:00Z"
+        }
+      ],
+      "canonical_resolution": {
+        "layer": "locked",
+        "term_id": "reviewed.skill_name.73ebf7abd0e6",
+        "target_vi": "Mẹo Nige ○"
+      },
+      "review_resolution": {
+        "decision_id": "parallel.ctx-67f8551f77807292-v1.term-0093.19",
+        "action": "lock",
+        "target_vi": "Mẹo Nige ○"
+      },
+      "first_seen_at": "2026-09-01T02:50:00Z",
+      "last_seen_at": "2026-09-01T02:50:00Z"
     },
     {
       "finding_id": "cf-7a7f7d4f661cc297",
@@ -7412,6 +8073,77 @@
       "last_seen_at": "2026-08-31T11:21:00Z"
     },
     {
+      "finding_id": "cf-85bfd888d8c4f3bc",
+      "status": "open",
+      "source_zh_cn": "领放弯道○",
+      "match_mode": "exact",
+      "source_paths": [
+        "text_data_dict.json"
+      ],
+      "key_exact": [],
+      "json_path_prefixes": [],
+      "kinds": [
+        "context_rule"
+      ],
+      "concepts": [
+        "Front Runner corner Skill title conflicts with legacy Nige exact lock"
+      ],
+      "suggested_targets_vi": [],
+      "confidence_levels": [
+        "high"
+      ],
+      "reasons": [
+        "The player-facing running-style canonical and old exact Skill lock cannot both be satisfied."
+      ],
+      "evidence_count": 2,
+      "evidence": [
+        {
+          "uid": "zhcn:7c3a98d737aac44f7e1ae4a9",
+          "plan_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454",
+          "batch_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454-b0318",
+          "claim_id": "trc-gpt56sol-auto11-20260901T022500Z-b0318",
+          "worker_id": "gpt56sol-auto11-20260901T020300Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "147",
+            "2012501"
+          ],
+          "source_text": "领放弯道○",
+          "current_text": "Khúc cua Nige ○",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T02:30:00Z"
+        },
+        {
+          "uid": "zhcn:234b76925cedd0623a18d596",
+          "plan_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454",
+          "batch_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454-b0319",
+          "claim_id": "trc-gpt56sol-auto11-20260901T024600Z-b0319",
+          "worker_id": "gpt56sol-auto11-20260901T020300Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "147",
+            "2012502"
+          ],
+          "source_text": "领放弯道○",
+          "current_text": "Khúc cua Nige ○",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T02:50:00Z"
+        }
+      ],
+      "canonical_resolution": {
+        "layer": "locked",
+        "term_id": "reviewed.skill_name.674862c04506",
+        "target_vi": "Khúc cua Nige ○"
+      },
+      "review_resolution": {
+        "decision_id": "parallel.ctx-67f8551f77807292-v1.term-0093.12",
+        "action": "lock",
+        "target_vi": "Khúc cua Nige ○"
+      },
+      "first_seen_at": "2026-09-01T02:30:00Z",
+      "last_seen_at": "2026-09-01T02:50:00Z"
+    },
+    {
       "finding_id": "cf-8758bee3b2929016",
       "status": "open",
       "source_zh_cn": "钻石桥",
@@ -7657,6 +8389,55 @@
       },
       "first_seen_at": "2026-08-30T12:41:00Z",
       "last_seen_at": "2026-08-30T12:41:00Z"
+    },
+    {
+      "finding_id": "cf-8d8198c3fdff5fe8",
+      "status": "open",
+      "source_zh_cn": "形象值",
+      "match_mode": "contains",
+      "source_paths": [
+        "text_data_dict.json"
+      ],
+      "key_exact": [],
+      "json_path_prefixes": [],
+      "kinds": [
+        "system_label"
+      ],
+      "concepts": [
+        "Grand Live performance stat: Visual"
+      ],
+      "suggested_targets_vi": [
+        "Visual"
+      ],
+      "confidence_levels": [
+        "high"
+      ],
+      "reasons": [
+        "Repeated Grand Live system label needs one canonical player-facing term."
+      ],
+      "evidence_count": 1,
+      "evidence": [
+        {
+          "uid": "zhcn:feb4750a532c02559ec80d7f",
+          "plan_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454",
+          "batch_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454-b0276",
+          "claim_id": "trc-gpt56sol-auto11-20260901T020100Z-b0276",
+          "worker_id": "gpt56sol-auto11-20260901T015829Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "131",
+            "240"
+          ],
+          "source_text": "获得合计300点以上形象值完成育成\\n※相连、相辉、相映。属于我们的『Grand Live』限定",
+          "current_text": "Đạt tổng cộng ít nhất 300 điểm Hình tượng và hoàn thành huấn luyện\\n※Chỉ áp dụng cho kịch bản 『Grand Live』 của chúng ta: kết nối, tỏa sáng và phản chiếu",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T02:04:00Z"
+        }
+      ],
+      "canonical_resolution": null,
+      "review_resolution": null,
+      "first_seen_at": "2026-09-01T02:04:00Z",
+      "last_seen_at": "2026-09-01T02:04:00Z"
     },
     {
       "finding_id": "cf-8e22fa8877308e98",
@@ -8096,6 +8877,55 @@
       "review_resolution": null,
       "first_seen_at": "2026-08-31T14:16:00Z",
       "last_seen_at": "2026-08-31T14:16:00Z"
+    },
+    {
+      "finding_id": "cf-97dd9d6e5657d6f9",
+      "status": "open",
+      "source_zh_cn": "秋古马三冠",
+      "match_mode": "contains",
+      "source_paths": [
+        "text_data_dict.json"
+      ],
+      "key_exact": [],
+      "json_path_prefixes": [],
+      "kinds": [
+        "system_label"
+      ],
+      "concepts": [
+        "Senior Autumn Triple Crown achievement label"
+      ],
+      "suggested_targets_vi": [
+        "Senior Autumn Triple Crown"
+      ],
+      "confidence_levels": [
+        "medium"
+      ],
+      "reasons": [
+        "Reusable achievement label should be locked consistently before revising compound titles."
+      ],
+      "evidence_count": 1,
+      "evidence": [
+        {
+          "uid": "zhcn:7c4d91f4a970e4919564172f",
+          "plan_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454",
+          "batch_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454-b0265",
+          "claim_id": "trc-gpt56sol-auto11-b0265-20260901",
+          "worker_id": "gpt56sol-auto11-20260901T015829Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "130",
+            "29"
+          ],
+          "source_text": "秋古马三冠赛马娘",
+          "current_text": "Uma Musume Tam quan Cổ mã Mùa thu",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T02:32:00Z"
+        }
+      ],
+      "canonical_resolution": null,
+      "review_resolution": null,
+      "first_seen_at": "2026-09-01T02:32:00Z",
+      "last_seen_at": "2026-09-01T02:32:00Z"
     },
     {
       "finding_id": "cf-97e98b6571188de5",
@@ -10587,6 +11417,61 @@
       "last_seen_at": "2026-08-30T19:18:05Z"
     },
     {
+      "finding_id": "cf-b6119398fbb3b37f",
+      "status": "open",
+      "source_zh_cn": "居中诀窍○",
+      "match_mode": "exact",
+      "source_paths": [
+        "text_data_dict.json"
+      ],
+      "key_exact": [],
+      "json_path_prefixes": [],
+      "kinds": [
+        "context_rule"
+      ],
+      "concepts": [
+        "Late Surger hint Skill title conflicts with legacy Sashi exact lock"
+      ],
+      "suggested_targets_vi": [],
+      "confidence_levels": [
+        "high"
+      ],
+      "reasons": [
+        "The player-facing running-style rule and old exact Skill lock are mutually incompatible."
+      ],
+      "evidence_count": 1,
+      "evidence": [
+        {
+          "uid": "zhcn:21d87bb367482829534ff79c",
+          "plan_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454",
+          "batch_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454-b0319",
+          "claim_id": "trc-gpt56sol-auto11-20260901T024600Z-b0319",
+          "worker_id": "gpt56sol-auto11-20260901T020300Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "147",
+            "2015401"
+          ],
+          "source_text": "居中诀窍○",
+          "current_text": "Mẹo Sashi○",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T02:50:00Z"
+        }
+      ],
+      "canonical_resolution": {
+        "layer": "locked",
+        "term_id": "reviewed.skill_name.337707aae500",
+        "target_vi": "Mẹo Sashi○"
+      },
+      "review_resolution": {
+        "decision_id": "parallel.ctx-67f8551f77807292-v1.term-0034.16",
+        "action": "lock",
+        "target_vi": "Mẹo Sashi○"
+      },
+      "first_seen_at": "2026-09-01T02:50:00Z",
+      "last_seen_at": "2026-09-01T02:50:00Z"
+    },
+    {
       "finding_id": "cf-baa64ebea736be2a",
       "status": "open",
       "source_zh_cn": "火神鸣",
@@ -11109,6 +11994,61 @@
       },
       "first_seen_at": "2026-08-31T10:12:00Z",
       "last_seen_at": "2026-08-31T10:19:40Z"
+    },
+    {
+      "finding_id": "cf-c38c5812d3989165",
+      "status": "open",
+      "source_zh_cn": "中距离弯道○",
+      "match_mode": "exact",
+      "source_paths": [
+        "text_data_dict.json"
+      ],
+      "key_exact": [],
+      "json_path_prefixes": [],
+      "kinds": [
+        "context_rule"
+      ],
+      "concepts": [
+        "Medium corner Skill-title canonical conflicts with legacy Vietnamese exact lock"
+      ],
+      "suggested_targets_vi": [],
+      "confidence_levels": [
+        "high"
+      ],
+      "reasons": [
+        "The old exact title and current player-facing Medium terminology are mutually incompatible."
+      ],
+      "evidence_count": 1,
+      "evidence": [
+        {
+          "uid": "zhcn:8c6858fa067e853c532825b7",
+          "plan_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454",
+          "batch_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454-b0318",
+          "claim_id": "trc-gpt56sol-auto11-20260901T022500Z-b0318",
+          "worker_id": "gpt56sol-auto11-20260901T020300Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "147",
+            "2011101"
+          ],
+          "source_text": "中距离弯道○",
+          "current_text": "Khúc cua cự ly trung○",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T02:30:00Z"
+        }
+      ],
+      "canonical_resolution": {
+        "layer": "locked",
+        "term_id": "reviewed.skill_name.d9dba0e68a51",
+        "target_vi": "Khúc cua Cự ly trung bình○"
+      },
+      "review_resolution": {
+        "decision_id": "parallel.ctx-67f8551f77807292-v1.term-0012.02",
+        "action": "lock",
+        "target_vi": "Khúc cua Cự ly trung bình○"
+      },
+      "first_seen_at": "2026-09-01T02:30:00Z",
+      "last_seen_at": "2026-09-01T02:30:00Z"
     },
     {
       "finding_id": "cf-c4121ed14d06db12",
@@ -11881,6 +12821,61 @@
       "last_seen_at": "2026-09-01T00:39:00Z"
     },
     {
+      "finding_id": "cf-c8584c79eacb1d07",
+      "status": "open",
+      "source_zh_cn": "居中直线○",
+      "match_mode": "exact",
+      "source_paths": [
+        "text_data_dict.json"
+      ],
+      "key_exact": [],
+      "json_path_prefixes": [],
+      "kinds": [
+        "context_rule"
+      ],
+      "concepts": [
+        "Late Surger straight Skill title conflicts with legacy Sashi exact lock"
+      ],
+      "suggested_targets_vi": [],
+      "confidence_levels": [
+        "high"
+      ],
+      "reasons": [
+        "The player-facing running-style rule forbids Sashi, but the old exact Skill lock requires it."
+      ],
+      "evidence_count": 1,
+      "evidence": [
+        {
+          "uid": "zhcn:d6e345dca8008de49e46989e",
+          "plan_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454",
+          "batch_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454-b0319",
+          "claim_id": "trc-gpt56sol-auto11-20260901T024600Z-b0319",
+          "worker_id": "gpt56sol-auto11-20260901T020300Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "147",
+            "2013801"
+          ],
+          "source_text": "居中直线○",
+          "current_text": "Đường thẳng Sashi○",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T02:50:00Z"
+        }
+      ],
+      "canonical_resolution": {
+        "layer": "locked",
+        "term_id": "reviewed.skill_name.5b3f8f219da8",
+        "target_vi": "Đường thẳng Sashi○"
+      },
+      "review_resolution": {
+        "decision_id": "parallel.ctx-67f8551f77807292-v1.term-0034.14",
+        "action": "lock",
+        "target_vi": "Đường thẳng Sashi○"
+      },
+      "first_seen_at": "2026-09-01T02:50:00Z",
+      "last_seen_at": "2026-09-01T02:50:00Z"
+    },
+    {
       "finding_id": "cf-c976a8dcf9b59c09",
       "status": "open",
       "source_zh_cn": "先行弯道○",
@@ -12125,6 +13120,114 @@
       "review_resolution": null,
       "first_seen_at": "2026-08-31T11:18:31Z",
       "last_seen_at": "2026-08-31T11:18:31Z"
+    },
+    {
+      "finding_id": "cf-d10a637b19098001",
+      "status": "open",
+      "source_zh_cn": "目白光明",
+      "match_mode": "contains",
+      "source_paths": [
+        "text_data_dict.json"
+      ],
+      "key_exact": [],
+      "json_path_prefixes": [
+        [
+          "15"
+        ]
+      ],
+      "kinds": [
+        "context_rule"
+      ],
+      "concepts": [
+        "Skill alias 光明 must not overmatch Mejiro Bright character name"
+      ],
+      "suggested_targets_vi": [],
+      "confidence_levels": [
+        "high"
+      ],
+      "reasons": [
+        "光明 is part of the established character proper name here, not a standalone Skill title."
+      ],
+      "evidence_count": 1,
+      "evidence": [
+        {
+          "uid": "zhcn:dc09b32200437f143765dc39",
+          "plan_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454",
+          "batch_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454-b0359",
+          "claim_id": "trc-gpt56sol-auto11-20260901T023900Z-b0359",
+          "worker_id": "gpt56sol-auto11-20260901T020300Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "15",
+            "107401"
+          ],
+          "source_text": "目白光明的特殊服装",
+          "current_text": "Trang phục đặc biệt (Mejiro Bright)",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T02:44:00Z"
+        }
+      ],
+      "canonical_resolution": {
+        "layer": "locked",
+        "term_id": "character.mejiro_bright",
+        "target_vi": "Mejiro Bright"
+      },
+      "review_resolution": {
+        "decision_id": "parallel.ctx-67f8551f77807292-v1.term-0230.12",
+        "action": "lock",
+        "target_vi": "Mejiro Bright"
+      },
+      "first_seen_at": "2026-09-01T02:44:00Z",
+      "last_seen_at": "2026-09-01T02:44:00Z"
+    },
+    {
+      "finding_id": "cf-d11aa54842ad46b9",
+      "status": "open",
+      "source_zh_cn": "声音值",
+      "match_mode": "contains",
+      "source_paths": [
+        "text_data_dict.json"
+      ],
+      "key_exact": [],
+      "json_path_prefixes": [],
+      "kinds": [
+        "system_label"
+      ],
+      "concepts": [
+        "Grand Live performance stat: Vocal"
+      ],
+      "suggested_targets_vi": [
+        "Vocal"
+      ],
+      "confidence_levels": [
+        "high"
+      ],
+      "reasons": [
+        "Repeated Grand Live system label needs one canonical player-facing term."
+      ],
+      "evidence_count": 1,
+      "evidence": [
+        {
+          "uid": "zhcn:933bb46903138ab35f7269e7",
+          "plan_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454",
+          "batch_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454-b0276",
+          "claim_id": "trc-gpt56sol-auto11-20260901T020100Z-b0276",
+          "worker_id": "gpt56sol-auto11-20260901T015829Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "131",
+            "239"
+          ],
+          "source_text": "获得合计300点以上声音值完成育成\\n※相连、相辉、相映。属于我们的『Grand Live』限定",
+          "current_text": "Đạt tổng cộng ít nhất 300 điểm Giọng hát và hoàn thành huấn luyện\\n※Chỉ áp dụng cho kịch bản 『Grand Live』 của chúng ta: kết nối, tỏa sáng và phản chiếu",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T02:04:00Z"
+        }
+      ],
+      "canonical_resolution": null,
+      "review_resolution": null,
+      "first_seen_at": "2026-09-01T02:04:00Z",
+      "last_seen_at": "2026-09-01T02:04:00Z"
     },
     {
       "finding_id": "cf-d17bdc871b3f4961",
@@ -13040,6 +14143,55 @@
       "last_seen_at": "2026-08-31T11:21:00Z"
     },
     {
+      "finding_id": "cf-ddb287e019039225",
+      "status": "open",
+      "source_zh_cn": "热情值",
+      "match_mode": "contains",
+      "source_paths": [
+        "text_data_dict.json"
+      ],
+      "key_exact": [],
+      "json_path_prefixes": [],
+      "kinds": [
+        "system_label"
+      ],
+      "concepts": [
+        "Grand Live performance stat: Passion"
+      ],
+      "suggested_targets_vi": [
+        "Passion"
+      ],
+      "confidence_levels": [
+        "high"
+      ],
+      "reasons": [
+        "Repeated Grand Live system label needs one canonical player-facing term."
+      ],
+      "evidence_count": 1,
+      "evidence": [
+        {
+          "uid": "zhcn:e84b43d5b94a0e2c5f5e4860",
+          "plan_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454",
+          "batch_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454-b0276",
+          "claim_id": "trc-gpt56sol-auto11-20260901T020100Z-b0276",
+          "worker_id": "gpt56sol-auto11-20260901T015829Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "131",
+            "238"
+          ],
+          "source_text": "获得合计300点以上热情值完成育成\\n※相连、相辉、相映。属于我们的『Grand Live』限定",
+          "current_text": "Đạt tổng cộng ít nhất 300 điểm Nhiệt huyết và hoàn thành huấn luyện\\n※Chỉ áp dụng cho kịch bản 『Grand Live』 của chúng ta: kết nối, tỏa sáng và phản chiếu",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T02:04:00Z"
+        }
+      ],
+      "canonical_resolution": null,
+      "review_resolution": null,
+      "first_seen_at": "2026-09-01T02:04:00Z",
+      "last_seen_at": "2026-09-01T02:04:00Z"
+    },
+    {
       "finding_id": "cf-de8d8180f7fd53b8",
       "status": "open",
       "source_zh_cn": "马娘偶像",
@@ -13395,6 +14547,65 @@
       },
       "first_seen_at": "2026-08-31T12:49:00Z",
       "last_seen_at": "2026-08-31T12:49:00Z"
+    },
+    {
+      "finding_id": "cf-eccb855f3ae45b49",
+      "status": "open",
+      "source_zh_cn": "目白光明",
+      "match_mode": "contains",
+      "source_paths": [
+        "text_data_dict.json"
+      ],
+      "key_exact": [],
+      "json_path_prefixes": [
+        [
+          "14"
+        ]
+      ],
+      "kinds": [
+        "context_rule"
+      ],
+      "concepts": [
+        "Skill alias 光明 must not overmatch Mejiro Bright character name"
+      ],
+      "suggested_targets_vi": [],
+      "confidence_levels": [
+        "high"
+      ],
+      "reasons": [
+        "光明 is part of the character proper name 目白光明 here, not a standalone Skill title."
+      ],
+      "evidence_count": 1,
+      "evidence": [
+        {
+          "uid": "zhcn:23771fd26f3c75be1474abca",
+          "plan_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454",
+          "batch_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454-b0288",
+          "claim_id": "trc-gpt56sol-auto11-20260901T020300Z-b0288",
+          "worker_id": "gpt56sol-auto11-20260901T020300Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "14",
+            "901074"
+          ],
+          "source_text": "私服（目白光明）",
+          "current_text": "Trang phục thường (Mejiro Bright)",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T02:06:00Z"
+        }
+      ],
+      "canonical_resolution": {
+        "layer": "locked",
+        "term_id": "character.mejiro_bright",
+        "target_vi": "Mejiro Bright"
+      },
+      "review_resolution": {
+        "decision_id": "parallel.ctx-67f8551f77807292-v1.term-0230.12",
+        "action": "lock",
+        "target_vi": "Mejiro Bright"
+      },
+      "first_seen_at": "2026-09-01T02:06:00Z",
+      "last_seen_at": "2026-09-01T02:06:00Z"
     },
     {
       "finding_id": "cf-ecde28dd625ae647",
@@ -13831,6 +15042,61 @@
       },
       "first_seen_at": "2026-09-01T00:23:00Z",
       "last_seen_at": "2026-09-01T00:23:00Z"
+    },
+    {
+      "finding_id": "cf-f547453d071aadd3",
+      "status": "open",
+      "source_zh_cn": "传至双腿的焦躁",
+      "match_mode": "exact",
+      "source_paths": [
+        "text_data_dict.json"
+      ],
+      "key_exact": [],
+      "json_path_prefixes": [],
+      "kinds": [
+        "context_rule"
+      ],
+      "concepts": [
+        "Generic Rushed alias must not overmatch Epiphaneia named Condition"
+      ],
+      "suggested_targets_vi": [],
+      "confidence_levels": [
+        "high"
+      ],
+      "reasons": [
+        "Here 焦躁 is lexical content inside a distinct named Condition, not the standalone/in-race Rushed system label."
+      ],
+      "evidence_count": 1,
+      "evidence": [
+        {
+          "uid": "zhcn:1fe5fc43972725a8afc5883d",
+          "plan_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454",
+          "batch_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454-b0295",
+          "claim_id": "trc-gpt56sol-auto11-20260901T023200Z-b0295",
+          "worker_id": "gpt56sol-auto11-20260901T020300Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "142",
+            "44"
+          ],
+          "source_text": "传至双腿的焦躁",
+          "current_text": "I Won't Hold Back!!",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T02:37:00Z"
+        }
+      ],
+      "canonical_resolution": {
+        "layer": "locked",
+        "term_id": "reviewed.condition.751e9ce57b75",
+        "target_vi": "I Won't Hold Back!!"
+      },
+      "review_resolution": {
+        "decision_id": "audit.finding.condition-epiphaneia-no-holding-back",
+        "action": "lock",
+        "target_vi": "I Won't Hold Back!!"
+      },
+      "first_seen_at": "2026-09-01T02:37:00Z",
+      "last_seen_at": "2026-09-01T02:37:00Z"
     },
     {
       "finding_id": "cf-f57d921afca6a993",

@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "status": "partial",
+  "plan_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454",
+  "batch_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454-b0263",
+  "claim_id": "trc-gpt56sol-auto11-b0263-20260901",
+  "worker_id": "gpt56sol-auto11-20260901T015829Z",
+  "reviewed_at": "2026-09-01T02:17:00Z",
+  "completed_count": 5,
+  "decisions": [
+    {"uid":"zhcn:3edbbef0513569f502b9e447","current_fingerprint":"dc664ccdaf3245c37f8caf30af6a98b6a7ef57d4d05c8f0f0636ae07163b2335","action":"defer","reason":"The embedded race.generic rule falsely matches 比赛 across the lexical boundary in 德比+赛马娘, while the world term independently requires Mã Nương. This collision should be resolved canonically before editing the title.","canonical_finding":{"kind":"context_rule","source_zh_cn":"比赛","suggested_target_vi":"Cuộc đua","concept":"race.generic must not match across compound boundaries in 德比赛马娘","match_mode":"contains","scope":"source_path","reason":"Substring 比赛 is accidental across 德比 + 赛马娘 and does not denote a generic race here.","confidence":"high"},"confidence":"high"},
+    {"uid":"zhcn:668eb3dea5c08e169ef597e9","current_fingerprint":"8ab732c6d025ac1df004a68b5874de4dea28f96bcfa3d1a6f13d24b417f5cd6d","action":"revise","proposed_text":"Mã Nương dưới hoàng hôn","reason":"Generic 赛马娘 must use the established Vietnamese world term Mã Nương instead of forbidden Uma Musume.","terminology_basis":"Embedded world/species rules require Mã Nương.","confidence":"high"},
+    {"uid":"zhcn:82f4fe19ec34b5eabe275b42","current_fingerprint":"61021a0fc375ddf51a584ec4e82efff51630071dd01636b55efc3342eac4b369","action":"revise","proposed_text":"Mã Nương Japanese Oaks","reason":"The proper race reference is preserved, but generic 赛马娘 must be Mã Nương rather than Uma Musume.","terminology_basis":"Embedded world/species rules require Mã Nương.","confidence":"high"},
+    {"uid":"zhcn:ec060c122f372db7748c20e5","current_fingerprint":"3f854bde6eb3903b7432d8b8331c1c62428e793f563d9c05b1cefb98a27dc3aa","action":"revise","proposed_text":"Mã Nương hoài hương","reason":"Replace forbidden generic Uma Musume with the canonical Mã Nương world/species term.","terminology_basis":"Embedded world/species rules require Mã Nương.","confidence":"high"},
+    {"uid":"zhcn:0954921267fc40c4003cf418","current_fingerprint":"2d9c72217068288f1c7e63011821d63bf2ae7e72d7f2933801999c2fd4a034b7","action":"defer","reason":"The locked phrase 速度之星 maps to Ngôi sao tốc độ, but the generic Speed stat alias simultaneously fires inside that locked skill phrase; forcing both produces a terminology collision. Resolve the more-specific locked phrase precedence first.","canonical_finding":{"kind":"context_rule","source_zh_cn":"速度","suggested_target_vi":"Speed","concept":"Speed stat alias must not override locked compound skill/title 速度之星","match_mode":"contains","scope":"source_path","reason":"The generic stat alias is embedded inside a more-specific locked title phrase and should yield to the longer canonical match.","confidence":"high"},"confidence":"high"}
+  ]
+}

@@ -159,6 +159,98 @@
       "last_seen_at": "2026-09-01T06:58:00Z"
     },
     {
+      "finding_id": "cf-02b3d25641433cfb",
+      "status": "open",
+      "source_zh_cn": "光明",
+      "match_mode": "contains",
+      "source_paths": [
+        "text_data_dict.json"
+      ],
+      "key_exact": [],
+      "json_path_prefixes": [
+        [
+          "15"
+        ]
+      ],
+      "kinds": [
+        "context_rule"
+      ],
+      "concepts": [
+        "Prevent Skill-name alias 光明 from matching inside the character name 目白光明 / Mejiro Bright"
+      ],
+      "suggested_targets_vi": [],
+      "confidence_levels": [
+        "high"
+      ],
+      "reasons": [
+        "A reusable Skill alias overmatches a proper-name substring and falsely blocks correct character-name labels.",
+        "A reusable Skill alias is overmatching a proper-name substring and falsely blocking correct character-name labels."
+      ],
+      "evidence_count": 3,
+      "evidence": [
+        {
+          "uid": "zhcn:dc09b32200437f143765dc39",
+          "plan_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047",
+          "batch_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047-b0196",
+          "claim_id": "trc-gpt56sol-hourly-20260901T123700Z-b0196",
+          "worker_id": "gpt56sol-hourly-20260901T122613Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "15",
+            "107401"
+          ],
+          "source_text": "目白光明的特殊服装",
+          "current_text": "Trang phục đặc biệt (Mejiro Bright)",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T12:41:00Z"
+        },
+        {
+          "uid": "zhcn:44185898ee28aa9ca5faf3a1",
+          "plan_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047",
+          "batch_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047-b0196",
+          "claim_id": "trc-gpt56sol-hourly-20260901T123700Z-b0196",
+          "worker_id": "gpt56sol-hourly-20260901T122613Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "15",
+            "107446"
+          ],
+          "source_text": "目白光明的特殊服装",
+          "current_text": "Trang phục đặc biệt (Mejiro Bright)",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T12:41:00Z"
+        },
+        {
+          "uid": "zhcn:1224131f6999ebe12ae77342",
+          "plan_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047",
+          "batch_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047-b0199",
+          "claim_id": "trc-gpt56sol-hourly-20260901T122613Z-b0199",
+          "worker_id": "gpt56sol-hourly-20260901T122613Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "15",
+            "901074"
+          ],
+          "source_text": "目白光明的私服",
+          "current_text": "Trang phục thường (Mejiro Bright)",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T12:31:00Z"
+        }
+      ],
+      "canonical_resolution": {
+        "layer": "locked",
+        "term_id": "reviewed.skill_name.6b9641d2417b",
+        "target_vi": "Ánh sáng"
+      },
+      "review_resolution": {
+        "decision_id": "parallel.ctx-67f8551f77807292-v1.term-0017.01",
+        "action": "lock",
+        "target_vi": "Ánh sáng"
+      },
+      "first_seen_at": "2026-09-01T12:41:00Z",
+      "last_seen_at": "2026-09-01T12:31:00Z"
+    },
+    {
       "finding_id": "cf-03be28442492e3b1",
       "status": "open",
       "source_zh_cn": "力量感",
@@ -3546,6 +3638,87 @@
       },
       "first_seen_at": "2026-08-31T13:32:00Z",
       "last_seen_at": "2026-08-31T13:32:00Z"
+    },
+    {
+      "finding_id": "cf-1fb0ec7c1c77dfb1",
+      "status": "open",
+      "source_zh_cn": "精神力量",
+      "match_mode": "exact",
+      "source_paths": [
+        "text_data_dict.json"
+      ],
+      "key_exact": [],
+      "json_path_prefixes": [],
+      "kinds": [
+        "context_rule"
+      ],
+      "concepts": [
+        "Treat 精神力量 as its own complete phrase; do not normalize its 力量 substring to the Power stat or its 精神力 prefix to a different Skill without exact-concept evidence."
+      ],
+      "suggested_targets_vi": [
+        "Sức mạnh tinh thần"
+      ],
+      "confidence_levels": [
+        "high"
+      ],
+      "reasons": [
+        "Both embedded canonical matches conflict with the complete source phrase and with the explicit Power-term exclusion for non-stat descriptive uses."
+      ],
+      "evidence_count": 3,
+      "evidence": [
+        {
+          "uid": "zhcn:66e05c014984ea59c0ec6a0c",
+          "plan_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047",
+          "batch_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047-b0190",
+          "claim_id": "trc-gpt56sol-auto5-20260901T122155Z-b0190",
+          "worker_id": "gpt56sol-auto5-20260901T120836Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "147",
+            "3100801"
+          ],
+          "source_text": "精神力量",
+          "current_text": "Sức mạnh tinh thần",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T12:26:15Z"
+        },
+        {
+          "uid": "zhcn:4f732caee9ed42af141f5489",
+          "plan_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047",
+          "batch_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047-b0190",
+          "claim_id": "trc-gpt56sol-auto5-20260901T122155Z-b0190",
+          "worker_id": "gpt56sol-auto5-20260901T120836Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "147",
+            "3100802"
+          ],
+          "source_text": "精神力量",
+          "current_text": "Sức mạnh tinh thần",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T12:26:15Z"
+        },
+        {
+          "uid": "zhcn:0a3bda4ad195f9d0930f7555",
+          "plan_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047",
+          "batch_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047-b0190",
+          "claim_id": "trc-gpt56sol-auto5-20260901T122155Z-b0190",
+          "worker_id": "gpt56sol-auto5-20260901T120836Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "147",
+            "3100803"
+          ],
+          "source_text": "精神力量",
+          "current_text": "Sức mạnh tinh thần",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T12:26:15Z"
+        }
+      ],
+      "canonical_resolution": null,
+      "review_resolution": null,
+      "first_seen_at": "2026-09-01T12:26:15Z",
+      "last_seen_at": "2026-09-01T12:26:15Z"
     },
     {
       "finding_id": "cf-1fe0fb2bd74ff35e",
@@ -7010,6 +7183,72 @@
       "review_resolution": null,
       "first_seen_at": "2026-08-31T17:35:00Z",
       "last_seen_at": "2026-08-31T17:35:00Z"
+    },
+    {
+      "finding_id": "cf-55673a272df0aaae",
+      "status": "open",
+      "source_zh_cn": "牵绊值",
+      "match_mode": "contains",
+      "source_paths": [
+        "text_data_dict.json"
+      ],
+      "key_exact": [],
+      "json_path_prefixes": [],
+      "kinds": [
+        "terminology"
+      ],
+      "concepts": [
+        "Support Card Friendship Gauge"
+      ],
+      "suggested_targets_vi": [
+        "Friendship Gauge"
+      ],
+      "confidence_levels": [
+        "high"
+      ],
+      "reasons": [
+        "In category 155 this alias denotes the Support Card Friendship Gauge, parallel to the already-canonical 羁绊值 mechanic; generic Vietnamese bond wording would fragment the player-facing term.",
+        "Category 155 consistently uses 牵绊值 for the Support Card Friendship Gauge; it should be canonicalized instead of translated as generic bond value."
+      ],
+      "evidence_count": 2,
+      "evidence": [
+        {
+          "uid": "zhcn:c637387481bc81aecadee788",
+          "plan_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047",
+          "batch_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047-b0210",
+          "claim_id": "trc-gpt56sol-hourly-20260901T115926Z-r3-b0210",
+          "worker_id": "gpt56sol-hourly-20260901T115926Z-r3",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "155",
+            "30037"
+          ],
+          "source_text": "牵绊值达到80以上时，\\n速度加成",
+          "current_text": "Khi giá trị liên kết đạt từ 80 trở lên,\\nSpeed Bonus",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T12:13:00Z"
+        },
+        {
+          "uid": "zhcn:61c2da24881ba9555dd5923b",
+          "plan_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047",
+          "batch_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047-b0211",
+          "claim_id": "trc-gpt56sol-hourly-20260901T115926Z-r3-b0211",
+          "worker_id": "gpt56sol-hourly-20260901T115926Z-r3",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "155",
+            "30082"
+          ],
+          "source_text": "牵绊值达到100以上时，\\n智力加成",
+          "current_text": "Khi giá trị liên kết đạt từ 100 trở lên,\\nWit Bonus",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T12:22:00Z"
+        }
+      ],
+      "canonical_resolution": null,
+      "review_resolution": null,
+      "first_seen_at": "2026-09-01T12:13:00Z",
+      "last_seen_at": "2026-09-01T12:22:00Z"
     },
     {
       "finding_id": "cf-55f0e8a1d70264a2",

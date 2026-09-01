@@ -9,13 +9,13 @@
     "growth": "Every accepted retrospective translation revise and accepted UI revise is folded into this file automatically by both review merge workflows."
   },
   "summary": {
-    "merged_markers_scanned": 1598,
-    "translation_merged_markers_scanned": 1498,
+    "merged_markers_scanned": 1601,
+    "translation_merged_markers_scanned": 1501,
     "ui_merged_markers_scanned": 100,
-    "accepted_revision_events": 6997,
-    "accepted_translation_revision_events": 5508,
+    "accepted_revision_events": 7001,
+    "accepted_translation_revision_events": 5512,
     "accepted_ui_revision_events": 1489,
-    "regression_identity_count": 5649,
+    "regression_identity_count": 5652,
     "skipped_incomplete_markers": 0,
     "translation_skipped_incomplete_markers": 0,
     "ui_skipped_incomplete_markers": 0
@@ -18148,6 +18148,31 @@
       ]
     },
     {
+      "id": "review.regression.be99d8517fb91475",
+      "uid": "zhcn:1b288399c3187b8049d88deb",
+      "scope": "uid",
+      "source_text": "要取消此社团的加入申请吗？",
+      "source_fingerprint": "2cb7cede4565d566fc6e4230b37f7f027ac501811d1be4ecb008ed7574de6a4a",
+      "rejected_targets": [
+        "Bạn có muốn hủy yêu cầu gia nhập CLB này không?"
+      ],
+      "approved_target": "Bạn có muốn hủy đăng ký gia nhập CLB này không?",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454",
+          "batch_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454-b0024",
+          "claim_id": "trc-gpt56sol-auto11-20260901T033500Z-b0024",
+          "merged_at": "2026-09-01T02:57:29.236330Z",
+          "reason": "申请 in this club application flow is being standardized as đăng ký; yêu cầu creates terminology drift."
+        }
+      ]
+    },
+    {
       "id": "review.regression.b1779523d308682f",
       "uid": "zhcn:1b5266e5d5f41f970c0d1a77",
       "scope": "uid",
@@ -18669,6 +18694,31 @@
           "claim_id": "trc-chatgpt-auto3-20260829T195930Z-b0091",
           "merged_at": "2026-08-30T00:48:53.437518Z",
           "reason": "Current text uses generic card wording although source explicitly identifies Support Card; atlas tag is preserved."
+        }
+      ]
+    },
+    {
+      "id": "review.regression.bfcea37c4150ab57",
+      "uid": "zhcn:1bcaf5b2ebd38bddc4cd69a0",
+      "scope": "uid",
+      "source_text": "[ウマ娘]\nサークルメンバー募集中！\nサークルを探している方、ぜひよろしくおねがいします。",
+      "source_fingerprint": "4e39e4949da759f874daa835fbbf7c2ef8a434311b17f30853cba013ecef1283",
+      "rejected_targets": [
+        "[Uma Musume]\nĐang tuyển thành viên CLB!\nNếu bạn đang tìm CLB, rất mong được bạn tham gia!"
+      ],
+      "approved_target": "[Mã Nương]\nĐang tuyển thành viên CLB!\nNếu bạn đang tìm CLB, rất mong được bạn tham gia!",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454",
+          "batch_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454-b0025",
+          "claim_id": "trc-gpt56sol-auto11-20260901T034000Z-b0025",
+          "merged_at": "2026-09-01T02:57:29.239365Z",
+          "reason": "Generic ウマ娘 in this recruitment text is the project world/species term and must not remain Uma Musume; line structure is preserved."
         }
       ]
     },
@@ -91226,10 +91276,11 @@
       "source_text": "没有物品请求",
       "source_fingerprint": "f96eba2461dfed3448bd57c0d90c4c27d18efe40826f90d6f15e90fb2898f700",
       "rejected_targets": [
-        "Không có yêu cầu vật phẩm"
+        "Chưa có yêu cầu"
       ],
-      "approved_target": "Chưa có yêu cầu",
+      "approved_target": "Không có yêu cầu vật phẩm",
       "origins": [
+        "translation_review",
         "ui_review"
       ],
       "ui_contexts": [
@@ -91251,6 +91302,14 @@
           "reason": "On the item-request screen, the item noun is redundant; the concise empty-state message preserves that no requests currently exist.",
           "ui_key": "Circle0264",
           "control_type": "short_system_label"
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454",
+          "batch_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454-b0024",
+          "claim_id": "trc-gpt56sol-auto11-20260901T033500Z-b0024",
+          "merged_at": "2026-09-01T02:57:29.236330Z",
+          "reason": "The current text drops 物品 and becomes overly generic; the source specifically says there is no item request."
         }
       ]
     },
@@ -147676,6 +147735,31 @@
           "claim_id": "trc-chatgpt-20260827T120531Z-3a8d6f12",
           "merged_at": "2026-08-28T03:27:25.745861Z",
           "reason": "Use the embedded locked terminology and naturalize the item description while preserving the runtime newline."
+        }
+      ]
+    },
+    {
+      "id": "review.regression.32c433998ea46584",
+      "uid": "zhcn:dfb283564167d514b77712c1",
+      "scope": "uid",
+      "source_text": "要申请加入这个社团吗？",
+      "source_fingerprint": "662dd7451757fd413dda0aab34450cfd09dad777687de98a2cf32f524e799eba",
+      "rejected_targets": [
+        "Bạn có muốn gửi yêu cầu gia nhập CLB này không?"
+      ],
+      "approved_target": "Bạn có muốn đăng ký gia nhập CLB này không?",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454",
+          "batch_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454-b0024",
+          "claim_id": "trc-gpt56sol-auto11-20260901T033500Z-b0024",
+          "merged_at": "2026-09-01T02:57:29.236330Z",
+          "reason": "The source asks to apply for membership; đăng ký gia nhập is more direct and consistent with neighboring application labels than gửi yêu cầu."
         }
       ]
     },

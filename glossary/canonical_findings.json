@@ -20568,6 +20568,57 @@
       "last_seen_at": "2026-09-01T09:37:00Z"
     },
     {
+      "finding_id": "cf-c2b4254feb56171f",
+      "status": "open",
+      "source_zh_cn": "力量",
+      "match_mode": "contains",
+      "source_paths": [
+        "text_data_dict.json"
+      ],
+      "key_exact": [],
+      "json_path_prefixes": [
+        [
+          "143"
+        ]
+      ],
+      "kinds": [
+        "context_rule"
+      ],
+      "concepts": [
+        "Narrative or metaphorical strength in prose must not automatically normalize to the Power stat label."
+      ],
+      "suggested_targets_vi": [],
+      "confidence_levels": [
+        "high"
+      ],
+      "reasons": [
+        "This full sentence uses 展现出坚定不移的力量 as descriptive prose, while Power is a player-facing stat only in genuine stat/reward contexts."
+      ],
+      "evidence_count": 1,
+      "evidence": [
+        {
+          "uid": "zhcn:919fbdb11c7fb6264cc7286d",
+          "plan_id": "tr-p3-67f8551f7780-9e982cb2b45d-b5c0bcb3bd-ce1c207047",
+          "batch_id": "tr-p3-67f8551f7780-9e982cb2b45d-b5c0bcb3bd-ce1c207047-b0053",
+          "claim_id": "trc-gpt56sol-auto9-20260901T220200Z-b0053",
+          "worker_id": "gpt56sol-auto9-20260901T215756Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "143",
+            "35"
+          ],
+          "source_text": "在复苏的故乡作为舞台的决战中，为了开拓大家的未来\\n怀揣着对船桥的热爱，展现出坚定不移的力量",
+          "current_text": "Trong trận quyết chiến lấy quê hương hồi sinh làm sân khấu, để mở ra tương lai cho mọi người\\nmang theo tình yêu dành cho Funabashi và thể hiện Power không lay chuyển",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T22:07:00Z"
+        }
+      ],
+      "canonical_resolution": null,
+      "review_resolution": null,
+      "first_seen_at": "2026-09-01T22:07:00Z",
+      "last_seen_at": "2026-09-01T22:07:00Z"
+    },
+    {
       "finding_id": "cf-c38c5812d3989165",
       "status": "open",
       "source_zh_cn": "中距离弯道○",
@@ -22788,7 +22839,8 @@
         "Skill-name alias must not overmatch inside Mejiro Bright character name 目白光明",
         "Skill alias 光明 must not match inside the character name 目白光明 / Mejiro Bright",
         "Reviewed Skill alias must not overmatch inside the Mejiro Bright character name 目白光明",
-        "Skill alias 光明 must not overmatch Mejiro Bright character name"
+        "Skill alias 光明 must not overmatch Mejiro Bright character name",
+        "Skill-name alias 光明 must not match inside Mejiro Bright character name 目白光明"
       ],
       "suggested_targets_vi": [],
       "confidence_levels": [
@@ -22804,9 +22856,10 @@
         "This is a Mejiro Bright character-piece label, not the standalone Skill 光明.",
         "This is Mejiro Bright's self-introduction, not the standalone Skill 光明.",
         "Character-name text must not trigger the standalone reviewed Skill-name mapping for 光明.",
-        "光明 occurs inside the longer character name 目白光明; character identity must win in this context."
+        "光明 occurs inside the longer character name 目白光明; character identity must win in this context.",
+        "Embedded locked Skill alias overmatches a proper character name in text_data_dict.json; exclude the character-name compound from the Skill lock."
       ],
-      "evidence_count": 24,
+      "evidence_count": 26,
       "evidence": [
         {
           "uid": "zhcn:e24f509f9ecadbe9bb160b77",
@@ -23204,7 +23257,7 @@
         "target_vi": "Ánh sáng"
       },
       "first_seen_at": "2026-08-31T00:54:59Z",
-      "last_seen_at": "2026-09-01T20:04:00Z"
+      "last_seen_at": "2026-09-01T22:06:00Z"
     },
     {
       "finding_id": "cf-d3dd61a3ce1f7dd6",

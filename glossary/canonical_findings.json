@@ -6890,7 +6890,8 @@
         "Distinguish stat Power from ordinary prose strength",
         "Power stat alias must exclude generic descriptive phrase 不可思议力量",
         "Disambiguate ordinary physical strength from the Power stat",
-        "Power stat alias must not overmatch narrative 力量感 describing force/powerfulness"
+        "Power stat alias must not overmatch narrative 力量感 describing force/powerfulness",
+        "Power stat alias must not overmatch inside Rhein Kraft character name 莱茵力量"
       ],
       "suggested_targets_vi": [],
       "confidence_levels": [
@@ -6904,9 +6905,10 @@
         "This item describes a mysterious ability/power, not the gameplay Power stat, so forcing Power would corrupt prose.",
         "The bare alias 力量 is ambiguous and currently forces stat Power in ordinary non-stat labels/prose.",
         "The reusable alias 力量 is being matched as the Power stat inside ordinary descriptive prose where it means physical strength; the matcher must exclude non-stat contexts.",
-        "In 充满力量感的赛跑, 力量 means a sense of power/force in narrative prose, not the Power stat."
+        "In 充满力量感的赛跑, 力量 means a sense of power/force in narrative prose, not the Power stat.",
+        "Reusable stat alias currently matches a substring of a character proper name in text_data character-piece labels."
       ],
-      "evidence_count": 11,
+      "evidence_count": 13,
       "evidence": [
         {
           "uid": "zhcn:c7764341e6086330eea7872a",
@@ -7083,6 +7085,38 @@
           "current_text": "Howdy! Tôi là Taiki Shuttle!\\nTôi sẽ mang Happy đến cho mọi người bằng những cuộc đua đầy Power của mình!",
           "proposed_text": null,
           "reported_at": "2026-09-01T06:00:00Z"
+        },
+        {
+          "uid": "zhcn:c502e5488d91ded9832def02",
+          "plan_id": "tr-p3-67f8551f7780-5e45c4dc80a8-b5c0bcb3bd-9bb2b41843",
+          "batch_id": "tr-p3-67f8551f7780-5e45c4dc80a8-b5c0bcb3bd-9bb2b41843-b0145",
+          "claim_id": "trc-gpt56sol-auto-20260901T082449Z-b0145",
+          "worker_id": "gpt56sol-auto-20260901T082449Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "113",
+            "110901"
+          ],
+          "source_text": "莱茵力量的碎片",
+          "current_text": "Mảnh của Rhein Kraft",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T08:27:43Z"
+        },
+        {
+          "uid": "zhcn:24d266d0ceb31b5e4b133bee",
+          "plan_id": "tr-p3-67f8551f7780-5e45c4dc80a8-b5c0bcb3bd-9bb2b41843",
+          "batch_id": "tr-p3-67f8551f7780-5e45c4dc80a8-b5c0bcb3bd-9bb2b41843-b0145",
+          "claim_id": "trc-gpt56sol-auto-20260901T082449Z-b0145",
+          "worker_id": "gpt56sol-auto-20260901T082449Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "113",
+            "110902"
+          ],
+          "source_text": "莱茵力量的碎片",
+          "current_text": "Mảnh của Rhein Kraft",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T08:27:43Z"
         }
       ],
       "canonical_resolution": {
@@ -7092,7 +7126,7 @@
       },
       "review_resolution": null,
       "first_seen_at": "2026-08-30T13:27:00Z",
-      "last_seen_at": "2026-09-01T06:00:00Z"
+      "last_seen_at": "2026-09-01T08:27:43Z"
     },
     {
       "finding_id": "cf-5e687a2cba04839b",
@@ -11750,6 +11784,55 @@
       "review_resolution": null,
       "first_seen_at": "2026-09-01T05:00:00Z",
       "last_seen_at": "2026-09-01T05:00:00Z"
+    },
+    {
+      "finding_id": "cf-9844f9093f379eac",
+      "status": "open",
+      "source_zh_cn": "机械赛马娘",
+      "match_mode": "contains",
+      "source_paths": [
+        "text_data_dict.json"
+      ],
+      "key_exact": [],
+      "json_path_prefixes": [],
+      "kinds": [
+        "context_rule"
+      ],
+      "concepts": [
+        "Mecha Umamusume scenario proper name must not be rewritten by the generic 赛马娘 world-term rule."
+      ],
+      "suggested_targets_vi": [
+        "Mecha Umamusume"
+      ],
+      "confidence_levels": [
+        "high"
+      ],
+      "reasons": [
+        "Established repository scenario terminology uses Mecha Umamusume; the generic Mã Nương rule is firing inside this proper scenario name."
+      ],
+      "evidence_count": 1,
+      "evidence": [
+        {
+          "uid": "zhcn:1f8fc1f04cba07ff9eb02f08",
+          "plan_id": "tr-p3-67f8551f7780-5e45c4dc80a8-b5c0bcb3bd-9bb2b41843",
+          "batch_id": "tr-p3-67f8551f7780-5e45c4dc80a8-b5c0bcb3bd-9bb2b41843-b0192",
+          "claim_id": "trc-gpt56sol-auto2-20260901T083120Z-b0192",
+          "worker_id": "gpt56sol-auto2-20260901T083120Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "14",
+            "200803"
+          ],
+          "source_text": "决胜服（机械赛马娘第三阶段）",
+          "current_text": "Trang phục chiến thắng (Mecha Uma Musume giai đoạn 3)",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T08:42:40Z"
+        }
+      ],
+      "canonical_resolution": null,
+      "review_resolution": null,
+      "first_seen_at": "2026-09-01T08:42:40Z",
+      "last_seen_at": "2026-09-01T08:42:40Z"
     },
     {
       "finding_id": "cf-990dc27d9ce8d96d",
@@ -17550,7 +17633,8 @@
         "Generic prose brightness versus reviewed Skill title Ánh sáng",
         "Distinguish Skill-name 光明 from ordinary bright/light prose",
         "Skill-name alias 光明 must not match inside character name 目白光明",
-        "Skill alias must not match inside Mejiro Bright proper name"
+        "Skill alias must not match inside Mejiro Bright proper name",
+        "Skill-name alias must not overmatch inside Mejiro Bright character name 目白光明"
       ],
       "suggested_targets_vi": [],
       "confidence_levels": [
@@ -17560,9 +17644,10 @@
         "Reviewed Skill matcher must not force a Skill title when 光明 appears inside ordinary narrative prose such as 光明的未来.",
         "Bare 光明 currently triggers a reviewed Skill-name lock inside ordinary song-description prose such as 光明的未来.",
         "The current locked Skill alias fires inside Mejiro Bright's full character name in item descriptions, conflicting with the verified character mapping.",
-        "Reusable Skill alias 光明 is embedded in 目白光明 and causes a false locked-term mismatch."
+        "Reusable Skill alias 光明 is embedded in 目白光明 and causes a false locked-term mismatch.",
+        "Reusable Skill alias currently matches a substring of a character proper name in text_data character-piece labels."
       ],
-      "evidence_count": 8,
+      "evidence_count": 11,
       "evidence": [
         {
           "uid": "zhcn:e24f509f9ecadbe9bb160b77",
@@ -17691,6 +17776,54 @@
           "current_text": "Chocolate thủ công do Mejiro Bright làm.\\nKhi dùng, hồi 30 TP.",
           "proposed_text": null,
           "reported_at": "2026-08-31T17:29:00Z"
+        },
+        {
+          "uid": "zhcn:b41f3be602471fae27ddc365",
+          "plan_id": "tr-p3-67f8551f7780-5e45c4dc80a8-b5c0bcb3bd-9bb2b41843",
+          "batch_id": "tr-p3-67f8551f7780-5e45c4dc80a8-b5c0bcb3bd-9bb2b41843-b0145",
+          "claim_id": "trc-gpt56sol-auto-20260901T082449Z-b0145",
+          "worker_id": "gpt56sol-auto-20260901T082449Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "113",
+            "107401"
+          ],
+          "source_text": "目白光明的碎片",
+          "current_text": "Mảnh Mejiro Bright",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T08:27:43Z"
+        },
+        {
+          "uid": "zhcn:e18838e8066d7ae1f15b19b8",
+          "plan_id": "tr-p3-67f8551f7780-5e45c4dc80a8-b5c0bcb3bd-9bb2b41843",
+          "batch_id": "tr-p3-67f8551f7780-5e45c4dc80a8-b5c0bcb3bd-9bb2b41843-b0145",
+          "claim_id": "trc-gpt56sol-auto-20260901T082449Z-b0145",
+          "worker_id": "gpt56sol-auto-20260901T082449Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "113",
+            "107402"
+          ],
+          "source_text": "目白光明的碎片",
+          "current_text": "Mảnh Mejiro Bright",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T08:27:43Z"
+        },
+        {
+          "uid": "zhcn:e7eb60eebe749233724b353c",
+          "plan_id": "tr-p3-67f8551f7780-5e45c4dc80a8-b5c0bcb3bd-9bb2b41843",
+          "batch_id": "tr-p3-67f8551f7780-5e45c4dc80a8-b5c0bcb3bd-9bb2b41843-b0145",
+          "claim_id": "trc-gpt56sol-auto-20260901T082449Z-b0145",
+          "worker_id": "gpt56sol-auto-20260901T082449Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "113",
+            "107403"
+          ],
+          "source_text": "目白光明的碎片",
+          "current_text": "Mảnh Mejiro Bright",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T08:27:43Z"
         }
       ],
       "canonical_resolution": {
@@ -17704,7 +17837,7 @@
         "target_vi": "Ánh sáng"
       },
       "first_seen_at": "2026-08-31T00:54:59Z",
-      "last_seen_at": "2026-08-31T17:29:00Z"
+      "last_seen_at": "2026-09-01T08:27:43Z"
     },
     {
       "finding_id": "cf-d3dd61a3ce1f7dd6",

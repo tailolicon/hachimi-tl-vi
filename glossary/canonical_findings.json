@@ -4456,6 +4456,57 @@
       "last_seen_at": "2026-08-31T05:53:00Z"
     },
     {
+      "finding_id": "cf-234800d40ef253ed",
+      "status": "open",
+      "source_zh_cn": "挑战杯",
+      "match_mode": "contains",
+      "source_paths": [
+        "text_data_dict.json"
+      ],
+      "key_exact": [],
+      "json_path_prefixes": [],
+      "kinds": [
+        "context_rule"
+      ],
+      "concepts": [
+        "Challenge Cup race alias must not overmatch Lord Derby Challenge Trophy"
+      ],
+      "suggested_targets_vi": [],
+      "confidence_levels": [
+        "high"
+      ],
+      "reasons": [
+        "挑战杯 is a reusable race alias occurring inside the longer proper name 德比伯爵挑战杯, where the correct full identity is Lord Derby Challenge Trophy."
+      ],
+      "evidence_count": 1,
+      "evidence": [
+        {
+          "uid": "zhcn:a4cf28ceac99545b9e204f3c",
+          "plan_id": "tr-p3-67f8551f7780-9e982cb2b45d-b5c0bcb3bd-ce1c207047",
+          "batch_id": "tr-p3-67f8551f7780-9e982cb2b45d-b5c0bcb3bd-ce1c207047-b0014",
+          "claim_id": "trc-gpt56sol-hourly-20260901T200000Z-b0014",
+          "worker_id": "gpt56sol-hourly-20260901T200000Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "111",
+            "98"
+          ],
+          "source_text": "德比伯爵挑战杯",
+          "current_text": "Lord Derby Challenge Trophy",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T20:04:00Z"
+        }
+      ],
+      "canonical_resolution": null,
+      "review_resolution": {
+        "decision_id": "parallel.ctx-67f8551f77807292-v1.term-0108.05",
+        "action": "lock",
+        "target_vi": "Challenge Cup"
+      },
+      "first_seen_at": "2026-09-01T20:04:00Z",
+      "last_seen_at": "2026-09-01T20:04:00Z"
+    },
+    {
       "finding_id": "cf-23e12fbac8eaabcb",
       "status": "open",
       "source_zh_cn": "先行直线○",
@@ -9256,7 +9307,8 @@
         "Generic narrative 力量 must not automatically normalize to the gameplay stat Power",
         "Generic item/narrative 力量 must not automatically normalize to the gameplay stat Power",
         "Generic physical strength must not automatically normalize to the Power stat label",
-        "Power stat alias must not overmatch inside the Rhein Kraft character name 莱茵力量"
+        "Power stat alias must not overmatch inside the Rhein Kraft character name 莱茵力量",
+        "Power stat alias must not overmatch Rhein Kraft character name"
       ],
       "suggested_targets_vi": [],
       "confidence_levels": [
@@ -9275,9 +9327,10 @@
         "This dialogue uses 力量 inside 力量感 to describe the feel of a race, not the Power stat.",
         "The phrase describes mysterious strength as an item property, while 支援卡 separately maps to Support Card.",
         "力量 occurs as ordinary physical strength in narrative/profile prose and needs context-sensitive exclusion from stat.Power matching.",
-        "Character-name text must not trigger the standalone Power mapping for 力量."
+        "Character-name text must not trigger the standalone Power mapping for 力量.",
+        "力量 occurs inside the longer character name 莱茵力量; character identity must win in this context."
       ],
-      "evidence_count": 17,
+      "evidence_count": 19,
       "evidence": [
         {
           "uid": "zhcn:c7764341e6086330eea7872a",
@@ -9550,6 +9603,38 @@
           "current_text": "Trang phục thường (Rhein Kraft)",
           "proposed_text": null,
           "reported_at": "2026-09-01T19:18:30Z"
+        },
+        {
+          "uid": "zhcn:c502e5488d91ded9832def02",
+          "plan_id": "tr-p3-67f8551f7780-9e982cb2b45d-b5c0bcb3bd-ce1c207047",
+          "batch_id": "tr-p3-67f8551f7780-9e982cb2b45d-b5c0bcb3bd-ce1c207047-b0014",
+          "claim_id": "trc-gpt56sol-hourly-20260901T200000Z-b0014",
+          "worker_id": "gpt56sol-hourly-20260901T200000Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "113",
+            "110901"
+          ],
+          "source_text": "莱茵力量的碎片",
+          "current_text": "Mảnh của Rhein Kraft",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T20:04:00Z"
+        },
+        {
+          "uid": "zhcn:24d266d0ceb31b5e4b133bee",
+          "plan_id": "tr-p3-67f8551f7780-9e982cb2b45d-b5c0bcb3bd-ce1c207047",
+          "batch_id": "tr-p3-67f8551f7780-9e982cb2b45d-b5c0bcb3bd-ce1c207047-b0014",
+          "claim_id": "trc-gpt56sol-hourly-20260901T200000Z-b0014",
+          "worker_id": "gpt56sol-hourly-20260901T200000Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "113",
+            "110902"
+          ],
+          "source_text": "莱茵力量的碎片",
+          "current_text": "Mảnh của Rhein Kraft",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T20:04:00Z"
         }
       ],
       "canonical_resolution": {
@@ -9559,7 +9644,7 @@
       },
       "review_resolution": null,
       "first_seen_at": "2026-08-30T13:27:00Z",
-      "last_seen_at": "2026-09-01T19:18:30Z"
+      "last_seen_at": "2026-09-01T20:04:00Z"
     },
     {
       "finding_id": "cf-5e687a2cba04839b",
@@ -22684,7 +22769,8 @@
         "Skill alias must not match inside Mejiro Bright proper name",
         "Skill-name alias must not overmatch inside Mejiro Bright character name 目白光明",
         "Skill alias 光明 must not match inside the character name 目白光明 / Mejiro Bright",
-        "Reviewed Skill alias must not overmatch inside the Mejiro Bright character name 目白光明"
+        "Reviewed Skill alias must not overmatch inside the Mejiro Bright character name 目白光明",
+        "Skill alias 光明 must not overmatch Mejiro Bright character name"
       ],
       "suggested_targets_vi": [],
       "confidence_levels": [
@@ -22699,9 +22785,10 @@
         "This item is authored by Mejiro Bright; forcing the standalone Skill translation Ánh sáng inside her name would corrupt the character identity.",
         "This is a Mejiro Bright character-piece label, not the standalone Skill 光明.",
         "This is Mejiro Bright's self-introduction, not the standalone Skill 光明.",
-        "Character-name text must not trigger the standalone reviewed Skill-name mapping for 光明."
+        "Character-name text must not trigger the standalone reviewed Skill-name mapping for 光明.",
+        "光明 occurs inside the longer character name 目白光明; character identity must win in this context."
       ],
-      "evidence_count": 21,
+      "evidence_count": 24,
       "evidence": [
         {
           "uid": "zhcn:e24f509f9ecadbe9bb160b77",
@@ -23038,6 +23125,54 @@
           "current_text": "Chocolate đặc biệt do Mejiro Bright làm.\\nSau khi dùng, hồi 30 TP.",
           "proposed_text": null,
           "reported_at": "2026-09-01T19:40:00Z"
+        },
+        {
+          "uid": "zhcn:b41f3be602471fae27ddc365",
+          "plan_id": "tr-p3-67f8551f7780-9e982cb2b45d-b5c0bcb3bd-ce1c207047",
+          "batch_id": "tr-p3-67f8551f7780-9e982cb2b45d-b5c0bcb3bd-ce1c207047-b0014",
+          "claim_id": "trc-gpt56sol-hourly-20260901T200000Z-b0014",
+          "worker_id": "gpt56sol-hourly-20260901T200000Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "113",
+            "107401"
+          ],
+          "source_text": "目白光明的碎片",
+          "current_text": "Mảnh Mejiro Bright",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T20:04:00Z"
+        },
+        {
+          "uid": "zhcn:e18838e8066d7ae1f15b19b8",
+          "plan_id": "tr-p3-67f8551f7780-9e982cb2b45d-b5c0bcb3bd-ce1c207047",
+          "batch_id": "tr-p3-67f8551f7780-9e982cb2b45d-b5c0bcb3bd-ce1c207047-b0014",
+          "claim_id": "trc-gpt56sol-hourly-20260901T200000Z-b0014",
+          "worker_id": "gpt56sol-hourly-20260901T200000Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "113",
+            "107402"
+          ],
+          "source_text": "目白光明的碎片",
+          "current_text": "Mảnh Mejiro Bright",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T20:04:00Z"
+        },
+        {
+          "uid": "zhcn:e7eb60eebe749233724b353c",
+          "plan_id": "tr-p3-67f8551f7780-9e982cb2b45d-b5c0bcb3bd-ce1c207047",
+          "batch_id": "tr-p3-67f8551f7780-9e982cb2b45d-b5c0bcb3bd-ce1c207047-b0014",
+          "claim_id": "trc-gpt56sol-hourly-20260901T200000Z-b0014",
+          "worker_id": "gpt56sol-hourly-20260901T200000Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "113",
+            "107403"
+          ],
+          "source_text": "目白光明的碎片",
+          "current_text": "Mảnh Mejiro Bright",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T20:04:00Z"
         }
       ],
       "canonical_resolution": {
@@ -23051,7 +23186,7 @@
         "target_vi": "Ánh sáng"
       },
       "first_seen_at": "2026-08-31T00:54:59Z",
-      "last_seen_at": "2026-09-01T19:40:00Z"
+      "last_seen_at": "2026-09-01T20:04:00Z"
     },
     {
       "finding_id": "cf-d3dd61a3ce1f7dd6",

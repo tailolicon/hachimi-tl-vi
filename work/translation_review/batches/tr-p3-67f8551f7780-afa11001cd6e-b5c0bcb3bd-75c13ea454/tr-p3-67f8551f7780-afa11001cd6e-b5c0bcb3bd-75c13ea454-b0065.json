@@ -1,0 +1,904 @@
+{
+  "schema_version": 1,
+  "policy_version": 3,
+  "plan_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454",
+  "batch_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454-b0065",
+  "context_snapshot_sha256": "b5c0bcb3bd9ee5c45e7bedf49c8f8d6ad35c3ceb3c35f528c6381a63c684a967",
+  "source_bridge_policy_sha256": "1faac1e600d42535217e267fbba196d6723753776386d93856ced27a90801c9e",
+  "review_generation": "retrospective-canonical-full-review",
+  "context_mode": "embedded-first-lazy-extra",
+  "items": [
+    {
+      "uid": "zhcn:c8adbcd6a52cf202d40c26ab",
+      "source_batch": 25,
+      "entry_index": 50,
+      "kind": "localize",
+      "source_path": "localize_dict.json",
+      "json_path": [
+        "Heroes467009"
+      ],
+      "key": "Heroes467009",
+      "source_text": "请务必不要将网站链接\n泄露给他人",
+      "source_fingerprint": "cfabdc76f0b21bc089b6e54bf1dc9775371a387450b9fb0920fc0f738a26046d",
+      "current_text": "Không chia sẻ liên kết web\nvới người khác",
+      "current_fingerprint": "05d8255d099c0726d4ba4e402e7bbf3974b30b1ba11fcc7805a74004f2aa0f76",
+      "risk_flags": [],
+      "risk_score": 0,
+      "locked_terms": [],
+      "community_terms": [],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [],
+      "item_context_sha256": null
+    },
+    {
+      "uid": "zhcn:6000c7e5e7eb5abc5f8cae7e",
+      "source_batch": 25,
+      "entry_index": 51,
+      "kind": "localize",
+      "source_path": "localize_dict.json",
+      "json_path": [
+        "Heroes497001"
+      ],
+      "key": "Heroes497001",
+      "source_text": "可随时在队伍编组中修改队伍名",
+      "source_fingerprint": "5e3aacc804141450baab49c1a23d47507e08ac4afb47e0f724774f13b6519aba",
+      "current_text": "Có thể đổi tên đội bất cứ lúc nào trong phần lập đội",
+      "current_fingerprint": "9173e41ddaab994bea9e4d93318e54f6de93d7cf27e92237ec8de01c646f9b1e",
+      "risk_flags": [
+        "very_long_target"
+      ],
+      "risk_score": 3,
+      "locked_terms": [],
+      "community_terms": [],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [],
+      "item_context_sha256": null
+    },
+    {
+      "uid": "zhcn:5ef6ab9ee6153a5af4c8e298",
+      "source_batch": 25,
+      "entry_index": 52,
+      "kind": "localize",
+      "source_path": "localize_dict.json",
+      "json_path": [
+        "Heroes497002"
+      ],
+      "key": "Heroes497002",
+      "source_text": "需要选择3名赛马娘才能确定编组",
+      "source_fingerprint": "bf1cc42a426738ae9621ad8ec867fc3a6f38562f336242ec27d2f9ae5821bbb3",
+      "current_text": "Cần chọn 3 Uma Musume để xác nhận đội hình",
+      "current_fingerprint": "10226c226ec9a4de15a2017c22311b516be4c56bf438530cb96981f32dc5ec33",
+      "risk_flags": [
+        "community_term",
+        "community_calque_risk",
+        "community_term_mismatch",
+        "numeric_token_mismatch"
+      ],
+      "risk_score": 21,
+      "locked_terms": [],
+      "community_terms": [
+        {
+          "id": "common.world.umamusume",
+          "preferred": "Mã Nương",
+          "accepted": [
+            "Mã Nương"
+          ],
+          "forbidden": [
+            "Uma Musume"
+          ],
+          "matched_aliases": [
+            "赛马娘"
+          ],
+          "accepted_present": false,
+          "forbidden_present": true,
+          "require_accepted": true,
+          "basis": "Generic 赛马娘 is the project world/species term Mã Nương, but it must not fire inside established proper race names such as 府中赛马娘锦标 (Fuchu Uma Musume Stakes)."
+        }
+      ],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [],
+      "item_context_sha256": "06a77f766b5bf02535368561ff7db1603af4d0b197d6a178320c0f01a699b69d"
+    },
+    {
+      "uid": "zhcn:688112f0f3e7ef4a32a0b466",
+      "source_batch": 25,
+      "entry_index": 53,
+      "kind": "localize",
+      "source_path": "localize_dict.json",
+      "json_path": [
+        "Heroes510000"
+      ],
+      "key": "Heroes510000",
+      "source_text": "{0}集团 第{1}场比赛参赛",
+      "source_fingerprint": "23431f91153d2a0ae18a64f5eb466f485cf25c01a206e3713602f5c9f71ba9a7",
+      "current_text": "Dự đua {1}, Nhóm {0}",
+      "current_fingerprint": "d1701d3303b4efb34db360e6cc28e679f29e11bdced03c2e9076aca3f4a27734",
+      "risk_flags": [
+        "locked_term_mismatch"
+      ],
+      "risk_score": 8,
+      "locked_terms": [
+        {
+          "id": "race.generic",
+          "target_vi": "Cuộc đua",
+          "matched_aliases": [
+            "比赛"
+          ],
+          "present": false
+        }
+      ],
+      "community_terms": [],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [],
+      "item_context_sha256": "079d4404bcee02ccf6ba869f0b3dd4dfd84b8baa5bc0787e84dac9fc5d859489"
+    },
+    {
+      "uid": "zhcn:f73e6313812f9e987b78e1ae",
+      "source_batch": 25,
+      "entry_index": 54,
+      "kind": "localize",
+      "source_path": "localize_dict.json",
+      "json_path": [
+        "Heroes511001"
+      ],
+      "key": "Heroes511001",
+      "source_text": "编组队伍，获得了以上奖励",
+      "source_fingerprint": "55e8091932b48543d97cf74bc8449cfd5c150942656e3fb7f15ebd10cac1f61d",
+      "current_text": "Lập đội và nhận phần thưởng trên",
+      "current_fingerprint": "27bdb478dec12e6a483de9760c617a704e5b19ddb6ed02d19a8e39f9d90a2f04",
+      "risk_flags": [
+        "lower_bound_risk"
+      ],
+      "risk_score": 5,
+      "locked_terms": [],
+      "community_terms": [],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [],
+      "item_context_sha256": null
+    },
+    {
+      "uid": "zhcn:823e74743c8930e503291f23",
+      "source_batch": 25,
+      "entry_index": 55,
+      "kind": "localize",
+      "source_path": "localize_dict.json",
+      "json_path": [
+        "Heroes511002"
+      ],
+      "key": "Heroes511002",
+      "source_text": "英雄技能",
+      "source_fingerprint": "c93996036e581ac923794b817f3da5aa313c906e7bb250f7d2b94706d53318d5",
+      "current_text": "Kỹ năng Anh hùng",
+      "current_fingerprint": "454e5a3ab4f0f8b756126625406cc415c705f18e8807a3ae22cf5e42989e0a49",
+      "risk_flags": [
+        "very_long_target",
+        "community_term",
+        "community_calque_risk",
+        "community_term_mismatch"
+      ],
+      "risk_score": 19,
+      "locked_terms": [],
+      "community_terms": [
+        {
+          "id": "common.skill.generic",
+          "preferred": "Skill",
+          "accepted": [
+            "Skill"
+          ],
+          "forbidden": [
+            "Kỹ năng"
+          ],
+          "matched_aliases": [
+            "技能"
+          ],
+          "accepted_present": false,
+          "forbidden_present": true,
+          "require_accepted": true,
+          "basis": "Generic gameplay label stays English. This does not mean individual skill names stay English."
+        },
+        {
+          "id": "event.loh.hero_skill",
+          "preferred": "Hero Skill",
+          "accepted": [
+            "Hero Skill"
+          ],
+          "forbidden": [
+            "Kỹ năng Anh hùng"
+          ],
+          "matched_aliases": [
+            "英雄技能"
+          ],
+          "accepted_present": false,
+          "forbidden_present": true,
+          "require_accepted": true,
+          "basis": "Named League of Heroes mechanic."
+        }
+      ],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [],
+      "item_context_sha256": "f2188312331fa4b3fad6fbb5c8a0bc9cd4bb74fa0135e2011282eed3e40e1e6f"
+    },
+    {
+      "uid": "zhcn:a9979e85060d64f1f22d29e6",
+      "source_batch": 25,
+      "entry_index": 56,
+      "kind": "localize",
+      "source_path": "localize_dict.json",
+      "json_path": [
+        "Heroes511003"
+      ],
+      "key": "Heroes511003",
+      "source_text": "英雄量表详情",
+      "source_fingerprint": "62534150689747ddab706ca4a28561b67d924ddf6ac072482ed660ce975d4599",
+      "current_text": "Chi tiết Thanh Anh hùng",
+      "current_fingerprint": "4dbe3618756d1eb9510fcccf786670c340b4f02b8c324005f8015ab2be54772c",
+      "risk_flags": [
+        "very_long_target",
+        "community_term",
+        "community_calque_risk",
+        "community_term_mismatch"
+      ],
+      "risk_score": 19,
+      "locked_terms": [],
+      "community_terms": [
+        {
+          "id": "event.loh.hero_gauge",
+          "preferred": "Hero Gauge",
+          "accepted": [
+            "Hero Gauge"
+          ],
+          "forbidden": [
+            "Thanh Anh hùng",
+            "Thước Anh hùng"
+          ],
+          "matched_aliases": [
+            "英雄量表"
+          ],
+          "accepted_present": false,
+          "forbidden_present": true,
+          "require_accepted": true,
+          "basis": "Named League of Heroes gauge."
+        }
+      ],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [],
+      "item_context_sha256": "b768c7dd3695b408c4051972298097d888a0b6c8a9bafcb9f61ffa7ffd4aa9fd"
+    },
+    {
+      "uid": "zhcn:8c2dad18505f12365d5e84fc",
+      "source_batch": 25,
+      "entry_index": 57,
+      "kind": "localize",
+      "source_path": "localize_dict.json",
+      "json_path": [
+        "Heroes511004"
+      ],
+      "key": "Heroes511004",
+      "source_text": "已被编入英雄联赛中，无法移籍",
+      "source_fingerprint": "7d0b213c6692277fa2749ba752662cb8d722408d4515fc7beb69a27f0501340c",
+      "current_text": "Đã được xếp vào Hero League nên không thể chuyển nhượng",
+      "current_fingerprint": "bb0c5935ad70a9a15a70dc4858a64c8ef8073963e07f9a19dead8bd87b2c8234",
+      "risk_flags": [
+        "very_long_target",
+        "absence_risk"
+      ],
+      "risk_score": 8,
+      "locked_terms": [],
+      "community_terms": [],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [],
+      "item_context_sha256": null
+    },
+    {
+      "uid": "zhcn:8e8ef4ae6abc58a520730f03",
+      "source_batch": 25,
+      "entry_index": 58,
+      "kind": "localize",
+      "source_path": "localize_dict.json",
+      "json_path": [
+        "Heroes511005"
+      ],
+      "key": "Heroes511005",
+      "source_text": "{0}之前免费",
+      "source_fingerprint": "9abcb3c73f9308f6b11861f4e5cae4e841248544c993e67037f16753f9050008",
+      "current_text": "Miễn phí đến {0}",
+      "current_fingerprint": "8a56ee1b06f935ed714ac96c557203b488f05b93794e06ce9f0bad7207954c58",
+      "risk_flags": [],
+      "risk_score": 0,
+      "locked_terms": [],
+      "community_terms": [],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [],
+      "item_context_sha256": null
+    },
+    {
+      "uid": "zhcn:5d7f4c4fa055b02d400e9669",
+      "source_batch": 25,
+      "entry_index": 59,
+      "kind": "localize",
+      "source_path": "localize_dict.json",
+      "json_path": [
+        "Heroes511006"
+      ],
+      "key": "Heroes511006",
+      "source_text": "条件",
+      "source_fingerprint": "16bb1d2b098c2b2fe3a05081964960cae3e7266ac3e72b8daa44e06076a515d3",
+      "current_text": "Điều kiện",
+      "current_fingerprint": "0d01a2759e3482f02c1922d0d723614b49cda978012a93cfbae9a4c730efe2e9",
+      "risk_flags": [
+        "very_long_target"
+      ],
+      "risk_score": 3,
+      "locked_terms": [],
+      "community_terms": [],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [],
+      "item_context_sha256": null
+    },
+    {
+      "uid": "zhcn:59bc51c437ba82b72d6b65d6",
+      "source_batch": 25,
+      "entry_index": 61,
+      "kind": "localize",
+      "source_path": "localize_dict.json",
+      "json_path": [
+        "Heroes511008"
+      ],
+      "key": "Heroes511008",
+      "source_text": "技能名",
+      "source_fingerprint": "d9f0d5d02bda1c12dcebe64d2752a539efcaf21adeb66cd92ce5b19c5bca8f5f",
+      "current_text": "Tên Skill",
+      "current_fingerprint": "b21387d9620df054fbc0e0f4e18ec67487163fd015eeff9497a736edc6329777",
+      "risk_flags": [
+        "community_term"
+      ],
+      "risk_score": 2,
+      "locked_terms": [],
+      "community_terms": [
+        {
+          "id": "common.skill.generic",
+          "preferred": "Skill",
+          "accepted": [
+            "Skill"
+          ],
+          "forbidden": [
+            "Kỹ năng"
+          ],
+          "matched_aliases": [
+            "技能"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Generic gameplay label stays English. This does not mean individual skill names stay English."
+        }
+      ],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [],
+      "item_context_sha256": "1386ca3819704974ee19a5b5081d84ea264215fa3b33e0ec7713a531b3cf8c72"
+    },
+    {
+      "uid": "zhcn:e66067082a3d8281d3021589",
+      "source_batch": 25,
+      "entry_index": 62,
+      "kind": "localize",
+      "source_path": "localize_dict.json",
+      "json_path": [
+        "Heroes511009"
+      ],
+      "key": "Heroes511009",
+      "source_text": "积累英雄量表\n来让活动形势对我方有利吧！",
+      "source_fingerprint": "f8b798b04fb5f33eb0c55c675410caa81a9cce8de83857fd523af52f8edb7933",
+      "current_text": "Tích lũy Hero Gauge\nđể tạo lợi thế cho phe ta trong sự kiện!",
+      "current_fingerprint": "2104acdf988a823ca02dfe3a4e8cf8035c0fbffb38e53cdd5fe7419fc26c1d2b",
+      "risk_flags": [
+        "community_term"
+      ],
+      "risk_score": 2,
+      "locked_terms": [],
+      "community_terms": [
+        {
+          "id": "event.loh.hero_gauge",
+          "preferred": "Hero Gauge",
+          "accepted": [
+            "Hero Gauge"
+          ],
+          "forbidden": [
+            "Thanh Anh hùng",
+            "Thước Anh hùng"
+          ],
+          "matched_aliases": [
+            "英雄量表"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Named League of Heroes gauge."
+        }
+      ],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [],
+      "item_context_sha256": "b768c7dd3695b408c4051972298097d888a0b6c8a9bafcb9f61ffa7ffd4aa9fd"
+    },
+    {
+      "uid": "zhcn:9021e60eedbb83e8e22b62dc",
+      "source_batch": 25,
+      "entry_index": 63,
+      "kind": "localize",
+      "source_path": "localize_dict.json",
+      "json_path": [
+        "Heroes511010"
+      ],
+      "key": "Heroes511010",
+      "source_text": "英雄量表获得量",
+      "source_fingerprint": "3f26becfe65f68621f614cde349f47aaabffd92d8c079543ada793e88e52dd08",
+      "current_text": "Lượng Hero Gauge nhận được",
+      "current_fingerprint": "5849d25471deaa3de84ba86829ba04dc95cd44371730816966f4830ce147dd03",
+      "risk_flags": [
+        "very_long_target",
+        "community_term"
+      ],
+      "risk_score": 5,
+      "locked_terms": [],
+      "community_terms": [
+        {
+          "id": "event.loh.hero_gauge",
+          "preferred": "Hero Gauge",
+          "accepted": [
+            "Hero Gauge"
+          ],
+          "forbidden": [
+            "Thanh Anh hùng",
+            "Thước Anh hùng"
+          ],
+          "matched_aliases": [
+            "英雄量表"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Named League of Heroes gauge."
+        }
+      ],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [],
+      "item_context_sha256": "b768c7dd3695b408c4051972298097d888a0b6c8a9bafcb9f61ffa7ffd4aa9fd"
+    },
+    {
+      "uid": "zhcn:c11f30ddafb2ad8740661846",
+      "source_batch": 25,
+      "entry_index": 64,
+      "kind": "localize",
+      "source_path": "localize_dict.json",
+      "json_path": [
+        "Heroes511011"
+      ],
+      "key": "Heroes511011",
+      "source_text": "英雄技能一览",
+      "source_fingerprint": "f1998278c6dd9a60dab4183792a01c52a3b76f349e0f17a11b7e7453d144c1a2",
+      "current_text": "Danh sách Hero Skill",
+      "current_fingerprint": "304444b0a1bb780e734dbcb8e9762c58e01b64782027d1ac3cdcd67a52594315",
+      "risk_flags": [
+        "very_long_target",
+        "community_term"
+      ],
+      "risk_score": 5,
+      "locked_terms": [],
+      "community_terms": [
+        {
+          "id": "common.skill.generic",
+          "preferred": "Skill",
+          "accepted": [
+            "Skill"
+          ],
+          "forbidden": [
+            "Kỹ năng"
+          ],
+          "matched_aliases": [
+            "技能"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Generic gameplay label stays English. This does not mean individual skill names stay English."
+        },
+        {
+          "id": "event.loh.hero_skill",
+          "preferred": "Hero Skill",
+          "accepted": [
+            "Hero Skill"
+          ],
+          "forbidden": [
+            "Kỹ năng Anh hùng"
+          ],
+          "matched_aliases": [
+            "英雄技能"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Named League of Heroes mechanic."
+        }
+      ],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [],
+      "item_context_sha256": "f2188312331fa4b3fad6fbb5c8a0bc9cd4bb74fa0135e2011282eed3e40e1e6f"
+    },
+    {
+      "uid": "zhcn:06c250cd89b0642d01289a6d",
+      "source_batch": 25,
+      "entry_index": 69,
+      "kind": "localize",
+      "source_path": "localize_dict.json",
+      "json_path": [
+        "Heroes511016"
+      ],
+      "key": "Heroes511016",
+      "source_text": "主要阶段设置",
+      "source_fingerprint": "f3e2ff675babb57cfa1b2f457e0b475fb85034a673a79b370c339be664d3ca6d",
+      "current_text": "Cài đặt Main Stage",
+      "current_fingerprint": "4f6fcd781f8812d087b045f6492fd9975a85f69c3f1c503d79c3b26ca0117526",
+      "risk_flags": [
+        "community_term"
+      ],
+      "risk_score": 2,
+      "locked_terms": [],
+      "community_terms": [
+        {
+          "id": "event.loh.main_stage",
+          "preferred": "Main Stage",
+          "accepted": [
+            "Main Stage"
+          ],
+          "forbidden": [
+            "Giai đoạn chính"
+          ],
+          "matched_aliases": [
+            "主要阶段"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Named League of Heroes stage."
+        }
+      ],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [],
+      "item_context_sha256": "6f4bc7c11405c909d4ac1f6f52b5b7f060a19961850393c8e28cb891446873d2"
+    },
+    {
+      "uid": "zhcn:d7c7545feb6ae66b34b2fe9b",
+      "source_batch": 25,
+      "entry_index": 70,
+      "kind": "localize",
+      "source_path": "localize_dict.json",
+      "json_path": [
+        "Heroes511017"
+      ],
+      "key": "Heroes511017",
+      "source_text": "自动使用英雄技能对应道具",
+      "source_fingerprint": "e16550f6621852f13f89ae239bee2649593c6e69a330a146e0db6e5232c20efe",
+      "current_text": "Tự động dùng vật phẩm tương ứng với Hero Skill",
+      "current_fingerprint": "a7882b0c83584dc61018ce3deba529513428321345cee06e2a00fffef84746c4",
+      "risk_flags": [
+        "very_long_target",
+        "community_term"
+      ],
+      "risk_score": 5,
+      "locked_terms": [],
+      "community_terms": [
+        {
+          "id": "common.skill.generic",
+          "preferred": "Skill",
+          "accepted": [
+            "Skill"
+          ],
+          "forbidden": [
+            "Kỹ năng"
+          ],
+          "matched_aliases": [
+            "技能"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Generic gameplay label stays English. This does not mean individual skill names stay English."
+        },
+        {
+          "id": "event.loh.hero_skill",
+          "preferred": "Hero Skill",
+          "accepted": [
+            "Hero Skill"
+          ],
+          "forbidden": [
+            "Kỹ năng Anh hùng"
+          ],
+          "matched_aliases": [
+            "英雄技能"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Named League of Heroes mechanic."
+        }
+      ],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [],
+      "item_context_sha256": "f2188312331fa4b3fad6fbb5c8a0bc9cd4bb74fa0135e2011282eed3e40e1e6f"
+    },
+    {
+      "uid": "zhcn:68ff5a8a1aa3e5e33d1d4bb6",
+      "source_batch": 25,
+      "entry_index": 71,
+      "kind": "localize",
+      "source_path": "localize_dict.json",
+      "json_path": [
+        "Heroes511018"
+      ],
+      "key": "Heroes511018",
+      "source_text": "将此项设为ON后，参赛时的道具选择中\n将自动勾选与所获得的英雄技能\n对应的道具",
+      "source_fingerprint": "06676ca84c7ae063a261804696e49f20cf58cb073e3ebf7426972dffc7cc2b84",
+      "current_text": "Khi bật mục này, trong phần chọn vật phẩm khi tham gia\nhệ thống sẽ tự động đánh dấu vật phẩm\ntương ứng với Hero Skill đã nhận",
+      "current_fingerprint": "74a103a414ae5999173cf2dfa438cbe292eecbef4bb154a557f699b92db21c35",
+      "risk_flags": [
+        "very_long_target",
+        "community_term"
+      ],
+      "risk_score": 5,
+      "locked_terms": [],
+      "community_terms": [
+        {
+          "id": "common.skill.generic",
+          "preferred": "Skill",
+          "accepted": [
+            "Skill"
+          ],
+          "forbidden": [
+            "Kỹ năng"
+          ],
+          "matched_aliases": [
+            "技能"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Generic gameplay label stays English. This does not mean individual skill names stay English."
+        },
+        {
+          "id": "event.loh.hero_skill",
+          "preferred": "Hero Skill",
+          "accepted": [
+            "Hero Skill"
+          ],
+          "forbidden": [
+            "Kỹ năng Anh hùng"
+          ],
+          "matched_aliases": [
+            "英雄技能"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Named League of Heroes mechanic."
+        }
+      ],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [],
+      "item_context_sha256": "f2188312331fa4b3fad6fbb5c8a0bc9cd4bb74fa0135e2011282eed3e40e1e6f"
+    },
+    {
+      "uid": "zhcn:52aecd2e956763831259cdca",
+      "source_batch": 25,
+      "entry_index": 72,
+      "kind": "localize",
+      "source_path": "localize_dict.json",
+      "json_path": [
+        "Heroes511019"
+      ],
+      "key": "Heroes511019",
+      "source_text": "特别阶段设置",
+      "source_fingerprint": "f6fb7686eb98e9c86707794ba55eae9dc5e1678c0456ba0e199e08e34a62ce21",
+      "current_text": "Cài đặt Extra Stage",
+      "current_fingerprint": "086694c86aaf3e404d722d12ddf949a59984eb5558558bf2645d4a53ab9f0de7",
+      "risk_flags": [
+        "very_long_target",
+        "community_term"
+      ],
+      "risk_score": 5,
+      "locked_terms": [],
+      "community_terms": [
+        {
+          "id": "event.loh.extra_stage",
+          "preferred": "Extra Stage",
+          "accepted": [
+            "Extra Stage"
+          ],
+          "forbidden": [
+            "Giai đoạn đặc biệt"
+          ],
+          "matched_aliases": [
+            "特别阶段"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Named League of Heroes stage."
+        }
+      ],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [],
+      "item_context_sha256": "9f049a033ac72f76cbef5dafb4ab6836e01623f247532e858a588da0d6e0ffdf"
+    },
+    {
+      "uid": "zhcn:70e3b94c604ce5899591e659",
+      "source_batch": 25,
+      "entry_index": 73,
+      "kind": "localize",
+      "source_path": "localize_dict.json",
+      "json_path": [
+        "Heroes511020"
+      ],
+      "key": "Heroes511020",
+      "source_text": "特别阶段参赛",
+      "source_fingerprint": "73de4e38a5800cb46996e8cc7fd0cc1d09dfc32de46711cdf03eeb547b1ab4be",
+      "current_text": "Tham gia Extra Stage",
+      "current_fingerprint": "ce6f520360f3636c25c4f0ee182f6dc5d0297c4d4b32bdd1a838482fbd501f5f",
+      "risk_flags": [
+        "very_long_target",
+        "community_term"
+      ],
+      "risk_score": 5,
+      "locked_terms": [],
+      "community_terms": [
+        {
+          "id": "event.loh.extra_stage",
+          "preferred": "Extra Stage",
+          "accepted": [
+            "Extra Stage"
+          ],
+          "forbidden": [
+            "Giai đoạn đặc biệt"
+          ],
+          "matched_aliases": [
+            "特别阶段"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Named League of Heroes stage."
+        }
+      ],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [],
+      "item_context_sha256": "9f049a033ac72f76cbef5dafb4ab6836e01623f247532e858a588da0d6e0ffdf"
+    },
+    {
+      "uid": "zhcn:1d8b08cbd60ea8a9ce99e1c8",
+      "source_batch": 25,
+      "entry_index": 74,
+      "kind": "localize",
+      "source_path": "localize_dict.json",
+      "json_path": [
+        "Heroes511021"
+      ],
+      "key": "Heroes511021",
+      "source_text": "如果在进入主要阶段的排名统计期间内\n设为OFF的话，即使进入排名TOP96\n也不会参加特别阶段的比赛\n此外，也不会被显示于排名发布期间以后的\n排名当中",
+      "source_fingerprint": "96e0940f7f1c0fa6ed7883de29cfd2ecc0c2e91b7f021225446dc64594875ffc",
+      "current_text": "Nếu đặt OFF trong thời gian thống kê xếp hạng khi bước vào Main Stage\nthì dù lọt TOP96\ncũng sẽ không tham gia cuộc đua Extra Stage\nNgoài ra, cũng sẽ không xuất hiện trong bảng xếp hạng\nsau thời gian công bố xếp hạng",
+      "current_fingerprint": "38f773a92dc704fe64f183a2b0f6739ec367d953eab55fdd3d469e3e67f24a37",
+      "risk_flags": [
+        "community_term"
+      ],
+      "risk_score": 2,
+      "locked_terms": [
+        {
+          "id": "race.generic",
+          "target_vi": "Cuộc đua",
+          "matched_aliases": [
+            "比赛"
+          ],
+          "present": true
+        }
+      ],
+      "community_terms": [
+        {
+          "id": "event.loh.main_stage",
+          "preferred": "Main Stage",
+          "accepted": [
+            "Main Stage"
+          ],
+          "forbidden": [
+            "Giai đoạn chính"
+          ],
+          "matched_aliases": [
+            "主要阶段"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Named League of Heroes stage."
+        },
+        {
+          "id": "event.loh.extra_stage",
+          "preferred": "Extra Stage",
+          "accepted": [
+            "Extra Stage"
+          ],
+          "forbidden": [
+            "Giai đoạn đặc biệt"
+          ],
+          "matched_aliases": [
+            "特别阶段"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Named League of Heroes stage."
+        }
+      ],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [],
+      "item_context_sha256": "0862a02745ee3f8ba8515f8f854ac8af1d6a3c9eec49de189190e8a81e4372ca"
+    }
+  ]
+}

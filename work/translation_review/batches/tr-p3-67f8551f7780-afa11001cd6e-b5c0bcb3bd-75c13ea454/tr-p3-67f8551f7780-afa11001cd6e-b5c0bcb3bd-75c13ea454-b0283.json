@@ -1,0 +1,1366 @@
+{
+  "schema_version": 1,
+  "policy_version": 3,
+  "plan_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454",
+  "batch_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454-b0283",
+  "context_snapshot_sha256": "b5c0bcb3bd9ee5c45e7bedf49c8f8d6ad35c3ceb3c35f528c6381a63c684a967",
+  "source_bridge_policy_sha256": "1faac1e600d42535217e267fbba196d6723753776386d93856ced27a90801c9e",
+  "review_generation": "retrospective-canonical-full-review",
+  "context_mode": "embedded-first-lazy-extra",
+  "items": [
+    {
+      "uid": "zhcn:847780f92335c4880ed1aad7",
+      "source_batch": 146,
+      "entry_index": 75,
+      "kind": "text_data",
+      "source_path": "text_data_dict.json",
+      "json_path": [
+        "131",
+        "74"
+      ],
+      "key": null,
+      "source_text": "在包括日本德比、安田纪念、日本杯、天皇赏(秋)、\\n维多利亚英里赛的GⅠ级别比赛中取得7次以上胜利",
+      "source_fingerprint": "100978b3b3b8b8f3504090c958ff0b7e325286a98a5a3a0e1efcf2da518edcce",
+      "current_text": "Giành ít nhất 7 chiến thắng ở các cuộc đua cấp G1, bao gồm Japanese Derby, Yasuda Kinen, Japan Cup, Tenno Sho (Autumn),\\nVictoria Mile",
+      "current_fingerprint": "54c115de5e0de40f9c8c58ba7c0f1be91dd0c81a5650d201e77cc6a0edfe9eaf",
+      "risk_flags": [
+        "community_term",
+        "numeric_token_mismatch"
+      ],
+      "risk_score": 7,
+      "locked_terms": [
+        {
+          "id": "race.generic",
+          "target_vi": "Cuộc đua",
+          "matched_aliases": [
+            "比赛"
+          ],
+          "present": true
+        }
+      ],
+      "community_terms": [
+        {
+          "id": "common.distance.mile",
+          "preferred": "Mile",
+          "accepted": [
+            "Mile"
+          ],
+          "forbidden": [],
+          "matched_aliases": [
+            "英里"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Common EN-version distance class."
+        },
+        {
+          "id": "common.race_grade.g1",
+          "preferred": "G1",
+          "accepted": [
+            "G1"
+          ],
+          "forbidden": [
+            "GⅠ"
+          ],
+          "matched_aliases": [
+            "GⅠ"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Conventional player-facing race-grade formatting; source marker is unambiguous and applies globally."
+        }
+      ],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [],
+      "item_context_sha256": "cb822dbf88a5b4aafd58bcc8eff1110f159a14a9f4fc25c4a1aa970113ef1c15"
+    },
+    {
+      "uid": "zhcn:15862b2d0984ea162a79a082",
+      "source_batch": 146,
+      "entry_index": 76,
+      "kind": "text_data",
+      "source_path": "text_data_dict.json",
+      "json_path": [
+        "131",
+        "75"
+      ],
+      "key": null,
+      "source_text": "从育成过程中曾于皋月赏获胜的赛马娘身上继承心意，\\n赢得包含樱花赏、秋华赏、伊丽莎白女王杯的10次重赏比赛，\\n并且每场竞赛成绩都在前两名以内",
+      "source_fingerprint": "2a77f174416176d2dfef4b985b4255369928e47661ca790c02147f3d05880ac3",
+      "current_text": "Kế thừa tâm ý từ một Mã Nương từng thắng Satsuki Sho trong quá trình Huấn luyện,\\nthắng 10 cuộc đua graded bao gồm Oka Sho, Shuka Sho và Queen Elizabeth II Cup,\\nđồng thời mọi kết quả cuộc đua đều nằm trong top 2",
+      "current_fingerprint": "8149fdcd60e59edc0f3fb503b0fbbbf3c1e0cbe9cbd5b7c5a05652ff848fc8ea",
+      "risk_flags": [
+        "community_term",
+        "numeric_token_mismatch",
+        "within_limit_risk"
+      ],
+      "risk_score": 12,
+      "locked_terms": [
+        {
+          "id": "race.generic",
+          "target_vi": "Cuộc đua",
+          "matched_aliases": [
+            "比赛"
+          ],
+          "present": true
+        }
+      ],
+      "community_terms": [
+        {
+          "id": "common.world.umamusume",
+          "preferred": "Mã Nương",
+          "accepted": [
+            "Mã Nương"
+          ],
+          "forbidden": [
+            "Uma Musume"
+          ],
+          "matched_aliases": [
+            "赛马娘"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Generic 赛马娘 is the project world/species term Mã Nương, but it must not fire inside established proper race names such as 府中赛马娘锦标 (Fuchu Uma Musume Stakes)."
+        },
+        {
+          "id": "race.graded",
+          "preferred": "graded",
+          "accepted": [
+            "graded",
+            "Graded"
+          ],
+          "forbidden": [
+            "trọng thưởng",
+            "Trọng thưởng"
+          ],
+          "matched_aliases": [
+            "重赏"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "In Uma Musume/Japanese racing, 重赏 denotes the graded-race category (G1/G2/G3), not a literal 'heavy reward'. Global/community player-facing English consistently calls these graded races. Keep the canonical alias as the modifier 'graded' so it composes naturally with the project's generic Cuộc đua label in longer Vietnamese strings."
+        }
+      ],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [],
+      "item_context_sha256": "c5602993025cde500ce10fc3d46d3133cc124aa0fa0d4334f5fcf8aa063406cc"
+    },
+    {
+      "uid": "zhcn:4b00d7ef6dec92ec8322ba19",
+      "source_batch": 146,
+      "entry_index": 77,
+      "kind": "text_data",
+      "source_path": "text_data_dict.json",
+      "json_path": [
+        "131",
+        "76"
+      ],
+      "key": null,
+      "source_text": "从育成过程中曾于GⅠ获胜7次以上的赛马娘身上继承心意，\\n并以人气第1于GⅠ胜利4次以上，其中须以无败状态赢得皋月赏\\n及日本德比，并且需于有马纪念（古马级）中获胜",
+      "source_fingerprint": "b157573323ad7b9c648fbcf651367ac5af692343862acee9e1a25e3153547ad1",
+      "current_text": "Kế thừa tâm ý từ một Mã Nương từng thắng ít nhất 7 cuộc đua G1 trong quá trình Huấn luyện,\\nđồng thời khi là lựa chọn số 1 giành ít nhất 4 chiến thắng G1, trong đó phải thắng Satsuki Sho và Japanese Derby với thành tích bất bại,\\nvà thắng Arima Kinen (Senior Class)",
+      "current_fingerprint": "6333b52bef79e502447618bb8dd101b83eee0d4b2807bba4d1486940f279c968",
+      "risk_flags": [
+        "very_long_target",
+        "community_term",
+        "numeric_token_mismatch",
+        "absence_risk"
+      ],
+      "risk_score": 15,
+      "locked_terms": [
+        {
+          "id": "race.class.senior.race_text",
+          "target_vi": "Senior Class",
+          "matched_aliases": [
+            "古马级"
+          ],
+          "present": true
+        }
+      ],
+      "community_terms": [
+        {
+          "id": "common.world.umamusume",
+          "preferred": "Mã Nương",
+          "accepted": [
+            "Mã Nương"
+          ],
+          "forbidden": [
+            "Uma Musume"
+          ],
+          "matched_aliases": [
+            "赛马娘"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Generic 赛马娘 is the project world/species term Mã Nương, but it must not fire inside established proper race names such as 府中赛马娘锦标 (Fuchu Uma Musume Stakes)."
+        },
+        {
+          "id": "common.race_grade.g1",
+          "preferred": "G1",
+          "accepted": [
+            "G1"
+          ],
+          "forbidden": [
+            "GⅠ"
+          ],
+          "matched_aliases": [
+            "GⅠ"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Conventional player-facing race-grade formatting; source marker is unambiguous and applies globally."
+        }
+      ],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [],
+      "item_context_sha256": "3e1b451aa2fce07e77a3536b0d1f4c7147e32dd610f249358fd8b0893f70dbf9"
+    },
+    {
+      "uid": "zhcn:c6e0dafea17a307b22f85af4",
+      "source_batch": 146,
+      "entry_index": 78,
+      "kind": "text_data",
+      "source_path": "text_data_dict.json",
+      "json_path": [
+        "131",
+        "77"
+      ],
+      "key": null,
+      "source_text": "在包括皋月赏、菊花赏、宝冢纪念的GⅠ级别比赛中取得胜利6次以上，\\n且粉丝数达到48万以上",
+      "source_fingerprint": "57ec01a2cebfeb028be2da2f03199f93d5ff1f7d6006691454f80329ce2a1146",
+      "current_text": "Giành ít nhất 6 chiến thắng ở các cuộc đua cấp G1, bao gồm Satsuki Sho, Kikuka Sho và Takarazuka Kinen,\\nđồng thời đạt Số fan từ 480000 trở lên",
+      "current_fingerprint": "b378242b5b87d292fe4c7cae2e424886630dcef1e4198fec99cbb2fbba283323",
+      "risk_flags": [
+        "very_long_target",
+        "community_term",
+        "numeric_token_mismatch"
+      ],
+      "risk_score": 10,
+      "locked_terms": [
+        {
+          "id": "race.generic",
+          "target_vi": "Cuộc đua",
+          "matched_aliases": [
+            "比赛"
+          ],
+          "present": true
+        },
+        {
+          "id": "progress.fans",
+          "target_vi": "Số fan",
+          "matched_aliases": [
+            "粉丝数"
+          ],
+          "present": true
+        }
+      ],
+      "community_terms": [
+        {
+          "id": "common.race_grade.g1",
+          "preferred": "G1",
+          "accepted": [
+            "G1"
+          ],
+          "forbidden": [
+            "GⅠ"
+          ],
+          "matched_aliases": [
+            "GⅠ"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Conventional player-facing race-grade formatting; source marker is unambiguous and applies globally."
+        }
+      ],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [],
+      "item_context_sha256": "0753b8239e9be62adb6c4cd9a54f8d7b9d6daeddeaa383bb42b1836b59c21a83"
+    },
+    {
+      "uid": "zhcn:f2d46eadaa73127df6727327",
+      "source_batch": 147,
+      "entry_index": 0,
+      "kind": "text_data",
+      "source_path": "text_data_dict.json",
+      "json_path": [
+        "131",
+        "79"
+      ],
+      "key": null,
+      "source_text": "保持干劲在【绝好调】的状态出战GⅡ或GⅠ级别比赛15次以上，\\n在包括菊花赏的GⅡ以上赛事中取得3连胜",
+      "source_fingerprint": "30c94ac2d832ca11f46e3e6aef3ed1c95b375c7b01bdb3e6d0028c03239e7690",
+      "current_text": "Giữ Mood ở 【Tuyệt hảo】 và tham gia ít nhất 15 cuộc đua cấp G2 hoặc G1,\\ngiành 3 chiến thắng liên tiếp ở các giải từ G2 trở lên, bao gồm Kikuka Sho",
+      "current_fingerprint": "2186f45ba3dec77dd81d7dcb9bbeaa30db75fd3fd63e8a3d8591707451b5f5a2",
+      "risk_flags": [
+        "community_term",
+        "community_calque_risk",
+        "community_term_mismatch",
+        "source_bridge_term",
+        "numeric_token_mismatch"
+      ],
+      "risk_score": 24,
+      "locked_terms": [
+        {
+          "id": "race.generic",
+          "target_vi": "Cuộc đua",
+          "matched_aliases": [
+            "比赛",
+            "赛事"
+          ],
+          "present": true
+        }
+      ],
+      "community_terms": [
+        {
+          "id": "common.state.mood",
+          "preferred": "Mood",
+          "accepted": [
+            "Mood"
+          ],
+          "forbidden": [
+            "Tinh thần",
+            "Hứng khởi"
+          ],
+          "matched_aliases": [
+            "干劲"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Common player-facing Uma Musume state term; Mood/Mood Effect is the established terminology."
+        },
+        {
+          "id": "common.race_grade.g1",
+          "preferred": "G1",
+          "accepted": [
+            "G1"
+          ],
+          "forbidden": [
+            "GⅠ"
+          ],
+          "matched_aliases": [
+            "GⅠ"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Conventional player-facing race-grade formatting; source marker is unambiguous and applies globally."
+        },
+        {
+          "id": "common.race_grade.g2",
+          "preferred": "G2",
+          "accepted": [
+            "G2"
+          ],
+          "forbidden": [
+            "GⅡ"
+          ],
+          "matched_aliases": [
+            "GⅡ"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Conventional player-facing race-grade formatting; source marker is unambiguous and applies globally."
+        },
+        {
+          "id": "state.mood.great.text_data",
+          "preferred": "Great",
+          "accepted": [
+            "Great"
+          ],
+          "forbidden": [
+            "Tuyệt hảo",
+            "Rất tốt"
+          ],
+          "matched_aliases": [
+            "绝好调"
+          ],
+          "accepted_present": false,
+          "forbidden_present": true,
+          "require_accepted": true,
+          "basis": "The canonical player-facing Mood ladder already defines JP 絶好調 / zh-CN 绝好调 as Great (Race0634). Reuse the same fixed gameplay state in text_data requirements and descriptions; the full state token is specific enough to match without promoting generic 好调 prose."
+        }
+      ],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [
+        {
+          "id": "state.mood",
+          "preferred": "Mood",
+          "accepted": [
+            "Mood"
+          ],
+          "forbidden": [
+            "Tinh thần",
+            "Hứng khởi"
+          ],
+          "matched_aliases": [
+            "干劲"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "ja": [
+            "やる気"
+          ],
+          "note": "干劲 is the zh-CN bridge for the player-facing Mood state. Do not normalize it to generic Vietnamese wording such as 'Tinh thần' or 'Hứng khởi'."
+        }
+      ],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": "1faac1e600d42535217e267fbba196d6723753776386d93856ced27a90801c9e",
+      "canonical_findings": [],
+      "item_context_sha256": "2a4296d0fbd3292078041c71907c8bdfff1f8ca05fd7f3c04c1845b58340e7cb"
+    },
+    {
+      "uid": "zhcn:9fabd1ed50d8948e19ffcf4e",
+      "source_batch": 147,
+      "entry_index": 1,
+      "kind": "text_data",
+      "source_path": "text_data_dict.json",
+      "json_path": [
+        "131",
+        "8"
+      ],
+      "key": null,
+      "source_text": "在发生了焦躁的比赛中取得三次胜利。",
+      "source_fingerprint": "0ded27647282fb63971b24c8ef077b7cb6db8ed1724c415684e68af2d4ee2496",
+      "current_text": "Giành chiến thắng 3 lần trong các cuộc đua có xảy ra trạng thái Nóng vội.",
+      "current_fingerprint": "2b0d4c5f50b738b65cc2c2a1537f31154004b0448601bb918299b061fea10149",
+      "risk_flags": [
+        "very_long_target",
+        "community_term",
+        "community_calque_risk",
+        "community_term_mismatch",
+        "numeric_token_mismatch"
+      ],
+      "risk_score": 24,
+      "locked_terms": [
+        {
+          "id": "race.generic",
+          "target_vi": "Cuộc đua",
+          "matched_aliases": [
+            "比赛"
+          ],
+          "present": true
+        }
+      ],
+      "community_terms": [
+        {
+          "id": "race_state.rushed.text131",
+          "preferred": "Rushed",
+          "accepted": [
+            "Rushed"
+          ],
+          "forbidden": [
+            "Nóng vội",
+            "nóng vội",
+            "焦躁"
+          ],
+          "matched_aliases": [
+            "焦躁"
+          ],
+          "accepted_present": false,
+          "forbidden_present": true,
+          "require_accepted": true,
+          "basis": "Named in-race state corresponding to JP 掛かり. The released Global client/player-facing terminology is Rushed. Scope is restricted to text_data category 131 race objectives so 焦躁 inside unrelated Condition names, Skill names, or ordinary emotional prose is not canonicalized as this race state."
+        }
+      ],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [],
+      "item_context_sha256": "8e17598d58fe04c45502d8396e40433e674e39c7decf5c2ff13ae1e91c284ac6"
+    },
+    {
+      "uid": "zhcn:33c6ede90428f9e150d5e967",
+      "source_batch": 147,
+      "entry_index": 3,
+      "kind": "text_data",
+      "source_path": "text_data_dict.json",
+      "json_path": [
+        "131",
+        "81"
+      ],
+      "key": null,
+      "source_text": "在GⅠ级别比赛中取得三次第三名，且粉丝数达到32万以上",
+      "source_fingerprint": "bb20fc770fc0fb42f4e4755956308ba05bf43b4f73f698298865d75e50e66fa5",
+      "current_text": "Đạt hạng 3 ba lần trong các cuộc đua cấp G1 và đạt Số fan từ 320.000 trở lên",
+      "current_fingerprint": "66f4d987eb8178cd720000886d5293295116cfa2fa599fc0bd3fc8518bbbd902",
+      "risk_flags": [
+        "community_term",
+        "numeric_token_mismatch"
+      ],
+      "risk_score": 7,
+      "locked_terms": [
+        {
+          "id": "race.generic",
+          "target_vi": "Cuộc đua",
+          "matched_aliases": [
+            "比赛"
+          ],
+          "present": true
+        },
+        {
+          "id": "progress.fans",
+          "target_vi": "Số fan",
+          "matched_aliases": [
+            "粉丝数"
+          ],
+          "present": true
+        }
+      ],
+      "community_terms": [
+        {
+          "id": "common.race_grade.g1",
+          "preferred": "G1",
+          "accepted": [
+            "G1"
+          ],
+          "forbidden": [
+            "GⅠ"
+          ],
+          "matched_aliases": [
+            "GⅠ"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Conventional player-facing race-grade formatting; source marker is unambiguous and applies globally."
+        }
+      ],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [],
+      "item_context_sha256": "0753b8239e9be62adb6c4cd9a54f8d7b9d6daeddeaa383bb42b1836b59c21a83"
+    },
+    {
+      "uid": "zhcn:cfea039fa1ff6c78f54819db",
+      "source_batch": 147,
+      "entry_index": 4,
+      "kind": "text_data",
+      "source_path": "text_data_dict.json",
+      "json_path": [
+        "131",
+        "82"
+      ],
+      "key": null,
+      "source_text": "拥有目白之名的赛马娘取得一次以上GⅠ级别比赛的胜利，\\n并取得菊花赏、宝冢纪念、有马纪念的胜利，\\n且粉丝数达到24万以上",
+      "source_fingerprint": "cab1401794061dc7db7a79ad8d1236675dfe32df69813b3151593cc74a394024",
+      "current_text": "Một Mã Nương mang tên Mejiro giành ít nhất 1 chiến thắng ở cuộc đua cấp G1,\\nđồng thời giành chiến thắng tại Kikuka Sho, Takarazuka Kinen và Arima Kinen,\\nvà đạt Số fan từ 240.000 trở lên",
+      "current_fingerprint": "6f2e977066e07b27ae303e0be823f514b657da021915a455bacc1bbd2b4f6cc8",
+      "risk_flags": [
+        "very_long_target",
+        "community_term",
+        "numeric_token_mismatch"
+      ],
+      "risk_score": 10,
+      "locked_terms": [
+        {
+          "id": "race.generic",
+          "target_vi": "Cuộc đua",
+          "matched_aliases": [
+            "比赛"
+          ],
+          "present": true
+        },
+        {
+          "id": "progress.fans",
+          "target_vi": "Số fan",
+          "matched_aliases": [
+            "粉丝数"
+          ],
+          "present": true
+        }
+      ],
+      "community_terms": [
+        {
+          "id": "common.world.umamusume",
+          "preferred": "Mã Nương",
+          "accepted": [
+            "Mã Nương"
+          ],
+          "forbidden": [
+            "Uma Musume"
+          ],
+          "matched_aliases": [
+            "赛马娘"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Generic 赛马娘 is the project world/species term Mã Nương, but it must not fire inside established proper race names such as 府中赛马娘锦标 (Fuchu Uma Musume Stakes)."
+        },
+        {
+          "id": "common.race_grade.g1",
+          "preferred": "G1",
+          "accepted": [
+            "G1"
+          ],
+          "forbidden": [
+            "GⅠ"
+          ],
+          "matched_aliases": [
+            "GⅠ"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Conventional player-facing race-grade formatting; source marker is unambiguous and applies globally."
+        }
+      ],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [],
+      "item_context_sha256": "f05d15147d5e2d3b2535de2bb7400835d778813c907d5e325807bed258be0cda"
+    },
+    {
+      "uid": "zhcn:8693c05be650a5df82bd5f57",
+      "source_batch": 147,
+      "entry_index": 5,
+      "kind": "text_data",
+      "source_path": "text_data_dict.json",
+      "json_path": [
+        "131",
+        "83"
+      ],
+      "key": null,
+      "source_text": "在包括独角兽锦标、安田纪念的英里重赏比赛中取得5次以上胜利，\\n其中有1次以上是雨天，\\n并在英里冠军赛中以5马身以上差距取得胜利",
+      "source_fingerprint": "5e493a5f984580ace36deea4fd002e12ad144db9f9c9df688df7cb3ebcf05ab2",
+      "current_text": "Giành ít nhất 5 chiến thắng ở các cuộc đua trọng thưởng Mile, bao gồm Unicorn Stakes và Yasuda Kinen,\\ntrong đó có ít nhất 1 lần trời mưa,\\nvà thắng Mile Championship với cách biệt ít nhất 5 thân ngựa",
+      "current_fingerprint": "9bfdcc3d753bd9b53d326678ff7ebeedc618caf926028bb389f90d51625bc8f7",
+      "risk_flags": [
+        "very_long_target",
+        "community_term",
+        "community_calque_risk",
+        "community_term_mismatch",
+        "numeric_token_mismatch"
+      ],
+      "risk_score": 24,
+      "locked_terms": [
+        {
+          "id": "race.generic",
+          "target_vi": "Cuộc đua",
+          "matched_aliases": [
+            "比赛"
+          ],
+          "present": true
+        }
+      ],
+      "community_terms": [
+        {
+          "id": "common.distance.mile",
+          "preferred": "Mile",
+          "accepted": [
+            "Mile"
+          ],
+          "forbidden": [],
+          "matched_aliases": [
+            "英里"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Common EN-version distance class."
+        },
+        {
+          "id": "race.graded",
+          "preferred": "graded",
+          "accepted": [
+            "graded",
+            "Graded"
+          ],
+          "forbidden": [
+            "trọng thưởng",
+            "Trọng thưởng"
+          ],
+          "matched_aliases": [
+            "重赏"
+          ],
+          "accepted_present": false,
+          "forbidden_present": true,
+          "require_accepted": true,
+          "basis": "In Uma Musume/Japanese racing, 重赏 denotes the graded-race category (G1/G2/G3), not a literal 'heavy reward'. Global/community player-facing English consistently calls these graded races. Keep the canonical alias as the modifier 'graded' so it composes naturally with the project's generic Cuộc đua label in longer Vietnamese strings."
+        }
+      ],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [],
+      "item_context_sha256": "484eabe4d97efdb8627699a746eee89460ed6f678ba828e2a23077d92a5d6d0e"
+    },
+    {
+      "uid": "zhcn:223ef12b397b2bfc5848403a",
+      "source_batch": 147,
+      "entry_index": 6,
+      "kind": "text_data",
+      "source_path": "text_data_dict.json",
+      "json_path": [
+        "131",
+        "84"
+      ],
+      "key": null,
+      "source_text": "参加GⅠ级别比赛获得人气第一6次以上，\\n并取得英里冠军赛、安田纪念、有马纪念胜利，\\n且粉丝数达到24万以上",
+      "source_fingerprint": "d77ba37393a9ef2f266c7da10008ee2257dea7bebef7dc6c7b45dec96d6915eb",
+      "current_text": "Tham gia cuộc đua cấp G1 với độ nổi tiếng hạng 1 ít nhất 6 lần,\\nđồng thời thắng Mile Championship, Yasuda Kinen và Arima Kinen,\\nvà đạt Số fan từ 240.000 trở lên",
+      "current_fingerprint": "50809deead785cae24cad627fa880e76167bc05610914a14ba7e9bc2b79e473f",
+      "risk_flags": [
+        "community_term",
+        "numeric_token_mismatch"
+      ],
+      "risk_score": 7,
+      "locked_terms": [
+        {
+          "id": "race.generic",
+          "target_vi": "Cuộc đua",
+          "matched_aliases": [
+            "比赛"
+          ],
+          "present": true
+        },
+        {
+          "id": "progress.fans",
+          "target_vi": "Số fan",
+          "matched_aliases": [
+            "粉丝数"
+          ],
+          "present": true
+        }
+      ],
+      "community_terms": [
+        {
+          "id": "common.distance.mile",
+          "preferred": "Mile",
+          "accepted": [
+            "Mile"
+          ],
+          "forbidden": [],
+          "matched_aliases": [
+            "英里"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Common EN-version distance class."
+        },
+        {
+          "id": "common.race_grade.g1",
+          "preferred": "G1",
+          "accepted": [
+            "G1"
+          ],
+          "forbidden": [
+            "GⅠ"
+          ],
+          "matched_aliases": [
+            "GⅠ"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Conventional player-facing race-grade formatting; source marker is unambiguous and applies globally."
+        }
+      ],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [],
+      "item_context_sha256": "b95ac67397b1cf3b75478f866ac1582c86dbf895c204098db8c1d2f44399a10d"
+    },
+    {
+      "uid": "zhcn:5639cd1676eb2115ded55a5a",
+      "source_batch": 147,
+      "entry_index": 7,
+      "kind": "text_data",
+      "source_path": "text_data_dict.json",
+      "json_path": [
+        "131",
+        "85"
+      ],
+      "key": null,
+      "source_text": "使用作战「追赶」且以人气第1保持连胜并取得重赏比赛6胜以上，\\n其中至少要有2场在最终直线超越5人以上取胜",
+      "source_fingerprint": "36bb4a8c87ef2f2a10cb28d611578d69611f0a86286c5c7dc448ff70730cedf5",
+      "current_text": "Dùng chiến thuật 「End Closer」, giữ chuỗi thắng với độ nổi tiếng hạng 1 và giành ít nhất 6 chiến thắng ở cuộc đua trọng thưởng,\\ntrong đó ít nhất 2 cuộc phải vượt qua từ 5 đối thủ trở lên ở đoạn thẳng cuối để giành chiến thắng",
+      "current_fingerprint": "adb43842dd645d9868056e4e2973c048e220cf326ee4332079db1217abd3162d",
+      "risk_flags": [
+        "very_long_target",
+        "community_term",
+        "community_calque_risk",
+        "community_term_mismatch",
+        "numeric_token_mismatch"
+      ],
+      "risk_score": 24,
+      "locked_terms": [
+        {
+          "id": "race.generic",
+          "target_vi": "Cuộc đua",
+          "matched_aliases": [
+            "比赛"
+          ],
+          "present": true
+        }
+      ],
+      "community_terms": [
+        {
+          "id": "common.style.end_closer",
+          "preferred": "End Closer",
+          "accepted": [
+            "End Closer",
+            "End"
+          ],
+          "forbidden": [
+            "Oikomi"
+          ],
+          "matched_aliases": [
+            "追赶"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Common EN-version running-style label; End is acceptable in cramped UI."
+        },
+        {
+          "id": "race.graded",
+          "preferred": "graded",
+          "accepted": [
+            "graded",
+            "Graded"
+          ],
+          "forbidden": [
+            "trọng thưởng",
+            "Trọng thưởng"
+          ],
+          "matched_aliases": [
+            "重赏"
+          ],
+          "accepted_present": false,
+          "forbidden_present": true,
+          "require_accepted": true,
+          "basis": "In Uma Musume/Japanese racing, 重赏 denotes the graded-race category (G1/G2/G3), not a literal 'heavy reward'. Global/community player-facing English consistently calls these graded races. Keep the canonical alias as the modifier 'graded' so it composes naturally with the project's generic Cuộc đua label in longer Vietnamese strings."
+        }
+      ],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [],
+      "item_context_sha256": "c551c578c9ecf95ae46c0c206dcc52ce13b29bf0e185d0bf331d0a3f1ce3d6e1"
+    },
+    {
+      "uid": "zhcn:fe24f5e4d1d5985ad45befe7",
+      "source_batch": 147,
+      "entry_index": 11,
+      "kind": "text_data",
+      "source_path": "text_data_dict.json",
+      "json_path": [
+        "131",
+        "89"
+      ],
+      "key": null,
+      "source_text": "于包含短途马锦标及高松宫纪念的\\n1200m比赛中获得9胜以上，\\n并且粉丝数达到240000人以上",
+      "source_fingerprint": "a771c4154608d798060d7a2ddbb58734d2ca2d46b597d7ed3bef13a09e1c2fc6",
+      "current_text": "Giành ít nhất 9 chiến thắng trong các cuộc đua 1200m,\\nbao gồm Sprinters Stakes và Takamatsunomiya Kinen,\\nvà đạt Số fan từ 240.000 trở lên",
+      "current_fingerprint": "c8e7c5f69c3a5c9950f158b8e8843172c0ae36f43f75458c79f44a5921d3d807",
+      "risk_flags": [
+        "numeric_token_mismatch"
+      ],
+      "risk_score": 5,
+      "locked_terms": [
+        {
+          "id": "race.generic",
+          "target_vi": "Cuộc đua",
+          "matched_aliases": [
+            "比赛"
+          ],
+          "present": true
+        },
+        {
+          "id": "progress.fans",
+          "target_vi": "Số fan",
+          "matched_aliases": [
+            "粉丝数"
+          ],
+          "present": true
+        }
+      ],
+      "community_terms": [],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [],
+      "item_context_sha256": "7acc93ad4f31a1edd51a4807eb8f2f42bcbc39358d01e36dd8af2d47de314911"
+    },
+    {
+      "uid": "zhcn:61ccac167422cd601be816d1",
+      "source_batch": 147,
+      "entry_index": 12,
+      "kind": "text_data",
+      "source_path": "text_data_dict.json",
+      "json_path": [
+        "131",
+        "9"
+      ],
+      "key": null,
+      "source_text": "继承来源双方皆为在育成过程中未取得过重赏胜利的赛马娘，\\n在继承心意后取得GⅠ胜利",
+      "source_fingerprint": "c47a9d946e0d4d89a6d1fda1307bcbdb71d75641fd40a1f9858841be5accc017",
+      "current_text": "Cả hai Mã Nương nguồn kế thừa đều chưa từng thắng giải trọng thưởng trong quá trình Huấn luyện,\\ngiành chiến thắng G1 sau khi kế thừa tâm ý",
+      "current_fingerprint": "609cb552f01ddb8f6003f9e2379eb6904dc9ccb43a46eca0a97c99d4b9b4d952",
+      "risk_flags": [
+        "very_long_target",
+        "community_term",
+        "community_calque_risk",
+        "community_term_mismatch"
+      ],
+      "risk_score": 19,
+      "locked_terms": [],
+      "community_terms": [
+        {
+          "id": "common.world.umamusume",
+          "preferred": "Mã Nương",
+          "accepted": [
+            "Mã Nương"
+          ],
+          "forbidden": [
+            "Uma Musume"
+          ],
+          "matched_aliases": [
+            "赛马娘"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Generic 赛马娘 is the project world/species term Mã Nương, but it must not fire inside established proper race names such as 府中赛马娘锦标 (Fuchu Uma Musume Stakes)."
+        },
+        {
+          "id": "common.race_grade.g1",
+          "preferred": "G1",
+          "accepted": [
+            "G1"
+          ],
+          "forbidden": [
+            "GⅠ"
+          ],
+          "matched_aliases": [
+            "GⅠ"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Conventional player-facing race-grade formatting; source marker is unambiguous and applies globally."
+        },
+        {
+          "id": "race.graded",
+          "preferred": "graded",
+          "accepted": [
+            "graded",
+            "Graded"
+          ],
+          "forbidden": [
+            "trọng thưởng",
+            "Trọng thưởng"
+          ],
+          "matched_aliases": [
+            "重赏"
+          ],
+          "accepted_present": false,
+          "forbidden_present": true,
+          "require_accepted": true,
+          "basis": "In Uma Musume/Japanese racing, 重赏 denotes the graded-race category (G1/G2/G3), not a literal 'heavy reward'. Global/community player-facing English consistently calls these graded races. Keep the canonical alias as the modifier 'graded' so it composes naturally with the project's generic Cuộc đua label in longer Vietnamese strings."
+        }
+      ],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [],
+      "item_context_sha256": "59b1bc2aad6c21378e05d4b20520cbc31d27703d6dc8880bf94a64d1f1075179"
+    },
+    {
+      "uid": "zhcn:a33a73ceb43eb53ebae0ff77",
+      "source_batch": 147,
+      "entry_index": 13,
+      "kind": "text_data",
+      "source_path": "text_data_dict.json",
+      "json_path": [
+        "131",
+        "90"
+      ],
+      "key": null,
+      "source_text": "在草地与沙土的GⅠ级别比赛中各取得3次以上胜利",
+      "source_fingerprint": "5865ca2e382e7dd4a2591d9c5d18799f9b95401c71b2176491522b0de0620d4d",
+      "current_text": "Giành ít nhất 3 chiến thắng ở các cuộc đua cấp G1 trên cả Turf và Dirt",
+      "current_fingerprint": "96571c19cd05774b55782c9a2b3c6841c4f511f90a43cc0c5b51319179b943ce",
+      "risk_flags": [
+        "very_long_target",
+        "community_term",
+        "numeric_token_mismatch"
+      ],
+      "risk_score": 10,
+      "locked_terms": [
+        {
+          "id": "race.generic",
+          "target_vi": "Cuộc đua",
+          "matched_aliases": [
+            "比赛"
+          ],
+          "present": true
+        }
+      ],
+      "community_terms": [
+        {
+          "id": "common.surface.turf",
+          "preferred": "Turf",
+          "accepted": [
+            "Turf"
+          ],
+          "forbidden": [
+            "Sân cỏ"
+          ],
+          "matched_aliases": [
+            "草地"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Common EN-version surface label."
+        },
+        {
+          "id": "common.surface.dirt",
+          "preferred": "Dirt",
+          "accepted": [
+            "Dirt"
+          ],
+          "forbidden": [],
+          "matched_aliases": [
+            "沙土"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Common player-facing race-surface terminology. zh-CN 沙土 denotes the Dirt surface and must use Dirt, not literal Vietnamese forms such as sân cát."
+        },
+        {
+          "id": "common.race_grade.g1",
+          "preferred": "G1",
+          "accepted": [
+            "G1"
+          ],
+          "forbidden": [
+            "GⅠ"
+          ],
+          "matched_aliases": [
+            "GⅠ"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Conventional player-facing race-grade formatting; source marker is unambiguous and applies globally."
+        }
+      ],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [],
+      "item_context_sha256": "fd46fb7b9a27a6fd5d6682cc4fb03f7904e9503db216bb2fa31f7e57c5ce6851"
+    },
+    {
+      "uid": "zhcn:b3e9eecb85d8af981543157b",
+      "source_batch": 147,
+      "entry_index": 14,
+      "kind": "text_data",
+      "source_path": "text_data_dict.json",
+      "json_path": [
+        "131",
+        "91"
+      ],
+      "key": null,
+      "source_text": "在樱花赏、NHK英里杯、维多利亚英里赛、\\n英里冠军赛、安田纪念5场比赛中均以人气第一的状态赢得全部胜利",
+      "source_fingerprint": "73d63e4e88effd86f5f054f350ad6d8c3a4a5329052c9eb70bb1866b558f8005",
+      "current_text": "Giành chiến thắng với độ nổi tiếng hạng 1 trong cả 5 cuộc đua Oka Sho, NHK Mile Cup, Victoria Mile,\\n Mile Championship và Yasuda Kinen",
+      "current_fingerprint": "ebc4897a30405fdebbbc43a2d929a0bc64fc87e50ac70d33f2fe2f7366d5edf4",
+      "risk_flags": [
+        "community_term",
+        "numeric_token_mismatch"
+      ],
+      "risk_score": 7,
+      "locked_terms": [
+        {
+          "id": "race.generic",
+          "target_vi": "Cuộc đua",
+          "matched_aliases": [
+            "比赛"
+          ],
+          "present": true
+        }
+      ],
+      "community_terms": [
+        {
+          "id": "common.distance.mile",
+          "preferred": "Mile",
+          "accepted": [
+            "Mile"
+          ],
+          "forbidden": [],
+          "matched_aliases": [
+            "英里"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Common EN-version distance class."
+        }
+      ],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [],
+      "item_context_sha256": "6bea2e5118945743a8ad0db38f16dc2c2defb50574499112624389fd8f4327dd"
+    },
+    {
+      "uid": "zhcn:6e7d42dbf885145a98b9cc48",
+      "source_batch": 147,
+      "entry_index": 21,
+      "kind": "text_data",
+      "source_path": "text_data_dict.json",
+      "json_path": [
+        "133",
+        "3"
+      ],
+      "key": null,
+      "source_text": "等级奖牌",
+      "source_fingerprint": "57ed72a8c6bdab151d9cea6c1b44ac02fba43e49764b6127771adb608e7e8da0",
+      "current_text": "Huy chương cấp",
+      "current_fingerprint": "6c87d0f680303f632a9990c9aab7035d8c95a8135ee6b2276abc301c53e5c89d",
+      "risk_flags": [
+        "very_long_target",
+        "canonical_finding"
+      ],
+      "risk_score": 43,
+      "locked_terms": [],
+      "community_terms": [],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [
+        {
+          "finding_id": "cf-55f0e8a1d70264a2",
+          "status": "open",
+          "source_zh_cn": "等级奖牌",
+          "match_mode": "exact",
+          "source_paths": [
+            "text_data_dict.json"
+          ],
+          "key_exact": [],
+          "json_path_prefixes": [
+            [
+              "133"
+            ]
+          ],
+          "suggested_targets_vi": [],
+          "concepts": [
+            "Named grade/rank medal label in text_data category 133"
+          ],
+          "kinds": [
+            "system_label"
+          ],
+          "review_action": "defer",
+          "review_target_vi": ""
+        }
+      ],
+      "item_context_sha256": "d384c0abfe96db37391a6da9eda6fca2972a7e8a57389c2c249525aeaa1b03be"
+    },
+    {
+      "uid": "zhcn:b0720db96559d28568808891",
+      "source_batch": 147,
+      "entry_index": 38,
+      "kind": "text_data",
+      "source_path": "text_data_dict.json",
+      "json_path": [
+        "138",
+        "11"
+      ],
+      "key": null,
+      "source_text": "沙土练习",
+      "source_fingerprint": "100534e39e8aa761e686243f2abe5bb68f34d97eb933800288bfc5b58e9a34e4",
+      "current_text": "Luyện tập Dirt",
+      "current_fingerprint": "38f78f75d9c7af3854a9d738fa245de854f103ef046a1940b9c73f16f6e2dbf0",
+      "risk_flags": [
+        "very_long_target",
+        "community_term"
+      ],
+      "risk_score": 5,
+      "locked_terms": [],
+      "community_terms": [
+        {
+          "id": "common.surface.dirt",
+          "preferred": "Dirt",
+          "accepted": [
+            "Dirt"
+          ],
+          "forbidden": [],
+          "matched_aliases": [
+            "沙土"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Common player-facing race-surface terminology. zh-CN 沙土 denotes the Dirt surface and must use Dirt, not literal Vietnamese forms such as sân cát."
+        }
+      ],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [],
+      "item_context_sha256": "4f207604e4381f53d6c1ce3186e7c17da7a33b68a27fa3da39bf73442c9039c5"
+    },
+    {
+      "uid": "zhcn:6c7a1dd29513d6b8fb445f01",
+      "source_batch": 148,
+      "entry_index": 5,
+      "kind": "text_data",
+      "source_path": "text_data_dict.json",
+      "json_path": [
+        "138",
+        "152"
+      ],
+      "key": null,
+      "source_text": "沙土练习",
+      "source_fingerprint": "100534e39e8aa761e686243f2abe5bb68f34d97eb933800288bfc5b58e9a34e4",
+      "current_text": "Luyện tập Dirt",
+      "current_fingerprint": "38f78f75d9c7af3854a9d738fa245de854f103ef046a1940b9c73f16f6e2dbf0",
+      "risk_flags": [
+        "very_long_target",
+        "community_term"
+      ],
+      "risk_score": 5,
+      "locked_terms": [],
+      "community_terms": [
+        {
+          "id": "common.surface.dirt",
+          "preferred": "Dirt",
+          "accepted": [
+            "Dirt"
+          ],
+          "forbidden": [],
+          "matched_aliases": [
+            "沙土"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Common player-facing race-surface terminology. zh-CN 沙土 denotes the Dirt surface and must use Dirt, not literal Vietnamese forms such as sân cát."
+        }
+      ],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [],
+      "item_context_sha256": "4f207604e4381f53d6c1ce3186e7c17da7a33b68a27fa3da39bf73442c9039c5"
+    },
+    {
+      "uid": "zhcn:ede1fe6de89e12e7f1a7d315",
+      "source_batch": 148,
+      "entry_index": 28,
+      "kind": "text_data",
+      "source_path": "text_data_dict.json",
+      "json_path": [
+        "138",
+        "30"
+      ],
+      "key": null,
+      "source_text": "长距离游泳",
+      "source_fingerprint": "042193a938ed5360c1271ed46976b6d997683bcf16687a775164fe52f38fee39",
+      "current_text": "Bơi cự ly Long",
+      "current_fingerprint": "207bb2b7f09800e0ab2c6815bfd21c11d5cc3e924d44c949391cb537896059e2",
+      "risk_flags": [
+        "community_term"
+      ],
+      "risk_score": 2,
+      "locked_terms": [],
+      "community_terms": [
+        {
+          "id": "common.distance.long",
+          "preferred": "Long",
+          "accepted": [
+            "Long"
+          ],
+          "forbidden": [
+            "Cự ly dài"
+          ],
+          "matched_aliases": [
+            "长距离"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Common EN-version Long distance class. The zh-CN alias 长距离 must not fire as a substring inside the distinct 超长距离 compound used by super-long-distance Skill labels."
+        }
+      ],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [],
+      "item_context_sha256": "d913ad33e063e6b996c06d1c7d18bb15d4c824c5749be84d61ccc1a77a5019d1"
+    },
+    {
+      "uid": "zhcn:a8c13ca8c55e8d2986000ead",
+      "source_batch": 148,
+      "entry_index": 50,
+      "kind": "text_data",
+      "source_path": "text_data_dict.json",
+      "json_path": [
+        "138",
+        "73"
+      ],
+      "key": null,
+      "source_text": "球技",
+      "source_fingerprint": "84510afc1f3d24ccc55c048e5ef7d2aa4198a005354845eae2e2e3fe61ff08f3",
+      "current_text": "Môn bóng",
+      "current_fingerprint": "0449ca1885fa2a72080ed182905aea411a950b660c131f2f12adc0b196550b86",
+      "risk_flags": [
+        "very_long_target"
+      ],
+      "risk_score": 3,
+      "locked_terms": [],
+      "community_terms": [],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [],
+      "item_context_sha256": null
+    }
+  ]
+}

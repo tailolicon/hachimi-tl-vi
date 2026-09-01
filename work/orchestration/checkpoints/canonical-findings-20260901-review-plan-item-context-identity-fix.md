@@ -26,11 +26,13 @@ This preserves the repository's intended rule that raw canonical-finding evidenc
 
 Regression commit `fb422b87333c038fec8c65cd69ff747d8ec83bd1` adds `test_merged_defer_plan_rebuild_gets_new_identity_when_item_context_changes`. It constructs a one-item plan, marks its first batch merged as defer, changes only the item-scoped context hash, rebuilds, and requires a new plan ID with no colliding merged marker.
 
-## Validation state
+## Validation
 
-GitHub Actions were automatically queued from the regression commit:
+Both repository-native validation paths succeeded:
 
-- general test run `33551691531` / job `100002409398`;
-- Sync translation review plan run `33551691571` / job `100002410209`.
+- general test run `33551691531`, job `100002409398`: success; install, py_compile, full pytest, `tlvi validate`, and index all completed successfully;
+- Sync translation review plan run `33551691571`, job `100002410209`: success; authoritative canon enforcement/review-plan publication step completed successfully.
 
-At checkpoint creation those jobs were still in progress/queued. Do not call the fix complete until the relevant pytest/Sync workflow succeeds. Do not hand-edit generated review state; the Sync workflow remains authoritative for plan/gate publication.
+The currently active plan can remain unchanged while any batch from that plan is still unmerged because `_active_incomplete()` intentionally preserves an in-flight plan. Once it is fully merged, the fixed scope identity ensures any still-unresolved defer candidates whose effective item context changed rebuild into fresh claimable batch IDs rather than colliding with old immutable merge markers.
+
+No generated review plan/gate state was hand-edited.

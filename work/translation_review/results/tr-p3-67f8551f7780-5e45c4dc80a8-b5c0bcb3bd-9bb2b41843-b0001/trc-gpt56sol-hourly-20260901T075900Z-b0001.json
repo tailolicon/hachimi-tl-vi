@@ -1,74 +1,13 @@
 {
-  "schema_version": 1,
-  "status": "partial",
-  "plan_id": "tr-p3-67f8551f7780-5e45c4dc80a8-b5c0bcb3bd-9bb2b41843",
-  "batch_id": "tr-p3-67f8551f7780-5e45c4dc80a8-b5c0bcb3bd-9bb2b41843-b0001",
-  "claim_id": "trc-gpt56sol-hourly-20260901T075900Z-b0001",
-  "worker_id": "gpt56sol-hourly-20260901T075900Z",
-  "reviewed_at": "2026-09-01T08:02:00Z",
-  "completed_count": 5,
-  "decisions": [
-    {
-      "uid": "zhcn:a7741497dd0b4a55f838f1ee",
-      "current_fingerprint": "22a172a1318b0c338baa9591236e2bc953e6c7ab83dba1f774f432e2e0e957d0",
-      "action": "defer",
-      "reason": "The source contains the publication/title expression 月刊Twinkle; the current text drops 月刊, but the repository evidence inspected here does not establish the canonical player-facing title, so a one-off correction would be unsafe.",
-      "canonical_finding": {
-        "kind": "proper_name",
-        "source_zh_cn": "月刊Twinkle",
-        "concept": "Twinkle monthly publication title",
-        "match_mode": "contains",
-        "scope": "auto",
-        "reason": "A recurring in-world publication title needs one canonical rendering before this line is resolved.",
-        "confidence": "high"
-      },
-      "confidence": "medium"
-    },
-    {
-      "uid": "zhcn:b6273be7ea633440483aa400",
-      "current_fingerprint": "7789a134fe25d666394d584f7b3ad58464701ba67a5e339c506a0019eb3c38e7",
-      "action": "defer",
-      "reason": "公开联赛 is a named Champions Meeting league label; the current generic Vietnamese rendering may not match its official/player-facing name, and embedded context does not establish that canonical label.",
-      "canonical_finding": {
-        "kind": "system_label",
-        "source_zh_cn": "公开联赛",
-        "concept": "Champions Meeting Open League label",
-        "match_mode": "exact",
-        "scope": "auto",
-        "reason": "Named league labels should be canonicalized consistently rather than translated ad hoc.",
-        "confidence": "high"
-      },
-      "confidence": "medium"
-    },
-    {
-      "uid": "zhcn:51f242226a0db443edf99970",
-      "current_fingerprint": "aa46e93f1f49ed343e4dadd095f03abf756972435b1ae038e795d3f46c379779",
-      "action": "defer",
-      "reason": "等级联赛 is a named Champions Meeting league label; the current Vietnamese wording may not match the official/player-facing label, so canonical evidence is required before changing it.",
-      "canonical_finding": {
-        "kind": "system_label",
-        "source_zh_cn": "等级联赛",
-        "concept": "Champions Meeting Graded League label",
-        "match_mode": "exact",
-        "scope": "auto",
-        "reason": "Named league labels should use one canonical player-facing form across the UI.",
-        "confidence": "high"
-      },
-      "confidence": "medium"
-    },
-    {
-      "uid": "zhcn:c6195a9af5bf988b764c6b28",
-      "current_fingerprint": "452f0f80d74818ab0c1d9866300052a5219985429fa578126108720cd485242c",
-      "action": "defer",
-      "reason": "Standalone 上级 is context-sensitive (upper/advanced/higher tier); the batch does not establish the exact UI concept strongly enough to replace the current wording confidently.",
-      "confidence": "low"
-    },
-    {
-      "uid": "zhcn:9dd355ff825b62a10072ecd7",
-      "current_fingerprint": "8807716173be20222362801c2ea0eb2ba8536b766698eddb1dd94bb8cab84e49",
-      "action": "keep",
-      "reason": "Meaning, placeholder {0}, grad tag, B-group identity, ROUND 2 value, and sentence direction are preserved naturally in Vietnamese.",
-      "confidence": "high"
-    }
-  ]
-}
+"schema_version":1,"status":"partial","plan_id":"tr-p3-67f8551f7780-5e45c4dc80a8-b5c0bcb3bd-9bb2b41843","batch_id":"tr-p3-67f8551f7780-5e45c4dc80a8-b5c0bcb3bd-9bb2b41843-b0001","claim_id":"trc-gpt56sol-hourly-20260901T075900Z-b0001","worker_id":"gpt56sol-hourly-20260901T075900Z","reviewed_at":"2026-09-01T08:04:00Z","completed_count":10,"decisions":[
+{"uid":"zhcn:a7741497dd0b4a55f838f1ee","current_fingerprint":"22a172a1318b0c338baa9591236e2bc953e6c7ab83dba1f774f432e2e0e957d0","action":"defer","reason":"The source contains the publication/title expression 月刊Twinkle; current text drops 月刊, but inspected repository evidence does not establish the canonical player-facing title.","canonical_finding":{"kind":"proper_name","source_zh_cn":"月刊Twinkle","concept":"Twinkle monthly publication title","match_mode":"contains","scope":"auto","reason":"Recurring in-world publication title needs one canonical rendering.","confidence":"high"},"confidence":"medium"},
+{"uid":"zhcn:b6273be7ea633440483aa400","current_fingerprint":"7789a134fe25d666394d584f7b3ad58464701ba67a5e339c506a0019eb3c38e7","action":"defer","reason":"公开联赛 is a named Champions Meeting league label; embedded context does not establish its canonical player-facing form.","canonical_finding":{"kind":"system_label","source_zh_cn":"公开联赛","concept":"Champions Meeting Open League label","match_mode":"exact","scope":"auto","reason":"Named league labels should be canonicalized consistently.","confidence":"high"},"confidence":"medium"},
+{"uid":"zhcn:51f242226a0db443edf99970","current_fingerprint":"aa46e93f1f49ed343e4dadd095f03abf756972435b1ae038e795d3f46c379779","action":"defer","reason":"等级联赛 is a named Champions Meeting league label; embedded context does not establish its canonical player-facing form.","canonical_finding":{"kind":"system_label","source_zh_cn":"等级联赛","concept":"Champions Meeting Graded League label","match_mode":"exact","scope":"auto","reason":"Named league labels should use one canonical player-facing form.","confidence":"high"},"confidence":"medium"},
+{"uid":"zhcn:c6195a9af5bf988b764c6b28","current_fingerprint":"452f0f80d74818ab0c1d9866300052a5219985429fa578126108720cd485242c","action":"defer","reason":"Standalone 上级 is context-sensitive and the batch does not establish the exact UI concept strongly enough for a confident correction.","confidence":"low"},
+{"uid":"zhcn:9dd355ff825b62a10072ecd7","current_fingerprint":"8807716173be20222362801c2ea0eb2ba8536b766698eddb1dd94bb8cab84e49","action":"keep","reason":"Meaning, placeholder, grad tag, B-group identity and ROUND 2 value are preserved.","confidence":"high"},
+{"uid":"zhcn:0a5b8fdaeb8405a00dadc645","current_fingerprint":"2584d214b44f1084e073ea84097410785ac95748508d2a0a0f3cd2f9c16b0abe","action":"keep","reason":"Faithful concise UI rendering; punctuation and trailing spacing are preserved.","confidence":"high"},
+{"uid":"zhcn:c64ef5e9916fec9c91dd6e14","current_fingerprint":"d24b9ba751fdd575ab4eea8e43e304865df379334aabb9294e04dbe3f1b2a95f","action":"revise","proposed_text":"Điều kiện tham gia\nTraining Rank: [{0}] trở xuống","reason":"Current text violates the embedded locked system label for 育成等级; placeholder and newline structure remain unchanged.","terminology_basis":"locked_terms reviewed.system_label.3c4ec345859e requires Training Rank for 育成等级.","confidence":"high"},
+{"uid":"zhcn:99ce8eb3a068fc3aa9b513d8","current_fingerprint":"a93f8fd7d3631d8b9f0ef8a0783f53493351394ebb52e5a5aef9845f3c845962","action":"revise","proposed_text":"Điều kiện tham gia\nTraining Rank: Không giới hạn","reason":"Current text violates the embedded locked system label for 育成等级; 无条件 is correctly conveyed as no restriction.","terminology_basis":"locked_terms reviewed.system_label.3c4ec345859e requires Training Rank for 育成等级.","confidence":"high"},
+{"uid":"zhcn:947db802aeb947402e1f3865","current_fingerprint":"f3410bfd2539ec61e6d7f066477bf4ee8b83286f8b5a0a0743df772441593b1b","action":"keep","reason":"Meaning and UI intent are preserved naturally.","confidence":"high"},
+{"uid":"zhcn:9f72abd2bf0e104d2567cac8","current_fingerprint":"01f17079bd18ca6de92addf07b268a36d8b37d7d3c403003c1facb055ac1309c","action":"keep","reason":"Faithful confirmation-title rendering with no structural loss.","confidence":"high"}
+]}

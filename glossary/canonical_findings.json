@@ -5206,6 +5206,62 @@
       "last_seen_at": "2026-09-01T06:58:00Z"
     },
     {
+      "finding_id": "cf-2a961e02625cfe6b",
+      "status": "open",
+      "source_zh_cn": "赛马娘名鉴",
+      "match_mode": "exact",
+      "source_paths": [
+        "localize_dict.json"
+      ],
+      "key_exact": [],
+      "json_path_prefixes": [],
+      "kinds": [
+        "context_rule"
+      ],
+      "concepts": [
+        "Archive system label must take precedence over generic 赛马娘 world-term matching"
+      ],
+      "suggested_targets_vi": [
+        "Archive"
+      ],
+      "confidence_levels": [
+        "high"
+      ],
+      "reasons": [
+        "This complete system label is canonically locked to Archive, but the generic 赛马娘 community rule also fires inside it and would make a clean revise fail conflicting terminology guards."
+      ],
+      "evidence_count": 1,
+      "evidence": [
+        {
+          "uid": "zhcn:f7aa92d294350885dc56d5d1",
+          "plan_id": "tr-p3-67f8551f7780-1c57e0cc9bcf-b5c0bcb3bd-ce1c207047",
+          "batch_id": "tr-p3-67f8551f7780-1c57e0cc9bcf-b5c0bcb3bd-ce1c207047-b0002",
+          "claim_id": "trc-gpt56sol-20260901t232500z-b0002",
+          "worker_id": "gpt56sol-20260901t232500z",
+          "source_path": "localize_dict.json",
+          "json_path": [
+            "Directory0001"
+          ],
+          "source_text": "赛马娘名鉴",
+          "current_text": "Danh bạ Uma",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T23:29:00Z"
+        }
+      ],
+      "canonical_resolution": {
+        "layer": "locked",
+        "term_id": "reviewed.system_label.203e204d9ccb",
+        "target_vi": "Archive"
+      },
+      "review_resolution": {
+        "decision_id": "audit.finding.team-building-umamusume-archive",
+        "action": "lock",
+        "target_vi": "Archive"
+      },
+      "first_seen_at": "2026-09-01T23:29:00Z",
+      "last_seen_at": "2026-09-01T23:29:00Z"
+    },
+    {
       "finding_id": "cf-2b8709d527abc360",
       "status": "open",
       "source_zh_cn": "比赛",
@@ -25908,6 +25964,61 @@
       },
       "first_seen_at": "2026-09-01T02:37:00Z",
       "last_seen_at": "2026-09-01T02:37:00Z"
+    },
+    {
+      "finding_id": "cf-f5747cdfbd135ea9",
+      "status": "open",
+      "source_zh_cn": "圣列特",
+      "match_mode": "contains",
+      "source_paths": [
+        "text_data_dict.json"
+      ],
+      "key_exact": [],
+      "json_path_prefixes": [],
+      "kinds": [
+        "context_rule"
+      ],
+      "concepts": [
+        "Saint Lite character-name alias must not overmatch inside St. Lite Kinen"
+      ],
+      "suggested_targets_vi": [],
+      "confidence_levels": [
+        "high"
+      ],
+      "reasons": [
+        "The embedded character lock requires Saint Lite while the exact full-race lock correctly requires St. Lite Kinen; the broader alias needs contextual exclusion."
+      ],
+      "evidence_count": 1,
+      "evidence": [
+        {
+          "uid": "zhcn:47dfc6f069820d21c99aa10d",
+          "plan_id": "tr-p3-67f8551f7780-1c57e0cc9bcf-b5c0bcb3bd-ce1c207047",
+          "batch_id": "tr-p3-67f8551f7780-1c57e0cc9bcf-b5c0bcb3bd-ce1c207047-b0012",
+          "claim_id": "trc-gpt56sol-20260901t232000z-b0012",
+          "worker_id": "gpt56sol-20260901t232000z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "111",
+            "62"
+          ],
+          "source_text": "圣列特纪念",
+          "current_text": "St. Lite Kinen",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T23:24:00Z"
+        }
+      ],
+      "canonical_resolution": {
+        "layer": "locked",
+        "term_id": "character.saint_lite",
+        "target_vi": "Saint Lite"
+      },
+      "review_resolution": {
+        "decision_id": "parallel.ctx-67f8551f77807292-v1.term-0001.11",
+        "action": "lock",
+        "target_vi": "Saint Lite"
+      },
+      "first_seen_at": "2026-09-01T23:24:00Z",
+      "last_seen_at": "2026-09-01T23:24:00Z"
     },
     {
       "finding_id": "cf-f57d921afca6a993",

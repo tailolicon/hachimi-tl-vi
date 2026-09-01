@@ -352,6 +352,11 @@ def build_plan(repo_root: Path, batch_size: int) -> dict[str, Any]:
         scope_digest.update(str(item["uid"]).encode("utf-8") + b"\0")
         scope_digest.update(str(item["source_fingerprint"]).encode("utf-8") + b"\0")
         scope_digest.update(str(item["current_fingerprint"]).encode("utf-8") + b"\0")
+        # Plan identity must change when item-scoped canonical context changes.
+        # Otherwise a fully merged `defer` plan can rebuild to the same batch IDs,
+        # leaving authoritative merged markers permanently blocking re-review even
+        # after the canonical blocker has been resolved.
+        scope_digest.update(str(item.get("item_context_sha256", "")).encode("utf-8") + b"\0")
     scope_hash = scope_digest.hexdigest()
     source_label = sorted(source_commits)[0] if len(source_commits) == 1 else "multi-source"
     plan_id = (

@@ -5,8 +5,8 @@
   "batch_id": "tr-p3-67f8551f7780-5e45c4dc80a8-b5c0bcb3bd-9bb2b41843-b0022",
   "claim_id": "trc-gpt56sol-chat-20260901T072500Z-b0022",
   "worker_id": "gpt56sol-chat-20260901T071800Z",
-  "reviewed_at": "2026-09-01T07:27:30Z",
-  "completed_count": 10,
+  "reviewed_at": "2026-09-01T07:29:00Z",
+  "completed_count": 15,
   "decisions": [
     {
       "uid": "zhcn:78d6d8925952406bc6ada3f3",
@@ -78,6 +78,43 @@
       "proposed_text": "Skill Pt hiện có",
       "reason": "SP ở đây là nhãn gameplay cho điểm kỹ năng; audit policy yêu cầu dùng player-facing term 'Skill Pt/Skill Points' thay vì giữ viết tắt bridge.",
       "terminology_basis": "Manual audit policy: established gameplay vocabulary uses Skill Pt/Skill Points.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:fa8dfa0bfbd508b5915e6296",
+      "current_fingerprint": "5086257def0af97a00afa02e35c7bf00cf62dd3496391e3aaeea04f2fb09ea7f",
+      "action": "keep",
+      "reason": "'Hoàn tất chuyển nhượng' đúng nghĩa 完成移籍 và tự nhiên trong UI.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:fcfa4c6a1f0346d1335a481c",
+      "current_fingerprint": "fe8cf0a2837d2913b152156838dd2f2e46e71d694e012077226d181b05e40b44",
+      "action": "revise",
+      "proposed_text": "Đã nhận Monies sau khi chuyển nhượng",
+      "reason": "Bản hiện tại dùng 'Coin', trong khi embedded source-bridge context xác định 金币 ở localize/UI là tiền tệ Monies.",
+      "terminology_basis": "Embedded source bridge currency.monies requires 金币 → Monies in player-facing localize/UI data.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:085528c759e35d40096e0d99",
+      "current_fingerprint": "dcd3491f84f8ffc1bd6e66c68f6abd0bcae2e8aa520a1748c8f01b0f90609dc7",
+      "action": "keep",
+      "reason": "RP là ký hiệu gameplay cần giữ nguyên.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:02329aa468491ae15d0a5583",
+      "current_fingerprint": "67280b7109c04b041d562cf78282513c70f64f61ed230af2a42e0bcc17c3332b",
+      "action": "keep",
+      "reason": "'Tổng cộng' đúng nghĩa 共计 và phù hợp nhãn tổng kết.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:34f844c1697462829183061e",
+      "current_fingerprint": "53a5a95ad7119fcc891e5d42ec35202f51da45f4766be47ea5587d2602d32667",
+      "action": "keep",
+      "reason": "Chuỗi hiện tại giữ đầy đủ hai thành phần 'Lv tối đa' và 'Mở khóa giới hạn' cùng dấu phân cách.",
       "confidence": "high"
     }
   ]

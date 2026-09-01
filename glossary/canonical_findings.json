@@ -3428,7 +3428,8 @@
         "context_rule"
       ],
       "concepts": [
-        "generic/narrative strength, not the Power stat"
+        "generic/narrative strength, not the Power stat",
+        "Narrative physical/emotional strength phrase must not normalize to the gameplay Power stat"
       ],
       "suggested_targets_vi": [
         "sức mạnh không lay chuyển"
@@ -3437,9 +3438,10 @@
         "high"
       ],
       "reasons": [
-        "This prose phrase is an explicit false-positive for Power-stat normalization in text_data."
+        "This prose phrase is an explicit false-positive for Power-stat normalization in text_data.",
+        "This phrase occurs in narrative prose with no stat gain/threshold/UI context; Power is an overmatch here."
       ],
-      "evidence_count": 1,
+      "evidence_count": 2,
       "evidence": [
         {
           "uid": "zhcn:919fbdb11c7fb6264cc7286d",
@@ -3456,6 +3458,22 @@
           "current_text": "Trong trận quyết chiến lấy quê hương hồi sinh làm sân khấu, để mở ra tương lai cho mọi người\\nmang theo tình yêu dành cho Funabashi và thể hiện Power không lay chuyển",
           "proposed_text": null,
           "reported_at": "2026-08-31T11:21:00Z"
+        },
+        {
+          "uid": "zhcn:919fbdb11c7fb6264cc7286d",
+          "plan_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454",
+          "batch_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454-b0296",
+          "claim_id": "trc-gpt56sol-20260901T043700Z-b0296",
+          "worker_id": "gpt56sol-20260901T033600Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "143",
+            "35"
+          ],
+          "source_text": "在复苏的故乡作为舞台的决战中，为了开拓大家的未来\\n怀揣着对船桥的热爱，展现出坚定不移的力量",
+          "current_text": "Trong trận quyết chiến lấy quê hương hồi sinh làm sân khấu, để mở ra tương lai cho mọi người\\nmang theo tình yêu dành cho Funabashi và thể hiện Power không lay chuyển",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T04:48:00Z"
         }
       ],
       "canonical_resolution": {
@@ -3465,7 +3483,7 @@
       },
       "review_resolution": null,
       "first_seen_at": "2026-08-31T11:21:00Z",
-      "last_seen_at": "2026-08-31T11:21:00Z"
+      "last_seen_at": "2026-09-01T04:48:00Z"
     },
     {
       "finding_id": "cf-2b8709d527abc360",
@@ -9900,6 +9918,52 @@
       "last_seen_at": "2026-08-30T12:15:00Z"
     },
     {
+      "finding_id": "cf-9d903a48b310ef86",
+      "status": "open",
+      "source_zh_cn": "速度",
+      "match_mode": "contains",
+      "source_paths": [
+        "localize_dict.json"
+      ],
+      "key_exact": [],
+      "json_path_prefixes": [],
+      "kinds": [
+        "context_rule"
+      ],
+      "concepts": [
+        "Speed stat guard vs generic skip speed"
+      ],
+      "suggested_targets_vi": [],
+      "confidence_levels": [
+        "high"
+      ],
+      "reasons": [
+        "The stat canonical for Speed must not fire when 速度 is part of generic UI phrases such as 跳过速度; current source means skip speed, not the Speed stat."
+      ],
+      "evidence_count": 1,
+      "evidence": [
+        {
+          "uid": "zhcn:b959db1550b020783d7be460",
+          "plan_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454",
+          "batch_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454-b0168",
+          "claim_id": "trc-gpt56sol-b0168-20260901T041200Z",
+          "worker_id": "gpt-5.6-sol",
+          "source_path": "localize_dict.json",
+          "json_path": [
+            "SingleMode423001"
+          ],
+          "source_text": "将此项设为ON后，育成中的跳过设定位于最大时，提高跳过速度",
+          "current_text": "Khi bật mục này ON, nếu cài đặt bỏ qua trong huấn luyện đang ở mức tối đa, tốc độ bỏ qua sẽ tăng",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T04:16:00Z"
+        }
+      ],
+      "canonical_resolution": null,
+      "review_resolution": null,
+      "first_seen_at": "2026-09-01T04:16:00Z",
+      "last_seen_at": "2026-09-01T04:16:00Z"
+    },
+    {
       "finding_id": "cf-9e20bab99a663608",
       "status": "open",
       "source_zh_cn": "想要的并不只是理论，还有只能和你一起抵达的未来。\\n将情谊化为力量，超越无法估量的命运。",
@@ -14149,7 +14213,8 @@
         "context_rule"
       ],
       "concepts": [
-        "generic speed/rate in prose, not the Speed stat"
+        "generic speed/rate in prose, not the Speed stat",
+        "Descriptive speed phrase must not automatically normalize to gameplay stat Speed"
       ],
       "suggested_targets_vi": [
         "tốc độ lĩnh hội"
@@ -14158,9 +14223,10 @@
         "high"
       ],
       "reasons": [
-        "Speed-stat normalization must exclude this narrative rate-of-mastery phrase in text_data."
+        "Speed-stat normalization must exclude this narrative rate-of-mastery phrase in text_data.",
+        "The sentence describes being one step ahead through mastery and grants discounts to tactics; it does not present a stat gain, threshold, or UI stat label."
       ],
-      "evidence_count": 1,
+      "evidence_count": 2,
       "evidence": [
         {
           "uid": "zhcn:cdb4f7b18df4c7c403bba7e0",
@@ -14177,6 +14243,22 @@
           "current_text": "Nhờ tinh thông mọi thứ, tốc độ luôn đi trước một bước!\\nĐược giảm giá cho tất cả chiến thuật",
           "proposed_text": null,
           "reported_at": "2026-08-31T11:21:00Z"
+        },
+        {
+          "uid": "zhcn:cdb4f7b18df4c7c403bba7e0",
+          "plan_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454",
+          "batch_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454-b0296",
+          "claim_id": "trc-gpt56sol-20260901T043700Z-b0296",
+          "worker_id": "gpt56sol-20260901T033600Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "143",
+            "7"
+          ],
+          "source_text": "融会贯通的速度快人一步！\\n获得所有战术的折扣",
+          "current_text": "Nhờ tinh thông mọi thứ, tốc độ luôn đi trước một bước!\\nĐược giảm giá cho tất cả chiến thuật",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T04:48:00Z"
         }
       ],
       "canonical_resolution": {
@@ -14186,7 +14268,7 @@
       },
       "review_resolution": null,
       "first_seen_at": "2026-08-31T11:21:00Z",
-      "last_seen_at": "2026-08-31T11:21:00Z"
+      "last_seen_at": "2026-09-01T04:48:00Z"
     },
     {
       "finding_id": "cf-ddb287e019039225",

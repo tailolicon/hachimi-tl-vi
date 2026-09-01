@@ -9,13 +9,13 @@
     "growth": "Every accepted retrospective translation revise and accepted UI revise is folded into this file automatically by both review merge workflows."
   },
   "summary": {
-    "merged_markers_scanned": 1724,
-    "translation_merged_markers_scanned": 1624,
+    "merged_markers_scanned": 1730,
+    "translation_merged_markers_scanned": 1630,
     "ui_merged_markers_scanned": 100,
-    "accepted_revision_events": 7355,
-    "accepted_translation_revision_events": 5866,
+    "accepted_revision_events": 7367,
+    "accepted_translation_revision_events": 5878,
     "accepted_ui_revision_events": 1489,
-    "regression_identity_count": 5867,
+    "regression_identity_count": 5876,
     "skipped_incomplete_markers": 0,
     "translation_skipped_incomplete_markers": 0,
     "ui_skipped_incomplete_markers": 0
@@ -9474,6 +9474,31 @@
       ]
     },
     {
+      "id": "review.regression.ba81fd7eae896018",
+      "uid": "zhcn:0cec642f2d17d9d2bbe7f07f",
+      "scope": "uid",
+      "source_text": "Hello Hello～！我是艾尼斯风神！\\n为了让家人们都感到高兴，\\n无论是比赛还是打工我都会全力以赴～！",
+      "source_fingerprint": "b4f43edfbb348655d542aa8891a44521046886bc5ecf46e140824ed61c6bb5d9",
+      "rejected_targets": [
+        "Hello Hello～! Mình là Ines Fujin!\\nĐể cả gia đình đều vui,\\ndù là đua hay làm thêm mình cũng sẽ dốc hết sức～!"
+      ],
+      "approved_target": "Hello Hello～! Mình là Ines Fujin!\\nĐể cả gia đình đều vui,\\ndù là Cuộc đua hay làm thêm mình cũng sẽ dốc hết sức～!",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454",
+          "batch_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454-b0410",
+          "claim_id": "trc-gpt56sol-20260901T051200Z-b0410",
+          "merged_at": "2026-09-01T04:59:57.526283Z",
+          "reason": "The source explicitly contrasts 比赛 with part-time work; restore canonical Cuộc đua while preserving Ines Fujin identity and tone."
+        }
+      ]
+    },
+    {
       "id": "review.regression.5b0d8d89db3c9a71",
       "uid": "zhcn:0cf7c1ff627f68f6b523cdd0",
       "scope": "uid",
@@ -17892,10 +17917,11 @@
       "source_text": "没有预定参加・观战的比赛",
       "source_fingerprint": "0ff270299d73d4ed93eafddecef9bd19e6cbb31be282f49017b11fb765320089",
       "rejected_targets": [
-        "Không có cuộc đua dự kiến tham gia・xem"
+        "Không có đua dự kiến tham gia・xem"
       ],
-      "approved_target": "Không có đua dự kiến tham gia・xem",
+      "approved_target": "Không có Cuộc đua dự kiến tham gia・xem",
       "origins": [
+        "translation_review",
         "ui_review"
       ],
       "ui_contexts": [
@@ -17918,6 +17944,14 @@
           "reason": "Shortens the repeated race noun while retaining both planned participation and spectating states and the source separator.",
           "ui_key": "RoomMatch0131",
           "control_type": "short_system_label"
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454",
+          "batch_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454-b0136",
+          "claim_id": "trc-gpt56sol-20260901T050100Z-b0136-8c21",
+          "merged_at": "2026-09-01T04:59:57.096535Z",
+          "reason": "The current generic đua form fails the locked race terminology. Restore Cuộc đua while preserving the no-scheduled-race state and participation/spectating scope."
         }
       ]
     },
@@ -23405,6 +23439,31 @@
       ]
     },
     {
+      "id": "review.regression.9843e82d31b9926c",
+      "uid": "zhcn:219326cf64a9f2b9e4c2b304",
+      "scope": "uid",
+      "source_text": "<color=#ff9900>开赛准备完毕！</color>",
+      "source_fingerprint": "bfcdef82fa979398d828ba26ce56c34060185952b9f15df03515d10c2543f732",
+      "rejected_targets": [
+        "<color=#ff9900>Chuẩn bị đua hoàn tất!</color>"
+      ],
+      "approved_target": "<color=#ff9900>Đã chuẩn bị xong để bắt đầu!</color>",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454",
+          "batch_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454-b0135",
+          "claim_id": "trc-gpt56sol-20260901T045600Z-b0135-8c21",
+          "merged_at": "2026-09-01T04:59:57.093696Z",
+          "reason": "The current phrase Chuẩn bị đua hoàn tất is unnatural Vietnamese. The revision keeps the completed start-preparation meaning and exact color tag."
+        }
+      ]
+    },
+    {
       "id": "review.regression.c36d9fe6db9b3fd7",
       "uid": "zhcn:21b278408c27edb484d9e06c",
       "scope": "uid",
@@ -27773,6 +27832,31 @@
           "reason": "The current failure status is sentence-like and wide; the compact error label preserves automatic-renewal failure.",
           "ui_key": "Common626016",
           "control_type": "short_system_label"
+        }
+      ]
+    },
+    {
+      "id": "review.regression.42c6fe2424b5e6d2",
+      "uid": "zhcn:287a6adfd2144570347e1008",
+      "scope": "uid",
+      "source_text": "已经作为主办训练员建立了房间",
+      "source_fingerprint": "f7744557f73d94ce4dafe84cd2c09cab7fb519ce5ca64ffeb728d909ecbef409",
+      "rejected_targets": [
+        "Đã tạo phòng với tư cách Huấn luyện viên chủ trì"
+      ],
+      "approved_target": "Đã tạo phòng với tư cách Trainer chủ trì",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454",
+          "batch_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454-b0135",
+          "claim_id": "trc-gpt56sol-20260901T045600Z-b0135-8c21",
+          "merged_at": "2026-09-01T04:59:57.093696Z",
+          "reason": "The current Huấn luyện viên calque is explicitly forbidden for the player-facing 训练员 role."
         }
       ]
     },
@@ -43286,6 +43370,31 @@
       ]
     },
     {
+      "id": "review.regression.19f1079ae676ab2a",
+      "uid": "zhcn:3f967130addfa8ad6dec2b89",
+      "scope": "uid",
+      "source_text": "我是醒目飞鹰！请叫我飞鹰子吧！\\n我的梦想是成为马娘偶像！\\n要签名的话一直都欢迎哟☆",
+      "source_fingerprint": "0e473a53ae02f72c797ee84d3c60a1a2443557d173b77ed00bfc2ce0ed1f755f",
+      "rejected_targets": [
+        "Tôi là Smart Falcon! Cứ gọi tôi là Falco nhé!\\nƯớc mơ của tôi là trở thành idol Uma Musume!\\nMuốn xin chữ ký thì lúc nào cũng hoan nghênh☆"
+      ],
+      "approved_target": "Tôi là Smart Falcon! Cứ gọi tôi là Falco nhé!\\nƯớc mơ của tôi là trở thành thần tượng Mã Nương!\\nMuốn xin chữ ký thì lúc nào cũng hoan nghênh☆",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454",
+          "batch_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454-b0411",
+          "claim_id": "trc-gpt56sol-20260901T052200Z-b0411",
+          "merged_at": "2026-09-01T04:59:57.930710Z",
+          "reason": "The embedded source-bridge canonical locks 马娘偶像 as thần tượng Mã Nương."
+        }
+      ]
+    },
+    {
       "id": "review.regression.ea29882175a26cd3",
       "uid": "zhcn:3fa57f47c815981c04022ed3",
       "scope": "uid",
@@ -44910,6 +45019,31 @@
           "claim_id": "trc-gpt56sol-20260901T041800Z-b0171",
           "merged_at": "2026-09-01T04:13:26.134520Z",
           "reason": "上次育成时 là lần Career trước trong UI mode; dùng 'huấn luyện' không theo canonical mode label."
+        }
+      ]
+    },
+    {
+      "id": "review.regression.8ba8524e0037fcc2",
+      "uid": "zhcn:41d3fa0a8e6c44bfd1f424c4",
+      "scope": "uid",
+      "source_text": "我的名字叫荒漠英雄。那个……\\n别看我这个样子，但我一直憧憬着英雄传记里的故事……\\n总有一天，我也想在比赛中书写属于我自己的故事……！",
+      "source_fingerprint": "c61a237465a6a83b3f5c8ab76314f3539973102f52d3ce382c6e56cface101a6",
+      "rejected_targets": [
+        "Tên tôi là Zenno Rob Roy. Ừm…\\nTrông tôi thế này thôi, nhưng tôi luôn ngưỡng mộ những câu chuyện trong các anh hùng truyện…\\nMột ngày nào đó, tôi cũng muốn viết nên câu chuyện của riêng mình trên đường đua…!"
+      ],
+      "approved_target": "Tên tôi là Zenno Rob Roy. Ừm…\\nTrông tôi thế này thôi, nhưng tôi luôn ngưỡng mộ những câu chuyện trong các anh hùng truyện…\\nMột ngày nào đó, tôi cũng muốn viết nên câu chuyện của riêng mình trong Cuộc đua…!",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454",
+          "batch_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454-b0411",
+          "claim_id": "trc-gpt56sol-20260901T052200Z-b0411",
+          "merged_at": "2026-09-01T04:59:57.930710Z",
+          "reason": "The source explicitly uses 比赛; restore canonical Cuộc đua."
         }
       ]
     },
@@ -101248,6 +101382,31 @@
       ]
     },
     {
+      "id": "review.regression.9b5249f5ac6c5ae2",
+      "uid": "zhcn:930ba6c9c26e2da8c96e1887",
+      "scope": "uid",
+      "source_text": "成田大进。就这些。\\n我只想赢下比赛，让那些看不起\\n我的家伙好好看着。……不要管我。",
+      "source_fingerprint": "925fea43aba338e546116720ec6e16db1801b78ec6c8ef00178a0401a447c364",
+      "rejected_targets": [
+        "Narita Taishin. Hết.\\nTôi chỉ muốn thắng để cho những kẻ coi thường\\ntôi phải nhìn cho kỹ. …Đừng có xen vào."
+      ],
+      "approved_target": "Narita Taishin. Hết.\\nTôi chỉ muốn thắng Cuộc đua để cho những kẻ coi thường\\ntôi phải nhìn cho kỹ. …Đừng có xen vào.",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454",
+          "batch_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454-b0411",
+          "claim_id": "trc-gpt56sol-20260901T052200Z-b0411",
+          "merged_at": "2026-09-01T04:59:57.930710Z",
+          "reason": "The current text omits explicit 比赛; restore canonical Cuộc đua."
+        }
+      ]
+    },
+    {
       "id": "review.regression.b69d42db7b918caa",
       "uid": "zhcn:931bd36e9e420585e23e568e",
       "scope": "uid",
@@ -112611,6 +112770,31 @@
       ]
     },
     {
+      "id": "review.regression.f6bbf294fc3ac8a5",
+      "uid": "zhcn:a3af883750fb811c5b1a01d2",
+      "scope": "uid",
+      "source_text": "哦ー吼吼！我叫川上公主……\\n没错，是气质高雅，公主中的公主！就算在比赛中，\\n也会华丽的揍飞一切敌人，为你献上胜利！！",
+      "source_fingerprint": "81e524fe8f55c514639dc565630fa453eeb1774a93884a853411cd73287fa80b",
+      "rejected_targets": [
+        "Ô-ho-ho! Tôi là Kawakami Princess…\\nĐúng vậy, một công chúa thanh lịch, công chúa trong các công chúa! Kể cả khi đua,\\ntôi cũng sẽ lộng lẫy đánh bay mọi đối thủ và dâng chiến thắng cho bạn!!"
+      ],
+      "approved_target": "Ô-ho-ho! Tôi là Kawakami Princess…\\nĐúng vậy, một công chúa thanh lịch, công chúa trong các công chúa! Kể cả trong Cuộc đua,\\ntôi cũng sẽ lộng lẫy đánh bay mọi đối thủ và dâng chiến thắng cho bạn!!",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454",
+          "batch_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454-b0410",
+          "claim_id": "trc-gpt56sol-20260901T051200Z-b0410",
+          "merged_at": "2026-09-01T04:59:57.526283Z",
+          "reason": "The source explicitly says 比赛; restore canonical Cuộc đua while preserving Kawakami Princess identity and tone."
+        }
+      ]
+    },
+    {
       "id": "review.regression.d3576bda6e84c9dc",
       "uid": "zhcn:a3d5e190ef11e92d057ef61f",
       "scope": "uid",
@@ -121381,10 +121565,12 @@
       "source_text": "主办训练员可能会<color=#ff9900>提前开赛</color>\n或<color=#ff9900>取消开赛</color>",
       "source_fingerprint": "61f7ee041cd9da0ad0c46323fba65c20ace3db32babbf7179a2e3cade62f4c6f",
       "rejected_targets": [
-        "Huấn luyện viên chủ trì có thể <color=#ff9900>bắt đầu đua sớm</color>\nhoặc <color=#ff9900>hủy bắt đầu đua</color>"
+        "Huấn luyện viên chủ trì có thể <color=#ff9900>bắt đầu đua sớm</color>\nhoặc <color=#ff9900>hủy bắt đầu đua</color>",
+        "Trainer chủ trì có thể <color=#ff9900>mở đua sớm</color>\nhoặc <color=#ff9900>hủy đua</color>"
       ],
-      "approved_target": "Trainer chủ trì có thể <color=#ff9900>mở đua sớm</color>\nhoặc <color=#ff9900>hủy đua</color>",
+      "approved_target": "Trainer chủ trì có thể <color=#ff9900>cho bắt đầu sớm</color>\nhoặc <color=#ff9900>hủy việc bắt đầu</color>",
       "origins": [
+        "translation_review",
         "ui_review"
       ],
       "ui_contexts": [
@@ -121407,6 +121593,14 @@
           "reason": "Preserves both color tags and the source newline while replacing the awkward repeated 'bắt đầu đua' phrasing with compact equivalent actions.",
           "ui_key": "RoomMatch0128",
           "control_type": "short_system_label"
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454",
+          "batch_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454-b0136",
+          "claim_id": "trc-gpt56sol-20260901T050100Z-b0136-8c21",
+          "merged_at": "2026-09-01T04:59:57.096535Z",
+          "reason": "The current mở đua/hủy đua wording is unnatural and imprecise for 提前开赛/取消开赛. The revision preserves both color tags, newline, and the host Trainer meaning."
         }
       ]
     },
@@ -132890,10 +133084,12 @@
       "source_text": "请输入8位比赛ID",
       "source_fingerprint": "acc0570138c32aa68ffc7170097c7c6a8d1ab0356a97a8d4baa78d11cd3d3e53",
       "rejected_targets": [
+        "Nhập ID đua 8 chữ số",
         "Vui lòng nhập ID cuộc đua gồm 8 chữ số"
       ],
-      "approved_target": "Nhập ID đua 8 chữ số",
+      "approved_target": "Nhập ID Cuộc đua gồm 8 chữ số",
       "origins": [
+        "translation_review",
         "ui_review"
       ],
       "ui_contexts": [
@@ -132916,6 +133112,14 @@
           "reason": "Drops polite filler and compresses the race-ID description while preserving the exact eight-digit requirement.",
           "ui_key": "RoomMatch0114",
           "control_type": "setting_label"
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454",
+          "batch_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454-b0135",
+          "claim_id": "trc-gpt56sol-20260901T045600Z-b0135-8c21",
+          "merged_at": "2026-09-01T04:59:57.093696Z",
+          "reason": "The current ID đua wording fails the locked generic race term. The revision restores Cuộc đua and preserves the required 8-digit constraint."
         }
       ]
     },
@@ -136702,6 +136906,31 @@
           "claim_id": "trc-chatgpt-sol-auto-turn2-20260830-b0896",
           "merged_at": "2026-08-30T11:29:03.699922Z",
           "reason": "Category 172 yêu cầu 因子 dùng canonical Spark; bản hiện tại dùng forbidden 'nhân tố'."
+        }
+      ]
+    },
+    {
+      "id": "review.regression.8939a97c0f89c776",
+      "uid": "zhcn:c81632e613df7866a5d353da",
+      "scope": "uid",
+      "source_text": "房间竞赛参赛中，无法移籍",
+      "source_fingerprint": "68f4df06cb13b5dd8f843f10a78c020f9ea8860c635c01ad2653d264bde6e1a6",
+      "rejected_targets": [
+        "Không thể chuyển nhượng khi đang tham gia Đua Phòng"
+      ],
+      "approved_target": "Không thể chuyển nhượng khi đang tham gia Room Match",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454",
+          "batch_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454-b0136",
+          "claim_id": "trc-gpt56sol-20260901T050100Z-b0136-8c21",
+          "merged_at": "2026-09-01T04:59:57.096535Z",
+          "reason": "房间竞赛 is the established Room Match mode identity; replace the inconsistent Đua Phòng calque while preserving the transfer prohibition."
         }
       ]
     },
@@ -168618,6 +168847,31 @@
           "claim_id": "trc-gpt56sol-20260830T130100Z-b0480",
           "merged_at": "2026-08-30T13:09:09.228082Z",
           "reason": "Generic 赛马娘 phải dùng Mã Nương; locked Cuộc đua và nghĩa còn lại đã đúng."
+        }
+      ]
+    },
+    {
+      "id": "review.regression.b6829074b769c52b",
+      "uid": "zhcn:f51a723c41f1f9c5c1405557",
+      "scope": "uid",
+      "source_text": "房间\n竞赛",
+      "source_fingerprint": "c600cc96810c4ad038eb5ccdc91f028b76b9166937741bda0d613ce8b58bf1fd",
+      "rejected_targets": [
+        "Đua\nPhòng"
+      ],
+      "approved_target": "Room\nMatch",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454",
+          "batch_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454-b0136",
+          "claim_id": "trc-gpt56sol-20260901T050100Z-b0136-8c21",
+          "merged_at": "2026-09-01T04:59:57.096535Z",
+          "reason": "This is the same established 房间竞赛 mode label. The current Đua/Phòng calque is inconsistent; the revision preserves the source newline while using Room Match."
         }
       ]
     },

@@ -2528,6 +2528,53 @@
       "last_seen_at": "2026-08-30T12:41:00Z"
     },
     {
+      "finding_id": "cf-187d58b59b5dc9be",
+      "status": "open",
+      "source_zh_cn": "德比赛马娘",
+      "match_mode": "contains",
+      "source_paths": [
+        "text_data_dict.json"
+      ],
+      "key_exact": [],
+      "json_path_prefixes": [],
+      "kinds": [
+        "context_rule"
+      ],
+      "concepts": [
+        "race.generic 比赛 matcher must not fire across the boundary between 德比 (Derby) and 赛马娘 (Mã Nương)"
+      ],
+      "suggested_targets_vi": [],
+      "confidence_levels": [
+        "high"
+      ],
+      "reasons": [
+        "The contiguous characters 比赛 are created by adjacent morphemes and do not denote the generic race noun in this phrase."
+      ],
+      "evidence_count": 1,
+      "evidence": [
+        {
+          "uid": "zhcn:9ab885a655fadef84666199e",
+          "plan_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454",
+          "batch_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454-b0410",
+          "claim_id": "trc-gpt56sol-20260901T051200Z-b0410",
+          "worker_id": "gpt56sol-20260901T044200Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "163",
+            "1035"
+          ],
+          "source_text": "我，我！我的梦想是成为德比赛马娘！\\n还有就是……啊！！名字！！！！\\n我叫胜利奖券！请多关照！",
+          "current_text": "Tôi, tôi! Ước mơ của tôi là trở thành Uma Musume Derby!\\nVới cả…… á!! Tên!!!!\\nTôi là Winning Ticket! Mong được giúp đỡ!",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T05:20:00Z"
+        }
+      ],
+      "canonical_resolution": null,
+      "review_resolution": null,
+      "first_seen_at": "2026-09-01T05:20:00Z",
+      "last_seen_at": "2026-09-01T05:20:00Z"
+    },
+    {
       "finding_id": "cf-1989537e6ec7ea67",
       "status": "open",
       "source_zh_cn": "机械齿轮",
@@ -4446,7 +4493,8 @@
       ],
       "concepts": [
         "Speed stat alias must not override locked compound skill/title 速度之星",
-        "Speed stat alias must not overmatch ordinary prose compounds such as 成长速度"
+        "Speed stat alias must not overmatch ordinary prose compounds such as 成长速度",
+        "Ordinary narrative speed/quickness must not automatically normalize to gameplay stat Speed"
       ],
       "suggested_targets_vi": [
         "Speed"
@@ -4456,9 +4504,10 @@
       ],
       "reasons": [
         "The generic stat alias is embedded inside a more-specific locked title phrase and should yield to the longer canonical match.",
-        "In 成长速度 the word means rate/speed of growth, not the gameplay Speed stat."
+        "In 成长速度 the word means rate/speed of growth, not the gameplay Speed stat.",
+        "Here Agnes Tachyon asks how fast a Mã Nương can run; it is descriptive dialogue rather than a stat label or stat-value context."
       ],
-      "evidence_count": 2,
+      "evidence_count": 3,
       "evidence": [
         {
           "uid": "zhcn:0954921267fc40c4003cf418",
@@ -4491,6 +4540,22 @@
           "current_text": "Tốc độ trưởng thành này... ánh mắt rực rỡ này...\\nAaa! Thật～～tuyệt vời!!",
           "proposed_text": null,
           "reported_at": "2026-09-01T04:23:30Z"
+        },
+        {
+          "uid": "zhcn:7f9a27606d13648ba71cd8c6",
+          "plan_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454",
+          "batch_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454-b0410",
+          "claim_id": "trc-gpt56sol-20260901T051200Z-b0410",
+          "worker_id": "gpt56sol-20260901T044200Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "163",
+            "1032"
+          ],
+          "source_text": "你对赛马娘的速度究竟能快到什么程度也不感兴趣吗。\\n但如果你对此有兴趣的话……就请成为我，\\n爱丽速子的豚鼠吧。",
+          "current_text": "Bạn không tò mò xem tốc độ của Uma Musume rốt cuộc có thể nhanh đến mức nào sao?\\nNhưng nếu có hứng thú…… thì hãy trở thành\\nchuột lang của tôi, Agnes Tachyon nhé.",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T05:20:00Z"
         }
       ],
       "canonical_resolution": {
@@ -4500,7 +4565,7 @@
       },
       "review_resolution": null,
       "first_seen_at": "2026-09-01T02:21:00Z",
-      "last_seen_at": "2026-09-01T04:23:30Z"
+      "last_seen_at": "2026-09-01T05:20:00Z"
     },
     {
       "finding_id": "cf-3c2d3f6971b1f60a",
@@ -12402,9 +12467,11 @@
         "high"
       ],
       "reasons": [
-        "This occurrence is natural dialogue about a manner of running, not a UI/category label."
+        "This occurrence is natural dialogue about a manner of running, not a UI/category label.",
+        "This occurrence means manner of running in character dialogue, not a UI/category label.",
+        "This occurrence describes how Biko Pegasus runs, not a UI/category label."
       ],
-      "evidence_count": 1,
+      "evidence_count": 3,
       "evidence": [
         {
           "uid": "zhcn:44ed72d59958bbd21524ba45",
@@ -12421,12 +12488,44 @@
           "current_text": "Hi～, mình là Maruzensky!\\nBạn cũng đến xem nhỉ? Cách chạy như đến từ chiều không gian khác của mình ấy.\\nHừm hừm♪ Nếu mê mẩn đến mất hồn…… mình không chịu trách nhiệm đâu nhé♪",
           "proposed_text": null,
           "reported_at": "2026-09-01T05:00:00Z"
+        },
+        {
+          "uid": "zhcn:ea71d7388bc13ee7d3eb7b16",
+          "plan_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454",
+          "batch_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454-b0410",
+          "claim_id": "trc-gpt56sol-20260901T051200Z-b0410",
+          "worker_id": "gpt56sol-20260901T044200Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "163",
+            "1040"
+          ],
+          "source_text": "我是黄金城市。……事先说好，如果你只是把我当成\\n一个漂亮人偶来对待的话，我是不会原谅你的。\\n不要靠外表去判断我，而是靠跑法来判断。",
+          "current_text": "Tôi là Gold City. …Nói trước nhé, nếu bạn chỉ coi tôi như\\nmột con búp bê xinh đẹp thì tôi sẽ không tha đâu.\\nĐừng đánh giá tôi qua vẻ ngoài, hãy đánh giá bằng cách tôi chạy.",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T05:20:00Z"
+        },
+        {
+          "uid": "zhcn:2782929dddd242b317f06e2d",
+          "plan_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454",
+          "batch_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454-b0411",
+          "claim_id": "trc-gpt56sol-20260901T052200Z-b0411",
+          "worker_id": "gpt56sol-20260901T044200Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "163",
+            "1054"
+          ],
+          "source_text": "正义的英雄，微光飞驹参上！\\n无论是怎样的强敌，我的跑法都能够“砰”地将其打败，\\n夺回大家的笑容！很厉害吧！",
+          "current_text": "Anh hùng chính nghĩa, Biko Pegasus xuất hiện!\\nDù đối thủ mạnh đến đâu, cách chạy của tôi cũng sẽ “BÙM” một phát đánh bại họ,\\nvà mang nụ cười trở lại cho mọi người! Tuyệt lắm đúng không!",
+          "proposed_text": null,
+          "reported_at": "2026-09-01T05:30:00Z"
         }
       ],
       "canonical_resolution": null,
       "review_resolution": null,
       "first_seen_at": "2026-09-01T05:00:00Z",
-      "last_seen_at": "2026-09-01T05:00:00Z"
+      "last_seen_at": "2026-09-01T05:30:00Z"
     },
     {
       "finding_id": "cf-b1ad218e98fca601",

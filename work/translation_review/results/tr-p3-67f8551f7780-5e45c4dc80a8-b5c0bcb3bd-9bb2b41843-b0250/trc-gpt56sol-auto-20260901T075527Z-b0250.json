@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "status": "partial",
+  "plan_id": "tr-p3-67f8551f7780-5e45c4dc80a8-b5c0bcb3bd-9bb2b41843",
+  "batch_id": "tr-p3-67f8551f7780-5e45c4dc80a8-b5c0bcb3bd-9bb2b41843-b0250",
+  "claim_id": "trc-gpt56sol-auto-20260901T075527Z-b0250",
+  "worker_id": "gpt56sol-auto-20260901T075527Z",
+  "reviewed_at": "2026-09-01T07:57:36Z",
+  "completed_count": 5,
+  "decisions": [
+    {
+      "uid": "zhcn:0081d335a775543ae1268248",
+      "current_fingerprint": "0615806fb3e1493d7d62686f839cb5470829cd6a551067783ce5e66b1a4e21c2",
+      "action": "defer",
+      "reason": "The embedded context applies two overlapping Skill-name aliases (心动 and 怦然心动) inside a longer support-effect title, making a one-off rewrite unsafe until alias scoping is clarified.",
+      "canonical_finding": {
+        "kind": "context_rule",
+        "source_zh_cn": "怦然心动",
+        "concept": "Overlapping Skill-name alias inside longer support-effect title",
+        "match_mode": "contains",
+        "scope": "auto",
+        "reason": "A reusable Skill-name alias is being matched inside a distinct longer title while another overlapping alias is also applied; canonical scoping needs to prevent overmatch.",
+        "confidence": "high"
+      },
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:d4d4651af81e8b6d463492b9",
+      "current_fingerprint": "c8f2c4b3e945e9958307ee00cb9b0b64d1b440e827d4bd8207dda02a83bfef46",
+      "action": "keep",
+      "reason": "Faithful compact rendering of the playful title; punctuation and UMA♡DOL styling are preserved.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:9e1e2baaa142b0350304760c",
+      "current_fingerprint": "3453aa1354b43d302939a7bcf70d3a5695c64603af544f9e9d54e31a94a6f22c",
+      "action": "keep",
+      "reason": "Matches the embedded reviewed support unique-effect canonical exactly and preserves the source meaning.",
+      "terminology_basis": "reviewed.support_unique_effect_name.ae1fea237e6e → Phù thủy cô nàng hoang dã, đang tu luyện.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:2d1d262c40c3c98f8724089d",
+      "current_fingerprint": "d9fb62468fd7f0758d7875710f29bec52ebf447bdcfe544d5d02ee20f1fb23a7",
+      "action": "keep",
+      "reason": "The English title is intentionally preserved and exactly matches the embedded reviewed canonical.",
+      "terminology_basis": "reviewed.support_unique_effect_name.d9fb62468fd7 → Step! Smile! Wink!",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:8db0c632e4abc8644e9a2a10",
+      "current_fingerprint": "aa9ee2d885f589c3f9b23febc65e405485a9c63fb1797f65cc393aabb3cf566a",
+      "action": "keep",
+      "reason": "Natural Vietnamese that preserves the colloquial meaning of loving to eat.",
+      "confidence": "high"
+    }
+  ]
+}

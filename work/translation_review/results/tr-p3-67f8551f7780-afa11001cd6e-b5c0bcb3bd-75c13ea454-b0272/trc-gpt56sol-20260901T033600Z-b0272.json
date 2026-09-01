@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "status": "partial",
+  "plan_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454",
+  "batch_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454-b0272",
+  "claim_id": "trc-gpt56sol-20260901T033600Z-b0272",
+  "worker_id": "gpt56sol-20260901T033600Z",
+  "reviewed_at": "2026-09-01T03:38:00Z",
+  "completed_count": 5,
+  "decisions": [
+    {
+      "uid": "zhcn:862f9238c7bbd15227a72bfa",
+      "current_fingerprint": "e340ca1642af5c83bed769527f2a19d140cd14b41f129d9e6e380542620f9fc6",
+      "action": "keep",
+      "reason": "The complete locked Skill/title identity is Ngôi sao tốc độ; the generic Speed stat rule must not rewrite a substring inside this established title.",
+      "terminology_basis": "reviewed.skill_name.07581ce49acd takes precedence for the complete source string; manual audit policy keeps Vietnamese Skill titles distinct from generic stat labels.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:a3bcb421ad486c9491b44b4d",
+      "current_fingerprint": "bd9560e686b6237600e45fe1d4a017a3ffeb37743b44103a9e344deb9401ccd4",
+      "action": "defer",
+      "reason": "Generic 赛马娘 clearly requires Mã Nương, but the title-level rendering of 三冠 is not established by the embedded context; avoid guessing the full player-facing epithet.",
+      "terminology_basis": "common.world.umamusume requires Mã Nương; remaining title identity is unresolved in this batch.",
+      "canonical_finding": {
+        "kind": "system_label",
+        "source_zh_cn": "三冠赛马娘",
+        "concept": "title/epithet for a Triple Crown Uma Musume",
+        "match_mode": "exact",
+        "scope": "auto",
+        "reason": "The full title needs one verified player-facing rendering rather than mixing Mã Nương with an unverified calque for 三冠.",
+        "confidence": "medium"
+      },
+      "confidence": "medium"
+    },
+    {
+      "uid": "zhcn:d8eeb7eefb0bdd5607fd42f4",
+      "current_fingerprint": "d9facaffeedb992b7e470c6969a75cfa7f3a63a84b8a78d23e3b8827257f56ac",
+      "action": "revise",
+      "proposed_text": "Mã Nương thường thắng",
+      "reason": "The meaning is preserved while replacing forbidden generic Uma Musume with the project world term Mã Nương.",
+      "terminology_basis": "common.world.umamusume / world.umamusume.shorthand.text130 => Mã Nương.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:37df3429ff5f55ce96816992",
+      "current_fingerprint": "acaf6e15cd291af9f6439d882d4133bfe2a95fba742d9352391ecea997b39e23",
+      "action": "revise",
+      "proposed_text": "Tổng đại tướng của Nhật Bản",
+      "reason": "Adds the required Vietnamese possessive relation for 日本的 while preserving the title meaning.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:aad9d1381e9d8e24d1d30aee",
+      "current_fingerprint": "52c4c3ccfa8ccce5504cf184ebc96450d1c96e4df0acd4b916519c03a59ea6e8",
+      "action": "revise",
+      "proposed_text": "Kẻ đào tẩu từ dị thứ nguyên",
+      "reason": "Restores the genitive relation in 异次元的逃亡者 and keeps the embedded locked title fragment Kẻ đào tẩu intact.",
+      "terminology_basis": "reviewed.skill_name.cf50c6b39b83 locks 逃亡者 as Kẻ đào tẩu.",
+      "confidence": "high"
+    }
+  ]
+}

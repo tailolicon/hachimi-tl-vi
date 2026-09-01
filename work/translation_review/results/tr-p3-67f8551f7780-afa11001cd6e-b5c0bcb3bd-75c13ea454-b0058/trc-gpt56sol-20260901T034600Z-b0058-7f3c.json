@@ -1,17 +1,15 @@
 {
-  "schema_version": 1,
-  "status": "partial",
-  "plan_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454",
-  "batch_id": "tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454-b0058",
-  "claim_id": "trc-gpt56sol-20260901T034600Z-b0058-7f3c",
-  "worker_id": "gpt56sol-20260901T033600Z-7f3c",
-  "reviewed_at": "2026-09-01T03:47:00Z",
-  "completed_count": 5,
-  "decisions": [
-    {"uid":"zhcn:f34a2f17c2b08662ad7a51bc","current_fingerprint":"a2243e26aa077630f9f5022bf34cf93c46f380c8e7bbbb904a6bbe2ee0aac807","action":"keep","reason":"Accurately renders that all rewards/items have already been obtained.","confidence":"high"},
-    {"uid":"zhcn:b00ba1f49cbd58c08e2ccba8","current_fingerprint":"a8cbad3dce1f92f7afc25f99671f75ba911ad5ba1d18f0af8bf2cbb2d641fa7a","action":"defer","reason":"印章 is a recurring named gacha-system resource/mechanic, but this batch has no canonical player-facing identity for whether it should be Stamp or another established label. Canonicalize the mechanic before resolving individual strings.","canonical_finding":{"kind":"terminology","source_zh_cn":"印章","concept":"Gacha stamp resource/mechanic","match_mode":"contains","scope":"source_path","reason":"Recurring gacha UI concept appears in Stamp, Stamp Board and Stamp Reward strings but lacks embedded canonical identity; a single canonical label should be established before review resolution.","confidence":"high"},"confidence":"medium"},
-    {"uid":"zhcn:0a9aa78e0f0d218863264fd7","current_fingerprint":"79dd98b1195e8fd1f92f7710ac5e08149a2105dbddc51d300c98596599146e8f","action":"defer","reason":"Uses the same uncatalogued 印章 gacha mechanic; defer until the canonical finding for the mechanic is resolved.","confidence":"medium"},
-    {"uid":"zhcn:f0792aa63121e25185376c53","current_fingerprint":"e39235d7a57719935fa1e09bec6217b1d59d438ca0a52511750afbaf53a3a688","action":"defer","reason":"印章板 is the board form of the same uncatalogued gacha Stamp mechanic; current wording is plausible but lacks canonical evidence.","confidence":"medium"},
-    {"uid":"zhcn:96f86debbdc980e550e40d63","current_fingerprint":"14e70a16f1f46a412be7d8517bee9a217f7eba7742b56f2090b54992fce967c2","action":"defer","reason":"印章奖励 depends on the same unresolved player-facing identity for the gacha stamp mechanic; do not lock a local label ad hoc.","confidence":"medium"}
+  "schema_version":1,"status":"partial","plan_id":"tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454","batch_id":"tr-p3-67f8551f7780-afa11001cd6e-b5c0bcb3bd-75c13ea454-b0058","claim_id":"trc-gpt56sol-20260901T034600Z-b0058-7f3c","worker_id":"gpt56sol-20260901T033600Z-7f3c","reviewed_at":"2026-09-01T03:48:00Z","completed_count":10,
+  "decisions":[
+    {"uid":"zhcn:f34a2f17c2b08662ad7a51bc","current_fingerprint":"a2243e26aa077630f9f5022bf34cf93c46f380c8e7bbbb904a6bbe2ee0aac807","action":"keep","reason":"Accurately renders that all items have been obtained.","confidence":"high"},
+    {"uid":"zhcn:b00ba1f49cbd58c08e2ccba8","current_fingerprint":"a8cbad3dce1f92f7afc25f99671f75ba911ad5ba1d18f0af8bf2cbb2d641fa7a","action":"defer","reason":"Recurring named gacha 印章 mechanic lacks canonical player-facing identity.","canonical_finding":{"kind":"terminology","source_zh_cn":"印章","concept":"Gacha stamp resource/mechanic","match_mode":"contains","scope":"source_path","reason":"Recurring gacha UI concept appears across Stamp, Stamp Board and Stamp Reward strings but lacks embedded canonical identity.","confidence":"high"},"confidence":"medium"},
+    {"uid":"zhcn:0a9aa78e0f0d218863264fd7","current_fingerprint":"79dd98b1195e8fd1f92f7710ac5e08149a2105dbddc51d300c98596599146e8f","action":"defer","reason":"Uses the same unresolved 印章 gacha mechanic.","confidence":"medium"},
+    {"uid":"zhcn:f0792aa63121e25185376c53","current_fingerprint":"e39235d7a57719935fa1e09bec6217b1d59d438ca0a52511750afbaf53a3a688","action":"defer","reason":"印章板 depends on the same unresolved gacha stamp mechanic identity.","confidence":"medium"},
+    {"uid":"zhcn:96f86debbdc980e550e40d63","current_fingerprint":"14e70a16f1f46a412be7d8517bee9a217f7eba7742b56f2090b54992fce967c2","action":"defer","reason":"印章奖励 depends on the same unresolved gacha stamp mechanic identity.","confidence":"medium"},
+    {"uid":"zhcn:beea972d0eea2a401bc257f6","current_fingerprint":"fdf57dd0daae1df6f07be8da06553d53e9396ca6be8d5f9dcf96393b775589eb","action":"keep","reason":"Preserves Pick Up guarantee, 10-draw unlock meaning and punctuation.","confidence":"high"},
+    {"uid":"zhcn:ff9bcdb4c7aeed76a7a20fb0","current_fingerprint":"7a9b86a20d6b4376f775a85d532c8cf10b364a8378737073ae715ee0744adefc","action":"defer","reason":"Contains the unresolved 印章 gacha mechanic; despite otherwise correct placeholders/tags, canonical identity must be settled first.","confidence":"medium"},
+    {"uid":"zhcn:c2210e73f3919c42f86e56ff","current_fingerprint":"c5730ce8627616e186b462fe32ee6b32535b6f44e2be9c565891580736541552","action":"keep","reason":"Accurately preserves the remaining-needed count and color placeholder.","confidence":"high"},
+    {"uid":"zhcn:5db0c848da941ab62ccfdcf0","current_fingerprint":"c8e279d9b26fc886479d64ad937baa470b8f364d220683140d418f57650353f4","action":"keep","reason":"Negation/capability and 10-draw label are preserved correctly.","confidence":"high"},
+    {"uid":"zhcn:4f27b1068f4ac4de49c8ce2f","current_fingerprint":"e0291f2d6f719d877bec349f941d716b542fccaf528997d7ac952e6d14d9b5f8","action":"defer","reason":"印章板 depends on the unresolved gacha stamp mechanic identity.","confidence":"medium"}
   ]
 }

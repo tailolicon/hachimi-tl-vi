@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "status": "partial",
+  "status": "complete",
   "plan_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047",
   "batch_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047-b0060",
   "claim_id": "trc-chatgpt-web-s1-20260901T094725Z-b0060",
   "worker_id": "chatgpt-web-slot-1-20260901T093417Z",
-  "reviewed_at": "2026-09-01T09:50:29Z",
-  "completed_count": 15,
+  "reviewed_at": "2026-09-01T09:51:27Z",
+  "completed_count": 20,
   "decisions": [
     {"uid":"zhcn:8c7e3dee4b0865aff46a4e3e","current_fingerprint":"e91b5e83f659789c59c34fc76f489711c8d2f4090dd63b76611986886a80cd09","action":"keep","reason":"Chuỗi range giữ nguyên hai placeholder và dấu phân cách; source-equal-target là cấu trúc runtime cần bảo toàn.","confidence":"high"},
     {"uid":"zhcn:c0bb63a356c42e790c6c139f","current_fingerprint":"fe6bb300c7c54d284bbec6aa3da44d3204a12d51de77e243a051966818c0648c","action":"keep","reason":"Legend Race là tên player-facing phù hợp cho 传奇比赛 và không có guard/canonical finding đối nghịch.","confidence":"high"},
@@ -22,6 +22,11 @@
     {"uid":"zhcn:c5b3a8042bc5c955ee323ddd","current_fingerprint":"64876e6ed88c51b1a655624eb56b83abfa67dc8b3e86f450cf394ada58ba988f","action":"keep","reason":"“Bám nhóm đầu / giữ vị trí dẫn đầu” truyền đạt đúng ý bám sát phía trước và cố duy trì lợi thế; cấu trúc hai dòng giữ nguyên.","confidence":"high"},
     {"uid":"zhcn:e8be879ba3c09dd36ef9206a","current_fingerprint":"a615fd47d85af0ed5b2df856acb10b6b3ad8e8d58283940efb135f73aa1f561f","action":"revise","proposed_text":"Dẫn đầu ngay từ lúc xuất phát\nduy trì lối chạy Front Runner đến cuối","reason":"Source mô tả dẫn đầu từ xuất phát và giữ lối chạy 领放 đến cuối; packet yêu cầu community term Front Runner thay vì diễn giải thuần Việt.","terminology_basis":"common.style.front_runner => Front Runner","confidence":"high"},
     {"uid":"zhcn:88a89b28d66491f5dce5f63e","current_fingerprint":"a09be72b86b1ec54239583c1392d19ae7be58773241372d64c8b70b063689d42","action":"revise","proposed_text":"Để Mã Nương tự chọn chiến thuật","reason":"Generic 赛马娘 phải dùng world/species term Mã Nương; current “Uma” không nằm trong accepted term.","terminology_basis":"common.world.umamusume => Mã Nương","confidence":"high"},
-    {"uid":"zhcn:946bb9c9d70c4b93adc05a9f","current_fingerprint":"b686d004b2b9fe57e2938a6326cf5aad9b8c3996536cd235538c67bb471b020b","action":"keep","reason":"Thông báo giữ đúng ý chúc mừng chiến thắng và cho phép thử lại các Cuộc đua trong Cốt truyện chính; newline được bảo toàn và locked race term đã hiện diện.","terminology_basis":"race.generic => Cuộc đua","confidence":"high"}
+    {"uid":"zhcn:946bb9c9d70c4b93adc05a9f","current_fingerprint":"b686d004b2b9fe57e2938a6326cf5aad9b8c3996536cd235538c67bb471b020b","action":"keep","reason":"Thông báo giữ đúng ý chúc mừng chiến thắng và cho phép thử lại các Cuộc đua trong Cốt truyện chính; newline được bảo toàn và locked race term đã hiện diện.","terminology_basis":"race.generic => Cuộc đua","confidence":"high"},
+    {"uid":"zhcn:425145bb548a27a4b58552d1","current_fingerprint":"7f98c9f77aeb89a6ece50cc55e94bfc1c36c14532ca3c0481b9b94e3623a8c8a","action":"revise","proposed_text":"Tiếc là chưa thể giành chức vô địch. Nhưng bạn có thể tham gia lại\nvà thử thách bằng Mã Nương Điện Danh Vọng khác.","reason":"Current text dùng forbidden “Uma Musume” cho generic 赛马娘 và cụm 殿堂赛马娘 đã có wording được review trong repo là Mã Nương Điện Danh Vọng. Bản sửa giữ nguyên newline và ý thử lại bằng nhân vật khác.","terminology_basis":"common.world.umamusume => Mã Nương; reviewed repository usage: 殿堂赛马娘 => Mã Nương Điện Danh Vọng","confidence":"high"},
+    {"uid":"zhcn:5fc86f2ac49f30da523b6da4","current_fingerprint":"da221c81c41c82309d9cb418de76bd406eafae5604677a465d86a161da471ecc","action":"revise","proposed_text":"Long","reason":"长距离 là distance class; current “Đường dài” không dùng community term bắt buộc.","terminology_basis":"common.distance.long => Long","confidence":"high"},
+    {"uid":"zhcn:30216eb44d262a6921fc1f26","current_fingerprint":"ce5e274e58254758ee5c5815ff6f6b3ecd4f5e3747ae82b76d1048c037ddbeb5","action":"revise","proposed_text":"Medium","reason":"中距离 là distance class; current “Đường trung” không dùng community term bắt buộc.","terminology_basis":"common.distance.medium => Medium","confidence":"high"},
+    {"uid":"zhcn:dad06ce23785802cc1b53b5d","current_fingerprint":"ff8f6038d02ae6950e58df6b452649f4edfc425d334bdd3cb0a066ace4ec9e73","action":"revise","proposed_text":"Sprint","reason":"短距离 là distance class; current “Đường ngắn” không dùng community term bắt buộc.","terminology_basis":"common.distance.sprint => Sprint","confidence":"high"},
+    {"uid":"zhcn:dc453eefdbe0950ca721c3af","current_fingerprint":"b8ebe48f7d0677e4b72701fb9f1d11d9ce4e2d70ee83ae547cf8666352b5404e","action":"keep","reason":"“Chiến thuật” là nhãn tự nhiên và đúng nghĩa 作战 trong ngữ cảnh race tactics.","confidence":"high"}
   ]
 }

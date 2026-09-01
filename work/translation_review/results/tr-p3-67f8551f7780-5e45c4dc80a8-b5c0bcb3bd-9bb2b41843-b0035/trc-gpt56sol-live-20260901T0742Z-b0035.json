@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "status": "partial",
+  "status": "complete",
   "plan_id": "tr-p3-67f8551f7780-5e45c4dc80a8-b5c0bcb3bd-9bb2b41843",
   "batch_id": "tr-p3-67f8551f7780-5e45c4dc80a8-b5c0bcb3bd-9bb2b41843-b0035",
   "claim_id": "trc-gpt56sol-live-20260901T0742Z-b0035",
   "worker_id": "gpt56sol-live-20260901T0742Z",
-  "reviewed_at": "2026-09-01T07:45:00Z",
-  "completed_count": 15,
+  "reviewed_at": "2026-09-01T07:46:00Z",
+  "completed_count": 20,
   "decisions": [
     {"uid":"zhcn:493a23c2665704e5437e435d","current_fingerprint":"d6701b67802e11a194b93615a8dd5791c709e58a886ebbe82e5f9e9524edc595","action":"keep","reason":"SILVER1 attainment message preserves the rank token and meaning naturally.","confidence":"high"},
     {"uid":"zhcn:71d392c1021f4d7c20d2e5a4","current_fingerprint":"df025d2cf29874a4d7b466f22c25641b11a32958b3f5d20c331838873afbbe40","action":"revise","proposed_text":"Khi đạt SILVER1, League Score sẽ dừng ở <color=#ff911c>{0}pt</color>,\nvà <color=#ff911c>Hero Gauge sẽ đạt MAX</color>.","reason":"The current text calques two established League of Heroes UI labels; placeholders, tags, numeric token and newline are otherwise preserved.","terminology_basis":"event.loh.league_score requires League Score and event.loh.hero_gauge requires Hero Gauge.","confidence":"high"},
@@ -22,6 +22,11 @@
     {"uid":"zhcn:d7e72d97a2037ceca88ac9e5","current_fingerprint":"7107b128a7152cad71db5e12e8635da980755107fa04018913083644d6263858","action":"keep","reason":"The settlement-in-progress state is semantically correct and natural.","confidence":"high"},
     {"uid":"zhcn:d24e98f6a7b830c457cb50e1","current_fingerprint":"1e29be4021afbbb574df9ccb8e8f6eb879118705aede529dc3561b750b4c901f","action":"keep","reason":"Both rank placeholders and the inclusive displayed range are preserved correctly.","confidence":"high"},
     {"uid":"zhcn:3b79b08f54b618fc0ebcde9e","current_fingerprint":"609d4776b23b05b5e26014df42cfd6d8b6b4e45dc199f5b3e47dbfb1718231b5","action":"defer","reason":"An open canonical finding already blocks the reusable League of Heroes Main Stage alias 主赛段; this item must wait for canonical resolution.","confidence":"high"},
-    {"uid":"zhcn:3845f3bc9d001c8d4eb43668","current_fingerprint":"527daffeb209555f0abb111418c1ff6dbf42d57119f01ef2c0beeec4391c6d79","action":"defer","reason":"An open canonical finding already blocks the reusable League of Heroes Main Stage alias 主赛段; this item must wait for canonical resolution.","confidence":"high"}
+    {"uid":"zhcn:3845f3bc9d001c8d4eb43668","current_fingerprint":"527daffeb209555f0abb111418c1ff6dbf42d57119f01ef2c0beeec4391c6d79","action":"defer","reason":"An open canonical finding already blocks the reusable League of Heroes Main Stage alias 主赛段; this item must wait for canonical resolution.","confidence":"high"},
+    {"uid":"zhcn:bd17082bf5f0e1b9b5085133","current_fingerprint":"6ee28e43385e47db8c4c78894d22812617801d3ca7f3a0e4cd25e3e58bcb76ee","action":"defer","reason":"联赛分数 is clearly a reusable League of Heroes score label, but this source alias is not covered by the embedded League Score rule; canonical context should be extended before resolving this item.","canonical_finding":{"kind":"terminology","source_zh_cn":"联赛分数","suggested_target_vi":"League Score","concept":"League of Heroes League Score alias","match_mode":"contains","scope":"source_path","reason":"The existing canonical League Score rule covers 联赛得分, while this recurring source alias 联赛分数 denotes the same player-facing score concept and should be canonicalized consistently.","confidence":"high"},"confidence":"high"},
+    {"uid":"zhcn:242c2e46d574fe82e494c5cd","current_fingerprint":"ff2038e5a89a96934a327eba9f447f9b41bdc3dbfb8588c3cdc8d25b2c0c3fd8","action":"keep","reason":"This is a runtime placeholder plus unit token; source-equal target is correct and structure is exact.","confidence":"high"},
+    {"uid":"zhcn:820fae330adbdde37a6e3e37","current_fingerprint":"faabf7ee58edf2b9b0d477e8a66ba79e09b3731e03e375c7137a42a7511473bc","action":"keep","reason":"Reward-score threshold label is semantically correct and natural.","confidence":"high"},
+    {"uid":"zhcn:005a4ade103e25a34514d7cc","current_fingerprint":"e75b11da693d7bb5273985dcf9f02729455da7e7c80e54a0615e00ec2ae76d8e","action":"keep","reason":"The unit token pt should remain unchanged.","confidence":"high"},
+    {"uid":"zhcn:a5cd71da92b20fcfb8c0b9a6","current_fingerprint":"51ad317b4325188f8f06b8090b85004fe5f1aa34857f8511c2fbaab1b60729d6","action":"keep","reason":"My-rank label is concise, natural, and semantically correct.","confidence":"high"}
   ]
 }

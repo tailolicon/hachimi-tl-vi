@@ -9,13 +9,13 @@
     "growth": "Every accepted retrospective translation revise and accepted UI revise is folded into this file automatically by both review merge workflows."
   },
   "summary": {
-    "merged_markers_scanned": 1839,
-    "translation_merged_markers_scanned": 1739,
+    "merged_markers_scanned": 1844,
+    "translation_merged_markers_scanned": 1744,
     "ui_merged_markers_scanned": 100,
-    "accepted_revision_events": 7488,
-    "accepted_translation_revision_events": 5999,
+    "accepted_revision_events": 7493,
+    "accepted_translation_revision_events": 6004,
     "accepted_ui_revision_events": 1489,
-    "regression_identity_count": 5959,
+    "regression_identity_count": 5960,
     "skipped_incomplete_markers": 0,
     "translation_skipped_incomplete_markers": 0,
     "ui_skipped_incomplete_markers": 0
@@ -3641,10 +3641,11 @@
       "source_text": "活动详情",
       "source_fingerprint": "68d94dc5b649967a77d8c93306b558d1dac6d9e5369a6a6646080c8f17152220",
       "rejected_targets": [
-        "Chi tiết sự kiện"
+        "Chi tiết"
       ],
-      "approved_target": "Chi tiết",
+      "approved_target": "Chi tiết sự kiện",
       "origins": [
+        "translation_review",
         "ui_review"
       ],
       "ui_contexts": [
@@ -3666,6 +3667,14 @@
           "reason": "Inside the event screen, 'sự kiện' is redundant context; the compact navigation label preserves the intended details destination.",
           "ui_key": "Home511001",
           "control_type": "tab"
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-5e45c4dc80a8-b5c0bcb3bd-9bb2b41843",
+          "batch_id": "tr-p3-67f8551f7780-5e45c4dc80a8-b5c0bcb3bd-9bb2b41843-b0037",
+          "claim_id": "trc-gpt56sol-live-20260901T0752Z-b0037",
+          "merged_at": "2026-09-01T07:55:35.864367Z",
+          "reason": "The current text drops 活动 (sự kiện), making the label less specific than the source."
         }
       ]
     },
@@ -21393,10 +21402,12 @@
       "source_text": "达成状况",
       "source_fingerprint": "a54a6931fe4b00ffc07898a11b973c2c27925372c715857d44e41c19c522cf9f",
       "rejected_targets": [
+        "Trạng thái",
         "Tình trạng hoàn thành"
       ],
-      "approved_target": "Trạng thái",
+      "approved_target": "Trạng thái hoàn thành",
       "origins": [
+        "translation_review",
         "ui_review"
       ],
       "ui_contexts": [
@@ -21418,6 +21429,14 @@
           "reason": "Within the Honor/achievement screen, the completion object is already evident; the compact header keeps the status meaning without redundant context.",
           "ui_key": "Honor0004",
           "control_type": "header"
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-5e45c4dc80a8-b5c0bcb3bd-9bb2b41843",
+          "batch_id": "tr-p3-67f8551f7780-5e45c4dc80a8-b5c0bcb3bd-9bb2b41843-b0037",
+          "claim_id": "trc-gpt56sol-live-20260901T0752Z-b0037",
+          "merged_at": "2026-09-01T07:55:35.864367Z",
+          "reason": "达成状况 specifically describes achievement/completion status; generic Trạng thái loses that key meaning."
         }
       ]
     },
@@ -94106,9 +94125,10 @@
       "source_text": "获得了可作为继承赛马娘的殿堂赛马娘",
       "source_fingerprint": "16a68dc3087a74dece0ca096c26df83074dc9e26793b6bfc7b4a8823f5570ba3",
       "rejected_targets": [
+        "Đã nhận Mã Nương Đại sảnh Danh vọng có thể dùng làm Mã Nương kế thừa",
         "Đã nhận Uma Musume Đại sảnh Danh vọng có thể dùng làm Uma Musume kế thừa"
       ],
-      "approved_target": "Đã nhận Mã Nương Đại sảnh Danh vọng có thể dùng làm Mã Nương kế thừa",
+      "approved_target": "Đã nhận Mã Nương Điện Danh Vọng có thể dùng làm Mã Nương kế thừa",
       "origins": [
         "translation_review"
       ],
@@ -94121,6 +94141,14 @@
           "claim_id": "trc-gpt56sol-auto10-run10-20260831T132210Z-b0075",
           "merged_at": "2026-08-31T13:32:29.438324Z",
           "reason": "Bản hiện tại dùng forbidden target Uma Musume hai lần cho generic 赛马娘; ngữ nghĩa còn lại đúng."
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-5e45c4dc80a8-b5c0bcb3bd-9bb2b41843",
+          "batch_id": "tr-p3-67f8551f7780-5e45c4dc80a8-b5c0bcb3bd-9bb2b41843-b0036",
+          "claim_id": "trc-gpt56sol-live-20260901T0747Z-b0036",
+          "merged_at": "2026-09-01T07:55:35.858957Z",
+          "reason": "The current Đại sảnh Danh vọng phrase is unnatural Vietnamese for 殿堂 in this character-system context; Điện Danh Vọng is a natural compact rendering while preserving the inheritance meaning."
         }
       ]
     },
@@ -131013,6 +131041,31 @@
       ]
     },
     {
+      "id": "review.regression.c6e10e18ffd0c9b9",
+      "uid": "zhcn:bc1c01f0a797ff8b96aaed3c",
+      "scope": "uid",
+      "source_text": "限定商品发售即将结束！",
+      "source_fingerprint": "47d89dfb4b7766bc6dd871efc6d54cbe22fddb5d23704910720a00e90cfc95c8",
+      "rejected_targets": [
+        "Sắp kết thúc bán sản phẩm giới hạn!"
+      ],
+      "approved_target": "Sản phẩm giới hạn sắp ngừng bán!",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-5e45c4dc80a8-b5c0bcb3bd-9bb2b41843",
+          "batch_id": "tr-p3-67f8551f7780-5e45c4dc80a8-b5c0bcb3bd-9bb2b41843-b0037",
+          "claim_id": "trc-gpt56sol-live-20260901T0752Z-b0037",
+          "merged_at": "2026-09-01T07:55:35.864367Z",
+          "reason": "The current Vietnamese is awkward; this revision preserves the imminent end-of-sale meaning more naturally."
+        }
+      ]
+    },
+    {
       "id": "review.regression.bc9f550ff0044764",
       "uid": "zhcn:bc1d5043b126ea0b62b80608",
       "scope": "uid",
@@ -144513,9 +144566,10 @@
       "source_text": "给予殿堂赛马娘",
       "source_fingerprint": "3e2a0d60ba50253967bf3bf7ade41f91477003fa475a178e60fc774801b6d346",
       "rejected_targets": [
+        "Tặng cho Mã Nương Đại sảnh Danh vọng",
         "Tặng cho Uma Musume Đại sảnh Danh vọng"
       ],
-      "approved_target": "Tặng cho Mã Nương Đại sảnh Danh vọng",
+      "approved_target": "Tặng cho Mã Nương Điện Danh Vọng",
       "origins": [
         "translation_review"
       ],
@@ -144528,6 +144582,14 @@
           "claim_id": "trc-gpt56sol-auto10-run10-20260831T132210Z-b0075",
           "merged_at": "2026-08-31T13:32:29.438324Z",
           "reason": "Bản hiện tại dùng forbidden target Uma Musume cho generic 赛马娘; phần còn lại truyền đạt đúng."
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-5e45c4dc80a8-b5c0bcb3bd-9bb2b41843",
+          "batch_id": "tr-p3-67f8551f7780-5e45c4dc80a8-b5c0bcb3bd-9bb2b41843-b0036",
+          "claim_id": "trc-gpt56sol-live-20260901T0747Z-b0036",
+          "merged_at": "2026-09-01T07:55:35.858957Z",
+          "reason": "Đại sảnh Danh vọng is awkward as a modifier; Điện Danh Vọng yields a natural compact label without changing meaning."
         }
       ]
     },

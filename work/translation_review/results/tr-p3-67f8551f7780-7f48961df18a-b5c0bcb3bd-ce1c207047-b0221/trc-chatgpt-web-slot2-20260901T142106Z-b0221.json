@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "status": "partial",
+  "plan_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047",
+  "batch_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047-b0221",
+  "claim_id": "trc-chatgpt-web-slot2-20260901T142106Z-b0221",
+  "worker_id": "chatgpt-web-slot2-20260901T141448Z",
+  "reviewed_at": "2026-09-01T14:22:13Z",
+  "completed_count": 5,
+  "decisions": [
+    {
+      "uid": "zhcn:0cc9bcfa5fb8587e628b4c2e",
+      "current_fingerprint": "cc66b18c046e54e66e31e8e92196dccd58adeee20e119a3a9b005b74f32521a7",
+      "action": "keep",
+      "reason": "The current Vietnamese date correctly represents April 15; the apparent numeric-token order change is the normal Vietnamese day-month format and preserves both values.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:8f98cbe3ae27c278226b70fd",
+      "current_fingerprint": "739cdb17b523db48b455dea2eed784540c266a95548764872ad3066e49c96bac",
+      "action": "keep",
+      "reason": "The current Vietnamese date correctly represents May 8; both numeric values are preserved in normal Vietnamese day-month order.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:7f1eb1d9f20c50ae94a63b4f",
+      "current_fingerprint": "bf2a2211c709c78b89276ac1ad4d4c7b2052c435cb76129f8bfad734747ab8ff",
+      "action": "defer",
+      "reason": "This is a named song title with an open proper-name canonical finding requiring verified Latin/Romanized identity; leaving CJK in the target cannot be approved while the finding remains open.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:92917939e5ecf037eec41fab",
+      "current_fingerprint": "1087da1706a279436150a747edf7f4f8ad85baa6e35038995c7c05b7c5d370bd",
+      "action": "defer",
+      "reason": "The specific song canonical requires Nigekiri! Fallin' Love, but the generic running-style alias 逃げ is also being required inside this proper title. Resolving the title without first fixing that context overmatch would make the item fail one of the embedded canonical guards.",
+      "canonical_finding": {
+        "kind": "context_rule",
+        "source_zh_cn": "逃げ",
+        "concept": "Generic Front Runner alias must not fire inside the proper song title 逃げ切りっ！Fallin' Love",
+        "match_mode": "contains",
+        "scope": "auto",
+        "reason": "A generic running-style term is overmatching inside a named song title; proper-name context must take precedence rather than forcing Front Runner into the title.",
+        "confidence": "high"
+      },
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:0627a7058ad3b19b57416f62",
+      "current_fingerprint": "3ce1de28f06bc2275ffcf75396cb74c68e314e88672c7b06f54dcc0c2d232609",
+      "action": "defer",
+      "reason": "This named song title is blocked by an open proper-name canonical finding requiring verified Latin/Romanized identity rather than a semantic Vietnamese title.",
+      "confidence": "high"
+    }
+  ]
+}

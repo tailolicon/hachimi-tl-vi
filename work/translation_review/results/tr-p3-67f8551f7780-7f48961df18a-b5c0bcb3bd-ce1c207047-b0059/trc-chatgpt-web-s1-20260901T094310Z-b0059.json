@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "status": "partial",
+  "status": "complete",
   "plan_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047",
   "batch_id": "tr-p3-67f8551f7780-7f48961df18a-b5c0bcb3bd-ce1c207047-b0059",
   "claim_id": "trc-chatgpt-web-s1-20260901T094310Z-b0059",
   "worker_id": "chatgpt-web-slot-1-20260901T093417Z",
-  "reviewed_at": "2026-09-01T09:45:26Z",
-  "completed_count": 15,
+  "reviewed_at": "2026-09-01T09:46:06Z",
+  "completed_count": 20,
   "decisions": [
     {"uid":"zhcn:c3641ed7680f33c698acbfb9","current_fingerprint":"2143464b6a34997180e00368b7c4d418e7182b9e62c68dbe86c5de33ec85f7fe","action":"keep","reason":"“Phần thưởng chính” truyền đạt đúng 主要报酬; cảnh báo độ dài thuộc UI review và không làm sai nghĩa.","confidence":"high"},
     {"uid":"zhcn:8d1cc0207a6cf04c2c8ccbdf","current_fingerprint":"4e91f82b4860d54f79581995dcc7dadc5439836a47fdabd9d6b58034ef692a46","action":"keep","reason":"“Phần thưởng hạng 1 lần đầu” giữ đúng nghĩa phần thưởng cho lần đầu đạt hạng 1 và vẫn bảo toàn giá trị số 1; không có thuật ngữ canonical đối nghịch.","confidence":"high"},
@@ -22,6 +22,11 @@
     {"uid":"zhcn:a6d3afd9e15dfabc9c5990d4","current_fingerprint":"14a576823e211cf54779365082c382bf900b1cef6d59031ce4cbe1c090538e41","action":"keep","reason":"EXTREME là difficulty label/định danh hiển thị, giữ nguyên là đúng.","confidence":"high"},
     {"uid":"zhcn:dc915ca5c8b9e6304238d0dc","current_fingerprint":"de6b8ddf3fd8ec457a1a48699dbfcfaa1490e92dfa5210969c78ab425ad14dee","action":"keep","reason":"VERY HARD là difficulty label, source-equal-target là hợp lệ.","confidence":"high"},
     {"uid":"zhcn:c0a39c5f40f311fefea41157","current_fingerprint":"6188c8a94362e7ee96bcb25dd088fa0247f1c28a5ceab1a0a5b27a2bf460c2c5","action":"keep","reason":"Chuỗi định dạng giữ nguyên toàn bộ placeholder {0}/{1}/{2}, đơn vị m và cấu trúc ngoặc; không cần dịch phần runtime.","confidence":"high"},
-    {"uid":"zhcn:ac8cc9a86d392c2bfddda3e6","current_fingerprint":"7cc94f754f09c78b7a5eaca0e55b987b3d408f62d88db289a2e313dd2ad1f6d3","action":"keep","reason":"Chuỗi runtime giữ nguyên chính xác sáu placeholder, đơn vị m, ngoặc và dấu phân cách; đây là cấu trúc cần bảo toàn.","confidence":"high"}
+    {"uid":"zhcn:ac8cc9a86d392c2bfddda3e6","current_fingerprint":"7cc94f754f09c78b7a5eaca0e55b987b3d408f62d88db289a2e313dd2ad1f6d3","action":"keep","reason":"Chuỗi runtime giữ nguyên chính xác sáu placeholder, đơn vị m, ngoặc và dấu phân cách; đây là cấu trúc cần bảo toàn.","confidence":"high"},
+    {"uid":"zhcn:ab94b295e7e22ac15d107f2f","current_fingerprint":"8b87729c61c9982399c6285329c0d99d66e912b3c1e99e4abe1f3207b1208ac0","action":"keep","reason":"“Mua {0}” giữ đúng placeholder và hành động 购入, tự nhiên trong UI.","confidence":"high"},
+    {"uid":"zhcn:f795aa5133efa78bd7a20e35","current_fingerprint":"7d0ea31a26f67e4e33fcec9c745466cc23cef4517e1fdbf6f22d867c60631a13","action":"revise","proposed_text":"Dùng {0} Jewel\nđể mua {1} chứ?","reason":"Current text dùng “Ngọc” cho 宝石, vi phạm locked currency term. Bản sửa giữ nguyên hai placeholder và newline.","terminology_basis":"currency.jewel => Jewel","confidence":"high"},
+    {"uid":"zhcn:b1ad7e4dfcd89f1f45535142","current_fingerprint":"dbab6ebc18183f4c2e69aca13c63729a00371c28a45dcafc1953592ecd7d0084","action":"revise","proposed_text":"<color=#ff911c>Không đủ Jewel</color>","reason":"Current text dùng “Ngọc” thay vì locked currency term Jewel; bản sửa bảo toàn thẻ màu.","terminology_basis":"currency.jewel => Jewel","confidence":"high"},
+    {"uid":"zhcn:baa6a0c3b9cacf60e4bb4e66","current_fingerprint":"819eaf8474f4f9e487dd181b4b2a4fbdc8410199bc549eaed2daaedfb1322572","action":"keep","reason":"Giữ đúng placeholder {0}, hai newline và ý hỏi mua vé vào cửa khi thiếu tài nguyên; cảnh báo độ dài thuộc UI review.","confidence":"high"},
+    {"uid":"zhcn:aca3bf6cbad01effd3e24fc1","current_fingerprint":"9c486dd01af605b6cfec5933cdb1b12bbda5fe9af2569ea8bae2ff565989934b","action":"keep","reason":"“Đã mua {0}” giữ đúng trạng thái hoàn tất và placeholder của 已购买{0}.","confidence":"high"}
   ]
 }

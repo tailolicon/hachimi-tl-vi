@@ -16,29 +16,90 @@ on:
       - "pyproject.toml"
       - ".github/workflows/release.yml"
   workflow_dispatch:
+  # Translation/review integration commits are created with GITHUB_TOKEN.
+  # GitHub deliberately does not start a second push-triggered workflow from
+  # those commits, so listen to the successful producer workflows explicitly.
+  workflow_run:
+    workflows:
+      - "Merge translation review results"
+      - "Aggregate parallel translation results"
+      - "Merge UI review results"
+      - "Merge parallel translation results"
+    types: [completed]
 
 permissions:
   contents: write
 
+concurrency:
+  group: publish-hachimi-release
+  cancel-in-progress: true
+
 jobs:
   release:
+    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
+          ref: main
           fetch-depth: 0
+
+      - name: Decide whether workflow-generated changes need publishing
+        id: release_gate
+        shell: bash
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          PRODUCER_HEAD_SHA: ${{ github.event.workflow_run.head_sha }}
+        run: |
+          set -euo pipefail
+          if [[ "$EVENT_NAME" != "workflow_run" ]]; then
+            echo "publish=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          git fetch origin main
+          if [[ -z "${PRODUCER_HEAD_SHA:-}" ]]; then
+            echo "publish=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          if ! git cat-file -e "${PRODUCER_HEAD_SHA}^{commit}" 2>/dev/null; then
+            git fetch origin "$PRODUCER_HEAD_SHA" || true
+          fi
+
+          if git diff --quiet "$PRODUCER_HEAD_SHA" origin/main -- \
+            localized_data \
+            index_base.json \
+            meta.json \
+            glossary/ui_overrides.json \
+            glossary/ui_short_forms.json \
+            src/hachimi_tl_vi/indexer.py \
+            src/hachimi_tl_vi/blake3_fallback.py \
+            src/hachimi_tl_vi/ui_policy.py \
+            scripts/apply_ui_overrides.py \
+            pyproject.toml; then
+            echo "publish=false" >> "$GITHUB_OUTPUT"
+            echo "Producer completed without release-sensitive changes; skipping publish."
+          else
+            echo "publish=true" >> "$GITHUB_OUTPUT"
+          fi
+
       - uses: actions/setup-python@v5
+        if: steps.release_gate.outputs.publish == 'true'
         with:
           python-version: "3.11"
-      - run: python -m pip install -e ".[dev]"
-      - run: pytest -q
+      - if: steps.release_gate.outputs.publish == 'true'
+        run: python -m pip install -e ".[dev]"
+      - if: steps.release_gate.outputs.publish == 'true'
+        run: pytest -q
 
       - name: Apply reviewed compact UI overrides
+        if: steps.release_gate.outputs.publish == 'true'
         run: python scripts/apply_ui_overrides.py --repo-root .
 
       # Hachimi loads replacement fonts from a platform-specific Unity AssetBundle.
       # Pin the known-working Vietnamese community bundles so releases are reproducible.
       - name: Fetch Vietnamese game font bundles
+        if: steps.release_gate.outputs.publish == 'true'
         shell: bash
         run: |
           set -euo pipefail
@@ -51,9 +112,12 @@ jobs:
           test -s localized_data/includes_android
           test -s localized_data/includes_win
 
-      - run: tlvi --db /tmp/tlvi.db validate
-      - run: tlvi --db /tmp/tlvi.db index
+      - if: steps.release_gate.outputs.publish == 'true'
+        run: tlvi --db /tmp/tlvi.db validate
+      - if: steps.release_gate.outputs.publish == 'true'
+        run: tlvi --db /tmp/tlvi.db index
       - name: Build release branch
+        if: steps.release_gate.outputs.publish == 'true'
         shell: bash
         run: |
           set -euo pipefail

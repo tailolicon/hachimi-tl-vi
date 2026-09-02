@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "status": "partial",
+  "plan_id": "tr-p3-67f8551f7780-1c57e0cc9bcf-b5c0bcb3bd-ce1c207047",
+  "batch_id": "tr-p3-67f8551f7780-1c57e0cc9bcf-b5c0bcb3bd-ce1c207047-b0094",
+  "claim_id": "trc-chatgpt-sol-20260902t195844z-b0094",
+  "worker_id": "chatgpt-sol-automation-20260902t195844z",
+  "reviewed_at": "2026-09-02T20:00:21Z",
+  "completed_count": 5,
+  "decisions": [
+    {
+      "uid": "zhcn:59f4b90d4fbff487a13d3b1a",
+      "current_fingerprint": "09cb0133ca8942e5aae69115f3a9cfa35ad79a3b6ac3f0d79205237127b1ff93",
+      "action": "keep",
+      "reason": "Full character name resolves to Mejiro Bright; the embedded character lock is satisfied and the shorter 光明 Skill alias must not overmatch inside the proper name.",
+      "terminology_basis": "Embedded character.mejiro_bright lock takes precedence for the full source name 目白光明; reviewed Skill alias 光明 is not applicable inside this character identity.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:ce95a70a2d854a1337af635d",
+      "current_fingerprint": "6ca7b1837950ce71a93a3449b70b6c8ad736e9fe904ae6564f3ce61562b15000",
+      "action": "defer",
+      "reason": "The current proper name matches Daiichi Ruby, but an open blocking canonical context-rule finding for 宝石 overmatching applies to this item, so the review must remain unresolved until canonical maintenance clears it.",
+      "terminology_basis": "Embedded character.daiichi_ruby lock matches the full proper name, but canonical finding cf-d1bcaa0ab582cbdf is open and blocking.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:c17c25ff6f6f473ba91423c6",
+      "current_fingerprint": "f9a86e53c2d5c91eeee4eea9ef30e826b691e9ce7f2b63b571a5257a80b300b3",
+      "action": "keep",
+      "reason": "Rhein Kraft is the full character identity; the generic Power alias 力量 must not overmatch inside 莱茵力量.",
+      "terminology_basis": "Embedded character.rhein_kraft lock is satisfied; stat.power is explicitly absent because this is a proper name rather than a stat label.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:dab4f6cf74dfe5d9499c16e4",
+      "current_fingerprint": "9167c372ed73f316db821944fefc2dab57f9d59d3ece0455d65d564145df7a75",
+      "action": "keep",
+      "reason": "Category 172 inheritance description correctly uses Spark and the player-facing Power/Guts stat labels.",
+      "terminology_basis": "Embedded community terms require Power, Guts, and Spark for this category-172 inheritance description; all are present and no forbidden calques appear.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:79f24a3d683f649198330d7b",
+      "current_fingerprint": "9167c372ed73f316db821944fefc2dab57f9d59d3ece0455d65d564145df7a75",
+      "action": "keep",
+      "reason": "Category 172 inheritance description correctly uses Spark and the player-facing Power/Guts stat labels.",
+      "terminology_basis": "Embedded community terms require Power, Guts, and Spark for this category-172 inheritance description; all are present and no forbidden calques appear.",
+      "confidence": "high"
+    }
+  ]
+}

@@ -1,65 +1,13 @@
 {
-  "schema_version": 1,
-  "status": "partial",
-  "plan_id": "tr-p3-67f8551f7780-1c57e0cc9bcf-b5c0bcb3bd-ce1c207047",
-  "batch_id": "tr-p3-67f8551f7780-1c57e0cc9bcf-b5c0bcb3bd-ce1c207047-b0094",
-  "claim_id": "trc-gpt56sol-hourly-20260902T180000Z-b0094",
-  "worker_id": "gpt56sol-hourly-20260902T174827Z-turn11",
-  "reviewed_at": "2026-09-02T18:02:00Z",
-  "completed_count": 5,
-  "decisions": [
-    {
-      "uid": "zhcn:59f4b90d4fbff487a13d3b1a",
-      "current_fingerprint": "09cb0133ca8942e5aae69115f3a9cfa35ad79a3b6ac3f0d79205237127b1ff93",
-      "action": "defer",
-      "reason": "Mejiro Bright is the correct character name, but embedded matching still treats the 光明 substring as a Skill-title requirement; canonical context must exclude the substring inside 目白光明.",
-      "canonical_finding": {
-        "kind": "context_rule",
-        "source_zh_cn": "光明",
-        "match_mode": "contains",
-        "scope": "source_path",
-        "reason": "Skill-title alias 光明 must not match inside the proper character name 目白光明 (Mejiro Bright).",
-        "confidence": "high"
-      },
-      "confidence": "high"
-    },
-    {
-      "uid": "zhcn:ce95a70a2d854a1337af635d",
-      "current_fingerprint": "6ca7b1837950ce71a93a3449b70b6c8ad736e9fe904ae6564f3ce61562b15000",
-      "action": "defer",
-      "reason": "Open canonical finding cf-d1bcaa0ab582cbdf blocks Jewel/宝石 matching inside the Daiichi Ruby proper name until the context rule is resolved.",
-      "confidence": "high"
-    },
-    {
-      "uid": "zhcn:c17c25ff6f6f473ba91423c6",
-      "current_fingerprint": "f9a86e53c2d5c91eeee4eea9ef30e826b691e9ce7f2b63b571a5257a80b300b3",
-      "action": "defer",
-      "reason": "Rhein Kraft is the correct character name, but embedded matching still treats the 力量 substring as the Power stat; canonical context must exclude it inside 莱茵力量.",
-      "canonical_finding": {
-        "kind": "context_rule",
-        "source_zh_cn": "力量",
-        "match_mode": "contains",
-        "scope": "source_path",
-        "reason": "Power-stat alias 力量 must not match inside the proper character name 莱茵力量 (Rhein Kraft).",
-        "confidence": "high"
-      },
-      "confidence": "high"
-    },
-    {
-      "uid": "zhcn:dab4f6cf74dfe5d9499c16e4",
-      "current_fingerprint": "9167c372ed73f316db821944fefc2dab57f9d59d3ece0455d65d564145df7a75",
-      "action": "keep",
-      "reason": "Category 172 inheritance description correctly expresses the Spark mechanic and the Power/Guts stat increase.",
-      "terminology_basis": "Embedded common.spark.inheritance_description, common.stat.power, and common.stat.guts are all satisfied.",
-      "confidence": "high"
-    },
-    {
-      "uid": "zhcn:79f24a3d683f649198330d7b",
-      "current_fingerprint": "9167c372ed73f316db821944fefc2dab57f9d59d3ece0455d65d564145df7a75",
-      "action": "keep",
-      "reason": "Category 172 inheritance description correctly expresses the Spark mechanic and the Power/Guts stat increase.",
-      "terminology_basis": "Embedded common.spark.inheritance_description, common.stat.power, and common.stat.guts are all satisfied.",
-      "confidence": "high"
-    }
-  ]
-}
+"schema_version":1,"status":"partial","plan_id":"tr-p3-67f8551f7780-1c57e0cc9bcf-b5c0bcb3bd-ce1c207047","batch_id":"tr-p3-67f8551f7780-1c57e0cc9bcf-b5c0bcb3bd-ce1c207047-b0094","claim_id":"trc-gpt56sol-hourly-20260902T180000Z-b0094","worker_id":"gpt56sol-hourly-20260902T174827Z-turn11","reviewed_at":"2026-09-02T18:03:00Z","completed_count":10,"decisions":[
+{"uid":"zhcn:59f4b90d4fbff487a13d3b1a","current_fingerprint":"09cb0133ca8942e5aae69115f3a9cfa35ad79a3b6ac3f0d79205237127b1ff93","action":"defer","reason":"Mejiro Bright is correct, but 光明 still falsely matches a Skill title inside 目白光明.","canonical_finding":{"kind":"context_rule","source_zh_cn":"光明","match_mode":"contains","scope":"source_path","reason":"Skill-title alias 光明 must not match inside proper character name 目白光明 (Mejiro Bright).","confidence":"high"},"confidence":"high"},
+{"uid":"zhcn:ce95a70a2d854a1337af635d","current_fingerprint":"6ca7b1837950ce71a93a3449b70b6c8ad736e9fe904ae6564f3ce61562b15000","action":"defer","reason":"Open canonical finding cf-d1bcaa0ab582cbdf blocks Jewel/宝石 matching inside Daiichi Ruby.","confidence":"high"},
+{"uid":"zhcn:c17c25ff6f6f473ba91423c6","current_fingerprint":"f9a86e53c2d5c91eeee4eea9ef30e826b691e9ce7f2b63b571a5257a80b300b3","action":"defer","reason":"Rhein Kraft is correct, but 力量 still falsely matches Power inside 莱茵力量.","canonical_finding":{"kind":"context_rule","source_zh_cn":"力量","match_mode":"contains","scope":"source_path","reason":"Power-stat alias 力量 must not match inside proper character name 莱茵力量 (Rhein Kraft).","confidence":"high"},"confidence":"high"},
+{"uid":"zhcn:dab4f6cf74dfe5d9499c16e4","current_fingerprint":"9167c372ed73f316db821944fefc2dab57f9d59d3ece0455d65d564145df7a75","action":"keep","reason":"Spark inheritance description and Power/Guts are correct.","terminology_basis":"Embedded Spark, Power, and Guts terms are satisfied.","confidence":"high"},
+{"uid":"zhcn:79f24a3d683f649198330d7b","current_fingerprint":"9167c372ed73f316db821944fefc2dab57f9d59d3ece0455d65d564145df7a75","action":"keep","reason":"Spark inheritance description and Power/Guts are correct.","terminology_basis":"Embedded Spark, Power, and Guts terms are satisfied.","confidence":"high"},
+{"uid":"zhcn:42a8c846e1b5b6bebac266fd","current_fingerprint":"9167c372ed73f316db821944fefc2dab57f9d59d3ece0455d65d564145df7a75","action":"keep","reason":"Spark inheritance description and Power/Guts are correct.","terminology_basis":"Embedded Spark, Power, and Guts terms are satisfied.","confidence":"high"},
+{"uid":"zhcn:30b5e42a49bc8ad178ee6ee6","current_fingerprint":"6342105519b9ee09e260370f1f6b01cd7649603ff9104afdfa9b1555d6429f69","action":"keep","reason":"Power increase, Spark, Skill, and Oi Racetrack○ terminology are preserved correctly.","terminology_basis":"Embedded Power, Skill, Spark and locked Oi Racetrack○ terms are satisfied.","confidence":"high"},
+{"uid":"zhcn:7e082d22ff2c6306ba2986da","current_fingerprint":"6342105519b9ee09e260370f1f6b01cd7649603ff9104afdfa9b1555d6429f69","action":"keep","reason":"Power increase, Spark, Skill, and Oi Racetrack○ terminology are preserved correctly.","terminology_basis":"Embedded Power, Skill, Spark and locked Oi Racetrack○ terms are satisfied.","confidence":"high"},
+{"uid":"zhcn:62e82c13d488586c6f8bef25","current_fingerprint":"6342105519b9ee09e260370f1f6b01cd7649603ff9104afdfa9b1555d6429f69","action":"keep","reason":"Power increase, Spark, Skill, and Oi Racetrack○ terminology are preserved correctly.","terminology_basis":"Embedded Power, Skill, Spark and locked Oi Racetrack○ terms are satisfied.","confidence":"high"},
+{"uid":"zhcn:e72e6858adf41254b1b864d9","current_fingerprint":"75ed68b5a369c9165a8c5b0cb0c81be7a24e8c16ae4f6bee014680bf74a9c8e7","action":"keep","reason":"Speed/Stamina/Wit cap increase and Spark/Skill discount meaning are preserved.","terminology_basis":"Embedded Speed, Stamina, Wit, Skill, and Spark terms are satisfied.","confidence":"high"}
+]}

@@ -59,6 +59,11 @@ GUARDS = {
         "term_id": "reviewed.race_name.b4e4d79a5f98",
         "target_vi": "Queen Cup",
     },
+    "cf-234800d40ef253ed": {
+        "layer": "locked",
+        "term_id": "reviewed.race_name.d7261f9f3232",
+        "target_vi": "Challenge Cup",
+    },
     "cf-2b8709d527abc360": {
         "layer": "locked",
         "term_id": "race.generic",

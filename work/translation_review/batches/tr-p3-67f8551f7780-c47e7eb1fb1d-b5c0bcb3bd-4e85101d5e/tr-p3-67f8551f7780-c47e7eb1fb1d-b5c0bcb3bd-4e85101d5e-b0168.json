@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "policy_version": 3,
-  "plan_id": "tr-p3-67f8551f7780-55e83f8331e2-b5c0bcb3bd-ca33d092ad",
-  "batch_id": "tr-p3-67f8551f7780-55e83f8331e2-b5c0bcb3bd-ca33d092ad-b0168",
+  "plan_id": "tr-p3-67f8551f7780-c47e7eb1fb1d-b5c0bcb3bd-4e85101d5e",
+  "batch_id": "tr-p3-67f8551f7780-c47e7eb1fb1d-b5c0bcb3bd-4e85101d5e-b0168",
   "context_snapshot_sha256": "b5c0bcb3bd9ee5c45e7bedf49c8f8d6ad35c3ceb3c35f528c6381a63c684a967",
   "source_bridge_policy_sha256": "5ef2792fdc50d915a8110f9d35357cbd1233d4a8341d8821b42e5ef936f1f17c",
   "review_generation": "retrospective-canonical-full-review",
@@ -319,11 +319,33 @@
       "current_text": "Chiến thắng ào ạt! Đại lễ cảm ơn!!!",
       "current_fingerprint": "5ee9420d7719c8a7b649a43a4121766b58b0c047a9752198560182d604593033",
       "risk_flags": [
-        "canonical_finding"
+        "community_term",
+        "community_calque_risk",
+        "community_term_mismatch"
       ],
-      "risk_score": 40,
+      "risk_score": 16,
       "locked_terms": [],
-      "community_terms": [],
+      "community_terms": [
+        {
+          "id": "song.hip_hip_victory_fan_fest",
+          "preferred": "Hip Hip Victory! It's the Fan Fest!",
+          "accepted": [
+            "Hip Hip Victory! It's the Fan Fest!"
+          ],
+          "forbidden": [
+            "どどっと優勝！大感謝祭！！！",
+            "Chiến thắng ào ạt! Đại lễ cảm ơn!!!",
+            "Dodo tto Yuushou! Dai Kanshasai!!!"
+          ],
+          "matched_aliases": [
+            "どどっと優勝！大感謝祭！！！"
+          ],
+          "accepted_present": false,
+          "forbidden_present": true,
+          "require_accepted": true,
+          "basis": "Official English digital-distribution and Party Dash credits identify the Japanese theme song どどっと優勝！大感謝祭！！！ as Hip Hip Victory! It's the Fan Fest!. Prefer the published English proper-title identity over a semantic Vietnamese calque or community-only romanization."
+        }
+      ],
       "skill_name_canonical": null,
       "source_bridge_terms": [],
       "source_bridge_risks": [],

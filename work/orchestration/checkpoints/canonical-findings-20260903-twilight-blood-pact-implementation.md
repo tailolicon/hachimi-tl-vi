@@ -22,6 +22,11 @@ Current JP gameplay references identify `黄昏の血盟` as Jungle Pocket [ヴ�
 
 The live context contains one exact finding under category `147` and one broad contains finding for the same source title in `text_data_dict.json`. The canonical rule uses the complete source title as an `exact` alias, is file-scoped, and intentionally has no JSON-path prefix. This covers both finding scopes under `scripts/canonical_findings.py` while preventing longer prose that merely contains the Skill title from resolving. Regression coverage also checks the same phrase in another file remains unmatched.
 
-## Remaining acceptance
+## Acceptance complete
 
-Do not mark this maintenance unit complete yet. Required evidence is successful Validate, production Sync translation context, refreshed translation-review plan, and live review context showing both findings unblocked with the canonical rule/lock embedded.
+- Validate run `33808081855` for the regression-test commit: completed successfully.
+- Production `Sync translation context` run `33808080546`: completed successfully.
+- The first review-plan run was superseded/cancelled by newer pushes; the successful replacement published active plan `tr-p3-67f8551f7780-ddd89987ff0f-b5c0bcb3bd-570540b0f1` at `2026-09-03T21:32:32.626362Z`.
+- Live batch `...-b0137` embeds `skill.jungle_pocket.twilight_blood_pact`, preferred `Huyết Minh Hoàng Hôn`, rejects `Huyết minh hoàng hôn`, and has `canonical_findings: []` for the `黄昏的血盟` entries.
+
+Both duplicate findings are therefore unblocked in the live review context and this maintenance unit is complete.

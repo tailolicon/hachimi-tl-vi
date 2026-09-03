@@ -16,11 +16,17 @@ Repository evidence already has multiple reviewed/generated regression targets u
 - A clean archive simulation from current `origin/main` ran the hardener followed by `scripts/canonical_findings.py --refresh`; finding `cf-0533ace8b6cf1c16` resolved exactly to `{layer: community, term_id: event.league_of_heroes.heroic_tale_title, target_vi: Anh Hùng Kỳ Đàm}`. This proves the hardener matches the repository resolver semantics without overmatching unrelated prose.
 - Live repository search during acceptance verification found multiple durable translation and review artifacts already using `Anh Hùng Kỳ Đàm`, including `work/results/batch-00026/...` and retrospective review result `...b0073...`; this independently agrees with the scoped community-term resolution and does not broaden its matcher.
 
-## Validation / production continuation
+## Validation / production acceptance
 
 Push-triggered workflows for head `e950d0f1f841942036d00eaa6d5edea9b7851788`:
 
 - Sync translation context: run `33769319161` — **completed successfully** on production.
-- Sync translation review plan: run `33769319396` — **still pending with no jobs allocated** at the latest check during this worker lease.
+- Sync translation review plan: run `33769319396` / job `100697520449` — **completed successfully** on production.
+- The production review-plan job ran every `scripts/harden_*_finding.py` hardener; `harden_heroic_tale_title_finding.py` reported `heroic_tale_title_hardening_changed=false`, confirming the durable rule was already present on the live checkout.
+- The same job then ran `scripts/canonical_findings.py --refresh` followed by `scripts/resolve_context_guard_findings.py`; refresh reported `findings=442 active=251` before the guard pass and the guard pass reported `context_guard_resolutions_changed=true`.
+- All production validation tests passed: `553 passed`.
+- Review-plan generation remained on plan `tr-p3-67f8551f7780-4ecdb18e53c1-b5c0bcb3bd-b8b3910d6d` with `candidate_count=4210`; batch-finding refresh reported no stale batch changes. A live default-branch search of this plan for `cf-0533ace8b6cf1c16` returns no hits, while the hardener's exact resolver target remains `{layer: community, term_id: event.league_of_heroes.heroic_tale_title, target_vi: Anh Hùng Kỳ Đàm}`.
 
-Do not mark the finding resolved from this checkpoint alone. The sole remaining acceptance gate is production completion of review-plan Sync. Continue by verifying run `33769319396`; if it succeeds, confirm the generated canonical resolution on live `main`, record the completion evidence, increment maintenance completion count, and move to the next active finding under `scripts/canonical_findings.py::active_findings` semantics.
+## Completion
+
+Production acceptance is complete. `cf-0533ace8b6cf1c16` is resolved by the scoped canonical community rule and no longer needs to block retrospective translation review. Maintenance completion count may advance from 28 to 29.

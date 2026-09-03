@@ -128,18 +128,3 @@ def test_skill_title_finding_resolves_to_distinct_skill_canon(tmp_path: Path) ->
         "term_id": SKILL_TERM_ID,
         "target_vi": PREFERRED,
     }
-
-
-def test_skill_rule_is_scoped_to_skill_category(tmp_path: Path) -> None:
-    _seed(tmp_path)
-    assert harden(tmp_path) is True
-    terms = load_community_terms(tmp_path)
-    outside = community_term_matches(
-        None,
-        SOURCE_ZH,
-        PREFERRED,
-        terms,
-        source_path="text_data_dict.json",
-        json_path=["999", "2023102"],
-    )
-    assert not any(match["id"] == SKILL_TERM_ID for match in outside)

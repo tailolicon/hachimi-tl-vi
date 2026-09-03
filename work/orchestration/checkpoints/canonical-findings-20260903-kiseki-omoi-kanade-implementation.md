@@ -24,6 +24,12 @@ Repository `glossary/skill_name_style.json` requires compact Vietnamese Skill ti
 
 The live finding is `match_mode: contains` with `source_paths: ["text_data_dict.json"]` and no JSON-path prefix. Following the repository's accepted no-prefix finding precedent, the canonical rule uses the complete Skill title as an `exact` alias restricted to `text_data_dict.json`, without adding a category prefix that would fail to cover the live finding's recorded scope. Regression coverage verifies that a longer source containing the phrase and the same phrase in another file do not resolve.
 
-## Remaining acceptance
+## Acceptance complete
 
-Do not increment maintenance completion yet. Required next evidence is successful Validate, production Sync translation context, refreshed translation-review plan, and live review context showing the finding unblocked with the canonical rule embedded.
+- Validate workflow run `33805412722`: completed successfully.
+- Production `Sync translation context` run `33805412765`: completed successfully.
+- `Sync translation review plan` run `33805412960`: completed successfully.
+- Refreshed active plan: `tr-p3-67f8551f7780-ac89ff4cbaa2-b5c0bcb3bd-ef31f557f9`.
+- Live batch `...-b0137` now embeds community rule `skill.ks_miracle.kiseki_omoi_kanade`, preferred `Kỳ Tích・Tâm Ý・Tấu Vang`, marks the historical target forbidden, and has `canonical_findings: []` for source `心意·奏响·奇迹`.
+
+The finding is therefore unblocked in live review context and this maintenance unit is complete.

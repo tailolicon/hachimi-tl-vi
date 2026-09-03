@@ -1,4 +1,4 @@
-# Canonical finding research: 絶対最強☆アピール宣言！
+# Canonical finding implementation: 絶対最強☆アピール宣言！
 
 Finding: `cf-3c9ba1f70a4d56b7`
 
@@ -6,17 +6,29 @@ Finding: `cf-3c9ba1f70a4d56b7`
 - Repository locator: `47:101031`
 - Verified JP title: `絶対最強☆アピール宣言！`
 - Character: Royce and Royce / ロイスアンドロイス [Inspiring Genius]
-- Proposed canonical Vietnamese target: `Tuyên Ngôn Phô Diễn☆Tuyệt Đối Mạnh Nhất!`
-- Historical target observed in inheritance text: `Tuyên ngôn trình diễn☆tuyệt đối mạnh nhất!`
+- Canonical Vietnamese target: `Tuyên Ngôn Phô Diễn☆Tuyệt Đối Mạnh Nhất!`
+- Historical target: `Tuyên ngôn trình diễn☆tuyệt đối mạnh nhất!`
 
-## Evidence
+## Evidence and scope
 
-Repository curation had deferred this Skill solely because locator `47:101031` lacked verified Japanese wording. Current JP gameplay references (GameWith and Game8) independently identify Royce and Royce's unique Skill exactly as `絶対最強☆アピール宣言！`. A 4Gamer character introduction also describes Royce and Royce as especially skilled at `自己演出` (self-presentation), supporting the performative/self-promotional nuance of `アピール` rather than treating it as a generic stage performance.
+Repository curation had deferred locator `47:101031` only because its JP wording was unverified. Current JP gameplay references (GameWith and Game8) independently identify Royce and Royce's unique Skill exactly as `絶対最強☆アピール宣言！`; 4Gamer character material describes Royce and Royce as especially skilled at `自己演出` (self-presentation), supporting the performative/self-promotional nuance of `アピール`.
 
-The zh-CN alias `绝对最强☆展现宣言！` is therefore a direct localized bridge to the verified JP Skill. Vietnamese `Phô Diễn` preserves the deliberate self-presentation/appeal nuance more closely than the historical `trình diễn`, while `Tuyên Ngôn` preserves `宣言`. Keep the playful `☆` and final exclamation. Normalize individual Skill-title capitalization.
+Canonicalize only the complete Skill-title alias in `text_data_dict.json`, using `contains` for category-172 inheritance descriptions. `Phô Diễn` preserves the deliberate self-presentation nuance better than generic `trình diễn`; keep `☆`/`!` and normalize Skill-title capitalization. Do not generalize component words.
 
-## Scope decision
+## Implementation
 
-Canonicalize only the complete Skill-title alias, scoped to `text_data_dict.json`, using `contains` because the live finding is embedded inside category-172 inheritance descriptions. Do not create generic rules for `绝对最强`, `展现`, or `宣言` independently.
+- Hardener: `scripts/harden_lois_royce_absolute_strongest_appeal_finding.py`, commit `a882b7637d1880298bdcc760867ca90055498884`.
+- Regression: `tests/test_lois_royce_absolute_strongest_appeal_finding_hardening.py`, commit `de782da768037bf93aed04af4bcf1f805dbfff8c`.
+- Community rule: `skill.lois_royce.absolute_strongest_appeal`.
+- Terminology decision: `audit.finding.skill-lois-royce-absolute-strongest-appeal`.
+- Regression proves production-shape resolution, idempotence, longer inheritance-text coverage, and no resolution in `localize_dict.json`.
 
-Next: implement a finding hardener and regression using the accepted category-172 inheritance pattern, then require Validate + production context sync + refreshed live review-plan acceptance before incrementing maintenance completion accounting.
+## Acceptance pending
+
+For regression commit `de782da768037bf93aed04af4bcf1f805dbfff8c`:
+
+- Validate run `33812964057`: queued at last check.
+- Sync translation context run `33812964043`: pending at last check.
+- Sync translation review plan run `33812964020`: pending at last check.
+
+Do not increment maintenance completion count for `cf-3c9ba1f70a4d56b7` until Validate and production context sync succeed and a refreshed live review batch embeds `skill.lois_royce.absolute_strongest_appeal` with this finding absent.

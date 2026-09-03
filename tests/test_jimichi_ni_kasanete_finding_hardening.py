@@ -1,0 +1,92 @@
+from __future__ import annotations
+
+import json
+from pathlib import Path
+
+from scripts.canonical_findings import refresh_canonical_resolutions
+from scripts.harden_jimichi_ni_kasanete_finding import DECISION, PREFERRED, SOURCE_JA, SOURCE_ZH, TERM_ID, harden
+
+FINDING_ID = "cf-7ade7cc862703b5a"
+
+
+def _seed(tmp_path: Path) -> None:
+    glossary = tmp_path / "glossary"
+    glossary.mkdir()
+    (glossary / "ui_community_terms.json").write_text(json.dumps({"schema_version": 1, "terms": []}), encoding="utf-8")
+    (glossary / "terminology_reviews.json").write_text(json.dumps({"schema_version": 1, "decisions": []}), encoding="utf-8")
+    (glossary / "term_registry.json").write_text(json.dumps({"terms": []}), encoding="utf-8")
+    (glossary / "source_bridge_terms.json").write_text(json.dumps({"terms": []}), encoding="utf-8")
+    (glossary / "skill_name_style.json").write_text(json.dumps({"canonical_examples": []}), encoding="utf-8")
+
+
+def _finding(*, prefix: list[list[str]] | None = None, source_path: str = "text_data_dict.json", source: str = SOURCE_ZH) -> dict[str, object]:
+    return {
+        "finding_id": FINDING_ID,
+        "status": "open",
+        "source_zh_cn": source,
+        "match_mode": "exact",
+        "source_paths": [source_path],
+        "key_exact": [],
+        "json_path_prefixes": prefix if prefix is not None else [["147"]],
+        "suggested_targets_vi": [],
+        "canonical_resolution": None,
+        "review_resolution": {"decision_id": "parallel.ctx-67f8551f77807292-v1.term-0083.06", "action": "defer", "target_vi": None},
+    }
+
+
+def test_jimichi_ni_kasanete_resolves_live_skill_finding(tmp_path: Path) -> None:
+    _seed(tmp_path)
+    assert harden(tmp_path) is True
+    assert harden(tmp_path) is False
+
+    community = json.loads((tmp_path / "glossary" / "ui_community_terms.json").read_text(encoding="utf-8"))
+    rule = next(item for item in community["terms"] if item["id"] == TERM_ID)
+    assert rule["preferred"] == PREFERRED
+    assert rule["source_aliases"] == [SOURCE_ZH]
+    assert rule["source_paths"] == ["text_data_dict.json"]
+    assert rule["json_path_prefixes"] == [["147"]]
+    assert rule["match_mode"] == "exact"
+    assert "Nỗ lực bền bỉ" in rule["forbidden"]
+
+    reviews = json.loads((tmp_path / "glossary" / "terminology_reviews.json").read_text(encoding="utf-8"))
+    decision = next(item for item in reviews["decisions"] if item["decision_id"] == DECISION["decision_id"])
+    assert decision["ja"] == [SOURCE_JA]
+    assert decision["target_vi"] == PREFERRED
+    assert decision["source_paths"] == ["text_data_dict.json"]
+    assert decision["json_path_prefixes"] == [["147"]]
+    assert decision["match_mode"] == "exact"
+
+    finding = refresh_canonical_resolutions(tmp_path, {"schema_version": 1, "findings": [_finding()]})["findings"][0]
+    assert finding["review_resolution"] == {
+        "decision_id": "audit.finding.skill-jimichi-ni-kasanete",
+        "action": "lock",
+        "target_vi": PREFERRED,
+    }
+    assert finding["canonical_resolution"] == {
+        "layer": "community",
+        "term_id": TERM_ID,
+        "target_vi": PREFERRED,
+    }
+
+
+def test_jimichi_ni_kasanete_rule_does_not_overmatch_prose_or_other_scopes(tmp_path: Path) -> None:
+    _seed(tmp_path)
+    assert harden(tmp_path) is True
+
+    wrong_category = refresh_canonical_resolutions(
+        tmp_path,
+        {"schema_version": 1, "findings": [_finding(prefix=[["144"]])]},
+    )["findings"][0]
+    assert wrong_category["canonical_resolution"] is None
+
+    wrong_path = refresh_canonical_resolutions(
+        tmp_path,
+        {"schema_version": 1, "findings": [_finding(source_path="localize_dict.json")]},
+    )["findings"][0]
+    assert wrong_path["canonical_resolution"] is None
+
+    prose = refresh_canonical_resolutions(
+        tmp_path,
+        {"schema_version": 1, "findings": [_finding(source="她一直踏实努力地训练。")]},
+    )["findings"][0]
+    assert prose["canonical_resolution"] is None

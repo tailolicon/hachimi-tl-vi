@@ -9,7 +9,7 @@ from typing import Any
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE_ZH = "地热解放超驱动"
 SOURCE_JA = "地熱解放オーヴァードライブ"
-PREFERRED = "Overdrive giải phóng địa nhiệt"
+PREFERRED = "Giải phóng địa nhiệt Overdrive"
 TERM_ID = "skill.transcend.geothermal_release_overdrive"
 
 TERM = {
@@ -30,8 +30,8 @@ TERM = {
         "地熱解放オーヴァードライブ. The zh-CN bridge 地热解放超驱动 semantically replaces the named "
         "katakana element オーヴァードライブ, while the older Vietnamese text flattens it to generic "
         "'Siêu tăng tốc'. Preserve the distinctive Overdrive identity and render 地熱解放 directly as "
-        "'giải phóng địa nhiệt'. This is a project Vietnamese canonical title, not an asserted official "
-        "Global localization."
+        "'giải phóng địa nhiệt'. This exact wording reuses the repository's pre-existing locked term "
+        "skill.110801 rather than introducing a conflicting duplicate canonical."
     ),
 }
 
@@ -45,8 +45,9 @@ DECISION = {
     "ja": [SOURCE_JA],
     "note": (
         "Verified JP identity 地熱解放オーヴァードライブ for Transcend [宵闇ネオカグラ] preserves the "
-        "named Overdrive element lost by the zh-CN/Vietnamese semantic calque. Lock the project canonical "
-        "'Overdrive giải phóng địa nhiệt'; do not present it as an official Global title."
+        "named Overdrive element lost by the zh-CN/Vietnamese semantic calque. Reuse the already locked "
+        "project canonical 'Giải phóng địa nhiệt Overdrive'; do not create a second ordering variant or "
+        "present it as an official Global title."
     ),
 }
 

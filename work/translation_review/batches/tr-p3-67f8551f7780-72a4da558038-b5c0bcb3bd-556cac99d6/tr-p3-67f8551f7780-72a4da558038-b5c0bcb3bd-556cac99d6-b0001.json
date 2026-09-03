@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "policy_version": 3,
-  "plan_id": "tr-p3-67f8551f7780-9f03542766f1-b5c0bcb3bd-a73c9b1175",
-  "batch_id": "tr-p3-67f8551f7780-9f03542766f1-b5c0bcb3bd-a73c9b1175-b0001",
+  "plan_id": "tr-p3-67f8551f7780-72a4da558038-b5c0bcb3bd-556cac99d6",
+  "batch_id": "tr-p3-67f8551f7780-72a4da558038-b5c0bcb3bd-556cac99d6-b0001",
   "context_snapshot_sha256": "b5c0bcb3bd9ee5c45e7bedf49c8f8d6ad35c3ceb3c35f528c6381a63c684a967",
   "source_bridge_policy_sha256": "1faac1e600d42535217e267fbba196d6723753776386d93856ced27a90801c9e",
   "review_generation": "retrospective-canonical-full-review",
@@ -73,11 +73,31 @@
       "current_text": "Giải đấu mở",
       "current_fingerprint": "7789a134fe25d666394d584f7b3ad58464701ba67a5e339c506a0019eb3c38e7",
       "risk_flags": [
-        "canonical_finding"
+        "community_term",
+        "community_calque_risk",
+        "community_term_mismatch"
       ],
-      "risk_score": 40,
+      "risk_score": 16,
       "locked_terms": [],
-      "community_terms": [],
+      "community_terms": [
+        {
+          "id": "event.champions_meeting.open_league",
+          "preferred": "Open League",
+          "accepted": [
+            "Open League"
+          ],
+          "forbidden": [
+            "Giải đấu mở"
+          ],
+          "matched_aliases": [
+            "公开联赛"
+          ],
+          "accepted_present": false,
+          "forbidden_present": true,
+          "require_accepted": true,
+          "basis": "Stable Global key Champions0601 is released as Open League. Keep the established Champions Meeting league label instead of a literal Vietnamese paraphrase."
+        }
+      ],
       "skill_name_canonical": null,
       "source_bridge_terms": [],
       "source_bridge_risks": [],
@@ -101,11 +121,31 @@
       "current_fingerprint": "aa46e93f1f49ed343e4dadd095f03abf756972435b1ae038e795d3f46c379779",
       "risk_flags": [
         "very_long_target",
-        "canonical_finding"
+        "community_term",
+        "community_calque_risk",
+        "community_term_mismatch"
       ],
-      "risk_score": 43,
+      "risk_score": 19,
       "locked_terms": [],
-      "community_terms": [],
+      "community_terms": [
+        {
+          "id": "event.champions_meeting.graded_league",
+          "preferred": "Graded League",
+          "accepted": [
+            "Graded League"
+          ],
+          "forbidden": [
+            "Giải đấu theo hạng"
+          ],
+          "matched_aliases": [
+            "等级联赛"
+          ],
+          "accepted_present": false,
+          "forbidden_present": true,
+          "require_accepted": true,
+          "basis": "Stable Global key Champions0602 is released as Graded League. Keep the established Champions Meeting league label instead of a literal Vietnamese paraphrase."
+        }
+      ],
       "skill_name_canonical": null,
       "source_bridge_terms": [],
       "source_bridge_risks": [],
@@ -526,12 +566,32 @@
       "current_fingerprint": "5121a5f8d7819144d5489ab9aa4cf7200b1c7881b9ef67efe33d145df79687a8",
       "risk_flags": [
         "very_long_target",
-        "absence_risk",
-        "canonical_finding"
+        "community_term",
+        "community_calque_risk",
+        "community_term_mismatch",
+        "absence_risk"
       ],
-      "risk_score": 48,
+      "risk_score": 24,
       "locked_terms": [],
-      "community_terms": [],
+      "community_terms": [
+        {
+          "id": "event.legend_race.transfer_notice",
+          "preferred": "Legend Race",
+          "accepted": [
+            "Legend Race"
+          ],
+          "forbidden": [
+            "Giải đấu Huyền thoại"
+          ],
+          "matched_aliases": [
+            "传奇比赛"
+          ],
+          "accepted_present": false,
+          "forbidden_present": true,
+          "require_accepted": true,
+          "basis": "Stable Global key Character0335 names the game mode Legend Race inside the transfer notice. Use the released proper name and keep the matcher item-scoped."
+        }
+      ],
       "skill_name_canonical": null,
       "source_bridge_terms": [],
       "source_bridge_risks": [],
@@ -555,12 +615,32 @@
       "current_fingerprint": "ba109ce7a9c840f0b436ad5dec002708b82f131925df463655bb7be6e7e38541",
       "risk_flags": [
         "very_long_target",
-        "absence_risk",
-        "canonical_finding"
+        "community_term",
+        "community_calque_risk",
+        "community_term_mismatch",
+        "absence_risk"
       ],
-      "risk_score": 48,
+      "risk_score": 24,
       "locked_terms": [],
-      "community_terms": [],
+      "community_terms": [
+        {
+          "id": "event.daily_legend_race.transfer_notice",
+          "preferred": "Daily Legend Race",
+          "accepted": [
+            "Daily Legend Race"
+          ],
+          "forbidden": [
+            "Đua Huyền thoại Hằng ngày"
+          ],
+          "matched_aliases": [
+            "每日传奇比赛"
+          ],
+          "accepted_present": false,
+          "forbidden_present": true,
+          "require_accepted": true,
+          "basis": "Stable Global key Character408001 names the game mode Daily Legend Race inside the transfer notice. Use the released proper name and keep the matcher item-scoped."
+        }
+      ],
       "skill_name_canonical": null,
       "source_bridge_terms": [],
       "source_bridge_risks": [],

@@ -17,6 +17,7 @@ on:
       - "scripts/resolve_regenerated_super_long_distance_context_finding.py"
       - "scripts/resolve_regenerated_aoharu_ignition_finding.py"
       - "scripts/resolve_regenerated_initial_friendship_finding.py"
+      - "scripts/harden_training_support_effect_labels.py"
       - "scripts/build_source_bridge_risk_registry.py"
       - "scripts/apply_terminology_reviews.py"
       - "scripts/harden_audit_findings.py"
@@ -109,6 +110,9 @@ jobs:
 
       - name: Harden audit-discovered canonical rules
         run: python scripts/harden_audit_findings.py
+
+      - name: Harden support-effect labels
+        run: python scripts/harden_training_support_effect_labels.py
 
       - name: Run all finding hardeners
         shell: bash

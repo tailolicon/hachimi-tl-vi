@@ -7488,6 +7488,34 @@
       ],
       "match_mode": "exact",
       "basis": "Game ID 1018 is Air Groove / エアグルーヴ, and current JP gameplay references identify variant 101802's upgraded unique Skill as ブレイズ・オブ・プライド (Blaze of Pride). Preserve that identity-bearing English/katakana title instead of semantically calquing the zh-CN bridge 荣耀之刃. Keep matching exact so component words are never generalized."
+    },
+    {
+      "id": "skill.cesario.guiding_sea",
+      "category": "skill_name",
+      "source_aliases": [
+        "海纳百川"
+      ],
+      "preferred": "Guiding Sea",
+      "compact": [],
+      "accepted": [
+        "Guiding Sea"
+      ],
+      "forbidden": [
+        "Biển dung trăm sông",
+        "Biển ôm trọn trăm sông"
+      ],
+      "require_accepted": true,
+      "invalidation_scope": "item",
+      "source_paths": [
+        "text_data_dict.json"
+      ],
+      "json_path_prefixes": [
+        [
+          "172"
+        ]
+      ],
+      "match_mode": "contains",
+      "basis": "Game ID 1110 is Cesario / シーザリオ. Current JP gameplay references identify her unique Skill as the English title Guiding Sea. The zh-CN bridge 海纳百川 occurs inside category-172 Spark/inheritance text for Skill IDs 11100101-11100103. Preserve Guiding Sea there rather than promoting a semantic zh-CN calque. Category scoping prevents the Chinese idiom 海纳百川 from being rewritten if it appears as ordinary prose elsewhere."
     }
   ]
 }

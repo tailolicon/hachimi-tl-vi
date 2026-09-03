@@ -58,6 +58,9 @@ def test_fresh_plan_then_unchanged_rebuild_is_timestamp_only_and_normalizes_to_n
     assert parallel_before["translation_review_gate"]["reason"] == builder.INCOMPLETE_GATE_REASON
     assert parallel_before["translation_review_gate"]["active_plan_id"] == plan_id
     assert parallel_before["translation_review_gate"]["unresolved_entries"] == 1
+    assert parallel_before["translation_review_gate"]["claims_allowed"] is True
+    assert parallel_before["translation_review_gate"]["concurrent_translation_enabled"] is True
+    assert parallel_before["translation_review_gate"]["review_worker_cap"] == 2
 
     second = builder.build_plan(tmp_path, batch_size=20)
     assert second == {

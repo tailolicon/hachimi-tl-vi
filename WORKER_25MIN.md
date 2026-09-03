@@ -8,13 +8,13 @@ Do not bypass `WORKER_START.md` to escape a blocking maintenance task or unresol
 
 Do not rely on chat history, private memory, previous worker reasoning, or stale progress assumptions. `main` is the source of truth.
 
-## Hard priority order
+## Concurrent mass-work lanes
 
-1. retrospective translation audit;
-2. retrospective UI audit;
-3. only then new untranslated content.
+Retrospective translation audit remains mandatory, but it is no longer a global stop for new translation.
 
-Never skip unfinished old-content audit merely to increase raw translation percentage.
+When `translation_review_gate.enabled == true` and `claims_allowed == true`, keep up to `translation_review_gate.review_worker_cap` live non-expired review claims for the current `active_plan_id`. Workers beyond that review cap route to new translation. This preserves continuous audit progress while allowing pinned-source coverage to grow.
+
+When `claims_allowed == false`, review remains exclusive/fail-closed. After the translation-review gate clears, unfinished UI audit regains priority over new translation.
 
 ## Startup hot path
 
@@ -45,16 +45,17 @@ Do not substitute public-web GitHub reads for the connected GitHub connector whe
 
 ### Mode A: translation audit
 
-If `translation_review_gate.enabled == true` or `claims_allowed == false`:
+If `translation_review_gate.enabled == true`:
 
-- use `TRANSLATION_REVIEW.md`;
-- read `work/translation_review/active_plan.json`;
-- claim/resume exactly one translation-review batch at a time;
-- do not inspect UI/new-translation work while this gate remains active.
+1. read `claims_allowed`, `active_plan_id`, and `review_worker_cap` from the live gate;
+2. if `claims_allowed == false`, use `TRANSLATION_REVIEW.md` exclusively;
+3. if `claims_allowed == true`, count only non-expired `active` review claims whose `plan_id` equals the current `active_plan_id`;
+4. when that count is below `review_worker_cap`, use `TRANSLATION_REVIEW.md` and claim/resume exactly one review batch;
+5. when that count is already at or above `review_worker_cap`, route this worker directly to Mode C instead of joining the review queue.
 
-**Important:** in this state, `claims_allowed: false` pauses **normal translation claims only**. It does **not** prohibit translation-review claims. When the translation-review gate is active, a worker with repository write capability is expected to claim/resume translation-review work.
+Review claims remain isolated and `defer` remains unresolved. The cap is a throughput allocation rule, not permission to weaken review decisions.
 
-After a batch completes, re-read only the live state needed to confirm the gate/priority and immediately claim/resume the next eligible review batch if still before the configured new-work cutoff.
+After a review batch completes, re-read live state. If the review lane is still below cap, continue review; otherwise switch the next unit to translation.
 
 ### Mode B: UI audit
 
@@ -68,13 +69,18 @@ After a UI batch completes, re-read live priority and continue another eligible 
 
 ### Mode C: new translation
 
-Only when translation audit is clear and no higher-priority required UI audit remains:
+Use new translation when either:
+
+- the translation-review gate is active, `claims_allowed == true`, and the live review lane already has at least `review_worker_cap` non-expired active claims for the current plan; or
+- the translation-review gate is clear and no higher-priority required UI audit remains.
+
+Then:
 
 - use `PARALLEL_TRANSLATION.md`;
 - load current epoch metadata;
 - claim/resume one pinned source shard at a time.
 
-After a shard completes, re-evaluate priority from live state and claim/resume another eligible shard while before the cutoff.
+After a shard completes, re-evaluate the live review-lane occupancy and other routing state, then claim/resume the next eligible unit.
 
 ## Session budget
 

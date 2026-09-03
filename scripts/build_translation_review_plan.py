@@ -58,7 +58,8 @@ except ModuleNotFoundError:
 
 TRANSLATION_REVIEW_POLICY_VERSION = 3
 PRIORITY_HEAD_SIZE = 64
-INCOMPLETE_GATE_REASON = "Retrospective translation review is incomplete; new translation claims are paused."
+INCOMPLETE_GATE_REASON = "Retrospective translation review is incomplete; review continues in parallel with new translation claims."
+REVIEW_WORKER_CAP = 2
 
 
 def git_show_json(repo_root: Path, ref: str, path: str) -> Any:
@@ -78,6 +79,45 @@ def _load_document(repo_root: Path, cache: dict[str, Any], source_path: str) -> 
     return cache[source_path]
 
 
+def _compact_batch_ranges(values: list[int]) -> list[list[int]]:
+    numbers = sorted({int(value) for value in values})
+    if not numbers:
+        return []
+    ranges: list[list[int]] = []
+    start = previous = numbers[0]
+    for number in numbers[1:]:
+        if number == previous + 1:
+            previous = number
+            continue
+        ranges.append([start, previous])
+        start = previous = number
+    ranges.append([start, previous])
+    return ranges
+
+
+def _expand_batch_ranges(raw: Any) -> set[int]:
+    result: set[int] = set()
+    if not isinstance(raw, list):
+        return result
+    for item in raw:
+        if not isinstance(item, list) or len(item) != 2:
+            continue
+        start, end = int(item[0]), int(item[1])
+        if start <= end:
+            result.update(range(start, end + 1))
+    return result
+
+
+def _freeze_review_scope(repo_root: Path, gate: dict[str, Any], *, reset: bool = False) -> None:
+    if not reset and "review_scope_batch_ranges" in gate and "review_scope_entries" in gate:
+        return
+    progress = load_json(repo_root / "work/translation_progress.json", {})
+    batches = [int(value) for value in progress.get("translated_batches", [])]
+    gate["review_scope_batch_ranges"] = _compact_batch_ranges(batches)
+    gate["review_scope_entries"] = int(progress.get("translated_entries", 0))
+    gate["review_scope_frozen_at"] = utc_now()
+
+
 def _set_gate(
     repo_root: Path,
     *,
@@ -90,10 +130,14 @@ def _set_gate(
     state = load_json(path, {})
     gate = state.setdefault("translation_review_gate", {})
     previous_enabled = bool(gate.get("enabled"))
+    if enabled:
+        _freeze_review_scope(repo_root, gate, reset=not previous_enabled)
     gate.update({
         "enabled": enabled,
         "policy_version": TRANSLATION_REVIEW_POLICY_VERSION,
-        "claims_allowed": not enabled,
+        "claims_allowed": True,
+        "concurrent_translation_enabled": bool(enabled),
+        "review_worker_cap": REVIEW_WORKER_CAP if enabled else 0,
         "active_plan_id": plan_id,
         "unresolved_entries": candidate_count,
         "protocol": "TRANSLATION_REVIEW.md",
@@ -176,6 +220,16 @@ def _merged_markers(repo_root: Path) -> list[dict[str, Any]]:
     return result
 
 
+def _review_scope_markers(repo_root: Path) -> list[dict[str, Any]]:
+    state = load_json(repo_root / "work/parallel_state.json", {})
+    gate = state.get("translation_review_gate", {}) if isinstance(state, dict) else {}
+    allowed = _expand_batch_ranges(gate.get("review_scope_batch_ranges"))
+    markers = _merged_markers(repo_root)
+    if not allowed:
+        return markers
+    return [marker for marker in markers if int(marker.get("batch", 0)) in allowed]
+
+
 def _prior_is_resolved(
     prior: Any,
     *,
@@ -244,7 +298,7 @@ def build_plan(repo_root: Path, batch_size: int) -> dict[str, Any]:
     bridge_risk_rules = [item for item in bridge_config.get("untrusted_sources", []) if isinstance(item, dict)]
     documents: dict[str, Any] = {}
     candidates: list[dict[str, Any]] = []
-    merged_markers = _merged_markers(repo_root)
+    merged_markers = _review_scope_markers(repo_root)
     source_commits: set[str] = set()
 
     for marker in merged_markers:
@@ -377,8 +431,8 @@ def build_plan(repo_root: Path, batch_size: int) -> dict[str, Any]:
             "source_bridge_policy_sha256": bridge_hash,
             "item_scoped_policy_sha256": item_policy_hash,
             "candidate_count": 0,
-            "reviewed_scope": "all canonical entries represented by work/merged markers",
-            "note": "All currently merged translations are resolved under the current translation-review policy/context.",
+            "reviewed_scope": "frozen Audit Round 1 baseline from translation_review_gate.review_scope_batch_ranges",
+            "note": "All entries in the frozen Audit Round 1 baseline are resolved under the current translation-review policy/context.",
         }
         write_json(active_path, payload)
         _set_gate(
@@ -446,7 +500,7 @@ def build_plan(repo_root: Path, batch_size: int) -> dict[str, Any]:
         "batches": batches,
         "decision_actions": ["keep", "revise", "defer"],
         "protocol": "TRANSLATION_REVIEW.md",
-        "defer_policy": "defer remains unresolved and keeps the translation gate closed",
+        "defer_policy": "defer remains unresolved in the audit gate; it does not globally freeze the separate new-translation lane",
         "source_bridge_policy": "Manual bridge terms plus generated curation-backed lossy-source risks are enforced item-by-item; unresolved lossy bridge sources defer until canonicalized.",
     })
     write_json(active_path, {

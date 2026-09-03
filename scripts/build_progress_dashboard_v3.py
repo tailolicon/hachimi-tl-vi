@@ -19,6 +19,7 @@ def translation_review(root: Path, now: datetime, canonical_entries: int):
     active = legacy.load(root / "work/translation_review/active_plan.json")
     state = legacy.load(root / "work/parallel_state.json")
     gate = state.get("translation_review_gate") or {}
+    scope_entries = int(gate.get("review_scope_entries") or canonical_entries)
     plan_id = active.get("plan_id")
     total = int(active.get("batch_count") or 0)
     candidate_count = int(active.get("candidate_count") or 0)
@@ -59,7 +60,7 @@ def translation_review(root: Path, now: datetime, canonical_entries: int):
         unresolved_entries = max(candidate_count - resolved_in_active_plan, 0)
     else:
         unresolved_entries = 0
-    resolved_entries = max(min(canonical_entries - unresolved_entries, canonical_entries), 0)
+    resolved_entries = max(min(scope_entries - unresolved_entries, scope_entries), 0)
 
     # reviewed_index is the durable cross-generation audit ledger. It intentionally
     # includes defer: defer means the item was reviewed but is not semantically
@@ -80,14 +81,14 @@ def translation_review(root: Path, now: datetime, canonical_entries: int):
                 continue
             ledger_reviewed_entries += 1
             ledger_actions[action] += 1
-    ledger_reviewed_entries = min(ledger_reviewed_entries, canonical_entries) if canonical_entries > 0 else ledger_reviewed_entries
+    ledger_reviewed_entries = min(ledger_reviewed_entries, scope_entries) if scope_entries > 0 else ledger_reviewed_entries
 
     return {
         "status": active.get("status") or ("active" if gate.get("enabled") else "idle"),
         "policy_version": int(active.get("policy_version") or gate.get("policy_version") or 0),
         "plan_id": plan_id,
         "candidates": candidate_count,
-        "scope_total_entries": canonical_entries,
+        "scope_total_entries": scope_entries,
         "total": total,
         "completed": len(completed_ids),
         "merged": len(applied_ids),
@@ -99,13 +100,13 @@ def translation_review(root: Path, now: datetime, canonical_entries: int):
         "defer": actions["defer"],
         "reviewed_items_current_plan": actions["keep"] + actions["revise"] + actions["defer"],
         "ledger_reviewed_entries": ledger_reviewed_entries,
-        "ledger_reviewed_percent": legacy.percent(ledger_reviewed_entries, canonical_entries),
+        "ledger_reviewed_percent": legacy.percent(ledger_reviewed_entries, scope_entries),
         "ledger_keep": ledger_actions["keep"],
         "ledger_revise": ledger_actions["revise"],
         "ledger_defer": ledger_actions["defer"],
         "resolved_entries": resolved_entries,
         "unresolved_entries": unresolved_entries,
-        "resolved_percent": legacy.percent(resolved_entries, canonical_entries),
+        "resolved_percent": legacy.percent(resolved_entries, scope_entries),
         "gate_enabled": bool(gate.get("enabled", False)),
         "claims_allowed": bool(gate.get("claims_allowed", not gate.get("enabled", False))),
         "claims": legacy.claims(root / "work/translation_review/claims", now),
@@ -128,14 +129,14 @@ def markdown(data):
     ui_bar = f"`{legacy.bar(data['ui_review']['percent'])}` UI Review worker **{data['ui_review']['percent']:.2f}%**"
     review_bar = (
         f"`{legacy.bar(r['ledger_reviewed_percent'])}` Translation Review ledger **{r['ledger_reviewed_percent']:.2f}% reviewed at least once** "
-        f"— resolved **{r['resolved_entries']:,}/{data['translation']['translated_entries']:,} entry "
+        f"— resolved **{r['resolved_entries']:,}/{r['scope_total_entries']:,} entry "
         f"({r['resolved_percent']:.2f}%)**; current generation **{r['completed']}/{r['total']} batch ({r['worker_percent']:.2f}%)**"
     )
     text = text.replace(ui_bar, review_bar + "  \n" + ui_bar, 1)
 
-    gate_label = "LOCKED" if r["gate_enabled"] else "OPEN"
+    gate_label = "REVIEW ACTIVE / TRANSLATION OPEN" if r["gate_enabled"] and r["claims_allowed"] else "LOCKED" if r["gate_enabled"] else "OPEN"
     detail = (
-        f"- Translation Review: **{r['ledger_reviewed_entries']:,} / {data['translation']['translated_entries']:,} canonical entry "
+        f"- Translation Review: **{r['ledger_reviewed_entries']:,} / {r['scope_total_entries']:,} frozen-scope entry "
         f"reviewed at least once = {r['ledger_reviewed_percent']:.2f}%** (ledger keep/revise/defer = "
         f"**{r['ledger_keep']}/{r['ledger_revise']}/{r['ledger_defer']}**); "
         f"**{r['resolved_entries']:,} resolved = {r['resolved_percent']:.2f}%**; current-plan keep/revise/defer = "
@@ -152,7 +153,7 @@ def markdown(data):
 
 def html(data):
     blob = json.dumps(data, ensure_ascii=False).replace("</", "<\\/")
-    return f'''<!doctype html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Hachimi TL-VI Progress</title><style>body{{font:16px system-ui;margin:0;background:#101114;color:#f3f4f6}}main{{max-width:1100px;margin:auto;padding:28px 18px}}.grid{{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px}}.card{{background:#191b20;border:1px solid #2c3038;border-radius:16px;padding:18px}}.big{{font-size:30px;font-weight:750}}.muted{{color:#9ca3af}}.bar{{height:10px;background:#30343c;border-radius:99px;overflow:hidden;margin-top:12px}}.fill{{height:100%;background:#f3f4f6}}table{{width:100%;border-collapse:collapse}}td{{padding:9px 0;border-bottom:1px solid #2c3038}}td:last-child{{text-align:right}}</style></head><body><main><h1>Hachimi TL-VI Progress</h1><p class="muted" id="meta"></p><div class="grid" id="cards"></div><div class="card" style="margin-top:14px"><table id="details"></table></div></main><script id="data" type="application/json">{blob}</script><script>const d=JSON.parse(document.getElementById('data').textContent),p=x=>Number(x||0).toFixed(2)+'%';document.getElementById('meta').textContent=`${{d.generated_at}} • ${{d.workers.active_total}} active claims • Translation review gate: ${{d.translation_review.gate_enabled?'LOCKED':'OPEN'}}`;const a=[['Translation',d.translation.worker_percent,`${{d.translation.batches_worker_completed}} completed • ${{d.translation.batches_translated}} merged`],['Translation Review',d.translation_review.ledger_reviewed_percent,`${{d.translation_review.ledger_reviewed_entries}} reviewed at least once • ${{d.translation_review.resolved_percent.toFixed(2)}}% resolved`],['Speech',d.curation.speech.percent,`${{d.curation.speech.completed}} completed • ${{d.curation.speech.merged}} merged`],['Terminology',d.curation.terminology.percent,`${{d.curation.terminology.completed}} completed • ${{d.curation.terminology.merged}} merged`],['UI Review',d.ui_review.percent,`${{d.ui_review.completed}} completed • ${{d.ui_review.merged}} merged`]];document.getElementById('cards').innerHTML=a.map(x=>`<div class="card"><div class="muted">${{x[0]}}</div><div class="big">${{p(x[1])}}</div><div>${{x[2]}}</div><div class="bar"><div class="fill" style="width:${{x[1]}}%"></div></div></div>`).join('');const r=[['Translation canonical',p(d.translation.queue_percent)],['Translation review ledger',p(d.translation_review.ledger_reviewed_percent)],['Translation review resolved',p(d.translation_review.resolved_percent)],['Current review generation',p(d.translation_review.worker_percent)],['Translation review gate',d.translation_review.gate_enabled?'LOCKED':'OPEN'],['Speech canonical',p(d.curation.speech.merged_percent)],['Terminology canonical',p(d.curation.terminology.merged_percent)],['UI canonical',p(d.ui_review.merged_percent)],['Main commit',d.main_commit||'unknown']];document.getElementById('details').innerHTML=r.map(x=>`<tr><td>${{x[0]}}</td><td>${{x[1]}}</td></tr>`).join('');</script></body></html>'''
+    return f'''<!doctype html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Hachimi TL-VI Progress</title><style>body{{font:16px system-ui;margin:0;background:#101114;color:#f3f4f6}}main{{max-width:1100px;margin:auto;padding:28px 18px}}.grid{{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px}}.card{{background:#191b20;border:1px solid #2c3038;border-radius:16px;padding:18px}}.big{{font-size:30px;font-weight:750}}.muted{{color:#9ca3af}}.bar{{height:10px;background:#30343c;border-radius:99px;overflow:hidden;margin-top:12px}}.fill{{height:100%;background:#f3f4f6}}table{{width:100%;border-collapse:collapse}}td{{padding:9px 0;border-bottom:1px solid #2c3038}}td:last-child{{text-align:right}}</style></head><body><main><h1>Hachimi TL-VI Progress</h1><p class="muted" id="meta"></p><div class="grid" id="cards"></div><div class="card" style="margin-top:14px"><table id="details"></table></div></main><script id="data" type="application/json">{blob}</script><script>const d=JSON.parse(document.getElementById('data').textContent),p=x=>Number(x||0).toFixed(2)+'%';document.getElementById('meta').textContent=`${{d.generated_at}} • ${{d.workers.active_total}} active claims • Translation review gate: ${{d.translation_review.gate_enabled?(d.translation_review.claims_allowed?'REVIEW ACTIVE / TRANSLATION OPEN':'LOCKED'):'OPEN'}}`;const a=[['Translation',d.translation.worker_percent,`${{d.translation.batches_worker_completed}} completed • ${{d.translation.batches_translated}} merged`],['Translation Review',d.translation_review.ledger_reviewed_percent,`${{d.translation_review.ledger_reviewed_entries}} reviewed at least once • ${{d.translation_review.resolved_percent.toFixed(2)}}% resolved`],['Speech',d.curation.speech.percent,`${{d.curation.speech.completed}} completed • ${{d.curation.speech.merged}} merged`],['Terminology',d.curation.terminology.percent,`${{d.curation.terminology.completed}} completed • ${{d.curation.terminology.merged}} merged`],['UI Review',d.ui_review.percent,`${{d.ui_review.completed}} completed • ${{d.ui_review.merged}} merged`]];document.getElementById('cards').innerHTML=a.map(x=>`<div class="card"><div class="muted">${{x[0]}}</div><div class="big">${{p(x[1])}}</div><div>${{x[2]}}</div><div class="bar"><div class="fill" style="width:${{x[1]}}%"></div></div></div>`).join('');const r=[['Translation canonical',p(d.translation.queue_percent)],['Translation review ledger',p(d.translation_review.ledger_reviewed_percent)],['Translation review resolved',p(d.translation_review.resolved_percent)],['Current review generation',p(d.translation_review.worker_percent)],['Translation review gate',d.translation_review.gate_enabled?(d.translation_review.claims_allowed?'REVIEW ACTIVE / TRANSLATION OPEN':'LOCKED'):'OPEN'],['Speech canonical',p(d.curation.speech.merged_percent)],['Terminology canonical',p(d.curation.terminology.merged_percent)],['UI canonical',p(d.ui_review.merged_percent)],['Main commit',d.main_commit||'unknown']];document.getElementById('details').innerHTML=r.map(x=>`<tr><td>${{x[0]}}</td><td>${{x[1]}}</td></tr>`).join('');</script></body></html>'''
 
 
 def main():
@@ -190,7 +191,7 @@ def main():
         "translation_review_ledger": r["ledger_reviewed_percent"],
         "translation_review_current_generation": r["worker_percent"],
         "translation_review_resolved": r["resolved_percent"],
-        "translation_review_gate": "locked" if r["gate_enabled"] else "open",
+        "translation_review_gate": "review_active_translation_open" if r["gate_enabled"] and r["claims_allowed"] else "locked" if r["gate_enabled"] else "open",
         "speech_worker": c["speech"]["percent"],
         "terminology_worker": c["terminology"]["percent"],
         "ui_worker": u["percent"],

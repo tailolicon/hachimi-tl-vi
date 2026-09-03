@@ -10,13 +10,13 @@ Repository state on `main` overrides chat history, private memory, and model pri
 
 Always read `work/parallel_state.json` first.
 
-If `translation_review_gate.enabled == true` or `claims_allowed == false`:
+If `claims_allowed == false`:
 
 - do not create or take over normal translation claims;
 - do not translate an unclaimed shard;
-- switch immediately to `TRANSLATION_REVIEW.md`.
+- switch immediately to the mode selected by `WORKER_25MIN.md`.
 
-Only translate new content after the retrospective translation gate has cleared. Orchestration may also prioritize unfinished UI audit before new translation according to `WORKER_25MIN.md`.
+An active retrospective review gate does **not** by itself block translation when `claims_allowed == true`. In that dual-lane state, this protocol is valid only for workers routed here after the configured review-worker cap is already occupied. Orchestration may still prioritize unfinished UI audit after the translation-review gate clears.
 
 ## 25-minute session policy
 

@@ -10,13 +10,14 @@ Repository state on `main` overrides chat history, private memory, and model pri
 
 `work/parallel_state.json.translation_review_gate` is authoritative.
 
-While `enabled: true` or `claims_allowed: false`:
+While `enabled: true`, retrospective review remains required and `defer` remains unresolved.
 
-- do not create or take over normal translation claims;
-- review already merged translations only;
-- `defer` remains unresolved and keeps the gate closed.
+`claims_allowed` controls the separate new-translation lane:
 
-The gate clears only when every canonical entry in review scope has a current resolved `keep` or `revise` decision.
+- `claims_allowed: false` means review is exclusive/fail-closed;
+- `claims_allowed: true` means review and new translation run concurrently; `WORKER_25MIN.md` keeps up to `review_worker_cap` live review workers and routes excess workers to translation.
+
+The review gate itself clears only when every canonical entry in its frozen review scope has a current resolved `keep` or `revise` decision. Clearing the audit gate is no longer required merely to increase pinned-source coverage.
 
 ## 25-minute worker policy
 

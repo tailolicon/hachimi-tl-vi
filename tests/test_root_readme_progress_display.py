@@ -26,6 +26,7 @@ def test_audit_progress_is_not_hidden_when_plan_regenerates_or_decisions_defer()
             "unresolved_entries": 16_172,
             "pending_merge": 0,
             "gate_enabled": True,
+            "claims_allowed": True,
         },
         "ui_review": {"candidates": 6_455, "reviewed_items": 0},
         "curation": {
@@ -51,4 +52,4 @@ def test_audit_progress_is_not_hidden_when_plan_regenerates_or_decisions_defer()
     assert "ledger keep/revise/defer **3,300/48/752**" in block
     assert "3,348 / 19,520 currently resolved (17.15%)" in block
     assert "current generation **0 / 809 batches (0.00%)**" in block
-    assert "16,172 unresolved; gate **LOCKED**" in block
+    assert "16,172 unresolved; gate **REVIEW ACTIVE / TRANSLATION OPEN**" in block

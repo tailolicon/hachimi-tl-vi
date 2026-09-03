@@ -109,7 +109,7 @@ def build_block(progress: dict[str, Any], state: dict[str, Any]) -> str:
     ledger_defer = int(r.get("ledger_defer") or 0)
     ui_candidates = int(u.get("candidates") or 0)
     ui_done = int(u.get("reviewed_items") or 0)
-    gate = "LOCKED" if bool(r.get("gate_enabled")) else "OPEN"
+    gate = "REVIEW ACTIVE / TRANSLATION OPEN" if bool(r.get("gate_enabled")) and bool(r.get("claims_allowed")) else "LOCKED" if bool(r.get("gate_enabled")) else "OPEN"
 
     speech = c.get("speech") or {}
     terminology = c.get("terminology") or {}

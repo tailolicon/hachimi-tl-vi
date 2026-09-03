@@ -7,7 +7,7 @@
 
 ## Evidence and rationale
 
-Current retrospective-review batches contain repeated song/staff credits with `真崎エリカ` left in CJK and explicitly flag the name as a proper-name canonical finding requiring a verified Latin/Roman spelling. External music-credit evidence consistently identifies the lyricist as `Erica Masaki`; MusicBrainz release credits pair `真崎エリカ` with `Erica Masaki` across multiple official releases. The rule is intentionally scoped to category 17 credit text so unrelated prose cannot inherit a person-name substitution.
+Current retrospective-review batches contained repeated song/staff credits with `真崎エリカ` left in CJK and explicitly flagged the name as a proper-name canonical finding requiring a verified Latin/Roman spelling. External music-credit evidence consistently identifies the lyricist as `Erica Masaki`; MusicBrainz release credits pair `真崎エリカ` with `Erica Masaki` across multiple official releases. The rule is intentionally scoped to category 17 credit text so unrelated prose cannot inherit a person-name substitution.
 
 ## Durable implementation
 
@@ -17,10 +17,10 @@ Current retrospective-review batches contain repeated song/staff credits with `�
 - Rule requires accepted target, forbids the raw CJK name in this scoped player-facing credit context, and is item-scoped.
 - Negative tests cover the same alias outside category 17 and outside `text_data_dict.json`.
 
-## Production acceptance state
+## Production acceptance
 
-Push-triggered workflows from the test commit are running:
-- Validate run `33765716844`
-- Sync translation context run `33765716883`
+- Validate run `33765716844`: success, including pytest, `tlvi validate`, and index generation.
+- Production Sync translation context run `33765716883`: success, including all finding hardeners, canonical finding refresh, context pipeline tests, and generated-context commit step.
+- The regenerated live review plan `tr-p3-67f8551f7780-68306370a21d-b5c0bcb3bd-34c0167cc5` materializes `proper_name.erica_masaki.credit17` with target `Erica Masaki`; matching category-17 entries now have `community_terms` and no `cf-88ef6b46bebcdb4d` blocker.
 
-Do not increment maintenance `completed_count` or call the finding resolved until validation succeeds and production Sync materializes `cf-88ef6b46bebcdb4d` with a non-null canonical resolution on live `main`.
+The finding is durably resolved and maintenance `completed_count` may advance from 24 to 25.

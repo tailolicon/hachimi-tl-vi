@@ -33,14 +33,40 @@ def _seed(tmp_path: Path) -> None:
                         "forbidden": ["Uma Musume"],
                         "require_accepted": True,
                         "match_mode": "contains",
-                    }
+                    },
+                    {
+                        "id": TERM_ID,
+                        "category": "race",
+                        "source_aliases": [SOURCE_ZH],
+                        "preferred": PREFERRED,
+                        "accepted": [PREFERRED],
+                        "source_paths": ["text_data_dict.json"],
+                        "json_path_prefixes": [["131"]],
+                        "match_mode": "contains",
+                    },
                 ],
             }
         ),
         encoding="utf-8",
     )
     (glossary / "terminology_reviews.json").write_text(
-        json.dumps({"schema_version": 1, "decisions": []}), encoding="utf-8"
+        json.dumps(
+            {
+                "schema_version": 1,
+                "decisions": [
+                    {
+                        "decision_id": DECISION["decision_id"],
+                        "source_zh_cn": SOURCE_ZH,
+                        "action": "lock",
+                        "target_vi": PREFERRED,
+                        "source_paths": ["text_data_dict.json"],
+                        "json_path_prefixes": [["131"]],
+                        "match_mode": "contains",
+                    }
+                ],
+            }
+        ),
+        encoding="utf-8",
     )
     (glossary / "term_registry.json").write_text(json.dumps({"terms": []}), encoding="utf-8")
     (glossary / "source_bridge_terms.json").write_text(json.dumps({"terms": []}), encoding="utf-8")
@@ -72,7 +98,7 @@ def test_uma_musume_stakes_live_shape_resolves_and_is_idempotent(tmp_path: Path)
     assert SOURCE_ZH in world["exclude_source_contains"]
     assert term["preferred"] == PREFERRED
     assert term["source_paths"] == ["text_data_dict.json"]
-    assert not term.get("json_path_prefixes")
+    assert term["json_path_prefixes"] == []
     assert term["match_mode"] == "contains"
     assert term["invalidation_scope"] == "item"
 
@@ -80,7 +106,7 @@ def test_uma_musume_stakes_live_shape_resolves_and_is_idempotent(tmp_path: Path)
     decision = next(item for item in reviews["decisions"] if item["decision_id"] == DECISION["decision_id"])
     assert decision["target_vi"] == PREFERRED
     assert decision["ja"] == [SOURCE_JA]
-    assert not decision.get("json_path_prefixes")
+    assert decision["json_path_prefixes"] == []
 
     payload = refresh_canonical_resolutions(
         tmp_path, {"schema_version": 1, "findings": [_finding()]}

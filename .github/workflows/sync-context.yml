@@ -14,6 +14,7 @@ on:
       - "scripts/canonical_findings.py"
       - "scripts/resolve_scoped_canonical_overrides.py"
       - "scripts/resolve_context_guard_findings.py"
+      - "scripts/resolve_running_style_narrative_finding.py"
       - "scripts/resolve_regenerated_super_long_distance_context_finding.py"
       - "scripts/resolve_regenerated_aoharu_ignition_finding.py"
       - "scripts/resolve_regenerated_initial_friendship_finding.py"
@@ -135,6 +136,9 @@ jobs:
 
       - name: Resolve context-guard findings
         run: python scripts/resolve_context_guard_findings.py
+
+      - name: Resolve narrative running-style finding
+        run: python scripts/resolve_running_style_narrative_finding.py
 
       - name: Resolve regenerated super-long-distance finding
         run: python scripts/resolve_regenerated_super_long_distance_context_finding.py

@@ -134,6 +134,17 @@ def test_nonblocking_song_and_staff_scope_is_explicit() -> None:
     assert {"songs", "lyrics", "staff_names", "creator_credits"} <= skipped
 
 
+def test_mass_review_canonical_findings_use_one_nonblocking_maintenance_lane() -> None:
+    worker = (ROOT / "WORKER_START.md").read_text(encoding="utf-8")
+    autopilot = (ROOT / "AUTOPILOT.md").read_text(encoding="utf-8")
+
+    assert "single shared maintenance lane" in worker
+    assert "scripts/canonical_findings.py::active_findings" in worker
+    assert "loses the optimistic claim race routes immediately to section C" in worker
+    assert "single nonblocking lane" in autopilot
+    assert "every other worker immediately continues" in autopilot
+
+
 def test_legacy_next_session_file_redirects_to_universal_entrypoint() -> None:
     text = (ROOT / "NEXT_SESSION.md").read_text(encoding="utf-8")
     assert "WORKER_START.md" in text

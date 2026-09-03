@@ -143,6 +143,8 @@ Then the integration owner atomically:
 
 Review/translation workers do not choose a new project-wide standard ad hoc.
 
+Canonical-finding maintenance is a **single nonblocking lane** during mass review. `work/orchestration/maintenance_claim.json` is the ownership lock: one eligible worker may own it and resolve active findings, while every other worker immediately continues the highest-priority safe review/UI work. A worker that observes another non-expired maintenance owner or loses the optimistic claim race must not wait or repeatedly contend. It falls through to ordinary mass work. Only findings returned by `scripts/canonical_findings.py::active_findings` are routing blockers; a ledger row that still says `status: open` but already has `canonical_resolution` is not active maintenance work.
+
 Expected loop:
 
 1. worker emits structured canonical finding;

@@ -1,6 +1,8 @@
-from scripts.merge_translation_review import _validate_result
+from scripts.merge_translation_review import _load_result, _validate_result
 import json
 from pathlib import Path
+
+import pytest
 from scripts.canonical_findings import active_findings
 from scripts.translation_review_common import (
     community_term_matches,
@@ -82,6 +84,14 @@ def _completion():
         "claim_id": "claim-1",
         "worker_id": "ChatGPT",
     }
+
+
+def test_missing_review_result_raises_batch_scoped_quarantinable_error(tmp_path):
+    batch_id = "tr-p3-test-b0001"
+    expected_result = Path("work/translation_review/results") / batch_id / "claim-missing.json"
+
+    with pytest.raises(ValueError, match=rf"^{batch_id}: result file missing:"):
+        _load_result(tmp_path, expected_result, batch_id)
 
 
 def test_validator_rejects_keep_with_forbidden_player_term():

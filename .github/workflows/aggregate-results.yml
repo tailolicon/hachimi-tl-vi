@@ -56,6 +56,9 @@ jobs:
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          # aggregation_report.json is an ephemeral diagnostic generated on every
+          # run; do not let its timestamp-only churn fail the clean-tree guard.
+          rm -f work/aggregation_report.json
           git add localized_data index.json work/parallel
           if git diff --cached --quiet; then
             echo "changed=false" >> "$GITHUB_OUTPUT"

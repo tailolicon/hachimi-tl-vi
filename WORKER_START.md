@@ -78,7 +78,13 @@ When `phase == canonical_hardening`, `CANONICAL_PARALLEL.md` is authoritative fo
 
 ### B. Systemic canonical finding
 
-Outside the initial hardening phase, unresolved blocking canonical findings take maintenance priority. Resolve them through the canonical-finding pipeline; never let ordinary workers invent a competing project-wide standard.
+Outside the initial hardening phase, unresolved blocking canonical findings take maintenance priority, but they use the single shared maintenance lane at `work/orchestration/maintenance_claim.json`; they do **not** stop the rest of the worker fleet from doing the highest-priority mass work that remains safe.
+
+1. Inspect the shared maintenance claim before loading the findings ledger. If another worker owns a non-expired active maintenance claim, do not wait, repeatedly contend, or duplicate its research; route immediately to section C.
+2. If the maintenance claim is released/expired/unclaimed, inspect blocking findings using the repository's `scripts/canonical_findings.py::active_findings` semantics: only `open`/`deferred` findings without `canonical_resolution` and without an `ignore` review resolution are active blockers.
+3. If at least one active blocker exists, atomically claim the shared maintenance lane. Exactly one worker wins and resolves canonical findings through the existing canonical-finding pipeline. Any worker that loses the optimistic claim race routes immediately to section C.
+4. While that single maintainer owns the lane, all other workers continue retrospective translation review (or the next live mass-work gate) rather than idling behind maintenance.
+5. When no active blocking finding remains, release the maintenance claim with durable evidence and route the same worker back through section C. Never let ordinary review workers invent a competing project-wide standard.
 
 ### C. Retrospective review / UI review / normal translation
 

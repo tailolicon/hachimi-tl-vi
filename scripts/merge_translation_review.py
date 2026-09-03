@@ -51,6 +51,28 @@ _ALLOWED_ACTIONS = {"keep", "revise", "defer"}
 _ALLOWED_CONFIDENCE = {"high", "medium", "low"}
 
 
+def _load_completion(completion_path: Path) -> dict[str, Any]:
+    try:
+        completion = load_json(completion_path)
+    except (OSError, json.JSONDecodeError) as exc:
+        raise ValueError(f"invalid completion marker: {completion_path}") from exc
+    if not isinstance(completion, dict):
+        raise ValueError(f"invalid completion marker: {completion_path}")
+    return completion
+
+
+def _load_result(repo_root: Path, expected_result: Path, batch_id: str) -> dict[str, Any]:
+    result_path = repo_root / expected_result
+    try:
+        result = load_json(result_path)
+    except (OSError, json.JSONDecodeError) as exc:
+        raise ValueError(f"{batch_id}: invalid result file: {expected_result.as_posix()}") from exc
+    if not isinstance(result, dict):
+        reason = "missing" if not result_path.exists() else "not a JSON object"
+        raise ValueError(f"{batch_id}: result file {reason}: {expected_result.as_posix()}")
+    return result
+
+
 def _load_batch(repo_root: Path, plan_id: str, batch_id: str) -> tuple[dict[str, Any], dict[str, Any]]:
     plan_path = repo_root / "work/translation_review/plans" / f"{plan_id}.json"
     plan = load_json(plan_path)
@@ -361,7 +383,7 @@ def merge(repo_root: Path) -> dict[str, Any]:
         else []
     )
     for completion_path in completion_paths:
-        completion = load_json(completion_path)
+        completion = _load_completion(completion_path)
         batch_id = str(completion.get("batch_id", ""))
         plan_id = str(completion.get("plan_id", ""))
         claim_id = str(completion.get("claim_id", ""))
@@ -400,7 +422,7 @@ def merge(repo_root: Path) -> dict[str, Any]:
         expected_result = Path("work/translation_review/results") / batch_id / f"{claim_id}.json"
         if completion.get("result_path") != expected_result.as_posix():
             raise ValueError(f"{batch_id}: completion result_path mismatch")
-        result = load_json(repo_root / expected_result)
+        result = _load_result(repo_root, expected_result, batch_id)
         decisions, errors = _validate_result(
             completion,
             result,

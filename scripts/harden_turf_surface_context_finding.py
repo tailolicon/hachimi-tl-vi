@@ -12,6 +12,7 @@ SOURCE_ZH = "草地"
 TARGET = "Turf"
 BASE_RULE_ID = "common.surface.turf"
 ZH_RULE_ID = "common.surface.turf.zhcn"
+APTITUDE_RULE_ID = "common.surface.turf.aptitude"
 
 ZH_RULE = {
     "id": ZH_RULE_ID,
@@ -30,6 +31,25 @@ ZH_RULE = {
     "match_mode": "exact",
 }
 
+APTITUDE_RULE = {
+    "id": APTITUDE_RULE_ID,
+    "category": "race_surface",
+    "source_aliases": [SOURCE_ZH],
+    "preferred": TARGET,
+    "compact": [],
+    "accepted": [TARGET],
+    "forbidden": ["Sân cỏ"],
+    "require_accepted": True,
+    "basis": (
+        "SingleMode0078 is the scoped zh-CN Turf Aptitude UI label 草地适性. "
+        "Keep the Turf component available there without restoring a global "
+        "substring matcher for narrative 草地 prose."
+    ),
+    "source_paths": ["localize_dict.json"],
+    "key_exact": ["SingleMode0078"],
+    "match_mode": "contains",
+}
+
 DECISION = {
     "decision_id": "audit.finding.turf-surface-zhcn-context",
     "source_zh_cn": SOURCE_ZH,
@@ -40,7 +60,8 @@ DECISION = {
     "match_mode": "exact",
     "note": (
         "Lock standalone 草地 to Turf while rejecting substring matches in ordinary "
-        "grass/grassland prose. The JP 芝 alias remains on the established base rule."
+        "grass/grassland prose. The JP 芝 alias remains on the established base rule, "
+        "and SingleMode0078 gets a separate scoped composition rule for 草地适性."
     ),
 }
 
@@ -90,13 +111,14 @@ def harden(repo_root: Path = ROOT) -> bool:
         basis = str(term.get("basis") or "")
         if "zh-CN 草地" not in basis:
             term["basis"] = (
-                basis.rstrip() + " zh-CN 草地 is handled by an exact-only sibling "
-                "rule so narrative grass prose cannot overmatch."
+                basis.rstrip() + " zh-CN 草地 is handled by scoped sibling rules "
+                "so narrative grass prose cannot overmatch."
             ).strip()
         break
     if not base_found:
         raise ValueError(f"missing community term {BASE_RULE_ID}")
     _upsert(terms, ZH_RULE, "id")
+    _upsert(terms, APTITUDE_RULE, "id")
     if before != json.dumps(community, ensure_ascii=False, sort_keys=True):
         _write(community_path, community)
         changed = True

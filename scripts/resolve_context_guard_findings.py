@@ -127,6 +127,14 @@ GUARDS = {
         "term_id": "common.distance.long",
         "target_vi": "Long",
     },
+    # Regenerated review findings may key the same overmatch by the excluded
+    # compound (超长距离) rather than by the nested generic alias (长距离). Keep
+    # both semantic incarnations tied to the same proven context guard.
+    "cf-072fd00f345e81cb": {
+        "layer": "community",
+        "term_id": "common.distance.long",
+        "target_vi": "Long",
+    },
     "cf-fbbcf5f4a79f6cf8": {
         "layer": "community",
         "term_id": "common.stat.wit",

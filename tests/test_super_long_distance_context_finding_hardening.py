@@ -7,10 +7,11 @@ from scripts.harden_super_long_distance_context_finding import TERM_ID, harden
 from scripts.resolve_context_guard_findings import resolve
 from scripts.translation_review_common import community_term_matches, load_community_terms
 
-FINDING_ID = "cf-1db30364f26517a5"
+LEGACY_FINDING_ID = "cf-1db30364f26517a5"
+CURRENT_FINDING_ID = "cf-072fd00f345e81cb"
 
 
-def _seed(root: Path) -> None:
+def _seed(root: Path, finding_id: str = CURRENT_FINDING_ID) -> None:
     glossary = root / "glossary"
     glossary.mkdir(parents=True)
     (glossary / "ui_community_terms.json").write_text(
@@ -29,9 +30,9 @@ def _seed(root: Path) -> None:
         json.dumps({
             "schema_version": 1,
             "findings": [{
-                "finding_id": FINDING_ID,
+                "finding_id": finding_id,
                 "status": "open",
-                "source_zh_cn": "长距离",
+                "source_zh_cn": "超长距离" if finding_id == CURRENT_FINDING_ID else "长距离",
                 "kinds": ["context_rule"],
                 "canonical_resolution": None,
                 "evidence": [{
@@ -79,3 +80,11 @@ def test_super_long_skill_does_not_match_generic_long_and_resolves_finding(tmp_p
         "term_id": TERM_ID,
         "target_vi": "Long",
     }
+
+
+def test_legacy_super_long_finding_id_remains_resolvable(tmp_path: Path) -> None:
+    _seed(tmp_path, LEGACY_FINDING_ID)
+    assert harden(tmp_path) is True
+    assert resolve(tmp_path) is True
+    payload = json.loads((tmp_path / "glossary" / "canonical_findings.json").read_text(encoding="utf-8"))
+    assert payload["findings"][0]["canonical_resolution"]["term_id"] == TERM_ID

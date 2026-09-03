@@ -5,8 +5,8 @@
   "batch_id": "tr-p3-67f8551f7780-1c57e0cc9bcf-b5c0bcb3bd-ce1c207047-b0011",
   "claim_id": "trc-chatgpt-sol-20260903T021958Z-b0011",
   "worker_id": "chatgpt-sol-20260903T021958Z",
-  "reviewed_at": "2026-09-03T02:21:35Z",
-  "completed_count": 10,
+  "reviewed_at": "2026-09-03T02:22:40Z",
+  "completed_count": 15,
   "decisions": [
     {
       "uid": "zhcn:673eb92f7cd6579eb5be4ac3",
@@ -87,6 +87,47 @@
       "action": "keep",
       "reason": "The ticket description correctly states that it is required for League of Heroes races and cannot be used in the next event; the embedded generic race term is already present.",
       "terminology_basis": "Embedded race.generic requires Cuộc đua for 比赛; the current text satisfies the canonical term in context.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:bd6dc8cb88b3fa3d9a960fb9",
+      "current_fingerprint": "63c7d81cb595ca3617b4febb4bedb83f5ab46a6ceb6d7583c4b832b3a4cc0896",
+      "action": "keep",
+      "reason": "The duplicated League of Heroes admission-ticket description is semantically correct and already satisfies the embedded generic race terminology.",
+      "terminology_basis": "Embedded race.generic requires Cuộc đua for 比赛; the current text satisfies the canonical term in context.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:280d868436a9aa033c39ac06",
+      "current_fingerprint": "6fb87717eb0656e03761333de693dbc20fe486965656c19a5fde771df6be61bd",
+      "action": "revise",
+      "proposed_text": "Uống để lấy lại tinh thần!\\nKhi dùng, TP hồi 30.",
+      "reason": "Preserve the source token order TP → 30 to remove the numeric-token mismatch while keeping the same recovery meaning and two-line UI structure.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:ac6b1fbbe464378327352271",
+      "current_fingerprint": "0a35d480cc8a06b3b3f19c910799e436e4fd3e161cbacbe7e8a56dfd58b644ab",
+      "action": "revise",
+      "proposed_text": "Vé quay dùng để quay Trainee.\\nCó thể dùng trong Danh sách banner.",
+      "reason": "The full compound 育成赛马娘 must use canonical Trainee rather than the explicitly forbidden Mã Nương huấn luyện calque; the ticket meaning and line structure are preserved.",
+      "terminology_basis": "Embedded career.ui.trainee.text_data requires Trainee for 育成赛马娘.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:1197d2c7a9ea52d9f216a58f",
+      "current_fingerprint": "6a799630a2748c239ea44b6ba17da00e837ff46bea3df2e7b12f9cd69dd19063",
+      "action": "defer",
+      "reason": "This carrot-shaped 宝石 description is exactly the kind of gemstone context covered by the attached open canonical finding, so the current Jewel mapping cannot be resolved until that context rule is settled. A separate 力量 mismatch also exists, but the open finding already blocks keep/revise.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:63c392890c8d3d3576310e64",
+      "current_fingerprint": "b3967687570f1458d53ee74588e78130e34f2c85782a570069cc5724c04698ac",
+      "action": "revise",
+      "proposed_text": "Nghe nói đây là Power rực rỡ chứng minh Mã Nương đã thực hiện ước mơ.\\nCó thể dùng để tăng Cấp Thức tỉnh.",
+      "reason": "The current text violates both attached community requirements: 力量 must use Power in this item context and generic 赛马娘 must be Mã Nương rather than Uma Musume. The awakening-use sentence is preserved.",
+      "terminology_basis": "Embedded common.stat.power requires Power for the matched 力量; embedded common.world.umamusume requires Mã Nương for generic 赛马娘.",
       "confidence": "high"
     }
   ]

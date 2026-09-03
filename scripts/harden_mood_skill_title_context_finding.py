@@ -23,8 +23,9 @@ SKILL_TERM = {
     "require_accepted": True,
     "invalidation_scope": "item",
     "source_paths": ["text_data_dict.json"],
+    "json_path_prefixes": [["147"]],
     "match_mode": "exact",
-    "basis": "Locator 202312 in the maintained curation evidence verifies JP 意気込み十分 for zh-CN 干劲十足. This exact text-data Skill title is distinct from the generic やる気 / 干劲 Mood state; use the reviewed Vietnamese title Khí thế tràn đầy.",
+    "basis": "Locator 202312 in the maintained curation evidence verifies JP 意気込み十分 for zh-CN 干劲十足. This category-147 Skill title is distinct from the generic やる気 / 干劲 Mood state; use the reviewed Vietnamese title Khí thế tràn đầy.",
 }
 
 SKILL_DECISION = {
@@ -49,11 +50,7 @@ def _load(path: Path, default: dict[str, Any] | None = None) -> dict[str, Any]:
 
 
 def _write(path: Path, payload: dict[str, Any]) -> None:
-    path.write_text(
-        json.dumps(payload, ensure_ascii=False, indent=2) + "\n",
-        encoding="utf-8",
-        newline="\n",
-    )
+    path.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8", newline="\n")
 
 
 def _upsert(items: list[Any], record: dict[str, Any], *, id_field: str) -> None:
@@ -72,7 +69,6 @@ def _add_exclusion(path: Path, term_id: str, basis: str) -> bool:
     terms = payload.get("terms", [])
     if not isinstance(terms, list):
         raise ValueError(f"{path} terms must be a list")
-
     before = json.dumps(payload, ensure_ascii=False, sort_keys=True)
     matched = False
     for term in terms:
@@ -85,7 +81,6 @@ def _add_exclusion(path: Path, term_id: str, basis: str) -> bool:
         break
     if not matched:
         raise ValueError(f"missing canonical term {term_id} in {path}")
-
     changed = before != json.dumps(payload, ensure_ascii=False, sort_keys=True)
     if changed:
         _write(path, payload)

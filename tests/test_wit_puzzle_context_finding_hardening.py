@@ -7,10 +7,11 @@ from scripts.harden_wit_puzzle_context_finding import TERM_ID, harden
 from scripts.resolve_context_guard_findings import resolve
 from scripts.translation_review_common import community_term_matches, load_community_terms
 
-FINDING_ID = "cf-fbbcf5f4a79f6cf8"
+LEGACY_FINDING_ID = "cf-fbbcf5f4a79f6cf8"
+CURRENT_FINDING_ID = "cf-9758a6327ee17eae"
 
 
-def _seed(root: Path) -> None:
+def _seed(root: Path, finding_id: str = CURRENT_FINDING_ID) -> None:
     glossary = root / "glossary"
     glossary.mkdir(parents=True)
     (glossary / "ui_community_terms.json").write_text(json.dumps({"terms": [{
@@ -24,9 +25,9 @@ def _seed(root: Path) -> None:
     (glossary / "canonical_findings.json").write_text(json.dumps({
         "schema_version": 1,
         "findings": [{
-            "finding_id": FINDING_ID,
+            "finding_id": finding_id,
             "status": "open",
-            "source_zh_cn": "智力",
+            "source_zh_cn": "智力扣" if finding_id == CURRENT_FINDING_ID else "智力",
             "kinds": ["context_rule"],
             "canonical_resolution": None,
             "evidence": [{
@@ -58,3 +59,11 @@ def test_wit_alias_does_not_match_puzzle_and_context_finding_resolves(tmp_path: 
         "term_id": TERM_ID,
         "target_vi": "Wit",
     }
+
+
+def test_legacy_wit_puzzle_finding_id_remains_resolvable(tmp_path: Path) -> None:
+    _seed(tmp_path, LEGACY_FINDING_ID)
+    assert harden(tmp_path) is True
+    assert resolve(tmp_path) is True
+    payload = json.loads((tmp_path / "glossary" / "canonical_findings.json").read_text(encoding="utf-8"))
+    assert payload["findings"][0]["canonical_resolution"]["term_id"] == TERM_ID

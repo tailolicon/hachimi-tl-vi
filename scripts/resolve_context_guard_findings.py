@@ -157,6 +157,12 @@ GUARDS = {
         "term_id": "common.stat.wit",
         "target_vi": "Wit",
     },
+    # Regenerated equivalent of the 智力扣 puzzle overmatch guard.
+    "cf-9758a6327ee17eae": {
+        "layer": "community",
+        "term_id": "common.stat.wit",
+        "target_vi": "Wit",
+    },
 }
 
 for _finding_id in POWER_CONTEXT_GUARD_IDS:

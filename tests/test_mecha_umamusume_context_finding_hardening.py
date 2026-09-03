@@ -38,8 +38,27 @@ def test_mecha_proper_name_excludes_generic_umamusume_and_resolves(tmp_path: Pat
     assert harden(tmp_path) is False
     terms = load_community_terms(tmp_path)
     assert community_term_matches(None, "普通赛马娘", "Mã Nương bình thường", terms)
-    mecha = community_term_matches(None, "机械赛马娘", "Mecha Uma Musume", terms, source_path="text_data_dict.json", json_path=["14", "200803"])
-    assert not any(row["id"] == TERM_ID for row in mecha)
+
+    mecha_proper = community_term_matches(
+        None,
+        "决胜服（机械赛马娘第三阶段）",
+        "Trang phục chiến thắng (Mecha Uma Musume giai đoạn 3)",
+        terms,
+        source_path="text_data_dict.json",
+        json_path=["14", "200803"],
+    )
+    assert not any(row["id"] == TERM_ID for row in mecha_proper)
+
+    generic_mecha_description = community_term_matches(
+        None,
+        "机械赛马娘详情",
+        "Chi tiết Mã Nương Mecha",
+        terms,
+        source_path="text_data_dict.json",
+        json_path=["14", "999999"],
+    )
+    assert any(row["id"] == TERM_ID for row in generic_mecha_description)
+
     assert resolve(tmp_path) is True
     payload = json.loads((glossary / "canonical_findings.json").read_text(encoding="utf-8"))
     assert payload["findings"][0]["canonical_resolution"] == {

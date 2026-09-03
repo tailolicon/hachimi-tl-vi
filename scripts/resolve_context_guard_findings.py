@@ -49,6 +49,11 @@ GUARDS = {
         "term_id": "reviewed.skill_name.5907479481a9",
         "target_vi": "Dốc hết sức",
     },
+    "cf-05ee17c3f625371f": {
+        "layer": "community",
+        "term_id": "race_state.rushed.text131",
+        "target_vi": "Rushed",
+    },
     "cf-2b8709d527abc360": {
         "layer": "locked",
         "term_id": "race.generic",

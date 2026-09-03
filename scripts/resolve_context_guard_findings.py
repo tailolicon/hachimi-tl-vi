@@ -198,6 +198,19 @@ GUARDS.update({
     },
 })
 
+# Some worker findings were reported with source_path-wide scope even though all
+# durable evidence belongs to a narrower canonical UI category. Positive evidence
+# guards resolve such a finding only when every evidence row is currently covered
+# by the named live term. Canonical refresh resets resolutions before this pass,
+# so any future evidence outside the proven scope automatically reopens the finding.
+POSITIVE_EVIDENCE_GUARDS = {
+    "cf-55673a272df0aaae": {
+        "layer": "community",
+        "term_id": "common.friendship_gauge.support_effects",
+        "target_vi": "Friendship Gauge",
+    },
+}
+
 
 def _load(path: Path) -> dict[str, Any]:
     payload = json.loads(path.read_text(encoding="utf-8"))
@@ -217,6 +230,30 @@ def _key(item: dict[str, Any]) -> str | None:
     return None
 
 
+def _guard_matches_item(
+    item: dict[str, Any],
+    guard: dict[str, str],
+    community_terms: list[dict[str, Any]],
+    locked_terms: list[dict[str, Any]],
+) -> bool:
+    source = str(item.get("source_text") or "")
+    target = str(item.get("current_text") or "")
+    source_path = str(item.get("source_path") or "") or None
+    json_path = item.get("json_path") if isinstance(item.get("json_path"), list) else None
+    if guard["layer"] == "community":
+        matches = community_term_matches(
+            _key(item), source, target, community_terms,
+            source_path=source_path, json_path=json_path,
+        )
+    else:
+        matches = locked_term_matches(
+            source, target, locked_terms,
+            key=_key(item), source_path=source_path, json_path=json_path,
+        )
+    term_id = str(guard["term_id"])
+    return any(str(match.get("id") or "") == term_id for match in matches)
+
+
 def resolve(repo_root: Path = ROOT) -> bool:
     path = repo_root / "glossary" / "canonical_findings.json"
     payload = _load(path)
@@ -227,42 +264,53 @@ def resolve(repo_root: Path = ROOT) -> bool:
     for finding in payload.get("findings", []):
         if not isinstance(finding, dict):
             continue
-        guard = GUARDS.get(str(finding.get("finding_id") or ""))
+        if isinstance(finding.get("canonical_resolution"), dict):
+            continue
+
+        finding_id = str(finding.get("finding_id") or "")
+        evidence = [item for item in finding.get("evidence", []) if isinstance(item, dict)]
+
+        positive_guard = POSITIVE_EVIDENCE_GUARDS.get(finding_id)
+        if positive_guard is not None:
+            if not evidence:
+                continue
+            suggested = {
+                str(value).strip().casefold()
+                for value in finding.get("suggested_targets_vi", [])
+                if str(value).strip()
+            }
+            expected = str(positive_guard["target_vi"]).strip().casefold()
+            if suggested and expected not in suggested:
+                continue
+            if not all(
+                _guard_matches_item(item, positive_guard, community_terms, locked_terms)
+                for item in evidence
+            ):
+                continue
+            finding["canonical_resolution"] = {
+                "layer": str(positive_guard["layer"]),
+                "term_id": str(positive_guard["term_id"]),
+                "target_vi": str(positive_guard["target_vi"]),
+            }
+            continue
+
+        guard = GUARDS.get(finding_id)
         if guard is None:
             continue
         # Context guards are fallback evidence that an old overmatching rule has
         # been neutralized. Never replace a positive canonical resolution that
         # already matches the reviewed target; canonical refresh owns that result.
-        if isinstance(finding.get("canonical_resolution"), dict):
-            continue
-        evidence = [item for item in finding.get("evidence", []) if isinstance(item, dict)]
         if not evidence:
             continue
-        term_id = str(guard["term_id"])
-        still_overmatches = False
-        for item in evidence:
-            source = str(item.get("source_text") or "")
-            target = str(item.get("current_text") or "")
-            source_path = str(item.get("source_path") or "") or None
-            json_path = item.get("json_path") if isinstance(item.get("json_path"), list) else None
-            if guard["layer"] == "community":
-                matches = community_term_matches(
-                    _key(item), source, target, community_terms,
-                    source_path=source_path, json_path=json_path,
-                )
-            else:
-                matches = locked_term_matches(
-                    source, target, locked_terms,
-                    key=_key(item), source_path=source_path, json_path=json_path,
-                )
-            if any(str(match.get("id") or "") == term_id for match in matches):
-                still_overmatches = True
-                break
+        still_overmatches = any(
+            _guard_matches_item(item, guard, community_terms, locked_terms)
+            for item in evidence
+        )
         if still_overmatches:
             continue
         finding["canonical_resolution"] = {
             "layer": "context_guard",
-            "term_id": term_id,
+            "term_id": str(guard["term_id"]),
             "target_vi": str(guard["target_vi"]),
         }
 

@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "status": "partial",
+  "plan_id": "tr-p3-67f8551f7780-1c57e0cc9bcf-b5c0bcb3bd-ce1c207047",
+  "batch_id": "tr-p3-67f8551f7780-1c57e0cc9bcf-b5c0bcb3bd-ce1c207047-b0091",
+  "claim_id": "trc-gpt56sol-20260903T015900Z-b0091",
+  "worker_id": "gpt56sol-20260903T014920Z",
+  "reviewed_at": "2026-09-03T02:01:00Z",
+  "completed_count": 5,
+  "decisions": [
+    {
+      "uid": "zhcn:d283a8858523a0d1bcd52f5d",
+      "current_fingerprint": "5d288d934959a630549f5ddb2f8cbe9c6975b4a3f0c9fba7321fc3e665e9d9ec",
+      "action": "defer",
+      "reason": "力量 is clearly metaphorical strength in 化逆境为力量, while the embedded Power rule itself says narrative/metaphorical uses are excluded; the current item still carries a conflicting require-Power match, so canonical matcher scope must be fixed first.",
+      "terminology_basis": "Embedded common.stat.power basis excludes narrative/metaphorical 力量 from the Power stat label.",
+      "canonical_finding": {
+        "kind": "context_rule",
+        "source_zh_cn": "化逆境为力量",
+        "concept": "Metaphorical strength must not trigger the Power stat",
+        "match_mode": "contains",
+        "scope": "source_path",
+        "reason": "This narrative phrase means turning adversity into strength, not the gameplay Power stat, but the current matcher still requires Power.",
+        "confidence": "high"
+      },
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:916c6952c3e44fa9aa0d663d",
+      "current_fingerprint": "e78618448660afe4bc46dc082dd67885d88dc98ce47f4c9a71688295e4f92768",
+      "action": "revise",
+      "proposed_text": "Tôi chỉ có một ước nguyện――đó là giành được danh hiệu “mạnh nhất”!\\nTôi muốn trở thành Mã Nương khắc sâu trong ký ức mọi người!\\nĐể đạt được mục tiêu ấy, thứ không thể thiếu… đúng, là tự quảng bá!",
+      "reason": "Generic 赛马娘 is a world/species reference; the current forbidden Uma Musume form must use the canonical Vietnamese project term.",
+      "terminology_basis": "Embedded common.world.umamusume rule requires generic 赛马娘 → Mã Nương.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:cea3f4bcc6cccb938efbec4c",
+      "current_fingerprint": "27afc08cf8111525fb90683e8c1e0befafe069b3812399942c9b5b002df6c20a",
+      "action": "defer",
+      "reason": "莱茵力量 is correctly identified as the proper name Rhein Kraft, but the same substring simultaneously triggers the Power stat locked term. This canonical matcher collision must be resolved before the line can cleanly pass review.",
+      "terminology_basis": "Embedded character.rhein_kraft is satisfied; embedded Power terminology explicitly states proper names such as Rhein Kraft are excluded from stat normalization.",
+      "canonical_finding": {
+        "kind": "context_rule",
+        "source_zh_cn": "莱茵力量",
+        "suggested_target_vi": "Rhein Kraft",
+        "concept": "Rhein Kraft proper name must not trigger Power stat matching",
+        "match_mode": "contains",
+        "scope": "source_path",
+        "reason": "The character alias contains 力量 but denotes the proper name Rhein Kraft, not the Power stat.",
+        "confidence": "high"
+      },
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:6ae635d405fe877a9c17e375",
+      "current_fingerprint": "05e2a300139ee6421543bc79bcf35ea821c6c72fe4e256cf66ad5ff12502ad1e",
+      "action": "defer",
+      "reason": "An open canonical finding already blocks automatic Turf normalization for narrative 草地, so this line remains unresolved until that context rule is reviewed.",
+      "terminology_basis": "Embedded common.surface.turf is present, but the open canonical context-rule finding on 草地 is authoritative blocking context.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:9d512c4dd7e383ae7c06a5dc",
+      "current_fingerprint": "e293cb65194aeca378f49973967d311b5b553a8eb46338c3747b3fd36eb51568",
+      "action": "revise",
+      "proposed_text": "Hi!　Tôi là Forever Young!\\nLộ trình đã sẵn sàng! Phải tạo nên một cuộc\\ncách mạng trong thế giới Mã Nương chứ, đúng không!",
+      "reason": "赛马娘界 is the generic Mã Nương world/community reference, not the franchise title; the current Uma Musume wording is forbidden by project terminology.",
+      "terminology_basis": "Embedded common.world.umamusume requires generic 赛马娘 → Mã Nương; Forever Young proper-name lock is already satisfied.",
+      "confidence": "high"
+    }
+  ]
+}

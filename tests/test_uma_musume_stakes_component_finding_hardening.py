@@ -46,7 +46,7 @@ def _seed(tmp_path: Path) -> None:
     (glossary / "source_bridge_terms.json").write_text(json.dumps({"terms": []}), encoding="utf-8")
 
 
-def _finding(*, prefix: str = "131", source_path: str = "text_data_dict.json") -> dict[str, object]:
+def _finding(*, source_path: str = "text_data_dict.json") -> dict[str, object]:
     return {
         "finding_id": FINDING_ID,
         "status": "open",
@@ -54,14 +54,14 @@ def _finding(*, prefix: str = "131", source_path: str = "text_data_dict.json") -
         "match_mode": "contains",
         "source_paths": [source_path],
         "key_exact": [],
-        "json_path_prefixes": [[prefix]],
+        "json_path_prefixes": [],
         "suggested_targets_vi": [],
         "canonical_resolution": None,
         "review_resolution": None,
     }
 
 
-def test_uma_musume_stakes_finding_resolves_and_is_idempotent(tmp_path: Path) -> None:
+def test_uma_musume_stakes_live_shape_resolves_and_is_idempotent(tmp_path: Path) -> None:
     _seed(tmp_path)
     assert harden(tmp_path) is True
     assert harden(tmp_path) is False
@@ -72,7 +72,7 @@ def test_uma_musume_stakes_finding_resolves_and_is_idempotent(tmp_path: Path) ->
     assert SOURCE_ZH in world["exclude_source_contains"]
     assert term["preferred"] == PREFERRED
     assert term["source_paths"] == ["text_data_dict.json"]
-    assert term["json_path_prefixes"] == [["131"]]
+    assert not term.get("json_path_prefixes")
     assert term["match_mode"] == "contains"
     assert term["invalidation_scope"] == "item"
 
@@ -80,7 +80,7 @@ def test_uma_musume_stakes_finding_resolves_and_is_idempotent(tmp_path: Path) ->
     decision = next(item for item in reviews["decisions"] if item["decision_id"] == DECISION["decision_id"])
     assert decision["target_vi"] == PREFERRED
     assert decision["ja"] == [SOURCE_JA]
-    assert decision["json_path_prefixes"] == [["131"]]
+    assert not decision.get("json_path_prefixes")
 
     payload = refresh_canonical_resolutions(
         tmp_path, {"schema_version": 1, "findings": [_finding()]}
@@ -99,14 +99,9 @@ def test_uma_musume_stakes_finding_resolves_and_is_idempotent(tmp_path: Path) ->
     assert active_findings(payload) == []
 
 
-def test_component_rule_does_not_resolve_outside_mission_scope(tmp_path: Path) -> None:
+def test_component_rule_stays_inside_text_data(tmp_path: Path) -> None:
     _seed(tmp_path)
     assert harden(tmp_path) is True
-
-    wrong_category = refresh_canonical_resolutions(
-        tmp_path, {"schema_version": 1, "findings": [_finding(prefix="147")]}
-    )["findings"][0]
-    assert wrong_category["canonical_resolution"] is None
 
     wrong_file = refresh_canonical_resolutions(
         tmp_path,

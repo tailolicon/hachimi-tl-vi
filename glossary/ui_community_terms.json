@@ -6395,6 +6395,29 @@
       ],
       "match_mode": "contains",
       "basis": "The project already canonicalizes JP ウマいね！ / zh-CN 马赞 as the player-facing feature Uma Like! inside League of Heroes. Worker evidence shows the same zh-CN alias in Home music UI, where generic Vietnamese thích loses the named feature identity. Keep the existing Heroes-key rule intact and bridge only 马赞 within localize_dict.json."
+    },
+    {
+      "id": "common.condition.migraine.localize_context",
+      "category": "condition",
+      "source_aliases": [
+        "偏头痛"
+      ],
+      "preferred": "Migraine",
+      "compact": [],
+      "accepted": [
+        "Migraine"
+      ],
+      "forbidden": [
+        "đau nửa đầu",
+        "Đau nửa đầu"
+      ],
+      "require_accepted": true,
+      "invalidation_scope": "item",
+      "source_paths": [
+        "localize_dict.json"
+      ],
+      "match_mode": "contains",
+      "basis": "偏头痛 is the established named negative Condition Migraine. The canonical table term remains scoped to the condition-name table, while worker evidence shows the same Condition referenced unquoted in localize_dict.json system UI (由于偏头痛，无法使用育成商品). Bridge only that source file so ordinary narrative text in other sources does not inherit the named-Condition rule."
     }
   ]
 }

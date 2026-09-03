@@ -28,7 +28,13 @@ on:
       - "scripts/translation_review_common.py"
       - "scripts/repair_translation_review_progress.py"
       - "scripts/canonical_findings.py"
+      - "scripts/resolve_scoped_canonical_overrides.py"
       - "scripts/resolve_context_guard_findings.py"
+      - "scripts/resolve_running_style_narrative_finding.py"
+      - "scripts/resolve_regenerated_super_long_distance_context_finding.py"
+      - "scripts/resolve_regenerated_aoharu_ignition_finding.py"
+      - "scripts/resolve_regenerated_initial_friendship_finding.py"
+      - "scripts/resolve_regenerated_grand_live_performance_stats_findings.py"
       - "scripts/refresh_translation_review_batch_findings.py"
       - "scripts/merge_translation_review.py"
       - "scripts/merge_parallel_results.py"
@@ -42,6 +48,7 @@ on:
       - "tests/test_skill_inheritance_hardening.py"
       - "tests/test_race_hardening.py"
       - "tests/test_translation_review_gate_idempotence.py"
+      - "tests/test_context_sync_workflow_persistence.py"
       - "tests/test_*_finding_hardening.py"
       - "tests/test_*_context_guard_resolution.py"
       - ".github/workflows/sync-translation-review-plan.yml"
@@ -93,10 +100,16 @@ jobs:
               python "$script"
             done
             python scripts/canonical_findings.py --repo-root . --refresh
-            # Direct canonical refresh deliberately clears derived guard resolutions.
-            # Restore them before building review batches so guarded aliases do not
-            # become blockers again merely because a review plan was regenerated.
+            # Direct canonical refresh deliberately clears derived resolutions.
+            # Restore the same post-refresh resolver surface used by production
+            # context Sync before worker-facing batch snapshots are refreshed.
+            python scripts/resolve_scoped_canonical_overrides.py --repo-root .
             python scripts/resolve_context_guard_findings.py
+            python scripts/resolve_running_style_narrative_finding.py
+            python scripts/resolve_regenerated_super_long_distance_context_finding.py
+            python scripts/resolve_regenerated_aoharu_ignition_finding.py
+            python scripts/resolve_regenerated_initial_friendship_finding.py
+            python scripts/resolve_regenerated_grand_live_performance_stats_findings.py
             # Canonical findings are intentionally excluded from plan identity so
             # evidence churn does not rebuild thousands of batches. Refresh only the
             # unresolved active batch snapshots to keep worker-facing evidence live.

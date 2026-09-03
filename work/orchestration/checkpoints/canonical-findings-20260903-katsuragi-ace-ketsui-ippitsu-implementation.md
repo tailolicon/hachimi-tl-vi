@@ -21,6 +21,13 @@ Repository curation `work/curation/results/term-0019/claim-gpt56sol-20260826T082
 - Terminology decision: `audit.finding.skill-katsuragi-ace-ketsui-ippitsu`.
 - Rule uses the complete four-character Skill title as a `contains` alias, restricted to `text_data_dict.json`, because the live finding is scoped to category-172 inheritance descriptions that contain the title inside longer text. Regression coverage proves the same alias does not resolve another file.
 
-## Remaining acceptance
+## Production acceptance
 
-Require successful Validate, production Sync translation context, refreshed review plan, and live worker context showing `cf-d3211bb4e4049dd9` absent with the canonical rule embedded.
+Accepted on live `main`.
+
+- Validate run `33811269484` for implementation commit `7de8f3aed84d1e9950f64214b148316d2a49fd9b`: `completed/success`.
+- Sync translation context run `33811269465` for the same implementation commit: `completed/success`.
+- The direct review-plan run on the implementation commit was cancelled by newer pushes, but a later production review-plan refresh is live as `tr-p3-67f8551f7780-07c5e2d183e4-b5c0bcb3bd-c645b52c5d`.
+- Live batch `...-b0213` now embeds community rule `skill.katsuragi_ace.ketsui_ippitsu` with preferred target `Nét Bút Quyết Tâm` on `决意一笔` entries and has `canonical_findings: []` for those entries. This is the required authoritative worker-context acceptance signal.
+
+Finding `cf-d3211bb4e4049dd9` is therefore accepted/resolved for maintenance accounting.

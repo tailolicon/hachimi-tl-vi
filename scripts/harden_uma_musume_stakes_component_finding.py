@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-"""Canonicalize the in-game ウマ娘ステークス race-name component in mission prose."""
+"""Canonicalize the in-game ウマ娘ステークス race-name component in text data."""
 
 import json
 from pathlib import Path
@@ -25,13 +25,13 @@ TERM = {
     "require_accepted": True,
     "invalidation_scope": "item",
     "source_paths": ["text_data_dict.json"],
-    "json_path_prefixes": [["131"]],
     "match_mode": "contains",
     "basis": (
-        "Category-131 Make a new track!! mission prose uses 赛马娘锦标 as the game-specific race-name "
-        "component JP ウマ娘ステークス. Existing locked race names such as 府中ウマ娘ステークス -> "
-        "Fuchu Uma Musume Stakes and 福島ウマ娘ステークス -> Fukushima Uma Musume Stakes establish the "
-        "project convention: preserve Uma Musume and Stakes rather than applying generic Mã Nương."
+        "The generated finding is source-path scoped rather than category scoped. "
+        "赛马娘锦标 is the game-specific race-name component JP ウマ娘ステークス wherever it occurs in text_data_dict.json. "
+        "Existing locked race names such as 府中ウマ娘ステークス -> Fuchu Uma Musume Stakes and "
+        "福島ウマ娘ステークス -> Fukushima Uma Musume Stakes establish the project convention: preserve "
+        "Uma Musume and Stakes rather than applying generic Mã Nương."
     ),
 }
 
@@ -45,12 +45,12 @@ DECISION = {
     "ja": [SOURCE_JA],
     "invalidation_scope": "item",
     "source_paths": ["text_data_dict.json"],
-    "json_path_prefixes": [["131"]],
     "match_mode": "contains",
     "note": (
-        "Lock the quoted/naming component 赛马娘锦标 to Uma Musume Stakes in category-131 mission prose. "
-        "This follows the already verified in-game 府中/福島ウマ娘ステークス naming convention and prevents "
-        "generic 赛马娘 -> Mã Nương from firing inside race proper names."
+        "Lock the race-name component 赛马娘锦标 to Uma Musume Stakes throughout text_data_dict.json. "
+        "The live finding itself has no JSON-path prefix, so a category-131-only rule cannot cover it. "
+        "This follows the verified 府中/福島ウマ娘ステークス naming convention and prevents generic "
+        "赛马娘 -> Mã Nương from firing inside race proper names."
     ),
 }
 

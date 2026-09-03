@@ -50,7 +50,7 @@ def _seed(tmp_path: Path) -> None:
         json.dumps({"schema_version": 1, "decisions": []}), encoding="utf-8"
     )
     (glossary / "canonical_findings.json").write_text(
-        json.dumps({"schema_version": 1, "findings": [_finding()]), encoding="utf-8"
+        json.dumps({"schema_version": 1, "findings": [_finding()]}), encoding="utf-8"
     )
     (glossary / "source_bridge_terms.json").write_text(json.dumps({"terms": []}), encoding="utf-8")
     (glossary / "skill_name_style.json").write_text(json.dumps({"canonical_examples": []}), encoding="utf-8")

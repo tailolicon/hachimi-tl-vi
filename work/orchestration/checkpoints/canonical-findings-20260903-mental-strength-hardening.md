@@ -19,6 +19,13 @@ Use a narrow canonical community rule instead: exact source `精神力量`, `tex
 - Commit `70bda2a022217413c90290225399a002a38ff51a` removes that category prefix from the exact community rule, retains the text-data source-path guard, and preserves the Power exclusion.
 - Commit `3f8c99536b7874b7468428df45b03265f81d0d29` adds a permanent regression that constructs the original source-path-scoped finding, runs `refresh_canonical_resolutions`, asserts `canonical_resolution == {layer: community, term_id: reviewed.context.mental_strength.text147, target_vi: Sức mạnh tinh thần}`, and asserts `active_findings()` becomes empty.
 
-## Acceptance continuation
+## Production acceptance
 
-Do not increment maintenance completion count from 30 to 31 until the push-triggered production Context Sync and Review-plan Sync for the corrected commits succeed. After both succeed, refresh live `main`, confirm `cf-1fb0ec7c1c77dfb1.canonical_resolution.target_vi == "Sức mạnh tinh thần"` through `reviewed.context.mental_strength.text147`, and confirm the finding is absent from `scripts.canonical_findings.active_findings`. Only then mark it production-accepted and advance the maintenance count.
+- Corrected-head validation run `33773044395` completed successfully.
+- Corrected-head Context Sync run `33773044394` completed successfully.
+- Corrected-head Review-plan Sync run `33773044371` completed successfully; its `sync` job finished all steps, including `Enforce canon and publish retrospective translation review plan`.
+- Fresh live-`main` inspection after those workflows shows `cf-1fb0ec7c1c77dfb1.canonical_resolution == {"layer":"community","term_id":"reviewed.context.mental_strength.text147","target_vi":"Sức mạnh tinh thần"}`.
+- Repository routing semantics define `active_findings` as only `open`/`deferred` rows without `canonical_resolution` and without an explicit ignore resolution. Therefore the live row, although its ledger `status` remains `open`, is excluded from active maintenance blockers.
+- Fresh Review-plan Sync published active plan `tr-p3-67f8551f7780-55e83f8331e2-b5c0bcb3bd-ca33d092ad` on `main` at `2026-09-03T15:35:29.070726Z`.
+
+Production acceptance is complete. Maintenance completion count may advance from 30 to 31 for `cf-1fb0ec7c1c77dfb1`.

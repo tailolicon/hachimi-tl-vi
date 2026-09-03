@@ -49,9 +49,11 @@ def test_mood_effect_and_initial_friendship(tmp_path: Path) -> None:
     mood = _record(root, "干劲效果提升&初始牵绊值提升", "Mood Effect & Initial Friendship", "support.mood_effect.effect155")
     conditional_mood = _record(root, "羁绊值在80以上时，心情加成和速度加成", "Friendship Gauge 80+: Mood Effect and Speed Bonus", "support.mood_effect.effect155")
     initial = _record(root, "干劲效果提升&初始牵绊值提升", "Mood Effect & Initial Friendship", "support.initial_friendship.effect155")
+    initial_variant = _record(root, "干劲效果提升与初始羁绊槽上升", "Mood Effect & Initial Friendship", "support.initial_friendship.effect155")
     assert mood["accepted_present"] is True
     assert conditional_mood["accepted_present"] is True
     assert initial["accepted_present"] is True
+    assert initial_variant["accepted_present"] is True
 
 
 def test_specialty_priority_scoped(tmp_path: Path) -> None:

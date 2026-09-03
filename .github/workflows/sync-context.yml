@@ -14,6 +14,7 @@ on:
       - "scripts/canonical_findings.py"
       - "scripts/resolve_scoped_canonical_overrides.py"
       - "scripts/resolve_context_guard_findings.py"
+      - "scripts/resolve_regenerated_super_long_distance_context_finding.py"
       - "scripts/build_source_bridge_risk_registry.py"
       - "scripts/apply_terminology_reviews.py"
       - "scripts/harden_audit_findings.py"
@@ -127,6 +128,9 @@ jobs:
 
       - name: Resolve context-guard findings
         run: python scripts/resolve_context_guard_findings.py
+
+      - name: Resolve regenerated super-long-distance finding
+        run: python scripts/resolve_regenerated_super_long_distance_context_finding.py
 
       - name: Build terminology review queue
         run: python scripts/build_terminology_review_queue.py

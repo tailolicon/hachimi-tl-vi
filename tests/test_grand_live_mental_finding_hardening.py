@@ -1,12 +1,12 @@
 import json
 from pathlib import Path
 
-from scripts.apply_terminology_reviews import apply_reviews
 from scripts.canonical_findings import refresh_canonical_resolutions
 from scripts.harden_grand_live_mental_finding import (
     GRAND_LIVE_MENTAL_DECISION,
     GRAND_LIVE_MENTAL_TEXT,
     GRAND_LIVE_MENTAL_UI,
+    OBSOLETE_TEXT_RULE_ID,
     harden,
 )
 
@@ -16,46 +16,58 @@ def _write(path: Path, payload: dict) -> None:
     path.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 
-def test_hardener_upserts_scoped_mental_rules_and_resolves_finding(tmp_path: Path) -> None:
+def _finding(source_path: str = "text_data_dict.json") -> dict:
+    return {
+        "finding_id": "cf-test-grand-live-mental",
+        "status": "open",
+        "source_zh_cn": "心理值",
+        "match_mode": "contains",
+        "source_paths": [source_path],
+        "key_exact": [],
+        "json_path_prefixes": [],
+        "kinds": ["system_label"],
+        "concepts": ["Grand Live performance stat: Mental"],
+        "suggested_targets_vi": ["Mental"],
+        "confidence_levels": ["high"],
+        "reasons": ["Grand Live system label"],
+        "evidence_count": 1,
+        "evidence": [
+            {
+                "uid": "zhcn:test",
+                "source_path": source_path,
+                "json_path": ["131", "241"],
+                "source_text": "获得合计300点以上心理值完成育成",
+                "current_text": "Đạt ít nhất 300 điểm Tinh thần",
+            }
+        ],
+        "canonical_resolution": None,
+        "review_resolution": None,
+    }
+
+
+def test_hardener_matches_live_text_data_finding_scope_and_is_idempotent(tmp_path: Path) -> None:
     glossary = tmp_path / "glossary"
-    _write(glossary / "ui_community_terms.json", {"schema_version": 1, "terms": []})
+    _write(
+        glossary / "ui_community_terms.json",
+        {
+            "schema_version": 1,
+            "terms": [
+                {
+                    "id": OBSOLETE_TEXT_RULE_ID,
+                    "source_aliases": ["心理值"],
+                    "preferred": "Mental",
+                    "source_paths": ["text_data_dict.json"],
+                    "json_path_prefixes": [["131"]],
+                }
+            ],
+        },
+    )
     _write(glossary / "terminology_reviews.json", {"schema_version": 1, "decisions": []})
     _write(glossary / "term_registry.json", {"schema_version": 1, "terms": []})
     _write(glossary / "source_bridge_terms.json", {"schema_version": 1, "terms": []})
     _write(
         glossary / "canonical_findings.json",
-        {
-            "schema_version": 1,
-            "policy": {"canonical": False},
-            "findings": [
-                {
-                    "finding_id": "cf-test-grand-live-mental",
-                    "status": "open",
-                    "source_zh_cn": "心理值",
-                    "match_mode": "contains",
-                    "source_paths": ["text_data_dict.json"],
-                    "key_exact": [],
-                    "json_path_prefixes": [],
-                    "kinds": ["system_label"],
-                    "concepts": ["Grand Live performance stat: Mental"],
-                    "suggested_targets_vi": ["Mental"],
-                    "confidence_levels": ["high"],
-                    "reasons": ["Grand Live system label"],
-                    "evidence_count": 1,
-                    "evidence": [
-                        {
-                            "uid": "zhcn:test",
-                            "source_path": "text_data_dict.json",
-                            "json_path": ["131", "241"],
-                            "source_text": "获得合计300点以上心理值完成育成",
-                            "current_text": "Đạt ít nhất 300 điểm Tinh thần",
-                        }
-                    ],
-                    "canonical_resolution": None,
-                    "review_resolution": None,
-                }
-            ],
-        },
+        {"schema_version": 1, "policy": {"canonical": False}, "findings": [_finding()]},
     )
 
     assert harden(tmp_path) is True
@@ -63,21 +75,37 @@ def test_hardener_upserts_scoped_mental_rules_and_resolves_finding(tmp_path: Pat
 
     community = json.loads((glossary / "ui_community_terms.json").read_text(encoding="utf-8"))
     by_id = {item["id"]: item for item in community["terms"]}
+    assert OBSOLETE_TEXT_RULE_ID not in by_id
     assert by_id[GRAND_LIVE_MENTAL_TEXT["id"]]["preferred"] == "Mental"
-    assert by_id[GRAND_LIVE_MENTAL_TEXT["id"]]["json_path_prefixes"] == [["131"]]
+    assert by_id[GRAND_LIVE_MENTAL_TEXT["id"]]["source_paths"] == ["text_data_dict.json"]
+    assert by_id[GRAND_LIVE_MENTAL_TEXT["id"]]["json_path_prefixes"] == []
     assert by_id[GRAND_LIVE_MENTAL_UI["id"]]["key_exact"] == ["SingleModeScenarioLive0005"]
 
     reviews = json.loads((glossary / "terminology_reviews.json").read_text(encoding="utf-8"))
     by_decision = {item["decision_id"]: item for item in reviews["decisions"]}
     assert by_decision[GRAND_LIVE_MENTAL_DECISION["decision_id"]]["target_vi"] == "Mental"
 
-    registry = json.loads((glossary / "term_registry.json").read_text(encoding="utf-8"))
-    applied, stats = apply_reviews(registry, reviews)
-    assert stats["locked_added"] == 1
-    _write(glossary / "term_registry.json", applied)
-
     refresh_canonical_resolutions(tmp_path)
-    findings = json.loads((glossary / "canonical_findings.json").read_text(encoding="utf-8"))["findings"]
-    resolution = findings[0]["canonical_resolution"]
-    assert resolution is not None
-    assert resolution["target_vi"] == "Mental"
+    finding = json.loads((glossary / "canonical_findings.json").read_text(encoding="utf-8"))["findings"][0]
+    assert finding["canonical_resolution"] == {
+        "layer": "community",
+        "term_id": GRAND_LIVE_MENTAL_TEXT["id"],
+        "target_vi": "Mental",
+    }
+
+
+def test_text_data_rule_does_not_resolve_other_source_paths(tmp_path: Path) -> None:
+    glossary = tmp_path / "glossary"
+    _write(glossary / "ui_community_terms.json", {"schema_version": 1, "terms": []})
+    _write(glossary / "terminology_reviews.json", {"schema_version": 1, "decisions": []})
+    _write(glossary / "term_registry.json", {"schema_version": 1, "terms": []})
+    _write(glossary / "source_bridge_terms.json", {"schema_version": 1, "terms": []})
+    _write(
+        glossary / "canonical_findings.json",
+        {"schema_version": 1, "policy": {"canonical": False}, "findings": [_finding("storytimeline.json")]},
+    )
+
+    assert harden(tmp_path) is True
+    refresh_canonical_resolutions(tmp_path)
+    finding = json.loads((glossary / "canonical_findings.json").read_text(encoding="utf-8"))["findings"][0]
+    assert finding["canonical_resolution"] is None

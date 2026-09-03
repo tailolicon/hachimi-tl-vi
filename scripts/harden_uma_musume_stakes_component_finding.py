@@ -25,6 +25,7 @@ TERM = {
     "require_accepted": True,
     "invalidation_scope": "item",
     "source_paths": ["text_data_dict.json"],
+    "json_path_prefixes": [],
     "match_mode": "contains",
     "basis": (
         "The generated finding is source-path scoped rather than category scoped. "
@@ -45,6 +46,7 @@ DECISION = {
     "ja": [SOURCE_JA],
     "invalidation_scope": "item",
     "source_paths": ["text_data_dict.json"],
+    "json_path_prefixes": [],
     "match_mode": "contains",
     "note": (
         "Lock the race-name component 赛马娘锦标 to Uma Musume Stakes throughout text_data_dict.json. "

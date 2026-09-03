@@ -7,7 +7,7 @@ from typing import Any
 ROOT = Path(__file__).resolve().parents[1]
 
 GRAND_LIVE_MENTAL_TEXT = {
-    "id": "scenario.grand_live.performance.mental.text131",
+    "id": "scenario.grand_live.performance.mental.text_data",
     "category": "scenario",
     "source_aliases": ["心理值"],
     "preferred": "Mental",
@@ -17,9 +17,9 @@ GRAND_LIVE_MENTAL_TEXT = {
     "require_accepted": True,
     "invalidation_scope": "item",
     "source_paths": ["text_data_dict.json"],
-    "json_path_prefixes": [["131"]],
+    "json_path_prefixes": [],
     "match_mode": "contains",
-    "basis": "Grand Live performance uses five named performance categories. zh-CN 心理值 is the Mental category; scope this reusable alias to Grand Live mission/system text in text_data category 131 so ordinary psychological prose is unaffected.",
+    "basis": "Grand Live performance uses five named performance categories. zh-CN 心理值 is the Mental category; scope this alias to text_data_dict.json, matching the live finding scope while leaving generic 心理 prose untouched.",
 }
 
 GRAND_LIVE_MENTAL_UI = {
@@ -45,8 +45,10 @@ GRAND_LIVE_MENTAL_DECISION = {
     "target_vi": "Mental",
     "kind": "system_label",
     "category": "scenario",
-    "note": "Grand Live performance category 心理值 is Mental. Canonical matching is narrowly scoped by scenario.grand_live.performance.mental.* rules.",
+    "note": "Grand Live performance category 心理值 is Mental. Canonical matching is constrained by scenario.grand_live.performance.mental.* rules.",
 }
+
+OBSOLETE_TEXT_RULE_ID = "scenario.grand_live.performance.mental.text131"
 
 
 def _load(path: Path, default: dict[str, Any] | None = None) -> dict[str, Any]:
@@ -82,6 +84,11 @@ def harden(repo_root: Path = ROOT) -> bool:
     if not isinstance(terms, list):
         raise ValueError("glossary/ui_community_terms.json terms must be a list")
     before = json.dumps(community, ensure_ascii=False, sort_keys=True)
+    terms[:] = [
+        item
+        for item in terms
+        if not (isinstance(item, dict) and str(item.get("id") or "") == OBSOLETE_TEXT_RULE_ID)
+    ]
     _upsert(terms, GRAND_LIVE_MENTAL_TEXT, id_field="id")
     _upsert(terms, GRAND_LIVE_MENTAL_UI, id_field="id")
     if before != json.dumps(community, ensure_ascii=False, sort_keys=True):

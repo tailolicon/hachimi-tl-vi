@@ -21,6 +21,23 @@ except ModuleNotFoundError:
 
 
 ROOT = Path(__file__).resolve().parents[1]
+POWER_CONTEXT_GUARD_IDS = {
+    "cf-14defc3b38d1efcd",
+    "cf-1606ab03065110f0",
+    "cf-2549c5753263451d",
+    "cf-40320a059fe422c5",
+    "cf-418e723cca9d411b",
+    "cf-53deea84a131c5c1",
+    "cf-9acf7ae6c0c968ce",
+    "cf-9e20bab99a663608",
+    "cf-a6c1bdfd933a9e86",
+    "cf-a8c99a7184b30629",
+    "cf-c2b4254feb56171f",
+    "cf-d7f5148da47b8e7f",
+    "cf-df66d1828a60839c",
+}
+
+
 GUARDS = {
     "cf-0477e3b1d68a9798": {
         "layer": "locked",
@@ -141,6 +158,16 @@ GUARDS = {
         "target_vi": "Wit",
     },
 }
+
+for _finding_id in POWER_CONTEXT_GUARD_IDS:
+    # These regenerated findings all report the same Power-stat overmatch. The
+    # resolver still verifies every evidence row against the live rule, so merely
+    # registering an ID never closes a finding whose Power matcher is still active.
+    GUARDS.setdefault(_finding_id, {
+        "layer": "community",
+        "term_id": "common.stat.power",
+        "target_vi": "Power",
+    })
 
 
 def _load(path: Path) -> dict[str, Any]:

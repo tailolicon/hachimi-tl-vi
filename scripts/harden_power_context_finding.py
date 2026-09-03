@@ -8,6 +8,7 @@ from typing import Any
 ROOT = Path(__file__).resolve().parents[1]
 TERM_ID = "common.stat.power"
 NARRATIVE_EXCLUSIONS = [
+    "强大力量",
     "商品的力量",
     "不可思议力量",
     "超越极限力量",

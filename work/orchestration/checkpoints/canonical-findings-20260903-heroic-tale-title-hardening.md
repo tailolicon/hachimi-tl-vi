@@ -13,12 +13,13 @@ Repository evidence already has multiple reviewed/generated regression targets u
 - `scripts/harden_heroic_tale_title_finding.py` added at main commit `4658bd5e682e30f72135a2f60fecb937347ffd99`.
 - `tests/test_heroic_tale_title_finding_hardening.py` added at main commit `e950d0f1f841942036d00eaa6d5edea9b7851788`.
 - Local execution backend has no pytest installed, but direct import/compile/idempotence assertions against the live hardener passed (`manual_hardener_check=pass`).
+- A clean archive simulation from current `origin/main` ran the hardener followed by `scripts/canonical_findings.py --refresh`; finding `cf-0533ace8b6cf1c16` resolved exactly to `{layer: community, term_id: event.league_of_heroes.heroic_tale_title, target_vi: Anh Hùng Kỳ Đàm}`. This proves the hardener matches the repository resolver semantics without overmatching unrelated prose.
 
 ## Validation / production continuation
 
 Push-triggered workflows for head `e950d0f1f841942036d00eaa6d5edea9b7851788`:
 
-- Sync translation context: run `33769319161` — pending at checkpoint time.
-- Sync translation review plan: run `33769319396` — pending at checkpoint time.
+- Sync translation context: run `33769319161` — still pending when last checked.
+- Sync translation review plan: run `33769319396` — still pending when last checked.
 
 Do not mark the finding resolved from this checkpoint alone. Continue by verifying workflow success and generated canonical resolution on live `main`; if successful, record the completion evidence and move to the next active finding under `scripts/canonical_findings.py::active_findings` semantics.

@@ -15,9 +15,10 @@ def _seed(tmp_path: Path, *, excluded: bool) -> None:
     glossary.mkdir()
     term = {
         "id": "skill.righteous_path",
-        "source_aliases": ["正道"],
-        "preferred": "Chính đạo",
-        "accepted": ["Chính đạo"],
+        "kind": "skill_name",
+        "locked": True,
+        "zh_cn": ["正道"],
+        "target_vi": "Chính đạo",
         "source_paths": ["text_data_dict.json"],
         "match_mode": "contains",
     }

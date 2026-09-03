@@ -6295,6 +6295,59 @@
       ],
       "match_mode": "exact",
       "basis": "Manhattan Cafe [Creeping Shadow]'s verified JP unique Skill is アナタヲ・オイカケテ, localized in the English release as Chasing After You. Preserve the official English Skill identity rather than deriving a Vietnamese title from the zh-CN semantic bridge."
+    },
+    {
+      "id": "event.loh.league_score.score_alias",
+      "category": "mechanic",
+      "source_aliases": [
+        "联赛分数"
+      ],
+      "preferred": "League Score",
+      "compact": [],
+      "accepted": [
+        "League Score"
+      ],
+      "forbidden": [
+        "điểm Liên đoàn",
+        "Điểm Liên đoàn"
+      ],
+      "require_accepted": true,
+      "invalidation_scope": "item",
+      "source_paths": [
+        "localize_dict.json"
+      ],
+      "match_mode": "contains",
+      "basis": "League of Heroes zh-CN alias 联赛分数 names League Score. Keep the existing Heroes-key rule unchanged and bridge this recurring worker-reported alias only within localize_dict.json, where corpus evidence is consistently League of Heroes UI."
+    },
+    {
+      "id": "world.umamusume.shorthand.schedulebook",
+      "category": "world",
+      "source_aliases": [
+        "马娘"
+      ],
+      "preferred": "Mã Nương",
+      "compact": [],
+      "accepted": [
+        "Mã Nương"
+      ],
+      "forbidden": [
+        "Uma Musume"
+      ],
+      "require_accepted": true,
+      "invalidation_scope": "item",
+      "source_paths": [
+        "localize_dict.json"
+      ],
+      "key_exact": [
+        "ScheduleBook408021",
+        "ScheduleBook408022",
+        "ScheduleBook408061",
+        "ScheduleBook408064",
+        "ScheduleBook408065",
+        "ScheduleBook408080"
+      ],
+      "match_mode": "contains",
+      "basis": "The six evidence-bearing ScheduleBook UI strings use zh-CN 马娘 as the generic Umamusume world/species shorthand. Reuse the established Vietnamese term Mã Nương, but keep this short alias restricted to the reviewed ScheduleBook keys so unrelated proper-name or source-bridge uses in localize_dict.json are not broadened automatically."
     }
   ]
 }

@@ -100,7 +100,7 @@ def test_aptitude_label_accepts_established_player_term() -> None:
     assert record["forbidden_present"] is False
 
 
-def test_singlemode_aptitude_composes_with_existing_surface_canon() -> None:
+def test_singlemode_aptitude_composes_with_scoped_surface_canon() -> None:
     community = load_community_terms(REPO_ROOT)
     matches = community_term_matches(
         "SingleMode0078",
@@ -111,9 +111,9 @@ def test_singlemode_aptitude_composes_with_existing_surface_canon() -> None:
         json_path=["SingleMode0078"],
     )
     ids = _ids(matches)
-    assert "common.surface.turf" in ids
+    assert "common.surface.turf.aptitude" in ids
     assert "common.aptitude" in ids
-    assert _by_id(matches, "common.surface.turf")["accepted_present"] is True
+    assert _by_id(matches, "common.surface.turf.aptitude")["accepted_present"] is True
     assert _by_id(matches, "common.aptitude")["accepted_present"] is True
 
 

@@ -23,9 +23,8 @@ SKILL_TERM = {
     "require_accepted": True,
     "invalidation_scope": "item",
     "source_paths": ["text_data_dict.json"],
-    "json_path_prefixes": [["147"]],
     "match_mode": "exact",
-    "basis": "Locator 202312 in the maintained curation evidence verifies JP 意気込み十分 for zh-CN 干劲十足. This is a Skill title, not the generic やる気 / 干劲 Mood state; use the reviewed Vietnamese title Khí thế tràn đầy.",
+    "basis": "Locator 202312 in the maintained curation evidence verifies JP 意気込み十分 for zh-CN 干劲十足. This exact text-data Skill title is distinct from the generic やる気 / 干劲 Mood state; use the reviewed Vietnamese title Khí thế tràn đầy.",
 }
 
 SKILL_DECISION = {

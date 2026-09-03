@@ -11,30 +11,26 @@ Finding: `cf-abda2b1124d162ff`
 
 ## Evidence
 
-Repository curation already verifies locator `47:101041` as JP `暁の御旗『葛城栄主』！` and explicitly warns that quoted `葛城栄主` is stylized character/kanji wordplay associated with Katsuragi Ace, so the Chinese proper-name spelling must not be literally calqued.
+Repository curation verifies locator `47:101041` as JP `暁の御旗『葛城栄主』！` and warns that quoted `葛城栄主` is stylized character/kanji wordplay associated with Katsuragi Ace. Independent JP gameplay references agree on the same unique-Skill title. Preserve `Katsuragi Ace` in Roman letters rather than calquing `葛城栄主`/`葛城荣主`; normalize the established Vietnamese title to game-title capitalization.
 
-Fresh JP gameplay references independently identify Katsuragi Ace's unique Skill as exactly `暁の御旗『葛城栄主』！`; GameWith, Game8, and Umamusume Lab all agree on the title and effect. This closes the identity uncertainty that caused the earlier curation defer.
+## Scope and implementation
 
-The existing Vietnamese title already makes the important proper-name treatment correctly: preserve `Katsuragi Ace` in Roman letters rather than translate `葛城栄主`/`葛城荣主`. `暁の御旗` is faithfully represented by `Ngự kỳ bình minh`; normalize only game-title capitalization to `Ngự Kỳ Bình Minh`.
-
-## Scope decision
-
-Canonicalize the complete Skill-title alias only, scoped to `text_data_dict.json`. The live finding appears inside category-172 inheritance descriptions, so matching must cover the full title inside longer strings without creating a generic rule for `拂晓`, `御旗`, or the character name independently.
-
-## Implementation
+Canonicalize only the complete Skill-title alias in `text_data_dict.json`, using `contains` because the title appears inside category-172 inheritance descriptions.
 
 - Hardener: `scripts/harden_katsuragi_ace_dawn_banner_finding.py`, commit `d09be5d54661e5933cd6c92e67ae5d25acf1f258`.
 - Regression: `tests/test_katsuragi_ace_dawn_banner_finding_hardening.py`, commit `c7ffe677c36a9d9242b4cd78101183bb1f220d87`.
 - Community rule: `skill.katsuragi_ace.akatsuki_no_mihata`.
 - Terminology decision: `audit.finding.skill-katsuragi-ace-akatsuki-no-mihata`.
-- Regression requires the exact live finding shape to resolve, proves idempotence, proves longer category-172 inheritance text is covered, and proves the alias does not resolve `localize_dict.json`.
+- Regression proves production-shape resolution, idempotence, longer inheritance-text coverage, and no resolution in `localize_dict.json`.
 
-## Acceptance pending
+## Production acceptance
 
-For regression commit `c7ffe677c36a9d9242b4cd78101183bb1f220d87`:
+Accepted on live `main`.
 
-- Sync translation context run `33812227623`: pending at last check.
-- Sync translation review plan run `33812227675`: pending at last check.
-- Validate is also triggered by the same push and must pass before acceptance.
+- Validate run `33812227657`: completed/success.
+- Sync translation context run `33812227623`: completed/success; generated context commit `955a2d012d48ca94739ec2051cd29db141201ce4`.
+- Sync translation review plan run `33812211892`: completed/success. The workflow checks out latest `origin/main`, so it incorporated the live context/hardener state.
+- Refreshed active plan: `tr-p3-67f8551f7780-f5911550c8f3-b5c0bcb3bd-2a3db94f63`.
+- Live batch `...-b0213` embeds `skill.katsuragi_ace.akatsuki_no_mihata`, preferred/accepted target `Ngự Kỳ Bình Minh 『Katsuragi Ace』!`, forbidden historical lower-case form, and `canonical_findings: []` for the `拂晓御旗『葛城荣主』！` entries.
 
-Do not increment maintenance completion count for `cf-abda2b1124d162ff` until Validate and production context sync succeed and a refreshed live review batch embeds `skill.katsuragi_ace.akatsuki_no_mihata` with this finding absent.
+Finding `cf-abda2b1124d162ff` is therefore accepted/resolved for maintenance accounting.

@@ -22,6 +22,11 @@ Current JP gameplay references identify Jungle Pocket's unique Skill as the verb
 
 The live review context contains two findings for the same Skill title: a broad `contains` finding scoped to `text_data_dict.json` with no JSON-path prefix, and an `exact` finding scoped to category `147`. A single community rule uses the complete source title as an `exact` alias, is restricted to `text_data_dict.json`, and intentionally has no JSON-path prefix. Under `scripts/canonical_findings.py` coverage semantics this rule encompasses both live finding scopes, while the exact alias prevents longer source strings that merely contain `狂野信仰` from resolving. Regression coverage also verifies that the same source in another file does not resolve.
 
-## Remaining acceptance
+## Acceptance complete
 
-Do not mark this maintenance unit complete yet. Required next evidence is successful Validate, production Sync translation context, refreshed translation-review plan, and live review context showing both findings unblocked with `skill.jungle_pocket.faith_in_the_feral` embedded.
+- Validate run `33807536957`: completed successfully.
+- Production `Sync translation context` run `33807537021`: completed successfully.
+- Refreshed active review plan: `tr-p3-67f8551f7780-ddd89987ff0f-b5c0bcb3bd-570540b0f1`, published in live `work/parallel_state.json` at `2026-09-03T21:32:32.626362Z`.
+- Live batch `...-b0137` embeds `skill.jungle_pocket.faith_in_the_feral`, preferred `Faith in the Feral`, rejects `Tín ngưỡng hoang dã`, and has `canonical_findings: []` for the `狂野信仰` entries.
+
+Both duplicate findings are therefore unblocked in the live review context and this maintenance unit is complete.

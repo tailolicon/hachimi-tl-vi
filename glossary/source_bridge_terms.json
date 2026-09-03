@@ -95,7 +95,11 @@
         "Hứng khởi"
       ],
       "require_accepted": true,
-      "note": "干劲 is the zh-CN bridge for the player-facing Mood state. Do not normalize it to generic Vietnamese wording such as 'Tinh thần' or 'Hứng khởi'."
+      "note": "干劲 is the zh-CN bridge for the player-facing Mood state. Do not normalize it to generic Vietnamese wording such as 'Tinh thần' or 'Hứng khởi'.",
+      "exclude_source_contains": [
+        "干劲十足"
+      ],
+      "basis": "干劲 is the zh-CN bridge for the generic Mood state, but the exact Skill title 干劲十足 corresponds to JP 意気込み十分 and must not be normalized to Mood by substring matching."
     },
     {
       "id": "condition.night_owl",

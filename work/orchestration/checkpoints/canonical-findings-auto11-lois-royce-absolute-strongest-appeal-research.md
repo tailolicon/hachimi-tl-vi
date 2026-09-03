@@ -23,12 +23,14 @@ Canonicalize only the complete Skill-title alias in `text_data_dict.json`, using
 - Terminology decision: `audit.finding.skill-lois-royce-absolute-strongest-appeal`.
 - Regression proves production-shape resolution, idempotence, longer inheritance-text coverage, and no resolution in `localize_dict.json`.
 
-## Acceptance pending
+## Acceptance complete
 
-For regression commit `de782da768037bf93aed04af4bcf1f805dbfff8c`:
+Acceptance was verified against live `main` after production synchronization:
 
-- Validate run `33812964057`: queued at last check.
-- Sync translation context run `33812964043`: pending at last check.
-- Sync translation review plan run `33812964020`: pending at last check.
+- Validate run `33812964057`: `completed/success`.
+- Sync translation context run `33812964043`: `completed/success`.
+- Sync translation review plan run `33812964020`: `completed/success`.
+- Refreshed active review plan: `tr-p3-67f8551f7780-85802ab3af81-b5c0bcb3bd-14006a3bf2`.
+- Live batch `...-b0213` embeds `skill.lois_royce.absolute_strongest_appeal` for `绝对最强☆展现宣言！`, with preferred target `Tuyên Ngôn Phô Diễn☆Tuyệt Đối Mạnh Nhất!` and `canonical_findings: []`.
 
-Do not increment maintenance completion count for `cf-3c9ba1f70a4d56b7` until Validate and production context sync succeed and a refreshed live review batch embeds `skill.lois_royce.absolute_strongest_appeal` with this finding absent.
+Finding `cf-3c9ba1f70a4d56b7` is therefore accepted on live `main` and may count as one completed canonical-maintenance unit.

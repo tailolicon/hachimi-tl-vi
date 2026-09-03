@@ -8,7 +8,7 @@ Finding: `cf-0e557eef086006fc`
 - `scripts/canonical_findings.py::active_findings` treats only `open`/`deferred` rows without `canonical_resolution` and without explicit `ignore` as active blockers.
 - The prior live selection established `cf-0e557eef086006fc` as the first active blocker.
 - Source is exact `笑っちゃお！` in `text_data_dict.json`, category `16`, id `1073`.
-- Current Vietnamese is `Cùng cười nào!`; the live finding had `canonical_resolution: null` and `review_resolution: null`.
+- Previous Vietnamese was `Cùng cười nào!`; the finding previously had `canonical_resolution: null` and `review_resolution: null`.
 
 ## Identity evidence
 
@@ -25,10 +25,20 @@ Finding: `cf-0e557eef086006fc`
 - `tests/test_waracchao_song_finding_hardening.py` — commit `560a797a302b4b8c9cecb74460f6d527dba4a972`
   - verifies idempotent hardening, category-scope repair, canonical + review resolution, removal from `active_findings`, and refusal to repair mismatched category evidence.
 
-## Acceptance gate
+## Acceptance
 
-Triggered by the implementation/test pushes:
-- Validate run `33795384557` — observed `in_progress`.
-- Sync translation context run `33795384570` — observed `pending`.
+Accepted on live `main`.
 
-Do not increment maintenance `completed_count` 42 → 43 until Validate and production context/review-plan syncs succeed and live generated `canonical_findings.json` resolves `cf-0e557eef086006fc` to `song.waracchao` / `Waracchao!` with refreshed review evidence no longer blocking it.
+- Validate run `33795442647` completed successfully after the maintenance claim carried durable progress evidence.
+- Production context sync `33795384570` completed successfully.
+- Generated context commit `f5df52178f352f9fa5cc41cb37a43962c1e285b7` changed the live finding to:
+  - `canonical_resolution.layer = community`
+  - `canonical_resolution.term_id = song.waracchao`
+  - `canonical_resolution.target_vi = Waracchao!`
+  - `review_resolution.decision_id = audit.finding.song-waracchao`
+  - `review_resolution.action = lock`
+  - `review_resolution.target_vi = Waracchao!`
+- Production review-plan sync run `33795384571` completed successfully.
+- Refreshed active review plan is `tr-p3-67f8551f7780-561e8342eace-b5c0bcb3bd-f820673413`; live code search finds neither `cf-0e557eef086006fc` nor `笑っちゃお！` embedded in that plan, so the resolved finding no longer blocks worker review evidence.
+
+Maintenance completion is therefore protocol-valid: increment `completed_count` 42 → 43 and continue with the next active canonical finding.

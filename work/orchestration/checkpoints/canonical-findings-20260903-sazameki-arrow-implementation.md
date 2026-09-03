@@ -21,6 +21,14 @@ This keeps a compact Vietnamese game-title cadence while preserving both halves 
 - `scripts/harden_sazameki_arrow_finding.py` at commit `45a6a3200c09182a330e735c34fd410bf61f42cc` adds an exact source-path-scoped Skill-name rule, a JP-backed review lock, and accepted-target evidence for the finding.
 - `tests/test_sazameki_arrow_finding_hardening.py` at commit `4fc872ad14f27545d0846a253041a0802943ab01` protects idempotence, canonical-resolution clearing of the active finding, and exact-match/source-path non-overmatch.
 
-## Validation gate
+## Production acceptance
 
-Production validation is pending on final implementation head `4fc872ad14f27545d0846a253041a0802943ab01`. Require Validate, Sync translation context, and Sync translation review plan to succeed; then verify `cf-3a4b945b9d461490` resolves in the refreshed canonical ledger and disappears from blocker evidence in the refreshed live review plan before acceptance.
+Accepted.
+
+- Validate run `33793107054` completed successfully on final implementation head `4fc872ad14f27545d0846a253041a0802943ab01`.
+- Sync translation context run `33793107093` completed successfully on the same implementation head.
+- Sync translation review plan run `33793106936` completed successfully; its production pass ran 576 tests successfully and refreshed the live review plan.
+- Live active plan is now `tr-p3-67f8551f7780-15b42115d87b-b5c0bcb3bd-6c5fb85f24`.
+- In live batch `b0133`, the three exact `击退,喧鸣之箭` entries now carry `skill.sazameki_arrow → Mây Tan, Tiễn Ngân` as community canonical evidence, mark the old literal translation forbidden, and have an empty `canonical_findings` array. Therefore `cf-3a4b945b9d461490` is no longer a worker-facing canonical blocker.
+
+Maintenance completion count may advance from 41 to 42.

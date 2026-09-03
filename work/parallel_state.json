@@ -6,17 +6,27 @@
   "current_epoch": "zhcn-67f8551f7780",
   "current_epoch_metadata": "work/parallel/zhcn-67f8551f7780/epoch.json",
   "shared_cursor_deprecated": true,
-  "worker_rule": "Workers claim isolated shards and write only task-local result files. They never advance a shared next_batch cursor and never write localized_data directly. New translation claims are forbidden while translation_review_gate.enabled is true. ChatGPT workers must apply work/worker_session_policy.json for rolling lease, checkpoints, and immediate released-claim handoff.",
+  "worker_rule": "Workers claim isolated shards and write only task-local result files. They never advance a shared next_batch cursor and never write localized_data directly. Normal translation follows translation_review_gate.claims_allowed; while concurrent review is enabled, WORKER_25MIN.md keeps the configured review-worker cap staffed and routes excess mass workers to translation. ChatGPT workers must apply work/worker_session_policy.json for rolling lease, checkpoints, and immediate released-claim handoff.",
   "aggregation_workflow": ".github/workflows/aggregate-results.yml",
   "translation_review_gate": {
     "enabled": true,
     "policy_version": 3,
-    "claims_allowed": false,
+    "claims_allowed": true,
+    "concurrent_translation_enabled": true,
+    "review_worker_cap": 2,
+    "review_scope_batch_ranges": [
+      [1, 232],
+      [234, 236],
+      [239, 242],
+      [244, 248]
+    ],
+    "review_scope_entries": 19520,
+    "review_scope_frozen_at": "2026-09-03T10:25:00Z",
     "active_plan_id": "tr-p3-67f8551f7780-80fd904c831c-b5c0bcb3bd-edd07f9e41",
     "unresolved_entries": 4208,
     "protocol": "TRANSLATION_REVIEW.md",
-    "reason": "Retrospective translation review is incomplete; new translation claims are paused.",
+    "reason": "Retrospective translation review is incomplete; review continues in parallel with new translation claims.",
     "activated_at": "2026-08-27T09:00:00Z",
-    "updated_at": "2026-09-03T10:24:40.717950Z"
+    "updated_at": "2026-09-03T10:25:00Z"
   }
 }

@@ -94,9 +94,10 @@ def test_title_rule_resolves_only_proven_category_and_path(tmp_path: Path) -> No
     _seed(tmp_path)
     assert harden(tmp_path) is True
 
+    title_finding = _finding(SOURCE_ZH_TITLE, prefix="147", match_mode="exact")
+    title_finding["suggested_targets_vi"] = [PREFERRED]
     title = refresh_canonical_resolutions(
-        tmp_path,
-        {"schema_version": 1, "findings": [_finding(SOURCE_ZH_TITLE, prefix="147", match_mode="exact")]},
+        tmp_path, {"schema_version": 1, "findings": [title_finding]}
     )["findings"][0]
     assert title["canonical_resolution"] == {
         "layer": "community",

@@ -70,16 +70,19 @@ jobs:
             git status --short >&2
             exit 1
           fi
-          for attempt in 1 2 3 4 5; do
+          # Review workers can commit to main every few seconds. Publication is a
+          # safe fast-forward/CAS loop: rebase onto every newly observed main and
+          # retry without force-pushing or dropping concurrent worker commits.
+          for attempt in $(seq 1 60); do
             git fetch origin main
             if git rebase origin/main && git push origin HEAD:main; then
               echo "changed=true" >> "$GITHUB_OUTPUT"
               exit 0
             fi
             git rebase --abort >/dev/null 2>&1 || true
-            sleep $((attempt * 2))
+            sleep 0.2
           done
-          echo "Failed to push aggregated output after retries" >&2
+          echo "Failed to push aggregated output after sustained main-branch churn" >&2
           exit 1
       - name: Publish Hachimi release branch
         if: steps.commit.outputs.changed == 'true'

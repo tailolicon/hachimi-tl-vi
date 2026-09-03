@@ -8,7 +8,10 @@ from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
 TERM_ID = "common.world.umamusume"
-EXCLUSION = "机械赛马娘"
+# Keep the exclusion as narrow as the evidence-bearing proper-name compound.
+# Excluding bare 机械赛马娘 would incorrectly suppress legitimate generic prose
+# such as 机械赛马娘详情, where 赛马娘 still denotes the Mã Nương world/species term.
+EXCLUSION = "机械赛马娘第三阶段"
 
 
 def _load(path: Path) -> dict[str, Any]:
@@ -35,10 +38,13 @@ def harden(repo_root: Path = ROOT) -> bool:
             continue
         matched = True
         exclusions = [str(value) for value in term.get("exclude_source_contains", []) if str(value)]
+        # Remove the obsolete broad exclusion if a failed/partial earlier run
+        # already persisted it, then install only the evidence-scoped compound.
+        exclusions = [value for value in exclusions if value != "机械赛马娘"]
         term["exclude_source_contains"] = list(dict.fromkeys([*exclusions, EXCLUSION]))
         term["basis"] = (
-            "Generic 赛马娘 remains the project world/species term Mã Nương, but must not fire inside "
-            "the Run! Mecha Umamusume scenario proper name 机械赛马娘."
+            "Generic 赛马娘 remains the project world/species term Mã Nương. Only the evidence-bearing "
+            "Run! Mecha Umamusume stage-3 proper-name compound 机械赛马娘第三阶段 is excluded from that generic matcher."
         )
         break
     if not matched:

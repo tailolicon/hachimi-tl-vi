@@ -59,6 +59,11 @@ GUARDS = {
         "term_id": "reviewed.race_name.b4e4d79a5f98",
         "target_vi": "Queen Cup",
     },
+    "cf-1bd479584e40d767": {
+        "layer": "locked",
+        "term_id": "skill.righteous_path",
+        "target_vi": "Chính đạo",
+    },
     "cf-234800d40ef253ed": {
         "layer": "locked",
         "term_id": "reviewed.race_name.d7261f9f3232",

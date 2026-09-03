@@ -7,7 +7,7 @@
 
 ## Evidence and rationale
 
-Current retrospective-review credit text contains `藤井亮太` as composer/arranger and flags the CJK name as a proper-name canonical finding. Commercial music-credit sources including VGMdb pair `藤井亮太` with `Ryota Fujii` for composition/arrangement credits; other music-credit catalogs independently use the same Latin identity. The canonical mapping is intentionally constrained to category 17 credit text.
+Retrospective-review credit text contains `藤井亮太` as composer/arranger and flagged the CJK name as a proper-name canonical finding. Commercial music-credit sources including VGMdb pair `藤井亮太` with `Ryota Fujii` for composition/arrangement credits; independent catalogs use the same Latin identity. The canonical mapping is intentionally constrained to category 17 credit text.
 
 ## Durable implementation
 
@@ -16,10 +16,10 @@ Current retrospective-review credit text contains `藤井亮太` as composer/arr
 - Canonical target: `Ryota Fujii`
 - Negative coverage checks another text-data category and another source file.
 
-## Production acceptance state
+## Production acceptance
 
-Push-triggered workflows from the test commit include:
-- Validate run `33765923203`
-- Sync translation context run `33765923287`
+- Validate run `33765923203`: success, including pytest, `tlvi validate`, and index generation.
+- Production Sync translation context run `33765923287`: success. Its hardener sweep reports `ryota_fujii_hardening_changed=true`, canonical-finding refresh completed, the context test suite passed `544 passed`, and generated context was safely rebased/pushed to `main`.
+- Live generated `glossary/canonical_findings.json` at the production-sync result contains `cf-71b93369404bbe81` with canonical resolution `layer=community`, `term_id=proper_name.ryota_fujii.credit17`, `target_vi=Ryota Fujii`, plus review lock `audit.finding.ryota-fujii-credit`.
 
-Do not increment maintenance `completed_count` or call this finding resolved until validation succeeds and production Sync materializes `cf-71b93369404bbe81` with a non-null canonical resolution on live `main`.
+The finding is durably resolved and maintenance `completed_count` may advance from 25 to 26.

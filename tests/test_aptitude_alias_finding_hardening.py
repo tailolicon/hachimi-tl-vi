@@ -26,6 +26,14 @@ def test_aptitude_alias_is_localize_scoped_and_idempotent(tmp_path: Path) -> Non
         source_path="localize_dict.json",
         json_path=["Race0517"],
     )
+    aptitude_variant = community_term_matches(
+        "SingleMode701028",
+        "由于要出战资质较低的比赛，\n可能会消耗大量闹钟。\n是否直接开始？",
+        "Vì sẽ tham gia Cuộc đua có tư chất thấp,\ncó thể tiêu tốn nhiều Đồng hồ báo thức.\nBạn có muốn bắt đầu ngay không?",
+        terms,
+        source_path="localize_dict.json",
+        json_path=["SingleMode701028"],
+    )
     unrelated = community_term_matches(
         None,
         "适应性很强",
@@ -36,4 +44,6 @@ def test_aptitude_alias_is_localize_scoped_and_idempotent(tmp_path: Path) -> Non
     )
     assert matched[0]["id"] == TERM["id"]
     assert matched[0]["preferred"] == "Aptitude"
+    assert aptitude_variant[0]["id"] == TERM["id"]
+    assert aptitude_variant[0]["preferred"] == "Aptitude"
     assert unrelated == []

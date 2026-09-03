@@ -16,6 +16,7 @@ on:
       - "scripts/resolve_context_guard_findings.py"
       - "scripts/resolve_regenerated_super_long_distance_context_finding.py"
       - "scripts/resolve_regenerated_aoharu_ignition_finding.py"
+      - "scripts/resolve_regenerated_initial_friendship_finding.py"
       - "scripts/build_source_bridge_risk_registry.py"
       - "scripts/apply_terminology_reviews.py"
       - "scripts/harden_audit_findings.py"
@@ -135,6 +136,9 @@ jobs:
 
       - name: Resolve regenerated Aoharu Ignition finding
         run: python scripts/resolve_regenerated_aoharu_ignition_finding.py
+
+      - name: Resolve regenerated Initial Friendship finding
+        run: python scripts/resolve_regenerated_initial_friendship_finding.py
 
       - name: Build terminology review queue
         run: python scripts/build_terminology_review_queue.py

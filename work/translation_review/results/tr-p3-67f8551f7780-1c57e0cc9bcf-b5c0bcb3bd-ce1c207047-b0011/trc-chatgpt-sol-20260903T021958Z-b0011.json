@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "status": "partial",
+  "status": "complete",
   "plan_id": "tr-p3-67f8551f7780-1c57e0cc9bcf-b5c0bcb3bd-ce1c207047",
   "batch_id": "tr-p3-67f8551f7780-1c57e0cc9bcf-b5c0bcb3bd-ce1c207047-b0011",
   "claim_id": "trc-chatgpt-sol-20260903T021958Z-b0011",
   "worker_id": "chatgpt-sol-20260903T021958Z",
-  "reviewed_at": "2026-09-03T02:22:40Z",
-  "completed_count": 15,
+  "reviewed_at": "2026-09-03T02:23:49Z",
+  "completed_count": 20,
   "decisions": [
     {
       "uid": "zhcn:673eb92f7cd6579eb5be4ac3",
@@ -128,6 +128,44 @@
       "proposed_text": "Nghe nói đây là Power rực rỡ chứng minh Mã Nương đã thực hiện ước mơ.\\nCó thể dùng để tăng Cấp Thức tỉnh.",
       "reason": "The current text violates both attached community requirements: 力量 must use Power in this item context and generic 赛马娘 must be Mã Nương rather than Uma Musume. The awakening-use sentence is preserved.",
       "terminology_basis": "Embedded common.stat.power requires Power for the matched 力量; embedded common.world.umamusume requires Mã Nương for generic 赛马娘.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:c760e65cb85bcacdf6caa823",
+      "current_fingerprint": "63c7d81cb595ca3617b4febb4bedb83f5ab46a6ceb6d7583c4b832b3a4cc0896",
+      "action": "keep",
+      "reason": "The duplicated League of Heroes admission-ticket description is semantically correct and already satisfies the embedded generic race terminology.",
+      "terminology_basis": "Embedded race.generic requires Cuộc đua for 比赛; the current text satisfies the canonical term in context.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:1217b44d5543e2ae570e960b",
+      "current_fingerprint": "63c7d81cb595ca3617b4febb4bedb83f5ab46a6ceb6d7583c4b832b3a4cc0896",
+      "action": "keep",
+      "reason": "The duplicated League of Heroes admission-ticket description is semantically correct and already satisfies the embedded generic race terminology.",
+      "terminology_basis": "Embedded race.generic requires Cuộc đua for 比赛; the current text satisfies the canonical term in context.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:85e740312582101d38e2ebe4",
+      "current_fingerprint": "35d15a6ea806e660fc244617090fd126c6286bdb5199ef85ed93e9861baebf4a",
+      "action": "keep",
+      "reason": "The current text accurately states that Mã Nương abilities can be analyzed before a race and already satisfies both generic Mã Nương and Cuộc đua terminology.",
+      "terminology_basis": "Embedded common.world.umamusume requires Mã Nương; embedded race.generic requires Cuộc đua. Both are present.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:a4afba0f207e8064282cd64a",
+      "current_fingerprint": "c1b752e2b4b57bae1195e4f60bab3991cc42ba9f2717ec7aabd41e128d49ff8d",
+      "action": "defer",
+      "reason": "An open item-scoped canonical finding for 女王杯 is attached to this race-name item. Although Medium and G1 are already canonical and the current Queen Elizabeth II Cup rendering is plausible, the open race-alias context rule blocks resolution.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:84d27425f1d16d2ab8aa2912",
+      "current_fingerprint": "c853cda200e31d1c863242432bacd6100a37064412aceb633656a21a3234511f",
+      "action": "defer",
+      "reason": "The exact locked label suggests Classic Triple Crown, but an open item-scoped canonical finding for 三冠 is also attached. Under the review protocol that open finding blocks keep/revise until canonical resolution.",
       "confidence": "high"
     }
   ]

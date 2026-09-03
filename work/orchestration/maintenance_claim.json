@@ -6,15 +6,15 @@
   "claim_id": "canonical-findings-maintenance-gpt56sol-20260903T181719Z",
   "worker_id": "gpt56sol-20260903T181719Z-maint",
   "claimed_at": "2026-09-03T18:17:19Z",
-  "heartbeat_at": "2026-09-03T18:17:19Z",
-  "lease_expires_at": "2026-09-03T18:23:19Z",
+  "heartbeat_at": "2026-09-03T18:18:45Z",
+  "lease_expires_at": "2026-09-03T18:24:45Z",
   "branch": "main",
   "handoff_from_claim_id": "canonical-findings-maintenance-gpt56sol-20260903T181030Z",
-  "progress_token": "canonical-finding-cf-0dae34861911a969-live-scope-repair-e67a8ce03dfb",
-  "progress_kind": "finding_hardening_in_validation",
-  "progress_ref": "work/orchestration/checkpoints/canonical-findings-20260903-uma-musume-stakes-live-scope-repair.md",
-  "last_progress_at": "2026-09-03T18:14:45Z",
+  "progress_token": "canonical-finding-cf-0dae34861911a969-validation-gates-fa513cc882f2",
+  "progress_kind": "production_validation_checkpoint",
+  "progress_ref": "work/orchestration/checkpoints/canonical-findings-20260903-uma-musume-stakes-validation-gates.md",
+  "last_progress_at": "2026-09-03T18:18:37Z",
   "completed_count": 39,
-  "partial_result_path": "work/orchestration/checkpoints/canonical-findings-20260903-uma-musume-stakes-live-scope-repair.md",
-  "continuation": "Check production runs 33789281109 (Validate), 33789281056 (Sync translation context), and 33789280887 (Sync translation review plan) for e67a8ce03dfb2b8cf3d979d4c5453db465af5034. Only after all required gates succeed, confirm live generated cf-0dae34861911a969 resolves via race.uma_musume_stakes.component131 -> Uma Musume Stakes and disappears as a regenerated review blocker, then increment completed_count 39 -> 40."
+  "partial_result_path": "work/orchestration/checkpoints/canonical-findings-20260903-uma-musume-stakes-validation-gates.md",
+  "continuation": "Re-check production run 33789280887 after durable validation work. If it succeeds, read the newly published parallel_state/active_plan, confirm regenerated review material no longer embeds cf-0dae34861911a969 as a blocker and resolves through race.uma_musume_stakes.component131 -> Uma Musume Stakes, persist acceptance, increment completed_count 39 -> 40, then continue the next active canonical finding. If the workflow fails, diagnose that production gate instead."
 }

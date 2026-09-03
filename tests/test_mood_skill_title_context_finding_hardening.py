@@ -65,7 +65,7 @@ def _finding() -> dict:
         "match_mode": "exact",
         "source_paths": ["text_data_dict.json"],
         "key_exact": [],
-        "json_path_prefixes": [],
+        "json_path_prefixes": [["147"]],
         "suggested_targets_vi": [],
         "canonical_resolution": None,
         "review_resolution": None,

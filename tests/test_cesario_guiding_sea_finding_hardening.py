@@ -88,11 +88,18 @@ def test_scope_prevents_generic_idiom_outside_inheritance_category(tmp_path: Pat
     _seed(tmp_path)
     assert harden(tmp_path) is True
 
-    # The canonical rule must not claim an otherwise-identical finding outside category 172.
+    # Canonical coverage is scope-aware and must not claim the Chinese idiom outside category 172.
+    # Review decisions are source-keyed metadata in canonical_findings.py, so a review_resolution can
+    # still be reported here; only canonical_resolution determines whether this blocking finding clears.
     outside = _finding(prefixes=[["163"]])
     outside["suggested_targets_vi"] = [TARGET]
     outside_resolved = refresh_canonical_resolutions(
         tmp_path, {"schema_version": 1, "findings": [outside]}
     )["findings"][0]
     assert outside_resolved["canonical_resolution"] is None
-    assert outside_resolved["review_resolution"] is None
+    assert outside_resolved["review_resolution"] == {
+        "decision_id": DECISION_ID,
+        "action": "lock",
+        "target_vi": TARGET,
+    }
+    assert active_findings({"findings": [outside_resolved]}) == [outside_resolved]

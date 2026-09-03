@@ -71863,6 +71863,16 @@
       ],
       "match_mode": "exact",
       "note": "JP-backed identity: 闪耀☆苫小牧 corresponds to Hokko Tarumae's unique Skill かがやけ☆とまこまい. Lock the existing Vietnamese title and scope the rule to the exact Skill title in text_data_dict.json."
+    },
+    {
+      "decision_id": "audit.finding.turf-surface-zhcn-context",
+      "source_zh_cn": "草地",
+      "action": "lock",
+      "target_vi": "Turf",
+      "kind": "context_rule",
+      "category": "race_surface",
+      "match_mode": "exact",
+      "note": "Lock standalone 草地 to Turf while rejecting substring matches in ordinary grass/grassland prose. The JP 芝 alias remains on the established base rule, and SingleMode0078 gets a separate scoped composition rule for 草地适性."
     }
   ]
 }

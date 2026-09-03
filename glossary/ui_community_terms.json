@@ -324,8 +324,7 @@
       "id": "common.surface.turf",
       "category": "race_surface",
       "source_aliases": [
-        "芝",
-        "草地"
+        "芝"
       ],
       "preferred": "Turf",
       "compact": [],
@@ -336,7 +335,7 @@
         "Sân cỏ"
       ],
       "require_accepted": true,
-      "basis": "Common EN-version surface label."
+      "basis": "Common EN-version surface label. zh-CN 草地 is handled by scoped sibling rules so narrative grass prose cannot overmatch."
     },
     {
       "id": "common.surface.dirt",
@@ -6931,6 +6930,48 @@
       ],
       "match_mode": "exact",
       "basis": "The zh-CN title 闪耀☆苫小牧 is Hokko Tarumae's unique Skill whose JP player-facing title is かがやけ☆とまこまい. The existing Vietnamese Tỏa sáng☆Tomakomai preserves the imperative shine meaning and the Tomakomai place name, so lock it without introducing unnecessary translation churn."
+    },
+    {
+      "id": "common.surface.turf.zhcn",
+      "category": "race_surface",
+      "source_aliases": [
+        "草地"
+      ],
+      "preferred": "Turf",
+      "compact": [],
+      "accepted": [
+        "Turf"
+      ],
+      "forbidden": [
+        "Sân cỏ"
+      ],
+      "require_accepted": true,
+      "basis": "zh-CN 草地 is the player-facing Turf surface label when it is itself the label. Exact matching prevents ordinary narrative grass/grassland prose from being normalized to the racing-surface term.",
+      "match_mode": "exact"
+    },
+    {
+      "id": "common.surface.turf.aptitude",
+      "category": "race_surface",
+      "source_aliases": [
+        "草地"
+      ],
+      "preferred": "Turf",
+      "compact": [],
+      "accepted": [
+        "Turf"
+      ],
+      "forbidden": [
+        "Sân cỏ"
+      ],
+      "require_accepted": true,
+      "basis": "SingleMode0078 is the scoped zh-CN Turf Aptitude UI label 草地适性. Keep the Turf component available there without restoring a global substring matcher for narrative 草地 prose.",
+      "source_paths": [
+        "localize_dict.json"
+      ],
+      "key_exact": [
+        "SingleMode0078"
+      ],
+      "match_mode": "contains"
     }
   ]
 }

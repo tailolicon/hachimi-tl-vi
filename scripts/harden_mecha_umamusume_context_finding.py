@@ -1,16 +1,14 @@
 from __future__ import annotations
 
+"""Prevent the generic 赛马娘 world term from rewriting the Mecha scenario proper name."""
+
 import json
 from pathlib import Path
 from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
-
-EXCLUSIONS = {
-    "common.stat.power": ["获得相应的力量", "坚定不移的力量", "力量感"],
-    "common.stat.speed": ["融会贯通的速度", "跳过速度"],
-    "common.stat.guts": ["充满毅力"],
-}
+TERM_ID = "common.world.umamusume"
+EXCLUSION = "机械赛马娘"
 
 
 def _load(path: Path) -> dict[str, Any]:
@@ -29,21 +27,22 @@ def harden(repo_root: Path = ROOT) -> bool:
     payload = _load(path)
     terms = payload.get("terms", [])
     if not isinstance(terms, list):
-        raise ValueError("community terms must be a list")
+        raise ValueError("glossary/ui_community_terms.json terms must be a list")
     before = json.dumps(payload, ensure_ascii=False, sort_keys=True)
-
-    by_id = {str(term.get("id") or ""): term for term in terms if isinstance(term, dict)}
-    for term_id, phrases in EXCLUSIONS.items():
-        term = by_id.get(term_id)
-        if term is None:
-            raise ValueError(f"missing canonical term {term_id}")
-        exclusions = term.setdefault("exclude_source_contains", [])
-        if not isinstance(exclusions, list):
-            raise ValueError(f"{term_id} exclude_source_contains must be a list")
-        for phrase in phrases:
-            if phrase not in exclusions:
-                exclusions.append(phrase)
-
+    matched = False
+    for term in terms:
+        if not isinstance(term, dict) or term.get("id") != TERM_ID:
+            continue
+        matched = True
+        exclusions = [str(value) for value in term.get("exclude_source_contains", []) if str(value)]
+        term["exclude_source_contains"] = list(dict.fromkeys([*exclusions, EXCLUSION]))
+        term["basis"] = (
+            "Generic 赛马娘 remains the project world/species term Mã Nương, but must not fire inside "
+            "the Run! Mecha Umamusume scenario proper name 机械赛马娘."
+        )
+        break
+    if not matched:
+        raise ValueError(f"missing canonical community term {TERM_ID}")
     changed = before != json.dumps(payload, ensure_ascii=False, sort_keys=True)
     if changed:
         _write(path, payload)
@@ -51,7 +50,7 @@ def harden(repo_root: Path = ROOT) -> bool:
 
 
 def main() -> int:
-    print(f"narrative_stat_context_hardening_changed={str(harden(ROOT)).lower()}")
+    print(f"mecha_umamusume_context_hardening_changed={str(harden(ROOT)).lower()}")
     return 0
 
 

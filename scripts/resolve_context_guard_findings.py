@@ -175,6 +175,29 @@ for _finding_id in POWER_CONTEXT_GUARD_IDS:
         "target_vi": "Power",
     })
 
+GUARDS.update({
+    "cf-1daec5ebd9895c48": {
+        "layer": "community",
+        "term_id": "common.stat.guts",
+        "target_vi": "Guts",
+    },
+    "cf-9d903a48b310ef86": {
+        "layer": "community",
+        "term_id": "common.stat.speed",
+        "target_vi": "Speed",
+    },
+    "cf-9844f9093f379eac": {
+        "layer": "community",
+        "term_id": "common.world.umamusume",
+        "target_vi": "Mã Nương",
+    },
+    "cf-187d58b59b5dc9be": {
+        "layer": "locked",
+        "term_id": "race.generic",
+        "target_vi": "Cuộc đua",
+    },
+})
+
 
 def _load(path: Path) -> dict[str, Any]:
     payload = json.loads(path.read_text(encoding="utf-8"))

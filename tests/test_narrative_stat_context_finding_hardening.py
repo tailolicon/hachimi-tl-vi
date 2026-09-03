@@ -12,6 +12,8 @@ CASES = (
     ("cf-2a3675dd079cad04", "坚定不移的力量", "common.stat.power", "Power"),
     ("cf-03be28442492e3b1", "力量感", "common.stat.power", "Power"),
     ("cf-daad507f1b0d4acc", "融会贯通的速度", "common.stat.speed", "Speed"),
+    ("cf-9d903a48b310ef86", "提高跳过速度", "common.stat.speed", "Speed"),
+    ("cf-1daec5ebd9895c48", "充满毅力", "common.stat.guts", "Guts"),
 )
 
 
@@ -36,6 +38,14 @@ def _seed(tmp_path: Path) -> None:
                     "preferred": "Speed",
                     "accepted": ["Speed"],
                     "forbidden": ["Tốc độ"],
+                    "require_accepted": True,
+                },
+                {
+                    "id": "common.stat.guts",
+                    "source_aliases": ["毅力"],
+                    "preferred": "Guts",
+                    "accepted": ["Guts"],
+                    "forbidden": ["Nghị lực"],
                     "require_accepted": True,
                 },
             ],

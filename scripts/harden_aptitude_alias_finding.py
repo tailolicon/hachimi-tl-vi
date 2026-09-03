@@ -9,7 +9,7 @@ ROOT = Path(__file__).resolve().parents[1]
 TERM = {
     "id": "common.aptitude.zhcn_variant",
     "category": "system",
-    "source_aliases": ["适应性"],
+    "source_aliases": ["适应性", "资质"],
     "preferred": "Aptitude",
     "compact": [],
     "accepted": ["Aptitude"],
@@ -18,7 +18,7 @@ TERM = {
     "invalidation_scope": "item",
     "source_paths": ["localize_dict.json"],
     "match_mode": "contains",
-    "basis": "zh-CN localize UI uses 适应性 as a variant for the player-facing Aptitude system. Scope is restricted to localize_dict so generic adaptability prose elsewhere is not captured.",
+    "basis": "zh-CN localize UI uses 适应性 and 资质 as variants for the player-facing Aptitude system. Scope is restricted to localize_dict so generic adaptability prose elsewhere is not captured.",
 }
 
 

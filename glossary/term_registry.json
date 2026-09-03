@@ -11902,7 +11902,7 @@
       "source_aliases": [
         "Daily Hai Queen Cup"
       ],
-      "note": "JRA English schedules use Queen Cup (currently with the sponsor prefix Daily Hai) for クイーンカップ. The game source uses the base race name, so lock the stable base title Queen Cup.",
+      "note": "JRA English schedules use Queen Cup (currently with the sponsor prefix Daily Hai) for クイーンカップ. The game source uses the base race name, so lock the stable base title Queen Cup. Context guard: the short Queen Cup alias 女王杯 must not match inside the distinct full race TCK女王杯 / TCK Jo-o Hai.",
       "invalidation_scope": "item",
       "source_paths": [
         "text_data_dict.json"
@@ -11918,7 +11918,10 @@
           "111"
         ]
       ],
-      "match_mode": "contains"
+      "match_mode": "contains",
+      "exclude_source_contains": [
+        "TCK女王杯"
+      ]
     },
     {
       "id": "reviewed.race_name.996cba4bd32d",

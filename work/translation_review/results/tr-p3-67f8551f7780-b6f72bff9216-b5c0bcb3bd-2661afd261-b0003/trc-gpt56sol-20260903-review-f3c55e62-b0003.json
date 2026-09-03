@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "status": "partial",
+  "status": "complete",
   "plan_id": "tr-p3-67f8551f7780-b6f72bff9216-b5c0bcb3bd-2661afd261",
   "batch_id": "tr-p3-67f8551f7780-b6f72bff9216-b5c0bcb3bd-2661afd261-b0003",
   "claim_id": "trc-gpt56sol-20260903-review-f3c55e62-b0003",
   "worker_id": "gpt56sol-20260903-review-f3c55e62",
-  "reviewed_at": "2026-09-03T03:18:39Z",
-  "completed_count": 15,
+  "reviewed_at": "2026-09-03T03:20:15Z",
+  "completed_count": 20,
   "decisions": [
     {
       "uid": "zhcn:ada00ed47de6e99191d65b57",
@@ -111,6 +111,50 @@
       "current_fingerprint": "b41e61e399f777b1b0bb1324c2849a5ddb9956a83f152e5910f3d051f94c4162",
       "action": "defer",
       "reason": "Open canonical finding cf-b2e6edbc57c59b58 blocks 英雄奇谭; defer pending canonical maintenance.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:2a79afda8b1dca6eef8937fd",
+      "current_fingerprint": "e1b8e781d3fb7c322bc5f013a1f4624a4ba37630303e90ec25114d9089ced948",
+      "action": "defer",
+      "reason": "Open canonical finding cf-61d905f4d2327086 blocks the 英雄联赛 event-name alias; current League of Heroes may be correct, but the project-wide alias must resolve first.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:af60b8248a43fa79cb4b3936",
+      "current_fingerprint": "6c61a54ec5ff6ace9bc03373a4eb4cad04687eaa9d063f6805c225ed003926d8",
+      "action": "defer",
+      "reason": "Open canonical finding cf-b56eee53b345a2bd blocks this standalone Uma Like! label; defer pending canonical maintenance.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:e36b81b51374e59243d3564d",
+      "current_fingerprint": "64401e6c20ea75530d9d295f1626ec4db3db581ec355c2f53433b4af14119e21",
+      "action": "defer",
+      "reason": "Live matcher verification shows locked stat.power still forces narrative 一股强大力量 to Power, producing unnatural and semantically wrong prose. This needs a locked-term context guard before revising the line.",
+      "canonical_finding": {
+        "kind": "context_rule",
+        "source_zh_cn": "一股强大力量",
+        "concept": "Locked stat.power must not overmatch narrative strength phrase 一股强大力量 in League of Heroes prose",
+        "match_mode": "contains",
+        "scope": "source_path",
+        "reason": "The live locked matcher stat.power still fires on narrative 一股强大力量 at localize Heroes511127 even though the community Power overmatch finding was already context-resolved; the locked layer requires its own negative guard.",
+        "confidence": "high"
+      },
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:9a3af413917917e203e9cb4b",
+      "current_fingerprint": "5368c24da4fa5f61630e0d10af4f8e1807d29552d1f510569cf8a3c460238574",
+      "action": "defer",
+      "reason": "Open canonical finding cf-b56eee53b345a2bd blocks this Uma Like! timing label; defer pending canonical maintenance.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:ed75cd393e3bce6e90b396c8",
+      "current_fingerprint": "44ff4025e5cf4d122a7f43af187d4f02ffde82a136c73e17379b825eb09c1f81",
+      "action": "defer",
+      "reason": "Open canonical finding cf-b56eee53b345a2bd blocks this Uma Like! state label; defer pending canonical maintenance.",
       "confidence": "high"
     }
   ]

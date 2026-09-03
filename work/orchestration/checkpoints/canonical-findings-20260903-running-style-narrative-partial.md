@@ -1,6 +1,6 @@
 # Canonical finding checkpoint — narrative 跑法 context
 
-Claim: `canonical-findings-maintenance-gpt56sol-20260903T110239Z`
+Claim lineage: `canonical-findings-maintenance-gpt56sol-20260903T110239Z` → `canonical-findings-maintenance-gpt56sol-20260903T1126Z`
 
 Target finding: `cf-b17becec58edec45` (`跑法`).
 
@@ -8,25 +8,17 @@ Target finding: `cf-b17becec58edec45` (`跑法`).
 
 The live canonical findings ledger reports this finding as `status: open`, `match_mode: contains`, scoped to `text_data_dict.json`, with no canonical resolution. All three evidence rows are character-introduction/narrative strings under text-data category `163` where `跑法` means a natural-language manner/style of running, not the player-facing running-style category label.
 
-Current reviewed targets already render these occurrences naturally as forms such as `cách chạy` / `cách tôi chạy`.
+The three proven narrative contexts are Maruzensky `163/1004`, Gold City `163/1040`, and Biko Pegasus `163/1054`; current reviewed targets naturally use `cách chạy` / `cách tôi chạy`.
 
-## Existing canonical rule causing the block
+## Implemented hardening
 
-`glossary/ui_community_terms.json` has canonical term `common.style` with zh-CN source alias `跑法`, preferred target `Style`, and no narrative exclusion. The alias is correct for player-facing running-style UI, but its unrestricted contains matching overmatches the category-163 narrative evidence.
+- `scripts/harden_running_style_narrative_finding.py` preserves canonical player-facing `common.style` / `跑法 → Style` while adding exact-source exclusions for the three durable narrative strings.
+- `scripts/resolve_running_style_narrative_finding.py` resolves only `cf-b17becec58edec45`, only when every evidence row remains under `text_data_dict.json` category `163`, and only after `common.style` no longer matches any evidence row. Resolution is `layer: context_guard`, `term_id: common.style`, `target_vi: Style`; it does not lock narrative prose to a replacement phrase.
+- `tests/test_running_style_narrative_finding_hardening.py` covers hardener idempotence, preservation of the ordinary player-facing `跑法 → Style` match, exclusion of all three narrative strings, resolver closure, and resolver idempotence.
+- `.github/workflows/sync-context.yml` now runs the dedicated resolver after canonical refresh + generic context-guard resolution and watches the resolver path.
 
-## Proposed hardening
+Implementation commits: `703283d378196601b9eeae4d5c0fbb04cadfa104`, `481d0aff66063cc2db56deae59eaac46f2b4eb44`, `7b49e5605e5b66c2bd95d3b1c54e2eabd1efe4cc`, `876b21062d109dc46c4e7c5b93263d726cd5e0f1`.
 
-Do **not** change the canonical player-facing `Style` vocabulary. Instead, neutralize the generic `common.style` matcher only for the proven narrative evidence/context. A safe implementation should either:
+## Acceptance state
 
-1. add narrowly scoped exclusions for the three durable narrative source strings to `common.style`, then resolve `cf-b17becec58edec45` as a context guard only after every evidence row no longer matches `common.style`; or
-2. introduce an equivalently narrow category-163 context guard if the matcher supports json-path-scoped negative rules.
-
-The first option matches the existing `common.stat.power` context-hardening pattern and is preferred unless a narrower json-path negative mechanism already exists.
-
-## Acceptance requirements
-
-- preserve `跑法 → Style` for actual running-style UI/category labels;
-- all three current category-163 narrative evidence rows must stop matching `common.style`;
-- `cf-b17becec58edec45` may resolve only through a context guard after the matcher is neutralized, never by globally locking `跑法` to a Vietnamese narrative phrase;
-- hardener must be idempotent;
-- full repository validation and production Sync translation context must pass before counting the finding complete.
+Implementation is published. Validate run `33750355712` and Sync translation context run `33750355770` were started from workflow commit `876b21062d109dc46c4e7c5b93263d726cd5e0f1`; they must complete successfully and the generated canonical ledger must persist the context-guard resolution before this finding is counted complete.

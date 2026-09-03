@@ -1,6 +1,7 @@
 import json
 from pathlib import Path
 
+from scripts.apply_terminology_reviews import apply_reviews
 from scripts.canonical_findings import refresh_canonical_resolutions
 from scripts.harden_grand_live_mental_finding import (
     GRAND_LIVE_MENTAL_DECISION,
@@ -19,6 +20,8 @@ def test_hardener_upserts_scoped_mental_rules_and_resolves_finding(tmp_path: Pat
     glossary = tmp_path / "glossary"
     _write(glossary / "ui_community_terms.json", {"schema_version": 1, "terms": []})
     _write(glossary / "terminology_reviews.json", {"schema_version": 1, "decisions": []})
+    _write(glossary / "term_registry.json", {"schema_version": 1, "terms": []})
+    _write(glossary / "source_bridge_terms.json", {"schema_version": 1, "terms": []})
     _write(
         glossary / "canonical_findings.json",
         {
@@ -67,6 +70,11 @@ def test_hardener_upserts_scoped_mental_rules_and_resolves_finding(tmp_path: Pat
     reviews = json.loads((glossary / "terminology_reviews.json").read_text(encoding="utf-8"))
     by_decision = {item["decision_id"]: item for item in reviews["decisions"]}
     assert by_decision[GRAND_LIVE_MENTAL_DECISION["decision_id"]]["target_vi"] == "Mental"
+
+    registry = json.loads((glossary / "term_registry.json").read_text(encoding="utf-8"))
+    applied, stats = apply_reviews(registry, reviews)
+    assert stats["locked_added"] == 1
+    _write(glossary / "term_registry.json", applied)
 
     refresh_canonical_resolutions(tmp_path)
     findings = json.loads((glossary / "canonical_findings.json").read_text(encoding="utf-8"))["findings"]

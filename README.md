@@ -19,7 +19,7 @@ Pipeline dịch tiếng Việt độc lập cho **Uma Musume Pretty Derby JP** t
 | Audit merge backlog | **0 completed batch** awaiting bounded reconciliation (normally ≤5 min) |
 | UI review | **0 / 6,455 reviewed items (0.00%)** |
 | Context curation | Speech **100.00%**, terminology **96.68%** |
-| Active worker claims | **11** |
+| Active worker claims | **12** |
 
 **Roadmap:** ▶ Retrospective translation Audit Round 1
 

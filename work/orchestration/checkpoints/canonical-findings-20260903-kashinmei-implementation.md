@@ -1,4 +1,4 @@
-# Canonical finding implementation: 火神鸣 / 火神鳴
+# Canonical finding accepted: 火神鸣 / 火神鳴
 
 Claim: `canonical-findings-maintenance-gpt56sol-20260903T183533Z`
 Finding: `cf-baa64ebea736be2a`
@@ -21,6 +21,16 @@ This preserves the exact three-morpheme title identity (`火` / `神` / `鳴`) i
 - `scripts/harden_kashinmei_finding.py` at commit `ff26f93777b8ec85e8a9d2c045eb239010c70f51` adds an exact, source-path-scoped community Skill-name rule, an explicit JP-backed review lock, and the accepted target to finding evidence.
 - `tests/test_kashinmei_finding_hardening.py` at commit `a2566da0aae188c837022ce625af59d04355f47a` protects idempotence, canonical-resolution clearing of the active finding, and non-overmatch against longer source text or another file.
 
-## Validation gate
+## Production validation
 
-Production validation is pending on the final implementation head. Require the repository Validate, Sync translation context, and Sync translation review plan surfaces to succeed, then confirm the refreshed canonical ledger no longer reports `cf-baa64ebea736be2a` through `active_findings(...)` and worker-facing unresolved review evidence is refreshed before acceptance.
+Accepted on the final implementation head `a2566da0aae188c837022ce625af59d04355f47a`:
+
+- Validate run `33791908238`: completed / success.
+- Sync translation context run `33791908156`: completed / success, including all finding hardeners, canonical refresh, full context tests, and generated-context publication.
+- Sync translation review plan run `33791908115`: completed / success.
+- Refreshed `glossary/canonical_findings.json` now resolves the finding to locked term `reviewed.skill_name.a7c5d73a189b -> Hỏa Thần Minh` with review decision `audit.finding.skill-kashinmei`.
+- Refreshed live review plan `tr-p3-67f8551f7780-daa36fdbc78d-b5c0bcb3bd-b331c6fac4`, generated at `2026-09-03T18:46:54.505508Z`, has a new item-scoped policy snapshot and repository search finds no occurrence of `cf-baa64ebea736be2a` combined with that live plan id.
+
+## Outcome
+
+Accepted. `火神鸣` / `火神鳴` is durably canonicalized as `Hỏa Thần Minh`, protected by a permanent regression, and no longer represents active canonical uncertainty. Maintenance completed count may advance from 40 to 41.

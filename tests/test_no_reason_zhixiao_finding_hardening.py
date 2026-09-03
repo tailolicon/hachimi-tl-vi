@@ -4,18 +4,35 @@ import json
 from pathlib import Path
 
 from scripts.canonical_findings import active_findings, refresh_canonical_resolutions
-from scripts.harden_no_reason_zhixiao_finding import FINDING_ID, RULE, SOURCE_JA, SOURCE_ZH, TARGET, harden
+from scripts.harden_no_reason_zhixiao_finding import (
+    FINDING_ID,
+    HISTORICAL_TITLE_TARGET,
+    RULE,
+    SOURCE_JA,
+    SOURCE_ZH,
+    SOURCE_ZH_COMMA,
+    TARGET,
+    TITLE_FINDING_ID,
+    harden,
+)
 
 
-def _finding(*, source: str = SOURCE_ZH, source_path: str = "text_data_dict.json") -> dict:
+def _finding(
+    finding_id: str = FINDING_ID,
+    *,
+    source: str = SOURCE_ZH,
+    source_path: str = "text_data_dict.json",
+    match_mode: str = "contains",
+    json_path_prefixes: list[list[str]] | None = None,
+) -> dict:
     return {
-        "finding_id": FINDING_ID,
+        "finding_id": finding_id,
         "status": "open",
         "source_zh_cn": source,
-        "match_mode": "contains",
+        "match_mode": match_mode,
         "source_paths": [source_path],
         "key_exact": [],
-        "json_path_prefixes": [],
+        "json_path_prefixes": json_path_prefixes or [],
         "suggested_targets_vi": [],
         "canonical_resolution": None,
         "review_resolution": None,
@@ -32,7 +49,21 @@ def _seed(tmp_path: Path) -> None:
         json.dumps({"schema_version": 1, "decisions": []}), encoding="utf-8"
     )
     (glossary / "canonical_findings.json").write_text(
-        json.dumps({"schema_version": 1, "findings": [_finding()]}), encoding="utf-8"
+        json.dumps(
+            {
+                "schema_version": 1,
+                "findings": [
+                    _finding(),
+                    _finding(
+                        TITLE_FINDING_ID,
+                        source=SOURCE_ZH_COMMA,
+                        match_mode="exact",
+                        json_path_prefixes=[["147"]],
+                    ),
+                ],
+            }
+        ),
+        encoding="utf-8",
     )
     (glossary / "term_registry.json").write_text(json.dumps({"terms": []}), encoding="utf-8")
     (glossary / "source_bridge_terms.json").write_text(json.dumps({"terms": []}), encoding="utf-8")
@@ -41,7 +72,7 @@ def _seed(tmp_path: Path) -> None:
     )
 
 
-def test_hardener_resolves_live_contains_finding_and_is_idempotent(tmp_path: Path) -> None:
+def test_hardener_resolves_factor_and_title_findings_and_is_idempotent(tmp_path: Path) -> None:
     _seed(tmp_path)
     assert harden(tmp_path) is True
     assert harden(tmp_path) is False
@@ -53,34 +84,39 @@ def test_hardener_resolves_live_contains_finding_and_is_idempotent(tmp_path: Pat
     assert rule["preferred"] == TARGET
     assert rule["match_mode"] == "contains"
     assert rule["source_paths"] == ["text_data_dict.json"]
+    assert rule["source_aliases"] == [SOURCE_ZH, SOURCE_ZH_COMMA]
+    assert HISTORICAL_TITLE_TARGET in rule["forbidden"]
 
     reviews = json.loads(
         (tmp_path / "glossary" / "terminology_reviews.json").read_text(encoding="utf-8")
     )
-    decision = next(
+    factor_decision = next(
         item for item in reviews["decisions"]
         if item["decision_id"] == "audit.finding.skill-no-reason-zhixiao-baizhan"
     )
-    assert decision["ja"] == [SOURCE_JA]
-    assert decision["target_vi"] == TARGET
-    assert decision["match_mode"] == "contains"
+    assert factor_decision["ja"] == [SOURCE_JA]
+    assert factor_decision["target_vi"] == TARGET
+    title_decision = next(
+        item for item in reviews["decisions"]
+        if item["decision_id"] == "audit.finding.skill-no-reason-zhixiao-baizhan-title"
+    )
+    assert title_decision["source_zh_cn"] == SOURCE_ZH_COMMA
+    assert title_decision["target_vi"] == TARGET
+    assert title_decision["json_path_prefixes"] == [["147"]]
 
     ledger = json.loads(
         (tmp_path / "glossary" / "canonical_findings.json").read_text(encoding="utf-8")
     )
     resolved_ledger = refresh_canonical_resolutions(tmp_path, ledger)
-    resolved = resolved_ledger["findings"][0]
-    assert resolved["suggested_targets_vi"] == [TARGET]
-    assert resolved["canonical_resolution"] == {
-        "layer": "community",
-        "term_id": "skill.no_reason.zhixiao_baizhan",
-        "target_vi": TARGET,
-    }
-    assert resolved["review_resolution"] == {
-        "decision_id": "audit.finding.skill-no-reason-zhixiao-baizhan",
-        "action": "lock",
-        "target_vi": TARGET,
-    }
+    for resolved in resolved_ledger["findings"]:
+        assert resolved["suggested_targets_vi"] == [TARGET]
+        assert resolved["canonical_resolution"] == {
+            "layer": "community",
+            "term_id": "skill.no_reason.zhixiao_baizhan",
+            "target_vi": TARGET,
+        }
+        assert resolved["review_resolution"]["action"] == "lock"
+        assert resolved["review_resolution"]["target_vi"] == TARGET
     assert active_findings(resolved_ledger) == []
 
 

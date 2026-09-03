@@ -6,6 +6,7 @@ from scripts.harden_loh_main_stage_alias_finding import (
     ALIAS,
     BASE_TERM_ID,
     BRIDGE_TERM_ID,
+    DECISION_ID,
     harden,
 )
 
@@ -56,11 +57,17 @@ def _community() -> dict:
     }
 
 
-def test_hardener_adds_source_scoped_bridge_and_resolves_live_scope(tmp_path: Path) -> None:
+def _seed(tmp_path: Path) -> Path:
     glossary = tmp_path / "glossary"
     _write(glossary / "ui_community_terms.json", _community())
+    _write(glossary / "terminology_reviews.json", {"schema_version": 1, "decisions": []})
     _write(glossary / "term_registry.json", {"schema_version": 1, "terms": []})
     _write(glossary / "source_bridge_terms.json", {"schema_version": 1, "terms": []})
+    return glossary
+
+
+def test_hardener_review_locks_bridge_and_resolves_live_scope(tmp_path: Path) -> None:
+    glossary = _seed(tmp_path)
 
     assert harden(tmp_path) is True
     assert harden(tmp_path) is False
@@ -73,26 +80,36 @@ def test_hardener_adds_source_scoped_bridge_and_resolves_live_scope(tmp_path: Pa
     assert bridge["source_aliases"] == [ALIAS]
     assert bridge["source_paths"] == ["localize_dict.json"]
 
+    reviews = json.loads((glossary / "terminology_reviews.json").read_text(encoding="utf-8"))
+    decision = next(item for item in reviews["decisions"] if item["decision_id"] == DECISION_ID)
+    assert decision["action"] == "lock"
+    assert decision["target_vi"] == "Main Stage"
+
     ledger = refresh_canonical_resolutions(
         tmp_path,
         {"schema_version": 1, "policy": {"canonical": False}, "findings": [_finding()]},
     )
-    assert ledger["findings"][0]["canonical_resolution"] == {
+    finding = ledger["findings"][0]
+    assert finding["review_resolution"] == {
+        "decision_id": DECISION_ID,
+        "action": "lock",
+        "target_vi": "Main Stage",
+    }
+    assert finding["canonical_resolution"] == {
         "layer": "community",
         "term_id": BRIDGE_TERM_ID,
         "target_vi": "Main Stage",
     }
 
 
-def test_bridge_alias_does_not_resolve_outside_localize_source(tmp_path: Path) -> None:
-    glossary = tmp_path / "glossary"
-    _write(glossary / "ui_community_terms.json", _community())
-    _write(glossary / "term_registry.json", {"schema_version": 1, "terms": []})
-    _write(glossary / "source_bridge_terms.json", {"schema_version": 1, "terms": []})
+def test_reviewed_bridge_does_not_canonicalize_outside_localize_source(tmp_path: Path) -> None:
+    _seed(tmp_path)
 
     assert harden(tmp_path) is True
     ledger = refresh_canonical_resolutions(
         tmp_path,
         {"schema_version": 1, "policy": {"canonical": False}, "findings": [_finding("storytimeline.json")]},
     )
-    assert ledger["findings"][0]["canonical_resolution"] is None
+    finding = ledger["findings"][0]
+    assert finding["review_resolution"]["action"] == "lock"
+    assert finding["canonical_resolution"] is None

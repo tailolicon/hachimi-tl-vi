@@ -43,12 +43,14 @@ def test_protocols_document_partial_release_handoff() -> None:
         assert "partial_result_path" in text
 
 
-def test_top_level_25_minute_orchestrator_prioritizes_old_audit() -> None:
+def test_top_level_25_minute_orchestrator_allocates_review_and_translation_concurrently() -> None:
     text = (ROOT / "WORKER_25MIN.md").read_text(encoding="utf-8")
-    translation_audit = text.index("retrospective translation audit")
-    ui_audit = text.index("retrospective UI audit")
-    new_translation = text.index("new untranslated content")
-    assert translation_audit < ui_audit < new_translation
+    assert "Retrospective translation audit remains mandatory" in text
+    assert "it is no longer a global stop for new translation" in text
+    assert "review_worker_cap" in text
+    assert "route this worker directly to Mode C" in text
+    assert "Only after the translation-review gate clears:" in text
+    assert "no higher-priority required UI audit remains" in text
 
 
 def test_worker_policy_prevents_exact_match_for_embedded_canonical_aliases() -> None:

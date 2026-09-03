@@ -1,12 +1,12 @@
 # Canonical finding checkpoint — Migraine localize context
 
-Claim: `canonical-findings-maintenance-gpt56sol-20260903T110239Z`
+Claim lineage: `canonical-findings-maintenance-gpt56sol-20260903T110239Z` → `canonical-findings-maintenance-gpt56sol-20260903T1126Z`
 
 Target finding: `cf-e311d621cf5334b2` (`偏头痛` → **Migraine**).
 
 ## Live finding state
 
-The generated live canonical-findings ledger shows this finding as `status: open`, `match_mode: contains`, scoped to `localize_dict.json`, with `canonical_resolution: null` and `review_resolution: null`. Evidence is the system message `由于偏头痛，无法使用育成商品`, currently rendered with generic Vietnamese `đau nửa đầu` even though repository canon already defines the named negative Condition as **Migraine**.
+The finding originated as `status: open`, `match_mode: contains`, scoped to `localize_dict.json`, with evidence in the system message `由于偏头痛，无法使用育成商品`. The repository already canonically names the gameplay Condition **Migraine**, so generic Vietnamese `đau nửa đầu` is not appropriate in this system-UI context.
 
 ## Hardening decision
 
@@ -20,4 +20,12 @@ Add reviewed lock `audit.finding.condition-migraine-localize-context` mapping `�
 
 ## Acceptance state
 
-Implementation and regression test are published. Validate/Sync and generated-ledger persistence remain required before counting the finding complete.
+Accepted complete.
+
+- Hardener commit: `0902c5e9ca5c7dc9aa720ddef45430aabad8f5d2`.
+- Regression-test commit: `c917cd781eb07e68f7ba16c88fd1de900ed0ec26`.
+- Validate run `33748663256` on maintenance checkpoint commit `41867d08ef87b5c93f421bae6eb2033598a63232` completed successfully.
+- Generated-context commit `1c3dcd0a139789d331cc7361beaf9675b528eb00` persisted both canonical layers: `canonical_resolution.term_id = common.condition.migraine.localize_context`, target `Migraine`, and review decision `audit.finding.condition-migraine-localize-context`, target `Migraine`.
+- The generated terminology review queue dropped the `偏头痛` canonical-finding review item and reduced open canonical findings from 220 to 219 in that generated publication.
+
+The finding is therefore canonically hardened and persisted; continue with the next live active finding after refetching routing/ledger state.

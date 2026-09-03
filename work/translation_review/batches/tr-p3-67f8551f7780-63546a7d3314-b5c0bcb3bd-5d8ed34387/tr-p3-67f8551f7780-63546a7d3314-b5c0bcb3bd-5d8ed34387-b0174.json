@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "policy_version": 3,
-  "plan_id": "tr-p3-67f8551f7780-c47e7eb1fb1d-b5c0bcb3bd-4e85101d5e",
-  "batch_id": "tr-p3-67f8551f7780-c47e7eb1fb1d-b5c0bcb3bd-4e85101d5e-b0174",
+  "plan_id": "tr-p3-67f8551f7780-63546a7d3314-b5c0bcb3bd-5d8ed34387",
+  "batch_id": "tr-p3-67f8551f7780-63546a7d3314-b5c0bcb3bd-5d8ed34387-b0174",
   "context_snapshot_sha256": "b5c0bcb3bd9ee5c45e7bedf49c8f8d6ad35c3ceb3c35f528c6381a63c684a967",
   "source_bridge_policy_sha256": "5ef2792fdc50d915a8110f9d35357cbd1233d4a8341d8821b42e5ef936f1f17c",
   "review_generation": "retrospective-canonical-full-review",
@@ -839,11 +839,31 @@
       "current_fingerprint": "aca8aac9042bd3759c90dea2ed400e9b0122190f011facf1e91f906531339656",
       "risk_flags": [
         "cjk_in_target",
-        "canonical_finding"
+        "community_term",
+        "community_calque_risk",
+        "community_term_mismatch"
       ],
-      "risk_score": 48,
+      "risk_score": 24,
       "locked_terms": [],
-      "community_terms": [],
+      "community_terms": [
+        {
+          "id": "proper_name.aiko_takase.credit17",
+          "preferred": "Aiko Takase",
+          "accepted": [
+            "Aiko Takase"
+          ],
+          "forbidden": [
+            "高瀬愛虹"
+          ],
+          "matched_aliases": [
+            "高瀬愛虹"
+          ],
+          "accepted_present": false,
+          "forbidden_present": true,
+          "require_accepted": true,
+          "basis": "Creator/staff credits in Vietnamese release text require a verified Latin/Roman spelling. The lyricist's own TAKASE AIKO website gives 高瀬愛虹（たかせあいこ）, and Heart Company independently credits the same identity for Uma Musume 1st Anniversary We are DREAMERS!!. English-language music metadata renders the credit Aiko Takase. Scope this mapping to text_data category 17 credits so unrelated text cannot inherit a person-name replacement."
+        }
+      ],
       "skill_name_canonical": null,
       "source_bridge_terms": [],
       "source_bridge_risks": [],

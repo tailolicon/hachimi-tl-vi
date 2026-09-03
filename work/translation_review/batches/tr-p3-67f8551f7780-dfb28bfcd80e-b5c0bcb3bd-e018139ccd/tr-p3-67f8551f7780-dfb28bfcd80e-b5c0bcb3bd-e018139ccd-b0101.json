@@ -1,13 +1,66 @@
 {
   "schema_version": 1,
   "policy_version": 3,
-  "plan_id": "tr-p3-67f8551f7780-affa1103b53c-b5c0bcb3bd-802b93bb46",
-  "batch_id": "tr-p3-67f8551f7780-affa1103b53c-b5c0bcb3bd-802b93bb46-b0101",
+  "plan_id": "tr-p3-67f8551f7780-dfb28bfcd80e-b5c0bcb3bd-e018139ccd",
+  "batch_id": "tr-p3-67f8551f7780-dfb28bfcd80e-b5c0bcb3bd-e018139ccd-b0101",
   "context_snapshot_sha256": "b5c0bcb3bd9ee5c45e7bedf49c8f8d6ad35c3ceb3c35f528c6381a63c684a967",
   "source_bridge_policy_sha256": "1faac1e600d42535217e267fbba196d6723753776386d93856ced27a90801c9e",
   "review_generation": "retrospective-canonical-full-review",
   "context_mode": "embedded-first-lazy-extra",
   "items": [
+    {
+      "uid": "zhcn:933bb46903138ab35f7269e7",
+      "source_batch": 144,
+      "entry_index": 15,
+      "kind": "text_data",
+      "source_path": "text_data_dict.json",
+      "json_path": [
+        "131",
+        "239"
+      ],
+      "key": null,
+      "source_text": "获得合计300点以上声音值完成育成\\n※相连、相辉、相映。属于我们的『Grand Live』限定",
+      "source_fingerprint": "56d26c717ec277d862370517c34a89a166d159d9b110c3d1d8d07cf5a3738d03",
+      "current_text": "Đạt tổng cộng ít nhất 300 điểm Giọng hát và hoàn thành huấn luyện\\n※Chỉ áp dụng cho kịch bản 『Grand Live』 của chúng ta: kết nối, tỏa sáng và phản chiếu",
+      "current_fingerprint": "cbc3a43dc6ad3108af7f767f5dadfbb77784e93442d574c4cdcdf4ab44b89357",
+      "risk_flags": [
+        "very_long_target",
+        "numeric_token_mismatch",
+        "canonical_finding"
+      ],
+      "risk_score": 48,
+      "locked_terms": [],
+      "community_terms": [],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [
+        {
+          "finding_id": "cf-d11aa54842ad46b9",
+          "status": "open",
+          "source_zh_cn": "声音值",
+          "match_mode": "contains",
+          "source_paths": [
+            "text_data_dict.json"
+          ],
+          "key_exact": [],
+          "json_path_prefixes": [],
+          "suggested_targets_vi": [
+            "Vocal"
+          ],
+          "concepts": [
+            "Grand Live performance stat: Vocal"
+          ],
+          "kinds": [
+            "system_label"
+          ],
+          "review_action": "",
+          "review_target_vi": ""
+        }
+      ],
+      "item_context_sha256": "dd49c60aaf38ec39a34909c3671efa8414b47d5742019d9da082948c1d8af48f"
+    },
     {
       "uid": "zhcn:feb4750a532c02559ec80d7f",
       "source_batch": 144,
@@ -78,12 +131,33 @@
       "current_fingerprint": "3746dd77d2390e01f39a248b1a7d6143255470e646802b3235df8259aa15f01f",
       "risk_flags": [
         "very_long_target",
-        "numeric_token_mismatch",
-        "canonical_finding"
+        "community_term",
+        "community_calque_risk",
+        "community_term_mismatch",
+        "numeric_token_mismatch"
       ],
-      "risk_score": 48,
+      "risk_score": 24,
       "locked_terms": [],
-      "community_terms": [],
+      "community_terms": [
+        {
+          "id": "scenario.grand_live.performance.mental.text_data",
+          "preferred": "Mental",
+          "accepted": [
+            "Mental"
+          ],
+          "forbidden": [
+            "Tinh thần",
+            "điểm Tinh thần"
+          ],
+          "matched_aliases": [
+            "心理值"
+          ],
+          "accepted_present": false,
+          "forbidden_present": true,
+          "require_accepted": true,
+          "basis": "Grand Live performance uses five named performance categories. zh-CN 心理值 is the Mental category; scope this alias to text_data_dict.json, matching the live finding scope while leaving generic 心理 prose untouched."
+        }
+      ],
       "skill_name_canonical": null,
       "source_bridge_terms": [],
       "source_bridge_risks": [],
@@ -350,10 +424,8 @@
       "source_fingerprint": "ecfaf579d3c25cd192b7b3b324050eb800de5a4b98cc54ce87d6391831c5417d",
       "current_text": "Chiến thắng Mercury Cup, Kanto Oaks, Sparking Lady Cup,\\nLadies Prelude, JBC Ladies' Classic,\\nTCK Jo-o Hai và Empress Hai",
       "current_fingerprint": "0d9935813ee5581d8e209cdc43217acbf9f0c442472a92076f3833dab314695f",
-      "risk_flags": [
-        "canonical_finding"
-      ],
-      "risk_score": 40,
+      "risk_flags": [],
+      "risk_score": 0,
       "locked_terms": [],
       "community_terms": [],
       "skill_name_canonical": null,
@@ -1013,10 +1085,9 @@
       "current_text": "Trong quá trình huấn luyện, chiến thắng Oka Sho và Queen Elizabeth II Cup,\\nkế thừa tâm ý từ Mã Nương kế thừa rồi chiến thắng Yasuda Kinen (Senior Class),\\nSprinters Stakes (Senior Class)",
       "current_fingerprint": "dc9157aeb85bff1e9d2b7a7bd59c307ba9db848ceca9ff6ba38d40b4b2c09afd",
       "risk_flags": [
-        "community_term",
-        "canonical_finding"
+        "community_term"
       ],
-      "risk_score": 42,
+      "risk_score": 2,
       "locked_terms": [
         {
           "id": "race.class.senior.race_text",
@@ -1108,62 +1179,6 @@
       "source_bridge_policy_sha256": null,
       "canonical_findings": [],
       "item_context_sha256": "135c747fee2988c0d1732f49d9fe5c5fd3c58fc77e134652be1069a6a1382d24"
-    },
-    {
-      "uid": "zhcn:2f9f43fc70f37606e4b22a58",
-      "source_batch": 144,
-      "entry_index": 63,
-      "kind": "text_data",
-      "source_path": "text_data_dict.json",
-      "json_path": [
-        "131",
-        "282"
-      ],
-      "key": null,
-      "source_text": "取得皋月赏、日本德比（日本ダービー）、宝冢纪念（经典级）、菊花赏、\\n日本杯（ジャパンC）（经典级）、大阪杯、天皇赏（春）的胜利，\\n基础能力[智力]达到1200以上",
-      "source_fingerprint": "56c539e53e32bfb3a2418e8a088b957cccd40b63f3dd6b7063e4d9e81fb2753f",
-      "current_text": "Chiến thắng Satsuki Sho, Japan Derby, Takarazuka Kinen (Classic Class), Kikuka Sho,\\nJapan Cup (Classic Class), Osaka Hai và Tenno Sho (Spring),\\nchỉ số cơ bản [Wit] đạt từ 1200 trở lên",
-      "current_fingerprint": "e33db8699590a8fbe466c0da6175f0e0c503a90164f6f7c9b9ef6062e80b06d5",
-      "risk_flags": [
-        "community_term",
-        "numeric_token_mismatch"
-      ],
-      "risk_score": 7,
-      "locked_terms": [
-        {
-          "id": "race.class.classic.race_text",
-          "target_vi": "Classic Class",
-          "matched_aliases": [
-            "经典级"
-          ],
-          "present": true
-        }
-      ],
-      "community_terms": [
-        {
-          "id": "common.stat.wit",
-          "preferred": "Wit",
-          "accepted": [
-            "Wit"
-          ],
-          "forbidden": [
-            "Trí tuệ"
-          ],
-          "matched_aliases": [
-            "智力"
-          ],
-          "accepted_present": true,
-          "forbidden_present": false,
-          "require_accepted": true,
-          "basis": "Common EN-version Wit stat label. The zh-CN alias 智力 is context-sensitive and must not canonicalize ordinary compounds such as 智力扣 (a disentanglement puzzle/toy)."
-        }
-      ],
-      "skill_name_canonical": null,
-      "source_bridge_terms": [],
-      "source_bridge_risks": [],
-      "source_bridge_policy_sha256": null,
-      "canonical_findings": [],
-      "item_context_sha256": "ad8898246ae16801e1d3f941f6bafb94ab145e6d964626458088bd82df626d1b"
     }
   ]
 }

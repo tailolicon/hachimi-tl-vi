@@ -944,16 +944,18 @@
         "context_rule"
       ],
       "concepts": [
-        "Exclude prose 焦躁 from Rushed system-label matching"
+        "Exclude prose 焦躁 from Rushed system-label matching",
+        "Prose 焦躁 in this song description must not trigger Rushed system-label matching"
       ],
       "suggested_targets_vi": [],
       "confidence_levels": [
         "high"
       ],
       "reasons": [
-        "焦躁 is ordinary prose in this song description, not the named system label."
+        "焦躁 is ordinary prose in this song description, not the named system label.",
+        "焦躁 is descriptive prose in the phrase 不用焦躁，慢慢来, not a gameplay state label."
       ],
-      "evidence_count": 1,
+      "evidence_count": 2,
       "evidence": [
         {
           "uid": "zhcn:361d65ed54a0c08234044841",
@@ -970,6 +972,22 @@
           "current_text": "Ấm áp trái tim bạn như ánh mặt trời. Đừng vội, cứ từ từ thôi──\\nTiến từng bước vững chắc, giấc mơ đang chờ chúng ta ở phía trước.",
           "proposed_text": null,
           "reported_at": "2026-08-31T23:51:00Z"
+        },
+        {
+          "uid": "zhcn:361d65ed54a0c08234044841",
+          "plan_id": "tr-p3-67f8551f7780-cb8444d141d5-b5c0bcb3bd-5823c0d9c1",
+          "batch_id": "tr-p3-67f8551f7780-cb8444d141d5-b5c0bcb3bd-5823c0d9c1-b0081",
+          "claim_id": "trc-gpt56sol-20260903T063822Z-b0081",
+          "worker_id": "gpt56sol-20260903T063822Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "128",
+            "1103"
+          ],
+          "source_text": "如同阳光一般温暖你的心。不用焦躁，慢慢来──\\n一步一脚印地前进，梦想正在彼方等着我们。",
+          "current_text": "Ấm áp trái tim bạn như ánh mặt trời. Đừng vội, cứ từ từ thôi──\\nTiến từng bước vững chắc, giấc mơ đang chờ chúng ta ở phía trước.",
+          "proposed_text": null,
+          "reported_at": "2026-09-03T06:42:00Z"
         }
       ],
       "canonical_resolution": {
@@ -979,7 +997,7 @@
       },
       "review_resolution": null,
       "first_seen_at": "2026-08-31T23:51:00Z",
-      "last_seen_at": "2026-08-31T23:51:00Z"
+      "last_seen_at": "2026-09-03T06:42:00Z"
     },
     {
       "finding_id": "cf-072fd00f345e81cb",
@@ -3895,6 +3913,57 @@
       "review_resolution": null,
       "first_seen_at": "2026-09-01T08:32:00Z",
       "last_seen_at": "2026-09-01T08:32:00Z"
+    },
+    {
+      "finding_id": "cf-183dbea74ee91b48",
+      "status": "open",
+      "source_zh_cn": "华丽、优雅、勇敢！点燃内心的充满力量的乐曲！\\n无论遇到什么困难都不会屈服——这才是公主应有的姿态！",
+      "match_mode": "exact",
+      "source_paths": [
+        "text_data_dict.json"
+      ],
+      "key_exact": [],
+      "json_path_prefixes": [
+        [
+          "128"
+        ]
+      ],
+      "kinds": [
+        "context_rule"
+      ],
+      "concepts": [
+        "Prose 充满力量 describing powerful music must not trigger gameplay Power matching"
+      ],
+      "suggested_targets_vi": [],
+      "confidence_levels": [
+        "high"
+      ],
+      "reasons": [
+        "力量 is an adjective-like lexical notion of strength/powerfulness in song-description prose, not a game stat label."
+      ],
+      "evidence_count": 1,
+      "evidence": [
+        {
+          "uid": "zhcn:896b56be0adb3987b5b003f6",
+          "plan_id": "tr-p3-67f8551f7780-cb8444d141d5-b5c0bcb3bd-5823c0d9c1",
+          "batch_id": "tr-p3-67f8551f7780-cb8444d141d5-b5c0bcb3bd-5823c0d9c1-b0081",
+          "claim_id": "trc-gpt56sol-20260903T063822Z-b0081",
+          "worker_id": "gpt56sol-20260903T063822Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "128",
+            "1187"
+          ],
+          "source_text": "华丽、优雅、勇敢！点燃内心的充满力量的乐曲！\\n无论遇到什么困难都不会屈服——这才是公主应有的姿态！",
+          "current_text": "Rực rỡ, thanh lịch, dũng cảm! Một khúc nhạc tràn đầy sức mạnh thắp sáng trái tim!\\nDù gặp bất cứ khó khăn nào cũng không khuất phục—đó mới là dáng vẻ của một công chúa!",
+          "proposed_text": null,
+          "reported_at": "2026-09-03T06:42:00Z"
+        }
+      ],
+      "canonical_resolution": null,
+      "review_resolution": null,
+      "first_seen_at": "2026-09-03T06:42:00Z",
+      "last_seen_at": "2026-09-03T06:42:00Z"
     },
     {
       "finding_id": "cf-184e3b01bc42e58b",
@@ -12836,6 +12905,57 @@
       "last_seen_at": "2026-09-03T06:01:00Z"
     },
     {
+      "finding_id": "cf-6c3f59017815c1e9",
+      "status": "open",
+      "source_zh_cn": "传递☆我们的全力应援！将最大力量献给你♪\\n我们相信！你就是最强！！直到极限Pom Pon!!!",
+      "match_mode": "exact",
+      "source_paths": [
+        "text_data_dict.json"
+      ],
+      "key_exact": [],
+      "json_path_prefixes": [
+        [
+          "128"
+        ]
+      ],
+      "kinds": [
+        "context_rule"
+      ],
+      "concepts": [
+        "Prose 最大力量 in cheering lyrics must not trigger gameplay Power matching"
+      ],
+      "suggested_targets_vi": [],
+      "confidence_levels": [
+        "high"
+      ],
+      "reasons": [
+        "力量 is lexical strength in a cheer-song description, not the gameplay Power stat."
+      ],
+      "evidence_count": 1,
+      "evidence": [
+        {
+          "uid": "zhcn:21ac70eddf577f31a7e0b58b",
+          "plan_id": "tr-p3-67f8551f7780-cb8444d141d5-b5c0bcb3bd-5823c0d9c1",
+          "batch_id": "tr-p3-67f8551f7780-cb8444d141d5-b5c0bcb3bd-5823c0d9c1-b0081",
+          "claim_id": "trc-gpt56sol-20260903T063822Z-b0081",
+          "worker_id": "gpt56sol-20260903T063822Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "128",
+            "1190"
+          ],
+          "source_text": "传递☆我们的全力应援！将最大力量献给你♪\\n我们相信！你就是最强！！直到极限Pom Pon!!!",
+          "current_text": "Trao gửi☆toàn bộ lời cổ vũ của chúng tôi! Dành sức mạnh lớn nhất cho bạn♪\\nChúng tôi tin! Bạn chính là mạnh nhất!! Cổ vũ hết mình, Pom Pon!!!",
+          "proposed_text": null,
+          "reported_at": "2026-09-03T06:42:00Z"
+        }
+      ],
+      "canonical_resolution": null,
+      "review_resolution": null,
+      "first_seen_at": "2026-09-03T06:42:00Z",
+      "last_seen_at": "2026-09-03T06:42:00Z"
+    },
+    {
       "finding_id": "cf-6c9052dadb58c923",
       "status": "open",
       "source_zh_cn": "热血誓言",
@@ -18087,9 +18207,10 @@
         "This dialogue uses 心动 as an emotional sensation, not a Skill name.",
         "Mayano's self-introduction uses 心动不已 as an emotional phrase, not a player-facing Skill title.",
         "Longer support unique-effect titles must not be rewritten by standalone Skill-title mappings that match 心动 as a substring.",
-        "This dialogue uses 心动 as ordinary 'heart-fluttering/excited' prose, not the named Skill; canonical matching must be scoped so generic prose is not rewritten as a Skill title."
+        "This dialogue uses 心动 as ordinary 'heart-fluttering/excited' prose, not the named Skill; canonical matching must be scoped so generic prose is not rewritten as a Skill title.",
+        "A reviewed Skill-name lock for 心动→Nhịp tim rộn ràng is matching ordinary narrative prose; distinguish Skill-title contexts from generic ‘heart-pounding/excited’ wording before enforcement."
       ],
-      "evidence_count": 11,
+      "evidence_count": 12,
       "evidence": [
         {
           "uid": "zhcn:996c7568e8341c51f3593486",
@@ -18266,6 +18387,22 @@
           "current_text": "Ê hê hê, Maya-chan đây—☆\\nMình thích nhất cảm giác tim đập thình thịch và những chuyện kích thích♪ Mong được giúp đỡ!",
           "proposed_text": null,
           "reported_at": "2026-09-01T21:51:38Z"
+        },
+        {
+          "uid": "zhcn:e837deb220b7be97d6a32405",
+          "plan_id": "tr-p3-67f8551f7780-cb8444d141d5-b5c0bcb3bd-5823c0d9c1",
+          "batch_id": "tr-p3-67f8551f7780-cb8444d141d5-b5c0bcb3bd-5823c0d9c1-b0158",
+          "claim_id": "trc-gpt56sol-20260903T063445Z-a4c2-b0158",
+          "worker_id": "gpt56sol-20260903T062317Z-a4c2",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "163",
+            "1024"
+          ],
+          "source_text": "诶嘿嘿，是Maya亲哟—☆\\n最喜欢心动不已，和刺激的事情啦♪请多指教！",
+          "current_text": "Ê hê hê, Maya-chan đây—☆\\nMình thích nhất cảm giác tim đập thình thịch và những chuyện kích thích♪ Mong được giúp đỡ!",
+          "proposed_text": null,
+          "reported_at": "2026-09-03T06:38:10Z"
         }
       ],
       "canonical_resolution": {
@@ -18279,7 +18416,7 @@
         "target_vi": "Nhịp tim rộn ràng"
       },
       "first_seen_at": "2026-08-31T01:01:03Z",
-      "last_seen_at": "2026-09-01T21:51:38Z"
+      "last_seen_at": "2026-09-03T06:38:10Z"
     },
     {
       "finding_id": "cf-9a0b738dae85c3a2",
@@ -19301,16 +19438,18 @@
         "context_rule"
       ],
       "concepts": [
-        "Exclude generic prose 力量 from Power-stat matching"
+        "Exclude generic prose 力量 from Power-stat matching",
+        "Prose 力量 meaning strength from bonds must not trigger gameplay Power matching"
       ],
       "suggested_targets_vi": [],
       "confidence_levels": [
         "high"
       ],
       "reasons": [
-        "力量 means ordinary strength in this prose, not the gameplay Power stat."
+        "力量 means ordinary strength in this prose, not the gameplay Power stat.",
+        "The phrase 将情谊化为力量 uses 力量 lexically, not as the game stat Power."
       ],
-      "evidence_count": 1,
+      "evidence_count": 2,
       "evidence": [
         {
           "uid": "zhcn:8d1ff68eb5fec7c73dc89ccd",
@@ -19327,6 +19466,22 @@
           "current_text": "Điều tôi muốn không chỉ là lý thuyết, mà còn là tương lai chỉ có thể cùng bạn chạm tới.\\nBiến tình cảm gắn bó thành sức mạnh, vượt qua số phận không thể đo lường.",
           "proposed_text": null,
           "reported_at": "2026-08-31T23:51:00Z"
+        },
+        {
+          "uid": "zhcn:8d1ff68eb5fec7c73dc89ccd",
+          "plan_id": "tr-p3-67f8551f7780-cb8444d141d5-b5c0bcb3bd-5823c0d9c1",
+          "batch_id": "tr-p3-67f8551f7780-cb8444d141d5-b5c0bcb3bd-5823c0d9c1-b0081",
+          "claim_id": "trc-gpt56sol-20260903T063822Z-b0081",
+          "worker_id": "gpt56sol-20260903T063822Z",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "128",
+            "1104"
+          ],
+          "source_text": "想要的并不只是理论，还有只能和你一起抵达的未来。\\n将情谊化为力量，超越无法估量的命运。",
+          "current_text": "Điều tôi muốn không chỉ là lý thuyết, mà còn là tương lai chỉ có thể cùng bạn chạm tới.\\nBiến tình cảm gắn bó thành sức mạnh, vượt qua số phận không thể đo lường.",
+          "proposed_text": null,
+          "reported_at": "2026-09-03T06:42:00Z"
         }
       ],
       "canonical_resolution": {
@@ -19336,7 +19491,7 @@
       },
       "review_resolution": null,
       "first_seen_at": "2026-08-31T23:51:00Z",
-      "last_seen_at": "2026-08-31T23:51:00Z"
+      "last_seen_at": "2026-09-03T06:42:00Z"
     },
     {
       "finding_id": "cf-9f35db4cdc752bcb",

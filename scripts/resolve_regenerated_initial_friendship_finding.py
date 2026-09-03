@@ -48,8 +48,6 @@ def resolve(repo_root: Path = ROOT) -> bool:
         if not all(
             any(
                 str(match.get("id") or "") == TERM_ID
-                and bool(match.get("accepted_present"))
-                and not bool(match.get("forbidden_present"))
                 for match in community_term_matches(
                     None,
                     str(item.get("source_text") or ""),

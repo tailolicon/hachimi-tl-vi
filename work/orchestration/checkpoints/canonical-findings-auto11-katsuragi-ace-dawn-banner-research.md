@@ -1,4 +1,4 @@
-# Canonical finding research: 暁の御旗『葛城栄主』！
+# Canonical finding implementation: 暁の御旗『葛城栄主』！
 
 Finding: `cf-abda2b1124d162ff`
 
@@ -6,8 +6,8 @@ Finding: `cf-abda2b1124d162ff`
 - Repository locator: `47:101041`
 - Verified JP title: `暁の御旗『葛城栄主』！`
 - Character: Katsuragi Ace
-- Current Vietnamese title in live inheritance text: `Ngự kỳ bình minh 『Katsuragi Ace』!`
-- Proposed canonical Vietnamese title: `Ngự Kỳ Bình Minh 『Katsuragi Ace』!`
+- Canonical Vietnamese target: `Ngự Kỳ Bình Minh 『Katsuragi Ace』!`
+- Historical target normalized: `Ngự kỳ bình minh 『Katsuragi Ace』!`
 
 ## Evidence
 
@@ -21,4 +21,20 @@ The existing Vietnamese title already makes the important proper-name treatment 
 
 Canonicalize the complete Skill-title alias only, scoped to `text_data_dict.json`. The live finding appears inside category-172 inheritance descriptions, so matching must cover the full title inside longer strings without creating a generic rule for `拂晓`, `御旗`, or the character name independently.
 
-Next: implement a hardener and regression mirroring the accepted Katsuragi Ace `決意一筆` pattern, then require Validate + production context sync + refreshed live review-plan acceptance before incrementing maintenance completion accounting.
+## Implementation
+
+- Hardener: `scripts/harden_katsuragi_ace_dawn_banner_finding.py`, commit `d09be5d54661e5933cd6c92e67ae5d25acf1f258`.
+- Regression: `tests/test_katsuragi_ace_dawn_banner_finding_hardening.py`, commit `c7ffe677c36a9d9242b4cd78101183bb1f220d87`.
+- Community rule: `skill.katsuragi_ace.akatsuki_no_mihata`.
+- Terminology decision: `audit.finding.skill-katsuragi-ace-akatsuki-no-mihata`.
+- Regression requires the exact live finding shape to resolve, proves idempotence, proves longer category-172 inheritance text is covered, and proves the alias does not resolve `localize_dict.json`.
+
+## Acceptance pending
+
+For regression commit `c7ffe677c36a9d9242b4cd78101183bb1f220d87`:
+
+- Sync translation context run `33812227623`: pending at last check.
+- Sync translation review plan run `33812227675`: pending at last check.
+- Validate is also triggered by the same push and must pass before acceptance.
+
+Do not increment maintenance completion count for `cf-abda2b1124d162ff` until Validate and production context sync succeed and a refreshed live review batch embeds `skill.katsuragi_ace.akatsuki_no_mihata` with this finding absent.

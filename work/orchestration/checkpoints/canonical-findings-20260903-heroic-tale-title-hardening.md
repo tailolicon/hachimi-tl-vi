@@ -14,12 +14,13 @@ Repository evidence already has multiple reviewed/generated regression targets u
 - `tests/test_heroic_tale_title_finding_hardening.py` added at main commit `e950d0f1f841942036d00eaa6d5edea9b7851788`.
 - Local execution backend has no pytest installed, but direct import/compile/idempotence assertions against the live hardener passed (`manual_hardener_check=pass`).
 - A clean archive simulation from current `origin/main` ran the hardener followed by `scripts/canonical_findings.py --refresh`; finding `cf-0533ace8b6cf1c16` resolved exactly to `{layer: community, term_id: event.league_of_heroes.heroic_tale_title, target_vi: Anh Hùng Kỳ Đàm}`. This proves the hardener matches the repository resolver semantics without overmatching unrelated prose.
+- Live repository search during acceptance verification found multiple durable translation and review artifacts already using `Anh Hùng Kỳ Đàm`, including `work/results/batch-00026/...` and retrospective review result `...b0073...`; this independently agrees with the scoped community-term resolution and does not broaden its matcher.
 
 ## Validation / production continuation
 
 Push-triggered workflows for head `e950d0f1f841942036d00eaa6d5edea9b7851788`:
 
-- Sync translation context: run `33769319161` — still pending when last checked.
-- Sync translation review plan: run `33769319396` — still pending when last checked.
+- Sync translation context: run `33769319161` — **completed successfully** on production.
+- Sync translation review plan: run `33769319396` — **still pending with no jobs allocated** at the latest check during this worker lease.
 
-Do not mark the finding resolved from this checkpoint alone. Continue by verifying workflow success and generated canonical resolution on live `main`; if successful, record the completion evidence and move to the next active finding under `scripts/canonical_findings.py::active_findings` semantics.
+Do not mark the finding resolved from this checkpoint alone. The sole remaining acceptance gate is production completion of review-plan Sync. Continue by verifying run `33769319396`; if it succeeds, confirm the generated canonical resolution on live `main`, record the completion evidence, increment maintenance completion count, and move to the next active finding under `scripts/canonical_findings.py::active_findings` semantics.

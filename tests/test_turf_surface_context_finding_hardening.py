@@ -5,6 +5,7 @@ from pathlib import Path
 
 from scripts.canonical_findings import active_findings, refresh_canonical_resolutions
 from scripts.harden_turf_surface_context_finding import (
+    APTITUDE_RULE_ID,
     BASE_RULE_ID,
     FINDING_ID,
     SOURCE_ZH,
@@ -12,6 +13,7 @@ from scripts.harden_turf_surface_context_finding import (
     ZH_RULE_ID,
     harden,
 )
+from scripts.translation_review_common import community_term_matches, load_community_terms
 
 
 def _finding(source: str = SOURCE_ZH) -> dict:
@@ -76,10 +78,14 @@ def test_hardener_splits_zhcn_alias_and_resolves_finding(tmp_path: Path) -> None
     )
     base = next(item for item in community["terms"] if item["id"] == BASE_RULE_ID)
     zh = next(item for item in community["terms"] if item["id"] == ZH_RULE_ID)
+    aptitude = next(item for item in community["terms"] if item["id"] == APTITUDE_RULE_ID)
     assert base["source_aliases"] == ["芝"]
     assert zh["source_aliases"] == [SOURCE_ZH]
     assert zh["preferred"] == TARGET
     assert zh["match_mode"] == "exact"
+    assert aptitude["source_paths"] == ["localize_dict.json"]
+    assert aptitude["key_exact"] == ["SingleMode0078"]
+    assert aptitude["match_mode"] == "contains"
 
     ledger = json.loads(
         (tmp_path / "glossary" / "canonical_findings.json").read_text(encoding="utf-8")
@@ -98,6 +104,23 @@ def test_hardener_splits_zhcn_alias_and_resolves_finding(tmp_path: Path) -> None
         "target_vi": TARGET,
     }
     assert active_findings(resolved_ledger) == []
+
+
+def test_scoped_aptitude_rule_preserves_turf_component(tmp_path: Path) -> None:
+    _seed(tmp_path)
+    assert harden(tmp_path) is True
+    community = load_community_terms(tmp_path)
+    matches = community_term_matches(
+        "SingleMode0078",
+        "草地适性",
+        "Turf Aptitude",
+        community,
+        source_path="localize_dict.json",
+        json_path=["SingleMode0078"],
+    )
+    ids = {str(item.get("id")) for item in matches}
+    assert APTITUDE_RULE_ID in ids
+    assert next(item for item in matches if item["id"] == APTITUDE_RULE_ID)["accepted_present"] is True
 
 
 def test_narrative_grass_prose_does_not_match_exact_turf_rule(tmp_path: Path) -> None:

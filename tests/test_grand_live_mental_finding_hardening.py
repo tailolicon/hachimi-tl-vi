@@ -65,10 +65,6 @@ def test_hardener_matches_live_text_data_finding_scope_and_is_idempotent(tmp_pat
     _write(glossary / "terminology_reviews.json", {"schema_version": 1, "decisions": []})
     _write(glossary / "term_registry.json", {"schema_version": 1, "terms": []})
     _write(glossary / "source_bridge_terms.json", {"schema_version": 1, "terms": []})
-    _write(
-        glossary / "canonical_findings.json",
-        {"schema_version": 1, "policy": {"canonical": False}, "findings": [_finding()]},
-    )
 
     assert harden(tmp_path) is True
     assert harden(tmp_path) is False
@@ -85,9 +81,11 @@ def test_hardener_matches_live_text_data_finding_scope_and_is_idempotent(tmp_pat
     by_decision = {item["decision_id"]: item for item in reviews["decisions"]}
     assert by_decision[GRAND_LIVE_MENTAL_DECISION["decision_id"]]["target_vi"] == "Mental"
 
-    refresh_canonical_resolutions(tmp_path)
-    finding = json.loads((glossary / "canonical_findings.json").read_text(encoding="utf-8"))["findings"][0]
-    assert finding["canonical_resolution"] == {
+    ledger = refresh_canonical_resolutions(
+        tmp_path,
+        {"schema_version": 1, "policy": {"canonical": False}, "findings": [_finding()]},
+    )
+    assert ledger["findings"][0]["canonical_resolution"] == {
         "layer": "community",
         "term_id": GRAND_LIVE_MENTAL_TEXT["id"],
         "target_vi": "Mental",
@@ -100,12 +98,10 @@ def test_text_data_rule_does_not_resolve_other_source_paths(tmp_path: Path) -> N
     _write(glossary / "terminology_reviews.json", {"schema_version": 1, "decisions": []})
     _write(glossary / "term_registry.json", {"schema_version": 1, "terms": []})
     _write(glossary / "source_bridge_terms.json", {"schema_version": 1, "terms": []})
-    _write(
-        glossary / "canonical_findings.json",
-        {"schema_version": 1, "policy": {"canonical": False}, "findings": [_finding("storytimeline.json")]},
-    )
 
     assert harden(tmp_path) is True
-    refresh_canonical_resolutions(tmp_path)
-    finding = json.loads((glossary / "canonical_findings.json").read_text(encoding="utf-8"))["findings"][0]
-    assert finding["canonical_resolution"] is None
+    ledger = refresh_canonical_resolutions(
+        tmp_path,
+        {"schema_version": 1, "policy": {"canonical": False}, "findings": [_finding("storytimeline.json")]},
+    )
+    assert ledger["findings"][0]["canonical_resolution"] is None

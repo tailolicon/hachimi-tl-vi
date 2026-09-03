@@ -6,15 +6,15 @@
   "claim_id": "canonical-findings-maintenance-gpt56sol-20260903T181719Z",
   "worker_id": "gpt56sol-20260903T181719Z-maint",
   "claimed_at": "2026-09-03T18:17:19Z",
-  "heartbeat_at": "2026-09-03T18:18:45Z",
-  "lease_expires_at": "2026-09-03T18:24:45Z",
+  "heartbeat_at": "2026-09-03T18:23:58Z",
+  "lease_expires_at": "2026-09-03T18:29:58Z",
   "branch": "main",
   "handoff_from_claim_id": "canonical-findings-maintenance-gpt56sol-20260903T181030Z",
-  "progress_token": "canonical-finding-cf-0dae34861911a969-validation-gates-fa513cc882f2",
-  "progress_kind": "production_validation_checkpoint",
-  "progress_ref": "work/orchestration/checkpoints/canonical-findings-20260903-uma-musume-stakes-validation-gates.md",
-  "last_progress_at": "2026-09-03T18:18:37Z",
+  "progress_token": "canonical-finding-cf-0dae34861911a969-legacy-scope-diagnosed-a699dff99d9b",
+  "progress_kind": "root_cause_checkpoint",
+  "progress_ref": "work/orchestration/checkpoints/canonical-findings-20260903-uma-musume-stakes-legacy-scope-diagnosis.md",
+  "last_progress_at": "2026-09-03T18:23:50Z",
   "completed_count": 39,
-  "partial_result_path": "work/orchestration/checkpoints/canonical-findings-20260903-uma-musume-stakes-validation-gates.md",
-  "continuation": "Re-check production run 33789280887 after durable validation work. If it succeeds, read the newly published parallel_state/active_plan, confirm regenerated review material no longer embeds cf-0dae34861911a969 as a blocker and resolves through race.uma_musume_stakes.component131 -> Uma Musume Stakes, persist acceptance, increment completed_count 39 -> 40, then continue the next active canonical finding. If the workflow fails, diagnose that production gate instead."
+  "partial_result_path": "work/orchestration/checkpoints/canonical-findings-20260903-uma-musume-stakes-legacy-scope-diagnosis.md",
+  "continuation": "Repair scripts/harden_uma_musume_stakes_component_finding.py so TERM and DECISION explicitly clear legacy json_path_prefixes, add regression coverage seeded with the legacy [[\"131\"]] records, validate, run production sync gates, then accept cf-0dae34861911a969 only after a fresh plan omits it as a blocker."
 }

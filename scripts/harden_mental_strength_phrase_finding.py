@@ -19,9 +19,8 @@ TERM = {
     "require_accepted": True,
     "invalidation_scope": "item",
     "source_paths": ["text_data_dict.json"],
-    "json_path_prefixes": [["147"]],
     "match_mode": "exact",
-    "basis": "Retrospective review established 精神力量 as the complete text_data category-147 phrase Sức mạnh tinh thần. It must not be normalized through the embedded 力量 alias to the Power stat; exact source and category scope avoid generic prose matching and do not assert an unrelated JP/Global Skill identity.",
+    "basis": "Retrospective review established 精神力量 as the complete text_data phrase Sức mạnh tinh thần. Exact source matching prevents longer prose from overmatching, while source-path scope is broad enough to cover the original canonical finding and lets canonical resolution close it; this does not assert an unrelated JP/Global Skill identity.",
 }
 
 
@@ -61,6 +60,7 @@ def harden(repo_root: Path = ROOT) -> bool:
             mental_found = True
             merged = dict(term)
             merged.update(TERM)
+            merged.pop("json_path_prefixes", None)
             terms[index] = merged
 
     if not power_found:

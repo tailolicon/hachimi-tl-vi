@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "status": "partial",
+  "status": "complete",
   "plan_id": "tr-p3-67f8551f7780-affa1103b53c-b5c0bcb3bd-802b93bb46",
   "batch_id": "tr-p3-67f8551f7780-affa1103b53c-b5c0bcb3bd-802b93bb46-b0052",
   "claim_id": "trc-gpt56sol-20260903T040512Z-a91c-b0052",
   "worker_id": "gpt56sol-20260903T040512Z-a91c",
-  "reviewed_at": "2026-09-03T04:07:41Z",
-  "completed_count": 15,
+  "reviewed_at": "2026-09-03T04:08:29Z",
+  "completed_count": 20,
   "decisions": [
     {
       "uid": "zhcn:ebd264b21129e4780899697b",
@@ -128,6 +128,56 @@
       "action": "keep",
       "reason": "Correct ordinal rendering of the fifth race; numeric value 5 is preserved.",
       "terminology_basis": "Preserve the locked generic race term Cuộc đua.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:b333bd3b8de3a425dbe6ddeb",
+      "current_fingerprint": "944f00349b42783011fbe47e453dd5be435f95796dcce1e109841c2fd92ed1d8",
+      "action": "keep",
+      "reason": "Correctly preserves the race-bonus meaning and the {0}% runtime placeholder.",
+      "terminology_basis": "Uses the locked generic race term Cuộc đua.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:691a5c03d2dd719c07d235c5",
+      "current_fingerprint": "7eb31119dc9498977dd06381492daef55026e3884d4326cb40e8d8ba1b52e632",
+      "action": "keep",
+      "reason": "Natural yes/no prompt asking whether to enter the race, with no semantic loss.",
+      "terminology_basis": "Preserve the locked generic race term Cuộc đua.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:4250e30cb1c0590583a01d97",
+      "current_fingerprint": "9147ca75d58ac1840edc45e63106afc2373f68246da7cb24a3b7261a3ff41b2a",
+      "action": "revise",
+      "proposed_text": "Loại thi đấu sẽ được chọn dựa trên\nCuộc đua bạn tham gia nhiều nhất trong quá trình huấn luyện.",
+      "reason": "Current 'Loại tham gia' is awkward and obscures that the selected competition type is based on the race entered most often during training; preserve the two-line structure.",
+      "terminology_basis": "Preserve the locked generic race term Cuộc đua.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:ad83f843a09620c5b45e7f9b",
+      "current_fingerprint": "ce3363b6cc7ab95cc36f00acc635a22e8d64b39bd5ed45b9eb61a747a641c484",
+      "action": "defer",
+      "reason": "The current Vietnamese is semantically correct for cursor speed, but embedded canonical context incorrectly treats 速度 here as the Speed stat; this overmatch needs a canonical negative-context rule before resolution.",
+      "canonical_finding": {
+        "kind": "context_rule",
+        "source_zh_cn": "光标速度调整",
+        "suggested_target_vi": "Điều chỉnh tốc độ con trỏ",
+        "concept": "Cursor speed setting must not trigger the gameplay Speed-stat terminology rule",
+        "match_mode": "exact",
+        "scope": "auto",
+        "reason": "This UI setting uses ordinary cursor speed, not the Speed stat; the current generic stat matcher overmatches this exact label.",
+        "confidence": "high"
+      },
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:af22c6e7de5b05efb873ef72",
+      "current_fingerprint": "1f1dbe2230ae866791e397804d091ca1d21351bd56281b477ea89e3eec74a47f",
+      "action": "keep",
+      "reason": "Correctly describes enabling Skill cut-in animations while watching races in landscape mode and preserves the newline.",
+      "terminology_basis": "Uses locked Cuộc đua and required generic gameplay term Skill.",
       "confidence": "high"
     }
   ]

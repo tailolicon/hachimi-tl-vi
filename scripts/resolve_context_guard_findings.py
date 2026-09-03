@@ -54,6 +54,11 @@ GUARDS = {
         "term_id": "race_state.rushed.text131",
         "target_vi": "Rushed",
     },
+    "cf-15798cd76b70746c": {
+        "layer": "locked",
+        "term_id": "reviewed.race_name.b4e4d79a5f98",
+        "target_vi": "Queen Cup",
+    },
     "cf-2b8709d527abc360": {
         "layer": "locked",
         "term_id": "race.generic",

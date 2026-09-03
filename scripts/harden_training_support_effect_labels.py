@@ -75,7 +75,7 @@ def harden(repo_root: Path = REPO_ROOT) -> None:
                 ["Liên kết ban đầu", "liên kết ban đầu", "Gắn kết ban đầu", "gắn kết ban đầu"],
                 "Support Effect starting Friendship value; category scope avoids generic relationship prose.",
             ),
-            "source_aliases": ["初始牵绊值", "初始羁绊值"],
+            "source_aliases": ["初始牵绊值", "初始羁绊值", "初始羁绊槽上升"],
         },
         _effect_record(
             "support.specialty_priority.effect155", "得意率提升", "Specialty Priority",

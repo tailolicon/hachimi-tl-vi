@@ -2,10 +2,11 @@ from __future__ import annotations
 
 """Canonicalize Air Messiah's 辿る血脈、芽吹く未来 unique Skill.
 
-The zh-CN bridge `相依血脉,开花未来` changes two important images from the
-verified JP title: 辿る is following/tracing a bloodline, and 芽吹く is budding
-or sprouting rather than an already-bloomed future. Preserve the JP identity in
-a compact Vietnamese game title instead of canonizing the literal zh-CN bridge.
+The zh-CN bridge changes two important images from the verified JP title: 辿る is
+following/tracing a bloodline, and 芽吹く is budding or sprouting rather than an
+already-bloomed future.  Historical data exposes both a comma form in the Skill
+title and a space-separated form inside inheritance text, so keep both aliases on
+the same canonical identity.
 """
 
 import json
@@ -14,14 +15,16 @@ from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
 FINDING_ID = "cf-9d142519bc912d1b"
+INHERITED_FINDING_ID = "cf-187722b45a122b68"
 SOURCE_ZH = "相依血脉,开花未来"
+SOURCE_ZH_INHERITED = "相依血脉 开花未来"
 SOURCE_JA = "辿る血脈、芽吹く未来"
 PREFERRED = "Theo Dấu Huyết Mạch, Tương Lai Nảy Mầm"
 
 AIR_MESSIAH_BLOODLINE_FUTURE = {
     "id": "skill.air_messiah.bloodline_future",
     "category": "skill_name",
-    "source_aliases": [SOURCE_ZH],
+    "source_aliases": [SOURCE_ZH, SOURCE_ZH_INHERITED],
     "preferred": PREFERRED,
     "compact": [],
     "accepted": [PREFERRED],
@@ -29,15 +32,15 @@ AIR_MESSIAH_BLOODLINE_FUTURE = {
     "require_accepted": True,
     "invalidation_scope": "item",
     "source_paths": ["text_data_dict.json"],
-    "match_mode": "exact",
+    "match_mode": "contains",
     "basis": (
-        "Repository keys 11110101-11110103 map zh-CN 相依血脉,开花未来 to "
-        "Air Messiah's JP unique Skill 辿る血脈、芽吹く未来. Independent JP data "
-        "identifies the same title and effect, while English-facing data still marks "
-        "the Skill JP-only. Follow the repository skill-name style policy: use the "
-        "zh-CN title for compact rhythm but JP as the semantic guard. Theo Dấu Huyết "
-        "Mạch preserves 辿る血脈, and Tương Lai Nảy Mầm preserves 芽吹く未来 instead "
-        "of the zh-CN bridge's different dependence/blooming imagery."
+        "Repository Skill keys 11110101-11110103 and inheritance text map the zh-CN "
+        "aliases 相依血脉,开花未来 / 相依血脉 开花未来 to Air Messiah's JP unique "
+        "Skill 辿る血脈、芽吹く未来. Independent JP data identifies the same title and "
+        "effect, while English-facing data still marks the Skill JP-only. Follow the "
+        "repository skill-name style policy: use JP as the semantic guard. Theo Dấu "
+        "Huyết Mạch preserves 辿る血脈, and Tương Lai Nảy Mầm preserves 芽吹く未来 "
+        "instead of the zh-CN bridge's different dependence/blooming imagery."
     ),
 }
 
@@ -53,6 +56,17 @@ AIR_MESSIAH_BLOODLINE_FUTURE_DECISION = {
         "Verified identity is Air Messiah's JP unique Skill 辿る血脈、芽吹く未来. "
         "The zh-CN bridge changes 辿る to 相依 and 芽吹く to 开花, so preserve the "
         "JP motifs as Theo Dấu Huyết Mạch, Tương Lai Nảy Mầm."
+    ),
+}
+
+AIR_MESSIAH_BLOODLINE_FUTURE_INHERITED_DECISION = {
+    **AIR_MESSIAH_BLOODLINE_FUTURE_DECISION,
+    "decision_id": "audit.finding.skill-air-messiah-bloodline-future-inherited-alias",
+    "source_zh_cn": SOURCE_ZH_INHERITED,
+    "note": (
+        "Space-separated zh-CN inheritance alias for the same verified Air Messiah "
+        "unique Skill 辿る血脈、芽吹く未来; use the already accepted project title "
+        "Theo Dấu Huyết Mạch, Tương Lai Nảy Mầm."
     ),
 }
 
@@ -106,6 +120,7 @@ def harden(repo_root: Path = ROOT) -> bool:
         raise ValueError("glossary/terminology_reviews.json decisions must be a list")
     before = json.dumps(reviews, ensure_ascii=False, sort_keys=True)
     _upsert(decisions, AIR_MESSIAH_BLOODLINE_FUTURE_DECISION, id_field="decision_id")
+    _upsert(decisions, AIR_MESSIAH_BLOODLINE_FUTURE_INHERITED_DECISION, id_field="decision_id")
     if before != json.dumps(reviews, ensure_ascii=False, sort_keys=True):
         _write(reviews_path, reviews)
         changed = True

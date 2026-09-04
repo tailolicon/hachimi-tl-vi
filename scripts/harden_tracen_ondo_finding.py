@@ -1,6 +1,10 @@
 from __future__ import annotations
 
-"""Canonicalize the named song トレセン音頭."""
+"""Canonicalize the named song トレセン音頭.
+
+The companion regression is committed before this validation touch so the
+production workflows evaluate one SHA containing both hardener and tests.
+"""
 
 import json
 from pathlib import Path

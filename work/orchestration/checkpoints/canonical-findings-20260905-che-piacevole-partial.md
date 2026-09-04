@@ -23,6 +23,11 @@ The repair therefore preserves the repository-established Italian title instead 
 
 ## Production gates
 
-- Validate run `33927430643`: running at checkpoint time.
-- Sync translation context run `33927430590`: pending at checkpoint time.
-- Do not increment maintenance `completed_count` until Validate succeeds, Context Sync materializes the canonical resolution on live `main`, and a successor Translation Review Plan regeneration confirms the finding is no longer a blocker.
+- Validate run `33927430643`: **success** on regression head `45da5f9ee07850a43b6b6d27d2ec913ece3336da`.
+- Production context materialization commit: `cca87c95894d80d3a072d38932c1924526863756`.
+  - `glossary/canonical_findings.json` now records `canonical_resolution.layer = locked`, term `reviewed.skill_name.611db75c6a35`, target `Che Piacevole!` for this finding.
+  - `glossary/term_registry.json` contains the reviewed Skill lock with category-172 `contains` scope.
+  - Generated terminology queue open canonical findings decreased `118 -> 117` in that sync commit.
+- Context Sync run `33927430590`: still executing after materialization; acceptance requires its final successful conclusion.
+- Translation Review Plan run `33927430675` was triggered from the regression push but is still pending behind context work. Treat only a review-plan execution that starts after the above production context materialization as successor proof; its workflow checks out current `origin/main` before rebuilding.
+- Do not increment maintenance `completed_count` until Context Sync succeeds and the successor Translation Review Plan regeneration confirms `cf-24e795c0befb0e4f` is no longer an active blocker in the regenerated worker-facing batch snapshot.

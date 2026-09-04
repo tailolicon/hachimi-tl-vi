@@ -1,4 +1,4 @@
-# Canonical findings maintenance checkpoint — Koji NPC item ignore pending acceptance
+# Canonical findings maintenance checkpoint — Koji NPC item ignore accepted
 
 Finding `cf-6af810eb1dfb2be5` covers source `浩二(NPC)`. Existing localized data uses `Koji (NPC)`, but repository evidence does not establish the intended Japanese reading authoritatively enough for reusable canonical terminology.
 
@@ -13,7 +13,7 @@ Review/source artifacts expose this source identity in the repeated `text_data_d
 - `152/140`
 - `152/174`
 
-Repository search evidence directly confirms later repeated positions including `38`, `72`, `106`, `140`, and current live active-plan item `174`; together with the stable 34-item NPC block cycle this identifies the exact six-item scope rather than a category-wide rule.
+Repository search evidence directly confirms later repeated positions including `38`, `72`, `106`, `140`, and the live active-plan item `174`; together with the stable 34-item NPC block cycle this identifies the exact six-item scope rather than a category-wide rule.
 
 ## Resolution implemented
 
@@ -24,8 +24,13 @@ Repository search evidence directly confirms later repeated positions including 
 
 This deliberately does **not** canonize `Koji` and does not broaden the ignore to category `152`.
 
-## Acceptance gate
+## Production acceptance
 
-Production acceptance is pending. Require successful Validate, Sync translation context, and Sync translation review plan runs for/after regression head `ebb111e0d1700eed053127ab42133f3585996970`, then verify regenerated worker-facing items no longer carry `cf-6af810eb1dfb2be5` before incrementing maintenance `completed_count` from 108 to 109.
+For regression head `ebb111e0d1700eed053127ab42133f3585996970`:
 
-The immediately preceding Keisuke finding `cf-1edf7f36acfffbfb` remains logically ahead in the completion sequence: its regression is already implemented and Validate succeeded, but its two Sync workflows must finish successfully and live output must be verified before `completed_count` can advance from 107 to 108.
+- Validate run `33894508487` completed successfully.
+- Sync translation review plan run `33894508475` completed successfully.
+- Sync translation context run `33894508493` completed successfully; the finding-hardener and context pipeline passed.
+- Live active-plan batch `b0137` shows source `浩二(NPC)` at `text_data_dict.json` path `152/174` with `canonical_findings: []`.
+
+Result: finding `cf-6af810eb1dfb2be5` is production-accepted as an exact item-scoped ignore. Maintenance completion advances from 108 to 109. Continue with `cf-ad719284aacc4b7f` (`宗太(NPC)`), whose exact-scoped hardener and regression are already implemented and awaiting production acceptance.

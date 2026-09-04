@@ -29,6 +29,6 @@ The repair therefore preserves the repository-established Italian title instead 
   - `glossary/term_registry.json` contains the reviewed Skill lock with category-172 `contains` scope.
   - Generated terminology queue open canonical findings decreased `118 -> 117` in that sync commit.
 - Context Sync run `33927430590`: **success**; completed at `2026-09-04T22:58:29Z`.
-- Successor Translation Review Plan run `33927755539`: workflow-dispatch created after the production context materialization/checkpoint and currently pending. It is the acceptance candidate because it will rebuild from current `origin/main` after the new canonical context exists.
-- Earlier Translation Review Plan run `33927430675` remains pending from the regression push and is not sufficient successor proof by itself.
+- Earlier Translation Review Plan run `33927430675`: **cancelled** after the dedicated successor was dispatched; do not use it for acceptance proof.
+- Successor Translation Review Plan run `33927755539`: workflow-dispatch created after production context materialization and currently the sole pending run. It is the acceptance candidate because its job will rebuild from current `origin/main` after the new canonical context exists.
 - Do not increment maintenance `completed_count` until successor Translation Review Plan regeneration succeeds and confirms `cf-24e795c0befb0e4f` is no longer an active blocker in the regenerated worker-facing batch snapshot.

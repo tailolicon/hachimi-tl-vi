@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "policy_version": 3,
-  "plan_id": "tr-p3-67f8551f7780-f74f2d47fc76-b5c0bcb3bd-07f2d235d4",
-  "batch_id": "tr-p3-67f8551f7780-f74f2d47fc76-b5c0bcb3bd-07f2d235d4-b0176",
+  "plan_id": "tr-p3-67f8551f7780-63bd86755964-b5c0bcb3bd-bedfb57642",
+  "batch_id": "tr-p3-67f8551f7780-63bd86755964-b5c0bcb3bd-bedfb57642-b0176",
   "context_snapshot_sha256": "b5c0bcb3bd9ee5c45e7bedf49c8f8d6ad35c3ceb3c35f528c6381a63c684a967",
   "source_bridge_policy_sha256": "c42f21f04ee9cb206637e3ffe79ea0932701ee94f39273dc9b466b6fbbfd69af",
   "review_generation": "retrospective-canonical-full-review",
@@ -123,11 +123,32 @@
       "current_text": "Siêu mê♡Xung kích hết mình!",
       "current_fingerprint": "aacfc44838ff05d9f05b736338e3feb7f3c6359398133fa56d5955fd93490b33",
       "risk_flags": [
-        "canonical_finding"
+        "community_term",
+        "community_calque_risk",
+        "community_term_mismatch"
       ],
-      "risk_score": 40,
+      "risk_score": 16,
       "locked_terms": [],
-      "community_terms": [],
+      "community_terms": [
+        {
+          "id": "song.super_suki_shuki_rush",
+          "preferred": "Super Suki Shuki Rush",
+          "accepted": [
+            "Super Suki Shuki Rush"
+          ],
+          "forbidden": [
+            "超级稀饭♡全力冲击！",
+            "Siêu mê♡Xung kích hết mình!"
+          ],
+          "matched_aliases": [
+            "超级稀饭♡全力冲击！"
+          ],
+          "accepted_present": false,
+          "forbidden_present": true,
+          "require_accepted": true,
+          "basis": "The live zh-CN title 超级稀饭♡全力冲击！ maps to the Uma Musume 4.5th Anniversary song めにしゅき♡ラッシュっしゅ！. Lantis-distributed English storefront metadata publishes the track as Super Suki Shuki Rush. Preserve that stable English-facing proper-name identity instead of the semantic Vietnamese rendering. Exact matching prevents generic words from leaking into prose."
+        }
+      ],
       "skill_name_canonical": null,
       "source_bridge_terms": [],
       "source_bridge_risks": [],

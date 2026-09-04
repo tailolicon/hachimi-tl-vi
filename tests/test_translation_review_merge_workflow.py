@@ -27,11 +27,25 @@ def test_review_merge_can_publish_across_harmless_worker_checkpoint_churn() -> N
     assert "Main changed in validation-sensitive paths; recomputing" in text
 
 
-def test_review_merge_reapplies_context_guard_resolutions_after_finding_refresh() -> None:
+def test_review_merge_reapplies_generated_finding_resolvers_after_refresh() -> None:
     text = _workflow_text()
     refresh = "python scripts/canonical_findings.py --repo-root . --refresh"
-    resolve = "python scripts/resolve_context_guard_findings.py"
     queue = "python scripts/build_terminology_review_queue.py"
+    resolvers = [
+        "python scripts/resolve_scoped_canonical_overrides.py --repo-root .",
+        "python scripts/resolve_context_guard_findings.py",
+        "python scripts/resolve_running_style_narrative_finding.py",
+        "python scripts/resolve_regenerated_super_long_distance_context_finding.py",
+        "python scripts/resolve_regenerated_aoharu_ignition_finding.py",
+        "python scripts/resolve_regenerated_initial_friendship_finding.py",
+        "python scripts/resolve_regenerated_grand_live_performance_stats_findings.py",
+    ]
     assert refresh in text
-    assert resolve in text
-    assert text.index(refresh) < text.index(resolve) < text.index(queue)
+    assert queue in text
+    previous = text.index(refresh)
+    for resolver in resolvers:
+        assert resolver in text
+        current = text.index(resolver)
+        assert previous < current
+        previous = current
+    assert previous < text.index(queue)

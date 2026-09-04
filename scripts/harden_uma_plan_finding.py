@@ -8,6 +8,7 @@ ROOT = Path(__file__).resolve().parents[1]
 SOURCE = "马娘计划"
 TARGET = "Uma Plan"
 KEYS = ["Character608001", "Character701022"]
+DECISION_ID = "audit.finding.system-uma-plan"
 
 UMA_PLAN_TERM = {
     "id": "system.uma_plan.subscription",
@@ -26,7 +27,7 @@ UMA_PLAN_TERM = {
 }
 
 UMA_PLAN_DECISION = {
-    "decision_id": "audit.finding.system-uma-plan",
+    "decision_id": DECISION_ID,
     "source_zh_cn": SOURCE,
     "action": "lock",
     "target_vi": TARGET,
@@ -75,6 +76,31 @@ def _drop_legacy_uma_plan_term(items: list[Any]) -> None:
     ]
 
 
+def _migrate_generated_review_lock(items: list[Any]) -> None:
+    """Keep the generated reviewed lock compatible with the authoritative decision.
+
+    Context Sync applies terminology reviews before the normal finding-hardener sweep.
+    When this rule expanded from one proven subscription key to two, the persisted
+    generated lock still carried the old key_exact metadata, so apply rejected the
+    authoritative decision before this hardener could run. Migrate only the lock
+    generated from this exact review decision; unrelated registry terms are untouched.
+    """
+    for item in items:
+        if not isinstance(item, dict) or not bool(item.get("locked")):
+            continue
+        review = item.get("review")
+        if not isinstance(review, dict) or str(review.get("decision_id") or "") != DECISION_ID:
+            continue
+        item["category"] = UMA_PLAN_DECISION["category"]
+        item["zh_cn"] = [SOURCE]
+        item["target_vi"] = TARGET
+        item["invalidation_scope"] = UMA_PLAN_DECISION["invalidation_scope"]
+        item["source_paths"] = list(UMA_PLAN_DECISION["source_paths"])
+        item["key_exact"] = list(KEYS)
+        item["match_mode"] = UMA_PLAN_DECISION["match_mode"]
+        item["note"] = UMA_PLAN_DECISION["note"]
+
+
 def harden(repo_root: Path = ROOT) -> bool:
     changed = False
 
@@ -84,6 +110,14 @@ def harden(repo_root: Path = ROOT) -> bool:
     _upsert(reviews.setdefault("decisions", []), UMA_PLAN_DECISION, "decision_id")
     if before != json.dumps(reviews, ensure_ascii=False, sort_keys=True):
         _write(reviews_path, reviews)
+        changed = True
+
+    registry_path = repo_root / "glossary" / "term_registry.json"
+    registry = _load(registry_path, {"terms": []})
+    before = json.dumps(registry, ensure_ascii=False, sort_keys=True)
+    _migrate_generated_review_lock(registry.setdefault("terms", []))
+    if before != json.dumps(registry, ensure_ascii=False, sort_keys=True):
+        _write(registry_path, registry)
         changed = True
 
     community_path = repo_root / "glossary" / "ui_community_terms.json"

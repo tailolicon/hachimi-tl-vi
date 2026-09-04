@@ -1,6 +1,10 @@
 from __future__ import annotations
 
-"""Canonicalize the named song ゴルシでラップ -It's むりむり-."""
+"""Canonicalize the named song ゴルシでラップ -It's むりむり-.
+
+The companion regression is intentionally committed before this touch so the
+validation and production sync workflows evaluate one SHA containing both.
+"""
 
 import json
 from pathlib import Path

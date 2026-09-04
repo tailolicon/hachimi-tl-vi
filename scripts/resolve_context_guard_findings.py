@@ -66,6 +66,11 @@ GUARDS = {
         "term_id": "skill.righteous_path",
         "target_vi": "Chính đạo",
     },
+    "cf-251ca78d8992cf8d": {
+        "layer": "locked",
+        "term_id": "reviewed.skill_name.3346bd209f49",
+        "target_vi": "Nhịp tim rộn ràng",
+    },
     "cf-234800d40ef253ed": {
         "layer": "locked",
         "term_id": "reviewed.race_name.d7261f9f3232",

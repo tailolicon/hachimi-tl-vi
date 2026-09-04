@@ -19,4 +19,11 @@ The new rule is deliberately limited to `text_data_dict.json` with `json_path_pr
 
 ## Acceptance state
 
-Required production acceptance is still pending. Push-triggered Validate, Sync translation context, and Sync translation review plan were started from the implementation/test commits. Do not increment canonical-maintenance `completed_count` above 124 until the required runs succeed and the regenerated active review plan no longer contains `cf-f1601c34df2912ee`.
+Partial acceptance evidence is durable:
+
+- Validate run `33920170815` succeeded.
+- Context sync materialized the resolution on `main` at commit `73880fcb020b08bd8f5d419a27b5e7c2f8ffc11c`. The finding now has both `canonical_resolution` and `review_resolution` targeting `Triple Crown`; open canonical findings dropped from 118 to 117 and the terminology review queue removed the `三冠` canonical-finding row.
+- Test-commit Sync translation context run `33920170804` is still in progress.
+- Required Sync translation review plan run `33920170820` remains pending with no job assigned yet (CI queue contention, not a failure).
+
+Do not increment canonical-maintenance `completed_count` above 124 until the review-plan acceptance gate succeeds and the regenerated active review plan no longer carries `cf-f1601c34df2912ee`. On takeover, check runs `33920170820` and `33920170804` first, then verify the live active review plan before marking production accepted.

@@ -21,6 +21,14 @@ Official Lantis `WINNING LIVE 08` identifies `忘却にて` as Aston Machan's na
 
 Regression requires idempotence, community + review resolution of the exact live finding shape, removal from `active_findings`, and negative coverage proving the rule does not match longer prose or another source file.
 
-## Acceptance pending
+## Acceptance complete
 
-Do not increment maintenance `completed_count` beyond 63 until a commit containing this hardener/test has successful Validate, production Sync translation context, and Sync translation review plan runs, and the newly generated live review context for `16/1074` embeds `song.boukyaku_nite` / `Boukyaku Nite` with `cf-851d6f50674f9adb` no longer present as a canonical blocker.
+Accepted on 2026-09-04 after production evidence for commit `2546c9849e0daaa44e07d1d07eb253e0270fe247`:
+
+- Validate check `test` completed successfully.
+- Sync translation context run `33819391935` completed successfully.
+- Sync translation review plan run `33819391976` completed successfully.
+- live review batch `tr-p3-67f8551f7780-838f16b962bc-b5c0bcb3bd-05f31b1d0f-b0175` item `text_data_dict.json` `16/1074` embeds `song.boukyaku_nite` with preferred `Boukyaku Nite`.
+- the live item has `canonical_findings: []`, so `cf-851d6f50674f9adb` no longer blocks review.
+
+Maintenance completed_count may advance from 63 to 64. Next priority must be re-read from live routing; research checkpoint `work/orchestration/checkpoints/canonical-findings-20260903-golshi-de-rap-research.md` is available for `cf-2a8fd2f0a0deb318` if it remains next.

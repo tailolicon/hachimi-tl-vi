@@ -28,6 +28,7 @@ The repair therefore preserves the repository-established Italian title instead 
   - `glossary/canonical_findings.json` now records `canonical_resolution.layer = locked`, term `reviewed.skill_name.611db75c6a35`, target `Che Piacevole!` for this finding.
   - `glossary/term_registry.json` contains the reviewed Skill lock with category-172 `contains` scope.
   - Generated terminology queue open canonical findings decreased `118 -> 117` in that sync commit.
-- Context Sync run `33927430590`: still executing after materialization; acceptance requires its final successful conclusion.
-- Translation Review Plan run `33927430675` was triggered from the regression push but is still pending behind context work. Treat only a review-plan execution that starts after the above production context materialization as successor proof; its workflow checks out current `origin/main` before rebuilding.
-- Do not increment maintenance `completed_count` until Context Sync succeeds and the successor Translation Review Plan regeneration confirms `cf-24e795c0befb0e4f` is no longer an active blocker in the regenerated worker-facing batch snapshot.
+- Context Sync run `33927430590`: **success**; completed at `2026-09-04T22:58:29Z`.
+- Successor Translation Review Plan run `33927755539`: workflow-dispatch created after the production context materialization/checkpoint and currently pending. It is the acceptance candidate because it will rebuild from current `origin/main` after the new canonical context exists.
+- Earlier Translation Review Plan run `33927430675` remains pending from the regression push and is not sufficient successor proof by itself.
+- Do not increment maintenance `completed_count` until successor Translation Review Plan regeneration succeeds and confirms `cf-24e795c0befb0e4f` is no longer an active blocker in the regenerated worker-facing batch snapshot.

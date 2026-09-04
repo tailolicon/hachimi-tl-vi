@@ -2,7 +2,13 @@ import json
 from pathlib import Path
 
 from scripts.canonical_findings import active_findings, refresh_canonical_resolutions
-from scripts.harden_drowa_dance_part_finding import DECISION, SOURCE, harden
+from scripts.harden_drowa_dance_part_finding import (
+    DECISION,
+    SOURCE,
+    YEAR_DECISION,
+    YEAR_SOURCE,
+    harden,
+)
 
 
 def _write(path: Path, payload: dict) -> None:
@@ -10,7 +16,7 @@ def _write(path: Path, payload: dict) -> None:
     path.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 
-def test_hardener_is_idempotent_and_ignore_clears_matching_finding(tmp_path: Path) -> None:
+def test_hardener_is_idempotent_and_ignore_clears_matching_findings(tmp_path: Path) -> None:
     _write(tmp_path / "glossary" / "terminology_reviews.json", {"schema_version": 1, "decisions": []})
     _write(
         tmp_path / "glossary" / "canonical_findings.json",
@@ -27,7 +33,18 @@ def test_hardener_is_idempotent_and_ignore_clears_matching_finding(tmp_path: Pat
                     "json_path_prefixes": [["16"]],
                     "canonical_resolution": None,
                     "review_resolution": None,
-                }
+                },
+                {
+                    "finding_id": "cf-b7da98397b071d2c",
+                    "status": "open",
+                    "source_zh_cn": YEAR_SOURCE,
+                    "match_mode": "exact",
+                    "source_paths": ["text_data_dict.json"],
+                    "key_exact": [],
+                    "json_path_prefixes": [["16"]],
+                    "canonical_resolution": None,
+                    "review_resolution": None,
+                },
             ],
         },
     )
@@ -39,11 +56,10 @@ def test_hardener_is_idempotent_and_ignore_clears_matching_finding(tmp_path: Pat
     assert harden(tmp_path) is False
 
     reviews = json.loads((tmp_path / "glossary" / "terminology_reviews.json").read_text(encoding="utf-8"))
-    decisions = [row for row in reviews["decisions"] if row.get("decision_id") == DECISION["decision_id"]]
-    assert decisions == [DECISION]
+    assert [row for row in reviews["decisions"] if row.get("decision_id") == DECISION["decision_id"]] == [DECISION]
+    assert [row for row in reviews["decisions"] if row.get("decision_id") == YEAR_DECISION["decision_id"]] == [YEAR_DECISION]
 
     refreshed = refresh_canonical_resolutions(tmp_path)
-    finding = refreshed["findings"][0]
-    assert finding["canonical_resolution"] is None
-    assert finding["review_resolution"]["action"] == "ignore"
+    assert all(finding["canonical_resolution"] is None for finding in refreshed["findings"])
+    assert all(finding["review_resolution"]["action"] == "ignore" for finding in refreshed["findings"])
     assert active_findings(refreshed) == []

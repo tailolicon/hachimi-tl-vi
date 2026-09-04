@@ -26,4 +26,8 @@ Implementation commits on live `main`:
 
 ## Acceptance status
 
-Pending production acceptance. Do not advance the maintenance completed count until Validate, Sync translation context, and Sync translation review plan succeed and the live generated review item `text_data_dict.json` `16/1129` embeds `song.yume_no_kotae` / `Yume no Kotae` with `canonical_findings: []`.
+Accepted in production.
+
+- Validate and Sync translation context for authoritative implementation head `f0d2c5e394121f36ea7df0c1ed11184e08a8b9e2` succeeded before review-plan acceptance.
+- Sync translation review plan run `33824460810` completed successfully.
+- Published live plan `tr-p3-67f8551f7780-f74f2d47fc76-b5c0bcb3bd-07f2d235d4`, batch `b0176`, embeds `song.yume_no_kotae` / `Yume no Kotae` for `text_data_dict.json` `16/1129` with `canonical_findings: []`.

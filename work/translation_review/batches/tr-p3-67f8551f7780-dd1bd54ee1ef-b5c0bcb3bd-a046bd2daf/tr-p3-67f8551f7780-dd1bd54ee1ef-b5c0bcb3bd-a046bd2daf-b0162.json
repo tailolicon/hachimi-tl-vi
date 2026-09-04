@@ -1,0 +1,1281 @@
+{
+  "schema_version": 1,
+  "policy_version": 3,
+  "plan_id": "tr-p3-67f8551f7780-dd1bd54ee1ef-b5c0bcb3bd-a046bd2daf",
+  "batch_id": "tr-p3-67f8551f7780-dd1bd54ee1ef-b5c0bcb3bd-a046bd2daf-b0162",
+  "context_snapshot_sha256": "b5c0bcb3bd9ee5c45e7bedf49c8f8d6ad35c3ceb3c35f528c6381a63c684a967",
+  "source_bridge_policy_sha256": "c42f21f04ee9cb206637e3ffe79ea0932701ee94f39273dc9b466b6fbbfd69af",
+  "review_generation": "retrospective-canonical-full-review",
+  "context_mode": "embedded-first-lazy-extra",
+  "items": [
+    {
+      "uid": "zhcn:c17c25ff6f6f473ba91423c6",
+      "source_batch": 235,
+      "entry_index": 23,
+      "kind": "text_data",
+      "source_path": "text_data_dict.json",
+      "json_path": [
+        "170",
+        "1109"
+      ],
+      "key": null,
+      "source_text": "莱茵力量",
+      "source_fingerprint": "0cc0478397dddaf29860878e611e32a8803c3deb73f318f6dbdfb06a653d53cf",
+      "current_text": "Rhein Kraft",
+      "current_fingerprint": "f9a86e53c2d5c91eeee4eea9ef30e826b691e9ce7f2b63b571a5257a80b300b3",
+      "risk_flags": [
+        "locked_term_mismatch"
+      ],
+      "risk_score": 8,
+      "locked_terms": [
+        {
+          "id": "stat.power",
+          "target_vi": "Power",
+          "matched_aliases": [
+            "力量"
+          ],
+          "present": false
+        },
+        {
+          "id": "character.rhein_kraft",
+          "target_vi": "Rhein Kraft",
+          "matched_aliases": [
+            "莱茵力量"
+          ],
+          "present": true
+        }
+      ],
+      "community_terms": [],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [],
+      "item_context_sha256": "f611604c2e8a28cf9271473fcbeff529b6cdd99fe9c8195db1afc35aca9f498a"
+    },
+    {
+      "uid": "zhcn:575c2b07a67b83da070caa0d",
+      "source_batch": 236,
+      "entry_index": 0,
+      "kind": "text_data",
+      "source_path": "text_data_dict.json",
+      "json_path": [
+        "170",
+        "9047"
+      ],
+      "key": null,
+      "source_text": "速度象征",
+      "source_fingerprint": "b826b319eb2462f01c3188e13f2d852edfff45d66561d004cd22132ee954a16f",
+      "current_text": "Speed Symboli",
+      "current_fingerprint": "07fa5d79131db47b949f2029a0315ea6847da8cd28e5ad2a64d944d2ac343bce",
+      "risk_flags": [
+        "very_long_target"
+      ],
+      "risk_score": 3,
+      "locked_terms": [
+        {
+          "id": "character.speed_symboli",
+          "target_vi": "Speed Symboli",
+          "matched_aliases": [
+            "速度象征"
+          ],
+          "present": true
+        }
+      ],
+      "community_terms": [],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [],
+      "item_context_sha256": "50630006842d4c415cacb55c336c7661ef2fa3b9c36ce3a70ef4f641bbbabba3"
+    },
+    {
+      "uid": "zhcn:a6cf73071a37da86bf4b224d",
+      "source_batch": 236,
+      "entry_index": 38,
+      "kind": "text_data",
+      "source_path": "text_data_dict.json",
+      "json_path": [
+        "171",
+        "1206"
+      ],
+      "key": null,
+      "source_text": "目标比赛回合干劲不调时与马娘对话",
+      "source_fingerprint": "54e704333856462c6dfe4a2c15080e5b6708b291dafe3998a5f2fe9d6815917b",
+      "current_text": "Trò chuyện với Mã Nương trong lượt Cuộc đua mục tiêu khi Mood Bad",
+      "current_fingerprint": "86cdb5cb6ef497dec9bf1372bb4796b5910d9253dc02742c177f36224c346783",
+      "risk_flags": [
+        "very_long_target",
+        "community_term",
+        "source_bridge_term"
+      ],
+      "risk_score": 8,
+      "locked_terms": [
+        {
+          "id": "race.generic",
+          "target_vi": "Cuộc đua",
+          "matched_aliases": [
+            "比赛"
+          ],
+          "present": true
+        }
+      ],
+      "community_terms": [
+        {
+          "id": "common.state.mood",
+          "preferred": "Mood",
+          "accepted": [
+            "Mood"
+          ],
+          "forbidden": [
+            "Tinh thần",
+            "Hứng khởi"
+          ],
+          "matched_aliases": [
+            "干劲"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Mood is the generic player-facing やる気 / 干劲 state. The exact zh-CN Skill title 干劲十足 (JP 意気込み十分) is a distinct Skill identity and must not inherit the generic Mood matcher by substring."
+        }
+      ],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [
+        {
+          "id": "state.mood",
+          "preferred": "Mood",
+          "accepted": [
+            "Mood"
+          ],
+          "forbidden": [
+            "Tinh thần",
+            "Hứng khởi"
+          ],
+          "matched_aliases": [
+            "干劲"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "ja": [
+            "やる気"
+          ],
+          "note": "干劲 is the zh-CN bridge for the player-facing Mood state. Do not normalize it to generic Vietnamese wording such as 'Tinh thần' or 'Hứng khởi'."
+        }
+      ],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": "c42f21f04ee9cb206637e3ffe79ea0932701ee94f39273dc9b466b6fbbfd69af",
+      "canonical_findings": [],
+      "item_context_sha256": "e17f1199c846f458b9c5ac102b86bb22f8b80d53c6a5dcd2944d07a3b25796b7"
+    },
+    {
+      "uid": "zhcn:740b6533911c82baed231389",
+      "source_batch": 236,
+      "entry_index": 39,
+      "kind": "text_data",
+      "source_path": "text_data_dict.json",
+      "json_path": [
+        "171",
+        "1207"
+      ],
+      "key": null,
+      "source_text": "目标比赛回合干劲绝不调时与马娘对话",
+      "source_fingerprint": "ad01103807765b0768e922926c88f9f3a711d2a995d08aadbcd60326e3e233f3",
+      "current_text": "Trò chuyện với Mã Nương trong lượt Cuộc đua mục tiêu khi Mood Awful",
+      "current_fingerprint": "624cab501269be577fe5f7c45a5d6d54a6dea66af8e9e357037eca0ea2ef6df9",
+      "risk_flags": [
+        "very_long_target",
+        "community_term",
+        "source_bridge_term"
+      ],
+      "risk_score": 8,
+      "locked_terms": [
+        {
+          "id": "race.generic",
+          "target_vi": "Cuộc đua",
+          "matched_aliases": [
+            "比赛"
+          ],
+          "present": true
+        }
+      ],
+      "community_terms": [
+        {
+          "id": "common.state.mood",
+          "preferred": "Mood",
+          "accepted": [
+            "Mood"
+          ],
+          "forbidden": [
+            "Tinh thần",
+            "Hứng khởi"
+          ],
+          "matched_aliases": [
+            "干劲"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Mood is the generic player-facing やる気 / 干劲 state. The exact zh-CN Skill title 干劲十足 (JP 意気込み十分) is a distinct Skill identity and must not inherit the generic Mood matcher by substring."
+        }
+      ],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [
+        {
+          "id": "state.mood",
+          "preferred": "Mood",
+          "accepted": [
+            "Mood"
+          ],
+          "forbidden": [
+            "Tinh thần",
+            "Hứng khởi"
+          ],
+          "matched_aliases": [
+            "干劲"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "ja": [
+            "やる気"
+          ],
+          "note": "干劲 is the zh-CN bridge for the player-facing Mood state. Do not normalize it to generic Vietnamese wording such as 'Tinh thần' or 'Hứng khởi'."
+        }
+      ],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": "c42f21f04ee9cb206637e3ffe79ea0932701ee94f39273dc9b466b6fbbfd69af",
+      "canonical_findings": [],
+      "item_context_sha256": "e17f1199c846f458b9c5ac102b86bb22f8b80d53c6a5dcd2944d07a3b25796b7"
+    },
+    {
+      "uid": "zhcn:1f9870669032bd7350eea5a9",
+      "source_batch": 236,
+      "entry_index": 60,
+      "kind": "text_data",
+      "source_path": "text_data_dict.json",
+      "json_path": [
+        "171",
+        "1513"
+      ],
+      "key": null,
+      "source_text": "目标比赛回合干劲上佳时与马娘对话",
+      "source_fingerprint": "091fde585891d4f93814af1a63224c7ca54d57b6b53e9a068b4d02b8625e118c",
+      "current_text": "Trò chuyện với Mã Nương trong lượt Cuộc đua mục tiêu khi Mood Khá tốt",
+      "current_fingerprint": "642225e06d2e8277c4cb8c11db4f2f593733524e0f6a85108befb48a37ab5568",
+      "risk_flags": [
+        "very_long_target",
+        "community_term",
+        "source_bridge_term"
+      ],
+      "risk_score": 8,
+      "locked_terms": [
+        {
+          "id": "race.generic",
+          "target_vi": "Cuộc đua",
+          "matched_aliases": [
+            "比赛"
+          ],
+          "present": true
+        }
+      ],
+      "community_terms": [
+        {
+          "id": "common.state.mood",
+          "preferred": "Mood",
+          "accepted": [
+            "Mood"
+          ],
+          "forbidden": [
+            "Tinh thần",
+            "Hứng khởi"
+          ],
+          "matched_aliases": [
+            "干劲"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Mood is the generic player-facing やる気 / 干劲 state. The exact zh-CN Skill title 干劲十足 (JP 意気込み十分) is a distinct Skill identity and must not inherit the generic Mood matcher by substring."
+        }
+      ],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [
+        {
+          "id": "state.mood",
+          "preferred": "Mood",
+          "accepted": [
+            "Mood"
+          ],
+          "forbidden": [
+            "Tinh thần",
+            "Hứng khởi"
+          ],
+          "matched_aliases": [
+            "干劲"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "ja": [
+            "やる気"
+          ],
+          "note": "干劲 is the zh-CN bridge for the player-facing Mood state. Do not normalize it to generic Vietnamese wording such as 'Tinh thần' or 'Hứng khởi'."
+        }
+      ],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": "c42f21f04ee9cb206637e3ffe79ea0932701ee94f39273dc9b466b6fbbfd69af",
+      "canonical_findings": [],
+      "item_context_sha256": "e17f1199c846f458b9c5ac102b86bb22f8b80d53c6a5dcd2944d07a3b25796b7"
+    },
+    {
+      "uid": "zhcn:64af675d8d8568cafd9d56dd",
+      "source_batch": 236,
+      "entry_index": 61,
+      "kind": "text_data",
+      "source_path": "text_data_dict.json",
+      "json_path": [
+        "171",
+        "1514"
+      ],
+      "key": null,
+      "source_text": "目标比赛回合干劲不佳时与马娘对话",
+      "source_fingerprint": "93535066517c2d2dc16ee0d2eda1c0bfc6e95ac9bf2d8b0cfc0972586ef0cf4c",
+      "current_text": "Trò chuyện với Mã Nương trong lượt Cuộc đua mục tiêu khi Mood Kém",
+      "current_fingerprint": "67824b641de748981abea5b7c4b9097b99b5d55ef181e80fc4e922f33fc4276f",
+      "risk_flags": [
+        "very_long_target",
+        "community_term",
+        "source_bridge_term"
+      ],
+      "risk_score": 8,
+      "locked_terms": [
+        {
+          "id": "race.generic",
+          "target_vi": "Cuộc đua",
+          "matched_aliases": [
+            "比赛"
+          ],
+          "present": true
+        }
+      ],
+      "community_terms": [
+        {
+          "id": "common.state.mood",
+          "preferred": "Mood",
+          "accepted": [
+            "Mood"
+          ],
+          "forbidden": [
+            "Tinh thần",
+            "Hứng khởi"
+          ],
+          "matched_aliases": [
+            "干劲"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Mood is the generic player-facing やる気 / 干劲 state. The exact zh-CN Skill title 干劲十足 (JP 意気込み十分) is a distinct Skill identity and must not inherit the generic Mood matcher by substring."
+        }
+      ],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [
+        {
+          "id": "state.mood",
+          "preferred": "Mood",
+          "accepted": [
+            "Mood"
+          ],
+          "forbidden": [
+            "Tinh thần",
+            "Hứng khởi"
+          ],
+          "matched_aliases": [
+            "干劲"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "ja": [
+            "やる気"
+          ],
+          "note": "干劲 is the zh-CN bridge for the player-facing Mood state. Do not normalize it to generic Vietnamese wording such as 'Tinh thần' or 'Hứng khởi'."
+        }
+      ],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": "c42f21f04ee9cb206637e3ffe79ea0932701ee94f39273dc9b466b6fbbfd69af",
+      "canonical_findings": [],
+      "item_context_sha256": "e17f1199c846f458b9c5ac102b86bb22f8b80d53c6a5dcd2944d07a3b25796b7"
+    },
+    {
+      "uid": "zhcn:f4d7065bf3c72624430a1a8c",
+      "source_batch": 236,
+      "entry_index": 62,
+      "kind": "text_data",
+      "source_path": "text_data_dict.json",
+      "json_path": [
+        "171",
+        "1515"
+      ],
+      "key": null,
+      "source_text": "目标比赛回合干劲极差时与马娘对话",
+      "source_fingerprint": "bbc3e6817bf971c2a7743baa50ab5c2c378e3dd2c1e18a0fd49a01a5623084cb",
+      "current_text": "Trò chuyện với Mã Nương trong lượt Cuộc đua mục tiêu khi Mood Cực tệ",
+      "current_fingerprint": "b28400ada3529c6cc662358fae74dd6f78929f578fd5be0f7b29108a7800c4aa",
+      "risk_flags": [
+        "very_long_target",
+        "community_term",
+        "source_bridge_term"
+      ],
+      "risk_score": 8,
+      "locked_terms": [
+        {
+          "id": "race.generic",
+          "target_vi": "Cuộc đua",
+          "matched_aliases": [
+            "比赛"
+          ],
+          "present": true
+        }
+      ],
+      "community_terms": [
+        {
+          "id": "common.state.mood",
+          "preferred": "Mood",
+          "accepted": [
+            "Mood"
+          ],
+          "forbidden": [
+            "Tinh thần",
+            "Hứng khởi"
+          ],
+          "matched_aliases": [
+            "干劲"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Mood is the generic player-facing やる気 / 干劲 state. The exact zh-CN Skill title 干劲十足 (JP 意気込み十分) is a distinct Skill identity and must not inherit the generic Mood matcher by substring."
+        }
+      ],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [
+        {
+          "id": "state.mood",
+          "preferred": "Mood",
+          "accepted": [
+            "Mood"
+          ],
+          "forbidden": [
+            "Tinh thần",
+            "Hứng khởi"
+          ],
+          "matched_aliases": [
+            "干劲"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "ja": [
+            "やる気"
+          ],
+          "note": "干劲 is the zh-CN bridge for the player-facing Mood state. Do not normalize it to generic Vietnamese wording such as 'Tinh thần' or 'Hứng khởi'."
+        }
+      ],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": "c42f21f04ee9cb206637e3ffe79ea0932701ee94f39273dc9b466b6fbbfd69af",
+      "canonical_findings": [],
+      "item_context_sha256": "e17f1199c846f458b9c5ac102b86bb22f8b80d53c6a5dcd2944d07a3b25796b7"
+    },
+    {
+      "uid": "zhcn:d908acb4542ba80dc86fa1a8",
+      "source_batch": 236,
+      "entry_index": 63,
+      "kind": "text_data",
+      "source_path": "text_data_dict.json",
+      "json_path": [
+        "171",
+        "1516"
+      ],
+      "key": null,
+      "source_text": "干劲上佳时与马娘对话",
+      "source_fingerprint": "5a52f9b70df430a6c6423b8a063fb13d17d1bced1298fdcfbdb53869f9c3e684",
+      "current_text": "Trò chuyện với Mã Nương khi Mood Khá tốt",
+      "current_fingerprint": "5b6b77570e77ad7d1419e2c9c7a9bd30ac0878b28ceabeb001595eae43fa1007",
+      "risk_flags": [
+        "very_long_target",
+        "community_term",
+        "source_bridge_term"
+      ],
+      "risk_score": 8,
+      "locked_terms": [],
+      "community_terms": [
+        {
+          "id": "common.state.mood",
+          "preferred": "Mood",
+          "accepted": [
+            "Mood"
+          ],
+          "forbidden": [
+            "Tinh thần",
+            "Hứng khởi"
+          ],
+          "matched_aliases": [
+            "干劲"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Mood is the generic player-facing やる気 / 干劲 state. The exact zh-CN Skill title 干劲十足 (JP 意気込み十分) is a distinct Skill identity and must not inherit the generic Mood matcher by substring."
+        }
+      ],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [
+        {
+          "id": "state.mood",
+          "preferred": "Mood",
+          "accepted": [
+            "Mood"
+          ],
+          "forbidden": [
+            "Tinh thần",
+            "Hứng khởi"
+          ],
+          "matched_aliases": [
+            "干劲"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "ja": [
+            "やる気"
+          ],
+          "note": "干劲 is the zh-CN bridge for the player-facing Mood state. Do not normalize it to generic Vietnamese wording such as 'Tinh thần' or 'Hứng khởi'."
+        }
+      ],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": "c42f21f04ee9cb206637e3ffe79ea0932701ee94f39273dc9b466b6fbbfd69af",
+      "canonical_findings": [],
+      "item_context_sha256": "99de11c1cbd8277e724307cb632f5f9f2fe44f037956e2eecd8e886ba2d87821"
+    },
+    {
+      "uid": "zhcn:3b6430518d75ad2b69481afa",
+      "source_batch": 236,
+      "entry_index": 64,
+      "kind": "text_data",
+      "source_path": "text_data_dict.json",
+      "json_path": [
+        "171",
+        "1517"
+      ],
+      "key": null,
+      "source_text": "干劲普通时与马娘对话",
+      "source_fingerprint": "2679f345c290c2f8725fc0701714e4396c1ba3add1eb4cfb74f425570288105c",
+      "current_text": "Trò chuyện với Mã Nương khi Mood Bình thường",
+      "current_fingerprint": "2dfa7dacfa59df51b7b1fa9b5d6da640db64bb44fecb4f9e91290fce77599e70",
+      "risk_flags": [
+        "very_long_target",
+        "community_term",
+        "source_bridge_term"
+      ],
+      "risk_score": 8,
+      "locked_terms": [],
+      "community_terms": [
+        {
+          "id": "common.state.mood",
+          "preferred": "Mood",
+          "accepted": [
+            "Mood"
+          ],
+          "forbidden": [
+            "Tinh thần",
+            "Hứng khởi"
+          ],
+          "matched_aliases": [
+            "干劲"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Mood is the generic player-facing やる気 / 干劲 state. The exact zh-CN Skill title 干劲十足 (JP 意気込み十分) is a distinct Skill identity and must not inherit the generic Mood matcher by substring."
+        }
+      ],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [
+        {
+          "id": "state.mood",
+          "preferred": "Mood",
+          "accepted": [
+            "Mood"
+          ],
+          "forbidden": [
+            "Tinh thần",
+            "Hứng khởi"
+          ],
+          "matched_aliases": [
+            "干劲"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "ja": [
+            "やる気"
+          ],
+          "note": "干劲 is the zh-CN bridge for the player-facing Mood state. Do not normalize it to generic Vietnamese wording such as 'Tinh thần' or 'Hứng khởi'."
+        }
+      ],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": "c42f21f04ee9cb206637e3ffe79ea0932701ee94f39273dc9b466b6fbbfd69af",
+      "canonical_findings": [],
+      "item_context_sha256": "99de11c1cbd8277e724307cb632f5f9f2fe44f037956e2eecd8e886ba2d87821"
+    },
+    {
+      "uid": "zhcn:c2c73cc9d5fb06dec76edaf0",
+      "source_batch": 236,
+      "entry_index": 65,
+      "kind": "text_data",
+      "source_path": "text_data_dict.json",
+      "json_path": [
+        "171",
+        "1518"
+      ],
+      "key": null,
+      "source_text": "干劲稍差时与马娘对话",
+      "source_fingerprint": "6b65704770a940936f02d40468ce8854e9c76f3c5d2d0cf6a605ec3a28515361",
+      "current_text": "Trò chuyện với Mã Nương khi Mood Hơi kém",
+      "current_fingerprint": "8d808589727ef921e86ff32e585e14d407f9174780e4fbbd63c9dbf28a462ef6",
+      "risk_flags": [
+        "very_long_target",
+        "community_term",
+        "source_bridge_term"
+      ],
+      "risk_score": 8,
+      "locked_terms": [],
+      "community_terms": [
+        {
+          "id": "common.state.mood",
+          "preferred": "Mood",
+          "accepted": [
+            "Mood"
+          ],
+          "forbidden": [
+            "Tinh thần",
+            "Hứng khởi"
+          ],
+          "matched_aliases": [
+            "干劲"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Mood is the generic player-facing やる気 / 干劲 state. The exact zh-CN Skill title 干劲十足 (JP 意気込み十分) is a distinct Skill identity and must not inherit the generic Mood matcher by substring."
+        }
+      ],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [
+        {
+          "id": "state.mood",
+          "preferred": "Mood",
+          "accepted": [
+            "Mood"
+          ],
+          "forbidden": [
+            "Tinh thần",
+            "Hứng khởi"
+          ],
+          "matched_aliases": [
+            "干劲"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "ja": [
+            "やる気"
+          ],
+          "note": "干劲 is the zh-CN bridge for the player-facing Mood state. Do not normalize it to generic Vietnamese wording such as 'Tinh thần' or 'Hứng khởi'."
+        }
+      ],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": "c42f21f04ee9cb206637e3ffe79ea0932701ee94f39273dc9b466b6fbbfd69af",
+      "canonical_findings": [],
+      "item_context_sha256": "99de11c1cbd8277e724307cb632f5f9f2fe44f037956e2eecd8e886ba2d87821"
+    },
+    {
+      "uid": "zhcn:8ed1dc8df598e104e13e83dc",
+      "source_batch": 236,
+      "entry_index": 66,
+      "kind": "text_data",
+      "source_path": "text_data_dict.json",
+      "json_path": [
+        "171",
+        "15200"
+      ],
+      "key": null,
+      "source_text": "传奇比赛主页",
+      "source_fingerprint": "a9b366efff0f5777fcb7b4c06028f5341d69886749fb4b63ed05bac94496a943",
+      "current_text": "Trang chủ Legend Race",
+      "current_fingerprint": "b5dce8440016927798e317a91ffb30f165e5f025b3daf541a5985416cd6c731a",
+      "risk_flags": [
+        "very_long_target"
+      ],
+      "risk_score": 3,
+      "locked_terms": [
+        {
+          "id": "reviewed.proper_name.cc9d04637664",
+          "target_vi": "Legend Race",
+          "matched_aliases": [
+            "传奇比赛"
+          ],
+          "present": true
+        }
+      ],
+      "community_terms": [],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [],
+      "item_context_sha256": "6ed6f8c1bef8f3dd0f94207bebf2e95f4df128cf5f5e01155cbc16258573296e"
+    },
+    {
+      "uid": "zhcn:895aea0103cc034a5f60d8eb",
+      "source_batch": 236,
+      "entry_index": 67,
+      "kind": "text_data",
+      "source_path": "text_data_dict.json",
+      "json_path": [
+        "171",
+        "15201"
+      ],
+      "key": null,
+      "source_text": "在传奇比赛主页完成HARD",
+      "source_fingerprint": "254f4f2e20fca11e3d7fe7ce933ea83ddd24a67c7d209c150a395d893e8cc921",
+      "current_text": "Hoàn thành HARD tại trang chủ Legend Race",
+      "current_fingerprint": "9db39c4866fabf1c8f24d2db2f3e82d9044278127e9ea945d404748969f2d3d0",
+      "risk_flags": [
+        "very_long_target"
+      ],
+      "risk_score": 3,
+      "locked_terms": [
+        {
+          "id": "reviewed.proper_name.cc9d04637664",
+          "target_vi": "Legend Race",
+          "matched_aliases": [
+            "传奇比赛"
+          ],
+          "present": true
+        }
+      ],
+      "community_terms": [],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [],
+      "item_context_sha256": "6ed6f8c1bef8f3dd0f94207bebf2e95f4df128cf5f5e01155cbc16258573296e"
+    },
+    {
+      "uid": "zhcn:145ea99cc9fdfa7d2ca7606c",
+      "source_batch": 236,
+      "entry_index": 68,
+      "kind": "text_data",
+      "source_path": "text_data_dict.json",
+      "json_path": [
+        "171",
+        "15202"
+      ],
+      "key": null,
+      "source_text": "在传奇比赛主页完成EXTREME",
+      "source_fingerprint": "939ba7dffec3044828d74e065b38a2afe28566cb5ed5d8057b3eb693708430f1",
+      "current_text": "Hoàn thành EXTREME tại trang chủ Legend Race",
+      "current_fingerprint": "ab7475c38dc610e12d78c1c225c3f00bd1391370787521103105dfedd5323321",
+      "risk_flags": [],
+      "risk_score": 0,
+      "locked_terms": [
+        {
+          "id": "reviewed.proper_name.cc9d04637664",
+          "target_vi": "Legend Race",
+          "matched_aliases": [
+            "传奇比赛"
+          ],
+          "present": true
+        }
+      ],
+      "community_terms": [],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [],
+      "item_context_sha256": "6ed6f8c1bef8f3dd0f94207bebf2e95f4df128cf5f5e01155cbc16258573296e"
+    },
+    {
+      "uid": "zhcn:e40c51b4113f6f81dbc17d48",
+      "source_batch": 236,
+      "entry_index": 72,
+      "kind": "text_data",
+      "source_path": "text_data_dict.json",
+      "json_path": [
+        "171",
+        "17002"
+      ],
+      "key": null,
+      "source_text": "移动至比赛页面",
+      "source_fingerprint": "ba082a8af77ca8d9cbbd1d15f691b854949a668e742e4ac8d85c25048510448b",
+      "current_text": "Chuyển đến trang Cuộc đua",
+      "current_fingerprint": "b0fa2360de8ea036744089482f2a9a6a1a1deb205b8f9075e639d3c2bb7a36b6",
+      "risk_flags": [
+        "very_long_target"
+      ],
+      "risk_score": 3,
+      "locked_terms": [
+        {
+          "id": "race.generic",
+          "target_vi": "Cuộc đua",
+          "matched_aliases": [
+            "比赛"
+          ],
+          "present": true
+        }
+      ],
+      "community_terms": [],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [],
+      "item_context_sha256": "aaf528e0134d494bae1e132b2ba5f7e0b901e2f4e6c31692a46ebb0aa74262e0"
+    },
+    {
+      "uid": "zhcn:44f5ed42c3ba745d166eddf7",
+      "source_batch": 236,
+      "entry_index": 75,
+      "kind": "text_data",
+      "source_path": "text_data_dict.json",
+      "json_path": [
+        "171",
+        "19004"
+      ],
+      "key": null,
+      "source_text": "群英月赛预选赛第1～第4场比赛参赛前",
+      "source_fingerprint": "2651a4829025d006ee4faf1674ddaf6320eddfa7e7fa4bad8d37f08f7ff61bf6",
+      "current_text": "Trước khi tham gia cuộc đua thứ 1～4 ở vòng loại Champions Meeting",
+      "current_fingerprint": "a12dda73678ef53979e5d5cc1c365cbaf18b9f07abd24a0a28ab7befb4f52d59",
+      "risk_flags": [
+        "very_long_target",
+        "numeric_token_mismatch"
+      ],
+      "risk_score": 8,
+      "locked_terms": [
+        {
+          "id": "race.generic",
+          "target_vi": "Cuộc đua",
+          "matched_aliases": [
+            "比赛"
+          ],
+          "present": true
+        },
+        {
+          "id": "reviewed.event_name.764e225b8183",
+          "target_vi": "Champions Meeting",
+          "matched_aliases": [
+            "群英月赛"
+          ],
+          "present": true
+        }
+      ],
+      "community_terms": [],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [],
+      "item_context_sha256": "a7469ea36a69450bf648736773b20300d0740033b725ce5337905bea173e8044"
+    },
+    {
+      "uid": "zhcn:5535f4188f3e59c7885b5629",
+      "source_batch": 236,
+      "entry_index": 76,
+      "kind": "text_data",
+      "source_path": "text_data_dict.json",
+      "json_path": [
+        "171",
+        "19005"
+      ],
+      "key": null,
+      "source_text": "群英月赛预选赛第5场比赛参赛前",
+      "source_fingerprint": "73433b82ee62ce830d6d74cc5cb8ddfa041232bb3e6158c7fe0793ab87fabed9",
+      "current_text": "Trước khi tham gia cuộc đua thứ 5 ở vòng loại Champions Meeting",
+      "current_fingerprint": "181db5b6915eab28d4cf104f0b883bc335a1c09967f58e6002193cd7ee97e719",
+      "risk_flags": [
+        "very_long_target",
+        "numeric_token_mismatch"
+      ],
+      "risk_score": 8,
+      "locked_terms": [
+        {
+          "id": "race.generic",
+          "target_vi": "Cuộc đua",
+          "matched_aliases": [
+            "比赛"
+          ],
+          "present": true
+        },
+        {
+          "id": "reviewed.event_name.764e225b8183",
+          "target_vi": "Champions Meeting",
+          "matched_aliases": [
+            "群英月赛"
+          ],
+          "present": true
+        }
+      ],
+      "community_terms": [],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [],
+      "item_context_sha256": "a7469ea36a69450bf648736773b20300d0740033b725ce5337905bea173e8044"
+    },
+    {
+      "uid": "zhcn:dab4f6cf74dfe5d9499c16e4",
+      "source_batch": 239,
+      "entry_index": 0,
+      "kind": "text_data",
+      "source_path": "text_data_dict.json",
+      "json_path": [
+        "172",
+        "1002801"
+      ],
+      "key": null,
+      "source_text": "能提升力量和根性的因子",
+      "source_fingerprint": "e7bb056a22c8e3311705236cd75c0fac060d3c36663059dbd46f3d63129757da",
+      "current_text": "Spark có thể tăng Power và Guts",
+      "current_fingerprint": "9167c372ed73f316db821944fefc2dab57f9d59d3ece0455d65d564145df7a75",
+      "risk_flags": [
+        "community_term"
+      ],
+      "risk_score": 2,
+      "locked_terms": [],
+      "community_terms": [
+        {
+          "id": "common.stat.power",
+          "preferred": "Power",
+          "accepted": [
+            "Power"
+          ],
+          "forbidden": [
+            "Sức mạnh"
+          ],
+          "matched_aliases": [
+            "力量"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Common EN-version Power stat label. The zh-CN alias 力量 is ambiguous in ordinary prose and can also occur inside proper names such as 莱茵力量 (Rhein Kraft); known non-stat compounds, names, descriptive titles, and narrative/metaphorical phrases are explicitly excluded so physical or emotional strength is not normalized to the stat label."
+        },
+        {
+          "id": "common.stat.guts",
+          "preferred": "Guts",
+          "accepted": [
+            "Guts"
+          ],
+          "forbidden": [
+            "Ý chí"
+          ],
+          "matched_aliases": [
+            "根性"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Common EN-version stat label."
+        },
+        {
+          "id": "common.spark.inheritance_description",
+          "preferred": "Spark",
+          "accepted": [
+            "Spark",
+            "Sparks"
+          ],
+          "forbidden": [
+            "Nhân tố",
+            "nhân tố",
+            "Factor",
+            "factor"
+          ],
+          "matched_aliases": [
+            "因子"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Pinned text_data category 172 is inheritance-description content; 因子 there is the Spark mechanic. Item scope prevents unrelated review IDs from reopening."
+        }
+      ],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [],
+      "item_context_sha256": "1a7781b9e9c7d14ff122c4fb8651e8f22e714a66356fb3830c85c5d66007ebf5"
+    },
+    {
+      "uid": "zhcn:79f24a3d683f649198330d7b",
+      "source_batch": 239,
+      "entry_index": 1,
+      "kind": "text_data",
+      "source_path": "text_data_dict.json",
+      "json_path": [
+        "172",
+        "1002802"
+      ],
+      "key": null,
+      "source_text": "能提升力量和根性的因子",
+      "source_fingerprint": "e7bb056a22c8e3311705236cd75c0fac060d3c36663059dbd46f3d63129757da",
+      "current_text": "Spark có thể tăng Power và Guts",
+      "current_fingerprint": "9167c372ed73f316db821944fefc2dab57f9d59d3ece0455d65d564145df7a75",
+      "risk_flags": [
+        "community_term"
+      ],
+      "risk_score": 2,
+      "locked_terms": [],
+      "community_terms": [
+        {
+          "id": "common.stat.power",
+          "preferred": "Power",
+          "accepted": [
+            "Power"
+          ],
+          "forbidden": [
+            "Sức mạnh"
+          ],
+          "matched_aliases": [
+            "力量"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Common EN-version Power stat label. The zh-CN alias 力量 is ambiguous in ordinary prose and can also occur inside proper names such as 莱茵力量 (Rhein Kraft); known non-stat compounds, names, descriptive titles, and narrative/metaphorical phrases are explicitly excluded so physical or emotional strength is not normalized to the stat label."
+        },
+        {
+          "id": "common.stat.guts",
+          "preferred": "Guts",
+          "accepted": [
+            "Guts"
+          ],
+          "forbidden": [
+            "Ý chí"
+          ],
+          "matched_aliases": [
+            "根性"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Common EN-version stat label."
+        },
+        {
+          "id": "common.spark.inheritance_description",
+          "preferred": "Spark",
+          "accepted": [
+            "Spark",
+            "Sparks"
+          ],
+          "forbidden": [
+            "Nhân tố",
+            "nhân tố",
+            "Factor",
+            "factor"
+          ],
+          "matched_aliases": [
+            "因子"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Pinned text_data category 172 is inheritance-description content; 因子 there is the Spark mechanic. Item scope prevents unrelated review IDs from reopening."
+        }
+      ],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [],
+      "item_context_sha256": "1a7781b9e9c7d14ff122c4fb8651e8f22e714a66356fb3830c85c5d66007ebf5"
+    },
+    {
+      "uid": "zhcn:42a8c846e1b5b6bebac266fd",
+      "source_batch": 239,
+      "entry_index": 2,
+      "kind": "text_data",
+      "source_path": "text_data_dict.json",
+      "json_path": [
+        "172",
+        "1002803"
+      ],
+      "key": null,
+      "source_text": "能提升力量和根性的因子",
+      "source_fingerprint": "e7bb056a22c8e3311705236cd75c0fac060d3c36663059dbd46f3d63129757da",
+      "current_text": "Spark có thể tăng Power và Guts",
+      "current_fingerprint": "9167c372ed73f316db821944fefc2dab57f9d59d3ece0455d65d564145df7a75",
+      "risk_flags": [
+        "community_term"
+      ],
+      "risk_score": 2,
+      "locked_terms": [],
+      "community_terms": [
+        {
+          "id": "common.stat.power",
+          "preferred": "Power",
+          "accepted": [
+            "Power"
+          ],
+          "forbidden": [
+            "Sức mạnh"
+          ],
+          "matched_aliases": [
+            "力量"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Common EN-version Power stat label. The zh-CN alias 力量 is ambiguous in ordinary prose and can also occur inside proper names such as 莱茵力量 (Rhein Kraft); known non-stat compounds, names, descriptive titles, and narrative/metaphorical phrases are explicitly excluded so physical or emotional strength is not normalized to the stat label."
+        },
+        {
+          "id": "common.stat.guts",
+          "preferred": "Guts",
+          "accepted": [
+            "Guts"
+          ],
+          "forbidden": [
+            "Ý chí"
+          ],
+          "matched_aliases": [
+            "根性"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Common EN-version stat label."
+        },
+        {
+          "id": "common.spark.inheritance_description",
+          "preferred": "Spark",
+          "accepted": [
+            "Spark",
+            "Sparks"
+          ],
+          "forbidden": [
+            "Nhân tố",
+            "nhân tố",
+            "Factor",
+            "factor"
+          ],
+          "matched_aliases": [
+            "因子"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Pinned text_data category 172 is inheritance-description content; 因子 there is the Spark mechanic. Item scope prevents unrelated review IDs from reopening."
+        }
+      ],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [],
+      "item_context_sha256": "1a7781b9e9c7d14ff122c4fb8651e8f22e714a66356fb3830c85c5d66007ebf5"
+    },
+    {
+      "uid": "zhcn:e7f45761e40b8eefc04705e4",
+      "source_batch": 239,
+      "entry_index": 3,
+      "kind": "text_data",
+      "source_path": "text_data_dict.json",
+      "json_path": [
+        "172",
+        "1002901"
+      ],
+      "key": null,
+      "source_text": "能提升耐力和根性的因子",
+      "source_fingerprint": "435bc749231589cc71427a3546f21aac5c5bd3ad1f16732bd38dd96924dd714c",
+      "current_text": "Spark có thể tăng Stamina và Guts",
+      "current_fingerprint": "0c3d308dea6af54163c952a24c02c133475073aed45a0eb0386da6143e3fb8ee",
+      "risk_flags": [
+        "community_term"
+      ],
+      "risk_score": 2,
+      "locked_terms": [],
+      "community_terms": [
+        {
+          "id": "common.stat.stamina",
+          "preferred": "Stamina",
+          "accepted": [
+            "Stamina"
+          ],
+          "forbidden": [
+            "Thể lực"
+          ],
+          "matched_aliases": [
+            "耐力"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Common EN-version stat label; distinct from the training energy gauge."
+        },
+        {
+          "id": "common.stat.guts",
+          "preferred": "Guts",
+          "accepted": [
+            "Guts"
+          ],
+          "forbidden": [
+            "Ý chí"
+          ],
+          "matched_aliases": [
+            "根性"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Common EN-version stat label."
+        },
+        {
+          "id": "common.spark.inheritance_description",
+          "preferred": "Spark",
+          "accepted": [
+            "Spark",
+            "Sparks"
+          ],
+          "forbidden": [
+            "Nhân tố",
+            "nhân tố",
+            "Factor",
+            "factor"
+          ],
+          "matched_aliases": [
+            "因子"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Pinned text_data category 172 is inheritance-description content; 因子 there is the Spark mechanic. Item scope prevents unrelated review IDs from reopening."
+        }
+      ],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [],
+      "item_context_sha256": "4b9b12c5b2cf75532ee326316a4dba82ccd487baa979fb0ac88c6df6c53a420a"
+    }
+  ]
+}

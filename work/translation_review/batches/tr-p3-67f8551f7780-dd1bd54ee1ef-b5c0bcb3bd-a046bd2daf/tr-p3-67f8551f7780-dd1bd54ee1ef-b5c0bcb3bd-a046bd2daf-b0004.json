@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "policy_version": 3,
-  "plan_id": "tr-p3-67f8551f7780-9f7c3421f329-b5c0bcb3bd-6b8d5da51a",
-  "batch_id": "tr-p3-67f8551f7780-9f7c3421f329-b5c0bcb3bd-6b8d5da51a-b0004",
+  "plan_id": "tr-p3-67f8551f7780-dd1bd54ee1ef-b5c0bcb3bd-a046bd2daf",
+  "batch_id": "tr-p3-67f8551f7780-dd1bd54ee1ef-b5c0bcb3bd-a046bd2daf-b0004",
   "context_snapshot_sha256": "b5c0bcb3bd9ee5c45e7bedf49c8f8d6ad35c3ceb3c35f528c6381a63c684a967",
   "source_bridge_policy_sha256": "c42f21f04ee9cb206637e3ffe79ea0932701ee94f39273dc9b466b6fbbfd69af",
   "review_generation": "retrospective-canonical-full-review",
@@ -308,11 +308,34 @@
       "current_text": "<atlas=PreIn sprite=utx_ico_notice_00/>Sẽ tiêu hao số lượt sử dụng Kế hoạch Uma Musume trong ngày",
       "current_fingerprint": "3381e2fd2aa997dbc6b56a6d675a5c1cb6ff40203c82e8f70b73f796475ec498",
       "risk_flags": [
-        "canonical_finding"
+        "community_term",
+        "community_calque_risk",
+        "community_term_mismatch"
       ],
-      "risk_score": 40,
+      "risk_score": 16,
       "locked_terms": [],
-      "community_terms": [],
+      "community_terms": [
+        {
+          "id": "system.uma_plan.subscription",
+          "preferred": "Uma Plan",
+          "accepted": [
+            "Uma Plan"
+          ],
+          "forbidden": [
+            "Gói Umamusume",
+            "Gói Uma Musume",
+            "Kế hoạch Umamusume",
+            "Kế hoạch Uma Musume"
+          ],
+          "matched_aliases": [
+            "马娘计划"
+          ],
+          "accepted_present": false,
+          "forbidden_present": true,
+          "require_accepted": true,
+          "basis": "Official Cygames JP service name is ウマプラン (Uma Plan), introduced as a monthly subscription on 2026-02-24. Scope is pinned to the proven subscription UI keys Character608001 and Character701022 so unrelated plan/package prose cannot overmatch."
+        }
+      ],
       "skill_name_canonical": null,
       "source_bridge_terms": [],
       "source_bridge_risks": [],

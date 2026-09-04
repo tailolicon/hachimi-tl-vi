@@ -4,7 +4,7 @@ import json
 from pathlib import Path
 
 from scripts.canonical_findings import refresh_canonical_resolutions
-from scripts.harden_uma_plan_finding import KEYS, UMA_PLAN_TERM, harden
+from scripts.harden_uma_plan_finding import DECISION_ID, KEYS, UMA_PLAN_TERM, harden
 
 
 def _seed(tmp_path: Path) -> None:
@@ -53,6 +53,44 @@ def test_hardener_resolves_official_uma_plan_brand_for_all_proven_keys_and_is_id
             "term_id": "system.uma_plan.subscription",
             "target_vi": "Uma Plan",
         }
+
+
+def test_hardener_migrates_existing_generated_review_lock_scope_before_apply(tmp_path: Path) -> None:
+    _seed(tmp_path)
+    registry_path = tmp_path / "glossary" / "term_registry.json"
+    registry_path.write_text(
+        json.dumps(
+            {
+                "terms": [
+                    {
+                        "id": "reviewed.system_label.514dfaebdb54",
+                        "category": "system",
+                        "zh_cn": ["马娘计划"],
+                        "target_vi": "Uma Plan",
+                        "locked": True,
+                        "review": {
+                            "decision_id": DECISION_ID,
+                            "source": "glossary/terminology_reviews.json",
+                        },
+                        "invalidation_scope": "item",
+                        "source_paths": ["localize_dict.json"],
+                        "key_exact": ["Character608001"],
+                        "match_mode": "contains",
+                    }
+                ]
+            }
+        ),
+        encoding="utf-8",
+    )
+
+    assert harden(tmp_path) is True
+    assert harden(tmp_path) is False
+    registry = json.loads(registry_path.read_text(encoding="utf-8"))
+    lock = registry["terms"][0]
+    assert lock["review"]["decision_id"] == DECISION_ID
+    assert lock["key_exact"] == KEYS
+    assert lock["source_paths"] == ["localize_dict.json"]
+    assert lock["match_mode"] == "contains"
 
 
 def test_rule_does_not_resolve_same_alias_outside_proven_subscription_keys(tmp_path: Path) -> None:

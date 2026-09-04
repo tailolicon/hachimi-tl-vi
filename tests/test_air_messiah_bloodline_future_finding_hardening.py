@@ -99,7 +99,7 @@ def test_air_messiah_unique_skill_resolves_standalone_and_inherited_findings(tmp
     assert active_findings(refreshed) == []
 
 
-def test_air_messiah_rule_resolves_alias_inside_longer_finding_source(tmp_path: Path) -> None:
+def test_air_messiah_rule_does_not_autoresolve_unknown_longer_finding_without_review_target(tmp_path: Path) -> None:
     _seed(tmp_path)
     assert harden(tmp_path) is True
     ledger = {
@@ -107,11 +107,8 @@ def test_air_messiah_rule_resolves_alias_inside_longer_finding_source(tmp_path: 
         "findings": [_finding(source=f"前缀{SOURCE_ZH_INHERITED}后缀", finding_id=INHERITED_FINDING_ID)],
     }
     finding = refresh_canonical_resolutions(tmp_path, ledger)["findings"][0]
-    assert finding["canonical_resolution"] == {
-        "layer": "community",
-        "term_id": "skill.air_messiah.bloodline_future",
-        "target_vi": PREFERRED,
-    }
+    assert finding["review_resolution"] is None
+    assert finding["canonical_resolution"] is None
 
 
 def test_air_messiah_rule_does_not_resolve_other_source_path(tmp_path: Path) -> None:

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "policy_version": 3,
-  "plan_id": "tr-p3-67f8551f7780-7419050b5eb3-b5c0bcb3bd-b803813a70",
-  "batch_id": "tr-p3-67f8551f7780-7419050b5eb3-b5c0bcb3bd-b803813a70-b0032",
+  "plan_id": "tr-p3-67f8551f7780-5e9298498bbb-b5c0bcb3bd-ca4bec8a6c",
+  "batch_id": "tr-p3-67f8551f7780-5e9298498bbb-b5c0bcb3bd-ca4bec8a6c-b0032",
   "context_snapshot_sha256": "b5c0bcb3bd9ee5c45e7bedf49c8f8d6ad35c3ceb3c35f528c6381a63c684a967",
   "source_bridge_policy_sha256": "46bb2e62f56515100506053638c95894a70a120c51a7ca57e31099d5005ff5d8",
   "review_generation": "retrospective-canonical-full-review",
@@ -150,11 +150,34 @@
       "current_fingerprint": "5f07f95ba8fcdc7c5cc5c94b258f5d84d84f78906a46e51e8b16a65a658a22ab",
       "risk_flags": [
         "very_long_target",
+        "community_term",
+        "community_calque_risk",
+        "community_term_mismatch",
         "canonical_finding"
       ],
-      "risk_score": 43,
+      "risk_score": 59,
       "locked_terms": [],
-      "community_terms": [],
+      "community_terms": [
+        {
+          "id": "race_state.fully_charged",
+          "preferred": "Fully Charged",
+          "accepted": [
+            "Fully Charged"
+          ],
+          "forbidden": [
+            "Dư lực dồi dào",
+            "Đủ sức chân",
+            "Đầy sức"
+          ],
+          "matched_aliases": [
+            "脚色十分"
+          ],
+          "accepted_present": false,
+          "forbidden_present": true,
+          "require_accepted": true,
+          "basis": "Named race mechanic/state 脚色十分 is exposed by the English/Global terminology as Fully Charged. Scope is pinned to Race9467001 so ordinary descriptive prose cannot inherit the mechanic label."
+        }
+      ],
       "skill_name_canonical": null,
       "source_bridge_terms": [],
       "source_bridge_risks": [],

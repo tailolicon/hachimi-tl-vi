@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "policy_version": 3,
-  "plan_id": "tr-p3-67f8551f7780-592195830b0a-b5c0bcb3bd-304dedddee",
-  "batch_id": "tr-p3-67f8551f7780-592195830b0a-b5c0bcb3bd-304dedddee-b0003",
+  "plan_id": "tr-p3-67f8551f7780-1355334736ea-b5c0bcb3bd-1e3ec1e7a3",
+  "batch_id": "tr-p3-67f8551f7780-1355334736ea-b5c0bcb3bd-1e3ec1e7a3-b0003",
   "context_snapshot_sha256": "b5c0bcb3bd9ee5c45e7bedf49c8f8d6ad35c3ceb3c35f528c6381a63c684a967",
   "source_bridge_policy_sha256": "c42f21f04ee9cb206637e3ffe79ea0932701ee94f39273dc9b466b6fbbfd69af",
   "review_generation": "retrospective-canonical-full-review",
@@ -248,11 +248,33 @@
       "current_fingerprint": "c6142f67341694886d51ce247f38d7242c266e5b7e3c50cc9d4f74740a8201fa",
       "risk_flags": [
         "very_long_target",
-        "canonical_finding"
+        "community_term",
+        "community_calque_risk",
+        "community_term_mismatch"
       ],
-      "risk_score": 43,
+      "risk_score": 19,
       "locked_terms": [],
-      "community_terms": [],
+      "community_terms": [
+        {
+          "id": "system.uma_plan.subscription.character608001",
+          "preferred": "Uma Plan",
+          "accepted": [
+            "Uma Plan"
+          ],
+          "forbidden": [
+            "Gói Umamusume",
+            "Gói Uma Musume",
+            "Kế hoạch Umamusume"
+          ],
+          "matched_aliases": [
+            "马娘计划"
+          ],
+          "accepted_present": false,
+          "forbidden_present": true,
+          "require_accepted": true,
+          "basis": "Official Cygames JP service name is ウマプラン (Uma Plan), introduced as a monthly subscription on 2026-02-24. Scope is pinned to the proven Character608001 subscription UI item so generic plan/package prose cannot overmatch."
+        }
+      ],
       "skill_name_canonical": null,
       "source_bridge_terms": [],
       "source_bridge_risks": [],

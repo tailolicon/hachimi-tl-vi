@@ -24,6 +24,14 @@ Implementation commits on live `main`:
 - regression commit `6e36507faf3eb50c3deb1f224df60b99584b0054`
 - hardener commit `1a9444378eae78589b4089cb0012d2787ff03684`
 
-## Acceptance status
+## Production acceptance
 
-Pending production acceptance. Do not advance the maintenance completed count until required Validate, Sync translation context, and Sync translation review plan workflows succeed and the then-live generated review item `text_data_dict.json` `16/1175` embeds `song.hello_polaris` / `Hello Polaris` with `canonical_findings: []`.
+Accepted on live `main`.
+
+- Validate run `33826454594`: completed / success.
+- Sync translation context run `33826454608`: completed / success.
+- Sync translation review plan run `33826454592`: completed / success.
+- Live production review plan `tr-p3-67f8551f7780-6b63119b0563-b5c0bcb3bd-2544610eef`, batch `b0176`, item `text_data_dict.json` `16/1175` embeds community rule `song.hello_polaris` with preferred `Hello Polaris`; the accepted target is present and the forbidden zh-CN title is absent.
+- The same live batch contains no `cf-7af7f3692f9a938f` reference, confirming the canonical finding no longer blocks the item.
+
+This finding may advance the maintenance completed count.

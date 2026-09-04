@@ -26,4 +26,9 @@ Implementation commits on live `main`:
 
 ## Acceptance status
 
-Pending production acceptance. Do not advance the maintenance completed count until required Validate, Sync translation context, and Sync translation review plan workflows succeed and the then-live generated review item `text_data_dict.json` `16/1160` embeds `song.peep_peep_pow` / `Peep Peep Pow!` with `canonical_findings: []`.
+Accepted in production.
+
+- Validation passed for the final replay-safe canonical surface.
+- Production Sync translation context run `33825873073` succeeded.
+- Production Sync translation review plan run `33825873089` succeeded.
+- Published live plan `tr-p3-67f8551f7780-bdff91d1f88f-b5c0bcb3bd-3f3fefbe8d`, batch `b0176`, embeds `song.peep_peep_pow` / `Peep Peep Pow!` for `text_data_dict.json` `16/1160` with `canonical_findings: []`.

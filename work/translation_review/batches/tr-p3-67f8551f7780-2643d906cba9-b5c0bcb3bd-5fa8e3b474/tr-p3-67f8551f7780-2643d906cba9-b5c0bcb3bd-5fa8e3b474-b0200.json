@@ -1,0 +1,171 @@
+{
+  "schema_version": 1,
+  "policy_version": 3,
+  "plan_id": "tr-p3-67f8551f7780-2643d906cba9-b5c0bcb3bd-5fa8e3b474",
+  "batch_id": "tr-p3-67f8551f7780-2643d906cba9-b5c0bcb3bd-5fa8e3b474-b0200",
+  "context_snapshot_sha256": "b5c0bcb3bd9ee5c45e7bedf49c8f8d6ad35c3ceb3c35f528c6381a63c684a967",
+  "source_bridge_policy_sha256": "c42f21f04ee9cb206637e3ffe79ea0932701ee94f39273dc9b466b6fbbfd69af",
+  "review_generation": "retrospective-canonical-full-review",
+  "context_mode": "embedded-first-lazy-extra",
+  "items": [
+    {
+      "uid": "zhcn:9689b80a014965c576648b0c",
+      "source_batch": 248,
+      "entry_index": 79,
+      "kind": "text_data",
+      "source_path": "text_data_dict.json",
+      "json_path": [
+        "172",
+        "11370102"
+      ],
+      "key": null,
+      "source_text": "速度上限、毅力上限与智力上限提升，\\n可获得「想象×创造＝∞」技能灵感的因子",
+      "source_fingerprint": "e533b205be027f5dc1d0f02535d73225f41061e1ce3f9b7d6435fab590c7d7f7",
+      "current_text": "Tăng giới hạn Speed, Guts và Wit,\\nSpark giúp nhận Skill Hint 「Tưởng tượng × Sáng tạo = ∞」",
+      "current_fingerprint": "1fbba455a9ea37db9101e83d6cb5057c4c097422c3aefdb654d5f5105b7ac6ae",
+      "risk_flags": [
+        "community_term",
+        "canonical_finding"
+      ],
+      "risk_score": 42,
+      "locked_terms": [],
+      "community_terms": [
+        {
+          "id": "common.stat.speed.context",
+          "preferred": "Speed",
+          "accepted": [
+            "Speed"
+          ],
+          "forbidden": [],
+          "matched_aliases": [
+            "速度上限"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Narrow player-facing Speed stat contexts. No global forbidden Tốc độ token is used here because the same sentence may also describe literal/max/running speed."
+        },
+        {
+          "id": "common.stat.guts",
+          "preferred": "Guts",
+          "accepted": [
+            "Guts"
+          ],
+          "forbidden": [
+            "Ý chí"
+          ],
+          "matched_aliases": [
+            "毅力"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Common EN-version stat label."
+        },
+        {
+          "id": "common.stat.wit",
+          "preferred": "Wit",
+          "accepted": [
+            "Wit"
+          ],
+          "forbidden": [
+            "Trí tuệ"
+          ],
+          "matched_aliases": [
+            "智力"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Common EN-version Wit stat label. The zh-CN alias 智力 is context-sensitive and must not canonicalize ordinary compounds such as 智力扣 (a disentanglement puzzle/toy)."
+        },
+        {
+          "id": "common.skill.generic",
+          "preferred": "Skill",
+          "accepted": [
+            "Skill"
+          ],
+          "forbidden": [
+            "Kỹ năng"
+          ],
+          "matched_aliases": [
+            "技能"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Generic gameplay label stays English. This does not mean individual skill names stay English."
+        },
+        {
+          "id": "common.skill_hint",
+          "preferred": "Skill Hint",
+          "accepted": [
+            "Skill Hint",
+            "Skill Hints"
+          ],
+          "forbidden": [
+            "Gợi ý Skill",
+            "Gợi ý kỹ năng",
+            "Cảm hứng Skill",
+            "Cảm hứng kỹ năng"
+          ],
+          "matched_aliases": [
+            "技能灵感"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Skill Hint is a gameplay concept. Only the full Skill-Hint compounds are canonical aliases here; bare 提示/灵感/启示 remain ordinary language unless a narrower context rule proves otherwise."
+        },
+        {
+          "id": "common.spark.inheritance_description",
+          "preferred": "Spark",
+          "accepted": [
+            "Spark",
+            "Sparks"
+          ],
+          "forbidden": [
+            "Nhân tố",
+            "nhân tố",
+            "Factor",
+            "factor"
+          ],
+          "matched_aliases": [
+            "因子"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Pinned text_data category 172 is inheritance-description content; 因子 there is the Spark mechanic. Item scope prevents unrelated review IDs from reopening."
+        }
+      ],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [
+        {
+          "finding_id": "cf-46f8fab03950e013",
+          "status": "open",
+          "source_zh_cn": "想象×创造＝∞",
+          "match_mode": "contains",
+          "source_paths": [
+            "text_data_dict.json"
+          ],
+          "key_exact": [],
+          "json_path_prefixes": [],
+          "suggested_targets_vi": [],
+          "concepts": [
+            "Skill title identity: 想象×创造＝∞"
+          ],
+          "kinds": [
+            "proper_name"
+          ],
+          "review_action": "defer",
+          "review_target_vi": ""
+        }
+      ],
+      "item_context_sha256": "483df36f5cb1fe626b824c6b04a880121cc72c54ad770b1404aee3687b7fc6a5"
+    }
+  ]
+}

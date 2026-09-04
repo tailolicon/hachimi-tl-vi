@@ -1,22 +1,28 @@
-# Canonical findings maintenance checkpoint — Monthly Twinkle implementation
+# Canonical findings maintenance checkpoint — Monthly Twinkle acceptance
 
-The recurring in-world publication `月刊Twinkle` is represented by two live proper-name findings:
+The recurring in-world publication `月刊Twinkle` is represented by two proper-name findings:
 - `cf-3f76c45986ceefe6`, scoped to `localize_dict.json` key `Champions187003`.
 - `cf-fc0ace892355f4ce`, scoped to `localize_dict.json` key `Champions0507`.
 
-Both findings' canonical source is the base alias `月刊Twinkle` with `match_mode=contains`; the surrounding `号外` / `增刊` text is edition wording and is not part of the canonical publication identity. Historical review results consistently deferred both entries pending this canonical decision.
+Both findings' canonical source is the base alias `月刊Twinkle` with `match_mode=contains`; surrounding `号外` / `增刊` text is edition wording, not part of the canonical publication identity.
 
 Evidence and decision:
-- Cygames' official JP portal identifies Otonashi Etsuko as a reporter for the magazine `月刊トゥインクル`, establishing this as a recurring proper publication title rather than generic prose.
+- Cygames' official JP portal identifies Otonashi Etsuko as a reporter for the magazine `月刊トゥインクル`, establishing it as a recurring proper publication title.
 - The pinned zh-CN UI preserves the title element `Twinkle` as `月刊Twinkle`.
 - Established English-language Umamusume references render the publication as `Monthly Twinkle`.
-- Canonical target selected: `Monthly Twinkle`, at the community/proper-name layer. This is a deliberate project canonical rendering, not a claim that an official Global localization was found.
-- Matcher is item-scoped to `localize_dict.json` keys `Champions0507` and `Champions187003`; it locks only the base title and leaves edition suffix wording to the containing UI item.
+- Canonical project target: `Monthly Twinkle`. This is a project/community canonical rendering, not a claim of an official Global localization.
+- Matcher is item-scoped to `localize_dict.json` keys `Champions0507` and `Champions187003`; edition suffix wording remains ordinary containing-item text.
 
 Durable implementation on `main`:
-- `scripts/harden_monthly_twinkle_finding.py` at commit `94ecd3f92f8d16e51642d772052b22ee177022b1`.
-- `tests/test_monthly_twinkle_finding_hardening.py` at commit `9f6f5cad5c84c9856514a548afa43195a110c2b4`.
-- Rule id: `publication.monthly_twinkle`; review decision id: `audit.finding.publication-monthly-twinkle`.
-- Regression coverage asserts both findings resolve through the same key-scoped contains rule, remain idempotent, and do not match an unrelated key.
+- `scripts/harden_monthly_twinkle_finding.py` commit `94ecd3f92f8d16e51642d772052b22ee177022b1`.
+- Initial regression test commit `9f6f5cad5c84c9856514a548afa43195a110c2b4`.
+- Regression expectation correction commit `0556f6276a5eac02b48f319f7ec9c629168576f3`; it preserves key scoping for the community matcher while matching the resolver's source-identity semantics for the review lock.
+- Rule id `publication.monthly_twinkle`; review decision id `audit.finding.publication-monthly-twinkle`.
 
-Production acceptance is still pending. Push-triggered `Validate`, `Sync translation context`, and `Sync translation review plan` runs for the implementation/test commits must succeed before incrementing the maintenance completion counter or claiming the findings closed. The context sync workflow automatically executes all `scripts/harden_*_finding.py` hardeners before applying review locks and persists generated glossary changes back to `main`.
+Production acceptance reached so far:
+- Validate run `33904649681`: success.
+- Sync translation context run `33904649747`: success.
+- Generated context commit `7d1f9eb7610e26cf68f49f0134c662b9173bf4` resolves both findings to `Monthly Twinkle` with non-null `canonical_resolution` and `review_resolution`, adds the reviewed locked registry entry and community rule, and reduces `open_canonical_findings` from 124 to 122.
+
+Remaining acceptance gate:
+- A translation-review-plan sync that consumes the regenerated context must complete successfully. The original push-triggered review-plan run `33904649733` was still pending when this checkpoint was written; because context generation may trigger a newer plan run, acceptance must use a successful post-context plan state rather than assuming the pre-context queued run is sufficient.

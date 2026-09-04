@@ -26,8 +26,11 @@ Implementation commits observed on live `main`:
 
 ## Acceptance status
 
-- Validate run `33821819685`: success.
-- Sync translation context run `33821819713`: success; production sync published canonical/context changes to live `main`.
-- Sync translation review plan run `33821819730`: still pending at the latest check.
+Accepted on live `main`.
 
-Do **not** advance the maintenance completion count until review-plan sync succeeds and the live generated review item `text_data_dict.json` `16/1084` embeds `song.soshite_minna_no` / `Soshite Minna no` with `canonical_findings: []`. If the review-plan run remains pending, continue other protocol-valid maintenance research without claiming acceptance early.
+- Validate run `33821819685`: success.
+- Sync translation context run `33821819713`: success; production sync published canonical/context changes.
+- Sync translation review plan run `33821819730`: success.
+- Live generated review plan `tr-p3-67f8551f7780-467d9805a848-b5c0bcb3bd-0f8e2d4154` contains `text_data_dict.json` `16/1084` with community rule `song.soshite_minna_no`, preferred target `Soshite Minna no`, and `canonical_findings: []`.
+
+This finding satisfies production acceptance and may advance the maintenance completed count.

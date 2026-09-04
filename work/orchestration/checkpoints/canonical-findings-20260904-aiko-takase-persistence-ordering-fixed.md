@@ -15,8 +15,12 @@ Repair commits:
 - workflow ordering: `8a707498d0eb0a8ef574e99baa8ed52e9c9a33b2`
 - regression coverage: `aa0afe15eee00018df37c78360ce80d7c169e2bd`
 
+## Production acceptance evidence
+
+- Validate run `33887634007` for `aa0afe15eee00018df37c78360ce80d7c169e2bd`: **success**. Its pytest, `tlvi validate`, and index steps all succeeded.
+- Context Sync run `33887606190` is exercising the repaired ordering. Its new `Restore finding review locks before apply` step completed successfully and `Apply explicit reviewed terminology locks` then succeeded; the remaining sync steps were still running when this checkpoint was updated.
+- Translation Review Plan Sync run `33887633934` is also running from the regression commit and is not yet counted as accepted.
+
 ## Acceptance still required
 
-Do not increment maintenance `completed_count` yet. Production acceptance is pending. Require successful Validate, Context Sync, and Translation Review Plan Sync after this repair, then verify live `glossary/terminology_reviews.json` contains `audit.finding.aiko-takase-credit` and live canonical/review snapshots no longer expose unresolved `cf-0c148b50fe9cd57f`.
-
-At checkpoint creation, the new Validate and Context Sync runs had started/pended; they were not yet treated as accepted evidence.
+Do not increment maintenance `completed_count` yet. Require successful completion of Context Sync and Translation Review Plan Sync after this repair, then verify live `glossary/terminology_reviews.json` contains `audit.finding.aiko-takase-credit` and live canonical/review snapshots no longer expose unresolved `cf-0c148b50fe9cd57f`.

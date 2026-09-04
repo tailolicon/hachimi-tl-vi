@@ -1,44 +1,387 @@
 {
   "schema_version": 1,
   "policy_version": 3,
-  "plan_id": "tr-p3-67f8551f7780-951f93b1e05c-b5c0bcb3bd-abdd44311e",
-  "batch_id": "tr-p3-67f8551f7780-951f93b1e05c-b5c0bcb3bd-abdd44311e-b0193",
+  "plan_id": "tr-p3-67f8551f7780-556bee2aa807-b5c0bcb3bd-9d30c6c984",
+  "batch_id": "tr-p3-67f8551f7780-556bee2aa807-b5c0bcb3bd-9d30c6c984-b0183",
   "context_snapshot_sha256": "b5c0bcb3bd9ee5c45e7bedf49c8f8d6ad35c3ceb3c35f528c6381a63c684a967",
   "source_bridge_policy_sha256": "c42f21f04ee9cb206637e3ffe79ea0932701ee94f39273dc9b466b6fbbfd69af",
   "review_generation": "retrospective-canonical-full-review",
   "context_mode": "embedded-first-lazy-extra",
   "items": [
     {
-      "uid": "zhcn:c4ae4e96eb6656f96649b26a",
-      "source_batch": 247,
-      "entry_index": 19,
+      "uid": "zhcn:53a520ce7e9858fea2b42d0b",
+      "source_batch": 244,
+      "entry_index": 56,
       "kind": "text_data",
       "source_path": "text_data_dict.json",
       "json_path": [
         "172",
-        "10980203"
+        "10610301"
       ],
       "key": null,
-      "source_text": "耐力上限和力量上限提升 ,\\n能获得「五行之兽彩光合奏」技能折扣的因子",
-      "source_fingerprint": "e21a95ac77fb42b61ba171ec9db690b31797c938f29f38e5900ce563efc3e955",
-      "current_text": "Giới hạn Stamina và Power tăng,\\nSpark giúp nhận giảm giá cho Skill 「Hợp tấu ánh sáng ngũ sắc của thú Ngũ Hành」",
-      "current_fingerprint": "9347755c032a19048f6b2f5d924f311d9180036915306f0cf6406f800f1505c9",
+      "source_text": "力量上限、根性上限与智力上限提升 ,\\n能获得「通往理想的漫漫长路」技能折扣的因子",
+      "source_fingerprint": "847ff92bacfbc6bf2b6dee748da9e1a21614a09cbd1d1c521c5a48ea8852563c",
+      "current_text": "Tăng giới hạn Power, Guts và Wit,\\nSpark giúp giảm giá Skill 「Con đường dài tới lý tưởng」",
+      "current_fingerprint": "bc3a7091968eed196c2d11b34ce2ac717bafc0726f18223c9e2856393c550f38",
       "risk_flags": [
-        "very_long_target",
-        "locked_term_mismatch",
         "community_term"
       ],
-      "risk_score": 13,
-      "locked_terms": [
+      "risk_score": 2,
+      "locked_terms": [],
+      "community_terms": [
         {
-          "id": "reviewed.skill_name.365b3e3f914e",
-          "target_vi": "Ngũ Thú Tề Tựu, Tấu Khúc Sắc Quang",
-          "matched_aliases": [
-            "五行之兽彩光合奏"
+          "id": "common.stat.power",
+          "preferred": "Power",
+          "accepted": [
+            "Power"
           ],
-          "present": false
+          "forbidden": [
+            "Sức mạnh"
+          ],
+          "matched_aliases": [
+            "力量"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Common EN-version Power stat label. The zh-CN alias 力量 is ambiguous in ordinary prose and can also occur inside proper names such as 莱茵力量 (Rhein Kraft); known non-stat compounds, names, descriptive titles, and narrative/metaphorical phrases are explicitly excluded so physical or emotional strength is not normalized to the stat label."
+        },
+        {
+          "id": "common.stat.guts",
+          "preferred": "Guts",
+          "accepted": [
+            "Guts"
+          ],
+          "forbidden": [
+            "Ý chí"
+          ],
+          "matched_aliases": [
+            "根性"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Common EN-version stat label."
+        },
+        {
+          "id": "common.stat.wit",
+          "preferred": "Wit",
+          "accepted": [
+            "Wit"
+          ],
+          "forbidden": [
+            "Trí tuệ"
+          ],
+          "matched_aliases": [
+            "智力"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Common EN-version Wit stat label. The zh-CN alias 智力 is context-sensitive and must not canonicalize ordinary compounds such as 智力扣 (a disentanglement puzzle/toy)."
+        },
+        {
+          "id": "common.skill.generic",
+          "preferred": "Skill",
+          "accepted": [
+            "Skill"
+          ],
+          "forbidden": [
+            "Kỹ năng"
+          ],
+          "matched_aliases": [
+            "技能"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Generic gameplay label stays English. This does not mean individual skill names stay English."
+        },
+        {
+          "id": "common.spark.inheritance_description",
+          "preferred": "Spark",
+          "accepted": [
+            "Spark",
+            "Sparks"
+          ],
+          "forbidden": [
+            "Nhân tố",
+            "nhân tố",
+            "Factor",
+            "factor"
+          ],
+          "matched_aliases": [
+            "因子"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Pinned text_data category 172 is inheritance-description content; 因子 there is the Spark mechanic. Item scope prevents unrelated review IDs from reopening."
         }
       ],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [],
+      "item_context_sha256": "912306472670601049c74dfdc5d79ac8ff45ccb874c61430d9bdbbca9bc57b41"
+    },
+    {
+      "uid": "zhcn:918ea5af3e9d1343eb04ac88",
+      "source_batch": 244,
+      "entry_index": 57,
+      "kind": "text_data",
+      "source_path": "text_data_dict.json",
+      "json_path": [
+        "172",
+        "10610302"
+      ],
+      "key": null,
+      "source_text": "力量上限、根性上限与智力上限提升 ,\\n能获得「通往理想的漫漫长路」技能折扣的因子",
+      "source_fingerprint": "847ff92bacfbc6bf2b6dee748da9e1a21614a09cbd1d1c521c5a48ea8852563c",
+      "current_text": "Tăng giới hạn Power, Guts và Wit,\\nSpark giúp giảm giá Skill 「Con đường dài tới lý tưởng」",
+      "current_fingerprint": "bc3a7091968eed196c2d11b34ce2ac717bafc0726f18223c9e2856393c550f38",
+      "risk_flags": [
+        "community_term"
+      ],
+      "risk_score": 2,
+      "locked_terms": [],
+      "community_terms": [
+        {
+          "id": "common.stat.power",
+          "preferred": "Power",
+          "accepted": [
+            "Power"
+          ],
+          "forbidden": [
+            "Sức mạnh"
+          ],
+          "matched_aliases": [
+            "力量"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Common EN-version Power stat label. The zh-CN alias 力量 is ambiguous in ordinary prose and can also occur inside proper names such as 莱茵力量 (Rhein Kraft); known non-stat compounds, names, descriptive titles, and narrative/metaphorical phrases are explicitly excluded so physical or emotional strength is not normalized to the stat label."
+        },
+        {
+          "id": "common.stat.guts",
+          "preferred": "Guts",
+          "accepted": [
+            "Guts"
+          ],
+          "forbidden": [
+            "Ý chí"
+          ],
+          "matched_aliases": [
+            "根性"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Common EN-version stat label."
+        },
+        {
+          "id": "common.stat.wit",
+          "preferred": "Wit",
+          "accepted": [
+            "Wit"
+          ],
+          "forbidden": [
+            "Trí tuệ"
+          ],
+          "matched_aliases": [
+            "智力"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Common EN-version Wit stat label. The zh-CN alias 智力 is context-sensitive and must not canonicalize ordinary compounds such as 智力扣 (a disentanglement puzzle/toy)."
+        },
+        {
+          "id": "common.skill.generic",
+          "preferred": "Skill",
+          "accepted": [
+            "Skill"
+          ],
+          "forbidden": [
+            "Kỹ năng"
+          ],
+          "matched_aliases": [
+            "技能"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Generic gameplay label stays English. This does not mean individual skill names stay English."
+        },
+        {
+          "id": "common.spark.inheritance_description",
+          "preferred": "Spark",
+          "accepted": [
+            "Spark",
+            "Sparks"
+          ],
+          "forbidden": [
+            "Nhân tố",
+            "nhân tố",
+            "Factor",
+            "factor"
+          ],
+          "matched_aliases": [
+            "因子"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Pinned text_data category 172 is inheritance-description content; 因子 there is the Spark mechanic. Item scope prevents unrelated review IDs from reopening."
+        }
+      ],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [],
+      "item_context_sha256": "912306472670601049c74dfdc5d79ac8ff45ccb874c61430d9bdbbca9bc57b41"
+    },
+    {
+      "uid": "zhcn:6e0f91817e1dfd181e43133f",
+      "source_batch": 244,
+      "entry_index": 58,
+      "kind": "text_data",
+      "source_path": "text_data_dict.json",
+      "json_path": [
+        "172",
+        "10610303"
+      ],
+      "key": null,
+      "source_text": "力量上限、根性上限与智力上限提升 ,\\n能获得「通往理想的漫漫长路」技能折扣的因子",
+      "source_fingerprint": "847ff92bacfbc6bf2b6dee748da9e1a21614a09cbd1d1c521c5a48ea8852563c",
+      "current_text": "Tăng giới hạn Power, Guts và Wit,\\nSpark giúp giảm giá Skill 「Con đường dài tới lý tưởng」",
+      "current_fingerprint": "bc3a7091968eed196c2d11b34ce2ac717bafc0726f18223c9e2856393c550f38",
+      "risk_flags": [
+        "community_term"
+      ],
+      "risk_score": 2,
+      "locked_terms": [],
+      "community_terms": [
+        {
+          "id": "common.stat.power",
+          "preferred": "Power",
+          "accepted": [
+            "Power"
+          ],
+          "forbidden": [
+            "Sức mạnh"
+          ],
+          "matched_aliases": [
+            "力量"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Common EN-version Power stat label. The zh-CN alias 力量 is ambiguous in ordinary prose and can also occur inside proper names such as 莱茵力量 (Rhein Kraft); known non-stat compounds, names, descriptive titles, and narrative/metaphorical phrases are explicitly excluded so physical or emotional strength is not normalized to the stat label."
+        },
+        {
+          "id": "common.stat.guts",
+          "preferred": "Guts",
+          "accepted": [
+            "Guts"
+          ],
+          "forbidden": [
+            "Ý chí"
+          ],
+          "matched_aliases": [
+            "根性"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Common EN-version stat label."
+        },
+        {
+          "id": "common.stat.wit",
+          "preferred": "Wit",
+          "accepted": [
+            "Wit"
+          ],
+          "forbidden": [
+            "Trí tuệ"
+          ],
+          "matched_aliases": [
+            "智力"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Common EN-version Wit stat label. The zh-CN alias 智力 is context-sensitive and must not canonicalize ordinary compounds such as 智力扣 (a disentanglement puzzle/toy)."
+        },
+        {
+          "id": "common.skill.generic",
+          "preferred": "Skill",
+          "accepted": [
+            "Skill"
+          ],
+          "forbidden": [
+            "Kỹ năng"
+          ],
+          "matched_aliases": [
+            "技能"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Generic gameplay label stays English. This does not mean individual skill names stay English."
+        },
+        {
+          "id": "common.spark.inheritance_description",
+          "preferred": "Spark",
+          "accepted": [
+            "Spark",
+            "Sparks"
+          ],
+          "forbidden": [
+            "Nhân tố",
+            "nhân tố",
+            "Factor",
+            "factor"
+          ],
+          "matched_aliases": [
+            "因子"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Pinned text_data category 172 is inheritance-description content; 因子 there is the Spark mechanic. Item scope prevents unrelated review IDs from reopening."
+        }
+      ],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [],
+      "item_context_sha256": "912306472670601049c74dfdc5d79ac8ff45ccb874c61430d9bdbbca9bc57b41"
+    },
+    {
+      "uid": "zhcn:e53e4cede9263be8a31f7e91",
+      "source_batch": 244,
+      "entry_index": 59,
+      "kind": "text_data",
+      "source_path": "text_data_dict.json",
+      "json_path": [
+        "172",
+        "10620101"
+      ],
+      "key": null,
+      "source_text": "耐力上限和智力上限提升 ,\\n能获得「咚、啪、呣」技能折扣的因子",
+      "source_fingerprint": "705cc762d1ec078937809c9229fcf2bd209e8fdbf3b7be6dd849f370e1291a87",
+      "current_text": "Tăng giới hạn Stamina và Wit,\\nSpark giúp giảm giá Skill 「Bùm, bốp, ưm」",
+      "current_fingerprint": "b56aaa673ee527c7fd1db874640fbba0d4acae04bf3746a986b8bfc1d63261c6",
+      "risk_flags": [
+        "community_term"
+      ],
+      "risk_score": 2,
+      "locked_terms": [],
       "community_terms": [
         {
           "id": "common.stat.stamina",
@@ -56,6 +399,307 @@
           "forbidden_present": false,
           "require_accepted": true,
           "basis": "Common EN-version stat label; distinct from the training energy gauge."
+        },
+        {
+          "id": "common.stat.wit",
+          "preferred": "Wit",
+          "accepted": [
+            "Wit"
+          ],
+          "forbidden": [
+            "Trí tuệ"
+          ],
+          "matched_aliases": [
+            "智力"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Common EN-version Wit stat label. The zh-CN alias 智力 is context-sensitive and must not canonicalize ordinary compounds such as 智力扣 (a disentanglement puzzle/toy)."
+        },
+        {
+          "id": "common.skill.generic",
+          "preferred": "Skill",
+          "accepted": [
+            "Skill"
+          ],
+          "forbidden": [
+            "Kỹ năng"
+          ],
+          "matched_aliases": [
+            "技能"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Generic gameplay label stays English. This does not mean individual skill names stay English."
+        },
+        {
+          "id": "common.spark.inheritance_description",
+          "preferred": "Spark",
+          "accepted": [
+            "Spark",
+            "Sparks"
+          ],
+          "forbidden": [
+            "Nhân tố",
+            "nhân tố",
+            "Factor",
+            "factor"
+          ],
+          "matched_aliases": [
+            "因子"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Pinned text_data category 172 is inheritance-description content; 因子 there is the Spark mechanic. Item scope prevents unrelated review IDs from reopening."
+        }
+      ],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [],
+      "item_context_sha256": "11c3d320975b78872bffd6ec077c96dccbbf8ec1874ec71a2ad9c3aca1fc70a8"
+    },
+    {
+      "uid": "zhcn:a8fd9e9ccb44c03be88aa9c9",
+      "source_batch": 244,
+      "entry_index": 60,
+      "kind": "text_data",
+      "source_path": "text_data_dict.json",
+      "json_path": [
+        "172",
+        "10620102"
+      ],
+      "key": null,
+      "source_text": "耐力上限和智力上限提升 ,\\n能获得「咚、啪、呣」技能折扣的因子",
+      "source_fingerprint": "705cc762d1ec078937809c9229fcf2bd209e8fdbf3b7be6dd849f370e1291a87",
+      "current_text": "Giới hạn Stamina và Wit tăng,\\nSpark giúp giảm giá Skill 「Bùm, bốp, ưm」",
+      "current_fingerprint": "a698d79afc77e9c255d9c4cba0dc3ea30dcc1e293b7f20b46b21ab1d3b0cdcb3",
+      "risk_flags": [
+        "community_term"
+      ],
+      "risk_score": 2,
+      "locked_terms": [],
+      "community_terms": [
+        {
+          "id": "common.stat.stamina",
+          "preferred": "Stamina",
+          "accepted": [
+            "Stamina"
+          ],
+          "forbidden": [
+            "Thể lực"
+          ],
+          "matched_aliases": [
+            "耐力"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Common EN-version stat label; distinct from the training energy gauge."
+        },
+        {
+          "id": "common.stat.wit",
+          "preferred": "Wit",
+          "accepted": [
+            "Wit"
+          ],
+          "forbidden": [
+            "Trí tuệ"
+          ],
+          "matched_aliases": [
+            "智力"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Common EN-version Wit stat label. The zh-CN alias 智力 is context-sensitive and must not canonicalize ordinary compounds such as 智力扣 (a disentanglement puzzle/toy)."
+        },
+        {
+          "id": "common.skill.generic",
+          "preferred": "Skill",
+          "accepted": [
+            "Skill"
+          ],
+          "forbidden": [
+            "Kỹ năng"
+          ],
+          "matched_aliases": [
+            "技能"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Generic gameplay label stays English. This does not mean individual skill names stay English."
+        },
+        {
+          "id": "common.spark.inheritance_description",
+          "preferred": "Spark",
+          "accepted": [
+            "Spark",
+            "Sparks"
+          ],
+          "forbidden": [
+            "Nhân tố",
+            "nhân tố",
+            "Factor",
+            "factor"
+          ],
+          "matched_aliases": [
+            "因子"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Pinned text_data category 172 is inheritance-description content; 因子 there is the Spark mechanic. Item scope prevents unrelated review IDs from reopening."
+        }
+      ],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [],
+      "item_context_sha256": "11c3d320975b78872bffd6ec077c96dccbbf8ec1874ec71a2ad9c3aca1fc70a8"
+    },
+    {
+      "uid": "zhcn:eab79f7d30ee92f7edd31596",
+      "source_batch": 244,
+      "entry_index": 61,
+      "kind": "text_data",
+      "source_path": "text_data_dict.json",
+      "json_path": [
+        "172",
+        "10620103"
+      ],
+      "key": null,
+      "source_text": "耐力上限和智力上限提升 ,\\n能获得「咚、啪、呣」技能折扣的因子",
+      "source_fingerprint": "705cc762d1ec078937809c9229fcf2bd209e8fdbf3b7be6dd849f370e1291a87",
+      "current_text": "Giới hạn Stamina và Wit tăng,\\nSpark giúp giảm giá Skill 「Bùm, bốp, ưm」",
+      "current_fingerprint": "a698d79afc77e9c255d9c4cba0dc3ea30dcc1e293b7f20b46b21ab1d3b0cdcb3",
+      "risk_flags": [
+        "community_term"
+      ],
+      "risk_score": 2,
+      "locked_terms": [],
+      "community_terms": [
+        {
+          "id": "common.stat.stamina",
+          "preferred": "Stamina",
+          "accepted": [
+            "Stamina"
+          ],
+          "forbidden": [
+            "Thể lực"
+          ],
+          "matched_aliases": [
+            "耐力"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Common EN-version stat label; distinct from the training energy gauge."
+        },
+        {
+          "id": "common.stat.wit",
+          "preferred": "Wit",
+          "accepted": [
+            "Wit"
+          ],
+          "forbidden": [
+            "Trí tuệ"
+          ],
+          "matched_aliases": [
+            "智力"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Common EN-version Wit stat label. The zh-CN alias 智力 is context-sensitive and must not canonicalize ordinary compounds such as 智力扣 (a disentanglement puzzle/toy)."
+        },
+        {
+          "id": "common.skill.generic",
+          "preferred": "Skill",
+          "accepted": [
+            "Skill"
+          ],
+          "forbidden": [
+            "Kỹ năng"
+          ],
+          "matched_aliases": [
+            "技能"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Generic gameplay label stays English. This does not mean individual skill names stay English."
+        },
+        {
+          "id": "common.spark.inheritance_description",
+          "preferred": "Spark",
+          "accepted": [
+            "Spark",
+            "Sparks"
+          ],
+          "forbidden": [
+            "Nhân tố",
+            "nhân tố",
+            "Factor",
+            "factor"
+          ],
+          "matched_aliases": [
+            "因子"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Pinned text_data category 172 is inheritance-description content; 因子 there is the Spark mechanic. Item scope prevents unrelated review IDs from reopening."
+        }
+      ],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [],
+      "item_context_sha256": "11c3d320975b78872bffd6ec077c96dccbbf8ec1874ec71a2ad9c3aca1fc70a8"
+    },
+    {
+      "uid": "zhcn:b34622364fb3ab16ae79944a",
+      "source_batch": 244,
+      "entry_index": 62,
+      "kind": "text_data",
+      "source_path": "text_data_dict.json",
+      "json_path": [
+        "172",
+        "10620201"
+      ],
+      "key": null,
+      "source_text": "速度上限和力量上限提升 ,\\n能获得「车轮滚滚！？动力驱动」技能折扣的因子",
+      "source_fingerprint": "994c6e743c0921a52afc3f1e30caa1d3be2d8324f113c9af53c4f1d719624526",
+      "current_text": "Giới hạn Speed và Power tăng,\\nSpark giúp giảm giá Skill 「Bánh xe lăn bánh!? Truyền động mạnh mẽ」",
+      "current_fingerprint": "cfd06c2544a60e6da839a8fb7df69a86666b62ce915a57a0f1ca4000c9b42b52",
+      "risk_flags": [
+        "community_term"
+      ],
+      "risk_score": 2,
+      "locked_terms": [],
+      "community_terms": [
+        {
+          "id": "common.stat.speed.context",
+          "preferred": "Speed",
+          "accepted": [
+            "Speed"
+          ],
+          "forbidden": [],
+          "matched_aliases": [
+            "速度上限"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Narrow player-facing Speed stat contexts. No global forbidden Tốc độ token is used here because the same sentence may also describe literal/max/running speed."
         },
         {
           "id": "common.stat.power",
@@ -118,23 +762,941 @@
       "source_bridge_risks": [],
       "source_bridge_policy_sha256": null,
       "canonical_findings": [],
-      "item_context_sha256": "53544a022eb77f5f527b316a6e63e81e9441ea47668d514e3146a1d4a65010e8"
+      "item_context_sha256": "2688d7353fff76de7a9781925aad3fdda24cfebc83ed518fea062c288ecce7aa"
     },
     {
-      "uid": "zhcn:8c62fc52e3a43cfcc29af6c3",
-      "source_batch": 247,
-      "entry_index": 20,
+      "uid": "zhcn:f78036e69d24c2f74a83bc43",
+      "source_batch": 244,
+      "entry_index": 63,
       "kind": "text_data",
       "source_path": "text_data_dict.json",
       "json_path": [
         "172",
-        "10990101"
+        "10620202"
       ],
       "key": null,
-      "source_text": "速度上限、耐力上限和智力上限提升 ,\\n能获得「闪耀☆苫小牧」技能折扣的因子",
-      "source_fingerprint": "084403dd8cda46705d280fa246af8e3a9dfb0af2c26401d10baa0f21a4f34f86",
-      "current_text": "Giới hạn Speed, Stamina và Wit tăng,\\nSpark giúp giảm giá Skill 「Tỏa sáng☆Tomakomai」",
-      "current_fingerprint": "2c59731cac86c2b1d1389f2cff9f877a1600eec89d888e2325229720ae4dfedf",
+      "source_text": "速度上限和力量上限提升 ,\\n能获得「车轮滚滚！？动力驱动」技能折扣的因子",
+      "source_fingerprint": "994c6e743c0921a52afc3f1e30caa1d3be2d8324f113c9af53c4f1d719624526",
+      "current_text": "Giới hạn Speed và Power tăng,\\nSpark giúp giảm giá Skill 「Bánh xe lăn bánh!? Truyền động mạnh mẽ」",
+      "current_fingerprint": "cfd06c2544a60e6da839a8fb7df69a86666b62ce915a57a0f1ca4000c9b42b52",
+      "risk_flags": [
+        "community_term"
+      ],
+      "risk_score": 2,
+      "locked_terms": [],
+      "community_terms": [
+        {
+          "id": "common.stat.speed.context",
+          "preferred": "Speed",
+          "accepted": [
+            "Speed"
+          ],
+          "forbidden": [],
+          "matched_aliases": [
+            "速度上限"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Narrow player-facing Speed stat contexts. No global forbidden Tốc độ token is used here because the same sentence may also describe literal/max/running speed."
+        },
+        {
+          "id": "common.stat.power",
+          "preferred": "Power",
+          "accepted": [
+            "Power"
+          ],
+          "forbidden": [
+            "Sức mạnh"
+          ],
+          "matched_aliases": [
+            "力量"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Common EN-version Power stat label. The zh-CN alias 力量 is ambiguous in ordinary prose and can also occur inside proper names such as 莱茵力量 (Rhein Kraft); known non-stat compounds, names, descriptive titles, and narrative/metaphorical phrases are explicitly excluded so physical or emotional strength is not normalized to the stat label."
+        },
+        {
+          "id": "common.skill.generic",
+          "preferred": "Skill",
+          "accepted": [
+            "Skill"
+          ],
+          "forbidden": [
+            "Kỹ năng"
+          ],
+          "matched_aliases": [
+            "技能"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Generic gameplay label stays English. This does not mean individual skill names stay English."
+        },
+        {
+          "id": "common.spark.inheritance_description",
+          "preferred": "Spark",
+          "accepted": [
+            "Spark",
+            "Sparks"
+          ],
+          "forbidden": [
+            "Nhân tố",
+            "nhân tố",
+            "Factor",
+            "factor"
+          ],
+          "matched_aliases": [
+            "因子"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Pinned text_data category 172 is inheritance-description content; 因子 there is the Spark mechanic. Item scope prevents unrelated review IDs from reopening."
+        }
+      ],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [],
+      "item_context_sha256": "2688d7353fff76de7a9781925aad3fdda24cfebc83ed518fea062c288ecce7aa"
+    },
+    {
+      "uid": "zhcn:0061ac002778f54cb518a5c0",
+      "source_batch": 244,
+      "entry_index": 64,
+      "kind": "text_data",
+      "source_path": "text_data_dict.json",
+      "json_path": [
+        "172",
+        "10620203"
+      ],
+      "key": null,
+      "source_text": "速度上限和力量上限提升 ,\\n能获得「车轮滚滚！？动力驱动」技能折扣的因子",
+      "source_fingerprint": "994c6e743c0921a52afc3f1e30caa1d3be2d8324f113c9af53c4f1d719624526",
+      "current_text": "Giới hạn Speed và Power tăng,\\nSpark giúp giảm giá Skill 「Bánh xe lăn bánh!? Truyền động mạnh mẽ」",
+      "current_fingerprint": "cfd06c2544a60e6da839a8fb7df69a86666b62ce915a57a0f1ca4000c9b42b52",
+      "risk_flags": [
+        "community_term"
+      ],
+      "risk_score": 2,
+      "locked_terms": [],
+      "community_terms": [
+        {
+          "id": "common.stat.speed.context",
+          "preferred": "Speed",
+          "accepted": [
+            "Speed"
+          ],
+          "forbidden": [],
+          "matched_aliases": [
+            "速度上限"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Narrow player-facing Speed stat contexts. No global forbidden Tốc độ token is used here because the same sentence may also describe literal/max/running speed."
+        },
+        {
+          "id": "common.stat.power",
+          "preferred": "Power",
+          "accepted": [
+            "Power"
+          ],
+          "forbidden": [
+            "Sức mạnh"
+          ],
+          "matched_aliases": [
+            "力量"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Common EN-version Power stat label. The zh-CN alias 力量 is ambiguous in ordinary prose and can also occur inside proper names such as 莱茵力量 (Rhein Kraft); known non-stat compounds, names, descriptive titles, and narrative/metaphorical phrases are explicitly excluded so physical or emotional strength is not normalized to the stat label."
+        },
+        {
+          "id": "common.skill.generic",
+          "preferred": "Skill",
+          "accepted": [
+            "Skill"
+          ],
+          "forbidden": [
+            "Kỹ năng"
+          ],
+          "matched_aliases": [
+            "技能"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Generic gameplay label stays English. This does not mean individual skill names stay English."
+        },
+        {
+          "id": "common.spark.inheritance_description",
+          "preferred": "Spark",
+          "accepted": [
+            "Spark",
+            "Sparks"
+          ],
+          "forbidden": [
+            "Nhân tố",
+            "nhân tố",
+            "Factor",
+            "factor"
+          ],
+          "matched_aliases": [
+            "因子"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Pinned text_data category 172 is inheritance-description content; 因子 there is the Spark mechanic. Item scope prevents unrelated review IDs from reopening."
+        }
+      ],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [],
+      "item_context_sha256": "2688d7353fff76de7a9781925aad3fdda24cfebc83ed518fea062c288ecce7aa"
+    },
+    {
+      "uid": "zhcn:031b4cf9d0929ec670e7a6cb",
+      "source_batch": 244,
+      "entry_index": 65,
+      "kind": "text_data",
+      "source_path": "text_data_dict.json",
+      "json_path": [
+        "172",
+        "10630101"
+      ],
+      "key": null,
+      "source_text": "根性上限和智力上限提升 ,\\n能获得「百炼成钢」技能折扣的因子",
+      "source_fingerprint": "4f9d8d9e1666a8a491c6fda880ebc8d50019f1ba7a353e829a6db296763827b7",
+      "current_text": "Giới hạn Guts và Wit tăng,\\nSpark giúp giảm giá Skill 「Trăm lần tôi luyện thành thép」",
+      "current_fingerprint": "050dca280a8650f280d8f630e65ee918f0ed92081062610f0f7922e050101643",
+      "risk_flags": [
+        "community_term"
+      ],
+      "risk_score": 2,
+      "locked_terms": [],
+      "community_terms": [
+        {
+          "id": "common.stat.guts",
+          "preferred": "Guts",
+          "accepted": [
+            "Guts"
+          ],
+          "forbidden": [
+            "Ý chí"
+          ],
+          "matched_aliases": [
+            "根性"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Common EN-version stat label."
+        },
+        {
+          "id": "common.stat.wit",
+          "preferred": "Wit",
+          "accepted": [
+            "Wit"
+          ],
+          "forbidden": [
+            "Trí tuệ"
+          ],
+          "matched_aliases": [
+            "智力"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Common EN-version Wit stat label. The zh-CN alias 智力 is context-sensitive and must not canonicalize ordinary compounds such as 智力扣 (a disentanglement puzzle/toy)."
+        },
+        {
+          "id": "common.skill.generic",
+          "preferred": "Skill",
+          "accepted": [
+            "Skill"
+          ],
+          "forbidden": [
+            "Kỹ năng"
+          ],
+          "matched_aliases": [
+            "技能"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Generic gameplay label stays English. This does not mean individual skill names stay English."
+        },
+        {
+          "id": "common.spark.inheritance_description",
+          "preferred": "Spark",
+          "accepted": [
+            "Spark",
+            "Sparks"
+          ],
+          "forbidden": [
+            "Nhân tố",
+            "nhân tố",
+            "Factor",
+            "factor"
+          ],
+          "matched_aliases": [
+            "因子"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Pinned text_data category 172 is inheritance-description content; 因子 there is the Spark mechanic. Item scope prevents unrelated review IDs from reopening."
+        }
+      ],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [],
+      "item_context_sha256": "fd92bcaa9be0c16b77c80fdddc73848c38e25a416bafd2f97f3821df5bc6c9d6"
+    },
+    {
+      "uid": "zhcn:f4e5776a91fedfc8e6294205",
+      "source_batch": 244,
+      "entry_index": 66,
+      "kind": "text_data",
+      "source_path": "text_data_dict.json",
+      "json_path": [
+        "172",
+        "10630102"
+      ],
+      "key": null,
+      "source_text": "根性上限和智力上限提升 ,\\n能获得「百炼成钢」技能折扣的因子",
+      "source_fingerprint": "4f9d8d9e1666a8a491c6fda880ebc8d50019f1ba7a353e829a6db296763827b7",
+      "current_text": "Giới hạn Guts và Wit tăng,\\nSpark giúp giảm giá Skill 「Trăm lần tôi luyện thành thép」",
+      "current_fingerprint": "050dca280a8650f280d8f630e65ee918f0ed92081062610f0f7922e050101643",
+      "risk_flags": [
+        "community_term"
+      ],
+      "risk_score": 2,
+      "locked_terms": [],
+      "community_terms": [
+        {
+          "id": "common.stat.guts",
+          "preferred": "Guts",
+          "accepted": [
+            "Guts"
+          ],
+          "forbidden": [
+            "Ý chí"
+          ],
+          "matched_aliases": [
+            "根性"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Common EN-version stat label."
+        },
+        {
+          "id": "common.stat.wit",
+          "preferred": "Wit",
+          "accepted": [
+            "Wit"
+          ],
+          "forbidden": [
+            "Trí tuệ"
+          ],
+          "matched_aliases": [
+            "智力"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Common EN-version Wit stat label. The zh-CN alias 智力 is context-sensitive and must not canonicalize ordinary compounds such as 智力扣 (a disentanglement puzzle/toy)."
+        },
+        {
+          "id": "common.skill.generic",
+          "preferred": "Skill",
+          "accepted": [
+            "Skill"
+          ],
+          "forbidden": [
+            "Kỹ năng"
+          ],
+          "matched_aliases": [
+            "技能"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Generic gameplay label stays English. This does not mean individual skill names stay English."
+        },
+        {
+          "id": "common.spark.inheritance_description",
+          "preferred": "Spark",
+          "accepted": [
+            "Spark",
+            "Sparks"
+          ],
+          "forbidden": [
+            "Nhân tố",
+            "nhân tố",
+            "Factor",
+            "factor"
+          ],
+          "matched_aliases": [
+            "因子"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Pinned text_data category 172 is inheritance-description content; 因子 there is the Spark mechanic. Item scope prevents unrelated review IDs from reopening."
+        }
+      ],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [],
+      "item_context_sha256": "fd92bcaa9be0c16b77c80fdddc73848c38e25a416bafd2f97f3821df5bc6c9d6"
+    },
+    {
+      "uid": "zhcn:4eaa01ae85df4daff28fa337",
+      "source_batch": 244,
+      "entry_index": 67,
+      "kind": "text_data",
+      "source_path": "text_data_dict.json",
+      "json_path": [
+        "172",
+        "10630103"
+      ],
+      "key": null,
+      "source_text": "根性上限和智力上限提升 ,\\n能获得「百炼成钢」技能折扣的因子",
+      "source_fingerprint": "4f9d8d9e1666a8a491c6fda880ebc8d50019f1ba7a353e829a6db296763827b7",
+      "current_text": "Giới hạn Guts và Wit tăng,\\nSpark giúp giảm giá Skill 「Trăm lần tôi luyện thành thép」",
+      "current_fingerprint": "050dca280a8650f280d8f630e65ee918f0ed92081062610f0f7922e050101643",
+      "risk_flags": [
+        "community_term"
+      ],
+      "risk_score": 2,
+      "locked_terms": [],
+      "community_terms": [
+        {
+          "id": "common.stat.guts",
+          "preferred": "Guts",
+          "accepted": [
+            "Guts"
+          ],
+          "forbidden": [
+            "Ý chí"
+          ],
+          "matched_aliases": [
+            "根性"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Common EN-version stat label."
+        },
+        {
+          "id": "common.stat.wit",
+          "preferred": "Wit",
+          "accepted": [
+            "Wit"
+          ],
+          "forbidden": [
+            "Trí tuệ"
+          ],
+          "matched_aliases": [
+            "智力"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Common EN-version Wit stat label. The zh-CN alias 智力 is context-sensitive and must not canonicalize ordinary compounds such as 智力扣 (a disentanglement puzzle/toy)."
+        },
+        {
+          "id": "common.skill.generic",
+          "preferred": "Skill",
+          "accepted": [
+            "Skill"
+          ],
+          "forbidden": [
+            "Kỹ năng"
+          ],
+          "matched_aliases": [
+            "技能"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Generic gameplay label stays English. This does not mean individual skill names stay English."
+        },
+        {
+          "id": "common.spark.inheritance_description",
+          "preferred": "Spark",
+          "accepted": [
+            "Spark",
+            "Sparks"
+          ],
+          "forbidden": [
+            "Nhân tố",
+            "nhân tố",
+            "Factor",
+            "factor"
+          ],
+          "matched_aliases": [
+            "因子"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Pinned text_data category 172 is inheritance-description content; 因子 there is the Spark mechanic. Item scope prevents unrelated review IDs from reopening."
+        }
+      ],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [],
+      "item_context_sha256": "fd92bcaa9be0c16b77c80fdddc73848c38e25a416bafd2f97f3821df5bc6c9d6"
+    },
+    {
+      "uid": "zhcn:83ff44b754bd27fae848f234",
+      "source_batch": 244,
+      "entry_index": 68,
+      "kind": "text_data",
+      "source_path": "text_data_dict.json",
+      "json_path": [
+        "172",
+        "10630201"
+      ],
+      "key": null,
+      "source_text": "耐力上限、力量上限与毅力上限提升，\\n可获得「千岁，以此流转」技能灵感的因子",
+      "source_fingerprint": "eea5a03c89b0308b2536450597bdab2a1c649cd4968555d06866bfcdeb7688ae",
+      "current_text": "Giới hạn Stamina, Power và Guts tăng,\\nSpark giúp nhận Skill Hint cho Skill 「Ngàn năm, cứ thế xoay vần」",
+      "current_fingerprint": "30c0e8f2012720a4d85a57b79c8b5b1ca94989b7215a3acb7e59d002e1d650e2",
+      "risk_flags": [
+        "community_term"
+      ],
+      "risk_score": 2,
+      "locked_terms": [],
+      "community_terms": [
+        {
+          "id": "common.stat.stamina",
+          "preferred": "Stamina",
+          "accepted": [
+            "Stamina"
+          ],
+          "forbidden": [
+            "Thể lực"
+          ],
+          "matched_aliases": [
+            "耐力"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Common EN-version stat label; distinct from the training energy gauge."
+        },
+        {
+          "id": "common.stat.power",
+          "preferred": "Power",
+          "accepted": [
+            "Power"
+          ],
+          "forbidden": [
+            "Sức mạnh"
+          ],
+          "matched_aliases": [
+            "力量"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Common EN-version Power stat label. The zh-CN alias 力量 is ambiguous in ordinary prose and can also occur inside proper names such as 莱茵力量 (Rhein Kraft); known non-stat compounds, names, descriptive titles, and narrative/metaphorical phrases are explicitly excluded so physical or emotional strength is not normalized to the stat label."
+        },
+        {
+          "id": "common.stat.guts",
+          "preferred": "Guts",
+          "accepted": [
+            "Guts"
+          ],
+          "forbidden": [
+            "Ý chí"
+          ],
+          "matched_aliases": [
+            "毅力"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Common EN-version stat label."
+        },
+        {
+          "id": "common.skill.generic",
+          "preferred": "Skill",
+          "accepted": [
+            "Skill"
+          ],
+          "forbidden": [
+            "Kỹ năng"
+          ],
+          "matched_aliases": [
+            "技能"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Generic gameplay label stays English. This does not mean individual skill names stay English."
+        },
+        {
+          "id": "common.skill_hint",
+          "preferred": "Skill Hint",
+          "accepted": [
+            "Skill Hint",
+            "Skill Hints"
+          ],
+          "forbidden": [
+            "Gợi ý Skill",
+            "Gợi ý kỹ năng",
+            "Cảm hứng Skill",
+            "Cảm hứng kỹ năng"
+          ],
+          "matched_aliases": [
+            "技能灵感"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Skill Hint is a gameplay concept. Only the full Skill-Hint compounds are canonical aliases here; bare 提示/灵感/启示 remain ordinary language unless a narrower context rule proves otherwise."
+        },
+        {
+          "id": "common.spark.inheritance_description",
+          "preferred": "Spark",
+          "accepted": [
+            "Spark",
+            "Sparks"
+          ],
+          "forbidden": [
+            "Nhân tố",
+            "nhân tố",
+            "Factor",
+            "factor"
+          ],
+          "matched_aliases": [
+            "因子"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Pinned text_data category 172 is inheritance-description content; 因子 there is the Spark mechanic. Item scope prevents unrelated review IDs from reopening."
+        }
+      ],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [],
+      "item_context_sha256": "695436315d9a01bfe7150a48063e4c7c5475e110b101b78cad9d88abaf681c92"
+    },
+    {
+      "uid": "zhcn:e18fa97ec8a38071f5d8da57",
+      "source_batch": 244,
+      "entry_index": 69,
+      "kind": "text_data",
+      "source_path": "text_data_dict.json",
+      "json_path": [
+        "172",
+        "10630202"
+      ],
+      "key": null,
+      "source_text": "耐力上限、力量上限与毅力上限提升，\\n可获得「千岁，以此流转」技能灵感的因子",
+      "source_fingerprint": "eea5a03c89b0308b2536450597bdab2a1c649cd4968555d06866bfcdeb7688ae",
+      "current_text": "Giới hạn Stamina, Power và Guts tăng,\\nSpark giúp nhận Skill Hint cho Skill 「Ngàn năm, cứ thế xoay vần」",
+      "current_fingerprint": "30c0e8f2012720a4d85a57b79c8b5b1ca94989b7215a3acb7e59d002e1d650e2",
+      "risk_flags": [
+        "community_term"
+      ],
+      "risk_score": 2,
+      "locked_terms": [],
+      "community_terms": [
+        {
+          "id": "common.stat.stamina",
+          "preferred": "Stamina",
+          "accepted": [
+            "Stamina"
+          ],
+          "forbidden": [
+            "Thể lực"
+          ],
+          "matched_aliases": [
+            "耐力"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Common EN-version stat label; distinct from the training energy gauge."
+        },
+        {
+          "id": "common.stat.power",
+          "preferred": "Power",
+          "accepted": [
+            "Power"
+          ],
+          "forbidden": [
+            "Sức mạnh"
+          ],
+          "matched_aliases": [
+            "力量"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Common EN-version Power stat label. The zh-CN alias 力量 is ambiguous in ordinary prose and can also occur inside proper names such as 莱茵力量 (Rhein Kraft); known non-stat compounds, names, descriptive titles, and narrative/metaphorical phrases are explicitly excluded so physical or emotional strength is not normalized to the stat label."
+        },
+        {
+          "id": "common.stat.guts",
+          "preferred": "Guts",
+          "accepted": [
+            "Guts"
+          ],
+          "forbidden": [
+            "Ý chí"
+          ],
+          "matched_aliases": [
+            "毅力"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Common EN-version stat label."
+        },
+        {
+          "id": "common.skill.generic",
+          "preferred": "Skill",
+          "accepted": [
+            "Skill"
+          ],
+          "forbidden": [
+            "Kỹ năng"
+          ],
+          "matched_aliases": [
+            "技能"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Generic gameplay label stays English. This does not mean individual skill names stay English."
+        },
+        {
+          "id": "common.skill_hint",
+          "preferred": "Skill Hint",
+          "accepted": [
+            "Skill Hint",
+            "Skill Hints"
+          ],
+          "forbidden": [
+            "Gợi ý Skill",
+            "Gợi ý kỹ năng",
+            "Cảm hứng Skill",
+            "Cảm hứng kỹ năng"
+          ],
+          "matched_aliases": [
+            "技能灵感"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Skill Hint is a gameplay concept. Only the full Skill-Hint compounds are canonical aliases here; bare 提示/灵感/启示 remain ordinary language unless a narrower context rule proves otherwise."
+        },
+        {
+          "id": "common.spark.inheritance_description",
+          "preferred": "Spark",
+          "accepted": [
+            "Spark",
+            "Sparks"
+          ],
+          "forbidden": [
+            "Nhân tố",
+            "nhân tố",
+            "Factor",
+            "factor"
+          ],
+          "matched_aliases": [
+            "因子"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Pinned text_data category 172 is inheritance-description content; 因子 there is the Spark mechanic. Item scope prevents unrelated review IDs from reopening."
+        }
+      ],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [],
+      "item_context_sha256": "695436315d9a01bfe7150a48063e4c7c5475e110b101b78cad9d88abaf681c92"
+    },
+    {
+      "uid": "zhcn:6e8c3562aecf8a81a1d7d29c",
+      "source_batch": 244,
+      "entry_index": 70,
+      "kind": "text_data",
+      "source_path": "text_data_dict.json",
+      "json_path": [
+        "172",
+        "10630203"
+      ],
+      "key": null,
+      "source_text": "耐力上限、力量上限与毅力上限提升，\\n可获得「千岁，以此流转」技能灵感的因子",
+      "source_fingerprint": "eea5a03c89b0308b2536450597bdab2a1c649cd4968555d06866bfcdeb7688ae",
+      "current_text": "Giới hạn Stamina, Power và Guts tăng,\\nSpark giúp nhận Skill Hint cho Skill 「Ngàn năm, cứ thế xoay vần」",
+      "current_fingerprint": "30c0e8f2012720a4d85a57b79c8b5b1ca94989b7215a3acb7e59d002e1d650e2",
+      "risk_flags": [
+        "community_term"
+      ],
+      "risk_score": 2,
+      "locked_terms": [],
+      "community_terms": [
+        {
+          "id": "common.stat.stamina",
+          "preferred": "Stamina",
+          "accepted": [
+            "Stamina"
+          ],
+          "forbidden": [
+            "Thể lực"
+          ],
+          "matched_aliases": [
+            "耐力"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Common EN-version stat label; distinct from the training energy gauge."
+        },
+        {
+          "id": "common.stat.power",
+          "preferred": "Power",
+          "accepted": [
+            "Power"
+          ],
+          "forbidden": [
+            "Sức mạnh"
+          ],
+          "matched_aliases": [
+            "力量"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Common EN-version Power stat label. The zh-CN alias 力量 is ambiguous in ordinary prose and can also occur inside proper names such as 莱茵力量 (Rhein Kraft); known non-stat compounds, names, descriptive titles, and narrative/metaphorical phrases are explicitly excluded so physical or emotional strength is not normalized to the stat label."
+        },
+        {
+          "id": "common.stat.guts",
+          "preferred": "Guts",
+          "accepted": [
+            "Guts"
+          ],
+          "forbidden": [
+            "Ý chí"
+          ],
+          "matched_aliases": [
+            "毅力"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Common EN-version stat label."
+        },
+        {
+          "id": "common.skill.generic",
+          "preferred": "Skill",
+          "accepted": [
+            "Skill"
+          ],
+          "forbidden": [
+            "Kỹ năng"
+          ],
+          "matched_aliases": [
+            "技能"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Generic gameplay label stays English. This does not mean individual skill names stay English."
+        },
+        {
+          "id": "common.skill_hint",
+          "preferred": "Skill Hint",
+          "accepted": [
+            "Skill Hint",
+            "Skill Hints"
+          ],
+          "forbidden": [
+            "Gợi ý Skill",
+            "Gợi ý kỹ năng",
+            "Cảm hứng Skill",
+            "Cảm hứng kỹ năng"
+          ],
+          "matched_aliases": [
+            "技能灵感"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Skill Hint is a gameplay concept. Only the full Skill-Hint compounds are canonical aliases here; bare 提示/灵感/启示 remain ordinary language unless a narrower context rule proves otherwise."
+        },
+        {
+          "id": "common.spark.inheritance_description",
+          "preferred": "Spark",
+          "accepted": [
+            "Spark",
+            "Sparks"
+          ],
+          "forbidden": [
+            "Nhân tố",
+            "nhân tố",
+            "Factor",
+            "factor"
+          ],
+          "matched_aliases": [
+            "因子"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Pinned text_data category 172 is inheritance-description content; 因子 there is the Spark mechanic. Item scope prevents unrelated review IDs from reopening."
+        }
+      ],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [],
+      "item_context_sha256": "695436315d9a01bfe7150a48063e4c7c5475e110b101b78cad9d88abaf681c92"
+    },
+    {
+      "uid": "zhcn:496c7641e930ad71c50a5da1",
+      "source_batch": 244,
+      "entry_index": 71,
+      "kind": "text_data",
+      "source_path": "text_data_dict.json",
+      "json_path": [
+        "172",
+        "10640101"
+      ],
+      "key": null,
+      "source_text": "速度上限、耐力上限和智力上限提升 ,\\n能获得「冠绝之路」技能折扣的因子",
+      "source_fingerprint": "5feed7643c26bbd02286731b2d734565f1ede7018b6c1883cef3b581831d4e9b",
+      "current_text": "Giới hạn Speed, Stamina và Wit tăng,\\nSpark giúp giảm giá Skill 「Con đường độc tôn」",
+      "current_fingerprint": "ffe996481367d2dd6cf7b6dd91890207b9137c4fc973eddf563f2e5c8923c4d7",
       "risk_flags": [
         "community_term"
       ],
@@ -237,20 +1799,20 @@
       "item_context_sha256": "fcf8c65814ece11aa77b1914d8cf32dd11291f8f1c281521e749e44195c450b3"
     },
     {
-      "uid": "zhcn:a5fd55b0ce0527058cadae1d",
-      "source_batch": 247,
-      "entry_index": 21,
+      "uid": "zhcn:8f059d8ea68b4fb1d129de3c",
+      "source_batch": 244,
+      "entry_index": 72,
       "kind": "text_data",
       "source_path": "text_data_dict.json",
       "json_path": [
         "172",
-        "10990102"
+        "10640102"
       ],
       "key": null,
-      "source_text": "速度上限、耐力上限和智力上限提升 ,\\n能获得「闪耀☆苫小牧」技能折扣的因子",
-      "source_fingerprint": "084403dd8cda46705d280fa246af8e3a9dfb0af2c26401d10baa0f21a4f34f86",
-      "current_text": "Giới hạn Speed, Stamina và Wit tăng,\\nSpark giúp giảm giá Skill 「Tỏa sáng☆Tomakomai」",
-      "current_fingerprint": "2c59731cac86c2b1d1389f2cff9f877a1600eec89d888e2325229720ae4dfedf",
+      "source_text": "速度上限、耐力上限和智力上限提升 ,\\n能获得「冠绝之路」技能折扣的因子",
+      "source_fingerprint": "5feed7643c26bbd02286731b2d734565f1ede7018b6c1883cef3b581831d4e9b",
+      "current_text": "Giới hạn Speed, Stamina và Wit tăng,\\nSpark giúp giảm giá Skill 「Con đường độc tôn」",
+      "current_fingerprint": "ffe996481367d2dd6cf7b6dd91890207b9137c4fc973eddf563f2e5c8923c4d7",
       "risk_flags": [
         "community_term"
       ],
@@ -353,20 +1915,20 @@
       "item_context_sha256": "fcf8c65814ece11aa77b1914d8cf32dd11291f8f1c281521e749e44195c450b3"
     },
     {
-      "uid": "zhcn:49cab5e5671e583cc7290bcd",
-      "source_batch": 247,
-      "entry_index": 22,
+      "uid": "zhcn:91212609fff0676d02872378",
+      "source_batch": 244,
+      "entry_index": 73,
       "kind": "text_data",
       "source_path": "text_data_dict.json",
       "json_path": [
         "172",
-        "10990103"
+        "10640103"
       ],
       "key": null,
-      "source_text": "速度上限、耐力上限和智力上限提升 ,\\n能获得「闪耀☆苫小牧」技能折扣的因子",
-      "source_fingerprint": "084403dd8cda46705d280fa246af8e3a9dfb0af2c26401d10baa0f21a4f34f86",
-      "current_text": "Giới hạn Speed, Stamina và Wit tăng,\\nSpark giúp giảm giá Skill 「Tỏa sáng☆Tomakomai」",
-      "current_fingerprint": "2c59731cac86c2b1d1389f2cff9f877a1600eec89d888e2325229720ae4dfedf",
+      "source_text": "速度上限、耐力上限和智力上限提升 ,\\n能获得「冠绝之路」技能折扣的因子",
+      "source_fingerprint": "5feed7643c26bbd02286731b2d734565f1ede7018b6c1883cef3b581831d4e9b",
+      "current_text": "Giới hạn Speed, Stamina và Wit tăng,\\nSpark giúp giảm giá Skill 「Con đường độc tôn」",
+      "current_fingerprint": "ffe996481367d2dd6cf7b6dd91890207b9137c4fc973eddf563f2e5c8923c4d7",
       "risk_flags": [
         "community_term"
       ],
@@ -469,25 +2031,24 @@
       "item_context_sha256": "fcf8c65814ece11aa77b1914d8cf32dd11291f8f1c281521e749e44195c450b3"
     },
     {
-      "uid": "zhcn:c8123ee91e5d4d205d3b3046",
-      "source_batch": 247,
-      "entry_index": 23,
+      "uid": "zhcn:acfbc3e9304722fc9453375a",
+      "source_batch": 244,
+      "entry_index": 74,
       "kind": "text_data",
       "source_path": "text_data_dict.json",
       "json_path": [
         "172",
-        "10990201"
+        "10640201"
       ],
       "key": null,
-      "source_text": "速度上限、耐力上限和智力上限提升 ,\\n能获得「飞吧☆泡泡贝壳」技能折扣的因子",
-      "source_fingerprint": "36477b5d84c191b7d722f0c957d823f426fd206059759b0984a25f5f15d47494",
-      "current_text": "Giới hạn Speed, Stamina và Wit tăng,\\nSpark giúp giảm giá Skill 「Bay đi☆Vỏ sò bong bóng」",
-      "current_fingerprint": "efd2815e59a8fbd342afcf07db5d5e8da1bda6176587641ba5d094a85ea7dbae",
+      "source_text": "速度上限和耐力上限提升 ,\\n能获得「铃儿响叮当」技能折扣的因子",
+      "source_fingerprint": "d8a01a38b1b699108612236ff8431eca0b78652c26781fb3dceae2d554049d7a",
+      "current_text": "Giới hạn Speed và Stamina tăng,\\nSpark giúp giảm giá Skill 「Chuông reo leng keng」",
+      "current_fingerprint": "cb3dfa6e5e12e044ba53eeb9e3b1939b81726bda85e1ac3e4474a1912e505885",
       "risk_flags": [
-        "community_term",
-        "canonical_finding"
+        "community_term"
       ],
-      "risk_score": 42,
+      "risk_score": 2,
       "locked_terms": [],
       "community_terms": [
         {
@@ -523,23 +2084,6 @@
           "basis": "Common EN-version stat label; distinct from the training energy gauge."
         },
         {
-          "id": "common.stat.wit",
-          "preferred": "Wit",
-          "accepted": [
-            "Wit"
-          ],
-          "forbidden": [
-            "Trí tuệ"
-          ],
-          "matched_aliases": [
-            "智力"
-          ],
-          "accepted_present": true,
-          "forbidden_present": false,
-          "require_accepted": true,
-          "basis": "Common EN-version Wit stat label. The zh-CN alias 智力 is context-sensitive and must not canonicalize ordinary compounds such as 智力扣 (a disentanglement puzzle/toy)."
-        },
-        {
           "id": "common.skill.generic",
           "preferred": "Skill",
           "accepted": [
@@ -582,50 +2126,28 @@
       "source_bridge_terms": [],
       "source_bridge_risks": [],
       "source_bridge_policy_sha256": null,
-      "canonical_findings": [
-        {
-          "finding_id": "cf-a579e49e778b2d68",
-          "status": "open",
-          "source_zh_cn": "飞吧☆泡泡贝壳",
-          "match_mode": "contains",
-          "source_paths": [
-            "text_data_dict.json"
-          ],
-          "key_exact": [],
-          "json_path_prefixes": [],
-          "suggested_targets_vi": [],
-          "concepts": [
-            "Skill title 飞吧☆泡泡贝壳"
-          ],
-          "kinds": [
-            "proper_name"
-          ],
-          "review_action": "defer",
-          "review_target_vi": ""
-        }
-      ],
-      "item_context_sha256": "2b3706dde356a52dc654377d419b4d86cd4b7757ee34ebed030bd5beaa92a773"
+      "canonical_findings": [],
+      "item_context_sha256": "020bcea97e16c39d9dfcab7732b12f18947b18202989292fa527512d317ab35b"
     },
     {
-      "uid": "zhcn:1e0acc26eb3b0575b1281891",
-      "source_batch": 247,
-      "entry_index": 24,
+      "uid": "zhcn:1dbd145535cca27589f4f74a",
+      "source_batch": 244,
+      "entry_index": 75,
       "kind": "text_data",
       "source_path": "text_data_dict.json",
       "json_path": [
         "172",
-        "10990202"
+        "10640202"
       ],
       "key": null,
-      "source_text": "速度上限、耐力上限和智力上限提升 ,\\n能获得「飞吧☆泡泡贝壳」技能折扣的因子",
-      "source_fingerprint": "36477b5d84c191b7d722f0c957d823f426fd206059759b0984a25f5f15d47494",
-      "current_text": "Giới hạn Speed, Stamina và Wit tăng,\\nSpark giúp giảm giá Skill 「Bay đi☆Vỏ sò bong bóng」",
-      "current_fingerprint": "efd2815e59a8fbd342afcf07db5d5e8da1bda6176587641ba5d094a85ea7dbae",
+      "source_text": "速度上限和耐力上限提升 ,\\n能获得「铃儿响叮当」技能折扣的因子",
+      "source_fingerprint": "d8a01a38b1b699108612236ff8431eca0b78652c26781fb3dceae2d554049d7a",
+      "current_text": "Giới hạn Speed và Stamina tăng,\\nSpark giúp giảm giá Skill 「Chuông reo leng keng」",
+      "current_fingerprint": "cb3dfa6e5e12e044ba53eeb9e3b1939b81726bda85e1ac3e4474a1912e505885",
       "risk_flags": [
-        "community_term",
-        "canonical_finding"
+        "community_term"
       ],
-      "risk_score": 42,
+      "risk_score": 2,
       "locked_terms": [],
       "community_terms": [
         {
@@ -661,292 +2183,6 @@
           "basis": "Common EN-version stat label; distinct from the training energy gauge."
         },
         {
-          "id": "common.stat.wit",
-          "preferred": "Wit",
-          "accepted": [
-            "Wit"
-          ],
-          "forbidden": [
-            "Trí tuệ"
-          ],
-          "matched_aliases": [
-            "智力"
-          ],
-          "accepted_present": true,
-          "forbidden_present": false,
-          "require_accepted": true,
-          "basis": "Common EN-version Wit stat label. The zh-CN alias 智力 is context-sensitive and must not canonicalize ordinary compounds such as 智力扣 (a disentanglement puzzle/toy)."
-        },
-        {
-          "id": "common.skill.generic",
-          "preferred": "Skill",
-          "accepted": [
-            "Skill"
-          ],
-          "forbidden": [
-            "Kỹ năng"
-          ],
-          "matched_aliases": [
-            "技能"
-          ],
-          "accepted_present": true,
-          "forbidden_present": false,
-          "require_accepted": true,
-          "basis": "Generic gameplay label stays English. This does not mean individual skill names stay English."
-        },
-        {
-          "id": "common.spark.inheritance_description",
-          "preferred": "Spark",
-          "accepted": [
-            "Spark",
-            "Sparks"
-          ],
-          "forbidden": [
-            "Nhân tố",
-            "nhân tố",
-            "Factor",
-            "factor"
-          ],
-          "matched_aliases": [
-            "因子"
-          ],
-          "accepted_present": true,
-          "forbidden_present": false,
-          "require_accepted": true,
-          "basis": "Pinned text_data category 172 is inheritance-description content; 因子 there is the Spark mechanic. Item scope prevents unrelated review IDs from reopening."
-        }
-      ],
-      "skill_name_canonical": null,
-      "source_bridge_terms": [],
-      "source_bridge_risks": [],
-      "source_bridge_policy_sha256": null,
-      "canonical_findings": [
-        {
-          "finding_id": "cf-a579e49e778b2d68",
-          "status": "open",
-          "source_zh_cn": "飞吧☆泡泡贝壳",
-          "match_mode": "contains",
-          "source_paths": [
-            "text_data_dict.json"
-          ],
-          "key_exact": [],
-          "json_path_prefixes": [],
-          "suggested_targets_vi": [],
-          "concepts": [
-            "Skill title 飞吧☆泡泡贝壳"
-          ],
-          "kinds": [
-            "proper_name"
-          ],
-          "review_action": "defer",
-          "review_target_vi": ""
-        }
-      ],
-      "item_context_sha256": "2b3706dde356a52dc654377d419b4d86cd4b7757ee34ebed030bd5beaa92a773"
-    },
-    {
-      "uid": "zhcn:9c8c1e8db4fc8b608d0a7684",
-      "source_batch": 247,
-      "entry_index": 25,
-      "kind": "text_data",
-      "source_path": "text_data_dict.json",
-      "json_path": [
-        "172",
-        "10990203"
-      ],
-      "key": null,
-      "source_text": "速度上限、耐力上限和智力上限提升 ,\\n能获得「飞吧☆泡泡贝壳」技能折扣的因子",
-      "source_fingerprint": "36477b5d84c191b7d722f0c957d823f426fd206059759b0984a25f5f15d47494",
-      "current_text": "Giới hạn Speed, Stamina và Wit tăng,\\nSpark giúp giảm giá Skill 「Bay đi☆Vỏ sò bong bóng」",
-      "current_fingerprint": "efd2815e59a8fbd342afcf07db5d5e8da1bda6176587641ba5d094a85ea7dbae",
-      "risk_flags": [
-        "community_term",
-        "canonical_finding"
-      ],
-      "risk_score": 42,
-      "locked_terms": [],
-      "community_terms": [
-        {
-          "id": "common.stat.speed.context",
-          "preferred": "Speed",
-          "accepted": [
-            "Speed"
-          ],
-          "forbidden": [],
-          "matched_aliases": [
-            "速度上限"
-          ],
-          "accepted_present": true,
-          "forbidden_present": false,
-          "require_accepted": true,
-          "basis": "Narrow player-facing Speed stat contexts. No global forbidden Tốc độ token is used here because the same sentence may also describe literal/max/running speed."
-        },
-        {
-          "id": "common.stat.stamina",
-          "preferred": "Stamina",
-          "accepted": [
-            "Stamina"
-          ],
-          "forbidden": [
-            "Thể lực"
-          ],
-          "matched_aliases": [
-            "耐力"
-          ],
-          "accepted_present": true,
-          "forbidden_present": false,
-          "require_accepted": true,
-          "basis": "Common EN-version stat label; distinct from the training energy gauge."
-        },
-        {
-          "id": "common.stat.wit",
-          "preferred": "Wit",
-          "accepted": [
-            "Wit"
-          ],
-          "forbidden": [
-            "Trí tuệ"
-          ],
-          "matched_aliases": [
-            "智力"
-          ],
-          "accepted_present": true,
-          "forbidden_present": false,
-          "require_accepted": true,
-          "basis": "Common EN-version Wit stat label. The zh-CN alias 智力 is context-sensitive and must not canonicalize ordinary compounds such as 智力扣 (a disentanglement puzzle/toy)."
-        },
-        {
-          "id": "common.skill.generic",
-          "preferred": "Skill",
-          "accepted": [
-            "Skill"
-          ],
-          "forbidden": [
-            "Kỹ năng"
-          ],
-          "matched_aliases": [
-            "技能"
-          ],
-          "accepted_present": true,
-          "forbidden_present": false,
-          "require_accepted": true,
-          "basis": "Generic gameplay label stays English. This does not mean individual skill names stay English."
-        },
-        {
-          "id": "common.spark.inheritance_description",
-          "preferred": "Spark",
-          "accepted": [
-            "Spark",
-            "Sparks"
-          ],
-          "forbidden": [
-            "Nhân tố",
-            "nhân tố",
-            "Factor",
-            "factor"
-          ],
-          "matched_aliases": [
-            "因子"
-          ],
-          "accepted_present": true,
-          "forbidden_present": false,
-          "require_accepted": true,
-          "basis": "Pinned text_data category 172 is inheritance-description content; 因子 there is the Spark mechanic. Item scope prevents unrelated review IDs from reopening."
-        }
-      ],
-      "skill_name_canonical": null,
-      "source_bridge_terms": [],
-      "source_bridge_risks": [],
-      "source_bridge_policy_sha256": null,
-      "canonical_findings": [
-        {
-          "finding_id": "cf-a579e49e778b2d68",
-          "status": "open",
-          "source_zh_cn": "飞吧☆泡泡贝壳",
-          "match_mode": "contains",
-          "source_paths": [
-            "text_data_dict.json"
-          ],
-          "key_exact": [],
-          "json_path_prefixes": [],
-          "suggested_targets_vi": [],
-          "concepts": [
-            "Skill title 飞吧☆泡泡贝壳"
-          ],
-          "kinds": [
-            "proper_name"
-          ],
-          "review_action": "defer",
-          "review_target_vi": ""
-        }
-      ],
-      "item_context_sha256": "2b3706dde356a52dc654377d419b4d86cd4b7757ee34ebed030bd5beaa92a773"
-    },
-    {
-      "uid": "zhcn:0ea31742498ba0cc48db69d6",
-      "source_batch": 247,
-      "entry_index": 26,
-      "kind": "text_data",
-      "source_path": "text_data_dict.json",
-      "json_path": [
-        "172",
-        "11000101"
-      ],
-      "key": null,
-      "source_text": "根性上限和智力上限提升 ,\\n能获得「Never Say Never」技能折扣的因子",
-      "source_fingerprint": "a9e7b7d8bbe1d50b4f3c11ec2f83a185ca9bd69ae6ba8f58225e3cf8e84603a2",
-      "current_text": "Giới hạn Guts và Wit tăng,\\nSpark giúp giảm giá Skill 「Never Say Never」",
-      "current_fingerprint": "776189916fd23cb27e074adb034ef623a17e1ac00535daaddc4df815600e19ad",
-      "risk_flags": [
-        "community_term"
-      ],
-      "risk_score": 2,
-      "locked_terms": [
-        {
-          "id": "reviewed.skill_name.a8a290ddf180",
-          "target_vi": "Never Say Never",
-          "matched_aliases": [
-            "Never Say Never"
-          ],
-          "present": true
-        }
-      ],
-      "community_terms": [
-        {
-          "id": "common.stat.guts",
-          "preferred": "Guts",
-          "accepted": [
-            "Guts"
-          ],
-          "forbidden": [
-            "Ý chí"
-          ],
-          "matched_aliases": [
-            "根性"
-          ],
-          "accepted_present": true,
-          "forbidden_present": false,
-          "require_accepted": true,
-          "basis": "Common EN-version stat label."
-        },
-        {
-          "id": "common.stat.wit",
-          "preferred": "Wit",
-          "accepted": [
-            "Wit"
-          ],
-          "forbidden": [
-            "Trí tuệ"
-          ],
-          "matched_aliases": [
-            "智力"
-          ],
-          "accepted_present": true,
-          "forbidden_present": false,
-          "require_accepted": true,
-          "basis": "Common EN-version Wit stat label. The zh-CN alias 智力 is context-sensitive and must not canonicalize ordinary compounds such as 智力扣 (a disentanglement puzzle/toy)."
-        },
-        {
           "id": "common.skill.generic",
           "preferred": "Skill",
           "accepted": [
@@ -990,1718 +2226,7 @@
       "source_bridge_risks": [],
       "source_bridge_policy_sha256": null,
       "canonical_findings": [],
-      "item_context_sha256": "11d0e560d198d24333518f816396a599035f9c77622c686a7d78203551b1d7f0"
-    },
-    {
-      "uid": "zhcn:b8df86efd93d6db54cdbad69",
-      "source_batch": 247,
-      "entry_index": 27,
-      "kind": "text_data",
-      "source_path": "text_data_dict.json",
-      "json_path": [
-        "172",
-        "11000102"
-      ],
-      "key": null,
-      "source_text": "根性上限和智力上限提升 ,\\n能获得「Never Say Never」技能折扣的因子",
-      "source_fingerprint": "a9e7b7d8bbe1d50b4f3c11ec2f83a185ca9bd69ae6ba8f58225e3cf8e84603a2",
-      "current_text": "Giới hạn Guts và Wit tăng,\\nSpark giúp giảm giá Skill 「Never Say Never」",
-      "current_fingerprint": "776189916fd23cb27e074adb034ef623a17e1ac00535daaddc4df815600e19ad",
-      "risk_flags": [
-        "community_term"
-      ],
-      "risk_score": 2,
-      "locked_terms": [
-        {
-          "id": "reviewed.skill_name.a8a290ddf180",
-          "target_vi": "Never Say Never",
-          "matched_aliases": [
-            "Never Say Never"
-          ],
-          "present": true
-        }
-      ],
-      "community_terms": [
-        {
-          "id": "common.stat.guts",
-          "preferred": "Guts",
-          "accepted": [
-            "Guts"
-          ],
-          "forbidden": [
-            "Ý chí"
-          ],
-          "matched_aliases": [
-            "根性"
-          ],
-          "accepted_present": true,
-          "forbidden_present": false,
-          "require_accepted": true,
-          "basis": "Common EN-version stat label."
-        },
-        {
-          "id": "common.stat.wit",
-          "preferred": "Wit",
-          "accepted": [
-            "Wit"
-          ],
-          "forbidden": [
-            "Trí tuệ"
-          ],
-          "matched_aliases": [
-            "智力"
-          ],
-          "accepted_present": true,
-          "forbidden_present": false,
-          "require_accepted": true,
-          "basis": "Common EN-version Wit stat label. The zh-CN alias 智力 is context-sensitive and must not canonicalize ordinary compounds such as 智力扣 (a disentanglement puzzle/toy)."
-        },
-        {
-          "id": "common.skill.generic",
-          "preferred": "Skill",
-          "accepted": [
-            "Skill"
-          ],
-          "forbidden": [
-            "Kỹ năng"
-          ],
-          "matched_aliases": [
-            "技能"
-          ],
-          "accepted_present": true,
-          "forbidden_present": false,
-          "require_accepted": true,
-          "basis": "Generic gameplay label stays English. This does not mean individual skill names stay English."
-        },
-        {
-          "id": "common.spark.inheritance_description",
-          "preferred": "Spark",
-          "accepted": [
-            "Spark",
-            "Sparks"
-          ],
-          "forbidden": [
-            "Nhân tố",
-            "nhân tố",
-            "Factor",
-            "factor"
-          ],
-          "matched_aliases": [
-            "因子"
-          ],
-          "accepted_present": true,
-          "forbidden_present": false,
-          "require_accepted": true,
-          "basis": "Pinned text_data category 172 is inheritance-description content; 因子 there is the Spark mechanic. Item scope prevents unrelated review IDs from reopening."
-        }
-      ],
-      "skill_name_canonical": null,
-      "source_bridge_terms": [],
-      "source_bridge_risks": [],
-      "source_bridge_policy_sha256": null,
-      "canonical_findings": [],
-      "item_context_sha256": "11d0e560d198d24333518f816396a599035f9c77622c686a7d78203551b1d7f0"
-    },
-    {
-      "uid": "zhcn:679f96f2cc414e10e4457d66",
-      "source_batch": 247,
-      "entry_index": 28,
-      "kind": "text_data",
-      "source_path": "text_data_dict.json",
-      "json_path": [
-        "172",
-        "11000103"
-      ],
-      "key": null,
-      "source_text": "根性上限和智力上限提升 ,\\n能获得「Never Say Never」技能折扣的因子",
-      "source_fingerprint": "a9e7b7d8bbe1d50b4f3c11ec2f83a185ca9bd69ae6ba8f58225e3cf8e84603a2",
-      "current_text": "Giới hạn Guts và Wit tăng,\\nSpark giúp giảm giá Skill 「Never Say Never」",
-      "current_fingerprint": "776189916fd23cb27e074adb034ef623a17e1ac00535daaddc4df815600e19ad",
-      "risk_flags": [
-        "community_term"
-      ],
-      "risk_score": 2,
-      "locked_terms": [
-        {
-          "id": "reviewed.skill_name.a8a290ddf180",
-          "target_vi": "Never Say Never",
-          "matched_aliases": [
-            "Never Say Never"
-          ],
-          "present": true
-        }
-      ],
-      "community_terms": [
-        {
-          "id": "common.stat.guts",
-          "preferred": "Guts",
-          "accepted": [
-            "Guts"
-          ],
-          "forbidden": [
-            "Ý chí"
-          ],
-          "matched_aliases": [
-            "根性"
-          ],
-          "accepted_present": true,
-          "forbidden_present": false,
-          "require_accepted": true,
-          "basis": "Common EN-version stat label."
-        },
-        {
-          "id": "common.stat.wit",
-          "preferred": "Wit",
-          "accepted": [
-            "Wit"
-          ],
-          "forbidden": [
-            "Trí tuệ"
-          ],
-          "matched_aliases": [
-            "智力"
-          ],
-          "accepted_present": true,
-          "forbidden_present": false,
-          "require_accepted": true,
-          "basis": "Common EN-version Wit stat label. The zh-CN alias 智力 is context-sensitive and must not canonicalize ordinary compounds such as 智力扣 (a disentanglement puzzle/toy)."
-        },
-        {
-          "id": "common.skill.generic",
-          "preferred": "Skill",
-          "accepted": [
-            "Skill"
-          ],
-          "forbidden": [
-            "Kỹ năng"
-          ],
-          "matched_aliases": [
-            "技能"
-          ],
-          "accepted_present": true,
-          "forbidden_present": false,
-          "require_accepted": true,
-          "basis": "Generic gameplay label stays English. This does not mean individual skill names stay English."
-        },
-        {
-          "id": "common.spark.inheritance_description",
-          "preferred": "Spark",
-          "accepted": [
-            "Spark",
-            "Sparks"
-          ],
-          "forbidden": [
-            "Nhân tố",
-            "nhân tố",
-            "Factor",
-            "factor"
-          ],
-          "matched_aliases": [
-            "因子"
-          ],
-          "accepted_present": true,
-          "forbidden_present": false,
-          "require_accepted": true,
-          "basis": "Pinned text_data category 172 is inheritance-description content; 因子 there is the Spark mechanic. Item scope prevents unrelated review IDs from reopening."
-        }
-      ],
-      "skill_name_canonical": null,
-      "source_bridge_terms": [],
-      "source_bridge_risks": [],
-      "source_bridge_policy_sha256": null,
-      "canonical_findings": [],
-      "item_context_sha256": "11d0e560d198d24333518f816396a599035f9c77622c686a7d78203551b1d7f0"
-    },
-    {
-      "uid": "zhcn:b2bccdd667a0982f917fcc40",
-      "source_batch": 247,
-      "entry_index": 29,
-      "kind": "text_data",
-      "source_path": "text_data_dict.json",
-      "json_path": [
-        "172",
-        "11000201"
-      ],
-      "key": null,
-      "source_text": "耐力上限、力量上限与毅力上限提升，\\n可获得「汤守的和心」技能灵感的因子",
-      "source_fingerprint": "db16af6b5a4329f2078da64e547d80b3223d280366d93d271a6438c1bbefaa44",
-      "current_text": "Giới hạn Stamina, Power và Guts tăng,\\nSpark giúp nhận Skill Hint cho Skill 「Tấm lòng hòa ái của người trông suối nước nóng」",
-      "current_fingerprint": "ffe67417a746a02b8766ca8afff427749dac385c3922b90ab985c9b9eafe32ab",
-      "risk_flags": [
-        "very_long_target",
-        "community_term",
-        "canonical_finding"
-      ],
-      "risk_score": 45,
-      "locked_terms": [],
-      "community_terms": [
-        {
-          "id": "common.stat.stamina",
-          "preferred": "Stamina",
-          "accepted": [
-            "Stamina"
-          ],
-          "forbidden": [
-            "Thể lực"
-          ],
-          "matched_aliases": [
-            "耐力"
-          ],
-          "accepted_present": true,
-          "forbidden_present": false,
-          "require_accepted": true,
-          "basis": "Common EN-version stat label; distinct from the training energy gauge."
-        },
-        {
-          "id": "common.stat.power",
-          "preferred": "Power",
-          "accepted": [
-            "Power"
-          ],
-          "forbidden": [
-            "Sức mạnh"
-          ],
-          "matched_aliases": [
-            "力量"
-          ],
-          "accepted_present": true,
-          "forbidden_present": false,
-          "require_accepted": true,
-          "basis": "Common EN-version Power stat label. The zh-CN alias 力量 is ambiguous in ordinary prose and can also occur inside proper names such as 莱茵力量 (Rhein Kraft); known non-stat compounds, names, descriptive titles, and narrative/metaphorical phrases are explicitly excluded so physical or emotional strength is not normalized to the stat label."
-        },
-        {
-          "id": "common.stat.guts",
-          "preferred": "Guts",
-          "accepted": [
-            "Guts"
-          ],
-          "forbidden": [
-            "Ý chí"
-          ],
-          "matched_aliases": [
-            "毅力"
-          ],
-          "accepted_present": true,
-          "forbidden_present": false,
-          "require_accepted": true,
-          "basis": "Common EN-version stat label."
-        },
-        {
-          "id": "common.skill.generic",
-          "preferred": "Skill",
-          "accepted": [
-            "Skill"
-          ],
-          "forbidden": [
-            "Kỹ năng"
-          ],
-          "matched_aliases": [
-            "技能"
-          ],
-          "accepted_present": true,
-          "forbidden_present": false,
-          "require_accepted": true,
-          "basis": "Generic gameplay label stays English. This does not mean individual skill names stay English."
-        },
-        {
-          "id": "common.skill_hint",
-          "preferred": "Skill Hint",
-          "accepted": [
-            "Skill Hint",
-            "Skill Hints"
-          ],
-          "forbidden": [
-            "Gợi ý Skill",
-            "Gợi ý kỹ năng",
-            "Cảm hứng Skill",
-            "Cảm hứng kỹ năng"
-          ],
-          "matched_aliases": [
-            "技能灵感"
-          ],
-          "accepted_present": true,
-          "forbidden_present": false,
-          "require_accepted": true,
-          "basis": "Skill Hint is a gameplay concept. Only the full Skill-Hint compounds are canonical aliases here; bare 提示/灵感/启示 remain ordinary language unless a narrower context rule proves otherwise."
-        },
-        {
-          "id": "common.spark.inheritance_description",
-          "preferred": "Spark",
-          "accepted": [
-            "Spark",
-            "Sparks"
-          ],
-          "forbidden": [
-            "Nhân tố",
-            "nhân tố",
-            "Factor",
-            "factor"
-          ],
-          "matched_aliases": [
-            "因子"
-          ],
-          "accepted_present": true,
-          "forbidden_present": false,
-          "require_accepted": true,
-          "basis": "Pinned text_data category 172 is inheritance-description content; 因子 there is the Spark mechanic. Item scope prevents unrelated review IDs from reopening."
-        }
-      ],
-      "skill_name_canonical": null,
-      "source_bridge_terms": [],
-      "source_bridge_risks": [],
-      "source_bridge_policy_sha256": null,
-      "canonical_findings": [],
-      "item_context_sha256": "92c2191852e180e2d6fd6a627441659a434a98854c44ec5731a14a1c2e489fb2"
-    },
-    {
-      "uid": "zhcn:370035dc787112b48409bf69",
-      "source_batch": 247,
-      "entry_index": 30,
-      "kind": "text_data",
-      "source_path": "text_data_dict.json",
-      "json_path": [
-        "172",
-        "11000202"
-      ],
-      "key": null,
-      "source_text": "耐力上限、力量上限与毅力上限提升，\\n可获得「汤守的和心」技能灵感的因子",
-      "source_fingerprint": "db16af6b5a4329f2078da64e547d80b3223d280366d93d271a6438c1bbefaa44",
-      "current_text": "Giới hạn Stamina, Power và Guts tăng,\\nSpark giúp nhận Skill Hint cho Skill 「Tấm lòng hòa ái của người trông suối nước nóng」",
-      "current_fingerprint": "ffe67417a746a02b8766ca8afff427749dac385c3922b90ab985c9b9eafe32ab",
-      "risk_flags": [
-        "very_long_target",
-        "community_term",
-        "canonical_finding"
-      ],
-      "risk_score": 45,
-      "locked_terms": [],
-      "community_terms": [
-        {
-          "id": "common.stat.stamina",
-          "preferred": "Stamina",
-          "accepted": [
-            "Stamina"
-          ],
-          "forbidden": [
-            "Thể lực"
-          ],
-          "matched_aliases": [
-            "耐力"
-          ],
-          "accepted_present": true,
-          "forbidden_present": false,
-          "require_accepted": true,
-          "basis": "Common EN-version stat label; distinct from the training energy gauge."
-        },
-        {
-          "id": "common.stat.power",
-          "preferred": "Power",
-          "accepted": [
-            "Power"
-          ],
-          "forbidden": [
-            "Sức mạnh"
-          ],
-          "matched_aliases": [
-            "力量"
-          ],
-          "accepted_present": true,
-          "forbidden_present": false,
-          "require_accepted": true,
-          "basis": "Common EN-version Power stat label. The zh-CN alias 力量 is ambiguous in ordinary prose and can also occur inside proper names such as 莱茵力量 (Rhein Kraft); known non-stat compounds, names, descriptive titles, and narrative/metaphorical phrases are explicitly excluded so physical or emotional strength is not normalized to the stat label."
-        },
-        {
-          "id": "common.stat.guts",
-          "preferred": "Guts",
-          "accepted": [
-            "Guts"
-          ],
-          "forbidden": [
-            "Ý chí"
-          ],
-          "matched_aliases": [
-            "毅力"
-          ],
-          "accepted_present": true,
-          "forbidden_present": false,
-          "require_accepted": true,
-          "basis": "Common EN-version stat label."
-        },
-        {
-          "id": "common.skill.generic",
-          "preferred": "Skill",
-          "accepted": [
-            "Skill"
-          ],
-          "forbidden": [
-            "Kỹ năng"
-          ],
-          "matched_aliases": [
-            "技能"
-          ],
-          "accepted_present": true,
-          "forbidden_present": false,
-          "require_accepted": true,
-          "basis": "Generic gameplay label stays English. This does not mean individual skill names stay English."
-        },
-        {
-          "id": "common.skill_hint",
-          "preferred": "Skill Hint",
-          "accepted": [
-            "Skill Hint",
-            "Skill Hints"
-          ],
-          "forbidden": [
-            "Gợi ý Skill",
-            "Gợi ý kỹ năng",
-            "Cảm hứng Skill",
-            "Cảm hứng kỹ năng"
-          ],
-          "matched_aliases": [
-            "技能灵感"
-          ],
-          "accepted_present": true,
-          "forbidden_present": false,
-          "require_accepted": true,
-          "basis": "Skill Hint is a gameplay concept. Only the full Skill-Hint compounds are canonical aliases here; bare 提示/灵感/启示 remain ordinary language unless a narrower context rule proves otherwise."
-        },
-        {
-          "id": "common.spark.inheritance_description",
-          "preferred": "Spark",
-          "accepted": [
-            "Spark",
-            "Sparks"
-          ],
-          "forbidden": [
-            "Nhân tố",
-            "nhân tố",
-            "Factor",
-            "factor"
-          ],
-          "matched_aliases": [
-            "因子"
-          ],
-          "accepted_present": true,
-          "forbidden_present": false,
-          "require_accepted": true,
-          "basis": "Pinned text_data category 172 is inheritance-description content; 因子 there is the Spark mechanic. Item scope prevents unrelated review IDs from reopening."
-        }
-      ],
-      "skill_name_canonical": null,
-      "source_bridge_terms": [],
-      "source_bridge_risks": [],
-      "source_bridge_policy_sha256": null,
-      "canonical_findings": [],
-      "item_context_sha256": "92c2191852e180e2d6fd6a627441659a434a98854c44ec5731a14a1c2e489fb2"
-    },
-    {
-      "uid": "zhcn:de8fdabc83336bccbd2cda48",
-      "source_batch": 247,
-      "entry_index": 31,
-      "kind": "text_data",
-      "source_path": "text_data_dict.json",
-      "json_path": [
-        "172",
-        "11000203"
-      ],
-      "key": null,
-      "source_text": "耐力上限、力量上限与毅力上限提升，\\n可获得「汤守的和心」技能灵感的因子",
-      "source_fingerprint": "db16af6b5a4329f2078da64e547d80b3223d280366d93d271a6438c1bbefaa44",
-      "current_text": "Giới hạn Stamina, Power và Guts tăng,\\nSpark giúp nhận Skill Hint cho Skill 「Tấm lòng hòa ái của người trông suối nước nóng」",
-      "current_fingerprint": "ffe67417a746a02b8766ca8afff427749dac385c3922b90ab985c9b9eafe32ab",
-      "risk_flags": [
-        "very_long_target",
-        "community_term",
-        "canonical_finding"
-      ],
-      "risk_score": 45,
-      "locked_terms": [],
-      "community_terms": [
-        {
-          "id": "common.stat.stamina",
-          "preferred": "Stamina",
-          "accepted": [
-            "Stamina"
-          ],
-          "forbidden": [
-            "Thể lực"
-          ],
-          "matched_aliases": [
-            "耐力"
-          ],
-          "accepted_present": true,
-          "forbidden_present": false,
-          "require_accepted": true,
-          "basis": "Common EN-version stat label; distinct from the training energy gauge."
-        },
-        {
-          "id": "common.stat.power",
-          "preferred": "Power",
-          "accepted": [
-            "Power"
-          ],
-          "forbidden": [
-            "Sức mạnh"
-          ],
-          "matched_aliases": [
-            "力量"
-          ],
-          "accepted_present": true,
-          "forbidden_present": false,
-          "require_accepted": true,
-          "basis": "Common EN-version Power stat label. The zh-CN alias 力量 is ambiguous in ordinary prose and can also occur inside proper names such as 莱茵力量 (Rhein Kraft); known non-stat compounds, names, descriptive titles, and narrative/metaphorical phrases are explicitly excluded so physical or emotional strength is not normalized to the stat label."
-        },
-        {
-          "id": "common.stat.guts",
-          "preferred": "Guts",
-          "accepted": [
-            "Guts"
-          ],
-          "forbidden": [
-            "Ý chí"
-          ],
-          "matched_aliases": [
-            "毅力"
-          ],
-          "accepted_present": true,
-          "forbidden_present": false,
-          "require_accepted": true,
-          "basis": "Common EN-version stat label."
-        },
-        {
-          "id": "common.skill.generic",
-          "preferred": "Skill",
-          "accepted": [
-            "Skill"
-          ],
-          "forbidden": [
-            "Kỹ năng"
-          ],
-          "matched_aliases": [
-            "技能"
-          ],
-          "accepted_present": true,
-          "forbidden_present": false,
-          "require_accepted": true,
-          "basis": "Generic gameplay label stays English. This does not mean individual skill names stay English."
-        },
-        {
-          "id": "common.skill_hint",
-          "preferred": "Skill Hint",
-          "accepted": [
-            "Skill Hint",
-            "Skill Hints"
-          ],
-          "forbidden": [
-            "Gợi ý Skill",
-            "Gợi ý kỹ năng",
-            "Cảm hứng Skill",
-            "Cảm hứng kỹ năng"
-          ],
-          "matched_aliases": [
-            "技能灵感"
-          ],
-          "accepted_present": true,
-          "forbidden_present": false,
-          "require_accepted": true,
-          "basis": "Skill Hint is a gameplay concept. Only the full Skill-Hint compounds are canonical aliases here; bare 提示/灵感/启示 remain ordinary language unless a narrower context rule proves otherwise."
-        },
-        {
-          "id": "common.spark.inheritance_description",
-          "preferred": "Spark",
-          "accepted": [
-            "Spark",
-            "Sparks"
-          ],
-          "forbidden": [
-            "Nhân tố",
-            "nhân tố",
-            "Factor",
-            "factor"
-          ],
-          "matched_aliases": [
-            "因子"
-          ],
-          "accepted_present": true,
-          "forbidden_present": false,
-          "require_accepted": true,
-          "basis": "Pinned text_data category 172 is inheritance-description content; 因子 there is the Spark mechanic. Item scope prevents unrelated review IDs from reopening."
-        }
-      ],
-      "skill_name_canonical": null,
-      "source_bridge_terms": [],
-      "source_bridge_risks": [],
-      "source_bridge_policy_sha256": null,
-      "canonical_findings": [],
-      "item_context_sha256": "92c2191852e180e2d6fd6a627441659a434a98854c44ec5731a14a1c2e489fb2"
-    },
-    {
-      "uid": "zhcn:5af724545f5cf16e18cc9fd4",
-      "source_batch": 247,
-      "entry_index": 34,
-      "kind": "text_data",
-      "source_path": "text_data_dict.json",
-      "json_path": [
-        "172",
-        "11020101"
-      ],
-      "key": null,
-      "source_text": "耐力上限、力量上限和根性上限提升 ,\\n能获得「活泼乐章・飞驰」技能折扣的因子",
-      "source_fingerprint": "f08108e985cf3e804f21d2e6f2cd1f8387a9ac5903089b788a7db9a47409d33b",
-      "current_text": "Giới hạn Stamina, Power và Guts tăng,\\nSpark giúp giảm giá Skill 「Khúc nhạc rộn ràng・Phi nước đại」",
-      "current_fingerprint": "86b557d3ce1412f105f7d92d72d81c49507534d98596d3242f3c3034929bb10d",
-      "risk_flags": [
-        "community_term",
-        "canonical_finding"
-      ],
-      "risk_score": 42,
-      "locked_terms": [],
-      "community_terms": [
-        {
-          "id": "common.stat.stamina",
-          "preferred": "Stamina",
-          "accepted": [
-            "Stamina"
-          ],
-          "forbidden": [
-            "Thể lực"
-          ],
-          "matched_aliases": [
-            "耐力"
-          ],
-          "accepted_present": true,
-          "forbidden_present": false,
-          "require_accepted": true,
-          "basis": "Common EN-version stat label; distinct from the training energy gauge."
-        },
-        {
-          "id": "common.stat.power",
-          "preferred": "Power",
-          "accepted": [
-            "Power"
-          ],
-          "forbidden": [
-            "Sức mạnh"
-          ],
-          "matched_aliases": [
-            "力量"
-          ],
-          "accepted_present": true,
-          "forbidden_present": false,
-          "require_accepted": true,
-          "basis": "Common EN-version Power stat label. The zh-CN alias 力量 is ambiguous in ordinary prose and can also occur inside proper names such as 莱茵力量 (Rhein Kraft); known non-stat compounds, names, descriptive titles, and narrative/metaphorical phrases are explicitly excluded so physical or emotional strength is not normalized to the stat label."
-        },
-        {
-          "id": "common.stat.guts",
-          "preferred": "Guts",
-          "accepted": [
-            "Guts"
-          ],
-          "forbidden": [
-            "Ý chí"
-          ],
-          "matched_aliases": [
-            "根性"
-          ],
-          "accepted_present": true,
-          "forbidden_present": false,
-          "require_accepted": true,
-          "basis": "Common EN-version stat label."
-        },
-        {
-          "id": "common.skill.generic",
-          "preferred": "Skill",
-          "accepted": [
-            "Skill"
-          ],
-          "forbidden": [
-            "Kỹ năng"
-          ],
-          "matched_aliases": [
-            "技能"
-          ],
-          "accepted_present": true,
-          "forbidden_present": false,
-          "require_accepted": true,
-          "basis": "Generic gameplay label stays English. This does not mean individual skill names stay English."
-        },
-        {
-          "id": "common.spark.inheritance_description",
-          "preferred": "Spark",
-          "accepted": [
-            "Spark",
-            "Sparks"
-          ],
-          "forbidden": [
-            "Nhân tố",
-            "nhân tố",
-            "Factor",
-            "factor"
-          ],
-          "matched_aliases": [
-            "因子"
-          ],
-          "accepted_present": true,
-          "forbidden_present": false,
-          "require_accepted": true,
-          "basis": "Pinned text_data category 172 is inheritance-description content; 因子 there is the Spark mechanic. Item scope prevents unrelated review IDs from reopening."
-        }
-      ],
-      "skill_name_canonical": null,
-      "source_bridge_terms": [],
-      "source_bridge_risks": [],
-      "source_bridge_policy_sha256": null,
-      "canonical_findings": [
-        {
-          "finding_id": "cf-5b78375546baf889",
-          "status": "open",
-          "source_zh_cn": "活泼乐章・飞驰",
-          "match_mode": "contains",
-          "source_paths": [
-            "text_data_dict.json"
-          ],
-          "key_exact": [],
-          "json_path_prefixes": [
-            [
-              "172"
-            ]
-          ],
-          "suggested_targets_vi": [],
-          "concepts": [
-            "Individual Skill name identity"
-          ],
-          "kinds": [
-            "proper_name"
-          ],
-          "review_action": "defer",
-          "review_target_vi": ""
-        }
-      ],
-      "item_context_sha256": "d2c9335078d186a3cad9ba7ecadbb2364498abc43cce86b450e6179db6c7ae5d"
-    },
-    {
-      "uid": "zhcn:add26164aad105a7f69552ae",
-      "source_batch": 247,
-      "entry_index": 35,
-      "kind": "text_data",
-      "source_path": "text_data_dict.json",
-      "json_path": [
-        "172",
-        "11020102"
-      ],
-      "key": null,
-      "source_text": "耐力上限、力量上限和根性上限提升 ,\\n能获得「活泼乐章・飞驰」技能折扣的因子",
-      "source_fingerprint": "f08108e985cf3e804f21d2e6f2cd1f8387a9ac5903089b788a7db9a47409d33b",
-      "current_text": "Giới hạn Stamina, Power và Guts tăng,\\nSpark giúp giảm giá Skill 「Khúc nhạc rộn ràng・Phi nước đại」",
-      "current_fingerprint": "86b557d3ce1412f105f7d92d72d81c49507534d98596d3242f3c3034929bb10d",
-      "risk_flags": [
-        "community_term",
-        "canonical_finding"
-      ],
-      "risk_score": 42,
-      "locked_terms": [],
-      "community_terms": [
-        {
-          "id": "common.stat.stamina",
-          "preferred": "Stamina",
-          "accepted": [
-            "Stamina"
-          ],
-          "forbidden": [
-            "Thể lực"
-          ],
-          "matched_aliases": [
-            "耐力"
-          ],
-          "accepted_present": true,
-          "forbidden_present": false,
-          "require_accepted": true,
-          "basis": "Common EN-version stat label; distinct from the training energy gauge."
-        },
-        {
-          "id": "common.stat.power",
-          "preferred": "Power",
-          "accepted": [
-            "Power"
-          ],
-          "forbidden": [
-            "Sức mạnh"
-          ],
-          "matched_aliases": [
-            "力量"
-          ],
-          "accepted_present": true,
-          "forbidden_present": false,
-          "require_accepted": true,
-          "basis": "Common EN-version Power stat label. The zh-CN alias 力量 is ambiguous in ordinary prose and can also occur inside proper names such as 莱茵力量 (Rhein Kraft); known non-stat compounds, names, descriptive titles, and narrative/metaphorical phrases are explicitly excluded so physical or emotional strength is not normalized to the stat label."
-        },
-        {
-          "id": "common.stat.guts",
-          "preferred": "Guts",
-          "accepted": [
-            "Guts"
-          ],
-          "forbidden": [
-            "Ý chí"
-          ],
-          "matched_aliases": [
-            "根性"
-          ],
-          "accepted_present": true,
-          "forbidden_present": false,
-          "require_accepted": true,
-          "basis": "Common EN-version stat label."
-        },
-        {
-          "id": "common.skill.generic",
-          "preferred": "Skill",
-          "accepted": [
-            "Skill"
-          ],
-          "forbidden": [
-            "Kỹ năng"
-          ],
-          "matched_aliases": [
-            "技能"
-          ],
-          "accepted_present": true,
-          "forbidden_present": false,
-          "require_accepted": true,
-          "basis": "Generic gameplay label stays English. This does not mean individual skill names stay English."
-        },
-        {
-          "id": "common.spark.inheritance_description",
-          "preferred": "Spark",
-          "accepted": [
-            "Spark",
-            "Sparks"
-          ],
-          "forbidden": [
-            "Nhân tố",
-            "nhân tố",
-            "Factor",
-            "factor"
-          ],
-          "matched_aliases": [
-            "因子"
-          ],
-          "accepted_present": true,
-          "forbidden_present": false,
-          "require_accepted": true,
-          "basis": "Pinned text_data category 172 is inheritance-description content; 因子 there is the Spark mechanic. Item scope prevents unrelated review IDs from reopening."
-        }
-      ],
-      "skill_name_canonical": null,
-      "source_bridge_terms": [],
-      "source_bridge_risks": [],
-      "source_bridge_policy_sha256": null,
-      "canonical_findings": [
-        {
-          "finding_id": "cf-5b78375546baf889",
-          "status": "open",
-          "source_zh_cn": "活泼乐章・飞驰",
-          "match_mode": "contains",
-          "source_paths": [
-            "text_data_dict.json"
-          ],
-          "key_exact": [],
-          "json_path_prefixes": [
-            [
-              "172"
-            ]
-          ],
-          "suggested_targets_vi": [],
-          "concepts": [
-            "Individual Skill name identity"
-          ],
-          "kinds": [
-            "proper_name"
-          ],
-          "review_action": "defer",
-          "review_target_vi": ""
-        }
-      ],
-      "item_context_sha256": "d2c9335078d186a3cad9ba7ecadbb2364498abc43cce86b450e6179db6c7ae5d"
-    },
-    {
-      "uid": "zhcn:f34eea8516c1e68888bd1abd",
-      "source_batch": 247,
-      "entry_index": 36,
-      "kind": "text_data",
-      "source_path": "text_data_dict.json",
-      "json_path": [
-        "172",
-        "11020103"
-      ],
-      "key": null,
-      "source_text": "耐力上限、力量上限和根性上限提升 ,\\n能获得「活泼乐章・飞驰」技能折扣的因子",
-      "source_fingerprint": "f08108e985cf3e804f21d2e6f2cd1f8387a9ac5903089b788a7db9a47409d33b",
-      "current_text": "Giới hạn Stamina, Power và Guts tăng,\\nSpark giúp giảm giá Skill 「Khúc nhạc rộn ràng・Phi nước đại」",
-      "current_fingerprint": "86b557d3ce1412f105f7d92d72d81c49507534d98596d3242f3c3034929bb10d",
-      "risk_flags": [
-        "community_term",
-        "canonical_finding"
-      ],
-      "risk_score": 42,
-      "locked_terms": [],
-      "community_terms": [
-        {
-          "id": "common.stat.stamina",
-          "preferred": "Stamina",
-          "accepted": [
-            "Stamina"
-          ],
-          "forbidden": [
-            "Thể lực"
-          ],
-          "matched_aliases": [
-            "耐力"
-          ],
-          "accepted_present": true,
-          "forbidden_present": false,
-          "require_accepted": true,
-          "basis": "Common EN-version stat label; distinct from the training energy gauge."
-        },
-        {
-          "id": "common.stat.power",
-          "preferred": "Power",
-          "accepted": [
-            "Power"
-          ],
-          "forbidden": [
-            "Sức mạnh"
-          ],
-          "matched_aliases": [
-            "力量"
-          ],
-          "accepted_present": true,
-          "forbidden_present": false,
-          "require_accepted": true,
-          "basis": "Common EN-version Power stat label. The zh-CN alias 力量 is ambiguous in ordinary prose and can also occur inside proper names such as 莱茵力量 (Rhein Kraft); known non-stat compounds, names, descriptive titles, and narrative/metaphorical phrases are explicitly excluded so physical or emotional strength is not normalized to the stat label."
-        },
-        {
-          "id": "common.stat.guts",
-          "preferred": "Guts",
-          "accepted": [
-            "Guts"
-          ],
-          "forbidden": [
-            "Ý chí"
-          ],
-          "matched_aliases": [
-            "根性"
-          ],
-          "accepted_present": true,
-          "forbidden_present": false,
-          "require_accepted": true,
-          "basis": "Common EN-version stat label."
-        },
-        {
-          "id": "common.skill.generic",
-          "preferred": "Skill",
-          "accepted": [
-            "Skill"
-          ],
-          "forbidden": [
-            "Kỹ năng"
-          ],
-          "matched_aliases": [
-            "技能"
-          ],
-          "accepted_present": true,
-          "forbidden_present": false,
-          "require_accepted": true,
-          "basis": "Generic gameplay label stays English. This does not mean individual skill names stay English."
-        },
-        {
-          "id": "common.spark.inheritance_description",
-          "preferred": "Spark",
-          "accepted": [
-            "Spark",
-            "Sparks"
-          ],
-          "forbidden": [
-            "Nhân tố",
-            "nhân tố",
-            "Factor",
-            "factor"
-          ],
-          "matched_aliases": [
-            "因子"
-          ],
-          "accepted_present": true,
-          "forbidden_present": false,
-          "require_accepted": true,
-          "basis": "Pinned text_data category 172 is inheritance-description content; 因子 there is the Spark mechanic. Item scope prevents unrelated review IDs from reopening."
-        }
-      ],
-      "skill_name_canonical": null,
-      "source_bridge_terms": [],
-      "source_bridge_risks": [],
-      "source_bridge_policy_sha256": null,
-      "canonical_findings": [
-        {
-          "finding_id": "cf-5b78375546baf889",
-          "status": "open",
-          "source_zh_cn": "活泼乐章・飞驰",
-          "match_mode": "contains",
-          "source_paths": [
-            "text_data_dict.json"
-          ],
-          "key_exact": [],
-          "json_path_prefixes": [
-            [
-              "172"
-            ]
-          ],
-          "suggested_targets_vi": [],
-          "concepts": [
-            "Individual Skill name identity"
-          ],
-          "kinds": [
-            "proper_name"
-          ],
-          "review_action": "defer",
-          "review_target_vi": ""
-        }
-      ],
-      "item_context_sha256": "d2c9335078d186a3cad9ba7ecadbb2364498abc43cce86b450e6179db6c7ae5d"
-    },
-    {
-      "uid": "zhcn:d74755e894416092b717f299",
-      "source_batch": 247,
-      "entry_index": 37,
-      "kind": "text_data",
-      "source_path": "text_data_dict.json",
-      "json_path": [
-        "172",
-        "11020201"
-      ],
-      "key": null,
-      "source_text": "耐力上限、力量上限与毅力上限提升，\\n可获得「真是愉快！」技能灵感的因子",
-      "source_fingerprint": "60aecc354271ea9a184f795f6140b2ee3d22348daa55aecbcfd1fdd5e351cac9",
-      "current_text": "Giới hạn Stamina, Power và Guts tăng,\\nSpark giúp nhận Skill Hint 「Thật vui quá!」",
-      "current_fingerprint": "9a349e8f38305d5f2e74df2d13d438e29a08a8d8b86321f76d265b859b9bd885",
-      "risk_flags": [
-        "community_term",
-        "canonical_finding"
-      ],
-      "risk_score": 42,
-      "locked_terms": [],
-      "community_terms": [
-        {
-          "id": "common.stat.stamina",
-          "preferred": "Stamina",
-          "accepted": [
-            "Stamina"
-          ],
-          "forbidden": [
-            "Thể lực"
-          ],
-          "matched_aliases": [
-            "耐力"
-          ],
-          "accepted_present": true,
-          "forbidden_present": false,
-          "require_accepted": true,
-          "basis": "Common EN-version stat label; distinct from the training energy gauge."
-        },
-        {
-          "id": "common.stat.power",
-          "preferred": "Power",
-          "accepted": [
-            "Power"
-          ],
-          "forbidden": [
-            "Sức mạnh"
-          ],
-          "matched_aliases": [
-            "力量"
-          ],
-          "accepted_present": true,
-          "forbidden_present": false,
-          "require_accepted": true,
-          "basis": "Common EN-version Power stat label. The zh-CN alias 力量 is ambiguous in ordinary prose and can also occur inside proper names such as 莱茵力量 (Rhein Kraft); known non-stat compounds, names, descriptive titles, and narrative/metaphorical phrases are explicitly excluded so physical or emotional strength is not normalized to the stat label."
-        },
-        {
-          "id": "common.stat.guts",
-          "preferred": "Guts",
-          "accepted": [
-            "Guts"
-          ],
-          "forbidden": [
-            "Ý chí"
-          ],
-          "matched_aliases": [
-            "毅力"
-          ],
-          "accepted_present": true,
-          "forbidden_present": false,
-          "require_accepted": true,
-          "basis": "Common EN-version stat label."
-        },
-        {
-          "id": "common.skill.generic",
-          "preferred": "Skill",
-          "accepted": [
-            "Skill"
-          ],
-          "forbidden": [
-            "Kỹ năng"
-          ],
-          "matched_aliases": [
-            "技能"
-          ],
-          "accepted_present": true,
-          "forbidden_present": false,
-          "require_accepted": true,
-          "basis": "Generic gameplay label stays English. This does not mean individual skill names stay English."
-        },
-        {
-          "id": "common.skill_hint",
-          "preferred": "Skill Hint",
-          "accepted": [
-            "Skill Hint",
-            "Skill Hints"
-          ],
-          "forbidden": [
-            "Gợi ý Skill",
-            "Gợi ý kỹ năng",
-            "Cảm hứng Skill",
-            "Cảm hứng kỹ năng"
-          ],
-          "matched_aliases": [
-            "技能灵感"
-          ],
-          "accepted_present": true,
-          "forbidden_present": false,
-          "require_accepted": true,
-          "basis": "Skill Hint is a gameplay concept. Only the full Skill-Hint compounds are canonical aliases here; bare 提示/灵感/启示 remain ordinary language unless a narrower context rule proves otherwise."
-        },
-        {
-          "id": "common.spark.inheritance_description",
-          "preferred": "Spark",
-          "accepted": [
-            "Spark",
-            "Sparks"
-          ],
-          "forbidden": [
-            "Nhân tố",
-            "nhân tố",
-            "Factor",
-            "factor"
-          ],
-          "matched_aliases": [
-            "因子"
-          ],
-          "accepted_present": true,
-          "forbidden_present": false,
-          "require_accepted": true,
-          "basis": "Pinned text_data category 172 is inheritance-description content; 因子 there is the Spark mechanic. Item scope prevents unrelated review IDs from reopening."
-        }
-      ],
-      "skill_name_canonical": null,
-      "source_bridge_terms": [],
-      "source_bridge_risks": [],
-      "source_bridge_policy_sha256": null,
-      "canonical_findings": [
-        {
-          "finding_id": "cf-24e795c0befb0e4f",
-          "status": "open",
-          "source_zh_cn": "真是愉快！",
-          "match_mode": "contains",
-          "source_paths": [
-            "text_data_dict.json"
-          ],
-          "key_exact": [],
-          "json_path_prefixes": [
-            [
-              "172"
-            ]
-          ],
-          "suggested_targets_vi": [],
-          "concepts": [
-            "Individual Skill name identity"
-          ],
-          "kinds": [
-            "proper_name"
-          ],
-          "review_action": "defer",
-          "review_target_vi": ""
-        }
-      ],
-      "item_context_sha256": "c5ba48e1b6beb0f054124f435cb33b9b3b780af7a37bdfd67352453d44458a64"
-    },
-    {
-      "uid": "zhcn:2389514f6da9fcab5b4ce91c",
-      "source_batch": 247,
-      "entry_index": 38,
-      "kind": "text_data",
-      "source_path": "text_data_dict.json",
-      "json_path": [
-        "172",
-        "11020202"
-      ],
-      "key": null,
-      "source_text": "耐力上限、力量上限与毅力上限提升，\\n可获得「真是愉快！」技能灵感的因子",
-      "source_fingerprint": "60aecc354271ea9a184f795f6140b2ee3d22348daa55aecbcfd1fdd5e351cac9",
-      "current_text": "Giới hạn Stamina, Power và Guts tăng,\\nSpark giúp nhận Skill Hint 「Thật vui quá!」",
-      "current_fingerprint": "9a349e8f38305d5f2e74df2d13d438e29a08a8d8b86321f76d265b859b9bd885",
-      "risk_flags": [
-        "community_term",
-        "canonical_finding"
-      ],
-      "risk_score": 42,
-      "locked_terms": [],
-      "community_terms": [
-        {
-          "id": "common.stat.stamina",
-          "preferred": "Stamina",
-          "accepted": [
-            "Stamina"
-          ],
-          "forbidden": [
-            "Thể lực"
-          ],
-          "matched_aliases": [
-            "耐力"
-          ],
-          "accepted_present": true,
-          "forbidden_present": false,
-          "require_accepted": true,
-          "basis": "Common EN-version stat label; distinct from the training energy gauge."
-        },
-        {
-          "id": "common.stat.power",
-          "preferred": "Power",
-          "accepted": [
-            "Power"
-          ],
-          "forbidden": [
-            "Sức mạnh"
-          ],
-          "matched_aliases": [
-            "力量"
-          ],
-          "accepted_present": true,
-          "forbidden_present": false,
-          "require_accepted": true,
-          "basis": "Common EN-version Power stat label. The zh-CN alias 力量 is ambiguous in ordinary prose and can also occur inside proper names such as 莱茵力量 (Rhein Kraft); known non-stat compounds, names, descriptive titles, and narrative/metaphorical phrases are explicitly excluded so physical or emotional strength is not normalized to the stat label."
-        },
-        {
-          "id": "common.stat.guts",
-          "preferred": "Guts",
-          "accepted": [
-            "Guts"
-          ],
-          "forbidden": [
-            "Ý chí"
-          ],
-          "matched_aliases": [
-            "毅力"
-          ],
-          "accepted_present": true,
-          "forbidden_present": false,
-          "require_accepted": true,
-          "basis": "Common EN-version stat label."
-        },
-        {
-          "id": "common.skill.generic",
-          "preferred": "Skill",
-          "accepted": [
-            "Skill"
-          ],
-          "forbidden": [
-            "Kỹ năng"
-          ],
-          "matched_aliases": [
-            "技能"
-          ],
-          "accepted_present": true,
-          "forbidden_present": false,
-          "require_accepted": true,
-          "basis": "Generic gameplay label stays English. This does not mean individual skill names stay English."
-        },
-        {
-          "id": "common.skill_hint",
-          "preferred": "Skill Hint",
-          "accepted": [
-            "Skill Hint",
-            "Skill Hints"
-          ],
-          "forbidden": [
-            "Gợi ý Skill",
-            "Gợi ý kỹ năng",
-            "Cảm hứng Skill",
-            "Cảm hứng kỹ năng"
-          ],
-          "matched_aliases": [
-            "技能灵感"
-          ],
-          "accepted_present": true,
-          "forbidden_present": false,
-          "require_accepted": true,
-          "basis": "Skill Hint is a gameplay concept. Only the full Skill-Hint compounds are canonical aliases here; bare 提示/灵感/启示 remain ordinary language unless a narrower context rule proves otherwise."
-        },
-        {
-          "id": "common.spark.inheritance_description",
-          "preferred": "Spark",
-          "accepted": [
-            "Spark",
-            "Sparks"
-          ],
-          "forbidden": [
-            "Nhân tố",
-            "nhân tố",
-            "Factor",
-            "factor"
-          ],
-          "matched_aliases": [
-            "因子"
-          ],
-          "accepted_present": true,
-          "forbidden_present": false,
-          "require_accepted": true,
-          "basis": "Pinned text_data category 172 is inheritance-description content; 因子 there is the Spark mechanic. Item scope prevents unrelated review IDs from reopening."
-        }
-      ],
-      "skill_name_canonical": null,
-      "source_bridge_terms": [],
-      "source_bridge_risks": [],
-      "source_bridge_policy_sha256": null,
-      "canonical_findings": [
-        {
-          "finding_id": "cf-24e795c0befb0e4f",
-          "status": "open",
-          "source_zh_cn": "真是愉快！",
-          "match_mode": "contains",
-          "source_paths": [
-            "text_data_dict.json"
-          ],
-          "key_exact": [],
-          "json_path_prefixes": [
-            [
-              "172"
-            ]
-          ],
-          "suggested_targets_vi": [],
-          "concepts": [
-            "Individual Skill name identity"
-          ],
-          "kinds": [
-            "proper_name"
-          ],
-          "review_action": "defer",
-          "review_target_vi": ""
-        }
-      ],
-      "item_context_sha256": "c5ba48e1b6beb0f054124f435cb33b9b3b780af7a37bdfd67352453d44458a64"
-    },
-    {
-      "uid": "zhcn:75e3c4249c9cd4f61f95da64",
-      "source_batch": 247,
-      "entry_index": 39,
-      "kind": "text_data",
-      "source_path": "text_data_dict.json",
-      "json_path": [
-        "172",
-        "11020203"
-      ],
-      "key": null,
-      "source_text": "耐力上限、力量上限与毅力上限提升，\\n可获得「真是愉快！」技能灵感的因子",
-      "source_fingerprint": "60aecc354271ea9a184f795f6140b2ee3d22348daa55aecbcfd1fdd5e351cac9",
-      "current_text": "Giới hạn Stamina, Power và Guts tăng,\\nSpark giúp nhận Skill Hint 「Thật vui quá!」",
-      "current_fingerprint": "9a349e8f38305d5f2e74df2d13d438e29a08a8d8b86321f76d265b859b9bd885",
-      "risk_flags": [
-        "community_term",
-        "canonical_finding"
-      ],
-      "risk_score": 42,
-      "locked_terms": [],
-      "community_terms": [
-        {
-          "id": "common.stat.stamina",
-          "preferred": "Stamina",
-          "accepted": [
-            "Stamina"
-          ],
-          "forbidden": [
-            "Thể lực"
-          ],
-          "matched_aliases": [
-            "耐力"
-          ],
-          "accepted_present": true,
-          "forbidden_present": false,
-          "require_accepted": true,
-          "basis": "Common EN-version stat label; distinct from the training energy gauge."
-        },
-        {
-          "id": "common.stat.power",
-          "preferred": "Power",
-          "accepted": [
-            "Power"
-          ],
-          "forbidden": [
-            "Sức mạnh"
-          ],
-          "matched_aliases": [
-            "力量"
-          ],
-          "accepted_present": true,
-          "forbidden_present": false,
-          "require_accepted": true,
-          "basis": "Common EN-version Power stat label. The zh-CN alias 力量 is ambiguous in ordinary prose and can also occur inside proper names such as 莱茵力量 (Rhein Kraft); known non-stat compounds, names, descriptive titles, and narrative/metaphorical phrases are explicitly excluded so physical or emotional strength is not normalized to the stat label."
-        },
-        {
-          "id": "common.stat.guts",
-          "preferred": "Guts",
-          "accepted": [
-            "Guts"
-          ],
-          "forbidden": [
-            "Ý chí"
-          ],
-          "matched_aliases": [
-            "毅力"
-          ],
-          "accepted_present": true,
-          "forbidden_present": false,
-          "require_accepted": true,
-          "basis": "Common EN-version stat label."
-        },
-        {
-          "id": "common.skill.generic",
-          "preferred": "Skill",
-          "accepted": [
-            "Skill"
-          ],
-          "forbidden": [
-            "Kỹ năng"
-          ],
-          "matched_aliases": [
-            "技能"
-          ],
-          "accepted_present": true,
-          "forbidden_present": false,
-          "require_accepted": true,
-          "basis": "Generic gameplay label stays English. This does not mean individual skill names stay English."
-        },
-        {
-          "id": "common.skill_hint",
-          "preferred": "Skill Hint",
-          "accepted": [
-            "Skill Hint",
-            "Skill Hints"
-          ],
-          "forbidden": [
-            "Gợi ý Skill",
-            "Gợi ý kỹ năng",
-            "Cảm hứng Skill",
-            "Cảm hứng kỹ năng"
-          ],
-          "matched_aliases": [
-            "技能灵感"
-          ],
-          "accepted_present": true,
-          "forbidden_present": false,
-          "require_accepted": true,
-          "basis": "Skill Hint is a gameplay concept. Only the full Skill-Hint compounds are canonical aliases here; bare 提示/灵感/启示 remain ordinary language unless a narrower context rule proves otherwise."
-        },
-        {
-          "id": "common.spark.inheritance_description",
-          "preferred": "Spark",
-          "accepted": [
-            "Spark",
-            "Sparks"
-          ],
-          "forbidden": [
-            "Nhân tố",
-            "nhân tố",
-            "Factor",
-            "factor"
-          ],
-          "matched_aliases": [
-            "因子"
-          ],
-          "accepted_present": true,
-          "forbidden_present": false,
-          "require_accepted": true,
-          "basis": "Pinned text_data category 172 is inheritance-description content; 因子 there is the Spark mechanic. Item scope prevents unrelated review IDs from reopening."
-        }
-      ],
-      "skill_name_canonical": null,
-      "source_bridge_terms": [],
-      "source_bridge_risks": [],
-      "source_bridge_policy_sha256": null,
-      "canonical_findings": [
-        {
-          "finding_id": "cf-24e795c0befb0e4f",
-          "status": "open",
-          "source_zh_cn": "真是愉快！",
-          "match_mode": "contains",
-          "source_paths": [
-            "text_data_dict.json"
-          ],
-          "key_exact": [],
-          "json_path_prefixes": [
-            [
-              "172"
-            ]
-          ],
-          "suggested_targets_vi": [],
-          "concepts": [
-            "Individual Skill name identity"
-          ],
-          "kinds": [
-            "proper_name"
-          ],
-          "review_action": "defer",
-          "review_target_vi": ""
-        }
-      ],
-      "item_context_sha256": "c5ba48e1b6beb0f054124f435cb33b9b3b780af7a37bdfd67352453d44458a64"
-    },
-    {
-      "uid": "zhcn:c669a3aa1399d32a4c018680",
-      "source_batch": 247,
-      "entry_index": 41,
-      "kind": "text_data",
-      "source_path": "text_data_dict.json",
-      "json_path": [
-        "172",
-        "11030101"
-      ],
-      "key": null,
-      "source_text": "力量上限与智力上限提升，\\n可获得「绝对最强☆展现宣言！」技能灵感的因子",
-      "source_fingerprint": "1fb7fad1d606d0f807e813f6fee07886a7fd246eedb02811a02f16454a8eda7f",
-      "current_text": "Giới hạn Power và Wit tăng,\\nSpark giúp nhận Skill Hint 「Tuyên ngôn trình diễn☆tuyệt đối mạnh nhất!」",
-      "current_fingerprint": "af35d8db4543d18fb95c1b1ffc0ee5eacb0bdd1d1aea26854d4ceaf843373869",
-      "risk_flags": [
-        "community_term",
-        "community_calque_risk",
-        "community_term_mismatch"
-      ],
-      "risk_score": 16,
-      "locked_terms": [],
-      "community_terms": [
-        {
-          "id": "common.stat.power",
-          "preferred": "Power",
-          "accepted": [
-            "Power"
-          ],
-          "forbidden": [
-            "Sức mạnh"
-          ],
-          "matched_aliases": [
-            "力量"
-          ],
-          "accepted_present": true,
-          "forbidden_present": false,
-          "require_accepted": true,
-          "basis": "Common EN-version Power stat label. The zh-CN alias 力量 is ambiguous in ordinary prose and can also occur inside proper names such as 莱茵力量 (Rhein Kraft); known non-stat compounds, names, descriptive titles, and narrative/metaphorical phrases are explicitly excluded so physical or emotional strength is not normalized to the stat label."
-        },
-        {
-          "id": "common.stat.wit",
-          "preferred": "Wit",
-          "accepted": [
-            "Wit"
-          ],
-          "forbidden": [
-            "Trí tuệ"
-          ],
-          "matched_aliases": [
-            "智力"
-          ],
-          "accepted_present": true,
-          "forbidden_present": false,
-          "require_accepted": true,
-          "basis": "Common EN-version Wit stat label. The zh-CN alias 智力 is context-sensitive and must not canonicalize ordinary compounds such as 智力扣 (a disentanglement puzzle/toy)."
-        },
-        {
-          "id": "common.skill.generic",
-          "preferred": "Skill",
-          "accepted": [
-            "Skill"
-          ],
-          "forbidden": [
-            "Kỹ năng"
-          ],
-          "matched_aliases": [
-            "技能"
-          ],
-          "accepted_present": true,
-          "forbidden_present": false,
-          "require_accepted": true,
-          "basis": "Generic gameplay label stays English. This does not mean individual skill names stay English."
-        },
-        {
-          "id": "common.skill_hint",
-          "preferred": "Skill Hint",
-          "accepted": [
-            "Skill Hint",
-            "Skill Hints"
-          ],
-          "forbidden": [
-            "Gợi ý Skill",
-            "Gợi ý kỹ năng",
-            "Cảm hứng Skill",
-            "Cảm hứng kỹ năng"
-          ],
-          "matched_aliases": [
-            "技能灵感"
-          ],
-          "accepted_present": true,
-          "forbidden_present": false,
-          "require_accepted": true,
-          "basis": "Skill Hint is a gameplay concept. Only the full Skill-Hint compounds are canonical aliases here; bare 提示/灵感/启示 remain ordinary language unless a narrower context rule proves otherwise."
-        },
-        {
-          "id": "common.spark.inheritance_description",
-          "preferred": "Spark",
-          "accepted": [
-            "Spark",
-            "Sparks"
-          ],
-          "forbidden": [
-            "Nhân tố",
-            "nhân tố",
-            "Factor",
-            "factor"
-          ],
-          "matched_aliases": [
-            "因子"
-          ],
-          "accepted_present": true,
-          "forbidden_present": false,
-          "require_accepted": true,
-          "basis": "Pinned text_data category 172 is inheritance-description content; 因子 there is the Spark mechanic. Item scope prevents unrelated review IDs from reopening."
-        },
-        {
-          "id": "skill.lois_royce.absolute_strongest_appeal",
-          "preferred": "Tuyên Ngôn Phô Diễn☆Tuyệt Đối Mạnh Nhất!",
-          "accepted": [
-            "Tuyên Ngôn Phô Diễn☆Tuyệt Đối Mạnh Nhất!"
-          ],
-          "forbidden": [
-            "Tuyên ngôn trình diễn☆tuyệt đối mạnh nhất!"
-          ],
-          "matched_aliases": [
-            "绝对最强☆展现宣言！"
-          ],
-          "accepted_present": false,
-          "forbidden_present": true,
-          "require_accepted": true,
-          "basis": "Repository locator 47:101031 is verified as JP 絶対最強☆アピール宣言！, Royce and Royce's unique Skill. JP character material emphasizes self-presentation (自己演出), so render アピール as deliberate 'Phô Diễn' rather than generic performance. Preserve the playful star/exclamation and normalize Skill-title capitalization. Contains matching is required because the complete title appears inside category-172 inheritance text."
-        }
-      ],
-      "skill_name_canonical": null,
-      "source_bridge_terms": [],
-      "source_bridge_risks": [],
-      "source_bridge_policy_sha256": null,
-      "canonical_findings": [],
-      "item_context_sha256": "e62f75b32925e1127b4f180daabdfae00671b989d74a55881e590142c154daa1"
+      "item_context_sha256": "020bcea97e16c39d9dfcab7732b12f18947b18202989292fa527512d317ab35b"
     }
   ]
 }

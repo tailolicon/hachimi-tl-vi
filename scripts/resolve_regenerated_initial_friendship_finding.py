@@ -1,6 +1,10 @@
 from __future__ import annotations
 
-"""Resolve the regenerated Initial Friendship gauge-variant finding from live evidence."""
+"""Resolve the regenerated Initial Friendship gauge-variant finding from live evidence.
+
+This resolver is intentionally rerunnable after retrospective-review merges that can
+rematerialize the finding with a null canonical resolution.
+"""
 
 import json
 from pathlib import Path

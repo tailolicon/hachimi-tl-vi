@@ -1,0 +1,948 @@
+{
+  "schema_version": 1,
+  "policy_version": 3,
+  "plan_id": "ui-p3-67f8551f7780-8938bc8c4ce4-794885289e",
+  "batch_id": "ui-p3-67f8551f7780-8938bc8c4ce4-794885289e-b0008",
+  "source_commit": "67f8551f77807292cebd2b20b2c752b652393835",
+  "source_queue_git_commit": "ba3815ed06a2a9bb3fddb38a6e1ea7ca64506da2",
+  "terminology_snapshot_sha256": "794885289eb9d77778460f2c8ed55f69c5e5fc8ef443ff9f692bb6b86b791bfa",
+  "review_generation": "full-semantic-community-reset",
+  "items": [
+    {
+      "key": "RaceFitAssisrance661003",
+      "path": [
+        "RaceFitAssisrance661003"
+      ],
+      "source_text": "<color=#ff911c>育成赛马娘</color>",
+      "source_fingerprint": "472f12beb7aa5b430267c3ebc3e858d9e9fb52c2a1170e81dd611a69a2ddbd85",
+      "source_batch": 56,
+      "uid": "zhcn:0101cca7cb37e45f2b164203",
+      "current_text": "<color=#ff911c>Mã Nương đang huấn luyện</color>",
+      "current_fingerprint": "883e56ea9c3fb9feb8d66c4247183b74e8aa2903e307ac8b24159017dfe0ee41",
+      "source_visual_width": 5.0,
+      "current_visual_width": 12.92,
+      "risk_flags": [
+        "overflow_risk",
+        "community_term",
+        "community_term_mismatch"
+      ],
+      "risk_score": 13,
+      "community_terms": [
+        {
+          "id": "common.world.umamusume",
+          "preferred": "Mã Nương",
+          "accepted": [
+            "Mã Nương"
+          ],
+          "forbidden": [
+            "Uma Musume"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Generic 赛马娘 is the project world/species term Mã Nương, but it must not fire inside established ウマ娘ステークス race-name forms represented by 赛马娘锦标."
+        },
+        {
+          "id": "career.ui.trainee.text_data",
+          "preferred": "Trainee",
+          "accepted": [
+            "Trainee"
+          ],
+          "forbidden": [
+            "Uma Musume huấn luyện",
+            "Uma Musume Huấn luyện",
+            "Mã Nương huấn luyện"
+          ],
+          "accepted_present": false,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "The repository already defines the full compound 育成赛马娘 / 育成ウマ娘 as the player-facing Trainee concept and explicitly excludes it from generic Umamusume matching. Extend that same full-compound identity to text_data descriptions. This does not map bare 育成 or bare 赛马娘 and therefore avoids the ambiguity that required the original localize_dict key scoping."
+        },
+        {
+          "id": "world.umamusume.shorthand.text130",
+          "preferred": "Mã Nương",
+          "accepted": [
+            "Mã Nương"
+          ],
+          "forbidden": [
+            "Uma Musume"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Generic zh-CN shorthand 马娘 refers to the same world/species concept as 赛马娘 in this text-data category. Reuse the repository's established Vietnamese world term Mã Nương, but keep the rule category-scoped so unrelated proper-name or source-bridge uses elsewhere are not broadened automatically."
+        },
+        {
+          "id": "common.world.umamusume.profile_shorthand",
+          "preferred": "Mã Nương",
+          "accepted": [
+            "Mã Nương"
+          ],
+          "forbidden": [
+            "Uma Musume"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Category 144 contains character-profile taglines that use 马娘 inside generic 赛马娘 species references. Resolve the worker-reported short-token finding to the project world term Mã Nương without making 马娘 a global alias."
+        },
+        {
+          "id": "world.umamusume.shorthand.schedulebook",
+          "preferred": "Mã Nương",
+          "accepted": [
+            "Mã Nương"
+          ],
+          "forbidden": [
+            "Uma Musume"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "The six evidence-bearing ScheduleBook UI strings use zh-CN 马娘 as the generic Umamusume world/species shorthand. Reuse the established Vietnamese term Mã Nương, but keep this short alias restricted to the reviewed ScheduleBook keys so unrelated proper-name or source-bridge uses in localize_dict.json are not broadened automatically."
+        }
+      ]
+    },
+    {
+      "key": "RoomMatch0155",
+      "path": [
+        "RoomMatch0155"
+      ],
+      "source_text": "返回主页",
+      "source_fingerprint": "5ff221f046f02c60dc74439aeecfecffe53500ca459493d64fbf9fc0a6939493",
+      "source_batch": 59,
+      "uid": "zhcn:6a991be6f3b775ef3ed1361d",
+      "current_text": "Trở về trang chủ",
+      "current_fingerprint": "7cb1f9cfc511b25927110329894298be9768216fd0ea88afdffb533248f202aa",
+      "source_visual_width": 4.0,
+      "current_visual_width": 8.53,
+      "risk_flags": [
+        "overflow_risk",
+        "community_term",
+        "community_term_mismatch"
+      ],
+      "risk_score": 13,
+      "community_terms": [
+        {
+          "id": "common_ui.back.common0082",
+          "preferred": "Quay lại",
+          "accepted": [
+            "Quay lại"
+          ],
+          "forbidden": [],
+          "accepted_present": false,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Common0082 is the generic Back control. Exact-key scope excludes narrative return wording and longer destination-specific labels."
+        }
+      ]
+    },
+    {
+      "key": "Shop418002",
+      "path": [
+        "Shop418002"
+      ],
+      "source_text": "现在处于兑换期限外\n返回主页",
+      "source_fingerprint": "1c906c40b1665cc193d01ce092d92b7a46d1e6489c7dcab45f76f29b9d18ff9c",
+      "source_batch": 64,
+      "uid": "zhcn:e729972acb193fab81ee73ef",
+      "current_text": "Hiện đang ngoài thời hạn đổi\nQuay về Trang chủ",
+      "current_fingerprint": "c4007ed966ad4fc9f5214d4fa7de4aa88b6e2cb8d4dbb7566eed31e51e7557b8",
+      "source_visual_width": 9.0,
+      "current_visual_width": 14.99,
+      "risk_flags": [
+        "overflow_risk",
+        "community_term",
+        "community_term_mismatch"
+      ],
+      "risk_score": 13,
+      "community_terms": [
+        {
+          "id": "common_ui.back.common0082",
+          "preferred": "Quay lại",
+          "accepted": [
+            "Quay lại"
+          ],
+          "forbidden": [],
+          "accepted_present": false,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Common0082 is the generic Back control. Exact-key scope excludes narrative return wording and longer destination-specific labels."
+        }
+      ]
+    },
+    {
+      "key": "Shop497004",
+      "path": [
+        "Shop497004"
+      ],
+      "source_text": "{0}已生效\n将返回标题页面",
+      "source_fingerprint": "2819d38a4c43a7659b21a5dc10393a8a83adf3963328fc7a4f2026b0966b3481",
+      "source_batch": 64,
+      "uid": "zhcn:a8d59bfff36353370b8be752",
+      "current_text": "{0} đã có hiệu lực\nSẽ quay về màn hình tiêu đề",
+      "current_fingerprint": "f677197722046795fac1973e13c1853a60d2b40ca2adc827ddde2087db6eac3d",
+      "source_visual_width": 7.0,
+      "current_visual_width": 14.16,
+      "risk_flags": [
+        "overflow_risk",
+        "community_term",
+        "community_term_mismatch"
+      ],
+      "risk_score": 13,
+      "community_terms": [
+        {
+          "id": "common_ui.back.common0082",
+          "preferred": "Quay lại",
+          "accepted": [
+            "Quay lại"
+          ],
+          "forbidden": [],
+          "accepted_present": false,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Common0082 is the generic Back control. Exact-key scope excludes narrative return wording and longer destination-specific labels."
+        }
+      ]
+    },
+    {
+      "key": "SingleMode0364",
+      "path": [
+        "SingleMode0364"
+      ],
+      "source_text": "体力<color=#FF6D26>已满</color>",
+      "source_fingerprint": "a3d4954219c30be5371711c3486e8e10e119d980186f963aa7b6feb70c989be5",
+      "source_batch": 68,
+      "uid": "zhcn:31b36478c109252c5daa7b3c",
+      "current_text": "Năng lượng <color=#FF6D26>đã đầy</color>",
+      "current_fingerprint": "694d8ba2636b1c17f828de963360f67aecdfaba9e8ff9f3963b78efcc15ec627",
+      "source_visual_width": 4.0,
+      "current_visual_width": 9.11,
+      "risk_flags": [
+        "overflow_risk",
+        "community_term",
+        "community_term_mismatch"
+      ],
+      "risk_score": 13,
+      "community_terms": [
+        {
+          "id": "common.energy.singlemode",
+          "preferred": "Energy",
+          "accepted": [
+            "Energy"
+          ],
+          "forbidden": [
+            "Thể lực",
+            "thể lực"
+          ],
+          "accepted_present": false,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Exact Career training UI slots for the Energy gauge and its gain/loss messages. The key guard prevents ordinary physical-strength prose from matching."
+        },
+        {
+          "id": "stat.stamina.achievement_threshold",
+          "preferred": "Stamina",
+          "accepted": [
+            "Stamina"
+          ],
+          "forbidden": [
+            "Thể lực"
+          ],
+          "accepted_present": false,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "In text_data category 131 achievement conditions, bracketed 体力 with a numeric threshold such as 1200 is the trainable Stamina stat. The training energy gauge cannot take four-digit stat values. Scope is restricted to achievement-condition category 131 so ordinary 体力 meaning Energy/physical condition elsewhere is unaffected. This is deliberately a scoped community rule, not a global reviewed lock, because the repository already canonically maps generic 体力 to Energy."
+        }
+      ]
+    },
+    {
+      "key": "SingleMode0446",
+      "path": [
+        "SingleMode0446"
+      ],
+      "source_text": "目标决定",
+      "source_fingerprint": "346c44b41b74c319dec8e2b223c46ae4d377c8c20469a591ddd8845e47f081fd",
+      "source_batch": 69,
+      "uid": "zhcn:e2a6d5cb1df0cbd7eae5a23d",
+      "current_text": "Chốt mục tiêu",
+      "current_fingerprint": "575690295b4373477f3d9d1e23c8e8d549672853b7fdcec0f8fb0b039f603383",
+      "source_visual_width": 4.0,
+      "current_visual_width": 7.04,
+      "risk_flags": [
+        "overflow_risk",
+        "community_term",
+        "community_term_mismatch"
+      ],
+      "risk_score": 13,
+      "community_terms": [
+        {
+          "id": "common_ui.confirm.common0023",
+          "preferred": "Xác nhận",
+          "accepted": [
+            "Xác nhận"
+          ],
+          "forbidden": [],
+          "accepted_present": false,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Common0023 is another generic Confirm/Decide control in the Common UI group; exact key prevents a global semantic flattening of decide."
+        }
+      ]
+    },
+    {
+      "key": "SingleMode419106",
+      "path": [
+        "SingleMode419106"
+      ],
+      "source_text": "确定后不可变更因子",
+      "source_fingerprint": "ad7d4cc5d4a7d50cd523073f382a6b47255776dab7456ad39b85753dfd8e1bec",
+      "source_batch": 73,
+      "uid": "zhcn:0e2cacd4afd9a6934cf6d83c",
+      "current_text": "Chốt rồi không thể đổi Spark",
+      "current_fingerprint": "2eee6cccbabaf3d67b7d86267816577143f630d23d29c9cfba946304bae49aac",
+      "source_visual_width": 9.0,
+      "current_visual_width": 14.99,
+      "risk_flags": [
+        "overflow_risk",
+        "community_term",
+        "community_term_mismatch"
+      ],
+      "risk_score": 13,
+      "community_terms": [
+        {
+          "id": "common.spark.inheritance_description",
+          "preferred": "Spark",
+          "accepted": [
+            "Spark",
+            "Sparks"
+          ],
+          "forbidden": [
+            "Nhân tố",
+            "nhân tố",
+            "Factor",
+            "factor"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Pinned text_data category 172 is inheritance-description content; 因子 there is the Spark mechanic. Item scope prevents unrelated review IDs from reopening."
+        },
+        {
+          "id": "common.spark.localize_ui",
+          "preferred": "Spark",
+          "accepted": [
+            "Spark",
+            "Sparks"
+          ],
+          "forbidden": [
+            "Nhân tố",
+            "nhân tố",
+            "Factor",
+            "factor"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Observed localize_dict occurrences are Spark/Legacy UI. Story/assets are intentionally outside this source-path guard."
+        },
+        {
+          "id": "common_ui.confirm.common0001",
+          "preferred": "Xác nhận",
+          "accepted": [
+            "Xác nhận"
+          ],
+          "forbidden": [],
+          "accepted_present": false,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Common0001 is the primary generic Confirm control. Exact-key scope prevents the broad source verb from forcing prose."
+        }
+      ]
+    },
+    {
+      "key": "SingleMode419111",
+      "path": [
+        "SingleMode419111"
+      ],
+      "source_text": "确定因子前",
+      "source_fingerprint": "802820ec32df1beb094993b0e49115c92050a66c523fdffcbe57f55a9a2f3173",
+      "source_batch": 73,
+      "uid": "zhcn:6d9d4747e69193ac679e207e",
+      "current_text": "Trước khi chốt Spark",
+      "current_fingerprint": "970e68bb1b50f53310c88d52daa40a2949fd2c764debe62957f5e571ae795eca",
+      "source_visual_width": 5.0,
+      "current_visual_width": 10.85,
+      "risk_flags": [
+        "overflow_risk",
+        "community_term",
+        "community_term_mismatch"
+      ],
+      "risk_score": 13,
+      "community_terms": [
+        {
+          "id": "common.spark.inheritance_description",
+          "preferred": "Spark",
+          "accepted": [
+            "Spark",
+            "Sparks"
+          ],
+          "forbidden": [
+            "Nhân tố",
+            "nhân tố",
+            "Factor",
+            "factor"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Pinned text_data category 172 is inheritance-description content; 因子 there is the Spark mechanic. Item scope prevents unrelated review IDs from reopening."
+        },
+        {
+          "id": "common.spark.localize_ui",
+          "preferred": "Spark",
+          "accepted": [
+            "Spark",
+            "Sparks"
+          ],
+          "forbidden": [
+            "Nhân tố",
+            "nhân tố",
+            "Factor",
+            "factor"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Observed localize_dict occurrences are Spark/Legacy UI. Story/assets are intentionally outside this source-path guard."
+        },
+        {
+          "id": "common_ui.confirm.common0001",
+          "preferred": "Xác nhận",
+          "accepted": [
+            "Xác nhận"
+          ],
+          "forbidden": [],
+          "accepted_present": false,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Common0001 is the primary generic Confirm control. Exact-key scope prevents the broad source verb from forcing prose."
+        }
+      ]
+    },
+    {
+      "key": "SingleMode701011",
+      "path": [
+        "SingleMode701011"
+      ],
+      "source_text": "资质·基础能力",
+      "source_fingerprint": "e156bd39fc5f50b2bf587b6aeaa8a863f024873dce6c40dcd0ae8ffb5d2f19ff",
+      "source_batch": 76,
+      "uid": "zhcn:c229bb600f636126bf5bff30",
+      "current_text": "Tư chất・chỉ số cơ bản",
+      "current_fingerprint": "134ddc6ef296c0617c6532d22a680a39ceabeb8155141bb447b655e9064a8ef3",
+      "source_visual_width": 6.38,
+      "current_visual_width": 11.6,
+      "risk_flags": [
+        "overflow_risk",
+        "community_term",
+        "community_term_mismatch"
+      ],
+      "risk_score": 13,
+      "community_terms": [
+        {
+          "id": "common.aptitude.zhcn_variant",
+          "preferred": "Aptitude",
+          "accepted": [
+            "Aptitude"
+          ],
+          "forbidden": [
+            "Độ thích nghi",
+            "độ thích nghi",
+            "Thích nghi",
+            "thích nghi"
+          ],
+          "accepted_present": false,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "zh-CN localize UI uses 适应性 and 资质 as variants for the player-facing Aptitude system. Scope is restricted to localize_dict so generic adaptability prose elsewhere is not captured."
+        }
+      ]
+    },
+    {
+      "key": "SingleMode701019",
+      "path": [
+        "SingleMode701019"
+      ],
+      "source_text": "发动资质因子",
+      "source_fingerprint": "33d7371d6faaf4488d6cf2c8771c873a2ff7835974651075b40bdf0e86174da6",
+      "source_batch": 77,
+      "uid": "zhcn:2c77f210a7f95264f6bb6dec",
+      "current_text": "Kích hoạt Spark tư chất",
+      "current_fingerprint": "46f26beb3ae05071510cb60feeaccb907ee0b6fee04c74e2213e36af89fb510e",
+      "source_visual_width": 6.0,
+      "current_visual_width": 12.34,
+      "risk_flags": [
+        "overflow_risk",
+        "community_term",
+        "community_term_mismatch"
+      ],
+      "risk_score": 13,
+      "community_terms": [
+        {
+          "id": "common.spark.inheritance_description",
+          "preferred": "Spark",
+          "accepted": [
+            "Spark",
+            "Sparks"
+          ],
+          "forbidden": [
+            "Nhân tố",
+            "nhân tố",
+            "Factor",
+            "factor"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Pinned text_data category 172 is inheritance-description content; 因子 there is the Spark mechanic. Item scope prevents unrelated review IDs from reopening."
+        },
+        {
+          "id": "common.spark.localize_ui",
+          "preferred": "Spark",
+          "accepted": [
+            "Spark",
+            "Sparks"
+          ],
+          "forbidden": [
+            "Nhân tố",
+            "nhân tố",
+            "Factor",
+            "factor"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Observed localize_dict occurrences are Spark/Legacy UI. Story/assets are intentionally outside this source-path guard."
+        },
+        {
+          "id": "common.aptitude.zhcn_variant",
+          "preferred": "Aptitude",
+          "accepted": [
+            "Aptitude"
+          ],
+          "forbidden": [
+            "Độ thích nghi",
+            "độ thích nghi",
+            "Thích nghi",
+            "thích nghi"
+          ],
+          "accepted_present": false,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "zh-CN localize UI uses 适应性 and 资质 as variants for the player-facing Aptitude system. Scope is restricted to localize_dict so generic adaptability prose elsewhere is not captured."
+        }
+      ]
+    },
+    {
+      "key": "SingleModeAutoPlay619010",
+      "path": [
+        "SingleModeAutoPlay619010"
+      ],
+      "source_text": "使用闹钟进行继续",
+      "source_fingerprint": "4d1c983e791f433f128b688114f05085773b9265cc8b6e2b6422d49b1640c857",
+      "source_batch": 78,
+      "uid": "zhcn:9b1dc4e54350748782d9e84d",
+      "current_text": "Tiếp tục bằng Đồng hồ báo thức",
+      "current_fingerprint": "75e5c7a350c5e8b9f41d7a55df3f5c25afa2320c409c5d2812d7ca605071735d",
+      "source_visual_width": 8.0,
+      "current_visual_width": 15.9,
+      "risk_flags": [
+        "overflow_risk",
+        "community_term",
+        "community_term_mismatch"
+      ],
+      "risk_score": 13,
+      "community_terms": [
+        {
+          "id": "common_ui.use.common0013",
+          "preferred": "Sử dụng",
+          "accepted": [
+            "Sử dụng",
+            "Dùng"
+          ],
+          "forbidden": [],
+          "accepted_present": false,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Common0013 is a generic Use control. Exact-key scope keeps ordinary prose about using an item outside this canonical UI rule."
+        }
+      ]
+    },
+    {
+      "key": "SingleModeScenarioBreeders508073",
+      "path": [
+        "SingleModeScenarioBreeders508073"
+      ],
+      "source_text": "举办赛场将随机决定",
+      "source_fingerprint": "08c0c7f13c706b3ea740265e8a340f41f08f2dafc59ae94e5bbd011b60fde642",
+      "source_batch": 80,
+      "uid": "zhcn:1c41f5d0a6d2a4d93863f1b7",
+      "current_text": "Địa điểm được chọn ngẫu nhiên",
+      "current_fingerprint": "27761e46d730555b71e6d81ace2d515163e19bcee3baee704947108c8a74ab0f",
+      "source_visual_width": 9.0,
+      "current_visual_width": 15.57,
+      "risk_flags": [
+        "overflow_risk",
+        "community_term",
+        "community_term_mismatch"
+      ],
+      "risk_score": 13,
+      "community_terms": [
+        {
+          "id": "common_ui.confirm.common0023",
+          "preferred": "Xác nhận",
+          "accepted": [
+            "Xác nhận"
+          ],
+          "forbidden": [],
+          "accepted_present": false,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Common0023 is another generic Confirm/Decide control in the Common UI group; exact key prevents a global semantic flattening of decide."
+        }
+      ]
+    },
+    {
+      "key": "SingleModeScenarioBreeders699004",
+      "path": [
+        "SingleModeScenarioBreeders699004"
+      ],
+      "source_text": "决定目标BC比赛",
+      "source_fingerprint": "fdabd5efb721ab1a019fa749ecef81a9cd34d2414f58df774b48b7bf04b02f9f",
+      "source_batch": 80,
+      "uid": "zhcn:6cd71141003f917662e5f4e6",
+      "current_text": "Chốt cuộc đua BC mục tiêu",
+      "current_fingerprint": "78b2603b574d2ed4b178cf8fed76cdf359e5e246a34fb80a6336c593daf805e3",
+      "source_visual_width": 7.16,
+      "current_visual_width": 13.25,
+      "risk_flags": [
+        "overflow_risk",
+        "community_term",
+        "community_term_mismatch"
+      ],
+      "risk_score": 13,
+      "community_terms": [
+        {
+          "id": "common_ui.confirm.common0023",
+          "preferred": "Xác nhận",
+          "accepted": [
+            "Xác nhận"
+          ],
+          "forbidden": [],
+          "accepted_present": false,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Common0023 is another generic Confirm/Decide control in the Common UI group; exact key prevents a global semantic flattening of decide."
+        }
+      ]
+    },
+    {
+      "key": "SingleModeScenarioCook425100",
+      "path": [
+        "SingleModeScenarioCook425100"
+      ],
+      "source_text": "已全部结束",
+      "source_fingerprint": "c0ef5b3a34daba1020669a51cf790b79d8ca5a8090c065891cc42fad466fee56",
+      "source_batch": 82,
+      "uid": "zhcn:2e09e58fd082071cc5fef256",
+      "current_text": "Đã kết thúc toàn bộ",
+      "current_fingerprint": "5677e598962e343f02e13320e078f169341292c3510008c994ea456ec16c092a",
+      "source_visual_width": 5.0,
+      "current_visual_width": 10.02,
+      "risk_flags": [
+        "overflow_risk",
+        "community_term",
+        "community_term_mismatch"
+      ],
+      "risk_score": 13,
+      "community_terms": [
+        {
+          "id": "common_ui.all.common0020",
+          "preferred": "Tất cả",
+          "accepted": [
+            "Tất cả"
+          ],
+          "forbidden": [],
+          "accepted_present": false,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Common0020 is the generic All filter/selection label. Exact-key scope keeps generic all/every prose natural."
+        }
+      ]
+    },
+    {
+      "key": "SingleModeScenarioPioneer619026",
+      "path": [
+        "SingleModeScenarioPioneer619026"
+      ],
+      "source_text": "方案决定",
+      "source_fingerprint": "cc814eb362863ccff6952219b9e3e615111e7e2d1cbbafb7a4df49898aeb4f2b",
+      "source_batch": 91,
+      "uid": "zhcn:7a6825a9f23e018658cfa6b4",
+      "current_text": "Chốt phương án",
+      "current_fingerprint": "e84f02f5762d628d1c12930856505ec3584679a12d0819e68c2ac17fb2c01387",
+      "source_visual_width": 4.0,
+      "current_visual_width": 7.62,
+      "risk_flags": [
+        "overflow_risk",
+        "community_term",
+        "community_term_mismatch"
+      ],
+      "risk_score": 13,
+      "community_terms": [
+        {
+          "id": "common_ui.confirm.common0023",
+          "preferred": "Xác nhận",
+          "accepted": [
+            "Xác nhận"
+          ],
+          "forbidden": [],
+          "accepted_present": false,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Common0023 is another generic Confirm/Decide control in the Common UI group; exact key prevents a global semantic flattening of decide."
+        }
+      ]
+    },
+    {
+      "key": "SingleModeScenarioPioneer619046",
+      "path": [
+        "SingleModeScenarioPioneer619046"
+      ],
+      "source_text": "自动设置关闭",
+      "source_fingerprint": "9b3a66d609ad6b6ad7a10bfe3957f8b6c7705cf06b405d466d3f2c61381471f8",
+      "source_batch": 91,
+      "uid": "zhcn:404b069b6c679dd7e93d8257",
+      "current_text": "Đã tắt cài đặt tự động",
+      "current_fingerprint": "5090edbc9828b2a0887561193a2be3fdf58b5e448b644494a71075b453c4d74c",
+      "source_visual_width": 6.0,
+      "current_visual_width": 11.51,
+      "risk_flags": [
+        "overflow_risk",
+        "community_term",
+        "community_term_mismatch"
+      ],
+      "risk_score": 13,
+      "community_terms": [
+        {
+          "id": "common_ui.close.common0007",
+          "preferred": "Đóng",
+          "accepted": [
+            "Đóng"
+          ],
+          "forbidden": [],
+          "accepted_present": false,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Common0007 is the generic Close control. Exact-key scope prevents this generic source token from leaking into unrelated contexts."
+        }
+      ]
+    },
+    {
+      "key": "StoryEvent0026",
+      "path": [
+        "StoryEvent0026"
+      ],
+      "source_text": "全部剧情\n解锁完毕",
+      "source_fingerprint": "a99aae2653b1aefbfd15f18dd7f3ebc976c636c43b2f2772854c2479a32b42d4",
+      "source_batch": 100,
+      "uid": "zhcn:0e573c32988f98ad8c6655cc",
+      "current_text": "Đã mở khóa\ntoàn bộ cốt truyện",
+      "current_fingerprint": "52765be114c7a07e5b83c6abd1b51596a5b9552dedcc0aee04ff1744fd3db882",
+      "source_visual_width": 4.0,
+      "current_visual_width": 9.69,
+      "risk_flags": [
+        "overflow_risk",
+        "community_term",
+        "community_term_mismatch"
+      ],
+      "risk_score": 13,
+      "community_terms": [
+        {
+          "id": "common_ui.all.common0020",
+          "preferred": "Tất cả",
+          "accepted": [
+            "Tất cả"
+          ],
+          "forbidden": [],
+          "accepted_present": false,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Common0020 is the generic All filter/selection label. Exact-key scope keeps generic all/every prose natural."
+        }
+      ]
+    },
+    {
+      "key": "StoryEvent0071",
+      "path": [
+        "StoryEvent0071"
+      ],
+      "source_text": "全部剧情已解锁",
+      "source_fingerprint": "30a6ca11b78ccad5116ae8613033d21ec703bab1406c0e325dfc077ae6498990",
+      "source_batch": 100,
+      "uid": "zhcn:add0bfc0024bdc6620239ce2",
+      "current_text": "Đã mở khóa toàn bộ cốt truyện",
+      "current_fingerprint": "cb883a720ed4a012edfcd940a6d559400e64b68ca506099de8793c4b21dce8ee",
+      "source_visual_width": 7.0,
+      "current_visual_width": 15.32,
+      "risk_flags": [
+        "overflow_risk",
+        "community_term",
+        "community_term_mismatch"
+      ],
+      "risk_score": 13,
+      "community_terms": [
+        {
+          "id": "common_ui.all.common0020",
+          "preferred": "Tất cả",
+          "accepted": [
+            "Tất cả"
+          ],
+          "forbidden": [],
+          "accepted_present": false,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Common0020 is the generic All filter/selection label. Exact-key scope keeps generic all/every prose natural."
+        }
+      ]
+    },
+    {
+      "key": "StoryEvent4080020",
+      "path": [
+        "StoryEvent4080020"
+      ],
+      "source_text": "全部已解锁",
+      "source_fingerprint": "17852cbabcea9bfaa04504bc7312f8bed4bc6c5ea190fd48f3da67288d16d53c",
+      "source_batch": 101,
+      "uid": "zhcn:b6532753b907aa6525b1dcd4",
+      "current_text": "Đã mở khóa toàn bộ",
+      "current_fingerprint": "d923b8dc322d63fbdc053c21f627779af4459d01803a6da9421a760d70ef7cc8",
+      "source_visual_width": 5.0,
+      "current_visual_width": 9.44,
+      "risk_flags": [
+        "overflow_risk",
+        "community_term",
+        "community_term_mismatch"
+      ],
+      "risk_score": 13,
+      "community_terms": [
+        {
+          "id": "common_ui.all.common0020",
+          "preferred": "Tất cả",
+          "accepted": [
+            "Tất cả"
+          ],
+          "forbidden": [],
+          "accepted_present": false,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Common0020 is the generic All filter/selection label. Exact-key scope keeps generic all/every prose natural."
+        }
+      ]
+    },
+    {
+      "key": "TeamBuilding400104",
+      "path": [
+        "TeamBuilding400104"
+      ],
+      "source_text": "赛马娘名鉴",
+      "source_fingerprint": "203e204d9ccb5b4c1342ecffc53b50025254961c9a82cf7ea13686632996574f",
+      "source_batch": 102,
+      "uid": "zhcn:1f9ab8478775ccf586fafbc4",
+      "current_text": "Danh mục Mã Nương",
+      "current_fingerprint": "20c8f79cf11603ada0514ca764894308c7b43e570f9cb1340e15d0e4ae63fa22",
+      "source_visual_width": 5.0,
+      "current_visual_width": 9.11,
+      "risk_flags": [
+        "overflow_risk",
+        "community_term",
+        "community_term_mismatch"
+      ],
+      "risk_score": 13,
+      "community_terms": [
+        {
+          "id": "common.world.umamusume",
+          "preferred": "Mã Nương",
+          "accepted": [
+            "Mã Nương"
+          ],
+          "forbidden": [
+            "Uma Musume"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Generic 赛马娘 is the project world/species term Mã Nương, but it must not fire inside established ウマ娘ステークス race-name forms represented by 赛马娘锦标."
+        },
+        {
+          "id": "world.umamusume.shorthand.text130",
+          "preferred": "Mã Nương",
+          "accepted": [
+            "Mã Nương"
+          ],
+          "forbidden": [
+            "Uma Musume"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Generic zh-CN shorthand 马娘 refers to the same world/species concept as 赛马娘 in this text-data category. Reuse the repository's established Vietnamese world term Mã Nương, but keep the rule category-scoped so unrelated proper-name or source-bridge uses elsewhere are not broadened automatically."
+        },
+        {
+          "id": "system.archive.team_building_619002",
+          "preferred": "Archive",
+          "accepted": [
+            "Archive"
+          ],
+          "forbidden": [
+            "Danh鉴 Uma Musume",
+            "Danh giám Uma Musume",
+            "Uma Musume Catalog"
+          ],
+          "accepted_present": false,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "JP ウマ娘名鑑 is localized in current Global-facing documentation as Archive, the collection/record system with Archive Level and Archive Exp. This occurrence belongs to the Aim for the Stars/Team Building event completion message; keep the rule pinned to TeamBuilding619002 rather than generalizing every 名鉴 occurrence."
+        },
+        {
+          "id": "common.world.umamusume.profile_shorthand",
+          "preferred": "Mã Nương",
+          "accepted": [
+            "Mã Nương"
+          ],
+          "forbidden": [
+            "Uma Musume"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Category 144 contains character-profile taglines that use 马娘 inside generic 赛马娘 species references. Resolve the worker-reported short-token finding to the project world term Mã Nương without making 马娘 a global alias."
+        },
+        {
+          "id": "world.umamusume.shorthand.schedulebook",
+          "preferred": "Mã Nương",
+          "accepted": [
+            "Mã Nương"
+          ],
+          "forbidden": [
+            "Uma Musume"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "The six evidence-bearing ScheduleBook UI strings use zh-CN 马娘 as the generic Umamusume world/species shorthand. Reuse the established Vietnamese term Mã Nương, but keep this short alias restricted to the reviewed ScheduleBook keys so unrelated proper-name or source-bridge uses in localize_dict.json are not broadened automatically."
+        }
+      ]
+    }
+  ]
+}

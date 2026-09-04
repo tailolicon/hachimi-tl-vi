@@ -96,11 +96,46 @@
         "Tốc độ"
       ],
       "require_accepted": true,
-      "basis": "Common EN-version stat label.",
+      "basis": "Common EN-version Speed stat label; exact matching prevents generic Chinese 速度 prose from being forced into the stat label.",
+      "match_mode": "exact",
       "exclude_source_contains": [
         "融会贯通的速度",
-        "跳过速度"
+        "跳过速度",
+        "成长速度"
       ]
+    },
+    {
+      "id": "common.stat.speed.context",
+      "category": "stat",
+      "source_aliases": [
+        "速度上限",
+        "速度加成",
+        "基础能力[速度]",
+        "基础能力【速度】",
+        "「速度」",
+        "『速度』",
+        "[速度]",
+        "【速度】",
+        "速度超过",
+        "速度达到",
+        "スピード上限",
+        "スピードボーナス",
+        "基礎能力[スピード]",
+        "基礎能力【スピード】",
+        "「スピード」",
+        "『スピード』",
+        "[スピード]",
+        "【スピード】"
+      ],
+      "preferred": "Speed",
+      "compact": [],
+      "accepted": [
+        "Speed"
+      ],
+      "forbidden": [],
+      "require_accepted": true,
+      "match_mode": "contains",
+      "basis": "Narrow player-facing Speed stat contexts. No global forbidden Tốc độ token is used here because the same sentence may also describe literal/max/running speed."
     },
     {
       "id": "common.stat.stamina",

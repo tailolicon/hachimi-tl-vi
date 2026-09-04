@@ -8,7 +8,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 EXCLUSIONS = {
     "common.stat.power": ["获得相应的力量", "坚定不移的力量", "力量感"],
-    "common.stat.speed": ["融会贯通的速度", "跳过速度"],
+    "common.stat.speed": ["融会贯通的速度", "跳过速度", "成长速度"],
     "common.stat.guts": ["充满毅力"],
 }
 

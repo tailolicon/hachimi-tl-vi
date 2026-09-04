@@ -211,6 +211,11 @@ GUARDS.update({
         "term_id": "common.stat.speed",
         "target_vi": "Speed",
     },
+    "cf-b1060c0332f450d8": {
+        "layer": "community",
+        "term_id": "common.stat.speed",
+        "target_vi": "Speed",
+    },
     "cf-9844f9093f379eac": {
         "layer": "community",
         "term_id": "common.world.umamusume",

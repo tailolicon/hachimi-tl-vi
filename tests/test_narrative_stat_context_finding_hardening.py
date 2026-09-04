@@ -13,6 +13,7 @@ CASES = (
     ("cf-03be28442492e3b1", "力量感", "common.stat.power", "Power"),
     ("cf-daad507f1b0d4acc", "融会贯通的速度", "common.stat.speed", "Speed"),
     ("cf-9d903a48b310ef86", "提高跳过速度", "common.stat.speed", "Speed"),
+    ("cf-b1060c0332f450d8", "成长速度", "common.stat.speed", "Speed"),
     ("cf-1daec5ebd9895c48", "充满毅力", "common.stat.guts", "Guts"),
 )
 

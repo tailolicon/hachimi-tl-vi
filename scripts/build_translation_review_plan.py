@@ -61,6 +61,35 @@ PRIORITY_HEAD_SIZE = 64
 INCOMPLETE_GATE_REASON = "Retrospective translation review is incomplete; review continues in parallel with new translation claims."
 REVIEW_WORKER_CAP = 2
 
+# Batches containing deterministic canonical/terminology violations should not be
+# buried behind merely heuristic high-risk prose. This affects only ordering of
+# future regenerated plans; it never edits an active/generated plan in place.
+HARD_PRIORITY_FLAGS = frozenset({
+    "locked_term_mismatch",
+    "community_calque_risk",
+    "community_term_mismatch",
+    "canonical_skill_name_mismatch",
+    "source_bridge_calque_risk",
+    "source_bridge_term_mismatch",
+})
+
+
+def _hard_violation_count(items: list[dict[str, Any]]) -> int:
+    return sum(
+        1
+        for item in items
+        if HARD_PRIORITY_FLAGS.intersection(str(flag) for flag in item.get("risk_flags", []))
+    )
+
+
+def _batch_priority_key(item: dict[str, Any]) -> tuple[int, int, int, str]:
+    return (
+        -int(item.get("hard_violation_count", 0)),
+        int(item["source_batches"][0]),
+        -int(item["risk_score"]),
+        str(item["batch_id"]),
+    )
+
 
 def git_show_json(repo_root: Path, ref: str, path: str) -> Any:
     proc = subprocess.run(
@@ -471,10 +500,11 @@ def build_plan(repo_root: Path, batch_size: int) -> dict[str, Any]:
             "batch_path": rel.as_posix(),
             "item_count": len(items),
             "risk_score": sum(int(item["risk_score"]) for item in items),
+            "hard_violation_count": _hard_violation_count(items),
             "source_batches": sorted({int(item["source_batch"]) for item in items}),
         })
 
-    batches.sort(key=lambda item: (-int(item["risk_score"]), int(item["source_batches"][0]), str(item["batch_id"])))
+    batches.sort(key=_batch_priority_key)
     priority_batch_ids = [str(item["batch_id"]) for item in batches[:PRIORITY_HEAD_SIZE]]
     plan_rel = Path("work/translation_review/plans") / f"{plan_id}.json"
     common = {

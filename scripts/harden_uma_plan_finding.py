@@ -7,22 +7,22 @@ from typing import Any
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE = "马娘计划"
 TARGET = "Uma Plan"
-KEY = "Character608001"
+KEYS = ["Character608001", "Character701022"]
 
 UMA_PLAN_TERM = {
-    "id": "system.uma_plan.subscription.character608001",
+    "id": "system.uma_plan.subscription",
     "category": "system",
     "source_aliases": [SOURCE],
     "preferred": TARGET,
     "compact": [],
     "accepted": [TARGET],
-    "forbidden": ["Gói Umamusume", "Gói Uma Musume", "Kế hoạch Umamusume"],
+    "forbidden": ["Gói Umamusume", "Gói Uma Musume", "Kế hoạch Umamusume", "Kế hoạch Uma Musume"],
     "require_accepted": True,
     "invalidation_scope": "item",
     "source_paths": ["localize_dict.json"],
-    "key_exact": [KEY],
+    "key_exact": KEYS,
     "match_mode": "contains",
-    "basis": "Official Cygames JP service name is ウマプラン (Uma Plan), introduced as a monthly subscription on 2026-02-24. Scope is pinned to the proven Character608001 subscription UI item so generic plan/package prose cannot overmatch.",
+    "basis": "Official Cygames JP service name is ウマプラン (Uma Plan), introduced as a monthly subscription on 2026-02-24. Scope is pinned to the proven subscription UI keys Character608001 and Character701022 so unrelated plan/package prose cannot overmatch.",
 }
 
 UMA_PLAN_DECISION = {
@@ -34,9 +34,9 @@ UMA_PLAN_DECISION = {
     "category": "system",
     "invalidation_scope": "item",
     "source_paths": ["localize_dict.json"],
-    "key_exact": [KEY],
+    "key_exact": KEYS,
     "match_mode": "contains",
-    "note": "Cygames officially brands the service as ウマプラン. Preserve the brand identity as Uma Plan; the zh-CN alias occurs inside a longer Character608001 sentence, so contains matching is required and remains item-scoped.",
+    "note": "Cygames officially brands the service as ウマプラン. Preserve the brand identity as Uma Plan; the zh-CN alias occurs inside longer subscription UI strings, so contains matching is required and remains pinned to proven keys.",
 }
 
 
@@ -64,6 +64,17 @@ def _upsert(items: list[Any], record: dict[str, Any], id_field: str) -> None:
     items.append(dict(record))
 
 
+def _drop_legacy_uma_plan_term(items: list[Any]) -> None:
+    items[:] = [
+        item
+        for item in items
+        if not (
+            isinstance(item, dict)
+            and str(item.get("id") or "") == "system.uma_plan.subscription.character608001"
+        )
+    ]
+
+
 def harden(repo_root: Path = ROOT) -> bool:
     changed = False
 
@@ -78,7 +89,9 @@ def harden(repo_root: Path = ROOT) -> bool:
     community_path = repo_root / "glossary" / "ui_community_terms.json"
     community = _load(community_path, {"schema_version": 1, "terms": []})
     before = json.dumps(community, ensure_ascii=False, sort_keys=True)
-    _upsert(community.setdefault("terms", []), UMA_PLAN_TERM, "id")
+    terms = community.setdefault("terms", [])
+    _drop_legacy_uma_plan_term(terms)
+    _upsert(terms, UMA_PLAN_TERM, "id")
     if before != json.dumps(community, ensure_ascii=False, sort_keys=True):
         _write(community_path, community)
         changed = True

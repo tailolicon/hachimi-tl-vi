@@ -22,8 +22,14 @@ The live zh-CN title maps directly to Mr. C.B.'s `WINNING LIVE 24` solo song `å¤
 Implementation commits on live `main`:
 
 - regression commit `9b5acbad8440adc7323e543e6099c2bc8c69a833`
-- hardener commit `9cba679795238ca5b6795abc1b3fa94fc76ae8a8`
+- original hardener commit `9cba679795238ca5b6795abc1b3fa94fc76ae8a8`
+- replay-safety fix `221961d01455b6c06fcde0632f589fb777709b49`
 
 ## Acceptance status
 
-Pending production acceptance. Do not advance the maintenance completed count until required Validate, Sync translation context, and Sync translation review plan workflows succeed and the then-live generated review item `text_data_dict.json` `16/1166` embeds `song.dreaming_in_the_wind` / `Dreaming in the Wind` with `canonical_findings: []`.
+Accepted in production.
+
+- Replay-safety fix passed Validate/pytest.
+- Production Sync translation context run `33825873073` succeeded, including all finding hardeners and context-pipeline tests.
+- Production Sync translation review plan run `33825873089` succeeded.
+- Published live plan `tr-p3-67f8551f7780-bdff91d1f88f-b5c0bcb3bd-3f3fefbe8d`, batch `b0176`, embeds `song.dreaming_in_the_wind` / `Dreaming in the Wind` for `text_data_dict.json` `16/1166` with `canonical_findings: []`.

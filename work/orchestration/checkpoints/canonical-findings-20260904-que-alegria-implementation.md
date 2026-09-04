@@ -1,4 +1,4 @@
-# Canonical finding implementation checkpoint: ¡Qué alegría!
+# Canonical finding acceptance: ¡Qué alegría!
 
 - Finding: `cf-e5e3ab3fd5da256c`
 - zh-CN source: `可喜可贺大欢声！`
@@ -8,7 +8,7 @@
 
 ## Evidence
 
-The live retrospective review plan embeds `cf-e5e3ab3fd5da256c` as an open proper-name finding for the Skill title `可喜可贺大欢声！` in `text_data_dict.json` category 147. Public JP/community references identify Gran Alegria's unique Skill as `¡Qué alegría!`; the Chinese skill reference explicitly pairs `¡Qué alegría!` with `可喜可贺大欢声！`. Because the JP player-facing title is already Spanish, preserving it verbatim avoids translating a proper name through zh-CN.
+The live retrospective review plan embedded `cf-e5e3ab3fd5da256c` as an open proper-name finding for the Skill title `可喜可贺大欢声！` in `text_data_dict.json` category 147. Public JP/community references identify Gran Alegria's unique Skill as `¡Qué alegría!`; the Chinese skill reference explicitly pairs `¡Qué alegría!` with `可喜可贺大欢声！`. Because the JP player-facing title is already Spanish, preserving it verbatim avoids translating a proper name through zh-CN.
 
 References checked during implementation:
 - https://umamusu.wiki/Game:Skills/101311 — `¡Qué alegría!`, unique Skill for `[smile my way!] Gran Alegria`, JP-only.
@@ -26,6 +26,12 @@ References checked during implementation:
   - verifies canonical/review resolution makes the synthetic live-shape finding non-actionable;
   - verifies exact scoping does not overmatch longer source text or another file.
 
-## Pending acceptance
+## Production acceptance
 
-The hardener-triggered Validate, Sync translation context, and Sync translation review plan workflows are running. Do not increment maintenance `completed_count` until all required workflows succeed and regenerated live state proves `cf-e5e3ab3fd5da256c` is nonblocking.
+- Validate/test run `33879556413`: success.
+- Sync translation context run `33879556397`: success; published `c020f326d08765ca62bcc7b4fb62702e20f0db9b`.
+- Production ledger now has `canonical_resolution = skill.que_alegria -> ¡Qué alegría!` and `review_resolution = audit.finding.skill-que-alegria / lock`; `open_canonical_findings` decreased from 145 to 144.
+- Sync translation review plan run `33879556401`: success.
+- Regenerated active plan `tr-p3-67f8551f7780-bcb50de94ac3-b5c0bcb3bd-d968acad86` contains no occurrence of `cf-e5e3ab3fd5da256c`.
+
+Acceptance complete. This finding counts as one newly completed maintenance unit.

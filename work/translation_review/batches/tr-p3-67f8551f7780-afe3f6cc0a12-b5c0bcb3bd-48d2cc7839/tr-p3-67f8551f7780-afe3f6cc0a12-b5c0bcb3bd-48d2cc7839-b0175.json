@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "policy_version": 3,
-  "plan_id": "tr-p3-67f8551f7780-838f16b962bc-b5c0bcb3bd-05f31b1d0f",
-  "batch_id": "tr-p3-67f8551f7780-838f16b962bc-b5c0bcb3bd-05f31b1d0f-b0175",
+  "plan_id": "tr-p3-67f8551f7780-afe3f6cc0a12-b5c0bcb3bd-48d2cc7839",
+  "batch_id": "tr-p3-67f8551f7780-afe3f6cc0a12-b5c0bcb3bd-48d2cc7839-b0175",
   "context_snapshot_sha256": "b5c0bcb3bd9ee5c45e7bedf49c8f8d6ad35c3ceb3c35f528c6381a63c684a967",
   "source_bridge_policy_sha256": "c42f21f04ee9cb206637e3ffe79ea0932701ee94f39273dc9b466b6fbbfd69af",
   "review_generation": "retrospective-canonical-full-review",
@@ -74,11 +74,32 @@
       "current_text": "Rap cùng Golshi -It's không thể đâu-",
       "current_fingerprint": "3997ed98565b061cc10a54565ba8bd0c7fdc82a292b5f32764d2dd1845edea00",
       "risk_flags": [
-        "canonical_finding"
+        "community_term",
+        "community_calque_risk",
+        "community_term_mismatch"
       ],
-      "risk_score": 40,
+      "risk_score": 16,
       "locked_terms": [],
-      "community_terms": [],
+      "community_terms": [
+        {
+          "id": "song.golshi_de_rap_its_muri_muri",
+          "preferred": "Golshi de Rap -It's Muri Muri-",
+          "accepted": [
+            "Golshi de Rap -It's Muri Muri-"
+          ],
+          "forbidden": [
+            "ゴルシでラップ -It's むりむり-",
+            "Rap cùng Golshi -It's không thể đâu-"
+          ],
+          "matched_aliases": [
+            "ゴルシでラップ -It's むりむり-"
+          ],
+          "accepted_present": false,
+          "forbidden_present": true,
+          "require_accepted": true,
+          "basis": "Official Lantis WINNING LIVE 12 identifies ゴルシでラップ -It's むりむり- as a named Gold Ship track. CDJapan/Neowing catalog Romanization gives GOLSHI DE RAP - IT'S MURI MURI-. Preserve the Latin/Romanized identity Golshi de Rap -It's Muri Muri- instead of the mixed semantic Vietnamese rendering. Exact matching prevents title fragments from leaking into prose."
+        }
+      ],
       "skill_name_canonical": null,
       "source_bridge_terms": [],
       "source_bridge_risks": [],

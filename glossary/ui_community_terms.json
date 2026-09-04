@@ -8244,6 +8244,34 @@
       ],
       "match_mode": "exact",
       "basis": "The repository already locks the flattened source label 群英月赛 to the official Global event name Champions Meeting. RoomMatch600018 contains the same event label with an embedded newline, so this exact localize_dict variant must inherit that identity instead of a generic monthly-competition rendering."
+    },
+    {
+      "id": "race.crown.generic_triple_crown_profile",
+      "category": "race",
+      "source_aliases": [
+        "三冠"
+      ],
+      "preferred": "Triple Crown",
+      "compact": [],
+      "accepted": [
+        "Triple Crown"
+      ],
+      "forbidden": [
+        "Tam Quan",
+        "Tam quan"
+      ],
+      "require_accepted": true,
+      "invalidation_scope": "item",
+      "source_paths": [
+        "text_data_dict.json"
+      ],
+      "json_path_prefixes": [
+        [
+          "144"
+        ]
+      ],
+      "match_mode": "contains",
+      "basis": "Category 144 profile/title prose uses 三冠 as the generic Triple Crown achievement label. Keep the rule category-scoped so it cannot overmatch established compound crowns such as 经典三冠, 春古马三冠, or 秋古马三冠 elsewhere."
     }
   ]
 }

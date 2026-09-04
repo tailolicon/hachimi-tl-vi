@@ -1,0 +1,245 @@
+{
+  "schema_version": 1,
+  "status": "complete",
+  "plan_id": "tr-p3-67f8551f7780-592195830b0a-b5c0bcb3bd-304dedddee",
+  "batch_id": "tr-p3-67f8551f7780-592195830b0a-b5c0bcb3bd-304dedddee-b0135",
+  "claim_id": "trc-claude-sonnet5-w2-20260904T122900Z",
+  "worker_id": "claude-sonnet5-run3-w2-20260904",
+  "reviewed_at": "2026-09-04T12:38:00Z",
+  "completed_count": 20,
+  "decisions": [
+    {
+      "uid": "zhcn:44185898ee28aa9ca5faf3a1",
+      "current_fingerprint": "a722540e343630ec3d50daff8b4227d7650c636c7680d49ce764224e9201d665",
+      "action": "defer",
+      "reason": "Systemic term-registry overmatch: reviewed.skill_name.6b9641d2417b (光明→Ánh sáng) fires inside the proper name 目白光明 (Mejiro Bright); satisfying it would corrupt the character name. Deferring rather than forcing an invalid literal match.",
+      "confidence": "high",
+      "canonical_finding": {
+        "kind": "context_rule",
+        "source_zh_cn": "目白光明",
+        "concept": "reviewed.skill_name.6b9641d2417b (光明→Ánh sáng) overmatches inside the verified character proper name 目白光明 (Mejiro Bright); needs an exclude_source_contains entry for 目白光明 (or character-name context scoping) in glossary/term_registry.json.",
+        "match_mode": "exact",
+        "scope": "auto",
+        "reason": "Locked skill_name term 光明 has no exclusion for the character compound, causing TranslationQualityGuard.validate to hard-require 'Ánh sáng' literally present in Mejiro Bright's outfit/costume item descriptions, which is impossible without corrupting the proper name.",
+        "confidence": "high"
+      }
+    },
+    {
+      "uid": "zhcn:208cb6ed7f0f77bb20941514",
+      "current_fingerprint": "12210329423fdd89d84e55d3873dc0a0aed92a1095cfcb0eae3e45a71cc31460",
+      "action": "keep",
+      "reason": "Correct rendering; matches established Character-item template.",
+      "confidence": "high",
+      "terminology_basis": "character.daiichi_ruby: Daiichi Ruby present as required."
+    },
+    {
+      "uid": "zhcn:f7da656c9f4f9e7e62f285cf",
+      "current_fingerprint": "12210329423fdd89d84e55d3873dc0a0aed92a1095cfcb0eae3e45a71cc31460",
+      "action": "keep",
+      "reason": "Correct rendering; matches established Character-item template.",
+      "confidence": "high",
+      "terminology_basis": "character.daiichi_ruby: Daiichi Ruby present as required."
+    },
+    {
+      "uid": "zhcn:e1a35eb04b8fc789d320c932",
+      "current_fingerprint": "928332be644c4d30d48a5882fc76946f60e3c6428e66fe755003993e24cab80c",
+      "action": "revise",
+      "reason": "Generic 赛马娘 here refers to a rival trainee, not a race-name form; must render as Mã Nương, not the forbidden 'Uma Musume'.",
+      "confidence": "high",
+      "proposed_text": "Trang phục đặc biệt của Mã Nương đối thủ",
+      "terminology_basis": "common.world.umamusume: forbidden 'Uma Musume' was present, required 'Mã Nương' was missing; now fixed. Verified against the live TranslationQualityGuard with zero errors."
+    },
+    {
+      "uid": "zhcn:96a1ad50faf3a58debea05f1",
+      "current_fingerprint": "56b0fc8d86d700ef4eca44caca077e810369d1cbc5484435ee7793c04850270d",
+      "action": "defer",
+      "reason": "Systemic term-registry overmatch: stat.power (力量→Power) fires inside the proper name 莱茵力量 (Rhein Kraft); satisfying it would corrupt the character name. Deferring rather than forcing an invalid literal match.",
+      "confidence": "high",
+      "canonical_finding": {
+        "kind": "context_rule",
+        "source_zh_cn": "莱茵力量",
+        "concept": "stat.power (力量→Power) overmatches inside the verified character proper name 莱茵力量 (Rhein Kraft); needs an exclude_source_contains entry for 莱茵力量 (or character-name context scoping) in glossary/term_registry.json.",
+        "match_mode": "exact",
+        "scope": "auto",
+        "reason": "Locked stat term 力量 has no exclusion for the character compound, causing TranslationQualityGuard.validate to hard-require 'Power' literally present in Rhein Kraft's outfit/costume item descriptions, which is impossible without corrupting the proper name.",
+        "confidence": "high"
+      }
+    },
+    {
+      "uid": "zhcn:08f9e52cbf0c129ba9d3c069",
+      "current_fingerprint": "56b0fc8d86d700ef4eca44caca077e810369d1cbc5484435ee7793c04850270d",
+      "action": "defer",
+      "reason": "Same systemic overmatch as the other 莱茵力量的特殊服装 duplicate.",
+      "confidence": "high",
+      "canonical_finding": {
+        "kind": "context_rule",
+        "source_zh_cn": "莱茵力量",
+        "concept": "stat.power (力量→Power) overmatches inside the verified character proper name 莱茵力量 (Rhein Kraft); needs an exclude_source_contains entry for 莱茵力量 (or character-name context scoping) in glossary/term_registry.json.",
+        "match_mode": "exact",
+        "scope": "auto",
+        "reason": "Locked stat term 力量 has no exclusion for the character compound, causing TranslationQualityGuard.validate to hard-require 'Power' literally present in Rhein Kraft's outfit/costume item descriptions, which is impossible without corrupting the proper name.",
+        "confidence": "high"
+      }
+    },
+    {
+      "uid": "zhcn:33c1422224a540732f57e044",
+      "current_fingerprint": "928332be644c4d30d48a5882fc76946f60e3c6428e66fe755003993e24cab80c",
+      "action": "revise",
+      "reason": "Generic 赛马娘 here refers to a rival trainee, not a race-name form; must render as Mã Nương, not the forbidden 'Uma Musume'.",
+      "confidence": "high",
+      "proposed_text": "Trang phục đặc biệt của Mã Nương đối thủ",
+      "terminology_basis": "common.world.umamusume: forbidden 'Uma Musume' was present, required 'Mã Nương' was missing; now fixed. Verified against the live TranslationQualityGuard with zero errors."
+    },
+    {
+      "uid": "zhcn:36ca714dfeb1950f81e71e97",
+      "current_fingerprint": "f86f24aff2df41819538177df3df9509dacaee5d623f3acfa64e1cae0efe83a3",
+      "action": "revise",
+      "reason": "Generic 赛马娘 must render as Mã Nương, not 'Uma Musume'; 第一阶段 uses the Chinese numeral 一 (no digit), so the Vietnamese ordinal must be spelled out ('một') rather than using the digit '1' to avoid a numeric-token mismatch.",
+      "confidence": "high",
+      "proposed_text": "Trang phục đặc biệt giai đoạn một của Mã Nương cơ khí",
+      "terminology_basis": "common.world.umamusume: forbidden 'Uma Musume' was present, required 'Mã Nương' now present. Verified against the live TranslationQualityGuard with zero errors."
+    },
+    {
+      "uid": "zhcn:519645c0439d13feedfb82d1",
+      "current_fingerprint": "45215f316f3511c05d26530d3ef7240ee79709b09201eea1d499423ea73dae58",
+      "action": "revise",
+      "reason": "Generic 赛马娘 must render as Mã Nương, not 'Uma Musume'; 第三阶段 uses the Chinese numeral 三 (no digit), so the Vietnamese ordinal must be spelled out ('ba') rather than using the digit '3' to avoid a numeric-token mismatch.",
+      "confidence": "high",
+      "proposed_text": "Trang phục đặc biệt giai đoạn ba của Mã Nương cơ khí",
+      "terminology_basis": "world.umamusume: required 'Mã Nương' was missing, now present. Verified against the live TranslationQualityGuard with zero errors."
+    },
+    {
+      "uid": "zhcn:8b01bdb19d64021f0124acd2",
+      "current_fingerprint": "928332be644c4d30d48a5882fc76946f60e3c6428e66fe755003993e24cab80c",
+      "action": "revise",
+      "reason": "Generic 赛马娘 here refers to a rival trainee, not a race-name form; must render as Mã Nương, not the forbidden 'Uma Musume'.",
+      "confidence": "high",
+      "proposed_text": "Trang phục đặc biệt của Mã Nương đối thủ",
+      "terminology_basis": "common.world.umamusume: forbidden 'Uma Musume' was present, required 'Mã Nương' was missing; now fixed. Verified against the live TranslationQualityGuard with zero errors."
+    },
+    {
+      "uid": "zhcn:9980a8bbc71110d44a38eccf",
+      "current_fingerprint": "928332be644c4d30d48a5882fc76946f60e3c6428e66fe755003993e24cab80c",
+      "action": "revise",
+      "reason": "Generic 赛马娘 here refers to a rival trainee, not a race-name form; must render as Mã Nương, not the forbidden 'Uma Musume'.",
+      "confidence": "high",
+      "proposed_text": "Trang phục đặc biệt của Mã Nương đối thủ",
+      "terminology_basis": "common.world.umamusume: forbidden 'Uma Musume' was present, required 'Mã Nương' was missing; now fixed. Verified against the live TranslationQualityGuard with zero errors."
+    },
+    {
+      "uid": "zhcn:c1ca8b91ef05473233479b28",
+      "current_fingerprint": "928332be644c4d30d48a5882fc76946f60e3c6428e66fe755003993e24cab80c",
+      "action": "revise",
+      "reason": "Generic 赛马娘 here refers to a rival trainee, not a race-name form; must render as Mã Nương, not the forbidden 'Uma Musume'.",
+      "confidence": "high",
+      "proposed_text": "Trang phục đặc biệt của Mã Nương đối thủ",
+      "terminology_basis": "common.world.umamusume: forbidden 'Uma Musume' was present, required 'Mã Nương' was missing; now fixed. Verified against the live TranslationQualityGuard with zero errors."
+    },
+    {
+      "uid": "zhcn:9ae82a76f8ff68e51c16b045",
+      "current_fingerprint": "928332be644c4d30d48a5882fc76946f60e3c6428e66fe755003993e24cab80c",
+      "action": "revise",
+      "reason": "Generic 赛马娘 here refers to a rival trainee, not a race-name form; must render as Mã Nương, not the forbidden 'Uma Musume'.",
+      "confidence": "high",
+      "proposed_text": "Trang phục đặc biệt của Mã Nương đối thủ",
+      "terminology_basis": "common.world.umamusume: forbidden 'Uma Musume' was present, required 'Mã Nương' was missing; now fixed. Verified against the live TranslationQualityGuard with zero errors."
+    },
+    {
+      "uid": "zhcn:1224131f6999ebe12ae77342",
+      "current_fingerprint": "55a1359116d38522955404c73c2ec7b8ba0df1fb5f24e656edcd99b81cb2512a",
+      "action": "defer",
+      "reason": "Same systemic overmatch as 目白光明的特殊服装: reviewed.skill_name.6b9641d2417b (光明→Ánh sáng) fires inside the proper name 目白光明 (Mejiro Bright).",
+      "confidence": "high",
+      "canonical_finding": {
+        "kind": "context_rule",
+        "source_zh_cn": "目白光明",
+        "concept": "reviewed.skill_name.6b9641d2417b (光明→Ánh sáng) overmatches inside the verified character proper name 目白光明 (Mejiro Bright); needs an exclude_source_contains entry for 目白光明 (or character-name context scoping) in glossary/term_registry.json.",
+        "match_mode": "exact",
+        "scope": "auto",
+        "reason": "Locked skill_name term 光明 has no exclusion for the character compound, causing TranslationQualityGuard.validate to hard-require 'Ánh sáng' literally present in Mejiro Bright's outfit/costume item descriptions, which is impossible without corrupting the proper name.",
+        "confidence": "high"
+      }
+    },
+    {
+      "uid": "zhcn:7970f96884248228984682f0",
+      "current_fingerprint": "228a100f343faac2f69f4beb0fcd8007975960ea1074c109cbb7a1a0b7f80054",
+      "action": "keep",
+      "reason": "Correct rendering; matches established Character-item template.",
+      "confidence": "high",
+      "terminology_basis": "character.daiichi_ruby: Daiichi Ruby present as required."
+    },
+    {
+      "uid": "zhcn:2443125167226930be588584",
+      "current_fingerprint": "49d7133cd45860ecd12938a952757b4d6a52c64c83024c01d755b9e2e80b2cb5",
+      "action": "defer",
+      "reason": "Same systemic overmatch as 莱茵力量的特殊服装: stat.power (力量→Power) fires inside the proper name 莱茵力量 (Rhein Kraft).",
+      "confidence": "high",
+      "canonical_finding": {
+        "kind": "context_rule",
+        "source_zh_cn": "莱茵力量",
+        "concept": "stat.power (力量→Power) overmatches inside the verified character proper name 莱茵力量 (Rhein Kraft); needs an exclude_source_contains entry for 莱茵力量 (or character-name context scoping) in glossary/term_registry.json.",
+        "match_mode": "exact",
+        "scope": "auto",
+        "reason": "Locked stat term 力量 has no exclusion for the character compound, causing TranslationQualityGuard.validate to hard-require 'Power' literally present in Rhein Kraft's outfit/costume item descriptions, which is impossible without corrupting the proper name.",
+        "confidence": "high"
+      }
+    },
+    {
+      "uid": "zhcn:0081d335a775543ae1268248",
+      "current_fingerprint": "0615806fb3e1493d7d62686f839cb5470829cd6a551067783ce5e66b1a4e21c2",
+      "action": "defer",
+      "reason": "Two locked skill_name terms for overlapping aliases (心动 and the longer 怦然心动) both require their literal target present simultaneously, which is impossible in one natural title. Deferring rather than picking one arbitrarily.",
+      "confidence": "high",
+      "canonical_finding": {
+        "kind": "context_rule",
+        "source_zh_cn": "怦然心动",
+        "concept": "Two locked skill_name terms (reviewed.skill_name.3346bd209f49 心动→Nhịp tim rộn ràng and reviewed.skill_name.8009678dbfe7 怦然心动→Trái tim rung động) both match substrings of 怦然心动的记忆♪ and both require their literal target present, which is impossible in one natural short title.",
+        "match_mode": "exact",
+        "scope": "auto",
+        "reason": "心动 is a substring of the longer verified alias 怦然心动; the two locked entries were never deduplicated/scoped against each other in glossary/term_registry.json, so the guard hard-requires both simultaneously.",
+        "confidence": "high"
+      }
+    },
+    {
+      "uid": "zhcn:669369eaa9f28ec63b8ab152",
+      "current_fingerprint": "773a6889537a34ecc8fa9ed25d84d9852acc368eb59a92a78d2e5cce04865450",
+      "action": "defer",
+      "reason": "A locked support_unique_effect_name requires the exact current string (which contains 'Uma Musume'), while common.world.umamusume forbids 'Uma Musume' and a source_bridge term requires 'thần tượng Mã Nương' for the same span. No text satisfies all three. Deferring for canonical reconciliation.",
+      "confidence": "high",
+      "canonical_finding": {
+        "kind": "context_rule",
+        "source_zh_cn": "这就是我的赛马娘偶像道☆",
+        "concept": "reviewed.support_unique_effect_name.8976e3f9943d locks the exact string 'Đây chính là con đường idol Uma Musume của tôi☆' as required target, but this literal string contains the community-forbidden 'Uma Musume' (common.world.umamusume requires Mã Nương) and conflicts with reviewed.source_bridge.c703df9ef225 requiring 'thần tượng Mã Nương' for 马娘偶像. No target text can satisfy all three simultaneously.",
+        "match_mode": "exact",
+        "scope": "auto",
+        "reason": "The locked support_unique_effect_name target_vi was authored before the current Mã Nương/thần tượng Mã Nương policy and was never reconciled with common.world.umamusume or reviewed.source_bridge.c703df9ef225 for this exact string.",
+        "confidence": "high"
+      }
+    },
+    {
+      "uid": "zhcn:eca19b6fa146ea5980f009fb",
+      "current_fingerprint": "34ccc42ae1ce26f5e48d2eb7085ec2330d8aa816fbaf1e096e7b51c294db2aa0",
+      "action": "defer",
+      "reason": "A locked support_unique_effect_name requires the exact current Mission string, while a skill_name term requires 'Bổ sung dinh dưỡng' for the embedded 营养补给 alias. No text satisfies both. Deferring for canonical reconciliation.",
+      "confidence": "high",
+      "canonical_finding": {
+        "kind": "context_rule",
+        "source_zh_cn": "Mission『心灵的营养补给』",
+        "concept": "reviewed.support_unique_effect_name.2d3cd2517b79 locks the exact current Mission string as required target, but conflicts with reviewed.skill_name.5553bd077c0f requiring 'Bổ sung dinh dưỡng' for the embedded alias 营养补给. No target text can satisfy both simultaneously.",
+        "match_mode": "exact",
+        "scope": "auto",
+        "reason": "The locked support_unique_effect_name target_vi predates or was never reconciled with the skill_name registry entry for the embedded 营养补给 alias.",
+        "confidence": "high"
+      }
+    },
+    {
+      "uid": "zhcn:888c6a5f195d51c1088c9fbe",
+      "current_fingerprint": "1fd9ebd8d8ac4d2a2bb25343601023a6c4c8b9a4a5447facd78bc46c9719fb90",
+      "action": "revise",
+      "reason": "This describes an actual initial-stat increase effect (力量 = the Power stat), not a name or metaphorical phrase, so the canonical player-facing stat label Power applies instead of the forbidden 'Sức mạnh'.",
+      "confidence": "high",
+      "proposed_text": "Tăng Power ban đầu",
+      "terminology_basis": "common.stat.power: forbidden 'Sức mạnh' was present, required 'Power' was missing; now fixed. Verified against the live TranslationQualityGuard with zero errors."
+    }
+  ]
+}

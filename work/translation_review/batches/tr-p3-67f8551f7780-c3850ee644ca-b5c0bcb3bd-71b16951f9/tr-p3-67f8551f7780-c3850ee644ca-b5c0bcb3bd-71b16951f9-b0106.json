@@ -1,0 +1,1442 @@
+{
+  "schema_version": 1,
+  "policy_version": 3,
+  "plan_id": "tr-p3-67f8551f7780-c3850ee644ca-b5c0bcb3bd-71b16951f9",
+  "batch_id": "tr-p3-67f8551f7780-c3850ee644ca-b5c0bcb3bd-71b16951f9-b0106",
+  "context_snapshot_sha256": "b5c0bcb3bd9ee5c45e7bedf49c8f8d6ad35c3ceb3c35f528c6381a63c684a967",
+  "source_bridge_policy_sha256": "c42f21f04ee9cb206637e3ffe79ea0932701ee94f39273dc9b466b6fbbfd69af",
+  "review_generation": "retrospective-canonical-full-review",
+  "context_mode": "embedded-first-lazy-extra",
+  "items": [
+    {
+      "uid": "zhcn:6d1c12a8a98e995e5836630d",
+      "source_batch": 143,
+      "entry_index": 24,
+      "kind": "text_data",
+      "source_path": "text_data_dict.json",
+      "json_path": [
+        "131",
+        "175"
+      ],
+      "key": null,
+      "source_text": "日本德比夺冠、天皇赏（秋）二连冠，\\n所有参加的比赛都以干劲“绝好调”完成，\\n所有训练没有一次失败且完成育成",
+      "source_fingerprint": "7d1f3d586cdd4458dd91f875a34bc5ce2e4f8b7b89e18d5bc4f85e028a0f8049",
+      "current_text": "Vô địch Japanese Derby và Tenno Sho (Autumn) hai lần liên tiếp,\\nhoàn thành mọi Cuộc đua tham gia với Mood “Great”,\\nhoàn thành huấn luyện mà không thất bại bất kỳ lần luyện tập nào",
+      "current_fingerprint": "cde620bddf08ab837b28fff1c036c1c6fba1c8482204385c29979db831281230",
+      "risk_flags": [
+        "very_long_target",
+        "community_term",
+        "source_bridge_term",
+        "absence_risk"
+      ],
+      "risk_score": 13,
+      "locked_terms": [
+        {
+          "id": "race.generic",
+          "target_vi": "Cuộc đua",
+          "matched_aliases": [
+            "比赛"
+          ],
+          "present": true
+        }
+      ],
+      "community_terms": [
+        {
+          "id": "common.state.mood",
+          "preferred": "Mood",
+          "accepted": [
+            "Mood"
+          ],
+          "forbidden": [
+            "Tinh thần",
+            "Hứng khởi"
+          ],
+          "matched_aliases": [
+            "干劲"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Mood is the generic player-facing やる気 / 干劲 state. The exact zh-CN Skill title 干劲十足 (JP 意気込み十分) is a distinct Skill identity and must not inherit the generic Mood matcher by substring."
+        },
+        {
+          "id": "state.mood.great.text_data",
+          "preferred": "Great",
+          "accepted": [
+            "Great"
+          ],
+          "forbidden": [
+            "Tuyệt hảo",
+            "Rất tốt"
+          ],
+          "matched_aliases": [
+            "绝好调"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "The canonical player-facing Mood ladder already defines JP 絶好調 / zh-CN 绝好调 as Great (Race0634). Reuse the same fixed gameplay state in text_data requirements and descriptions; the full state token is specific enough to match without promoting generic 好调 prose."
+        }
+      ],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [
+        {
+          "id": "state.mood",
+          "preferred": "Mood",
+          "accepted": [
+            "Mood"
+          ],
+          "forbidden": [
+            "Tinh thần",
+            "Hứng khởi"
+          ],
+          "matched_aliases": [
+            "干劲"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "ja": [
+            "やる気"
+          ],
+          "note": "干劲 is the zh-CN bridge for the player-facing Mood state. Do not normalize it to generic Vietnamese wording such as 'Tinh thần' or 'Hứng khởi'."
+        }
+      ],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": "c42f21f04ee9cb206637e3ffe79ea0932701ee94f39273dc9b466b6fbbfd69af",
+      "canonical_findings": [],
+      "item_context_sha256": "8b582bc15ea02d19e982cb1fceb2eb81104198d1a30f7defeff5a609d3856e76"
+    },
+    {
+      "uid": "zhcn:c406854e30cb483ecab92f16",
+      "source_batch": 143,
+      "entry_index": 26,
+      "kind": "text_data",
+      "source_path": "text_data_dict.json",
+      "json_path": [
+        "131",
+        "177"
+      ],
+      "key": null,
+      "source_text": "出战GⅠ赛事次数达到12次以上；取得包括菊花赏、\\n第三年有马纪念在内的\\n至少4场2500m或以上的重赏赛事（包含所有GⅠ/GⅡ/GⅢ赛事）胜利",
+      "source_fingerprint": "bad9d2156d29e6815f1893664f427d432ea966995b4ae7709ff68f41461a1640",
+      "current_text": "Tham gia ít nhất 12 Cuộc đua G1; giành chiến thắng ở các Cuộc đua gồm Kikuka Sho,\\nArima Kinen năm thứ 3,\\nvới tổng cộng ít nhất 4 Cuộc đua graded cự ly từ 2500m trở lên (bao gồm tất cả Cuộc đua G1/G2/G3)",
+      "current_fingerprint": "c7b1b43c23f71b9ce2393887aa2a12e52ac65123f904e4dbae245866e7363e87",
+      "risk_flags": [
+        "community_term",
+        "numeric_token_mismatch"
+      ],
+      "risk_score": 7,
+      "locked_terms": [
+        {
+          "id": "race.generic",
+          "target_vi": "Cuộc đua",
+          "matched_aliases": [
+            "赛事"
+          ],
+          "present": true
+        }
+      ],
+      "community_terms": [
+        {
+          "id": "common.race_grade.g1",
+          "preferred": "G1",
+          "accepted": [
+            "G1"
+          ],
+          "forbidden": [
+            "GⅠ"
+          ],
+          "matched_aliases": [
+            "GⅠ"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Conventional player-facing race-grade formatting; source marker is unambiguous and applies globally."
+        },
+        {
+          "id": "common.race_grade.g2",
+          "preferred": "G2",
+          "accepted": [
+            "G2"
+          ],
+          "forbidden": [
+            "GⅡ"
+          ],
+          "matched_aliases": [
+            "GⅡ"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Conventional player-facing race-grade formatting; source marker is unambiguous and applies globally."
+        },
+        {
+          "id": "common.race_grade.g3",
+          "preferred": "G3",
+          "accepted": [
+            "G3"
+          ],
+          "forbidden": [
+            "GⅢ"
+          ],
+          "matched_aliases": [
+            "GⅢ"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Conventional player-facing race-grade formatting; source marker is unambiguous and applies globally."
+        },
+        {
+          "id": "race.graded",
+          "preferred": "graded",
+          "accepted": [
+            "graded",
+            "Graded"
+          ],
+          "forbidden": [
+            "trọng thưởng",
+            "Trọng thưởng"
+          ],
+          "matched_aliases": [
+            "重赏"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "In Uma Musume/Japanese racing, 重赏 denotes the graded-race category (G1/G2/G3), not a literal 'heavy reward'. Global/community player-facing English consistently calls these graded races. Keep the canonical alias as the modifier 'graded' so it composes naturally with the project's generic Cuộc đua label in longer Vietnamese strings."
+        }
+      ],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [],
+      "item_context_sha256": "c55c411500c9f75a8a0cb717c0e9959408e7939530f304ad77139cebc63e2612"
+    },
+    {
+      "uid": "zhcn:25812c72b5bb4a3d2ad24510",
+      "source_batch": 143,
+      "entry_index": 29,
+      "kind": "text_data",
+      "source_path": "text_data_dict.json",
+      "json_path": [
+        "131",
+        "18"
+      ],
+      "key": null,
+      "source_text": "出道战以7马身以上的差距取得比赛胜利",
+      "source_fingerprint": "1c14673b3a3e1bb24d9968077275d4505fe7d99466c76499314824a5208d0931",
+      "current_text": "Giành chiến thắng Cuộc đua ra mắt với cách biệt từ 7 thân trở lên",
+      "current_fingerprint": "3cf663a63488121081db1fb67de25e3b40f450077cfeafc48109873e7dca974a",
+      "risk_flags": [
+        "very_long_target",
+        "numeric_token_mismatch"
+      ],
+      "risk_score": 8,
+      "locked_terms": [
+        {
+          "id": "race.generic",
+          "target_vi": "Cuộc đua",
+          "matched_aliases": [
+            "比赛"
+          ],
+          "present": true
+        }
+      ],
+      "community_terms": [],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [],
+      "item_context_sha256": "aaf528e0134d494bae1e132b2ba5f7e0b901e2f4e6c31692a46ebb0aa74262e0"
+    },
+    {
+      "uid": "zhcn:15b9e2bbcdd89fcdf0f72624",
+      "source_batch": 143,
+      "entry_index": 30,
+      "kind": "text_data",
+      "source_path": "text_data_dict.json",
+      "json_path": [
+        "131",
+        "180"
+      ],
+      "key": null,
+      "source_text": "成绩点数合计1000Pt以上并完成育成\\n※Make a new track!!～巅峰赛开幕～限定",
+      "source_fingerprint": "b739215f3db3ba346e0b4292da94cecb22c988d2c50d2cb9f18c8f28269463df",
+      "current_text": "Hoàn thành huấn luyện với tổng Điểm thành tích từ 1000Pt trở lên\\n※Chỉ dành cho Make a new track!! ～Cuộc đua đỉnh cao khai màn～",
+      "current_fingerprint": "6d6a576bf92bb4e3829434f0814a62cf55b21130ed4801fb5d6826a752672a6c",
+      "risk_flags": [
+        "numeric_token_mismatch",
+        "canonical_finding"
+      ],
+      "risk_score": 45,
+      "locked_terms": [],
+      "community_terms": [],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [
+        {
+          "finding_id": "cf-a95679214256d891",
+          "status": "open",
+          "source_zh_cn": "巅峰赛开幕",
+          "match_mode": "contains",
+          "source_paths": [
+            "text_data_dict.json"
+          ],
+          "key_exact": [],
+          "json_path_prefixes": [],
+          "suggested_targets_vi": [],
+          "concepts": [
+            "Make a new track!! scenario subtitle"
+          ],
+          "kinds": [
+            "system_label"
+          ],
+          "review_action": "",
+          "review_target_vi": ""
+        }
+      ],
+      "item_context_sha256": "9f6d525a9f931a9089003336b5f204362a00f79a532161bf76ea9331761080ca"
+    },
+    {
+      "uid": "zhcn:a0fe4e4f3483349f2e0c0f30",
+      "source_batch": 143,
+      "entry_index": 31,
+      "kind": "text_data",
+      "source_path": "text_data_dict.json",
+      "json_path": [
+        "131",
+        "181"
+      ],
+      "key": null,
+      "source_text": "在特殊商店兑换20个以上育成商品并完成育成\\n※Make a new track!!～巅峰赛开幕～限定",
+      "source_fingerprint": "2e5405d7b72a0c2c94e56a6c1cf92991be5ad6903fefeb9e0e74791b7f4ad2ed",
+      "current_text": "Đổi ít nhất 20 vật phẩm huấn luyện tại Cửa hàng Đặc biệt và hoàn thành huấn luyện\\n※Chỉ dành cho Make a new track!! ～Cuộc đua đỉnh cao khai màn～",
+      "current_fingerprint": "778f0fb8d9e786e84721f7202e0a381cd427cacb73294dc64de056c3e03dc20a",
+      "risk_flags": [
+        "numeric_token_mismatch",
+        "canonical_finding"
+      ],
+      "risk_score": 45,
+      "locked_terms": [],
+      "community_terms": [],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [
+        {
+          "finding_id": "cf-a95679214256d891",
+          "status": "open",
+          "source_zh_cn": "巅峰赛开幕",
+          "match_mode": "contains",
+          "source_paths": [
+            "text_data_dict.json"
+          ],
+          "key_exact": [],
+          "json_path_prefixes": [],
+          "suggested_targets_vi": [],
+          "concepts": [
+            "Make a new track!! scenario subtitle"
+          ],
+          "kinds": [
+            "system_label"
+          ],
+          "review_action": "",
+          "review_target_vi": ""
+        }
+      ],
+      "item_context_sha256": "9f6d525a9f931a9089003336b5f204362a00f79a532161bf76ea9331761080ca"
+    },
+    {
+      "uid": "zhcn:81cb4b3b8c32c02f8c2ae8b0",
+      "source_batch": 143,
+      "entry_index": 32,
+      "kind": "text_data",
+      "source_path": "text_data_dict.json",
+      "json_path": [
+        "131",
+        "182"
+      ],
+      "key": null,
+      "source_text": "闪耀明星巅峰赛的3场比赛均获得第1并完成育成\\n※Make a new track!!～巅峰赛开幕～限定",
+      "source_fingerprint": "0c85a0ac9ea14001ea5b20b18484140ea43236bf29cc1dabba315adcb1650ee1",
+      "current_text": "Giành hạng 1 ở cả 3 cuộc đua của Shining Stars Climax và hoàn thành huấn luyện\\n※Chỉ dành cho Make a new track!! ～Cuộc đua đỉnh cao khai màn～",
+      "current_fingerprint": "89b1497b4c0c34813449eac99c27cd7b5e968ea993295db3c742ff37d6787346",
+      "risk_flags": [
+        "numeric_token_mismatch",
+        "canonical_finding"
+      ],
+      "risk_score": 45,
+      "locked_terms": [
+        {
+          "id": "race.generic",
+          "target_vi": "Cuộc đua",
+          "matched_aliases": [
+            "比赛"
+          ],
+          "present": true
+        }
+      ],
+      "community_terms": [],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [
+        {
+          "finding_id": "cf-a95679214256d891",
+          "status": "open",
+          "source_zh_cn": "巅峰赛开幕",
+          "match_mode": "contains",
+          "source_paths": [
+            "text_data_dict.json"
+          ],
+          "key_exact": [],
+          "json_path_prefixes": [],
+          "suggested_targets_vi": [],
+          "concepts": [
+            "Make a new track!! scenario subtitle"
+          ],
+          "kinds": [
+            "system_label"
+          ],
+          "review_action": "",
+          "review_target_vi": ""
+        }
+      ],
+      "item_context_sha256": "b6a86fda84af00de3882951f4abaea8ba8251e99f444ce92cc6e0d0f63cc86b9"
+    },
+    {
+      "uid": "zhcn:ca9002564ce3e3ace6402c24",
+      "source_batch": 143,
+      "entry_index": 34,
+      "kind": "text_data",
+      "source_path": "text_data_dict.json",
+      "json_path": [
+        "131",
+        "184"
+      ],
+      "key": null,
+      "source_text": "获得1000个以上特殊商店专用币并完成育成\\n※Make a new track!!～巅峰赛开幕～限定",
+      "source_fingerprint": "30d87a31dcf89213a4ec3fc99817bd51d74eecf27a6578a111481faa2be58a5e",
+      "current_text": "Nhận ít nhất 1000 đồng xu chuyên dụng của Cửa hàng Đặc biệt và hoàn thành huấn luyện\\n※Chỉ dành cho Make a new track!! ～Cuộc đua đỉnh cao khai màn～",
+      "current_fingerprint": "f45e913d58cad4de6d6a1b35d880d064f1e489c2beb4e62998061b14054fcc55",
+      "risk_flags": [
+        "numeric_token_mismatch",
+        "canonical_finding"
+      ],
+      "risk_score": 45,
+      "locked_terms": [],
+      "community_terms": [],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [
+        {
+          "finding_id": "cf-a95679214256d891",
+          "status": "open",
+          "source_zh_cn": "巅峰赛开幕",
+          "match_mode": "contains",
+          "source_paths": [
+            "text_data_dict.json"
+          ],
+          "key_exact": [],
+          "json_path_prefixes": [],
+          "suggested_targets_vi": [],
+          "concepts": [
+            "Make a new track!! scenario subtitle"
+          ],
+          "kinds": [
+            "system_label"
+          ],
+          "review_action": "",
+          "review_target_vi": ""
+        }
+      ],
+      "item_context_sha256": "9f6d525a9f931a9089003336b5f204362a00f79a532161bf76ea9331761080ca"
+    },
+    {
+      "uid": "zhcn:2d17c66556bd16bb9e234928",
+      "source_batch": 143,
+      "entry_index": 36,
+      "kind": "text_data",
+      "source_path": "text_data_dict.json",
+      "json_path": [
+        "131",
+        "186"
+      ],
+      "key": null,
+      "source_text": "继承的种马其中一方为「目白」冠名；\\n取得含春季天皇赏在内至少4场3000m以上距离的GⅡ或GⅠ赛事胜利；\\n粉丝数达到240000人以上",
+      "source_fingerprint": "29fa658d85d0ca605f7d9dd9491ee7cc5313563f6476c76709428e60fe7cf058",
+      "current_text": "Một trong hai Legacy mang tên 「Mejiro」;\\nGiành ít nhất 4 chiến thắng tại các Cuộc đua G2 hoặc G1 cự ly từ 3000m trở lên, bao gồm Tenno Sho (Spring);\\nSố fan đạt từ 240000 trở lên",
+      "current_fingerprint": "07716a7ee3b753103c23cf5d0463a861f859cb4cce885595f58cea350bf2adc8",
+      "risk_flags": [
+        "community_term",
+        "numeric_token_mismatch"
+      ],
+      "risk_score": 7,
+      "locked_terms": [
+        {
+          "id": "race.generic",
+          "target_vi": "Cuộc đua",
+          "matched_aliases": [
+            "赛事"
+          ],
+          "present": true
+        },
+        {
+          "id": "progress.fans",
+          "target_vi": "Số fan",
+          "matched_aliases": [
+            "粉丝数"
+          ],
+          "present": true
+        }
+      ],
+      "community_terms": [
+        {
+          "id": "common.race_grade.g1",
+          "preferred": "G1",
+          "accepted": [
+            "G1"
+          ],
+          "forbidden": [
+            "GⅠ"
+          ],
+          "matched_aliases": [
+            "GⅠ"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Conventional player-facing race-grade formatting; source marker is unambiguous and applies globally."
+        },
+        {
+          "id": "common.race_grade.g2",
+          "preferred": "G2",
+          "accepted": [
+            "G2"
+          ],
+          "forbidden": [
+            "GⅡ"
+          ],
+          "matched_aliases": [
+            "GⅡ"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Conventional player-facing race-grade formatting; source marker is unambiguous and applies globally."
+        }
+      ],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [],
+      "item_context_sha256": "279ffd9d98060f1afee3d46935986f7408f500d083c5e20823132cb29d89250e"
+    },
+    {
+      "uid": "zhcn:c0c393dc2c0494ccea9e444c",
+      "source_batch": 143,
+      "entry_index": 37,
+      "kind": "text_data",
+      "source_path": "text_data_dict.json",
+      "json_path": [
+        "131",
+        "187"
+      ],
+      "key": null,
+      "source_text": "达成「超凡赛马娘」（カリスマウマ娘）、「马娘女主角」（ヒロインウマ娘）中的一个，\\n并达成「春之霸者」、「秋之霸者」\\n※Make a new track!!～巅峰赛开幕～限定",
+      "source_fingerprint": "3c12fe14b64e729c2d65bdc8f2b70e99de8de795447d1ee91b402803af436c4a",
+      "current_text": "Đạt một trong hai danh hiệu 「Mã Nương Siêu phàm」 hoặc 「Nữ chính Mã Nương」,\\nđồng thời đạt 「Bá chủ Mùa xuân」 và 「Bá chủ Mùa thu」\\n※Chỉ dành cho Make a new track!! ～Cuộc đua đỉnh cao khai màn～",
+      "current_fingerprint": "ae4bee7e05f3e29bee49e6f9011c73af9098629c83a9635d83368e2fd5289b31",
+      "risk_flags": [
+        "community_term",
+        "canonical_finding"
+      ],
+      "risk_score": 42,
+      "locked_terms": [],
+      "community_terms": [
+        {
+          "id": "common.world.umamusume",
+          "preferred": "Mã Nương",
+          "accepted": [
+            "Mã Nương"
+          ],
+          "forbidden": [
+            "Uma Musume"
+          ],
+          "matched_aliases": [
+            "ウマ娘",
+            "赛马娘"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Generic 赛马娘 is the project world/species term Mã Nương, but it must not fire inside established ウマ娘ステークス race-name forms represented by 赛马娘锦标."
+        }
+      ],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [
+        {
+          "finding_id": "cf-a95679214256d891",
+          "status": "open",
+          "source_zh_cn": "巅峰赛开幕",
+          "match_mode": "contains",
+          "source_paths": [
+            "text_data_dict.json"
+          ],
+          "key_exact": [],
+          "json_path_prefixes": [],
+          "suggested_targets_vi": [],
+          "concepts": [
+            "Make a new track!! scenario subtitle"
+          ],
+          "kinds": [
+            "system_label"
+          ],
+          "review_action": "",
+          "review_target_vi": ""
+        }
+      ],
+      "item_context_sha256": "5cedcda2f2da7d2886fb598a488d9653e31e2789fe5bb8529d31c377810565e3"
+    },
+    {
+      "uid": "zhcn:21a590ccf4030a1f2e328c66",
+      "source_batch": 143,
+      "entry_index": 38,
+      "kind": "text_data",
+      "source_path": "text_data_dict.json",
+      "json_path": [
+        "131",
+        "188"
+      ],
+      "key": null,
+      "source_text": "取得NHK英里杯、樱花赏、安田纪念、\\n维多利亚英里赛以及英里冠军赛的胜利；\\n同时取得阪神两岁雌马大赛或朝日杯未来锦标中任意1场的胜利\\n※Make a new track!!～巅峰赛开幕～限定",
+      "source_fingerprint": "96252e2af38b348a64b447e4d47032d5961008fdf8e3cb37647337f9e80d3a0b",
+      "current_text": "Giành chiến thắng NHK Mile Cup, Oka Sho, Yasuda Kinen,\\nVictoria Mile và Mile Championship;\\nđồng thời giành chiến thắng một trong hai cuộc đua Hanshin Juvenile Fillies hoặc Asahi Hai Futurity Stakes\\n※Chỉ dành cho Make a new track!! ～Cuộc đua đỉnh cao khai màn～",
+      "current_fingerprint": "b3121508c2c124c26fa53d2719cea9e8f83603b8ae988f8e2d9144b49714f911",
+      "risk_flags": [
+        "community_term",
+        "not_yet_risk",
+        "canonical_finding"
+      ],
+      "risk_score": 47,
+      "locked_terms": [
+        {
+          "id": "racecourse.hanshin",
+          "target_vi": "Hanshin",
+          "matched_aliases": [
+            "阪神"
+          ],
+          "present": true
+        }
+      ],
+      "community_terms": [
+        {
+          "id": "common.distance.mile",
+          "preferred": "Mile",
+          "accepted": [
+            "Mile"
+          ],
+          "forbidden": [],
+          "matched_aliases": [
+            "英里"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Common EN-version distance class."
+        }
+      ],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [
+        {
+          "finding_id": "cf-a95679214256d891",
+          "status": "open",
+          "source_zh_cn": "巅峰赛开幕",
+          "match_mode": "contains",
+          "source_paths": [
+            "text_data_dict.json"
+          ],
+          "key_exact": [],
+          "json_path_prefixes": [],
+          "suggested_targets_vi": [],
+          "concepts": [
+            "Make a new track!! scenario subtitle"
+          ],
+          "kinds": [
+            "system_label"
+          ],
+          "review_action": "",
+          "review_target_vi": ""
+        }
+      ],
+      "item_context_sha256": "a2ba066af636a644ac48882fed226af7c82932b58a1c7ae8b98e7996f182c83c"
+    },
+    {
+      "uid": "zhcn:16c5ac8c059d391672a32caf",
+      "source_batch": 143,
+      "entry_index": 39,
+      "kind": "text_data",
+      "source_path": "text_data_dict.json",
+      "json_path": [
+        "131",
+        "189"
+      ],
+      "key": null,
+      "source_text": "取得NHK英里杯、安田纪念、以及英里冠军赛的胜利\\n※Make a new track!!～巅峰赛开幕～限定",
+      "source_fingerprint": "6833cc5182578804e531548c41d479080366a499b65545a51679fb5d86e573ad",
+      "current_text": "Giành chiến thắng NHK Mile Cup, Yasuda Kinen và Mile Championship\\n※Chỉ dành cho Make a new track!! ～Cuộc đua đỉnh cao khai màn～",
+      "current_fingerprint": "2d86f65356ff2ee3818bed397a028e36927129481f8e3c3dee54b9d9a082e334",
+      "risk_flags": [
+        "community_term",
+        "canonical_finding"
+      ],
+      "risk_score": 42,
+      "locked_terms": [],
+      "community_terms": [
+        {
+          "id": "common.distance.mile",
+          "preferred": "Mile",
+          "accepted": [
+            "Mile"
+          ],
+          "forbidden": [],
+          "matched_aliases": [
+            "英里"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Common EN-version distance class."
+        }
+      ],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [
+        {
+          "finding_id": "cf-a95679214256d891",
+          "status": "open",
+          "source_zh_cn": "巅峰赛开幕",
+          "match_mode": "contains",
+          "source_paths": [
+            "text_data_dict.json"
+          ],
+          "key_exact": [],
+          "json_path_prefixes": [],
+          "suggested_targets_vi": [],
+          "concepts": [
+            "Make a new track!! scenario subtitle"
+          ],
+          "kinds": [
+            "system_label"
+          ],
+          "review_action": "",
+          "review_target_vi": ""
+        }
+      ],
+      "item_context_sha256": "e4249a4721ca1b1e97f940eb81a4a885be32f916d1a7249765cb2849b26f0364"
+    },
+    {
+      "uid": "zhcn:f9796df28642b32e74a73471",
+      "source_batch": 143,
+      "entry_index": 41,
+      "kind": "text_data",
+      "source_path": "text_data_dict.json",
+      "json_path": [
+        "131",
+        "190"
+      ],
+      "key": null,
+      "source_text": "在取得「超凡赛马娘」称号的情况下，取得春季天皇赏、宝冢纪念、\\n日本杯、秋季天皇赏、大阪杯以及有马纪念中任意2场的胜利\\n※Make a new track!!～巅峰赛开幕～限定",
+      "source_fingerprint": "7fcd8f8adea2dc3ed845a9c6beed121e0ab5494829ba1f3432d0299a4d3faa85",
+      "current_text": "Trong khi đã đạt danh hiệu 「Mã Nương Siêu phàm」, giành chiến thắng 2 cuộc bất kỳ trong số Tenno Sho (Spring), Takarazuka Kinen,\\nJapan Cup, Tenno Sho (Autumn), Osaka Hai và Arima Kinen\\n※Chỉ dành cho Make a new track!! ～Cuộc đua đỉnh cao khai màn～",
+      "current_fingerprint": "22316e538e4c8a4e1bd19f3e8975cf5a46e6738b1006ad5c115c9bb8e15f161a",
+      "risk_flags": [
+        "community_term",
+        "numeric_token_mismatch",
+        "canonical_finding"
+      ],
+      "risk_score": 47,
+      "locked_terms": [],
+      "community_terms": [
+        {
+          "id": "common.world.umamusume",
+          "preferred": "Mã Nương",
+          "accepted": [
+            "Mã Nương"
+          ],
+          "forbidden": [
+            "Uma Musume"
+          ],
+          "matched_aliases": [
+            "赛马娘"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Generic 赛马娘 is the project world/species term Mã Nương, but it must not fire inside established ウマ娘ステークス race-name forms represented by 赛马娘锦标."
+        }
+      ],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [
+        {
+          "finding_id": "cf-a95679214256d891",
+          "status": "open",
+          "source_zh_cn": "巅峰赛开幕",
+          "match_mode": "contains",
+          "source_paths": [
+            "text_data_dict.json"
+          ],
+          "key_exact": [],
+          "json_path_prefixes": [],
+          "suggested_targets_vi": [],
+          "concepts": [
+            "Make a new track!! scenario subtitle"
+          ],
+          "kinds": [
+            "system_label"
+          ],
+          "review_action": "",
+          "review_target_vi": ""
+        }
+      ],
+      "item_context_sha256": "5cedcda2f2da7d2886fb598a488d9653e31e2789fe5bb8529d31c377810565e3"
+    },
+    {
+      "uid": "zhcn:8e7afea07f0654c94ef21e49",
+      "source_batch": 143,
+      "entry_index": 42,
+      "kind": "text_data",
+      "source_path": "text_data_dict.json",
+      "json_path": [
+        "131",
+        "191"
+      ],
+      "key": null,
+      "source_text": "在取得「超凡赛马娘」称号的情况下，\\n取得第二年日本杯或第二年有马纪念中任意1场的胜利\\n※Make a new track!!～巅峰赛开幕～限定",
+      "source_fingerprint": "fd210890e0219927c45f9a93322f4629f12ed1880d52f427a7e84fa79d4e3a1a",
+      "current_text": "Trong khi đã đạt danh hiệu 「Mã Nương Siêu phàm」,\\ngiành chiến thắng một trong hai cuộc Japan Cup năm thứ 2 hoặc Arima Kinen năm thứ 2\\n※Chỉ dành cho Make a new track!! ～Cuộc đua đỉnh cao khai màn～",
+      "current_fingerprint": "fd410dabb33acdba69d92733b62d5731745f2e056060eb65878afe919f6c2848",
+      "risk_flags": [
+        "community_term",
+        "numeric_token_mismatch",
+        "canonical_finding"
+      ],
+      "risk_score": 47,
+      "locked_terms": [],
+      "community_terms": [
+        {
+          "id": "common.world.umamusume",
+          "preferred": "Mã Nương",
+          "accepted": [
+            "Mã Nương"
+          ],
+          "forbidden": [
+            "Uma Musume"
+          ],
+          "matched_aliases": [
+            "赛马娘"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Generic 赛马娘 is the project world/species term Mã Nương, but it must not fire inside established ウマ娘ステークス race-name forms represented by 赛马娘锦标."
+        }
+      ],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [
+        {
+          "finding_id": "cf-a95679214256d891",
+          "status": "open",
+          "source_zh_cn": "巅峰赛开幕",
+          "match_mode": "contains",
+          "source_paths": [
+            "text_data_dict.json"
+          ],
+          "key_exact": [],
+          "json_path_prefixes": [],
+          "suggested_targets_vi": [],
+          "concepts": [
+            "Make a new track!! scenario subtitle"
+          ],
+          "kinds": [
+            "system_label"
+          ],
+          "review_action": "",
+          "review_target_vi": ""
+        }
+      ],
+      "item_context_sha256": "5cedcda2f2da7d2886fb598a488d9653e31e2789fe5bb8529d31c377810565e3"
+    },
+    {
+      "uid": "zhcn:8aaea546af91ba4ae5395f47",
+      "source_batch": 143,
+      "entry_index": 43,
+      "kind": "text_data",
+      "source_path": "text_data_dict.json",
+      "json_path": [
+        "131",
+        "192"
+      ],
+      "key": null,
+      "source_text": "取得皋月赏、日本德比、菊花赏的胜利\\n※Make a new track!!～巅峰赛开幕～限定",
+      "source_fingerprint": "17eedbcdfd724956e7a48395395172ec3ebd19bdff57275d74e75b1cb75e3dc0",
+      "current_text": "Giành chiến thắng Satsuki Sho, Japanese Derby và Kikuka Sho\\n※Chỉ dành cho Make a new track!! ～Cuộc đua đỉnh cao khai màn～",
+      "current_fingerprint": "bd29093fc81236b2d4e3334fdb07955803f2c203acdc929c11d091baa7a4e572",
+      "risk_flags": [
+        "canonical_finding"
+      ],
+      "risk_score": 40,
+      "locked_terms": [],
+      "community_terms": [],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [
+        {
+          "finding_id": "cf-a95679214256d891",
+          "status": "open",
+          "source_zh_cn": "巅峰赛开幕",
+          "match_mode": "contains",
+          "source_paths": [
+            "text_data_dict.json"
+          ],
+          "key_exact": [],
+          "json_path_prefixes": [],
+          "suggested_targets_vi": [],
+          "concepts": [
+            "Make a new track!! scenario subtitle"
+          ],
+          "kinds": [
+            "system_label"
+          ],
+          "review_action": "",
+          "review_target_vi": ""
+        }
+      ],
+      "item_context_sha256": "9f6d525a9f931a9089003336b5f204362a00f79a532161bf76ea9331761080ca"
+    },
+    {
+      "uid": "zhcn:3802c557aab59944d2d4ddf2",
+      "source_batch": 143,
+      "entry_index": 44,
+      "kind": "text_data",
+      "source_path": "text_data_dict.json",
+      "json_path": [
+        "131",
+        "193"
+      ],
+      "key": null,
+      "source_text": "取得高松宫纪念、短途马锦标的胜利\\n※Make a new track!!～巅峰赛开幕～限定",
+      "source_fingerprint": "0f1e3c741f5f1e0bf91d47955ee4da691a2c73bb2d73d31a7fb70ccf80949be9",
+      "current_text": "Giành chiến thắng Takamatsunomiya Kinen và Sprinters Stakes\\n※Chỉ dành cho Make a new track!! ～Cuộc đua đỉnh cao khai màn～",
+      "current_fingerprint": "c85f480c53308f9ec03b4c24a87cb0731973068b4ba16369d370adcba03cdc70",
+      "risk_flags": [
+        "canonical_finding"
+      ],
+      "risk_score": 40,
+      "locked_terms": [],
+      "community_terms": [],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [
+        {
+          "finding_id": "cf-a95679214256d891",
+          "status": "open",
+          "source_zh_cn": "巅峰赛开幕",
+          "match_mode": "contains",
+          "source_paths": [
+            "text_data_dict.json"
+          ],
+          "key_exact": [],
+          "json_path_prefixes": [],
+          "suggested_targets_vi": [],
+          "concepts": [
+            "Make a new track!! scenario subtitle"
+          ],
+          "kinds": [
+            "system_label"
+          ],
+          "review_action": "",
+          "review_target_vi": ""
+        }
+      ],
+      "item_context_sha256": "9f6d525a9f931a9089003336b5f204362a00f79a532161bf76ea9331761080ca"
+    },
+    {
+      "uid": "zhcn:e525ed32e25a040585f8a129",
+      "source_batch": 143,
+      "entry_index": 45,
+      "kind": "text_data",
+      "source_path": "text_data_dict.json",
+      "json_path": [
+        "131",
+        "194"
+      ],
+      "key": null,
+      "source_text": "获得9场沙土GⅠ比赛的胜利\\n※Make a new track!!～巅峰赛开幕～限定",
+      "source_fingerprint": "03ee6d75aa38fe0edf56b4989a5e7877cf4a84a441c965590c5ce3b63485396f",
+      "current_text": "Giành chiến thắng 9 cuộc đua Dirt G1\\n※Chỉ dành cho Make a new track!! ～Cuộc đua đỉnh cao khai màn～",
+      "current_fingerprint": "6d99a21e4e6cf11791fc362b8e82123e34331ed32007bedd21a25650bb6f4809",
+      "risk_flags": [
+        "community_term",
+        "numeric_token_mismatch",
+        "canonical_finding"
+      ],
+      "risk_score": 47,
+      "locked_terms": [
+        {
+          "id": "race.generic",
+          "target_vi": "Cuộc đua",
+          "matched_aliases": [
+            "比赛"
+          ],
+          "present": true
+        }
+      ],
+      "community_terms": [
+        {
+          "id": "common.surface.dirt",
+          "preferred": "Dirt",
+          "accepted": [
+            "Dirt"
+          ],
+          "forbidden": [],
+          "matched_aliases": [
+            "沙土"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Common player-facing race-surface terminology. zh-CN 沙土 denotes the Dirt surface and must use Dirt, not literal Vietnamese forms such as sân cát."
+        },
+        {
+          "id": "common.race_grade.g1",
+          "preferred": "G1",
+          "accepted": [
+            "G1"
+          ],
+          "forbidden": [
+            "GⅠ"
+          ],
+          "matched_aliases": [
+            "GⅠ"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Conventional player-facing race-grade formatting; source marker is unambiguous and applies globally."
+        }
+      ],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [
+        {
+          "finding_id": "cf-a95679214256d891",
+          "status": "open",
+          "source_zh_cn": "巅峰赛开幕",
+          "match_mode": "contains",
+          "source_paths": [
+            "text_data_dict.json"
+          ],
+          "key_exact": [],
+          "json_path_prefixes": [],
+          "suggested_targets_vi": [],
+          "concepts": [
+            "Make a new track!! scenario subtitle"
+          ],
+          "kinds": [
+            "system_label"
+          ],
+          "review_action": "",
+          "review_target_vi": ""
+        }
+      ],
+      "item_context_sha256": "9df0dbdb79c7cc0b0679566066644dbd9e81dbb99367296a2641d73f18301118"
+    },
+    {
+      "uid": "zhcn:b05d71c909143100032c7ccb",
+      "source_batch": 143,
+      "entry_index": 46,
+      "kind": "text_data",
+      "source_path": "text_data_dict.json",
+      "json_path": [
+        "131",
+        "195"
+      ],
+      "key": null,
+      "source_text": "获得5场沙土GⅠ比赛的胜利\\n※Make a new track!!～巅峰赛开幕～限定",
+      "source_fingerprint": "18386f0a7bb8e3c4e2fa319b9902c00be531d0a7c5d68ce4e5efa2bc6940be3d",
+      "current_text": "Giành chiến thắng 5 cuộc đua Dirt G1\\n※Chỉ dành cho Make a new track!! ～Cuộc đua đỉnh cao khai màn～",
+      "current_fingerprint": "4b1193d559be8638b93126118178b260ab733b59bd3772d64675f8f526ed4439",
+      "risk_flags": [
+        "community_term",
+        "numeric_token_mismatch",
+        "canonical_finding"
+      ],
+      "risk_score": 47,
+      "locked_terms": [
+        {
+          "id": "race.generic",
+          "target_vi": "Cuộc đua",
+          "matched_aliases": [
+            "比赛"
+          ],
+          "present": true
+        }
+      ],
+      "community_terms": [
+        {
+          "id": "common.surface.dirt",
+          "preferred": "Dirt",
+          "accepted": [
+            "Dirt"
+          ],
+          "forbidden": [],
+          "matched_aliases": [
+            "沙土"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Common player-facing race-surface terminology. zh-CN 沙土 denotes the Dirt surface and must use Dirt, not literal Vietnamese forms such as sân cát."
+        },
+        {
+          "id": "common.race_grade.g1",
+          "preferred": "G1",
+          "accepted": [
+            "G1"
+          ],
+          "forbidden": [
+            "GⅠ"
+          ],
+          "matched_aliases": [
+            "GⅠ"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Conventional player-facing race-grade formatting; source marker is unambiguous and applies globally."
+        }
+      ],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [
+        {
+          "finding_id": "cf-a95679214256d891",
+          "status": "open",
+          "source_zh_cn": "巅峰赛开幕",
+          "match_mode": "contains",
+          "source_paths": [
+            "text_data_dict.json"
+          ],
+          "key_exact": [],
+          "json_path_prefixes": [],
+          "suggested_targets_vi": [],
+          "concepts": [
+            "Make a new track!! scenario subtitle"
+          ],
+          "kinds": [
+            "system_label"
+          ],
+          "review_action": "",
+          "review_target_vi": ""
+        }
+      ],
+      "item_context_sha256": "9df0dbdb79c7cc0b0679566066644dbd9e81dbb99367296a2641d73f18301118"
+    },
+    {
+      "uid": "zhcn:0bfefcfbd1d66592c1f13ac7",
+      "source_batch": 143,
+      "entry_index": 47,
+      "kind": "text_data",
+      "source_path": "text_data_dict.json",
+      "json_path": [
+        "131",
+        "196"
+      ],
+      "key": null,
+      "source_text": "获得4场沙土GⅠ比赛的胜利\\n※Make a new track!!～巅峰赛开幕～限定",
+      "source_fingerprint": "9e7928f13500ce1760af6cb34a64752b3fe39576c07306e12e2d8ed8a7de2aea",
+      "current_text": "Giành chiến thắng 4 cuộc đua Dirt G1\\n※Chỉ dành cho Make a new track!! ～Cuộc đua đỉnh cao khai màn～",
+      "current_fingerprint": "94bac75809b9bf9faeff582caeee78c95eaeb26aef8da7d26192ab9379072d5a",
+      "risk_flags": [
+        "community_term",
+        "numeric_token_mismatch",
+        "canonical_finding"
+      ],
+      "risk_score": 47,
+      "locked_terms": [
+        {
+          "id": "race.generic",
+          "target_vi": "Cuộc đua",
+          "matched_aliases": [
+            "比赛"
+          ],
+          "present": true
+        }
+      ],
+      "community_terms": [
+        {
+          "id": "common.surface.dirt",
+          "preferred": "Dirt",
+          "accepted": [
+            "Dirt"
+          ],
+          "forbidden": [],
+          "matched_aliases": [
+            "沙土"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Common player-facing race-surface terminology. zh-CN 沙土 denotes the Dirt surface and must use Dirt, not literal Vietnamese forms such as sân cát."
+        },
+        {
+          "id": "common.race_grade.g1",
+          "preferred": "G1",
+          "accepted": [
+            "G1"
+          ],
+          "forbidden": [
+            "GⅠ"
+          ],
+          "matched_aliases": [
+            "GⅠ"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Conventional player-facing race-grade formatting; source marker is unambiguous and applies globally."
+        }
+      ],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [
+        {
+          "finding_id": "cf-a95679214256d891",
+          "status": "open",
+          "source_zh_cn": "巅峰赛开幕",
+          "match_mode": "contains",
+          "source_paths": [
+            "text_data_dict.json"
+          ],
+          "key_exact": [],
+          "json_path_prefixes": [],
+          "suggested_targets_vi": [],
+          "concepts": [
+            "Make a new track!! scenario subtitle"
+          ],
+          "kinds": [
+            "system_label"
+          ],
+          "review_action": "",
+          "review_target_vi": ""
+        }
+      ],
+      "item_context_sha256": "9df0dbdb79c7cc0b0679566066644dbd9e81dbb99367296a2641d73f18301118"
+    },
+    {
+      "uid": "zhcn:47fdecece82a54fabf30b689",
+      "source_batch": 143,
+      "entry_index": 48,
+      "kind": "text_data",
+      "source_path": "text_data_dict.json",
+      "json_path": [
+        "131",
+        "197"
+      ],
+      "key": null,
+      "source_text": "获得3场沙土GⅠ比赛的胜利\\n※Make a new track!!～巅峰赛开幕～限定",
+      "source_fingerprint": "41d8f19bd62fe5fc228203c10170d4c964156a5b878338d26f4e2fa446da2246",
+      "current_text": "Giành chiến thắng 3 cuộc đua Dirt G1\\n※Chỉ dành cho Make a new track!! ～Cuộc đua đỉnh cao khai màn～",
+      "current_fingerprint": "30b73b3ec12ff05814b0089e1bb89bf830adf47754281354986832c63fc0a22a",
+      "risk_flags": [
+        "community_term",
+        "numeric_token_mismatch",
+        "canonical_finding"
+      ],
+      "risk_score": 47,
+      "locked_terms": [
+        {
+          "id": "race.generic",
+          "target_vi": "Cuộc đua",
+          "matched_aliases": [
+            "比赛"
+          ],
+          "present": true
+        }
+      ],
+      "community_terms": [
+        {
+          "id": "common.surface.dirt",
+          "preferred": "Dirt",
+          "accepted": [
+            "Dirt"
+          ],
+          "forbidden": [],
+          "matched_aliases": [
+            "沙土"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Common player-facing race-surface terminology. zh-CN 沙土 denotes the Dirt surface and must use Dirt, not literal Vietnamese forms such as sân cát."
+        },
+        {
+          "id": "common.race_grade.g1",
+          "preferred": "G1",
+          "accepted": [
+            "G1"
+          ],
+          "forbidden": [
+            "GⅠ"
+          ],
+          "matched_aliases": [
+            "GⅠ"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Conventional player-facing race-grade formatting; source marker is unambiguous and applies globally."
+        }
+      ],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [
+        {
+          "finding_id": "cf-a95679214256d891",
+          "status": "open",
+          "source_zh_cn": "巅峰赛开幕",
+          "match_mode": "contains",
+          "source_paths": [
+            "text_data_dict.json"
+          ],
+          "key_exact": [],
+          "json_path_prefixes": [],
+          "suggested_targets_vi": [],
+          "concepts": [
+            "Make a new track!! scenario subtitle"
+          ],
+          "kinds": [
+            "system_label"
+          ],
+          "review_action": "",
+          "review_target_vi": ""
+        }
+      ],
+      "item_context_sha256": "9df0dbdb79c7cc0b0679566066644dbd9e81dbb99367296a2641d73f18301118"
+    },
+    {
+      "uid": "zhcn:3de23609f4ddada2c499e098",
+      "source_batch": 143,
+      "entry_index": 49,
+      "kind": "text_data",
+      "source_path": "text_data_dict.json",
+      "json_path": [
+        "131",
+        "198"
+      ],
+      "key": null,
+      "source_text": "在取得「马娘女主角」称号的情况下，\\n取得维多利亚英里赛以及阪神两岁雌马大赛的胜利；完成伊丽莎白女王杯两连霸\\n※Make a new track!!～巅峰赛开幕～限定",
+      "source_fingerprint": "9c24cb03aaefc51565343685f11a871925f5817fb08518d6aa4fbf4b7cafdc1c",
+      "current_text": "Trong khi đã đạt danh hiệu 「Nữ chính Mã Nương」,\\ngiành chiến thắng Victoria Mile và Hanshin Juvenile Fillies; vô địch Queen Elizabeth II Cup hai lần liên tiếp\\n※Chỉ dành cho Make a new track!! ～Cuộc đua đỉnh cao khai màn～",
+      "current_fingerprint": "797595abc76d9b8adf604408366438ba05ce9b7ea43bea91c76a040bfe85fd0e",
+      "risk_flags": [
+        "community_term",
+        "canonical_finding"
+      ],
+      "risk_score": 42,
+      "locked_terms": [
+        {
+          "id": "racecourse.hanshin",
+          "target_vi": "Hanshin",
+          "matched_aliases": [
+            "阪神"
+          ],
+          "present": true
+        }
+      ],
+      "community_terms": [
+        {
+          "id": "common.distance.mile",
+          "preferred": "Mile",
+          "accepted": [
+            "Mile"
+          ],
+          "forbidden": [],
+          "matched_aliases": [
+            "英里"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Common EN-version distance class."
+        }
+      ],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [
+        {
+          "finding_id": "cf-a95679214256d891",
+          "status": "open",
+          "source_zh_cn": "巅峰赛开幕",
+          "match_mode": "contains",
+          "source_paths": [
+            "text_data_dict.json"
+          ],
+          "key_exact": [],
+          "json_path_prefixes": [],
+          "suggested_targets_vi": [],
+          "concepts": [
+            "Make a new track!! scenario subtitle"
+          ],
+          "kinds": [
+            "system_label"
+          ],
+          "review_action": "",
+          "review_target_vi": ""
+        }
+      ],
+      "item_context_sha256": "a2ba066af636a644ac48882fed226af7c82932b58a1c7ae8b98e7996f182c83c"
+    }
+  ]
+}

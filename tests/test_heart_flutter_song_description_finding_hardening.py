@@ -12,6 +12,7 @@ CURRENT_TEXT = (
     "Một ca khúc tràn đầy dũng khí và hy vọng, như ngôi sao sáng nhất đang lao đi rực rỡ.\\n"
     "Linh cảm khiến tim rung động――đó chính là tín hiệu cuộc đua bắt đầu."
 )
+REGENERATED_FINDING_ID = "cf-7b678d0f1ed3e725"
 
 
 def _write_registry(root: Path) -> None:
@@ -75,7 +76,7 @@ def test_heart_flutter_finding_resolves_after_exclusion(tmp_path: Path) -> None:
             {
                 "findings": [
                     {
-                        "finding_id": FINDING_ID,
+                        "finding_id": finding_id,
                         "status": "open",
                         "source_zh_cn": EXCLUSION,
                         "canonical_resolution": None,
@@ -88,6 +89,7 @@ def test_heart_flutter_finding_resolves_after_exclusion(tmp_path: Path) -> None:
                             }
                         ],
                     }
+                    for finding_id in (FINDING_ID, REGENERATED_FINDING_ID)
                 ]
             },
             ensure_ascii=False,
@@ -97,9 +99,9 @@ def test_heart_flutter_finding_resolves_after_exclusion(tmp_path: Path) -> None:
 
     assert resolve(tmp_path) is True
     payload = json.loads((glossary / "canonical_findings.json").read_text(encoding="utf-8"))
-    resolution = payload["findings"][0]["canonical_resolution"]
-    assert resolution == {
-        "layer": "context_guard",
-        "term_id": TERM_ID,
-        "target_vi": "Nhịp tim rộn ràng",
-    }
+    for finding in payload["findings"]:
+        assert finding["canonical_resolution"] == {
+            "layer": "context_guard",
+            "term_id": TERM_ID,
+            "target_vi": "Nhịp tim rộn ràng",
+        }

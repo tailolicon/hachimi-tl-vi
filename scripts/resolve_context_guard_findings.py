@@ -22,6 +22,7 @@ except ModuleNotFoundError:
 
 ROOT = Path(__file__).resolve().parents[1]
 POWER_CONTEXT_GUARD_IDS = {
+    "cf-36e967229329369e",
     "cf-183dbea74ee91b48",
     "cf-14defc3b38d1efcd",
     "cf-1606ab03065110f0",

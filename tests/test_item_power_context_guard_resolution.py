@@ -30,6 +30,7 @@ def _seed(tmp_path: Path) -> None:
             "充满力量的乐曲",
             "将最大力量献给你",
             "宿敌赋予了我们力量",
+            "依靠尾巴来支撑自己的力量",
         ],
     }]})
     _write(tmp_path / "glossary" / "term_registry.json", {"terms": []})
@@ -73,6 +74,16 @@ def _seed(tmp_path: Path) -> None:
             "review_resolution": None,
             "evidence": [
                 {"source_path": "text_data_dict.json", "json_path": ["128", "1187"], "source_text": "华丽、优雅、勇敢！点燃内心的充满力量的乐曲！\\n无论遇到什么困难都不会屈服——这才是公主应有的姿态！", "current_text": "Rực rỡ, thanh lịch, dũng cảm! Một khúc nhạc tràn đầy sức mạnh thắp sáng trái tim!\\nDù gặp bất cứ khó khăn nào cũng không khuất phục—đó mới là dáng vẻ của một công chúa!"},
+            ],
+        },
+        {
+            "finding_id": "cf-36e967229329369e",
+            "status": "open",
+            "source_zh_cn": "力量",
+            "canonical_resolution": None,
+            "review_resolution": None,
+            "evidence": [
+                {"source_path": "text_data_dict.json", "json_path": ["167", "1026"], "source_text": "有着能够依靠尾巴来支撑自己的力量……据说", "current_text": "Nghe nói có sức mạnh đủ để dùng đuôi chống đỡ cả cơ thể……"},
             ],
         },
         {
@@ -120,6 +131,7 @@ def test_narrative_and_proper_name_power_findings_resolve_without_disabling_powe
         ("华丽、优雅、勇敢！点燃内心的充满力量的乐曲！", "Một khúc nhạc tràn đầy sức mạnh", ["128", "1187"]),
         ("传递☆我们的全力应援！将最大力量献给你♪", "Dành sức mạnh lớn nhất cho bạn♪", ["128", "1190"]),
         ("因为宿敌赋予了我们力量——无论到哪里，都一起前行吧。", "Bởi kình địch đã trao cho chúng ta sức mạnh", ["128", "1192"]),
+        ("有着能够依靠尾巴来支撑自己的力量……据说", "Nghe nói có sức mạnh đủ để dùng đuôi chống đỡ cả cơ thể……", ["167", "1026"]),
     ]:
         matches = community_term_matches(None, source, target, terms, source_path="text_data_dict.json", json_path=path)
         assert not any(match["id"] == "common.stat.power" for match in matches)

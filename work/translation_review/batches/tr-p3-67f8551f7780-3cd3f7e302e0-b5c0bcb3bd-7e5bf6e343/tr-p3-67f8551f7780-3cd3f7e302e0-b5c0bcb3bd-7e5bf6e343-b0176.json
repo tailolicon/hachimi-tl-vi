@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "policy_version": 3,
-  "plan_id": "tr-p3-67f8551f7780-bdff91d1f88f-b5c0bcb3bd-3f3fefbe8d",
-  "batch_id": "tr-p3-67f8551f7780-bdff91d1f88f-b5c0bcb3bd-3f3fefbe8d-b0176",
+  "plan_id": "tr-p3-67f8551f7780-3cd3f7e302e0-b5c0bcb3bd-7e5bf6e343",
+  "batch_id": "tr-p3-67f8551f7780-3cd3f7e302e0-b5c0bcb3bd-7e5bf6e343-b0176",
   "context_snapshot_sha256": "b5c0bcb3bd9ee5c45e7bedf49c8f8d6ad35c3ceb3c35f528c6381a63c684a967",
   "source_bridge_policy_sha256": "c42f21f04ee9cb206637e3ffe79ea0932701ee94f39273dc9b466b6fbbfd69af",
   "review_generation": "retrospective-canonical-full-review",
@@ -572,11 +572,29 @@
       "current_text": "Hello Polaris",
       "current_fingerprint": "e6b259b17371a9d75897cd87ae9c97fb29b5a481612dec9996d2bb9186fe238a",
       "risk_flags": [
-        "canonical_finding"
+        "community_term"
       ],
-      "risk_score": 40,
+      "risk_score": 2,
       "locked_terms": [],
-      "community_terms": [],
+      "community_terms": [
+        {
+          "id": "song.hello_polaris",
+          "preferred": "Hello Polaris",
+          "accepted": [
+            "Hello Polaris"
+          ],
+          "forbidden": [
+            "Hello 北极星"
+          ],
+          "matched_aliases": [
+            "Hello 北极星"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "The live zh-CN title Hello 北极星 maps to the Uma Musume song ハロー・ポラリス. Apple Music US and Shazam publish the Lantis release under the English title Hello Polaris. Lock that official English-facing proper-name identity. Exact matching prevents the generic word Polaris from leaking into unrelated prose."
+        }
+      ],
       "skill_name_canonical": null,
       "source_bridge_terms": [],
       "source_bridge_risks": [],

@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-"""Resolve the one-off 正人 NPC finding without inventing a reusable reading."""
+"""Resolve repeated 正人 NPC findings without inventing a reusable reading."""
 
 import json
 from pathlib import Path
@@ -17,14 +17,19 @@ DECISION = {
     "category": "proper_name",
     "invalidation_scope": "item",
     "source_paths": ["text_data_dict.json"],
-    "json_path_prefixes": [["152", "183"]],
+    "json_path_prefixes": [
+        ["152", "13"],
+        ["152", "115"],
+        ["152", "149"],
+        ["152", "183"],
+    ],
     "match_mode": "exact",
     "note": (
-        "This is a one-off NPC display name whose Japanese identity is 正人. Masato is plausible, "
-        "but 正人 also has other valid given-name readings such as Masahito and repository evidence "
-        "does not establish this NPC's specific reading authoritatively. Do not promote Masato (or "
-        "another reading) to reusable canonical terminology; leave this exact item to ordinary "
-        "translation review."
+        "正人 has multiple established Japanese given-name readings, including Masato and Masahito. "
+        "The live review plan contains four distinct NPC items for this source identity at category-152 "
+        "paths 13, 115, 149, and 183. Repository evidence does not establish the intended reading "
+        "authoritatively, so do not promote Masato (or another reading) to reusable canonical terminology. "
+        "Ignore the canonical blocker only for these exact items and leave their rendering to ordinary review."
     ),
 }
 
@@ -59,6 +64,7 @@ def harden(repo_root: Path = ROOT) -> bool:
     decisions = reviews.setdefault("decisions", [])
     if not isinstance(decisions, list):
         raise ValueError("glossary/terminology_reviews.json decisions must be a list")
+
     before = json.dumps(reviews, ensure_ascii=False, sort_keys=True)
     _upsert(decisions, DECISION, id_field="decision_id")
     after = json.dumps(reviews, ensure_ascii=False, sort_keys=True)

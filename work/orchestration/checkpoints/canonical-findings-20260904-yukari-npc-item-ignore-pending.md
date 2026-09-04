@@ -8,9 +8,9 @@ Implementation:
 - `scripts/harden_yukari_npc_finding.py` — `99cfddaf8bd7a9ef5e5cc7c20a214306009c9572`
 - `tests/test_yukari_npc_finding_hardening.py` — `0be389c0c8f7da0414cdd703433de4140cbf4651`
 
-Acceptance state on regression head `0be389c0c8f7da0414cdd703433de4140cbf4651` at checkpoint time:
+Acceptance state on regression head `0be389c0c8f7da0414cdd703433de4140cbf4651`:
 - Validate `33898172804`: **success**.
-- Sync translation context `33898172786`: **pending**.
-- Sync translation review plan `33898172793`: **pending**.
+- Sync translation review plan `33898172793`: **success**.
+- Sync translation context `33898172786`: still **in progress**; its `Run all finding hardeners` step is currently executing.
 
-Maintenance `completed_count` must remain **114** until both Sync gates succeed and a regenerated live review artifact verifies that one of the exact `由加里(NPC)` paths has `canonical_findings: []` while unrelated category-152 findings remain scoped normally.
+Maintenance `completed_count` must remain **114** until Context Sync succeeds and a regenerated live review artifact verifies that one of the exact `由加里(NPC)` paths has `canonical_findings: []` while unrelated category-152 findings remain scoped normally.

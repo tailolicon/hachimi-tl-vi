@@ -1,4 +1,4 @@
-# Canonical findings maintenance checkpoint — Keisuke NPC item ignore pending acceptance
+# Canonical findings maintenance checkpoint — Keisuke NPC item ignore accepted
 
 Finding `cf-1edf7f36acfffbfb` covers source `圭介(NPC)`. The existing rendering `Keisuke (NPC)` is plausible, but repository evidence does not establish the intended Japanese reading authoritatively enough for reusable canonical terminology.
 
@@ -13,7 +13,7 @@ Review artifacts expose this source identity at six repeated `text_data_dict.jso
 - `152/139`
 - `152/173`
 
-The current/live review family also exposes the same open finding on these NPC rows; historical plan evidence confirms the repeated 34-item stride rather than a category-wide semantic rule.
+The current/live review family and historical plan evidence confirm the repeated 34-item stride rather than a category-wide semantic rule.
 
 ## Resolution implemented
 
@@ -24,6 +24,13 @@ The current/live review family also exposes the same open finding on these NPC r
 
 This deliberately does **not** canonize `Keisuke` and does not broaden the ignore to category `152`.
 
-## Acceptance gate
+## Production acceptance
 
-Production acceptance is pending. Require successful Validate, Sync translation context, and Sync translation review plan runs for/after the regression-test head, then verify regenerated worker-facing items no longer carry `cf-1edf7f36acfffbfb` before incrementing maintenance `completed_count` from 107 to 108.
+For regression head `4f0eef01d7bca1b9ab5e78871db9ec31016d32fa`:
+
+- Validate run `33894181372` completed successfully.
+- Sync translation context run `33894181432` completed successfully; its full finding-hardener/context pipeline passed.
+- Sync translation review plan run `33894181496` completed successfully.
+- Live active-plan batch `b0137` shows source `圭介(NPC)` at `text_data_dict.json` path `152/173` with `canonical_findings: []`.
+
+Result: finding `cf-1edf7f36acfffbfb` is production-accepted as an exact item-scoped ignore. Maintenance completion advances from 107 to 108. Continue with `cf-6af810eb1dfb2be5` (`浩二(NPC)`), whose exact-scoped hardener and regression are already implemented and awaiting their production acceptance gates.

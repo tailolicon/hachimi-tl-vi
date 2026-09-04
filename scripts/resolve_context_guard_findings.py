@@ -71,6 +71,14 @@ GUARDS = {
         "term_id": "reviewed.skill_name.3346bd209f49",
         "target_vi": "Nhịp tim rộn ràng",
     },
+    # Regenerated equivalent of the same category-128 心动 prose overmatch. The
+    # hardener excludes the full song description, and the resolver still proves
+    # that this locked Skill rule no longer matches the finding evidence.
+    "cf-7b678d0f1ed3e725": {
+        "layer": "locked",
+        "term_id": "reviewed.skill_name.3346bd209f49",
+        "target_vi": "Nhịp tim rộn ràng",
+    },
     "cf-234800d40ef253ed": {
         "layer": "locked",
         "term_id": "reviewed.race_name.d7261f9f3232",

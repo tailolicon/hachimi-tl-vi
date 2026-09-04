@@ -43,7 +43,8 @@ def test_hardener_locks_historical_race_class_and_is_idempotent(tmp_path: Path) 
     terms = json.loads((tmp_path / "glossary" / "ui_community_terms.json").read_text(encoding="utf-8"))["terms"]
     term = next(row for row in terms if row.get("id") == TERM_ID)
     assert term["preferred"] == TARGET
-    assert term["key_exact"] == ["Race0027"]
+    assert term["invalidation_scope"] == "source_path"
+    assert term.get("key_exact", []) == []
 
     matches = community_term_matches(
         "Race0027",
@@ -55,6 +56,15 @@ def test_hardener_locks_historical_race_class_and_is_idempotent(tmp_path: Path) 
     )
     assert [row["id"] for row in matches] == [TERM_ID]
     assert matches[0]["accepted_present"] is True
+
+    assert community_term_matches(
+        "OtherRaceKey",
+        SOURCE,
+        TARGET,
+        load_community_terms(tmp_path),
+        source_path="localize_dict.json",
+        json_path=["OtherRaceKey"],
+    )
 
     refreshed = refresh_canonical_resolutions(tmp_path)
     finding = refreshed["findings"][0]

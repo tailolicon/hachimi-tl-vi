@@ -1,5 +1,11 @@
 from __future__ import annotations
 
+"""Persist the verified Romanized identity of Gold City's solo song 素顔のココロ.
+
+The category-16 exact scope is intentional. A successor review-plan rebuild must run after
+production Context Sync materializes this lock before the finding is accepted as worker-safe.
+"""
+
 import json
 from pathlib import Path
 from typing import Any

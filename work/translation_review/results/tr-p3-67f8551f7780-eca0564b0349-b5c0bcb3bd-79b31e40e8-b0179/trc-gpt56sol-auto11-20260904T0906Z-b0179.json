@@ -1,12 +1,12 @@
 {
   "schema_version":1,
-  "status":"partial",
+  "status":"complete",
   "plan_id":"tr-p3-67f8551f7780-eca0564b0349-b5c0bcb3bd-79b31e40e8",
   "batch_id":"tr-p3-67f8551f7780-eca0564b0349-b5c0bcb3bd-79b31e40e8-b0179",
   "claim_id":"trc-gpt56sol-auto11-20260904T0906Z-b0179",
   "worker_id":"gpt56sol-auto11-20260904T0906Z",
-  "reviewed_at":"2026-09-04T09:09:00Z",
-  "completed_count":15,
+  "reviewed_at":"2026-09-04T09:10:00Z",
+  "completed_count":20,
   "decisions":[
     {"uid":"zhcn:0105beec550d304dd0cb8e34","current_fingerprint":"5e0311f5d526da23b5a94ed8ee69a734d9ebd90ce9d6b04f64bec685dabdf9b9","action":"revise","proposed_text":"Tên tôi là Eishin Flash.\\nĐể gìn giữ truyền thống của các Mã Nương, tôi sẽ tiếp tục chạy.\\nDù là Cuộc đua nào, tôi cũng sẽ hoàn thành hoàn hảo theo nhịp độ đã định trong lịch trình.","reason":"Generic `赛马娘` phải dùng canonical world/species term `Mã Nương`; các term còn lại đã đúng.","terminology_basis":"Embedded `common.world.umamusume` requires `Mã Nương`; locked terms require `Cuộc đua` and `Eishin Flash`.","confidence":"high"},
     {"uid":"zhcn:a3af883750fb811c5b1a01d2","current_fingerprint":"16ddab3a25ce56a60d9345b5bbc92042805dea355778f7791dbce113b50f3fa6","action":"keep","reason":"Bản hiện tại giữ đúng Kawakami Princess, canonical `Cuộc đua`, nghĩa và cấu trúc ba dòng.","terminology_basis":"Embedded locked terms require `Kawakami Princess` and `Cuộc đua`; both are present.","confidence":"high"},
@@ -22,6 +22,11 @@
     {"uid":"zhcn:c2611c6d96946b583fd03b09","current_fingerprint":"9c043d77016b8f9b3fa8f5c6fe18aef11dea431800aef389705767ed0d704d95","action":"keep","reason":"Kitasan Black, `Cuộc đua`, nghĩa và cấu trúc đều đúng.","terminology_basis":"Embedded locked terms require `Kitasan Black` and `Cuộc đua`; both are present.","confidence":"high"},
     {"uid":"zhcn:00b0d65ca40304695ddab136","current_fingerprint":"162a724b457642043705c281468d8dd4f4e54c6cc9ef977e627fc5535d3baf89","action":"keep","reason":"Sirius Symboli và generic race term đúng; câu thoại giữ đúng sắc thái thách thức.","terminology_basis":"Embedded locked terms require `Sirius Symboli` and `Cuộc đua`; both are present.","confidence":"high"},
     {"uid":"zhcn:f4f74fce2c15127c0eb07be4","current_fingerprint":"76a6bf163b7d905978c1fbc936c850e917bbcd2556a4d51c031c45a1e7585b07","action":"keep","reason":"Mejiro Ardan, `Cuộc đua`, nghĩa và giọng văn đều đạt.","terminology_basis":"Embedded locked terms require `Mejiro Ardan` and `Cuộc đua`; both are present.","confidence":"high"},
-    {"uid":"zhcn:3f9771c02230fe0cd1083f69","current_fingerprint":"bd063d545699da1d6acb7abad62990383412cc279ffd1a2d81c7c13d6d263d0e","action":"keep","reason":"Tên, `Cuộc đua`, cụm canonical `Đường đường chính chính`, nghĩa và cấu trúc đều được bảo toàn.","terminology_basis":"Embedded locked terms require `Yaeno Muteki`, `Cuộc đua`, and `Đường đường chính chính`; all are present.","confidence":"high"}
+    {"uid":"zhcn:3f9771c02230fe0cd1083f69","current_fingerprint":"bd063d545699da1d6acb7abad62990383412cc279ffd1a2d81c7c13d6d263d0e","action":"keep","reason":"Tên, `Cuộc đua`, cụm canonical `Đường đường chính chính`, nghĩa và cấu trúc đều được bảo toàn.","terminology_basis":"Embedded locked terms require `Yaeno Muteki`, `Cuộc đua`, and `Đường đường chính chính`; all are present.","confidence":"high"},
+    {"uid":"zhcn:380c57dac2fce28eea364cbe","current_fingerprint":"2acadcb19998b87fcca46b90e43fb87dc2e78abfacb4e920c7112d2bb5173aca","action":"defer","reason":"`三冠` is blocked by open canonical finding `cf-f1601c34df2912ee`; do not establish a one-off title form.","confidence":"high"},
+    {"uid":"zhcn:837dfc7b8e8a707c06c332be","current_fingerprint":"233a12756f9fdfe9cfd3410919ef11ceaf0af521c133c33f534c4e681593c86d","action":"defer","reason":"Skill alias `光明` is matching inside the proper name `目白光明` (Mejiro Bright); forcing `Ánh sáng` here would corrupt the character name.","canonical_finding":{"kind":"context_rule","source_zh_cn":"光明","concept":"Skill-title alias must not match inside character proper names","match_mode":"contains","scope":"auto","reason":"The alias occurs as part of `目白光明`, whose canonical character name is Mejiro Bright; Skill-title enforcement must exclude proper-name spans.","confidence":"high"},"confidence":"high"},
+    {"uid":"zhcn:d97dff15adbd945ccd5c1e71","current_fingerprint":"e8a98d8ec151aba83800a24dbf08070891a770a371f79027bf101d58f98f9cdd","action":"keep","reason":"Espoir City, `Cuộc đua`, nghĩa và giọng thoại đều đúng.","terminology_basis":"Embedded locked terms require `Espoir City` and `Cuộc đua`; both are present.","confidence":"high"},
+    {"uid":"zhcn:8000bca260849022c06be772","current_fingerprint":"fb214ae3409e6fe93469d2383c597c9bfaa996cbed8f9b4e7a7c70fc06e10777","action":"defer","reason":"Item is blocked by open canonical finding `cf-d1bcaa0ab582cbdf` for `宝石` overmatching inside Daiichi Ruby, and also shows a Skill-title alias (`至高无上`) firing in ordinary prose; canonical context must resolve first.","confidence":"high"},
+    {"uid":"zhcn:1cc3dda86d2201a7a1063a01","current_fingerprint":"385819776c65c601031a0b686eb741e1358760e481caa69e34b1f8f6f88b54d0","action":"revise","proposed_text":"Muốn hiểu tôi sao? Vậy hãy ra Turf.\\nMọi thứ về tôi… Mejiro Ramonu, đều ở nơi đó.","reason":"Ở đây `草地` chỉ trực tiếp racing surface nơi cô ấy chạy; embedded locked term requires player-facing `Turf`.","terminology_basis":"Embedded locked terms require `Turf` for `草地` and `Mejiro Ramonu` for `目白高峰`.","confidence":"high"}
   ]
 }

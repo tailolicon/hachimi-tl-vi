@@ -1,129 +1,13 @@
 {
   "schema_version": 1,
   "policy_version": 3,
-  "plan_id": "tr-p3-67f8551f7780-fc9365f30fb6-b5c0bcb3bd-1b30333a4f",
-  "batch_id": "tr-p3-67f8551f7780-fc9365f30fb6-b5c0bcb3bd-1b30333a4f-b0177",
+  "plan_id": "tr-p3-67f8551f7780-339846b405f5-b5c0bcb3bd-db58b2e71e",
+  "batch_id": "tr-p3-67f8551f7780-339846b405f5-b5c0bcb3bd-db58b2e71e-b0187",
   "context_snapshot_sha256": "b5c0bcb3bd9ee5c45e7bedf49c8f8d6ad35c3ceb3c35f528c6381a63c684a967",
-  "source_bridge_policy_sha256": "c42f21f04ee9cb206637e3ffe79ea0932701ee94f39273dc9b466b6fbbfd69af",
+  "source_bridge_policy_sha256": "46bb2e62f56515100506053638c95894a70a120c51a7ca57e31099d5005ff5d8",
   "review_generation": "retrospective-canonical-full-review",
   "context_mode": "embedded-first-lazy-extra",
   "items": [
-    {
-      "uid": "zhcn:d9cadfbe5b7ca4d9fa9e4234",
-      "source_batch": 244,
-      "entry_index": 8,
-      "kind": "text_data",
-      "source_path": "text_data_dict.json",
-      "json_path": [
-        "172",
-        "10540101"
-      ],
-      "key": null,
-      "source_text": "速度上限、力量上限和根性上限提升 ,\\n能获得「疾风爆走天马冲刺！」技能折扣的因子",
-      "source_fingerprint": "a2ac55980a873dff5a38f2121328b739e154a666fba04122181b50a52c7fb062",
-      "current_text": "Tăng giới hạn Speed, Power và Guts,\\nSpark giúp giảm giá Skill 「Cuồng phong bứt tốc, Thiên mã xung phong!」",
-      "current_fingerprint": "de01e5b108741695ec05ef00c063875418338c297e800545dc928549037289f8",
-      "risk_flags": [
-        "community_term"
-      ],
-      "risk_score": 2,
-      "locked_terms": [],
-      "community_terms": [
-        {
-          "id": "common.stat.speed.context",
-          "preferred": "Speed",
-          "accepted": [
-            "Speed"
-          ],
-          "forbidden": [],
-          "matched_aliases": [
-            "速度上限"
-          ],
-          "accepted_present": true,
-          "forbidden_present": false,
-          "require_accepted": true,
-          "basis": "Narrow player-facing Speed stat contexts. No global forbidden Tốc độ token is used here because the same sentence may also describe literal/max/running speed."
-        },
-        {
-          "id": "common.stat.power",
-          "preferred": "Power",
-          "accepted": [
-            "Power"
-          ],
-          "forbidden": [
-            "Sức mạnh"
-          ],
-          "matched_aliases": [
-            "力量"
-          ],
-          "accepted_present": true,
-          "forbidden_present": false,
-          "require_accepted": true,
-          "basis": "Common EN-version Power stat label. The zh-CN alias 力量 is ambiguous in ordinary prose and can also occur inside proper names such as 莱茵力量 (Rhein Kraft); known non-stat compounds, names, descriptive titles, and narrative/metaphorical phrases are explicitly excluded so physical or emotional strength is not normalized to the stat label."
-        },
-        {
-          "id": "common.stat.guts",
-          "preferred": "Guts",
-          "accepted": [
-            "Guts"
-          ],
-          "forbidden": [
-            "Ý chí"
-          ],
-          "matched_aliases": [
-            "根性"
-          ],
-          "accepted_present": true,
-          "forbidden_present": false,
-          "require_accepted": true,
-          "basis": "Common EN-version stat label."
-        },
-        {
-          "id": "common.skill.generic",
-          "preferred": "Skill",
-          "accepted": [
-            "Skill"
-          ],
-          "forbidden": [
-            "Kỹ năng"
-          ],
-          "matched_aliases": [
-            "技能"
-          ],
-          "accepted_present": true,
-          "forbidden_present": false,
-          "require_accepted": true,
-          "basis": "Generic gameplay label stays English. This does not mean individual skill names stay English."
-        },
-        {
-          "id": "common.spark.inheritance_description",
-          "preferred": "Spark",
-          "accepted": [
-            "Spark",
-            "Sparks"
-          ],
-          "forbidden": [
-            "Nhân tố",
-            "nhân tố",
-            "Factor",
-            "factor"
-          ],
-          "matched_aliases": [
-            "因子"
-          ],
-          "accepted_present": true,
-          "forbidden_present": false,
-          "require_accepted": true,
-          "basis": "Pinned text_data category 172 is inheritance-description content; 因子 there is the Spark mechanic. Item scope prevents unrelated review IDs from reopening."
-        }
-      ],
-      "skill_name_canonical": null,
-      "source_bridge_terms": [],
-      "source_bridge_risks": [],
-      "source_bridge_policy_sha256": null,
-      "canonical_findings": [],
-      "item_context_sha256": "7ef38054ba02de3241e9a06954f0f9cac1b6b976e70f7c165326908c5732ee8a"
-    },
     {
       "uid": "zhcn:4ff432101c0c079380ed5409",
       "source_batch": 244,
@@ -372,10 +256,20 @@
       "current_text": "Tăng giới hạn Power và Wit,\\nSpark giúp giảm giá Skill 「Vạn sắc☆Tươi đẹp★Thế giới」",
       "current_fingerprint": "ce7f50fdd6f3c3549ee2e25be0d190ba3e8b714c50e244cf3b964d544cdc1ddb",
       "risk_flags": [
+        "locked_term_mismatch",
         "community_term"
       ],
-      "risk_score": 2,
-      "locked_terms": [],
+      "risk_score": 10,
+      "locked_terms": [
+        {
+          "id": "reviewed.skill_name.1f183e9c1b1a",
+          "target_vi": "Vạn Sắc☆Marvelous★World",
+          "matched_aliases": [
+            "万彩☆美丽★世界"
+          ],
+          "present": false
+        }
+      ],
       "community_terms": [
         {
           "id": "common.stat.power",
@@ -473,10 +367,20 @@
       "current_text": "Tăng giới hạn Power và Wit,\\nSpark giúp giảm giá Skill 「Vạn sắc☆Tươi đẹp★Thế giới」",
       "current_fingerprint": "ce7f50fdd6f3c3549ee2e25be0d190ba3e8b714c50e244cf3b964d544cdc1ddb",
       "risk_flags": [
+        "locked_term_mismatch",
         "community_term"
       ],
-      "risk_score": 2,
-      "locked_terms": [],
+      "risk_score": 10,
+      "locked_terms": [
+        {
+          "id": "reviewed.skill_name.1f183e9c1b1a",
+          "target_vi": "Vạn Sắc☆Marvelous★World",
+          "matched_aliases": [
+            "万彩☆美丽★世界"
+          ],
+          "present": false
+        }
+      ],
       "community_terms": [
         {
           "id": "common.stat.power",
@@ -574,10 +478,20 @@
       "current_text": "Tăng giới hạn Power và Wit,\\nSpark giúp giảm giá Skill 「Vạn sắc☆Tươi đẹp★Thế giới」",
       "current_fingerprint": "ce7f50fdd6f3c3549ee2e25be0d190ba3e8b714c50e244cf3b964d544cdc1ddb",
       "risk_flags": [
+        "locked_term_mismatch",
         "community_term"
       ],
-      "risk_score": 2,
-      "locked_terms": [],
+      "risk_score": 10,
+      "locked_terms": [
+        {
+          "id": "reviewed.skill_name.1f183e9c1b1a",
+          "target_vi": "Vạn Sắc☆Marvelous★World",
+          "matched_aliases": [
+            "万彩☆美丽★世界"
+          ],
+          "present": false
+        }
+      ],
       "community_terms": [
         {
           "id": "common.stat.power",
@@ -2216,6 +2130,105 @@
       "json_path": [
         "172",
         "10570202"
+      ],
+      "key": null,
+      "source_text": "速度上限和力量上限提升 ,\\n能获得「灿然阔步」技能折扣的因子",
+      "source_fingerprint": "de87657415013366a7593a721288494976cce8336ae7a325f24aa860c5966aa3",
+      "current_text": "Giới hạn Speed và Power tăng,\\nSpark giúp nhận giảm giá cho Skill 「Sải bước rạng ngời」",
+      "current_fingerprint": "bf1a5c11111ad502b64f6c9b5d0c1a83aeb85fb771d060e1484aeab118925a69",
+      "risk_flags": [
+        "community_term"
+      ],
+      "risk_score": 2,
+      "locked_terms": [],
+      "community_terms": [
+        {
+          "id": "common.stat.speed.context",
+          "preferred": "Speed",
+          "accepted": [
+            "Speed"
+          ],
+          "forbidden": [],
+          "matched_aliases": [
+            "速度上限"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Narrow player-facing Speed stat contexts. No global forbidden Tốc độ token is used here because the same sentence may also describe literal/max/running speed."
+        },
+        {
+          "id": "common.stat.power",
+          "preferred": "Power",
+          "accepted": [
+            "Power"
+          ],
+          "forbidden": [
+            "Sức mạnh"
+          ],
+          "matched_aliases": [
+            "力量"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Common EN-version Power stat label. The zh-CN alias 力量 is ambiguous in ordinary prose and can also occur inside proper names such as 莱茵力量 (Rhein Kraft); known non-stat compounds, names, descriptive titles, and narrative/metaphorical phrases are explicitly excluded so physical or emotional strength is not normalized to the stat label."
+        },
+        {
+          "id": "common.skill.generic",
+          "preferred": "Skill",
+          "accepted": [
+            "Skill"
+          ],
+          "forbidden": [
+            "Kỹ năng"
+          ],
+          "matched_aliases": [
+            "技能"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Generic gameplay label stays English. This does not mean individual skill names stay English."
+        },
+        {
+          "id": "common.spark.inheritance_description",
+          "preferred": "Spark",
+          "accepted": [
+            "Spark",
+            "Sparks"
+          ],
+          "forbidden": [
+            "Nhân tố",
+            "nhân tố",
+            "Factor",
+            "factor"
+          ],
+          "matched_aliases": [
+            "因子"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Pinned text_data category 172 is inheritance-description content; 因子 there is the Spark mechanic. Item scope prevents unrelated review IDs from reopening."
+        }
+      ],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [],
+      "item_context_sha256": "2688d7353fff76de7a9781925aad3fdda24cfebc83ed518fea062c288ecce7aa"
+    },
+    {
+      "uid": "zhcn:b3fda6ff829c5424126ebb32",
+      "source_batch": 244,
+      "entry_index": 28,
+      "kind": "text_data",
+      "source_path": "text_data_dict.json",
+      "json_path": [
+        "172",
+        "10570203"
       ],
       "key": null,
       "source_text": "速度上限和力量上限提升 ,\\n能获得「灿然阔步」技能折扣的因子",

@@ -160,6 +160,8 @@ Do not reproduce any relevant `rejected_targets`.
 Do not work around persistent quality guards.
 Do not trust zh-CN blindly when source-bridge risk says it is lossy.
 
+For new translation, semantic correctness is not enough: follow the Vietnamese editorial quality floor in `PARALLEL_TRANSLATION.md`. Generic `ウマ娘`/`赛马娘` is **Mã Nương** in Vietnamese prose/dialogue unless a narrower scoped canonical rule applies. Rewrite Chinese-shaped sentence structure into natural, speakable Vietnamese while preserving meaning, register, nuance, locked terms, placeholders, tags, and formatting.
+
 ## Ownership
 
 Workers never directly edit canonical output/progress state unless their selected protocol explicitly assigns that write.

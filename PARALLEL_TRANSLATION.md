@@ -194,6 +194,16 @@ Common approved game-facing labels such as `Trainer`, `Speed`, `Stamina`, `Power
 
 Verified character names use canonical Roman-letter names. Never semantically translate the Chinese name.
 
+### Vietnamese editorial quality floor
+
+Correct meaning is necessary but not sufficient. Player-facing Vietnamese must read like edited Vietnamese, not a clause-by-clause trace of zh-CN syntax.
+
+- Generic `ウマ娘` / `赛马娘` / the matching world/species concept is **Mã Nương** in Vietnamese prose/dialogue. Do not treat `Mã Nương` itself as a regression; only a more-specific scoped canonical rule may override it for a particular compound or proper name.
+- Preserve meaning, speaker attitude, register, emphasis, ambiguity, formatting, placeholders, and gameplay terminology, but freely reorder clauses and recast sentence structure when Vietnamese needs it.
+- Prefer concise idiomatic Vietnamese over constructions that mirror Chinese word order. Avoid awkward patterns such as topic fragments followed by a second subject (`Tôi, chúng tôi...`) or nominalized calques such as `tính đúng đắn trong những gì...` when a natural finite clause expresses the same meaning.
+- Dialogue must sound speakable. UI/help text must sound like native game copy. Do not add information, intensify emotion, flatten characterization, or paraphrase away meaningful nuance just to sound smoother.
+- Before marking an entry reviewed, perform one Vietnamese-only reread: if the target sounds translated when read without the source beside it, rewrite it while preserving the source meaning and all locked terms.
+
 ## Semantic QA
 
 For every entry preserve/check:

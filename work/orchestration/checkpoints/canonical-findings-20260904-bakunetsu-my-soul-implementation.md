@@ -27,4 +27,11 @@ Implementation commits observed on live `main`:
 
 ## Acceptance status
 
-GitHub Actions had not yet registered runs for the regression head at the latest check. Do not count this finding complete until Validate, Sync translation context, and Sync translation review plan pass, then verify the live generated review item `text_data_dict.json` `16/1088` embeds `song.bakunetsu_my_soul` / `Bakunetsu My Soul` with `canonical_findings: []`.
+Accepted on live `main`.
+
+- Validate run `33822327151`: success.
+- Sync translation context run `33822327174`: success.
+- Sync translation review plan run `33822327301`: success.
+- Live generated review plan `tr-p3-67f8551f7780-467d9805a848-b5c0bcb3bd-0f8e2d4154` contains `text_data_dict.json` `16/1088` with community rule `song.bakunetsu_my_soul`, preferred target `Bakunetsu My Soul`, and `canonical_findings: []`.
+
+This finding satisfies production acceptance and may advance the maintenance completed count.

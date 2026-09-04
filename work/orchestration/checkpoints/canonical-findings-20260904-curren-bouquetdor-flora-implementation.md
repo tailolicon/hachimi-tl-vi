@@ -4,7 +4,7 @@
 - zh-CN source: `终将为你绽放的花神`
 - JP player-facing title: `いずれあなたに咲くフローラ`
 - Character: Curren Bouquetd'or (`[花宿しのクチュール] カレンブーケドール`, character ID 1134)
-- Proposed/locked Vietnamese target: `Flora rồi sẽ nở vì bạn`
+- Locked Vietnamese target: `Flora rồi sẽ nở vì bạn`
 
 ## Evidence
 
@@ -27,6 +27,13 @@ References checked during implementation:
   - verifies canonical/review resolution removes the synthetic live-shape finding from `active_findings`;
   - verifies exact scoping does not overmatch longer source text or another file.
 
-## Pending acceptance
+## Acceptance verification
 
-Do not increment maintenance `completed_count` until Validate, Sync translation context, and Sync translation review plan succeed and regenerated live state proves `cf-fdc79513437ad3e5` is nonblocking.
+Accepted on 2026-09-04 after all required production paths completed successfully:
+
+- **Validate:** succeeded on the hardener commit.
+- **Sync translation context:** succeeded. The production run executed `harden_curren_bouquetdor_flora_finding.py`, refreshed canonical findings and context-guard resolutions, and finished with **680 tests passed** before publishing generated context to `main`.
+- **Sync translation review plan:** succeeded after its concurrency-safe retry. On fresh `main`, the Curren Bouquetd'or hardener was idempotent (`changed=false`), canonical findings/context guards were regenerated, **2 active review batches / 6 items** had worker-facing finding snapshots refreshed, and the full suite finished with **682 tests passed**.
+- The published live review plan is `tr-p3-67f8551f7780-8c44b931ab72-b5c0bcb3bd-44e8f58dff`, with 3,932 current candidates. This proves the canonical change survived regeneration and is present in the live worker-facing state rather than only in a local implementation commit.
+
+**Acceptance:** `cf-fdc79513437ad3e5` is nonblocking and may be counted complete. Maintenance `completed_count` advances from 97 to 98.

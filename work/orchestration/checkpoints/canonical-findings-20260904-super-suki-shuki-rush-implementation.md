@@ -27,4 +27,9 @@ Implementation commits on live `main`:
 
 ## Acceptance status
 
-Pending production acceptance. Push-triggered Validate, Sync translation context, and Sync translation review plan workflows were created for authoritative hardener head `a916a1f9f698ca1507893aa7cbf1ac41301d5420`. Do not advance the maintenance completed count until required workflows succeed and the then-live generated review item `text_data_dict.json` `16/1156` embeds `song.super_suki_shuki_rush` / `Super Suki Shuki Rush` with `canonical_findings: []`.
+Accepted in production.
+
+- Validation passed for the final replay-safe canonical surface.
+- Production Sync translation context run `33825873073` succeeded.
+- Production Sync translation review plan run `33825873089` succeeded.
+- Published live plan `tr-p3-67f8551f7780-bdff91d1f88f-b5c0bcb3bd-3f3fefbe8d`, batch `b0176`, embeds `song.super_suki_shuki_rush` / `Super Suki Shuki Rush` for `text_data_dict.json` `16/1156` with `canonical_findings: []`.

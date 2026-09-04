@@ -164,6 +164,11 @@ GUARDS = {
         "term_id": "common.distance.long",
         "target_vi": "Long",
     },
+    "cf-8faece2c0770dea4": {
+        "layer": "locked",
+        "term_id": "reviewed.skill_name.b10fa1bb5f44",
+        "target_vi": "Cự ly tiêu chuẩn ○",
+    },
     # Regenerated review findings may key the same overmatch by the excluded
     # compound (超长距离) rather than by the nested generic alias (长距离). Keep
     # both semantic incarnations tied to the same proven context guard.

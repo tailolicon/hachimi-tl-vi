@@ -16,22 +16,21 @@ def test_sync_context_auto_triggers_and_runs_all_finding_hardeners() -> None:
     workflow = (ROOT / ".github" / "workflows" / "sync-context.yml").read_text(encoding="utf-8")
     assert '"scripts/harden_*_finding.py"' in workflow
     assert '"tests/test_*_finding_hardening.py"' in workflow
-    assert "for script in scripts/harden_*_finding.py; do" in workflow
-    assert 'python "$script"' in workflow
+    assert workflow.count("for script in scripts/harden_*_finding.py; do") >= 2
+    assert workflow.count('python "$script"') >= 2
 
 
-def test_transcend_review_compatibility_runs_before_review_apply() -> None:
+def test_all_finding_review_locks_are_restored_before_review_apply() -> None:
     workflow = (ROOT / ".github" / "workflows" / "sync-context.yml").read_text(encoding="utf-8")
-    hardener_index = workflow.index("python scripts/harden_transcend_overdrive_finding.py")
+    pre_apply_step = workflow.index("- name: Restore finding review locks before apply")
+    first_hardener_loop = workflow.index("for script in scripts/harden_*_finding.py; do", pre_apply_step)
     apply_index = workflow.index("python scripts/apply_terminology_reviews.py")
-    assert hardener_index < apply_index
+    post_apply_step = workflow.index("- name: Run all finding hardeners")
+    second_hardener_loop = workflow.index("for script in scripts/harden_*_finding.py; do", post_apply_step)
+    refresh_index = workflow.index("python scripts/canonical_findings.py --repo-root . --refresh")
 
-
-def test_uma_plan_review_compatibility_runs_before_review_apply() -> None:
-    workflow = (ROOT / ".github" / "workflows" / "sync-context.yml").read_text(encoding="utf-8")
-    hardener_index = workflow.index("python scripts/harden_uma_plan_finding.py")
-    apply_index = workflow.index("python scripts/apply_terminology_reviews.py")
-    assert hardener_index < apply_index
+    assert pre_apply_step < first_hardener_loop < apply_index
+    assert apply_index < post_apply_step < second_hardener_loop < refresh_index
 
 
 def test_translation_review_plan_sync_cannot_drop_finding_hardeners() -> None:

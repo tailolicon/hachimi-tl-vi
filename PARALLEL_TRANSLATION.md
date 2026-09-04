@@ -237,9 +237,30 @@ Before marking an entry reviewed:
 A task is complete only when every source entry in the shard has one reviewed target and structural + persistent QA passes.
 
 1. save result with `status: "complete"` and full shard entries;
-2. create completion marker with exact task/result/source metadata and `qa_passed: true`;
+2. create completion marker with exact task/result/source metadata, `entry_count` equal to the exact shard entry count, and `qa_passed: true`;
 3. optionally mark your claim `status: "complete"`;
 4. re-read live gate/state before acquiring more work.
+
+For a normal 20-entry shard, the completion marker must therefore include at least:
+
+```json
+{
+  "schema_version": 1,
+  "epoch": "zhcn-...",
+  "task_id": "batch-00002-s00",
+  "batch": 2,
+  "shard": 0,
+  "source_commit": "...",
+  "source_queue_git_commit": "...",
+  "result_path": "work/parallel/<epoch>/results/<group>/batch-00002-s00.json",
+  "entry_count": 20,
+  "qa_passed": true,
+  "completed_at": "UTC ISO-8601",
+  "worker_id": "sol-<unique>"
+}
+```
+
+`translated_count` may remain on older markers or be included as redundant metadata, but new completion markers must write `entry_count`. The aggregator accepts the historical `translated_count` alias so already-durable valid work is not stranded. If both count fields are present, they must agree.
 
 Completion marker is authoritative.
 

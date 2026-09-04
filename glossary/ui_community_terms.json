@@ -8221,6 +8221,29 @@
       ],
       "match_mode": "exact",
       "basis": "Verified JP Skill 100551 is 万彩☆マーベラス★世界, Marvelous Sunday's unique Skill. The zh-CN bridge 万彩☆美丽★世界 semantically replaces the character's stylized マーベラス/Marvelous wording with generic 美丽 and therefore must not be translated literally. Vạn Sắc☆Marvelous★World keeps the JP title's myriad-color image, preserves Marvelous as the character-specific keyword, and retains the ☆/★ title styling."
+    },
+    {
+      "id": "event.champions_meeting.localize_newline",
+      "category": "event",
+      "source_aliases": [
+        "群英\n月赛"
+      ],
+      "preferred": "Champions Meeting",
+      "compact": [],
+      "accepted": [
+        "Champions Meeting"
+      ],
+      "forbidden": [
+        "Giải đấu\ntháng",
+        "Monthly Match"
+      ],
+      "require_accepted": true,
+      "invalidation_scope": "item",
+      "source_paths": [
+        "localize_dict.json"
+      ],
+      "match_mode": "exact",
+      "basis": "The repository already locks the flattened source label 群英月赛 to the official Global event name Champions Meeting. RoomMatch600018 contains the same event label with an embedded newline, so this exact localize_dict variant must inherit that identity instead of a generic monthly-competition rendering."
     }
   ]
 }

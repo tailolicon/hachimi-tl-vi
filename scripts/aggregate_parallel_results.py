@@ -149,9 +149,27 @@ def validate_result(
             }
         )
 
-    if int(marker.get("entry_count", -1)) != end - start:
+    expected_count = end - start
+    marker_entry_count = marker.get("entry_count")
+    marker_translated_count = marker.get("translated_count")
+    if marker_entry_count is None:
+        # Older parallel workers used translated_count on completion markers.
+        # Keep those durable completions aggregatable instead of stranding valid
+        # work solely because the protocol did not name entry_count explicitly.
+        marker_entry_count = marker_translated_count
+    elif marker_translated_count is not None:
+        try:
+            if int(marker_entry_count) != int(marker_translated_count):
+                errors.append("marker count fields disagree")
+        except (TypeError, ValueError):
+            errors.append("marker count fields invalid")
+
+    try:
+        if int(marker_entry_count) != expected_count:
+            errors.append("marker entry_count mismatch")
+    except (TypeError, ValueError):
         errors.append("marker entry_count mismatch")
-    if int(result.get("translated_count", -1)) != end - start:
+    if int(result.get("translated_count", -1)) != expected_count:
         errors.append("result translated_count mismatch")
 
     return operations, errors

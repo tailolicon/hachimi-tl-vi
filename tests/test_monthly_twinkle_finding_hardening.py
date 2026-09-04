@@ -92,7 +92,7 @@ def test_hardener_resolves_both_monthly_twinkle_findings_and_is_idempotent(tmp_p
     assert active_findings(resolved_ledger) == []
 
 
-def test_rule_is_key_scoped_and_does_not_match_unrelated_monthly_twinkle_text(tmp_path: Path) -> None:
+def test_community_rule_is_key_scoped_while_review_lock_recognizes_same_source_identity(tmp_path: Path) -> None:
     _seed(tmp_path)
     assert harden(tmp_path) is True
 
@@ -102,4 +102,8 @@ def test_rule_is_key_scoped_and_does_not_match_unrelated_monthly_twinkle_text(tm
         tmp_path, {"schema_version": 1, "findings": [outside]}
     )["findings"][0]
     assert resolved["canonical_resolution"] is None
-    assert resolved["review_resolution"] is None
+    assert resolved["review_resolution"] == {
+        "decision_id": "audit.finding.publication-monthly-twinkle",
+        "action": "lock",
+        "target_vi": TARGET,
+    }

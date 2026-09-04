@@ -4,6 +4,7 @@ from __future__ import annotations
 
 The full-description exclusion is intentionally narrow: review-plan rebuilds must preserve the
 Skill title in direct Skill contexts while dropping only this category-128 prose false positive.
+Regenerated finding IDs for this same evidence are resolved by the same evidence-backed guard.
 """
 
 import json

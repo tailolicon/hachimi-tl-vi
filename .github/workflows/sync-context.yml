@@ -87,15 +87,14 @@ jobs:
       - name: Refresh observed entity terminology
         run: python scripts/build_observed_term_memory.py
 
-      - name: Migrate pre-apply reviewed lock compatibility
+      - name: Restore finding review locks before apply
         shell: bash
         run: |
           set -euo pipefail
-          python scripts/harden_pace_chaser_skill_lock_finding.py
-          python scripts/harden_star_ascension_finding.py
-          python scripts/harden_stamina_threshold_finding.py
-          python scripts/harden_transcend_overdrive_finding.py
-          python scripts/harden_uma_plan_finding.py
+          for script in scripts/harden_*_finding.py; do
+            echo "Running pre-apply $script"
+            python "$script"
+          done
 
       - name: Apply explicit reviewed terminology locks
         shell: bash

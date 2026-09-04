@@ -1,97 +1,32 @@
 {
   "schema_version": 1,
-  "status": "partial",
+  "status": "complete",
   "plan_id": "tr-p3-67f8551f7780-eca0564b0349-b5c0bcb3bd-79b31e40e8",
   "batch_id": "tr-p3-67f8551f7780-eca0564b0349-b5c0bcb3bd-79b31e40e8-b0180",
   "claim_id": "trc-gpt56sol-auto11-20260904T054950Z-b0180",
   "worker_id": "gpt56sol-auto11-20260904T054950Z",
-  "reviewed_at": "2026-09-04T05:54:00Z",
-  "completed_count": 10,
+  "reviewed_at": "2026-09-04T05:58:00Z",
+  "completed_count": 20,
   "decisions": [
-    {
-      "uid": "zhcn:d283a8858523a0d1bcd52f5d",
-      "current_fingerprint": "5d288d934959a630549f5ddb2f8cbe9c6975b4a3f0c9fba7321fc3e665e9d9ec",
-      "action": "keep",
-      "reason": "Here 力量 is ordinary narrative strength in the phrase 'turn adversity into strength', not the gameplay Power stat. The current Vietnamese is natural and the embedded matcher basis explicitly excludes narrative/metaphorical uses.",
-      "terminology_basis": "common.stat.power is not applicable to this narrative/metaphorical 力量 occurrence; its embedded basis explicitly excludes such prose.",
-      "confidence": "high"
-    },
-    {
-      "uid": "zhcn:8d54a61cd4fed842f7e42812",
-      "current_fingerprint": "19480d4d4061331bf699dcbd48bc9b5800ec03c989c35e2265b92a3f58b75ae1",
-      "action": "keep",
-      "reason": "The self-introduction is natural, preserves Vivlos and Dubai, and uses the canonical generic race wording without structural loss.",
-      "terminology_basis": "character.vivlos = Vivlos; race.generic = Cuộc đua.",
-      "confidence": "high"
-    },
-    {
-      "uid": "zhcn:916c6952c3e44fa9aa0d663d",
-      "current_fingerprint": "e78618448660afe4bc46dc082dd67885d88dc98ce47f4c9a71688295e4f92768",
-      "action": "revise",
-      "proposed_text": "Tôi chỉ có một ước nguyện――đó là giành được danh hiệu “mạnh nhất”!\\nTôi muốn trở thành Mã Nương khắc sâu trong ký ức mọi người!\\nĐể đạt được mục tiêu ấy, thứ không thể thiếu… đúng, là tự quảng bá!",
-      "reason": "Generic 赛马娘 in world/prose context must be Mã Nương, not Uma Musume. The rest of the translation is semantically sound.",
-      "terminology_basis": "common.world.umamusume requires Mã Nương and forbids Uma Musume for generic 赛马娘.",
-      "confidence": "high"
-    },
-    {
-      "uid": "zhcn:cea3f4bcc6cccb938efbec4c",
-      "current_fingerprint": "27afc08cf8111525fb90683e8c1e0befafe069b3812399942c9b5b002df6c20a",
-      "action": "revise",
-      "proposed_text": "Tôi là Rhein Kraft! Kế thừa tâm ý,\\nmở lối đi và kết nối tương lai.\\nTôi muốn trở thành một Mã Nương đội vương miện như thế!",
-      "reason": "The character name Rhein Kraft is already correct; the generic species/world term must be Mã Nương. The 力量 substring inside Rhein Kraft must not trigger the Power stat mapping.",
-      "terminology_basis": "character.rhein_kraft = Rhein Kraft; common.world.umamusume = Mã Nương; stat.power is only a substring collision inside the proper name.",
-      "confidence": "high"
-    },
-    {
-      "uid": "zhcn:817094d7198798c5e3076ec8",
-      "current_fingerprint": "1b321d3c2540ce5afb1505d3a052733b794dbb0bfb39f5e6506321065b6398e4",
-      "action": "keep",
-      "reason": "The playful self-introduction preserves Fusaichi Pandora and the canonical Guts stat label, with tone and structure intact.",
-      "terminology_basis": "character.fusaichi_pandora = Fusaichi Pandora; common.stat.guts = Guts.",
-      "confidence": "high"
-    },
-    {
-      "uid": "zhcn:6ae635d405fe877a9c17e375",
-      "current_fingerprint": "05e2a300139ee6421543bc79bcf35ea821c6c72fe4e256cf66ad5ff12502ad1e",
-      "action": "keep",
-      "reason": "The introduction is natural and preserves both Lucky Lilac and the Turf surface label correctly.",
-      "terminology_basis": "character.lucky_lilac = Lucky Lilac; surface.turf = Turf.",
-      "confidence": "high"
-    },
-    {
-      "uid": "zhcn:9d512c4dd7e383ae7c06a5dc",
-      "current_fingerprint": "e293cb65194aeca378f49973967d311b5b553a8eb46338c3747b3fd36eb51568",
-      "action": "revise",
-      "proposed_text": "Hi!　Tôi là Forever Young!\\nLộ trình đã sẵn sàng! Phải tạo nên một cuộc\\ncách mạng trong thế giới Mã Nương chứ, đúng không!",
-      "reason": "Generic 赛马娘界 refers to the Mã Nương world and must not use Uma Musume. The character name Forever Young is already correct.",
-      "terminology_basis": "character.forever_young = Forever Young; common.world.umamusume requires Mã Nương.",
-      "confidence": "high"
-    },
-    {
-      "uid": "zhcn:10c6dc2d7fb6c5ba6ddc35a1",
-      "current_fingerprint": "ff4e294c607e30c441361081db9785d827cce1b4c0d3f663b18e4c0e8a0c393e",
-      "action": "revise",
-      "proposed_text": "Xin chào, tôi là Aoi Kiryuin.\\nDù vẫn còn non nớt với tư cách Trainer mới của Học viện Tracen,\\nnhưng vì tương lai của các Mã Nương, tôi sẽ dốc hết sức cố gắng!",
-      "reason": "Two fixed player-facing terms are noncanonical in the current text: 训练员 must be Trainer and generic 赛马娘 must be Mã Nương. Học viện Tracen is already correct.",
-      "terminology_basis": "common.trainer = Trainer; common.world.umamusume = Mã Nương; world.tracen = Học viện Tracen.",
-      "confidence": "high"
-    },
-    {
-      "uid": "zhcn:2dd1575d4e65f6e827839b81",
-      "current_fingerprint": "968cc3b851bedf89e3d5a90b06752af5d2d5ef9529c097f60264fb755f2658f0",
-      "action": "keep",
-      "reason": "In this character introduction, 增强力量 is ordinary descriptive 'increase strength', not an explicit gameplay-stat label. The embedded Power matcher warns against normalizing narrative uses of 力量.",
-      "terminology_basis": "common.stat.power is not applicable to this descriptive prose use; its matcher basis excludes narrative/non-stat strength.",
-      "confidence": "high"
-    },
-    {
-      "uid": "zhcn:9ab7b3601d00918bb99a0acb",
-      "current_fingerprint": "f2d232b2eb4b16cf3516d9f4817b47a137a022c12e8416c5b853f273d926393c",
-      "action": "revise",
-      "proposed_text": "Tôi là Riko Kashimoto. Quản lý tình trạng sức khỏe của Mã Nương\\nlà trách nhiệm của Trainer. Vì vậy, có ý thức căng thẳng\\ntrong công việc là chuyện đương nhiên.",
-      "reason": "Generic 赛马娘 must be Mã Nương and the player-facing role 训练员 must be Trainer. The remaining meaning and line structure are preserved.",
-      "terminology_basis": "common.world.umamusume = Mã Nương; common.trainer = Trainer.",
-      "confidence": "high"
-    }
+    {"uid":"zhcn:d283a8858523a0d1bcd52f5d","current_fingerprint":"5d288d934959a630549f5ddb2f8cbe9c6975b4a3f0c9fba7321fc3e665e9d9ec","action":"keep","reason":"Here 力量 is ordinary narrative strength in the phrase 'turn adversity into strength', not the gameplay Power stat. The current Vietnamese is natural and the embedded matcher basis explicitly excludes narrative/metaphorical uses.","terminology_basis":"common.stat.power is not applicable to this narrative/metaphorical 力量 occurrence; its embedded basis explicitly excludes such prose.","confidence":"high"},
+    {"uid":"zhcn:8d54a61cd4fed842f7e42812","current_fingerprint":"19480d4d4061331bf699dcbd48bc9b5800ec03c989c35e2265b92a3f58b75ae1","action":"keep","reason":"The self-introduction is natural, preserves Vivlos and Dubai, and uses the canonical generic race wording without structural loss.","terminology_basis":"character.vivlos = Vivlos; race.generic = Cuộc đua.","confidence":"high"},
+    {"uid":"zhcn:916c6952c3e44fa9aa0d663d","current_fingerprint":"e78618448660afe4bc46dc082dd67885d88dc98ce47f4c9a71688295e4f92768","action":"revise","proposed_text":"Tôi chỉ có một ước nguyện――đó là giành được danh hiệu “mạnh nhất”!\\nTôi muốn trở thành Mã Nương khắc sâu trong ký ức mọi người!\\nĐể đạt được mục tiêu ấy, thứ không thể thiếu… đúng, là tự quảng bá!","reason":"Generic 赛马娘 in world/prose context must be Mã Nương, not Uma Musume. The rest of the translation is semantically sound.","terminology_basis":"common.world.umamusume requires Mã Nương and forbids Uma Musume for generic 赛马娘.","confidence":"high"},
+    {"uid":"zhcn:cea3f4bcc6cccb938efbec4c","current_fingerprint":"27afc08cf8111525fb90683e8c1e0befafe069b3812399942c9b5b002df6c20a","action":"revise","proposed_text":"Tôi là Rhein Kraft! Kế thừa tâm ý,\\nmở lối đi và kết nối tương lai.\\nTôi muốn trở thành một Mã Nương đội vương miện như thế!","reason":"The character name Rhein Kraft is already correct; the generic species/world term must be Mã Nương. The 力量 substring inside Rhein Kraft must not trigger the Power stat mapping.","terminology_basis":"character.rhein_kraft = Rhein Kraft; common.world.umamusume = Mã Nương; stat.power is only a substring collision inside the proper name.","confidence":"high"},
+    {"uid":"zhcn:817094d7198798c5e3076ec8","current_fingerprint":"1b321d3c2540ce5afb1505d3a052733b794dbb0bfb39f5e6506321065b6398e4","action":"keep","reason":"The playful self-introduction preserves Fusaichi Pandora and the canonical Guts stat label, with tone and structure intact.","terminology_basis":"character.fusaichi_pandora = Fusaichi Pandora; common.stat.guts = Guts.","confidence":"high"},
+    {"uid":"zhcn:6ae635d405fe877a9c17e375","current_fingerprint":"05e2a300139ee6421543bc79bcf35ea821c6c72fe4e256cf66ad5ff12502ad1e","action":"keep","reason":"The introduction is natural and preserves both Lucky Lilac and the Turf surface label correctly.","terminology_basis":"character.lucky_lilac = Lucky Lilac; surface.turf = Turf.","confidence":"high"},
+    {"uid":"zhcn:9d512c4dd7e383ae7c06a5dc","current_fingerprint":"e293cb65194aeca378f49973967d311b5b553a8eb46338c3747b3fd36eb51568","action":"revise","proposed_text":"Hi!　Tôi là Forever Young!\\nLộ trình đã sẵn sàng! Phải tạo nên một cuộc\\ncách mạng trong thế giới Mã Nương chứ, đúng không!","reason":"Generic 赛马娘界 refers to the Mã Nương world and must not use Uma Musume. The character name Forever Young is already correct.","terminology_basis":"character.forever_young = Forever Young; common.world.umamusume requires Mã Nương.","confidence":"high"},
+    {"uid":"zhcn:10c6dc2d7fb6c5ba6ddc35a1","current_fingerprint":"ff4e294c607e30c441361081db9785d827cce1b4c0d3f663b18e4c0e8a0c393e","action":"revise","proposed_text":"Xin chào, tôi là Aoi Kiryuin.\\nDù vẫn còn non nớt với tư cách Trainer mới của Học viện Tracen,\\nnhưng vì tương lai của các Mã Nương, tôi sẽ dốc hết sức cố gắng!","reason":"Two fixed player-facing terms are noncanonical in the current text: 训练员 must be Trainer and generic 赛马娘 must be Mã Nương. Học viện Tracen is already correct.","terminology_basis":"common.trainer = Trainer; common.world.umamusume = Mã Nương; world.tracen = Học viện Tracen.","confidence":"high"},
+    {"uid":"zhcn:2dd1575d4e65f6e827839b81","current_fingerprint":"968cc3b851bedf89e3d5a90b06752af5d2d5ef9529c097f60264fb755f2658f0","action":"keep","reason":"In this character introduction, 增强力量 is ordinary descriptive 'increase strength', not an explicit gameplay-stat label. The embedded Power matcher warns against normalizing narrative uses of 力量.","terminology_basis":"common.stat.power is not applicable to this descriptive prose use; its matcher basis excludes narrative/non-stat strength.","confidence":"high"},
+    {"uid":"zhcn:9ab7b3601d00918bb99a0acb","current_fingerprint":"f2d232b2eb4b16cf3516d9f4817b47a137a022c12e8416c5b853f273d926393c","action":"revise","proposed_text":"Tôi là Riko Kashimoto. Quản lý tình trạng sức khỏe của Mã Nương\\nlà trách nhiệm của Trainer. Vì vậy, có ý thức căng thẳng\\ntrong công việc là chuyện đương nhiên.","reason":"Generic 赛马娘 must be Mã Nương and the player-facing role 训练员 must be Trainer. The remaining meaning and line structure are preserved.","terminology_basis":"common.world.umamusume = Mã Nương; common.trainer = Trainer.","confidence":"high"},
+    {"uid":"zhcn:7db4d802ce67fd4b4f5a2584","current_fingerprint":"8761dcb2f7cce504f7b55564e777ac725711bf3d2126e6e787f6915761feae03","action":"revise","proposed_text":"Tôi là Darley Arabian. Mỗi Mã Nương\\nđều có cá tính riêng, và ai cũng có thể trở thành nhân vật chính――\\nTa sẽ tận tâm nuôi dưỡng các con, những chú cừu non!","reason":"Generic 赛马娘 must use the project world/species term Mã Nương. Darley Arabian and the rest of the sentence are already sound.","terminology_basis":"character.darley_arabian = Darley Arabian; common.world.umamusume = Mã Nương.","confidence":"high"},
+    {"uid":"zhcn:a2316640b96ec6f58ca150e7","current_fingerprint":"a5217eca652caa1b68585c1cf9c4c9988f6bbc4b3070f0fd9a1b49ca4ed20ec1","action":"revise","proposed_text":"Tôi là Godolphin Barb.\\nChính nhờ tồn tại đủ loại mối liên kết――các Mã Nương mới có thể\\ntiếp tục chạy. Hãy để ta góp sức cho con nhé.","reason":"Generic 赛马娘 must be Mã Nương, while the proper name Godolphin Barb is already canonical.","terminology_basis":"character.godolphin_barb = Godolphin Barb; common.world.umamusume = Mã Nương.","confidence":"high"},
+    {"uid":"zhcn:1673f6e27255b19575ff9d4e","current_fingerprint":"49924f5f576509bb7980ff7c8a93f9339002206299a4164e706d1c88689d24cd","action":"revise","proposed_text":"Tên ta là Byerley Turk. Với Mã Nương,\\nđiều cần nhất chính là đủ mạnh. Hãy tiếp tục rèn luyện,\\ncho đến khi mạnh đến mức tên con được khắc lên mặt đất.","reason":"Generic 赛马娘 must be Mã Nương; Byerley Turk and the descriptive 'mạnh' wording are otherwise appropriate.","terminology_basis":"character.byerley_turk = Byerley Turk; common.world.umamusume = Mã Nương.","confidence":"high"},
+    {"uid":"zhcn:95e7ef6a4c1204a21b9c7281","current_fingerprint":"c199f334703e4cacfb6241de2cd1bea44dcf12f4dae019c2f68c04543bdb2174","action":"keep","reason":"The European-race introduction is semantically natural, uses the generic Cuộc đua terminology, and preserves the established Prix de l'Arc de Triomphe proper name.","terminology_basis":"race.generic = Cuộc đua; the named race remains Prix de l'Arc de Triomphe.","confidence":"high"},
+    {"uid":"zhcn:084f0271cc3b6dfc03a31ea7","current_fingerprint":"cbf101f559d7989df6bd3444d5fe01c715618784b77a11c39a422b67c7a6ada3","action":"keep","reason":"Speed Symboli is a full character proper name and the current introduction is natural. The 速度 substring must not be treated as a separate stat occurrence inside that proper name.","terminology_basis":"character.speed_symboli = Speed Symboli; common.stat.speed does not override the full proper-name match.","confidence":"high"},
+    {"uid":"zhcn:3ae920b5f28f440a4102ddba","current_fingerprint":"103da70baf90e4be15cbadb52b65a82efdb9322907f1b7088fd5c40a702b7bf7","action":"defer","reason":"The source itself contains the anomalous mixed token 'Vu行', making the intended phrase unclear. The current 'phát âm hàng Vu' is not confidently interpretable, so revision would require source-side evidence rather than guessing.","confidence":"low"},
+    {"uid":"zhcn:1fbdb6d41f8ec0cfe20a1f8a","current_fingerprint":"58b3f27447ef86a1621d891ccadc374e9461a7ec36b3406799daac06149d3c8e","action":"defer","reason":"An active canonical context-rule finding explicitly says this puzzle label must not trigger the Wit stat matcher. Defer until that canonical overmatch is resolved.","terminology_basis":"cf-745d26a40739b272 blocks this exact label; stat.wisdom/Wit is not safely applicable here.","confidence":"high"},
+    {"uid":"zhcn:efb71d1d73f5704bec15faec","current_fingerprint":"54aa8560cf23314445be633c1db100769b0a5dd749e206ad613019fc6d15f8a9","action":"revise","proposed_text":"Tự nhận mình có đôi tai hợp đội vương miện nhất trong số các Mã Nương","reason":"This is generic world/species prose, so 赛马娘 must be Mã Nương rather than Uma Musume.","terminology_basis":"common.world.umamusume requires Mã Nương and forbids Uma Musume in generic prose.","confidence":"high"},
+    {"uid":"zhcn:bceb2dc4e1fc548af1bd433d","current_fingerprint":"7c900382cc12ed60068525cd02eb79187ba1109cdba976ec0c4ea3989f266d4d","action":"keep","reason":"The profile sentence retains Mood as the canonical player-facing state term and naturally conveys becoming more motivated after putting the earmuffs on last.","terminology_basis":"common.state.mood/state.mood require Mood for 干劲 in this context.","confidence":"medium"},
+    {"uid":"zhcn:4e9bab369ea906c1fcc44cd8","current_fingerprint":"de4c347f0b04724d4de5c512fb25203df0a09b0b416f76f88543407992a411a1","action":"defer","reason":"The current narrative 'sức mạnh' reading is plausible, but an active canonical finding explicitly blocks automatic Power normalization for narrative/profile uses of 力量 in this category. Defer until that matcher is resolved.","terminology_basis":"cf-36e967229329369e is an active context-rule blocker for narrative/profile 力量; stat.power must not be forced here.","confidence":"high"}
   ]
 }

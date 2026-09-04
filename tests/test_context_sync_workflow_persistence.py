@@ -27,6 +27,13 @@ def test_transcend_review_compatibility_runs_before_review_apply() -> None:
     assert hardener_index < apply_index
 
 
+def test_uma_plan_review_compatibility_runs_before_review_apply() -> None:
+    workflow = (ROOT / ".github" / "workflows" / "sync-context.yml").read_text(encoding="utf-8")
+    hardener_index = workflow.index("python scripts/harden_uma_plan_finding.py")
+    apply_index = workflow.index("python scripts/apply_terminology_reviews.py")
+    assert hardener_index < apply_index
+
+
 def test_translation_review_plan_sync_cannot_drop_finding_hardeners() -> None:
     workflow = (ROOT / ".github" / "workflows" / "sync-translation-review-plan.yml").read_text(encoding="utf-8")
     assert '"scripts/harden_*_finding.py"' in workflow

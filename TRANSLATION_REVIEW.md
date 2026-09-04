@@ -2,7 +2,7 @@
 
 This is the canonical retrospective QA protocol for translations already merged into Vietnamese.
 
-The system is optimized for stateless ChatGPT workers with a hard 25-minute session. The goals are: minimal startup context, maximum reviewed entries per session, crash-safe checkpoints, and immediate handoff to another worker.
+The system is optimized for stateless continuously running workers. The goals are: minimal startup context, high review throughput, crash-safe checkpoints, and immediate platform-triggered durable handoff.
 
 Repository state on `main` overrides chat history, private memory, and model priors. Current Vietnamese text is a hypothesis, not evidence that it is correct.
 
@@ -15,26 +15,26 @@ While `enabled: true`, retrospective review remains required and `defer` remains
 `claims_allowed` controls the separate new-translation lane:
 
 - `claims_allowed: false` means review is exclusive/fail-closed;
-- `claims_allowed: true` means review and new translation run concurrently; `WORKER_25MIN.md` keeps up to `review_worker_cap` live review workers and routes excess workers to translation.
+- `claims_allowed: true` means review and new translation run concurrently; `WORKER_CONTINUOUS.md` keeps up to `review_worker_cap` live review workers and routes excess workers to translation.
 
 The review gate itself clears only when every canonical entry in its frozen review scope has a current resolved `keep` or `revise` decision. Clearing the audit gate is no longer required merely to increase pinned-source coverage.
 
-## 25-minute worker policy
+## Continuous runtime policy
 
 Read `work/worker_session_policy.json` and obey it even when an old plan advertises a longer lease.
 
 For ChatGPT workers, the effective rolling lease is the shorter of the plan lease and `rolling_lease_minutes` in the shared session policy.
 
-Current session discipline is intentionally throughput-first:
+Runtime discipline is intentionally throughput-first:
 
-- checkpoint every 5 completed decisions or every heartbeat interval, whichever comes first;
+- checkpoint every 5 completed decisions and after meaningful bounded progress;
 - save the result checkpoint **before** refreshing the claim;
 - refresh only after the checkpoint is durable on `main`;
-- do not claim a new batch after `stop_new_batch_after_minutes`;
-- begin handoff by `handoff_start_minutes`;
-- never intentionally leave an active claim when the 25-minute session ends.
+- after a completed batch, immediately re-read live routing and claim/resume the next eligible batch while useful work remains;
+- do not self-time or voluntarily stop because of elapsed time;
+- only a real platform/runtime termination signal starts handoff, and then the worker must save, commit/push, and release as quickly as possible.
 
-A normal clean session should finish one or more 20-entry batches. If it cannot finish the current batch, it must leave a resumable partial result rather than lose completed decisions.
+If the platform interrupts an incomplete batch, leave a resumable partial result rather than lose completed decisions.
 
 ## Fast startup
 
@@ -164,7 +164,7 @@ For uncertain proper names, search the exact alias in `glossary/characters.json`
 
 For attributable dialogue where voice genuinely changes the decision, search only the relevant speaker/relationship records in speech files. Do not load all speech context for UI/system/skill text.
 
-If evidence is still weak, `defer`; do not spend a large part of a 25-minute session inventing a canonical answer.
+If evidence is still weak, `defer`; do not spend disproportionate effort inventing a canonical answer.
 
 ## Review gates
 
@@ -316,10 +316,9 @@ After a completed batch:
 
 1. re-read only `work/parallel_state.json` and `work/translation_review/active_plan.json`;
 2. if the plan changed, use the new plan id;
-3. if session elapsed time is before `stop_new_batch_after_minutes`, claim another available/resumable batch;
-4. otherwise end cleanly without acquiring more work.
+3. claim/resume another available batch while useful work remains and the runtime permits execution.
 
-Do not reread this protocol unless it changed.
+Do not reread this protocol unless it changed. Do not end because of elapsed time; only an actual platform/runtime termination signal starts emergency save/commit/push/release.
 
 ## Manual-audit canonical rules
 

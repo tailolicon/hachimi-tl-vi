@@ -1,28 +1,35 @@
 {
-  "schema_version": 1,
-  "policy_version": 10,
-  "session_minutes": 25,
-  "productive_target_minutes": 22,
+  "schema_version": 2,
+  "policy_version": 11,
   "rolling_lease_minutes": 6,
-  "heartbeat_every_minutes": 3,
   "checkpoint_every_decisions": 5,
-  "stop_new_batch_after_minutes": 21,
-  "handoff_start_minutes": 22,
-  "claim_statuses": ["active", "released", "complete"],
-  "domain_claim_statuses": ["unclaimed", "active", "released", "ready_for_integration", "complete"],
-  "maintenance_stages": ["domain_work", "ready_for_finalize", "finalizing", "complete"],
-  "timing_precedence_rule": "This policy overrides any minute-based self-handoff wording that still exists in WORKER_25MIN.md, TRANSLATION_REVIEW.md, UI_REVIEW.md, PARALLEL_TRANSLATION.md, AUTOPILOT.md, or older plans. Those numeric thresholds are compatibility metadata, not instructions for a model to run its own clock. Only a real platform/runtime cutoff signal starts handoff.",
-  "timer_semantics_rule": "The numeric session/productive/cutoff fields describe the platform envelope and remain for compatibility, tests, and human scheduling. A ChatGPT worker has no reliable internal wall-clock counter and MUST NOT estimate, simulate, poll, or wait for minute 21/22/25, and MUST NOT voluntarily stop because it thinks a threshold is near. Do not fetch GitHub timestamps merely to run a session timer. The platform/runtime owns the hard cutoff.",
+  "claim_statuses": [
+    "active",
+    "released",
+    "complete"
+  ],
+  "domain_claim_statuses": [
+    "unclaimed",
+    "active",
+    "released",
+    "ready_for_integration",
+    "complete"
+  ],
+  "maintenance_stages": [
+    "domain_work",
+    "ready_for_finalize",
+    "finalizing",
+    "complete"
+  ],
   "runtime_continuation_rule": "During normal execution, keep doing protocol-valid useful work continuously while tools are available. Completing a unit, checkpoint, validation, stage, or batch is a continuation trigger, not a session-end trigger. Immediately re-read only the minimum live routing and continue the next safe eligible unit at the same highest priority.",
-  "platform_cutoff_rule": "Only an actual runtime/platform termination signal, forced finalization condition, or imminent tool/session shutdown may trigger the emergency handoff path. Do not manufacture such a signal from subjective effort, token count, tool-call count, lease timing, commit count, or guessed elapsed minutes.",
-  "emergency_handoff_rule": "When the platform/runtime actually indicates the run is ending, stop optional research and do not start another broad unit. Use the remaining grace window only to persist the newest valid partial/checkpoint, record the exact continuation pointer, and release only your own active claim. A clean release is more important than finishing the current batch. Do not spend the grace window on broad validation, refactors, or a long final report.",
+  "platform_cutoff_rule": "Only an actual platform/runtime termination signal, forced finalization condition, or imminent tool/session shutdown starts emergency handoff. Never infer this from subjective effort, token count, tool-call count, lease timing, commit count, or guessed elapsed time.",
+  "emergency_handoff_rule": "When the platform/runtime actually indicates the run is ending, stop optional research immediately. Persist the newest valid partial/checkpoint, commit/push that durable work through the available repository path as quickly as possible, record the exact continuation pointer, and release only your own active claim. Durable push/release outranks finishing the current batch or writing a long final report.",
   "orphan_recovery_rule": "Released claims are immediately takeover-eligible. If a run is killed before it can release, the short rolling lease exists only to bound orphan-claim recovery; its expiry is a coordination fallback, never a worker-session timer or a reason for the current owner to stop. A successor should prefer released/expired partial work and resume from durable state instead of restarting it.",
-  "effective_lease_rule": "For ChatGPT workers, use the shorter of this rolling_lease_minutes and any longer lease advertised by an active review plan or translation epoch. This short lease is only an orphan-recovery lock. Refresh it after real durable progress when needed; lease pressure must never cause voluntary handoff.",
+  "effective_lease_rule": "For ChatGPT workers, use the shorter of this rolling_lease_minutes and any longer lease advertised by an active review plan or translation epoch. This short lease is only an orphan-recovery lock. Refresh it after real durable progress when needed; lease pressure must never cause voluntary handoff or become a worker clock.",
   "released_claim_rule": "A released claim is immediately takeover-eligible. The successor must atomically replace it using the current blob SHA, preserving the prior partial_result_path and other durable partial-result evidence before assigning a new claim_id.",
   "fast_claim_rule": "After the minimum routing reads required by WORKER_START.md, claim or resume useful work as one of the first meaningful repository mutations. Do not perform broad repository, glossary, branch-history, or public-source analysis before owning a work unit. If a claim race is lost, immediately try the next eligible same-priority unit.",
-  "partial_checkpoint_rule": "Save a partial result after every checkpoint_every_decisions completed items and after any meaningful bounded substep that would otherwise be expensive to reconstruct. A checkpoint is durability, not a stop condition: after saving, continue the same task or immediately select the next eligible unit. Do not wait for a heartbeat minute to checkpoint.",
-  "productive_session_rule": "The configured productive target expresses intended utilization, but the worker must not self-time against it. While protocol-valid useful work remains and the platform has not signaled termination, do not voluntarily end; continue useful work. Never turn a guessed elapsed time into an early handoff.",
-  "continuation_rule": "After every completed unit, immediately re-read live routing and claim/resume the next eligible unit at the same highest priority while the runtime still permits work. Never idle merely to wait for handoff_start_minutes. Do not stop after one completed unit if another safe eligible unit remains.",
+  "partial_checkpoint_rule": "Save a partial result after every checkpoint_every_decisions completed items and after any meaningful bounded substep that would otherwise be expensive to reconstruct. A checkpoint is durability, not a stop condition: after saving, continue the same task or immediately select the next eligible unit. Refresh a lease only after new durable progress; never wait for a clock threshold to checkpoint.",
+  "continuation_rule": "After every completed unit, immediately re-read live routing and claim/resume the next eligible unit at the same highest priority while useful work remains and the runtime permits execution. Do not stop after one completed unit and never use elapsed time as a stop condition.",
   "write_rejection_continuation_rule": "If a required GitHub mutation is rejected before reaching the repository by a tool, policy, safety, transport, or connector layer, do not bypass that layer and do not treat the rejection as task completion or a session-end signal. Refetch live state/SHA and use another normal supported repository operation if available; otherwise immediately switch to another protocol-valid eligible unit/path and continue useful work. One or two rejected writes are not a handoff reason.",
   "canonical_parallel_rule": "During initial canonical hardening, domain research/hardening/testing is parallel across independent task branches and task-specific domain claims. blocking_maintenance blocks mass review/translation/UI work, not independent canonical-domain workers.",
   "canonical_integration_rule": "Live-main canonical integration, production Sync/no-op proof, and completion-state transitions are serialized through work/orchestration/maintenance_claim.json. Parallel domain workers must not publish canonical changes directly to main.",
@@ -37,6 +44,7 @@
   "backend_failure_fallback_rule": "After a rate limit, EOF, DNS/network failure, unavailable shell/container, transient tool error, or rejected individual write, preserve the task and claim when valid, continue with available connected GitHub read/write capabilities, and use repository GitHub Actions/validation workflows for required execution evidence when the local runtime is unavailable.",
   "backend_failure_handoff_rule": "Do not release or end a worker solely because one execution backend failed. Do not bypass platform safety. Switch to available connected GitHub/repository paths or another eligible unit and keep working until the runtime itself signals finalization. Required acceptance tests may not be skipped when claiming completion.",
   "canonical_finding_match_rule": "For every translation-review canonical_finding, match_mode=exact is valid ONLY when canonical_finding.source_zh_cn equals the complete reviewed item.source_text after normalization. If source_zh_cn is a reusable alias, race/event/condition name, or other concept occurring inside a longer source string, use match_mode=contains with the narrowest safe scope. Never choose exact merely because the alias itself is an exact/stable name. A result that violates this rule is malformed and may be quarantined by the central merger.",
-  "session_end_rule": "Do not self-initiate session end from estimated elapsed time. On an actual platform/runtime cutoff signal, execute emergency_handoff_rule immediately: save partial state first, release your own claim with a continuation pointer, and keep the final report minimal. If the platform hard-kills the run before release, the short lease bounds orphan recovery for the next worker.",
-  "throughput_rule": "A worker must continuously claim/resume another batch/unit whenever protocol-valid useful work remains and the runtime still permits work. Prefer continuing from released/expired partial work over untouched work when both have similar priority. Completing one unit early is a trigger to continue, never a reason to end the worker."
+  "session_end_rule": "A worker does not self-initiate session end. Only an actual platform/runtime termination signal starts emergency_handoff_rule. On that signal, save and commit/push partial state first, release your own claim with a continuation pointer, and keep the final report minimal. If the platform hard-kills the worker before release, the rolling lease only bounds orphan recovery for the successor.",
+  "throughput_rule": "A worker must continuously claim/resume another batch/unit whenever protocol-valid useful work remains and the runtime still permits work. Prefer continuing from released/expired partial work over untouched work when both have similar priority. Completing one unit early is a trigger to continue, never a reason to end the worker.",
+  "runtime_rule": "There is no worker session timer and no minute-based self-handoff threshold. Workers MUST NOT estimate elapsed runtime, run a countdown, or voluntarily stop because of time. While protocol-valid useful work remains and the platform/runtime permits execution, continue working."
 }

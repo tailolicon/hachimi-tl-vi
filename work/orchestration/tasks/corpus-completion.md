@@ -6,7 +6,7 @@ Use `WORKER_START.md` for routing and `AUTOPILOT.md` for lifecycle/claim safety.
 
 ## translation-review-round1
 
-Mass-worker phase. Use `WORKER_25MIN.md` + `TRANSLATION_REVIEW.md` and the live active plan.
+Mass-worker phase. Use `WORKER_CONTINUOUS.md` + `TRANSLATION_REVIEW.md` and the live active plan.
 
 Completion is repository state, not a worker assertion:
 
@@ -21,7 +21,7 @@ After the translation-review gate clears, allow the universal router to select r
 
 ## ui-review-round1
 
-Mass-worker phase. Use `WORKER_25MIN.md` + `UI_REVIEW.md` while live state shows assignable required UI review.
+Mass-worker phase. Use `WORKER_CONTINUOUS.md` + `UI_REVIEW.md` while live state shows assignable required UI review.
 
 Completion requires canonical merge/review state, not merely worker completion markers.
 

@@ -2,7 +2,7 @@
 
 This is the canonical retrospective UI-quality protocol for already translated fixed-size UI text in `localized_data/localize_dict.json`.
 
-It is optimized for stateless 25-minute ChatGPT workers: minimal startup reads, 20-entry batches, frequent durable checkpoints, and immediate released-claim handoff.
+It is optimized for stateless continuously running workers: minimal startup reads, 20-entry batches, frequent durable checkpoints, and immediate platform-triggered released-claim handoff.
 
 Repository state on `main` overrides chat history, private memory, and model priors. Current Vietnamese is a hypothesis, not proof that it is correct.
 
@@ -25,7 +25,7 @@ If retrospective translation audit is still required, translation review has hig
 
 UI review becomes the next priority after the translation-review gate is cleared and the UI active plan still has assignable work.
 
-## 25-minute session policy
+## Continuous runtime policy
 
 Read `work/worker_session_policy.json` through the path referenced by `work/parallel_state.json`.
 
@@ -33,12 +33,11 @@ For ChatGPT workers, use the shared rolling lease even if an old UI plan adverti
 
 Required behavior:
 
-- checkpoint after every 5 completed decisions or heartbeat interval, whichever comes first;
+- checkpoint after every 5 completed decisions and after meaningful bounded progress;
 - save partial result before refreshing the claim;
-- rolling heartbeat/lease only after durable checkpoint;
-- do not acquire a new batch after `stop_new_batch_after_minutes`;
-- start handoff by `handoff_start_minutes`;
-- release incomplete work with a pointer to the latest partial result instead of leaving a live claim.
+- refresh the rolling lease only after new durable progress;
+- continuously claim/resume another eligible batch while useful work remains and the runtime permits execution;
+- only a real platform/runtime termination signal starts handoff; then save, commit/push, and release incomplete work with a pointer to the latest partial result as quickly as possible.
 
 ## Fast startup: do not bulk-read context
 
@@ -163,7 +162,7 @@ Only when the batch itself is insufficient, fetch exact relevant records from:
 
 Search exact source/key/term; do not read whole large files end-to-end if targeted retrieval is available.
 
-If evidence remains weak, `defer` instead of spending most of a 25-minute session inventing a canonical answer.
+If evidence remains weak, `defer` instead of spending disproportionate effort inventing a canonical answer.
 
 ## Regression memory is mandatory when relevant
 
@@ -308,7 +307,6 @@ Workers edit only their own claim/result/completion and own heartbeat/release st
 After each completed batch:
 
 1. re-read only `work/parallel_state.json` and `work/ui_review/active_plan.json`;
-2. if session elapsed time is before `stop_new_batch_after_minutes`, claim another available/resumable batch;
-3. otherwise end cleanly without acquiring more work.
+2. claim/resume another available batch while useful work remains and the runtime permits execution.
 
-At session end report only completed batches, keep/revise/defer counts, any saved partial handoff, and blockers.
+Do not end because of elapsed time. Only an actual platform/runtime termination signal starts emergency handoff; save/commit/push/release first, then keep any final report minimal.

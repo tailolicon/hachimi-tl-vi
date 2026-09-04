@@ -88,7 +88,7 @@ def test_dashboard_keeps_frozen_audit_denominator_as_translation_grows(tmp_path:
 
 def test_worker_protocols_encode_dual_lane_routing() -> None:
     root = Path(__file__).resolve().parents[1]
-    worker = (root / "WORKER_25MIN.md").read_text(encoding="utf-8")
+    worker = (root / "WORKER_CONTINUOUS.md").read_text(encoding="utf-8")
     translation = (root / "PARALLEL_TRANSLATION.md").read_text(encoding="utf-8")
     review = (root / "TRANSLATION_REVIEW.md").read_text(encoding="utf-8")
 

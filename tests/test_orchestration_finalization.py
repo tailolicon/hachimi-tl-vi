@@ -42,24 +42,23 @@ def test_worker_policy_is_execution_backend_independent() -> None:
     assert "NOT a task-level blocker" in worker_start
 
 
-def test_worker_policy_targets_full_productive_session() -> None:
+def test_worker_policy_requires_continuous_runtime_until_platform_cutoff() -> None:
     policy = load_json("work/worker_session_policy.json")
     worker_start = (ROOT / "WORKER_START.md").read_text(encoding="utf-8")
-    worker_25 = (ROOT / "WORKER_25MIN.md").read_text(encoding="utf-8")
+    worker_continuous = (ROOT / "WORKER_CONTINUOUS.md").read_text(encoding="utf-8")
     autopilot = (ROOT / "AUTOPILOT.md").read_text(encoding="utf-8")
 
-    assert policy["productive_target_minutes"] == 22
-    assert policy["stop_new_batch_after_minutes"] >= 21
-    assert policy["handoff_start_minutes"] == 22
-    assert policy["session_minutes"] == 25
+    for key in ("session_minutes", "productive_target_minutes", "stop_new_batch_after_minutes", "handoff_start_minutes"):
+        assert key not in policy
     assert "checkpoint is durability, not a stop condition" in policy["partial_checkpoint_rule"]
-    assert "do not voluntarily end" in policy["productive_session_rule"]
+    assert "There is no worker session timer" in policy["runtime_rule"]
+    assert "commit/push" in policy["emergency_handoff_rule"]
     assert "immediately re-read live routing" in policy["continuation_rule"]
 
     assert "checkpoint is not stop" in worker_start.lower()
-    assert "checkpointing is not a stop condition" in worker_25
-    assert "A completed unit is a continuation trigger" in worker_25
-    assert "Never idle merely to reach the handoff minute" in autopilot
+    assert "checkpointing is not a stop condition" in worker_continuous.lower()
+    assert "A completed unit is a continuation trigger" in worker_continuous
+    assert "MUST NOT self-time" in autopilot
 
 
 def test_parallel_protocol_separates_domain_work_from_integration() -> None:

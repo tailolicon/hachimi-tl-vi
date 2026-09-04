@@ -2,7 +2,7 @@
 
 This is the canonical protocol for translating untranslated source shards after retrospective review gates allow new translation work.
 
-It is optimized for stateless ChatGPT workers with a hard 25-minute session, rolling leases, crash-safe checkpoints, and immediate handoff.
+It is optimized for stateless continuously running workers with rolling orphan-recovery leases, crash-safe checkpoints, and immediate platform-triggered handoff.
 
 Repository state on `main` overrides chat history, private memory, and model priors.
 
@@ -14,11 +14,11 @@ If `claims_allowed == false`:
 
 - do not create or take over normal translation claims;
 - do not translate an unclaimed shard;
-- switch immediately to the mode selected by `WORKER_25MIN.md`.
+- switch immediately to the mode selected by `WORKER_CONTINUOUS.md`.
 
 An active retrospective review gate does **not** by itself block translation when `claims_allowed == true`. In that dual-lane state, this protocol is valid only for workers routed here after the configured review-worker cap is already occupied. Orchestration may still prioritize unfinished UI audit after the translation-review gate clears.
 
-## 25-minute session policy
+## Continuous runtime policy
 
 Read the shared file referenced by `work/parallel_state.json.worker_session_policy`.
 
@@ -26,12 +26,11 @@ For ChatGPT workers, its rolling lease overrides any longer legacy lease in epoc
 
 Required behavior:
 
-- checkpoint after every configured number of translated entries or heartbeat interval, whichever comes first;
-- save result first, then heartbeat/refresh the claim;
-- do not acquire a new task after `stop_new_batch_after_minutes`;
-- start handoff by `handoff_start_minutes`;
-- if incomplete, save partial work and mark only your own claim `released` with a pointer to the result;
-- never intentionally leave an active claim when the session ends.
+- checkpoint after every configured number of translated entries and after meaningful bounded progress;
+- save result first, then refresh the claim only after new durable progress;
+- continuously acquire/resume the next eligible task while useful work remains and the runtime permits execution;
+- only a real platform/runtime termination signal starts handoff;
+- on that signal, save partial work, commit/push immediately, and mark only your own claim `released` with a pointer to the result.
 
 ## Fast startup
 
@@ -293,6 +292,7 @@ Accepted translation-review and UI-review `revise` decisions are automatically m
 After completion:
 
 1. re-read `work/parallel_state.json`;
-2. if retrospective gate re-closes, stop translation and switch protocol;
-3. if elapsed session time is before `stop_new_batch_after_minutes`, claim another available/resumable shard;
-4. otherwise end cleanly without acquiring more work.
+2. if the retrospective gate re-closes, switch to the protocol selected by `WORKER_CONTINUOUS.md`;
+3. otherwise claim/resume another available shard and continue while useful work remains and the runtime permits execution.
+
+Do not end because of elapsed time. Only an actual platform/runtime termination signal starts emergency handoff, and that handoff prioritizes immediate durable commit/push/release.

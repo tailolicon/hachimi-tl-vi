@@ -11,21 +11,23 @@ def _load(rel: str) -> dict:
     return json.loads((ROOT / rel).read_text(encoding="utf-8"))
 
 
-def test_shared_worker_policy_is_safe_for_25_minute_sessions() -> None:
+def test_shared_worker_policy_has_no_self_timed_session_cutoff() -> None:
     policy = _load("work/worker_session_policy.json")
 
-    session = int(policy["session_minutes"])
-    lease = int(policy["rolling_lease_minutes"])
-    heartbeat = int(policy["heartbeat_every_minutes"])
-    checkpoint = int(policy["checkpoint_every_decisions"])
-    stop_new = int(policy["stop_new_batch_after_minutes"])
-    handoff = int(policy["handoff_start_minutes"])
+    for key in (
+        "session_minutes",
+        "productive_target_minutes",
+        "heartbeat_every_minutes",
+        "stop_new_batch_after_minutes",
+        "handoff_start_minutes",
+    ):
+        assert key not in policy
 
-    assert session == 25
-    assert 1 <= heartbeat < lease < session
-    assert lease <= heartbeat * 2
-    assert checkpoint == 5
-    assert 0 < stop_new < handoff < session
+    assert int(policy["rolling_lease_minutes"]) > 0
+    assert int(policy["checkpoint_every_decisions"]) == 5
+    assert "There is no worker session timer" in policy["runtime_rule"]
+    assert "actual platform/runtime termination signal" in policy["platform_cutoff_rule"]
+    assert "commit/push" in policy["emergency_handoff_rule"]
     assert "released" in policy["claim_statuses"]
     assert "partial_result_path" in policy["released_claim_rule"]
 
@@ -43,8 +45,8 @@ def test_protocols_document_partial_release_handoff() -> None:
         assert "partial_result_path" in text
 
 
-def test_top_level_25_minute_orchestrator_allocates_review_and_translation_concurrently() -> None:
-    text = (ROOT / "WORKER_25MIN.md").read_text(encoding="utf-8")
+def test_top_level_continuous_orchestrator_allocates_review_and_translation_concurrently() -> None:
+    text = (ROOT / "WORKER_CONTINUOUS.md").read_text(encoding="utf-8")
     assert "Retrospective translation audit remains mandatory" in text
     assert "it is no longer a global stop for new translation" in text
     assert "review_worker_cap" in text

@@ -1,4 +1,4 @@
-# Stateless 25-minute mass-work protocol
+# Continuous stateless mass-work protocol
 
 `WORKER_START.md` is the universal top-level entrypoint for every fresh ChatGPT worker session on `tailolicon/hachimi-tl-vi`.
 
@@ -65,7 +65,7 @@ Only after the translation-review gate clears:
 - if active assignable UI work remains, use `UI_REVIEW.md` and claim/resume one UI batch at a time;
 - do not start new translation while required UI audit remains assignable.
 
-After a UI batch completes, re-read live priority and continue another eligible UI batch while before the cutoff.
+After a UI batch completes, re-read live priority and continue another eligible UI batch while protocol-valid work remains and the runtime permits execution.
 
 ### Mode C: new translation
 
@@ -82,31 +82,23 @@ Then:
 
 After a shard completes, re-evaluate the live review-lane occupancy and other routing state, then claim/resume the next eligible unit.
 
-## Session budget
+## Continuous runtime and emergency handoff
 
-Use `work/worker_session_policy.json` as canonical timing policy.
+Read `work/worker_session_policy.json` for shared durability/lease semantics. It does **not** define a worker session timer.
 
-The current policy defines four distinct concepts:
+Workers MUST NOT run a wall-clock countdown, estimate a cutoff, or stop because a guessed amount of time has elapsed. While protocol-valid useful work remains and the platform/runtime still permits execution, continue working. A completed unit, checkpoint, validation, commit, claim race, or stage transition is a continuation trigger, not a stop condition.
 
-- `session_minutes`: hard outer budget;
-- `productive_target_minutes`: minimum voluntary useful-work target;
-- `stop_new_batch_after_minutes`: latest point to start another unit;
-- `handoff_start_minutes`: point to begin clean final checkpoint/release.
+Checkpoint after the configured number of completed items and after any meaningful bounded substep that would be expensive to reconstruct. Save the result/checkpoint first, then refresh a lease only when there is new durable progress evidence.
 
-Expected cadence:
+Only a real platform/runtime termination signal, forced finalization condition, or imminent tool/session shutdown starts emergency handoff. When that signal appears:
 
-- first minute: state + mode + claim/resume;
-- main session: continuous useful review/translation work;
-- checkpoint every configured item count or heartbeat interval;
-- **checkpoint and continue** — checkpointing is not a stop condition;
-- if a unit completes before `stop_new_batch_after_minutes`, immediately claim/resume another eligible unit;
-- at `handoff_start_minutes`, stop broad new work and save/release cleanly;
-- hard stop within `session_minutes`.
+1. stop optional research and do not start another broad unit;
+2. persist the newest valid partial/checkpoint immediately;
+3. commit/push the durable work as quickly as the available repository path permits;
+4. record the exact continuation pointer and release only your own active claim;
+5. keep the final report minimal.
 
-Do not voluntarily hand off before `productive_target_minutes` while any protocol-valid useful work remains. There is no worker-defined early-stop exception. If the current unit/path cannot progress, immediately switch to the next safe eligible unit/path at the same priority. A checkpoint, completed unit, competing owned claim, branch divergence, or one failed write/backend does not end the session.
-
-Do not spend startup time bulk-reading glossary/context files.
-Do not spend final handoff minutes on optional research or refactors.
+Do not spend the platform grace window on optional research, refactors, broad validation, or polishing the report. Durable push/release takes priority over finishing the current batch.
 
 ## Rolling lease and immediate handoff
 
@@ -144,8 +136,8 @@ Always save the partial result **before** refreshing/releasing the claim, then c
 - Process batch items sequentially to make resume position obvious.
 - Use embedded batch context first.
 - Fetch extra glossary/game/speech/UI context only for the exact item that requires it.
-- Low-confidence ambiguity should usually `defer` rather than consume a large share of a 25-minute session.
-- If a batch completes before the cutoff, immediately re-read live state and claim another unit.
+- Low-confidence ambiguity should usually `defer` rather than consume disproportionate effort that blocks useful throughput.
+- If a batch completes, immediately re-read live state and claim/resume another eligible unit while the runtime permits execution.
 - Never pre-claim future work.
 - Never idle after a completed batch while eligible same-priority work remains.
 - A completed unit is a continuation trigger, not a session-end trigger.
@@ -176,23 +168,21 @@ In review modes, workers write only their own claim/result/completion and own he
 
 In normal translation mode, workers write only isolated task claim/result/completion files. Aggregation applies accepted translations.
 
-## End of session
+## Platform-triggered handoff
 
-Finishing the current unit does not automatically end the session.
+Finishing the current unit does not end the worker. After every completed unit:
 
-If current work completes before `stop_new_batch_after_minutes`:
-
-1. save final result/completion marker for that unit;
-2. re-read live routing state;
+1. save the final result/completion marker for that unit;
+2. re-read the minimum live routing state;
 3. claim/resume the next eligible unit at the same highest priority;
-4. continue until the cutoff/handoff condition.
+4. continue while useful work exists and the runtime permits execution.
 
-At actual handoff, if the current unit is incomplete:
+Only when the platform/runtime actually signals termination or imminent shutdown:
 
-1. save latest valid partial state;
-2. mark only your own claim `released`;
-3. include `released_at`, `partial_result_path`, and completed/translated count;
-4. commit/push;
-5. stop.
+1. save the latest valid partial state immediately;
+2. commit/push that durable state as quickly as possible;
+3. mark only your own claim `released`;
+4. include `released_at`, `partial_result_path`, and completed/translated count;
+5. keep any final report short.
 
-End report should be short: mode, all batch/task IDs handled in the run, aggregate completed counts, partial handoff if any, claim status, blockers, and final live gate/state.
+If the platform hard-kills the worker before release, the rolling lease exists only so a successor can recover the orphaned claim.

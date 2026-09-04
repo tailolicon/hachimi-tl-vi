@@ -15,11 +15,11 @@
 
 Quality gates outrank raw translation percentage.
 
-## Productive-session utilization
+## Continuous runtime utilization
 
-Use `work/worker_session_policy.json` as timing authority. A durable checkpoint is not a stop signal. Completing one unit, stage, validation, or task means re-read the minimum live state and continue the next safe eligible unit while before the new-work cutoff.
+Use `work/worker_session_policy.json` for durability and orphan-recovery lease semantics, not as a worker clock. A durable checkpoint is not a stop signal. Completing one unit, stage, validation, or task means re-read the minimum live state and continue the next safe eligible unit while useful work remains and the runtime permits execution.
 
-Never idle merely to reach the handoff minute.
+Workers MUST NOT self-time or manufacture a handoff boundary. Only an actual platform/runtime termination signal starts emergency handoff; then persist and push durable work immediately.
 
 A backend/plugin/container failure is capability-local. Follow the execution-backend-independent fallback rules in `WORKER_START.md` and policy; required acceptance evidence may move to GitHub Actions rather than being skipped.
 
@@ -158,7 +158,7 @@ Never blind-rewrite the corpus from a finding.
 
 ## Phase 1 — retrospective translation Audit Round 1
 
-Use `WORKER_25MIN.md` + `TRANSLATION_REVIEW.md`.
+Use `WORKER_CONTINUOUS.md` + `TRANSLATION_REVIEW.md`.
 
 - review all already-merged canonical translations under hardened context;
 - do not open normal translation claims while the translation-review gate is enabled;
@@ -168,7 +168,7 @@ Use `WORKER_25MIN.md` + `TRANSLATION_REVIEW.md`.
 
 ## Phase 2 — retrospective UI review
 
-After translation review clears, use `WORKER_25MIN.md` + `UI_REVIEW.md` while required UI work remains. UI review outranks untranslated content until the live UI gate is clear.
+After translation review clears, use `WORKER_CONTINUOUS.md` + `UI_REVIEW.md` while required UI work remains. UI review outranks untranslated content until the live UI gate is clear.
 
 ## Phase 3 — translate current pinned wave
 

@@ -83,18 +83,18 @@ Outside the initial hardening phase, unresolved blocking canonical findings take
 1. Inspect the shared maintenance claim before loading the findings ledger. If another worker owns a non-expired active maintenance claim, do not wait, repeatedly contend, or duplicate its research; route immediately to section C.
 2. If the maintenance claim is released/expired/unclaimed, inspect blocking findings using the repository's `scripts/canonical_findings.py::active_findings` semantics: only `open`/`deferred` findings without `canonical_resolution` and without an `ignore` review resolution are active blockers.
 3. If at least one active blocker exists, atomically claim the shared maintenance lane. Exactly one worker wins and resolves canonical findings through the existing canonical-finding pipeline. Any worker that loses the optimistic claim race routes immediately to section C.
-4. While that single maintainer owns the lane, all other workers continue through section C mass-work routing rather than idling behind maintenance; `WORKER_25MIN.md` may allocate them to retrospective review or concurrent new translation according to the live gate/cap.
+4. While that single maintainer owns the lane, all other workers continue through section C mass-work routing rather than idling behind maintenance; `WORKER_CONTINUOUS.md` may allocate them to retrospective review or concurrent new translation according to the live gate/cap.
 5. When no active blocking finding remains, release the maintenance claim with durable evidence and route the same worker back through section C. Never let ordinary review workers invent a competing project-wide standard.
 
 ### C. Retrospective review / UI review / normal translation
 
-When no blocking maintenance applies, read `WORKER_25MIN.md` and let live gates choose exactly one of:
+When no blocking maintenance applies, read `WORKER_CONTINUOUS.md` and let live gates choose exactly one of:
 
 1. retrospective translation review;
 2. retrospective UI review;
 3. new translation.
 
-Never violate the live review-lane allocation in `WORKER_25MIN.md`. An active retrospective review gate may coexist with new translation when `claims_allowed == true`; the review worker cap keeps audit work continuously staffed. Completing one batch is a continuation trigger, not a session-end trigger.
+Never violate the live review-lane allocation in `WORKER_CONTINUOUS.md`. An active retrospective review gate may coexist with new translation when `claims_allowed == true`; the review worker cap keeps audit work continuously staffed. Completing one batch is a continuation trigger, not a session-end trigger.
 
 ### D. Queue expansion
 

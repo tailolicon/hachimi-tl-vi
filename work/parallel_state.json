@@ -6,7 +6,7 @@
   "current_epoch": "zhcn-67f8551f7780",
   "current_epoch_metadata": "work/parallel/zhcn-67f8551f7780/epoch.json",
   "shared_cursor_deprecated": true,
-  "worker_rule": "Workers claim isolated shards and write only task-local result files. They never advance a shared next_batch cursor and never write localized_data directly. Normal translation follows translation_review_gate.claims_allowed; while concurrent review is enabled, WORKER_25MIN.md keeps the configured review-worker cap staffed and routes excess mass workers to translation. ChatGPT workers must apply work/worker_session_policy.json for rolling lease, checkpoints, and immediate released-claim handoff.",
+  "worker_rule": "Workers claim isolated shards and write only task-local result files. They never advance a shared next_batch cursor and never write localized_data directly. Normal translation follows translation_review_gate.claims_allowed; while concurrent review is enabled, WORKER_CONTINUOUS.md keeps the configured review-worker cap staffed and routes excess mass workers to translation. ChatGPT workers must apply work/worker_session_policy.json for rolling lease, checkpoints, and immediate released-claim handoff.",
   "aggregation_workflow": ".github/workflows/aggregate-results.yml",
   "translation_review_gate": {
     "enabled": true,

@@ -66,6 +66,16 @@ def _seed(tmp_path: Path) -> None:
             ],
         },
         {
+            "finding_id": "cf-183dbea74ee91b48",
+            "status": "open",
+            "source_zh_cn": "华丽、优雅、勇敢！点燃内心的充满力量的乐曲！\\n无论遇到什么困难都不会屈服——这才是公主应有的姿态！",
+            "canonical_resolution": None,
+            "review_resolution": None,
+            "evidence": [
+                {"source_path": "text_data_dict.json", "json_path": ["128", "1187"], "source_text": "华丽、优雅、勇敢！点燃内心的充满力量的乐曲！\\n无论遇到什么困难都不会屈服——这才是公主应有的姿态！", "current_text": "Rực rỡ, thanh lịch, dũng cảm! Một khúc nhạc tràn đầy sức mạnh thắp sáng trái tim!\\nDù gặp bất cứ khó khăn nào cũng không khuất phục—đó mới là dáng vẻ của một công chúa!"},
+            ],
+        },
+        {
             "finding_id": "cf-ecde28dd625ae647",
             "status": "open",
             "source_zh_cn": "力量",

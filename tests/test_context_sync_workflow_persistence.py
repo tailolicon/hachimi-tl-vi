@@ -24,13 +24,15 @@ def test_all_finding_review_locks_are_restored_before_review_apply() -> None:
     workflow = (ROOT / ".github" / "workflows" / "sync-context.yml").read_text(encoding="utf-8")
     pre_apply_step = workflow.index("- name: Restore finding review locks before apply")
     first_hardener_loop = workflow.index("for script in scripts/harden_*_finding.py; do", pre_apply_step)
+    first_hardener_run = workflow.index('python "$script"', first_hardener_loop)
     apply_index = workflow.index("python scripts/apply_terminology_reviews.py")
     post_apply_step = workflow.index("- name: Run all finding hardeners")
     second_hardener_loop = workflow.index("for script in scripts/harden_*_finding.py; do", post_apply_step)
+    second_hardener_run = workflow.index('python "$script"', second_hardener_loop)
     refresh_index = workflow.index("python scripts/canonical_findings.py --repo-root . --refresh")
 
-    assert pre_apply_step < first_hardener_loop < apply_index
-    assert apply_index < post_apply_step < second_hardener_loop < refresh_index
+    assert pre_apply_step < first_hardener_loop < first_hardener_run < apply_index
+    assert apply_index < post_apply_step < second_hardener_loop < second_hardener_run < refresh_index
 
 
 def test_translation_review_plan_sync_cannot_drop_finding_hardeners() -> None:

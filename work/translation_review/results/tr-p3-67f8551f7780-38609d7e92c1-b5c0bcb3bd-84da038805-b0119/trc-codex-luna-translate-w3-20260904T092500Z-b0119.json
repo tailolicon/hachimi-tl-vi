@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "status": "partial",
+  "plan_id": "tr-p3-67f8551f7780-38609d7e92c1-b5c0bcb3bd-84da038805",
+  "batch_id": "tr-p3-67f8551f7780-38609d7e92c1-b5c0bcb3bd-84da038805-b0119",
+  "claim_id": "trc-codex-luna-translate-w3-20260904T092500Z-b0119",
+  "worker_id": "codex-luna-translate-w3-20260904-review",
+  "reviewed_at": "2026-09-04T09:25:00Z",
+  "completed_count": 5,
+  "decisions": [
+    {
+      "uid": "zhcn:eb01b0bbd8e97bf2a412d973",
+      "current_fingerprint": "18c89d415d1640b827db493b2fe9629036886191cf6c46b0dde38951f051a543",
+      "action": "defer",
+      "reason": "The open canonical proper-name finding blocks approval of the current literal title until the Skill identity is resolved centrally.",
+      "canonical_finding": {
+        "kind": "proper_name",
+        "source_zh_cn": "灯穗",
+        "concept": "Skill name 灯穗",
+        "match_mode": "exact",
+        "scope": "source_path",
+        "reason": "An exact open canonical finding with explicit defer resolution applies to this complete source item.",
+        "confidence": "high"
+      },
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:144e750ce3aaefa866791c98",
+      "current_fingerprint": "18c89d415d1640b827db493b2fe9629036886191cf6c46b0dde38951f051a543",
+      "action": "defer",
+      "reason": "Duplicate 灯穗 item is blocked by the same open canonical proper-name finding; do not approve a local title.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:df2b8d9a156f92b25f764885",
+      "current_fingerprint": "18c89d415d1640b827db493b2fe9629036886191cf6c46b0dde38951f051a543",
+      "action": "defer",
+      "reason": "Duplicate 灯穗 item is blocked by the same open canonical proper-name finding; do not approve a local title.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:047dae14be9bcd8579987054",
+      "current_fingerprint": "7e95eb373f60167c6916603525e6da76a0ed0f35e454f43454d0cebec598608c",
+      "action": "defer",
+      "reason": "The open source-bridge finding and defer-until-canonical bridge evidence block the literal Chinese-derived title until the JP-backed Skill identity and stylized punctuation are resolved.",
+      "canonical_finding": {
+        "kind": "source_bridge",
+        "source_zh_cn": "万彩☆美丽★世界",
+        "concept": "Skill name 万彩☆マーベラス★世界",
+        "match_mode": "exact",
+        "scope": "source_path",
+        "reason": "The zh-CN bridge is semantically lossy for the JP Skill title; canonical JP-backed identity must be settled before review approval.",
+        "confidence": "high"
+      },
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:c56891a7805093d08ad9cb2a",
+      "current_fingerprint": "7e95eb373f60167c6916603525e6da76a0ed0f35e454f43454d0cebec598608c",
+      "action": "defer",
+      "reason": "Duplicate 万彩☆美丽★世界 item is blocked by the same open source-bridge finding and JP-backed title uncertainty.",
+      "confidence": "high"
+    }
+  ]
+}

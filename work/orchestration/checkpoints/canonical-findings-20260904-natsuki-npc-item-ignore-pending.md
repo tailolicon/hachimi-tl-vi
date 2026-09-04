@@ -27,3 +27,13 @@ This deliberately does **not** canonize `Natsuki` and does not broaden the ignor
 ## Acceptance gate
 
 Production acceptance is pending. Require successful Validate, Sync translation context, and Sync translation review plan runs for/after the regression-test head, then verify regenerated worker-facing items no longer carry `cf-c1b8c2da5791de2e` before incrementing maintenance `completed_count` from 106 to 107.
+
+### Durable acceptance progress
+
+For head `f5051c07778ecf74e6832111d4f78f3db3f5a19e`:
+
+- Validate run `33893500625` completed successfully.
+- Sync translation review plan run `33893500425` is still in progress.
+- Sync translation context run `33893500429` is still in progress; its `sync` job reached `Run all finding hardeners` after the preceding setup, identity sync, terminology extraction, finding-lock restoration, explicit terminology apply, audit hardening, and support-effect hardening steps all completed successfully.
+
+Continuation: wait only on the two already-running production Sync workflows while doing protocol-valid maintenance investigation where safe. Once both succeed, verify the regenerated active plan/worker-facing item(s) no longer carry `cf-c1b8c2da5791de2e`; only then increment `completed_count` to 107 and continue to the next active finding. Do not canonize `Natsuki` and do not broaden category 152.

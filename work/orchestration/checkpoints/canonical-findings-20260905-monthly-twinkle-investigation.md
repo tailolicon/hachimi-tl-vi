@@ -1,4 +1,4 @@
-# Canonical findings maintenance checkpoint — Monthly Twinkle acceptance
+# Canonical findings maintenance checkpoint — Monthly Twinkle accepted
 
 The recurring in-world publication `月刊Twinkle` is represented by two proper-name findings:
 - `cf-3f76c45986ceefe6`, scoped to `localize_dict.json` key `Champions187003`.
@@ -19,10 +19,11 @@ Durable implementation on `main`:
 - Regression expectation correction commit `0556f6276a5eac02b48f319f7ec9c629168576f3`; it preserves key scoping for the community matcher while matching the resolver's source-identity semantics for the review lock.
 - Rule id `publication.monthly_twinkle`; review decision id `audit.finding.publication-monthly-twinkle`.
 
-Production acceptance reached so far:
+Production acceptance:
 - Validate run `33904649681`: success.
 - Sync translation context run `33904649747`: success.
 - Generated context commit `7d1f9eb7610e26cf68f49f0134c662b9173bf4` resolves both findings to `Monthly Twinkle` with non-null `canonical_resolution` and `review_resolution`, adds the reviewed locked registry entry and community rule, and reduces `open_canonical_findings` from 124 to 122.
+- Post-context Sync translation review plan run `33904649733`, attempt 2: success; completed at `2026-09-04T18:58:48Z` after consuming the regenerated context.
+- Live code search confirms the permanent hardener and regression test remain on current `main`; historical review batches may still contain the old finding IDs as evidence, but they are no longer active blockers under `active_findings` semantics because the production generated context carries canonical/review resolution.
 
-Remaining acceptance gate:
-- A translation-review-plan sync that consumes the regenerated context must complete successfully. The original push-triggered review-plan run `33904649733` was still pending when this checkpoint was written; because context generation may trigger a newer plan run, acceptance must use a successful post-context plan state rather than assuming the pre-context queued run is sufficient.
+Acceptance status: complete for both findings. Maintenance completed count may advance by 2 (118 -> 120).

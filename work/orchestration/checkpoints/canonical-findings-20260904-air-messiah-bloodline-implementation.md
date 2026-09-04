@@ -14,9 +14,11 @@ Durable implementation:
 
 Regression covers idempotence, live finding-shape resolution, removal from `active_findings()`, longer-source rejection, and other-source-path rejection.
 
-Production gate on head `d9b2eea150934db3e310ef6b04b83c256d94729a`:
+Production acceptance on head `d9b2eea150934db3e310ef6b04b83c256d94729a`:
 - Validate `33828662545`: success.
-- Sync translation context `33828662576`: in progress at latest check.
-- Sync translation review plan `33828662547`: pending at latest check.
+- Sync translation context `33828662576`: success.
+- Sync translation review plan `33828662547`: success.
+- Regenerated live review plan `tr-p3-67f8551f7780-eca0564b0349-b5c0bcb3bd-79b31e40e8` embeds `skill.air_messiah.bloodline_future` with preferred `Theo Dấu Huyết Mạch, Tương Lai Nảy Mầm` for keys `11110101`, `11110102`, and `11110103`.
+- All three regenerated items have `canonical_findings: []`.
 
-Do not increment maintenance `completed_count` from `78` until both syncs succeed and regenerated live review context embeds `skill.air_messiah.bloodline_future` / preferred target with `canonical_findings: []`.
+Acceptance complete. Maintenance `completed_count` may advance from `78` to `79`; immediately route to the next active canonical blocker.

@@ -9,4 +9,4 @@
 - Validation: pinned source identity, structural QA, and persistent quality guard passed for all 20 entries.
 - Live-main reconciliation: batch 01062 shard 02 had no claim, result, or completion marker on refreshed `origin/main`.
 - Claim: published to live `main` in commit `0693b097a6e42a2abef689ba484b90f58c79ba61` after rebasing through concurrent main updates.
-- Publication continuation: result and completion marker are validated locally and are being published in the next CAS-safe commit; do not aggregate locally.
+- Publication: result and completion marker are live on `main`; aggregator remains responsible for merging into `localized_data`.

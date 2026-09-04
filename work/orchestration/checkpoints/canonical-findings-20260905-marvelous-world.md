@@ -21,12 +21,13 @@ The canonical target `Vạn Sắc☆Marvelous★World` keeps the title's `万彩
 - Regression commit: `dd3febfe15663475145a0fcc62342ff64af9c178`.
 - Both regression functions also passed in the local repository environment (`manual_regressions=2 passed`).
 
-## Production acceptance status
+## Production acceptance
 
 - Validate run `33912686400`: success on regression head `dd3febfe15663475145a0fcc62342ff64af9c178`.
 - Context Sync run `33912686323`: success.
 - Context regeneration commit `8a2f0ffc434f80a0724edef26be89b7188d01d17` persists the canonical artifacts.
-- Live `glossary/canonical_findings.json` now resolves `cf-1c047ac10a89e52a` to `Vạn Sắc☆Marvelous★World` with reviewed lock `audit.finding.skill-marvelous-sunday-myriad-world`; it is no longer an active canonical finding.
-- Review-plan run `33912686378` remains queued/pending. The latest durable active-plan generation visible at this checkpoint is `3511f5d5ad12b687bdf6c1c671d4b390a121dacb`, generated `2026-09-04T19:43:44.800076Z`, which predates the Marvelous context regeneration and therefore cannot be used as its final acceptance gate.
+- Live `glossary/canonical_findings.json` resolves `cf-1c047ac10a89e52a` to `Vạn Sắc☆Marvelous★World` with reviewed lock `audit.finding.skill-marvelous-sunday-myriad-world`; it is no longer an active canonical finding.
+- A successor production review-plan regeneration completed after the context regeneration. Live `work/parallel_state.json` now points to plan `tr-p3-67f8551f7780-339846b405f5-b5c0bcb3bd-db58b2e71e`, generated at `2026-09-04T19:51:17.385798Z`; repository search of that current plan identity plus `cf-1c047ac10a89e52a` returns no blocker occurrence.
+- The post-context review-plan commit is `b6b22d7b84bf4655326f264b8806db7c7c34c437` (`Translation review: restore progress and sync active plan`).
 
-Do not increment maintenance `completed_count` from 122 to 123 yet. Require a production review-plan regeneration newer than context commit `8a2f0ffc434f80a0724edef26be89b7188d01d17`, then verify the regenerated plan no longer exposes this blocker. Dream Journey `cf-1900e9e9aa8bd7ec` is already fully accepted and counted as 122.
+All required production gates are now satisfied. This finding is production-accepted and maintenance `completed_count` may advance from 122 to 123.

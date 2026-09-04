@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "status": "partial",
+  "plan_id": "tr-p3-67f8551f7780-7ce4dfb45ab6-b5c0bcb3bd-734a4f22c0",
+  "batch_id": "tr-p3-67f8551f7780-7ce4dfb45ab6-b5c0bcb3bd-734a4f22c0-b0067",
+  "claim_id": "trc-gpt56sol-auto11-20260904T1748Z-b0067",
+  "worker_id": "gpt56sol-auto11-20260904T1748Z",
+  "reviewed_at": "2026-09-04T17:52:00Z",
+  "completed_count": 5,
+  "decisions": [
+    {
+      "uid": "zhcn:66b940ceac6481d37e1e3c92",
+      "current_fingerprint": "37caf8aa2cab2806148be05ae05e287b6bcf6aecbc6cf8b8e6b2e124f5ce7599",
+      "action": "defer",
+      "reason": "Support Card must replace the literal calque, but the embedded stat.power lock also matches generic 力量 inside 不可思议力量; applying Power here would produce unnatural and likely incorrect prose, so this context overmatch needs canonical resolution first.",
+      "terminology_basis": "Embedded common.support_card/system.support_card requires Support Card; embedded stat.power currently matches 力量 in generic prose.",
+      "canonical_finding": {
+        "kind": "context_rule",
+        "source_zh_cn": "不可思议力量",
+        "concept": "Generic prose containing 力量 must not inherit the gameplay Power stat",
+        "match_mode": "contains",
+        "scope": "source_path",
+        "reason": "The full phrase describes a mysterious ability in ordinary item prose; the generic 力量 substring is not the named Power stat.",
+        "confidence": "high"
+      },
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:7a45a546d163d5f2ff4b9444",
+      "current_fingerprint": "b7ec49455847065f35f9651c2108253e2e22db08893472ba52eb30781abb3827",
+      "action": "keep",
+      "reason": "The guaranteed ★3 Mã Nương gacha ticket meaning, Round 1 identity, usage location, and newline structure are preserved; the full-width source digit is represented semantically as Vietnamese 1.",
+      "terminology_basis": "Embedded common.world.umamusume requires Mã Nương and the current text already uses it.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:fa7eca5071a86ce8e083dbaa",
+      "current_fingerprint": "62c65a3729a30266ab66aed7eeccf9c7a48d9d117b392a930f9a8cee903c62cb",
+      "action": "revise",
+      "proposed_text": "Đưa Mood của Mã Nương lên Great.\\nCó thể dùng tại Team Trials và các chế độ khác.",
+      "reason": "Current text incorrectly uses the obsolete Team Stadium label; all other gameplay meaning and structure are already correct.",
+      "terminology_basis": "Embedded canonical context requires Mood, Great, Mã Nương, and reviewed.system_label.b71bef4b1ba2 = Team Trials.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:af663eeda14a0e41f84e74df",
+      "current_fingerprint": "a5218ba5e351b8b34221116af8cc016d50d390a17657e1b6cec00f5b2c0d1946",
+      "action": "revise",
+      "proposed_text": "Vé đổi cho phép chọn Mã Nương yêu thích trong danh sách\\nđể đổi lấy Trainee ★3.",
+      "reason": "The full compound 育成赛马娘 is the player-facing Trainee concept, not the literal Mã Nương huấn luyện calque.",
+      "terminology_basis": "Embedded career.ui.trainee.text_data requires Trainee and forbids Mã Nương huấn luyện; generic 赛马娘 remains Mã Nương in the first clause.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:8963af4ccd311f47ee9211d3",
+      "current_fingerprint": "3373b7f08f413cea0b790c2f180b6900167b60fd53b7ec832145ed81b9bc12ed",
+      "action": "keep",
+      "reason": "The bookmark purpose, relationship-memory meaning, past Story Event unlock function, and two-line structure are preserved naturally.",
+      "terminology_basis": "Generic 赛马娘 is correctly rendered as Mã Nương under the project audit policy.",
+      "confidence": "high"
+    }
+  ]
+}

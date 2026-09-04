@@ -1,6 +1,10 @@
 from __future__ import annotations
 
-"""Prevent the Skill alias 心动 from overmatching generic prose in a song description."""
+"""Prevent the Skill alias 心动 from overmatching generic prose in a song description.
+
+The full-description exclusion is intentionally narrow: review-plan rebuilds must preserve the
+Skill title in direct Skill contexts while dropping only this category-128 prose false positive.
+"""
 
 import json
 from pathlib import Path

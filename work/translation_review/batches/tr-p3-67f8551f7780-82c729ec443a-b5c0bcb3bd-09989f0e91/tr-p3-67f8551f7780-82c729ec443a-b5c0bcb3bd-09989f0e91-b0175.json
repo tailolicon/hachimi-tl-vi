@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "policy_version": 3,
-  "plan_id": "tr-p3-67f8551f7780-467d9805a848-b5c0bcb3bd-0f8e2d4154",
-  "batch_id": "tr-p3-67f8551f7780-467d9805a848-b5c0bcb3bd-0f8e2d4154-b0175",
+  "plan_id": "tr-p3-67f8551f7780-82c729ec443a-b5c0bcb3bd-09989f0e91",
+  "batch_id": "tr-p3-67f8551f7780-82c729ec443a-b5c0bcb3bd-09989f0e91-b0175",
   "context_snapshot_sha256": "b5c0bcb3bd9ee5c45e7bedf49c8f8d6ad35c3ceb3c35f528c6381a63c684a967",
   "source_bridge_policy_sha256": "c42f21f04ee9cb206637e3ffe79ea0932701ee94f39273dc9b466b6fbbfd69af",
   "review_generation": "retrospective-canonical-full-review",
@@ -469,11 +469,32 @@
       "current_text": "Sắc màu Phantasia",
       "current_fingerprint": "9f32ea63c5108f33b73fe0899175cbee902791c3d605498284aa96af83493fe2",
       "risk_flags": [
-        "canonical_finding"
+        "community_term",
+        "community_calque_risk",
+        "community_term_mismatch"
       ],
-      "risk_score": 40,
+      "risk_score": 16,
       "locked_terms": [],
-      "community_terms": [],
+      "community_terms": [
+        {
+          "id": "song.irodori_phantasia",
+          "preferred": "Irodori Phantasia",
+          "accepted": [
+            "Irodori Phantasia"
+          ],
+          "forbidden": [
+            "彩 Phantasia",
+            "Sắc màu Phantasia"
+          ],
+          "matched_aliases": [
+            "彩 Phantasia"
+          ],
+          "accepted_present": false,
+          "forbidden_present": true,
+          "require_accepted": true,
+          "basis": "Official Lantis WINNING LIVE 02 identifies 彩 Phantasia as a named Uma Musume song. Established English-facing Uma Musume discography references romanize the title as Irodori Phantasia. Preserve that stable Latin/Romanized proper-name identity instead of the semantic Vietnamese calque. Exact matching prevents the generic character 彩 from being canonicalized in unrelated prose."
+        }
+      ],
       "skill_name_canonical": null,
       "source_bridge_terms": [],
       "source_bridge_risks": [],
@@ -547,11 +568,29 @@
       "current_text": "Make debut! (Morishi (Awesome City Club) Remix)",
       "current_fingerprint": "63ac89e621075f960f508bd3e1753a5e6a9d657b25f470e1ec5235a89db3d976",
       "risk_flags": [
-        "canonical_finding"
+        "community_term"
       ],
-      "risk_score": 40,
+      "risk_score": 2,
       "locked_terms": [],
-      "community_terms": [],
+      "community_terms": [
+        {
+          "id": "song.make_debut_morishi_remix",
+          "preferred": "Make debut! (Morishi (Awesome City Club) Remix)",
+          "accepted": [
+            "Make debut! (Morishi (Awesome City Club) Remix)"
+          ],
+          "forbidden": [
+            "Make debut! (モリシー (Awesome City Club) Remix)"
+          ],
+          "matched_aliases": [
+            "Make debut! (モリシー (Awesome City Club) Remix)"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Official Lantis WINNING LIVE Remix ALBUM Paka Age Mix Vol.1 lists the exact remix title with モリシー (Awesome City Club). Established English-facing Uma Musume discography references render the remixer name as Morishi. Preserve the full Latin title Make debut! (Morishi (Awesome City Club) Remix). Exact matching prevents the proper-name lock from leaking into unrelated creator-name prose."
+        }
+      ],
       "skill_name_canonical": null,
       "source_bridge_terms": [],
       "source_bridge_risks": [],

@@ -1,0 +1,287 @@
+{
+  "schema_version": 1,
+  "status": "complete",
+  "plan_id": "tr-p3-67f8551f7780-592195830b0a-b5c0bcb3bd-304dedddee",
+  "batch_id": "tr-p3-67f8551f7780-592195830b0a-b5c0bcb3bd-304dedddee-b0163",
+  "claim_id": "trc-claude-sonnet5-w1-20260904T115900Z-b0163",
+  "worker_id": "claude-sonnet5-w1-20260904T115900Z",
+  "reviewed_at": "2026-09-04T12:05:00Z",
+  "completed_count": 20,
+  "decisions": [
+    {
+      "uid": "zhcn:fa2ece9e4d0431af4ff279a9",
+      "current_fingerprint": "04f854a7362d978f87f400c55943d719ae12471d26062dfc8ecae984837b8766",
+      "action": "defer",
+      "reason": "Composer/arranger names 原田篤 and 脇眞富 have no verified Latin spelling in glossary/ui_community_terms.json; current text correctly translates labels (作词・作曲→Lời・Sáng tác, 编曲→Phối khí) but the names should stay unresolved rather than guess a romanization.",
+      "confidence": "medium",
+      "canonical_finding": {
+        "kind": "proper_name",
+        "source_zh_cn": "原田篤",
+        "concept": "Composer name lacks verified Latin/Roman spelling for Vietnamese release credit.",
+        "match_mode": "contains",
+        "scope": "source_path",
+        "reason": "Song credit line (text_data category 17) names a staff member without a verified Latin/Roman spelling in the glossary; do not invent a romanization for a Vietnamese release credit.",
+        "confidence": "medium"
+      }
+    },
+    {
+      "uid": "zhcn:be885421521e33437397bff0",
+      "current_fingerprint": "23952f5c61d4ec551e1356359ac08d3356d58f63ac165ea7a32dca4b427c7349",
+      "action": "defer",
+      "reason": "作词 lyricist 真崎エリカ has a resolved community term (proper_name.erica_masaki.credit17, requires 'Erica Masaki', forbids the raw katakana form) that current_text still violates, but the item also names composer/arranger 水野谷怜 with no verified spelling yet; deferring the whole item rather than a partial revise so it can be corrected in one pass once 水野谷怜 is resolved too.",
+      "confidence": "medium",
+      "canonical_finding": {
+        "kind": "proper_name",
+        "source_zh_cn": "水野谷怜",
+        "concept": "Composer/arranger name lacks verified Latin/Roman spelling for Vietnamese release credit.",
+        "match_mode": "contains",
+        "scope": "source_path",
+        "reason": "Song credit line (text_data category 17) names a staff member without a verified Latin/Roman spelling in the glossary; do not invent a romanization for a Vietnamese release credit.",
+        "confidence": "medium"
+      }
+    },
+    {
+      "uid": "zhcn:ec7e6f3520e4d80beff7ec5e",
+      "current_fingerprint": "20b85bf786d80f8c6f7b3468188908ecfb5e333f8690ab36a195e369caa3ee4a",
+      "action": "defer",
+      "reason": "Same 真崎エリカ→Erica Masaki resolved-but-unapplied issue as entry 13, plus unresolved composer/arranger 酒井拓也.",
+      "confidence": "medium",
+      "canonical_finding": {
+        "kind": "proper_name",
+        "source_zh_cn": "酒井拓也",
+        "concept": "Composer/arranger name lacks verified Latin/Roman spelling for Vietnamese release credit.",
+        "match_mode": "contains",
+        "scope": "source_path",
+        "reason": "Song credit line (text_data category 17) names a staff member without a verified Latin/Roman spelling in the glossary; do not invent a romanization for a Vietnamese release credit.",
+        "confidence": "medium"
+      }
+    },
+    {
+      "uid": "zhcn:a956e13182d4cb36e9b6ec75",
+      "current_fingerprint": "9059ec3d9d14866546dfa5a195a73f828900f4839dd405abee3d8b9cc91506df",
+      "action": "defer",
+      "reason": "真崎エリカ→Erica Masaki unapplied; composer 本多友紀 and arranger 河合泰志 both lack verified spellings.",
+      "confidence": "medium",
+      "canonical_finding": {
+        "kind": "proper_name",
+        "source_zh_cn": "本多友紀",
+        "concept": "Composer name lacks verified Latin/Roman spelling for Vietnamese release credit; recurs across multiple credit lines in this batch.",
+        "match_mode": "contains",
+        "scope": "source_path",
+        "reason": "Song credit line (text_data category 17) names a staff member without a verified Latin/Roman spelling in the glossary; do not invent a romanization for a Vietnamese release credit.",
+        "confidence": "medium"
+      }
+    },
+    {
+      "uid": "zhcn:a507a3e338bf16f930609f0c",
+      "current_fingerprint": "12739aa1e68535e3f7a238ccb11d8ab901763e19e27a353f02219314ae090028",
+      "action": "defer",
+      "reason": "真崎エリカ→Erica Masaki unapplied; composer/arranger 大熊淳生 lacks a verified spelling.",
+      "confidence": "medium",
+      "canonical_finding": {
+        "kind": "proper_name",
+        "source_zh_cn": "大熊淳生",
+        "concept": "Composer/arranger name lacks verified Latin/Roman spelling for Vietnamese release credit.",
+        "match_mode": "contains",
+        "scope": "source_path",
+        "reason": "Song credit line (text_data category 17) names a staff member without a verified Latin/Roman spelling in the glossary; do not invent a romanization for a Vietnamese release credit.",
+        "confidence": "medium"
+      }
+    },
+    {
+      "uid": "zhcn:e781879161c00c094047be24",
+      "current_fingerprint": "c3fd59ef125ec53565868b9df2e7591a2b89a863a0c8632847098257906635e8",
+      "action": "defer",
+      "reason": "松井洋平 has a resolved community term (proper_name.yohei_matsui, requires 'Yohei Matsui') that current_text still violates; composer/arranger 三好啓太 and translator credit 毫毛 also lack verified spellings.",
+      "confidence": "medium",
+      "canonical_finding": {
+        "kind": "proper_name",
+        "source_zh_cn": "三好啓太",
+        "concept": "Composer/arranger name lacks verified Latin/Roman spelling for Vietnamese release credit.",
+        "match_mode": "contains",
+        "scope": "source_path",
+        "reason": "Song credit line (text_data category 17) names a staff member without a verified Latin/Roman spelling in the glossary; do not invent a romanization for a Vietnamese release credit.",
+        "confidence": "medium"
+      }
+    },
+    {
+      "uid": "zhcn:a8ac99959fac4dac05b4f164",
+      "current_fingerprint": "5fb3a1e46e3f8a7275bf52b483b8803ab0e5591449ffb3c6a8467053067e623f",
+      "action": "defer",
+      "reason": "Already covered by open canonical finding cf-e9f8285d346af2c8 for 椎名宇伊 (proper_name, text_data_dict.json, json_path prefix ['17']); the item also has several other unresolved staff names (本田晃弘, 千葉梓, 東大路憲太, 下智子, 伊禮完) and translator handle Kitasanゞ卫ちゃ. Leaving deferred rather than duplicating the existing finding.",
+      "confidence": "medium"
+    },
+    {
+      "uid": "zhcn:75fc316ec62f742c57959083",
+      "current_fingerprint": "50aee0d098ec389421a1986ef667b4bda031d024aebe167a8cf922d7529d4ed2",
+      "action": "defer",
+      "reason": "Already covered by open canonical finding cf-497074e14f401ca0 for 前山田健一 (proper_name, text_data_dict.json, json_path prefix ['17']); arranger 藤原燈太 is also unresolved. Leaving deferred rather than duplicating the existing finding.",
+      "confidence": "medium"
+    },
+    {
+      "uid": "zhcn:af60c0e6c519d0e6e6ee043b",
+      "current_fingerprint": "1a84f9b9ba270979d800d0f51d369fdb333ddd2691b2f2495e41bd86d5d0d225",
+      "action": "defer",
+      "reason": "松井洋平→Yohei Matsui unapplied; composer/arranger 中土智博 lacks a verified spelling.",
+      "confidence": "medium",
+      "canonical_finding": {
+        "kind": "proper_name",
+        "source_zh_cn": "中土智博",
+        "concept": "Composer/arranger name lacks verified Latin/Roman spelling for Vietnamese release credit.",
+        "match_mode": "contains",
+        "scope": "source_path",
+        "reason": "Song credit line (text_data category 17) names a staff member without a verified Latin/Roman spelling in the glossary; do not invent a romanization for a Vietnamese release credit.",
+        "confidence": "medium"
+      }
+    },
+    {
+      "uid": "zhcn:97591dda44108366753a275f",
+      "current_fingerprint": "77e4284fdc9d2e07f46455b74a655ac68d918d65cdc52183ad8c9b3476960bfd",
+      "action": "defer",
+      "reason": "松井洋平→Yohei Matsui unapplied; composer/arranger 矢鴇つかさ lacks a verified spelling.",
+      "confidence": "medium",
+      "canonical_finding": {
+        "kind": "proper_name",
+        "source_zh_cn": "矢鴇つかさ",
+        "concept": "Composer/arranger name lacks verified Latin/Roman spelling for Vietnamese release credit.",
+        "match_mode": "contains",
+        "scope": "source_path",
+        "reason": "Song credit line (text_data category 17) names a staff member without a verified Latin/Roman spelling in the glossary; do not invent a romanization for a Vietnamese release credit.",
+        "confidence": "medium"
+      }
+    },
+    {
+      "uid": "zhcn:a1adef6e2ca1b9283723a28c",
+      "current_fingerprint": "c2cd9f94a89e8e79cdf6fb2d4cafd45cceb30dcc1e9fa329a58183da9c0802f8",
+      "action": "defer",
+      "reason": "真崎エリカ→Erica Masaki unapplied; composer 本多友紀 (same open name as entry 20) and arranger 水野谷怜 (same open name as entry 13) remain unresolved.",
+      "confidence": "medium"
+    },
+    {
+      "uid": "zhcn:250b7b1eebb65d22bdbff24c",
+      "current_fingerprint": "c89333f2de1d4245c69aa0bc49630840fd2ff9644e4467098d4bea77528d7602",
+      "action": "defer",
+      "reason": "真崎エリカ→Erica Masaki unapplied; composer/arranger 本多友紀 is the same unresolved name already flagged at entry 20.",
+      "confidence": "medium"
+    },
+    {
+      "uid": "zhcn:2c2f128c3593177e634736f0",
+      "current_fingerprint": "c26cf0bd21ccaf52eba77871bd61c4e6a44b7bbad2d98714e7a3039f9487b35d",
+      "action": "defer",
+      "reason": "Lyricist 中村彼方 and composers 小高光太郎/UiNA are unresolved; arranger 藤井亮太 has a resolved community term (proper_name.ryota_fujii.credit17, requires 'Ryota Fujii') that current_text still violates, so the whole item is deferred rather than partially revised.",
+      "confidence": "medium",
+      "canonical_finding": {
+        "kind": "proper_name",
+        "source_zh_cn": "中村彼方",
+        "concept": "Lyricist name lacks verified Latin/Roman spelling for Vietnamese release credit.",
+        "match_mode": "contains",
+        "scope": "source_path",
+        "reason": "Song credit line (text_data category 17) names a staff member without a verified Latin/Roman spelling in the glossary; do not invent a romanization for a Vietnamese release credit.",
+        "confidence": "medium"
+      }
+    },
+    {
+      "uid": "zhcn:cddf9101af23af12caad0f99",
+      "current_fingerprint": "a15d8d7b446ce05db255bda1913fc1475407c858d2e390906256c58fe6fa19e0",
+      "action": "defer",
+      "reason": "真崎エリカ→Erica Masaki unapplied; composer/arranger 山本恭平 lacks a verified spelling.",
+      "confidence": "medium",
+      "canonical_finding": {
+        "kind": "proper_name",
+        "source_zh_cn": "山本恭平",
+        "concept": "Composer/arranger name lacks verified Latin/Roman spelling for Vietnamese release credit.",
+        "match_mode": "contains",
+        "scope": "source_path",
+        "reason": "Song credit line (text_data category 17) names a staff member without a verified Latin/Roman spelling in the glossary; do not invent a romanization for a Vietnamese release credit.",
+        "confidence": "medium"
+      }
+    },
+    {
+      "uid": "zhcn:616bfcc8885b8c973432b88d",
+      "current_fingerprint": "5875a5da16797f4527d40800a9dd1ad47e866dd3464bd2475bc8dc13f8f2e7e6",
+      "action": "defer",
+      "reason": "真崎エリカ→Erica Masaki unapplied; composer/arranger 睦月周平 lacks a verified spelling.",
+      "confidence": "medium",
+      "canonical_finding": {
+        "kind": "proper_name",
+        "source_zh_cn": "睦月周平",
+        "concept": "Composer/arranger name lacks verified Latin/Roman spelling for Vietnamese release credit.",
+        "match_mode": "contains",
+        "scope": "source_path",
+        "reason": "Song credit line (text_data category 17) names a staff member without a verified Latin/Roman spelling in the glossary; do not invent a romanization for a Vietnamese release credit.",
+        "confidence": "medium"
+      }
+    },
+    {
+      "uid": "zhcn:4aaf4198ab054103154b2c44",
+      "current_fingerprint": "9a5e58abeb958e15f6342bd35418085e2e1fe6d77add25b6a2a24f5c05db2c4c",
+      "action": "defer",
+      "reason": "真崎エリカ→Erica Masaki unapplied; composer/arranger 渡邉俊彦 lacks a verified spelling.",
+      "confidence": "medium",
+      "canonical_finding": {
+        "kind": "proper_name",
+        "source_zh_cn": "渡邉俊彦",
+        "concept": "Composer/arranger name lacks verified Latin/Roman spelling for Vietnamese release credit.",
+        "match_mode": "contains",
+        "scope": "source_path",
+        "reason": "Song credit line (text_data category 17) names a staff member without a verified Latin/Roman spelling in the glossary; do not invent a romanization for a Vietnamese release credit.",
+        "confidence": "medium"
+      }
+    },
+    {
+      "uid": "zhcn:a7104e626097906255be90dc",
+      "current_fingerprint": "b1369b0162d02499be811f0287d07445df199990f37d5b79fb574309dd9da222",
+      "action": "defer",
+      "reason": "真崎エリカ→Erica Masaki unapplied; composer/arranger 佐々倉有吾 lacks a verified spelling.",
+      "confidence": "medium",
+      "canonical_finding": {
+        "kind": "proper_name",
+        "source_zh_cn": "佐々倉有吾",
+        "concept": "Composer/arranger name lacks verified Latin/Roman spelling for Vietnamese release credit.",
+        "match_mode": "contains",
+        "scope": "source_path",
+        "reason": "Song credit line (text_data category 17) names a staff member without a verified Latin/Roman spelling in the glossary; do not invent a romanization for a Vietnamese release credit.",
+        "confidence": "medium"
+      }
+    },
+    {
+      "uid": "zhcn:fd47b2fe94e343fd46519a57",
+      "current_fingerprint": "b103e792708a27708cd4f27c2431c900c411af26c9d9985cc2225df0c9d45d42",
+      "action": "defer",
+      "reason": "真崎エリカ→Erica Masaki unapplied; composer 桑原聖 is unresolved and arranger 酒井拓也 is the same unresolved name already flagged at entry 15.",
+      "confidence": "medium",
+      "canonical_finding": {
+        "kind": "proper_name",
+        "source_zh_cn": "桑原聖",
+        "concept": "Composer name lacks verified Latin/Roman spelling for Vietnamese release credit.",
+        "match_mode": "contains",
+        "scope": "source_path",
+        "reason": "Song credit line (text_data category 17) names a staff member without a verified Latin/Roman spelling in the glossary; do not invent a romanization for a Vietnamese release credit.",
+        "confidence": "medium"
+      }
+    },
+    {
+      "uid": "zhcn:3aa1021ffc0abed903cc96aa",
+      "current_fingerprint": "c2cd9f94a89e8e79cdf6fb2d4cafd45cceb30dcc1e9fa329a58183da9c0802f8",
+      "action": "defer",
+      "reason": "真崎エリカ→Erica Masaki unapplied; composer 本多友紀 and arranger 水野谷怜 are the same unresolved names already flagged at entries 20 and 13.",
+      "confidence": "medium"
+    },
+    {
+      "uid": "zhcn:8b4c806d3afedf987a75b385",
+      "current_fingerprint": "adcf614a5900b5a529fa412ffa6655c0dcdcdd4d90bb51725190e82e0b65c01d",
+      "action": "defer",
+      "reason": "松井洋平→Yohei Matsui unapplied; composer 藤末樹 and arranger 三谷秀甫 are both unresolved.",
+      "confidence": "medium",
+      "canonical_finding": {
+        "kind": "proper_name",
+        "source_zh_cn": "藤末樹",
+        "concept": "Composer name lacks verified Latin/Roman spelling for Vietnamese release credit.",
+        "match_mode": "contains",
+        "scope": "source_path",
+        "reason": "Song credit line (text_data category 17) names a staff member without a verified Latin/Roman spelling in the glossary; do not invent a romanization for a Vietnamese release credit.",
+        "confidence": "medium"
+      }
+    }
+  ]
+}

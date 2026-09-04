@@ -1,0 +1,2202 @@
+{
+  "schema_version": 1,
+  "policy_version": 3,
+  "plan_id": "tr-p3-67f8551f7780-b2cdbd1d9472-b5c0bcb3bd-2941a575ea",
+  "batch_id": "tr-p3-67f8551f7780-b2cdbd1d9472-b5c0bcb3bd-2941a575ea-b0151",
+  "context_snapshot_sha256": "b5c0bcb3bd9ee5c45e7bedf49c8f8d6ad35c3ceb3c35f528c6381a63c684a967",
+  "source_bridge_policy_sha256": "c42f21f04ee9cb206637e3ffe79ea0932701ee94f39273dc9b466b6fbbfd69af",
+  "review_generation": "retrospective-canonical-full-review",
+  "context_mode": "embedded-first-lazy-extra",
+  "items": [
+    {
+      "uid": "zhcn:3c58fbff7e16793fca7537e1",
+      "source_batch": 209,
+      "entry_index": 40,
+      "kind": "text_data",
+      "source_path": "text_data_dict.json",
+      "json_path": [
+        "155",
+        "30227"
+      ],
+      "key": null,
+      "source_text": "根据拥有速度提升技能个数（最多3个），\\n智力加成",
+      "source_fingerprint": "8f4299ba5ed8bdcf5a83c1772b22f23afafce432f01ea3b7ab75635e35720eb8",
+      "current_text": "Theo số Skill tăng Speed đang có (tối đa 3),\\nWit Bonus",
+      "current_fingerprint": "325478ac4977571218418e111f2355dddfca9bd15802826c200081d1d2a4c743",
+      "risk_flags": [
+        "community_term",
+        "numeric_token_mismatch"
+      ],
+      "risk_score": 7,
+      "locked_terms": [],
+      "community_terms": [
+        {
+          "id": "common.stat.wit",
+          "preferred": "Wit",
+          "accepted": [
+            "Wit"
+          ],
+          "forbidden": [
+            "Trí tuệ"
+          ],
+          "matched_aliases": [
+            "智力"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Common EN-version Wit stat label. The zh-CN alias 智力 is context-sensitive and must not canonicalize ordinary compounds such as 智力扣 (a disentanglement puzzle/toy)."
+        },
+        {
+          "id": "common.skill.generic",
+          "preferred": "Skill",
+          "accepted": [
+            "Skill"
+          ],
+          "forbidden": [
+            "Kỹ năng"
+          ],
+          "matched_aliases": [
+            "技能"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Generic gameplay label stays English. This does not mean individual skill names stay English."
+        },
+        {
+          "id": "support.wit_bonus.effect155",
+          "preferred": "Wit Bonus",
+          "accepted": [
+            "Wit Bonus"
+          ],
+          "forbidden": [
+            "Thưởng Trí tuệ",
+            "Thưởng trí tuệ"
+          ],
+          "matched_aliases": [
+            "智力加成"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Repeated player-facing Support Effect bonus label in category 155; ordinary stat prose remains unscoped."
+        }
+      ],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [],
+      "item_context_sha256": "8c05222950be2e666c603b7be15d6ed22ee72419d2b5f75848fb5aafa7f5e1d9"
+    },
+    {
+      "uid": "zhcn:342b40679abef293c6dfe296",
+      "source_batch": 209,
+      "entry_index": 41,
+      "kind": "text_data",
+      "source_path": "text_data_dict.json",
+      "json_path": [
+        "155",
+        "30228"
+      ],
+      "key": null,
+      "source_text": "牵绊值达到80以上时，\\n力量加成",
+      "source_fingerprint": "4e9b7f4a32f57f94a3e64b12a8ffde8f737abcb3736b85f3f05c83a0148a0571",
+      "current_text": "Khi giá trị liên kết đạt 80 trở lên,\\nPower Bonus",
+      "current_fingerprint": "308543fc1fb158f07c497b15850fce73b476af3bd33564f688eb8690275cb9a9",
+      "risk_flags": [
+        "community_term",
+        "community_calque_risk",
+        "community_term_mismatch",
+        "numeric_token_mismatch"
+      ],
+      "risk_score": 21,
+      "locked_terms": [],
+      "community_terms": [
+        {
+          "id": "common.stat.power",
+          "preferred": "Power",
+          "accepted": [
+            "Power"
+          ],
+          "forbidden": [
+            "Sức mạnh"
+          ],
+          "matched_aliases": [
+            "力量"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Common EN-version Power stat label. The zh-CN alias 力量 is ambiguous in ordinary prose and can also occur inside proper names such as 莱茵力量 (Rhein Kraft); known non-stat compounds, names, descriptive titles, and narrative/metaphorical phrases are explicitly excluded so physical or emotional strength is not normalized to the stat label."
+        },
+        {
+          "id": "common.friendship_gauge.support_effects",
+          "preferred": "Friendship Gauge",
+          "accepted": [
+            "Friendship Gauge"
+          ],
+          "forbidden": [
+            "Gắn kết",
+            "gắn kết",
+            "Giá trị liên kết",
+            "giá trị liên kết",
+            "Điểm liên kết",
+            "điểm liên kết"
+          ],
+          "matched_aliases": [
+            "牵绊值"
+          ],
+          "accepted_present": false,
+          "forbidden_present": true,
+          "require_accepted": true,
+          "basis": "Category 155 support-effect descriptions use 羁绊值/牵绊值 for the Support Card Friendship Gauge. The category guard prevents ordinary friendship/bond prose from being normalized to this mechanic."
+        },
+        {
+          "id": "support.power_bonus.effect155",
+          "preferred": "Power Bonus",
+          "accepted": [
+            "Power Bonus"
+          ],
+          "forbidden": [
+            "Thưởng Sức mạnh",
+            "Thưởng sức mạnh"
+          ],
+          "matched_aliases": [
+            "力量加成"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Repeated player-facing Support Effect bonus label in category 155; ordinary stat prose remains unscoped."
+        }
+      ],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [],
+      "item_context_sha256": "7a317f62683836af26be74e2cf8d4d8501d5d47f5f61ed27978e6893497dce8a"
+    },
+    {
+      "uid": "zhcn:a23adde35d4633ffe05ccd18",
+      "source_batch": 209,
+      "entry_index": 42,
+      "kind": "text_data",
+      "source_path": "text_data_dict.json",
+      "json_path": [
+        "155",
+        "30229"
+      ],
+      "key": null,
+      "source_text": "根据所持有的最多3个提升速度的技能数量增加智力加成",
+      "source_fingerprint": "f216edc2bd5414cc1557f3b332a5d37a89c163da427305e62b7fa5594029904c",
+      "current_text": "Wit Bonus tăng theo số Skill tăng Speed đang có (tối đa 3)",
+      "current_fingerprint": "c65bc11a21b60809ceaa8f20ac9e9a5c03e389835b543b474935d32bc9c3e8c2",
+      "risk_flags": [
+        "community_term",
+        "numeric_token_mismatch"
+      ],
+      "risk_score": 7,
+      "locked_terms": [],
+      "community_terms": [
+        {
+          "id": "common.stat.wit",
+          "preferred": "Wit",
+          "accepted": [
+            "Wit"
+          ],
+          "forbidden": [
+            "Trí tuệ"
+          ],
+          "matched_aliases": [
+            "智力"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Common EN-version Wit stat label. The zh-CN alias 智力 is context-sensitive and must not canonicalize ordinary compounds such as 智力扣 (a disentanglement puzzle/toy)."
+        },
+        {
+          "id": "common.skill.generic",
+          "preferred": "Skill",
+          "accepted": [
+            "Skill"
+          ],
+          "forbidden": [
+            "Kỹ năng"
+          ],
+          "matched_aliases": [
+            "技能"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Generic gameplay label stays English. This does not mean individual skill names stay English."
+        },
+        {
+          "id": "support.wit_bonus.effect155",
+          "preferred": "Wit Bonus",
+          "accepted": [
+            "Wit Bonus"
+          ],
+          "forbidden": [
+            "Thưởng Trí tuệ",
+            "Thưởng trí tuệ"
+          ],
+          "matched_aliases": [
+            "智力加成"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Repeated player-facing Support Effect bonus label in category 155; ordinary stat prose remains unscoped."
+        }
+      ],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [],
+      "item_context_sha256": "8c05222950be2e666c603b7be15d6ed22ee72419d2b5f75848fb5aafa7f5e1d9"
+    },
+    {
+      "uid": "zhcn:89b6f41eaf3f8b962e078599",
+      "source_batch": 209,
+      "entry_index": 43,
+      "kind": "text_data",
+      "source_path": "text_data_dict.json",
+      "json_path": [
+        "155",
+        "30230"
+      ],
+      "key": null,
+      "source_text": "羁绊值在100以上时，\\n速度加成",
+      "source_fingerprint": "33ab213dd28f07bf2915c9344fc4689e7bb1615cc737f8e89dd5043d123b2593",
+      "current_text": "Khi Friendship Gauge đạt 100 trở lên,\\nSpeed Bonus",
+      "current_fingerprint": "35cdb1f3cacd6d58af6fd19ffde21330c6943d2f31a5d8825d36e009db724a61",
+      "risk_flags": [
+        "community_term",
+        "numeric_token_mismatch"
+      ],
+      "risk_score": 7,
+      "locked_terms": [],
+      "community_terms": [
+        {
+          "id": "common.stat.speed.context",
+          "preferred": "Speed",
+          "accepted": [
+            "Speed"
+          ],
+          "forbidden": [],
+          "matched_aliases": [
+            "速度加成"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Narrow player-facing Speed stat contexts. No global forbidden Tốc độ token is used here because the same sentence may also describe literal/max/running speed."
+        },
+        {
+          "id": "common.friendship_gauge.support_effects",
+          "preferred": "Friendship Gauge",
+          "accepted": [
+            "Friendship Gauge"
+          ],
+          "forbidden": [
+            "Gắn kết",
+            "gắn kết",
+            "Giá trị liên kết",
+            "giá trị liên kết",
+            "Điểm liên kết",
+            "điểm liên kết"
+          ],
+          "matched_aliases": [
+            "羁绊值"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Category 155 support-effect descriptions use 羁绊值/牵绊值 for the Support Card Friendship Gauge. The category guard prevents ordinary friendship/bond prose from being normalized to this mechanic."
+        },
+        {
+          "id": "support.speed_bonus.effect155",
+          "preferred": "Speed Bonus",
+          "accepted": [
+            "Speed Bonus"
+          ],
+          "forbidden": [
+            "Thưởng Tốc độ",
+            "Thưởng tốc độ"
+          ],
+          "matched_aliases": [
+            "速度加成"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Repeated player-facing Support Effect bonus label in category 155; ordinary stat prose remains unscoped."
+        }
+      ],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [],
+      "item_context_sha256": "bcfeb4b29b5882d905df9812e47d786be39701627a39a3a25e4097d1d58513eb"
+    },
+    {
+      "uid": "zhcn:b1364ba03c029fee79e26486",
+      "source_batch": 209,
+      "entry_index": 44,
+      "kind": "text_data",
+      "source_path": "text_data_dict.json",
+      "json_path": [
+        "155",
+        "30231"
+      ],
+      "key": null,
+      "source_text": "羁绊值在80以上时，\\n耐力加成和力量加成",
+      "source_fingerprint": "4f00e4e10ca8d922a78129a0f79bf0ad7e611030f651b4d23ee8bde5f35e86d1",
+      "current_text": "Khi Friendship Gauge đạt 80 trở lên,\\nStamina Bonus & Power Bonus",
+      "current_fingerprint": "3253923ff987cf7b2724679d464279998c87cd38791f9462d946c3ed810abd02",
+      "risk_flags": [
+        "very_long_target",
+        "community_term",
+        "numeric_token_mismatch"
+      ],
+      "risk_score": 10,
+      "locked_terms": [],
+      "community_terms": [
+        {
+          "id": "common.stat.stamina",
+          "preferred": "Stamina",
+          "accepted": [
+            "Stamina"
+          ],
+          "forbidden": [
+            "Thể lực"
+          ],
+          "matched_aliases": [
+            "耐力"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Common EN-version stat label; distinct from the training energy gauge."
+        },
+        {
+          "id": "common.stat.power",
+          "preferred": "Power",
+          "accepted": [
+            "Power"
+          ],
+          "forbidden": [
+            "Sức mạnh"
+          ],
+          "matched_aliases": [
+            "力量"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Common EN-version Power stat label. The zh-CN alias 力量 is ambiguous in ordinary prose and can also occur inside proper names such as 莱茵力量 (Rhein Kraft); known non-stat compounds, names, descriptive titles, and narrative/metaphorical phrases are explicitly excluded so physical or emotional strength is not normalized to the stat label."
+        },
+        {
+          "id": "common.friendship_gauge.support_effects",
+          "preferred": "Friendship Gauge",
+          "accepted": [
+            "Friendship Gauge"
+          ],
+          "forbidden": [
+            "Gắn kết",
+            "gắn kết",
+            "Giá trị liên kết",
+            "giá trị liên kết",
+            "Điểm liên kết",
+            "điểm liên kết"
+          ],
+          "matched_aliases": [
+            "羁绊值"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Category 155 support-effect descriptions use 羁绊值/牵绊值 for the Support Card Friendship Gauge. The category guard prevents ordinary friendship/bond prose from being normalized to this mechanic."
+        },
+        {
+          "id": "support.stamina_bonus.effect155",
+          "preferred": "Stamina Bonus",
+          "accepted": [
+            "Stamina Bonus"
+          ],
+          "forbidden": [
+            "Thưởng Thể lực",
+            "Thưởng thể lực"
+          ],
+          "matched_aliases": [
+            "耐力加成"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Repeated player-facing Support Effect bonus label in category 155; ordinary stat prose remains unscoped."
+        },
+        {
+          "id": "support.power_bonus.effect155",
+          "preferred": "Power Bonus",
+          "accepted": [
+            "Power Bonus"
+          ],
+          "forbidden": [
+            "Thưởng Sức mạnh",
+            "Thưởng sức mạnh"
+          ],
+          "matched_aliases": [
+            "力量加成"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Repeated player-facing Support Effect bonus label in category 155; ordinary stat prose remains unscoped."
+        }
+      ],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [],
+      "item_context_sha256": "ccf45640cf1234986f3046e698b270adea2f27b437b3b42835f39436a6d7cac7"
+    },
+    {
+      "uid": "zhcn:2682b78c08685a29168aaafd",
+      "source_batch": 209,
+      "entry_index": 45,
+      "kind": "text_data",
+      "source_path": "text_data_dict.json",
+      "json_path": [
+        "155",
+        "30232"
+      ],
+      "key": null,
+      "source_text": "羁绊值在80以上时，\\n力量加成",
+      "source_fingerprint": "16d54752cf0696da7bce2535700980ebef20f0e1053d5f4616444e21543df562",
+      "current_text": "Khi Friendship Gauge đạt 80 trở lên,\\nPower Bonus",
+      "current_fingerprint": "303adce89feebea791d8149eae2511f7a53ae3fe2b6b94e05cd00b36497d269d",
+      "risk_flags": [
+        "very_long_target",
+        "community_term",
+        "numeric_token_mismatch"
+      ],
+      "risk_score": 10,
+      "locked_terms": [],
+      "community_terms": [
+        {
+          "id": "common.stat.power",
+          "preferred": "Power",
+          "accepted": [
+            "Power"
+          ],
+          "forbidden": [
+            "Sức mạnh"
+          ],
+          "matched_aliases": [
+            "力量"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Common EN-version Power stat label. The zh-CN alias 力量 is ambiguous in ordinary prose and can also occur inside proper names such as 莱茵力量 (Rhein Kraft); known non-stat compounds, names, descriptive titles, and narrative/metaphorical phrases are explicitly excluded so physical or emotional strength is not normalized to the stat label."
+        },
+        {
+          "id": "common.friendship_gauge.support_effects",
+          "preferred": "Friendship Gauge",
+          "accepted": [
+            "Friendship Gauge"
+          ],
+          "forbidden": [
+            "Gắn kết",
+            "gắn kết",
+            "Giá trị liên kết",
+            "giá trị liên kết",
+            "Điểm liên kết",
+            "điểm liên kết"
+          ],
+          "matched_aliases": [
+            "羁绊值"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Category 155 support-effect descriptions use 羁绊值/牵绊值 for the Support Card Friendship Gauge. The category guard prevents ordinary friendship/bond prose from being normalized to this mechanic."
+        },
+        {
+          "id": "support.power_bonus.effect155",
+          "preferred": "Power Bonus",
+          "accepted": [
+            "Power Bonus"
+          ],
+          "forbidden": [
+            "Thưởng Sức mạnh",
+            "Thưởng sức mạnh"
+          ],
+          "matched_aliases": [
+            "力量加成"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Repeated player-facing Support Effect bonus label in category 155; ordinary stat prose remains unscoped."
+        }
+      ],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [],
+      "item_context_sha256": "7a317f62683836af26be74e2cf8d4d8501d5d47f5f61ed27978e6893497dce8a"
+    },
+    {
+      "uid": "zhcn:1031709a13b3b7144b1e1da4",
+      "source_batch": 209,
+      "entry_index": 46,
+      "kind": "text_data",
+      "source_path": "text_data_dict.json",
+      "json_path": [
+        "155",
+        "30233"
+      ],
+      "key": null,
+      "source_text": "羁绊值在80以上时，\\n速度加成和智力加成",
+      "source_fingerprint": "1ae5a141d3a68bf833be4566d5027d1e77a969bbf5cb7d83cccf5d575e0c03d6",
+      "current_text": "Khi Friendship Gauge đạt 80 trở lên,\\nSpeed Bonus & Wit Bonus",
+      "current_fingerprint": "fd8b906d9defaf72bb7047293baa2a64e7b51c69050edf50d63192950b4c8de4",
+      "risk_flags": [
+        "community_term",
+        "numeric_token_mismatch"
+      ],
+      "risk_score": 7,
+      "locked_terms": [],
+      "community_terms": [
+        {
+          "id": "common.stat.speed.context",
+          "preferred": "Speed",
+          "accepted": [
+            "Speed"
+          ],
+          "forbidden": [],
+          "matched_aliases": [
+            "速度加成"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Narrow player-facing Speed stat contexts. No global forbidden Tốc độ token is used here because the same sentence may also describe literal/max/running speed."
+        },
+        {
+          "id": "common.stat.wit",
+          "preferred": "Wit",
+          "accepted": [
+            "Wit"
+          ],
+          "forbidden": [
+            "Trí tuệ"
+          ],
+          "matched_aliases": [
+            "智力"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Common EN-version Wit stat label. The zh-CN alias 智力 is context-sensitive and must not canonicalize ordinary compounds such as 智力扣 (a disentanglement puzzle/toy)."
+        },
+        {
+          "id": "common.friendship_gauge.support_effects",
+          "preferred": "Friendship Gauge",
+          "accepted": [
+            "Friendship Gauge"
+          ],
+          "forbidden": [
+            "Gắn kết",
+            "gắn kết",
+            "Giá trị liên kết",
+            "giá trị liên kết",
+            "Điểm liên kết",
+            "điểm liên kết"
+          ],
+          "matched_aliases": [
+            "羁绊值"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Category 155 support-effect descriptions use 羁绊值/牵绊值 for the Support Card Friendship Gauge. The category guard prevents ordinary friendship/bond prose from being normalized to this mechanic."
+        },
+        {
+          "id": "support.speed_bonus.effect155",
+          "preferred": "Speed Bonus",
+          "accepted": [
+            "Speed Bonus"
+          ],
+          "forbidden": [
+            "Thưởng Tốc độ",
+            "Thưởng tốc độ"
+          ],
+          "matched_aliases": [
+            "速度加成"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Repeated player-facing Support Effect bonus label in category 155; ordinary stat prose remains unscoped."
+        },
+        {
+          "id": "support.wit_bonus.effect155",
+          "preferred": "Wit Bonus",
+          "accepted": [
+            "Wit Bonus"
+          ],
+          "forbidden": [
+            "Thưởng Trí tuệ",
+            "Thưởng trí tuệ"
+          ],
+          "matched_aliases": [
+            "智力加成"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Repeated player-facing Support Effect bonus label in category 155; ordinary stat prose remains unscoped."
+        }
+      ],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [],
+      "item_context_sha256": "06a8075ff841b31108a8ac42b5593721afbc7ec05927977ca131eb304c0ed7ac"
+    },
+    {
+      "uid": "zhcn:5da55a39a70f78968dafc300",
+      "source_batch": 209,
+      "entry_index": 47,
+      "kind": "text_data",
+      "source_path": "text_data_dict.json",
+      "json_path": [
+        "155",
+        "30234"
+      ],
+      "key": null,
+      "source_text": "羁绊值在80以上时，\\n耐力加成和力量加成",
+      "source_fingerprint": "4f00e4e10ca8d922a78129a0f79bf0ad7e611030f651b4d23ee8bde5f35e86d1",
+      "current_text": "Khi Friendship Gauge đạt 80 trở lên,\\nStamina Bonus & Power Bonus",
+      "current_fingerprint": "3253923ff987cf7b2724679d464279998c87cd38791f9462d946c3ed810abd02",
+      "risk_flags": [
+        "very_long_target",
+        "community_term",
+        "numeric_token_mismatch"
+      ],
+      "risk_score": 10,
+      "locked_terms": [],
+      "community_terms": [
+        {
+          "id": "common.stat.stamina",
+          "preferred": "Stamina",
+          "accepted": [
+            "Stamina"
+          ],
+          "forbidden": [
+            "Thể lực"
+          ],
+          "matched_aliases": [
+            "耐力"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Common EN-version stat label; distinct from the training energy gauge."
+        },
+        {
+          "id": "common.stat.power",
+          "preferred": "Power",
+          "accepted": [
+            "Power"
+          ],
+          "forbidden": [
+            "Sức mạnh"
+          ],
+          "matched_aliases": [
+            "力量"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Common EN-version Power stat label. The zh-CN alias 力量 is ambiguous in ordinary prose and can also occur inside proper names such as 莱茵力量 (Rhein Kraft); known non-stat compounds, names, descriptive titles, and narrative/metaphorical phrases are explicitly excluded so physical or emotional strength is not normalized to the stat label."
+        },
+        {
+          "id": "common.friendship_gauge.support_effects",
+          "preferred": "Friendship Gauge",
+          "accepted": [
+            "Friendship Gauge"
+          ],
+          "forbidden": [
+            "Gắn kết",
+            "gắn kết",
+            "Giá trị liên kết",
+            "giá trị liên kết",
+            "Điểm liên kết",
+            "điểm liên kết"
+          ],
+          "matched_aliases": [
+            "羁绊值"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Category 155 support-effect descriptions use 羁绊值/牵绊值 for the Support Card Friendship Gauge. The category guard prevents ordinary friendship/bond prose from being normalized to this mechanic."
+        },
+        {
+          "id": "support.stamina_bonus.effect155",
+          "preferred": "Stamina Bonus",
+          "accepted": [
+            "Stamina Bonus"
+          ],
+          "forbidden": [
+            "Thưởng Thể lực",
+            "Thưởng thể lực"
+          ],
+          "matched_aliases": [
+            "耐力加成"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Repeated player-facing Support Effect bonus label in category 155; ordinary stat prose remains unscoped."
+        },
+        {
+          "id": "support.power_bonus.effect155",
+          "preferred": "Power Bonus",
+          "accepted": [
+            "Power Bonus"
+          ],
+          "forbidden": [
+            "Thưởng Sức mạnh",
+            "Thưởng sức mạnh"
+          ],
+          "matched_aliases": [
+            "力量加成"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Repeated player-facing Support Effect bonus label in category 155; ordinary stat prose remains unscoped."
+        }
+      ],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [],
+      "item_context_sha256": "ccf45640cf1234986f3046e698b270adea2f27b437b3b42835f39436a6d7cac7"
+    },
+    {
+      "uid": "zhcn:ff9b98b24bfbbcebec5e8cb8",
+      "source_batch": 209,
+      "entry_index": 48,
+      "kind": "text_data",
+      "source_path": "text_data_dict.json",
+      "json_path": [
+        "155",
+        "30235"
+      ],
+      "key": null,
+      "source_text": "羁绊值在80以上时，\\n速度加成和技能Pt加成",
+      "source_fingerprint": "8a729531aead4e017bd64699cd458ed0a26e390de7af565cad8217ba02b5cabd",
+      "current_text": "Khi Friendship Gauge đạt 80 trở lên,\\nSpeed Bonus & Skill Pt Bonus",
+      "current_fingerprint": "678b3fe7783d476ed09e7f93adb320821e75a131cf12b8f5e8e2d14631b5e8a1",
+      "risk_flags": [
+        "community_term",
+        "numeric_token_mismatch"
+      ],
+      "risk_score": 7,
+      "locked_terms": [],
+      "community_terms": [
+        {
+          "id": "common.stat.speed.context",
+          "preferred": "Speed",
+          "accepted": [
+            "Speed"
+          ],
+          "forbidden": [],
+          "matched_aliases": [
+            "速度加成"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Narrow player-facing Speed stat contexts. No global forbidden Tốc độ token is used here because the same sentence may also describe literal/max/running speed."
+        },
+        {
+          "id": "common.skill.generic",
+          "preferred": "Skill",
+          "accepted": [
+            "Skill"
+          ],
+          "forbidden": [
+            "Kỹ năng"
+          ],
+          "matched_aliases": [
+            "技能"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Generic gameplay label stays English. This does not mean individual skill names stay English."
+        },
+        {
+          "id": "common.skill_points",
+          "preferred": "Skill Pt",
+          "accepted": [
+            "Skill Pt",
+            "Skill Pts",
+            "Skill Points"
+          ],
+          "forbidden": [
+            "Điểm kỹ năng",
+            "điểm kỹ năng",
+            "điểm Skill",
+            "Pt kỹ năng"
+          ],
+          "matched_aliases": [
+            "技能Pt"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Established player-facing resource terminology. UI may display Skill Pt; grammatical/plural prose may use Skill Pts or Skill Points. Generic points outside the full source aliases do not match this rule."
+        },
+        {
+          "id": "common.friendship_gauge.support_effects",
+          "preferred": "Friendship Gauge",
+          "accepted": [
+            "Friendship Gauge"
+          ],
+          "forbidden": [
+            "Gắn kết",
+            "gắn kết",
+            "Giá trị liên kết",
+            "giá trị liên kết",
+            "Điểm liên kết",
+            "điểm liên kết"
+          ],
+          "matched_aliases": [
+            "羁绊值"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Category 155 support-effect descriptions use 羁绊值/牵绊值 for the Support Card Friendship Gauge. The category guard prevents ordinary friendship/bond prose from being normalized to this mechanic."
+        },
+        {
+          "id": "support.speed_bonus.effect155",
+          "preferred": "Speed Bonus",
+          "accepted": [
+            "Speed Bonus"
+          ],
+          "forbidden": [
+            "Thưởng Tốc độ",
+            "Thưởng tốc độ"
+          ],
+          "matched_aliases": [
+            "速度加成"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Repeated player-facing Support Effect bonus label in category 155; ordinary stat prose remains unscoped."
+        },
+        {
+          "id": "support.skill_pt_bonus.effect155",
+          "preferred": "Skill Pt Bonus",
+          "accepted": [
+            "Skill Pt Bonus"
+          ],
+          "forbidden": [
+            "Thưởng Điểm kỹ năng",
+            "Thưởng điểm kỹ năng",
+            "Thưởng Skill Pt"
+          ],
+          "matched_aliases": [
+            "技能Pt加成"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Repeated player-facing Support Effect bonus label in category 155; ordinary stat prose remains unscoped."
+        }
+      ],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [],
+      "item_context_sha256": "24b8584816d6ce5c8395296d92461e36d5b59de96a21b2823a3d00f1a4595360"
+    },
+    {
+      "uid": "zhcn:303d647bb39e7ac471e69d3a",
+      "source_batch": 209,
+      "entry_index": 49,
+      "kind": "text_data",
+      "source_path": "text_data_dict.json",
+      "json_path": [
+        "155",
+        "30236"
+      ],
+      "key": null,
+      "source_text": "羁绊值在100以上时，\\n速度加成和技能Pt加成",
+      "source_fingerprint": "fc332558b7ed355b275f63082eb8a86dc4ff44f8170dcf07ead5ce0b159bbad4",
+      "current_text": "Khi Friendship Gauge đạt 100 trở lên,\\nSpeed Bonus & Skill Pt Bonus",
+      "current_fingerprint": "6ee9a19336872f6b232d804c22d37c0f117727716b4380ccd6d075fee92dc326",
+      "risk_flags": [
+        "community_term",
+        "numeric_token_mismatch"
+      ],
+      "risk_score": 7,
+      "locked_terms": [],
+      "community_terms": [
+        {
+          "id": "common.stat.speed.context",
+          "preferred": "Speed",
+          "accepted": [
+            "Speed"
+          ],
+          "forbidden": [],
+          "matched_aliases": [
+            "速度加成"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Narrow player-facing Speed stat contexts. No global forbidden Tốc độ token is used here because the same sentence may also describe literal/max/running speed."
+        },
+        {
+          "id": "common.skill.generic",
+          "preferred": "Skill",
+          "accepted": [
+            "Skill"
+          ],
+          "forbidden": [
+            "Kỹ năng"
+          ],
+          "matched_aliases": [
+            "技能"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Generic gameplay label stays English. This does not mean individual skill names stay English."
+        },
+        {
+          "id": "common.skill_points",
+          "preferred": "Skill Pt",
+          "accepted": [
+            "Skill Pt",
+            "Skill Pts",
+            "Skill Points"
+          ],
+          "forbidden": [
+            "Điểm kỹ năng",
+            "điểm kỹ năng",
+            "điểm Skill",
+            "Pt kỹ năng"
+          ],
+          "matched_aliases": [
+            "技能Pt"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Established player-facing resource terminology. UI may display Skill Pt; grammatical/plural prose may use Skill Pts or Skill Points. Generic points outside the full source aliases do not match this rule."
+        },
+        {
+          "id": "common.friendship_gauge.support_effects",
+          "preferred": "Friendship Gauge",
+          "accepted": [
+            "Friendship Gauge"
+          ],
+          "forbidden": [
+            "Gắn kết",
+            "gắn kết",
+            "Giá trị liên kết",
+            "giá trị liên kết",
+            "Điểm liên kết",
+            "điểm liên kết"
+          ],
+          "matched_aliases": [
+            "羁绊值"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Category 155 support-effect descriptions use 羁绊值/牵绊值 for the Support Card Friendship Gauge. The category guard prevents ordinary friendship/bond prose from being normalized to this mechanic."
+        },
+        {
+          "id": "support.speed_bonus.effect155",
+          "preferred": "Speed Bonus",
+          "accepted": [
+            "Speed Bonus"
+          ],
+          "forbidden": [
+            "Thưởng Tốc độ",
+            "Thưởng tốc độ"
+          ],
+          "matched_aliases": [
+            "速度加成"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Repeated player-facing Support Effect bonus label in category 155; ordinary stat prose remains unscoped."
+        },
+        {
+          "id": "support.skill_pt_bonus.effect155",
+          "preferred": "Skill Pt Bonus",
+          "accepted": [
+            "Skill Pt Bonus"
+          ],
+          "forbidden": [
+            "Thưởng Điểm kỹ năng",
+            "Thưởng điểm kỹ năng",
+            "Thưởng Skill Pt"
+          ],
+          "matched_aliases": [
+            "技能Pt加成"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Repeated player-facing Support Effect bonus label in category 155; ordinary stat prose remains unscoped."
+        }
+      ],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [],
+      "item_context_sha256": "24b8584816d6ce5c8395296d92461e36d5b59de96a21b2823a3d00f1a4595360"
+    },
+    {
+      "uid": "zhcn:1ec78e187a0b6217896f86c6",
+      "source_batch": 209,
+      "entry_index": 50,
+      "kind": "text_data",
+      "source_path": "text_data_dict.json",
+      "json_path": [
+        "155",
+        "30237"
+      ],
+      "key": null,
+      "source_text": "羁绊值在80以上时，\\n速度加成和根性加成",
+      "source_fingerprint": "53cc4f205246e879006c489c970dd9c8d8b10ccbce43c2dd987045db12480c15",
+      "current_text": "Khi Friendship Gauge đạt 80 trở lên,\\nSpeed Bonus & Guts Bonus",
+      "current_fingerprint": "1fad86d8fe7c143d9c2ef5cb45757fdb656e9e0255e28a4bd38023b1b304f624",
+      "risk_flags": [
+        "community_term",
+        "numeric_token_mismatch"
+      ],
+      "risk_score": 7,
+      "locked_terms": [],
+      "community_terms": [
+        {
+          "id": "common.stat.speed.context",
+          "preferred": "Speed",
+          "accepted": [
+            "Speed"
+          ],
+          "forbidden": [],
+          "matched_aliases": [
+            "速度加成"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Narrow player-facing Speed stat contexts. No global forbidden Tốc độ token is used here because the same sentence may also describe literal/max/running speed."
+        },
+        {
+          "id": "common.stat.guts",
+          "preferred": "Guts",
+          "accepted": [
+            "Guts"
+          ],
+          "forbidden": [
+            "Ý chí"
+          ],
+          "matched_aliases": [
+            "根性"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Common EN-version stat label."
+        },
+        {
+          "id": "common.friendship_gauge.support_effects",
+          "preferred": "Friendship Gauge",
+          "accepted": [
+            "Friendship Gauge"
+          ],
+          "forbidden": [
+            "Gắn kết",
+            "gắn kết",
+            "Giá trị liên kết",
+            "giá trị liên kết",
+            "Điểm liên kết",
+            "điểm liên kết"
+          ],
+          "matched_aliases": [
+            "羁绊值"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Category 155 support-effect descriptions use 羁绊值/牵绊值 for the Support Card Friendship Gauge. The category guard prevents ordinary friendship/bond prose from being normalized to this mechanic."
+        },
+        {
+          "id": "support.speed_bonus.effect155",
+          "preferred": "Speed Bonus",
+          "accepted": [
+            "Speed Bonus"
+          ],
+          "forbidden": [
+            "Thưởng Tốc độ",
+            "Thưởng tốc độ"
+          ],
+          "matched_aliases": [
+            "速度加成"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Repeated player-facing Support Effect bonus label in category 155; ordinary stat prose remains unscoped."
+        },
+        {
+          "id": "support.guts_bonus.effect155",
+          "preferred": "Guts Bonus",
+          "accepted": [
+            "Guts Bonus"
+          ],
+          "forbidden": [
+            "Thưởng Ý chí",
+            "Thưởng ý chí"
+          ],
+          "matched_aliases": [
+            "根性加成"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Repeated player-facing Support Effect bonus label in category 155; ordinary stat prose remains unscoped."
+        }
+      ],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [],
+      "item_context_sha256": "b7e0542fee07ea6734ab6c777cab6cdf77ff2e35eb9ff4fcf6862e963581e240"
+    },
+    {
+      "uid": "zhcn:af577b6b061464d9092d70bb",
+      "source_batch": 209,
+      "entry_index": 51,
+      "kind": "text_data",
+      "source_path": "text_data_dict.json",
+      "json_path": [
+        "155",
+        "30238"
+      ],
+      "key": null,
+      "source_text": "羁绊值在80以上时，\\n速度加成",
+      "source_fingerprint": "e46bce415e1cc8ec693fb5d05ff1902967354214242e5551c6c738569f7faab2",
+      "current_text": "Khi Friendship Gauge đạt 80 trở lên,\\nSpeed Bonus",
+      "current_fingerprint": "c4e54677a52c1ea772ef8d7fd37718de80dc5f0d6055e12664063284e50ab1a6",
+      "risk_flags": [
+        "very_long_target",
+        "community_term",
+        "numeric_token_mismatch"
+      ],
+      "risk_score": 10,
+      "locked_terms": [],
+      "community_terms": [
+        {
+          "id": "common.stat.speed.context",
+          "preferred": "Speed",
+          "accepted": [
+            "Speed"
+          ],
+          "forbidden": [],
+          "matched_aliases": [
+            "速度加成"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Narrow player-facing Speed stat contexts. No global forbidden Tốc độ token is used here because the same sentence may also describe literal/max/running speed."
+        },
+        {
+          "id": "common.friendship_gauge.support_effects",
+          "preferred": "Friendship Gauge",
+          "accepted": [
+            "Friendship Gauge"
+          ],
+          "forbidden": [
+            "Gắn kết",
+            "gắn kết",
+            "Giá trị liên kết",
+            "giá trị liên kết",
+            "Điểm liên kết",
+            "điểm liên kết"
+          ],
+          "matched_aliases": [
+            "羁绊值"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Category 155 support-effect descriptions use 羁绊值/牵绊值 for the Support Card Friendship Gauge. The category guard prevents ordinary friendship/bond prose from being normalized to this mechanic."
+        },
+        {
+          "id": "support.speed_bonus.effect155",
+          "preferred": "Speed Bonus",
+          "accepted": [
+            "Speed Bonus"
+          ],
+          "forbidden": [
+            "Thưởng Tốc độ",
+            "Thưởng tốc độ"
+          ],
+          "matched_aliases": [
+            "速度加成"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Repeated player-facing Support Effect bonus label in category 155; ordinary stat prose remains unscoped."
+        }
+      ],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [],
+      "item_context_sha256": "bcfeb4b29b5882d905df9812e47d786be39701627a39a3a25e4097d1d58513eb"
+    },
+    {
+      "uid": "zhcn:abe1fc0828a6b7ae4bc1bc9e",
+      "source_batch": 209,
+      "entry_index": 52,
+      "kind": "text_data",
+      "source_path": "text_data_dict.json",
+      "json_path": [
+        "155",
+        "30239"
+      ],
+      "key": null,
+      "source_text": "羁绊值在80以上时，\\n训练效果提升",
+      "source_fingerprint": "de1b9062dab2eb66f62b9000f4cbe371a7d3ac8a7320f50cb29129a1c31f3531",
+      "current_text": "Khi Friendship Gauge đạt 80 trở lên,\\nTraining Effectiveness",
+      "current_fingerprint": "48dbb83cb214be35bd8b58a96dd4392babe4ac4dba9db3ad8f5cd74538cd2522",
+      "risk_flags": [
+        "very_long_target",
+        "community_term",
+        "numeric_token_mismatch",
+        "increase_direction_risk"
+      ],
+      "risk_score": 15,
+      "locked_terms": [],
+      "community_terms": [
+        {
+          "id": "common.friendship_gauge.support_effects",
+          "preferred": "Friendship Gauge",
+          "accepted": [
+            "Friendship Gauge"
+          ],
+          "forbidden": [
+            "Gắn kết",
+            "gắn kết",
+            "Giá trị liên kết",
+            "giá trị liên kết",
+            "Điểm liên kết",
+            "điểm liên kết"
+          ],
+          "matched_aliases": [
+            "羁绊值"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Category 155 support-effect descriptions use 羁绊值/牵绊值 for the Support Card Friendship Gauge. The category guard prevents ordinary friendship/bond prose from being normalized to this mechanic."
+        },
+        {
+          "id": "support.training_effectiveness.effect155",
+          "preferred": "Training Effectiveness",
+          "accepted": [
+            "Training Effectiveness"
+          ],
+          "forbidden": [
+            "Tăng hiệu quả huấn luyện",
+            "tăng hiệu quả huấn luyện",
+            "Hiệu quả huấn luyện"
+          ],
+          "matched_aliases": [
+            "训练效果提升"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Established Support Effect label for training effectiveness, limited to support-effect category 155."
+        }
+      ],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [],
+      "item_context_sha256": "a3f5a751ab7ce18fbedc26fe191993695c01b54a3936db64b0d01196e6d7dc2e"
+    },
+    {
+      "uid": "zhcn:037882882b30902560180edb",
+      "source_batch": 209,
+      "entry_index": 53,
+      "kind": "text_data",
+      "source_path": "text_data_dict.json",
+      "json_path": [
+        "155",
+        "30240"
+      ],
+      "key": null,
+      "source_text": "羁绊值在80以上时，\\n耐力加成和根性加成",
+      "source_fingerprint": "c87a5b966de153d6bf28b9639fc6572b7f98971c303e1d4c569bc7d83f12cf23",
+      "current_text": "Khi Friendship Gauge đạt 80 trở lên,\\nStamina Bonus & Guts Bonus",
+      "current_fingerprint": "ab01c3d99fa66295e009bb681e58f19f0330f9f740611801a8a05d0472a8b834",
+      "risk_flags": [
+        "very_long_target",
+        "community_term",
+        "numeric_token_mismatch"
+      ],
+      "risk_score": 10,
+      "locked_terms": [],
+      "community_terms": [
+        {
+          "id": "common.stat.stamina",
+          "preferred": "Stamina",
+          "accepted": [
+            "Stamina"
+          ],
+          "forbidden": [
+            "Thể lực"
+          ],
+          "matched_aliases": [
+            "耐力"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Common EN-version stat label; distinct from the training energy gauge."
+        },
+        {
+          "id": "common.stat.guts",
+          "preferred": "Guts",
+          "accepted": [
+            "Guts"
+          ],
+          "forbidden": [
+            "Ý chí"
+          ],
+          "matched_aliases": [
+            "根性"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Common EN-version stat label."
+        },
+        {
+          "id": "common.friendship_gauge.support_effects",
+          "preferred": "Friendship Gauge",
+          "accepted": [
+            "Friendship Gauge"
+          ],
+          "forbidden": [
+            "Gắn kết",
+            "gắn kết",
+            "Giá trị liên kết",
+            "giá trị liên kết",
+            "Điểm liên kết",
+            "điểm liên kết"
+          ],
+          "matched_aliases": [
+            "羁绊值"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Category 155 support-effect descriptions use 羁绊值/牵绊值 for the Support Card Friendship Gauge. The category guard prevents ordinary friendship/bond prose from being normalized to this mechanic."
+        },
+        {
+          "id": "support.stamina_bonus.effect155",
+          "preferred": "Stamina Bonus",
+          "accepted": [
+            "Stamina Bonus"
+          ],
+          "forbidden": [
+            "Thưởng Thể lực",
+            "Thưởng thể lực"
+          ],
+          "matched_aliases": [
+            "耐力加成"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Repeated player-facing Support Effect bonus label in category 155; ordinary stat prose remains unscoped."
+        },
+        {
+          "id": "support.guts_bonus.effect155",
+          "preferred": "Guts Bonus",
+          "accepted": [
+            "Guts Bonus"
+          ],
+          "forbidden": [
+            "Thưởng Ý chí",
+            "Thưởng ý chí"
+          ],
+          "matched_aliases": [
+            "根性加成"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Repeated player-facing Support Effect bonus label in category 155; ordinary stat prose remains unscoped."
+        }
+      ],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [],
+      "item_context_sha256": "73142de561e2f197618f3500dc36f104a254e9aadc91f18552ab1cbeb779ea58"
+    },
+    {
+      "uid": "zhcn:fea553b1c98ecc564ed8beb4",
+      "source_batch": 209,
+      "entry_index": 54,
+      "kind": "text_data",
+      "source_path": "text_data_dict.json",
+      "json_path": [
+        "155",
+        "30241"
+      ],
+      "key": null,
+      "source_text": "羁绊值在100以上时，\\n全属性和技能Pt加成",
+      "source_fingerprint": "0902969a241d626f1766105444a1745599a2451bee5af62ab9719ffecf90428f",
+      "current_text": "Khi Friendship Gauge đạt 100 trở lên,\\nThưởng tất cả chỉ số & Skill Pt Bonus",
+      "current_fingerprint": "6cd0daeef2472f89644c6351229b1578b79918cdc735b170f3e60347f6a8f6a9",
+      "risk_flags": [
+        "very_long_target",
+        "community_term",
+        "numeric_token_mismatch"
+      ],
+      "risk_score": 10,
+      "locked_terms": [],
+      "community_terms": [
+        {
+          "id": "common.skill.generic",
+          "preferred": "Skill",
+          "accepted": [
+            "Skill"
+          ],
+          "forbidden": [
+            "Kỹ năng"
+          ],
+          "matched_aliases": [
+            "技能"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Generic gameplay label stays English. This does not mean individual skill names stay English."
+        },
+        {
+          "id": "common.skill_points",
+          "preferred": "Skill Pt",
+          "accepted": [
+            "Skill Pt",
+            "Skill Pts",
+            "Skill Points"
+          ],
+          "forbidden": [
+            "Điểm kỹ năng",
+            "điểm kỹ năng",
+            "điểm Skill",
+            "Pt kỹ năng"
+          ],
+          "matched_aliases": [
+            "技能Pt"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Established player-facing resource terminology. UI may display Skill Pt; grammatical/plural prose may use Skill Pts or Skill Points. Generic points outside the full source aliases do not match this rule."
+        },
+        {
+          "id": "common.friendship_gauge.support_effects",
+          "preferred": "Friendship Gauge",
+          "accepted": [
+            "Friendship Gauge"
+          ],
+          "forbidden": [
+            "Gắn kết",
+            "gắn kết",
+            "Giá trị liên kết",
+            "giá trị liên kết",
+            "Điểm liên kết",
+            "điểm liên kết"
+          ],
+          "matched_aliases": [
+            "羁绊值"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Category 155 support-effect descriptions use 羁绊值/牵绊值 for the Support Card Friendship Gauge. The category guard prevents ordinary friendship/bond prose from being normalized to this mechanic."
+        },
+        {
+          "id": "support.skill_pt_bonus.effect155",
+          "preferred": "Skill Pt Bonus",
+          "accepted": [
+            "Skill Pt Bonus"
+          ],
+          "forbidden": [
+            "Thưởng Điểm kỹ năng",
+            "Thưởng điểm kỹ năng",
+            "Thưởng Skill Pt"
+          ],
+          "matched_aliases": [
+            "技能Pt加成"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Repeated player-facing Support Effect bonus label in category 155; ordinary stat prose remains unscoped."
+        }
+      ],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [],
+      "item_context_sha256": "8b95f2e7a96eec5f7bafcd04130c00d9c43daedd6a2e0a7d779a1e257e2a460f"
+    },
+    {
+      "uid": "zhcn:2aedbfedc696423a0c084b15",
+      "source_batch": 209,
+      "entry_index": 55,
+      "kind": "text_data",
+      "source_path": "text_data_dict.json",
+      "json_path": [
+        "155",
+        "30242"
+      ],
+      "key": null,
+      "source_text": "羁绊值在80以上时，\\n力量加成和技能Pt加成",
+      "source_fingerprint": "b7d694d372764d116c24f16a2a464c9b9e1b8ef0a7a4866b3ab50c260b73cb86",
+      "current_text": "Khi Friendship Gauge đạt 80 trở lên,\\nPower Bonus & Skill Pt Bonus",
+      "current_fingerprint": "029b2f4a1a588d8f12168182fc6e95400f6d981ae0d5b4784def894427daf97a",
+      "risk_flags": [
+        "community_term",
+        "numeric_token_mismatch"
+      ],
+      "risk_score": 7,
+      "locked_terms": [],
+      "community_terms": [
+        {
+          "id": "common.stat.power",
+          "preferred": "Power",
+          "accepted": [
+            "Power"
+          ],
+          "forbidden": [
+            "Sức mạnh"
+          ],
+          "matched_aliases": [
+            "力量"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Common EN-version Power stat label. The zh-CN alias 力量 is ambiguous in ordinary prose and can also occur inside proper names such as 莱茵力量 (Rhein Kraft); known non-stat compounds, names, descriptive titles, and narrative/metaphorical phrases are explicitly excluded so physical or emotional strength is not normalized to the stat label."
+        },
+        {
+          "id": "common.skill.generic",
+          "preferred": "Skill",
+          "accepted": [
+            "Skill"
+          ],
+          "forbidden": [
+            "Kỹ năng"
+          ],
+          "matched_aliases": [
+            "技能"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Generic gameplay label stays English. This does not mean individual skill names stay English."
+        },
+        {
+          "id": "common.skill_points",
+          "preferred": "Skill Pt",
+          "accepted": [
+            "Skill Pt",
+            "Skill Pts",
+            "Skill Points"
+          ],
+          "forbidden": [
+            "Điểm kỹ năng",
+            "điểm kỹ năng",
+            "điểm Skill",
+            "Pt kỹ năng"
+          ],
+          "matched_aliases": [
+            "技能Pt"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Established player-facing resource terminology. UI may display Skill Pt; grammatical/plural prose may use Skill Pts or Skill Points. Generic points outside the full source aliases do not match this rule."
+        },
+        {
+          "id": "common.friendship_gauge.support_effects",
+          "preferred": "Friendship Gauge",
+          "accepted": [
+            "Friendship Gauge"
+          ],
+          "forbidden": [
+            "Gắn kết",
+            "gắn kết",
+            "Giá trị liên kết",
+            "giá trị liên kết",
+            "Điểm liên kết",
+            "điểm liên kết"
+          ],
+          "matched_aliases": [
+            "羁绊值"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Category 155 support-effect descriptions use 羁绊值/牵绊值 for the Support Card Friendship Gauge. The category guard prevents ordinary friendship/bond prose from being normalized to this mechanic."
+        },
+        {
+          "id": "support.power_bonus.effect155",
+          "preferred": "Power Bonus",
+          "accepted": [
+            "Power Bonus"
+          ],
+          "forbidden": [
+            "Thưởng Sức mạnh",
+            "Thưởng sức mạnh"
+          ],
+          "matched_aliases": [
+            "力量加成"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Repeated player-facing Support Effect bonus label in category 155; ordinary stat prose remains unscoped."
+        },
+        {
+          "id": "support.skill_pt_bonus.effect155",
+          "preferred": "Skill Pt Bonus",
+          "accepted": [
+            "Skill Pt Bonus"
+          ],
+          "forbidden": [
+            "Thưởng Điểm kỹ năng",
+            "Thưởng điểm kỹ năng",
+            "Thưởng Skill Pt"
+          ],
+          "matched_aliases": [
+            "技能Pt加成"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Repeated player-facing Support Effect bonus label in category 155; ordinary stat prose remains unscoped."
+        }
+      ],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [],
+      "item_context_sha256": "6a27d7179e8fb6f97b1f30de742660ca99a2c3efb86af945b930781537f8bab6"
+    },
+    {
+      "uid": "zhcn:44bf2c6ae442df7837acb58d",
+      "source_batch": 209,
+      "entry_index": 56,
+      "kind": "text_data",
+      "source_path": "text_data_dict.json",
+      "json_path": [
+        "155",
+        "30243"
+      ],
+      "key": null,
+      "source_text": "羁绊值在80以上时，\\n力量加成",
+      "source_fingerprint": "16d54752cf0696da7bce2535700980ebef20f0e1053d5f4616444e21543df562",
+      "current_text": "Khi Friendship Gauge đạt 80 trở lên,\\nPower Bonus",
+      "current_fingerprint": "303adce89feebea791d8149eae2511f7a53ae3fe2b6b94e05cd00b36497d269d",
+      "risk_flags": [
+        "very_long_target",
+        "community_term",
+        "numeric_token_mismatch"
+      ],
+      "risk_score": 10,
+      "locked_terms": [],
+      "community_terms": [
+        {
+          "id": "common.stat.power",
+          "preferred": "Power",
+          "accepted": [
+            "Power"
+          ],
+          "forbidden": [
+            "Sức mạnh"
+          ],
+          "matched_aliases": [
+            "力量"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Common EN-version Power stat label. The zh-CN alias 力量 is ambiguous in ordinary prose and can also occur inside proper names such as 莱茵力量 (Rhein Kraft); known non-stat compounds, names, descriptive titles, and narrative/metaphorical phrases are explicitly excluded so physical or emotional strength is not normalized to the stat label."
+        },
+        {
+          "id": "common.friendship_gauge.support_effects",
+          "preferred": "Friendship Gauge",
+          "accepted": [
+            "Friendship Gauge"
+          ],
+          "forbidden": [
+            "Gắn kết",
+            "gắn kết",
+            "Giá trị liên kết",
+            "giá trị liên kết",
+            "Điểm liên kết",
+            "điểm liên kết"
+          ],
+          "matched_aliases": [
+            "羁绊值"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Category 155 support-effect descriptions use 羁绊值/牵绊值 for the Support Card Friendship Gauge. The category guard prevents ordinary friendship/bond prose from being normalized to this mechanic."
+        },
+        {
+          "id": "support.power_bonus.effect155",
+          "preferred": "Power Bonus",
+          "accepted": [
+            "Power Bonus"
+          ],
+          "forbidden": [
+            "Thưởng Sức mạnh",
+            "Thưởng sức mạnh"
+          ],
+          "matched_aliases": [
+            "力量加成"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Repeated player-facing Support Effect bonus label in category 155; ordinary stat prose remains unscoped."
+        }
+      ],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [],
+      "item_context_sha256": "7a317f62683836af26be74e2cf8d4d8501d5d47f5f61ed27978e6893497dce8a"
+    },
+    {
+      "uid": "zhcn:94d39d7a418c59ffa6efeb4c",
+      "source_batch": 209,
+      "entry_index": 57,
+      "kind": "text_data",
+      "source_path": "text_data_dict.json",
+      "json_path": [
+        "155",
+        "30244"
+      ],
+      "key": null,
+      "source_text": "羁绊值在100以上时，耐力加成和根性加成",
+      "source_fingerprint": "8a7243a256cc5d9409196e4ae29705d8b6579572e1240b4bdf0cc11177600e0b",
+      "current_text": "Khi Friendship Gauge đạt 100 trở lên, Stamina Bonus & Guts Bonus",
+      "current_fingerprint": "0113d59b5e25e5ac8463a5098f29f725dc5f01171237a61fab11dc10c60a5080",
+      "risk_flags": [
+        "very_long_target",
+        "community_term",
+        "numeric_token_mismatch"
+      ],
+      "risk_score": 10,
+      "locked_terms": [],
+      "community_terms": [
+        {
+          "id": "common.stat.stamina",
+          "preferred": "Stamina",
+          "accepted": [
+            "Stamina"
+          ],
+          "forbidden": [
+            "Thể lực"
+          ],
+          "matched_aliases": [
+            "耐力"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Common EN-version stat label; distinct from the training energy gauge."
+        },
+        {
+          "id": "common.stat.guts",
+          "preferred": "Guts",
+          "accepted": [
+            "Guts"
+          ],
+          "forbidden": [
+            "Ý chí"
+          ],
+          "matched_aliases": [
+            "根性"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Common EN-version stat label."
+        },
+        {
+          "id": "common.friendship_gauge.support_effects",
+          "preferred": "Friendship Gauge",
+          "accepted": [
+            "Friendship Gauge"
+          ],
+          "forbidden": [
+            "Gắn kết",
+            "gắn kết",
+            "Giá trị liên kết",
+            "giá trị liên kết",
+            "Điểm liên kết",
+            "điểm liên kết"
+          ],
+          "matched_aliases": [
+            "羁绊值"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Category 155 support-effect descriptions use 羁绊值/牵绊值 for the Support Card Friendship Gauge. The category guard prevents ordinary friendship/bond prose from being normalized to this mechanic."
+        },
+        {
+          "id": "support.stamina_bonus.effect155",
+          "preferred": "Stamina Bonus",
+          "accepted": [
+            "Stamina Bonus"
+          ],
+          "forbidden": [
+            "Thưởng Thể lực",
+            "Thưởng thể lực"
+          ],
+          "matched_aliases": [
+            "耐力加成"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Repeated player-facing Support Effect bonus label in category 155; ordinary stat prose remains unscoped."
+        },
+        {
+          "id": "support.guts_bonus.effect155",
+          "preferred": "Guts Bonus",
+          "accepted": [
+            "Guts Bonus"
+          ],
+          "forbidden": [
+            "Thưởng Ý chí",
+            "Thưởng ý chí"
+          ],
+          "matched_aliases": [
+            "根性加成"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Repeated player-facing Support Effect bonus label in category 155; ordinary stat prose remains unscoped."
+        }
+      ],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [],
+      "item_context_sha256": "73142de561e2f197618f3500dc36f104a254e9aadc91f18552ab1cbeb779ea58"
+    },
+    {
+      "uid": "zhcn:976f062a9d9bf819fa632f00",
+      "source_batch": 209,
+      "entry_index": 58,
+      "kind": "text_data",
+      "source_path": "text_data_dict.json",
+      "json_path": [
+        "155",
+        "30245"
+      ],
+      "key": null,
+      "source_text": "羁绊值在80以上时，\\n耐力加成和力量加成",
+      "source_fingerprint": "4f00e4e10ca8d922a78129a0f79bf0ad7e611030f651b4d23ee8bde5f35e86d1",
+      "current_text": "Khi Friendship Gauge đạt 80 trở lên,\\nStamina Bonus & Power Bonus",
+      "current_fingerprint": "3253923ff987cf7b2724679d464279998c87cd38791f9462d946c3ed810abd02",
+      "risk_flags": [
+        "very_long_target",
+        "community_term",
+        "numeric_token_mismatch"
+      ],
+      "risk_score": 10,
+      "locked_terms": [],
+      "community_terms": [
+        {
+          "id": "common.stat.stamina",
+          "preferred": "Stamina",
+          "accepted": [
+            "Stamina"
+          ],
+          "forbidden": [
+            "Thể lực"
+          ],
+          "matched_aliases": [
+            "耐力"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Common EN-version stat label; distinct from the training energy gauge."
+        },
+        {
+          "id": "common.stat.power",
+          "preferred": "Power",
+          "accepted": [
+            "Power"
+          ],
+          "forbidden": [
+            "Sức mạnh"
+          ],
+          "matched_aliases": [
+            "力量"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Common EN-version Power stat label. The zh-CN alias 力量 is ambiguous in ordinary prose and can also occur inside proper names such as 莱茵力量 (Rhein Kraft); known non-stat compounds, names, descriptive titles, and narrative/metaphorical phrases are explicitly excluded so physical or emotional strength is not normalized to the stat label."
+        },
+        {
+          "id": "common.friendship_gauge.support_effects",
+          "preferred": "Friendship Gauge",
+          "accepted": [
+            "Friendship Gauge"
+          ],
+          "forbidden": [
+            "Gắn kết",
+            "gắn kết",
+            "Giá trị liên kết",
+            "giá trị liên kết",
+            "Điểm liên kết",
+            "điểm liên kết"
+          ],
+          "matched_aliases": [
+            "羁绊值"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Category 155 support-effect descriptions use 羁绊值/牵绊值 for the Support Card Friendship Gauge. The category guard prevents ordinary friendship/bond prose from being normalized to this mechanic."
+        },
+        {
+          "id": "support.stamina_bonus.effect155",
+          "preferred": "Stamina Bonus",
+          "accepted": [
+            "Stamina Bonus"
+          ],
+          "forbidden": [
+            "Thưởng Thể lực",
+            "Thưởng thể lực"
+          ],
+          "matched_aliases": [
+            "耐力加成"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Repeated player-facing Support Effect bonus label in category 155; ordinary stat prose remains unscoped."
+        },
+        {
+          "id": "support.power_bonus.effect155",
+          "preferred": "Power Bonus",
+          "accepted": [
+            "Power Bonus"
+          ],
+          "forbidden": [
+            "Thưởng Sức mạnh",
+            "Thưởng sức mạnh"
+          ],
+          "matched_aliases": [
+            "力量加成"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Repeated player-facing Support Effect bonus label in category 155; ordinary stat prose remains unscoped."
+        }
+      ],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [],
+      "item_context_sha256": "ccf45640cf1234986f3046e698b270adea2f27b437b3b42835f39436a6d7cac7"
+    },
+    {
+      "uid": "zhcn:c570bcf371e4e215810de386",
+      "source_batch": 209,
+      "entry_index": 59,
+      "kind": "text_data",
+      "source_path": "text_data_dict.json",
+      "json_path": [
+        "155",
+        "30246"
+      ],
+      "key": null,
+      "source_text": "羁绊值在80以上时，\\n速度加成和力量加成",
+      "source_fingerprint": "d1cff766a44246c1df1ad12c908b5060c27e540f587e10da54c404e31786102f",
+      "current_text": "Khi Friendship Gauge đạt 80 trở lên,\\nSpeed Bonus & Power Bonus",
+      "current_fingerprint": "081182f2996a518028cbe2acef4c6ecc2cde662a4e2172ccf4bca0bf264011fc",
+      "risk_flags": [
+        "community_term",
+        "numeric_token_mismatch"
+      ],
+      "risk_score": 7,
+      "locked_terms": [],
+      "community_terms": [
+        {
+          "id": "common.stat.speed.context",
+          "preferred": "Speed",
+          "accepted": [
+            "Speed"
+          ],
+          "forbidden": [],
+          "matched_aliases": [
+            "速度加成"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Narrow player-facing Speed stat contexts. No global forbidden Tốc độ token is used here because the same sentence may also describe literal/max/running speed."
+        },
+        {
+          "id": "common.stat.power",
+          "preferred": "Power",
+          "accepted": [
+            "Power"
+          ],
+          "forbidden": [
+            "Sức mạnh"
+          ],
+          "matched_aliases": [
+            "力量"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Common EN-version Power stat label. The zh-CN alias 力量 is ambiguous in ordinary prose and can also occur inside proper names such as 莱茵力量 (Rhein Kraft); known non-stat compounds, names, descriptive titles, and narrative/metaphorical phrases are explicitly excluded so physical or emotional strength is not normalized to the stat label."
+        },
+        {
+          "id": "common.friendship_gauge.support_effects",
+          "preferred": "Friendship Gauge",
+          "accepted": [
+            "Friendship Gauge"
+          ],
+          "forbidden": [
+            "Gắn kết",
+            "gắn kết",
+            "Giá trị liên kết",
+            "giá trị liên kết",
+            "Điểm liên kết",
+            "điểm liên kết"
+          ],
+          "matched_aliases": [
+            "羁绊值"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Category 155 support-effect descriptions use 羁绊值/牵绊值 for the Support Card Friendship Gauge. The category guard prevents ordinary friendship/bond prose from being normalized to this mechanic."
+        },
+        {
+          "id": "support.speed_bonus.effect155",
+          "preferred": "Speed Bonus",
+          "accepted": [
+            "Speed Bonus"
+          ],
+          "forbidden": [
+            "Thưởng Tốc độ",
+            "Thưởng tốc độ"
+          ],
+          "matched_aliases": [
+            "速度加成"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Repeated player-facing Support Effect bonus label in category 155; ordinary stat prose remains unscoped."
+        },
+        {
+          "id": "support.power_bonus.effect155",
+          "preferred": "Power Bonus",
+          "accepted": [
+            "Power Bonus"
+          ],
+          "forbidden": [
+            "Thưởng Sức mạnh",
+            "Thưởng sức mạnh"
+          ],
+          "matched_aliases": [
+            "力量加成"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Repeated player-facing Support Effect bonus label in category 155; ordinary stat prose remains unscoped."
+        }
+      ],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [],
+      "item_context_sha256": "e99b22baf21277e3eb43c2adcbe045157f450cce633af072138ad0795944c309"
+    }
+  ]
+}

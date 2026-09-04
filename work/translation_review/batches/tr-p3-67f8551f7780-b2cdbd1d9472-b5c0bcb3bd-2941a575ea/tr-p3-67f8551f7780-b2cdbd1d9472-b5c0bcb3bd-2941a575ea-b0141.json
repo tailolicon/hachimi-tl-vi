@@ -1,0 +1,1584 @@
+{
+  "schema_version": 1,
+  "policy_version": 3,
+  "plan_id": "tr-p3-67f8551f7780-b2cdbd1d9472-b5c0bcb3bd-2941a575ea",
+  "batch_id": "tr-p3-67f8551f7780-b2cdbd1d9472-b5c0bcb3bd-2941a575ea-b0141",
+  "context_snapshot_sha256": "b5c0bcb3bd9ee5c45e7bedf49c8f8d6ad35c3ceb3c35f528c6381a63c684a967",
+  "source_bridge_policy_sha256": "c42f21f04ee9cb206637e3ffe79ea0932701ee94f39273dc9b466b6fbbfd69af",
+  "review_generation": "retrospective-canonical-full-review",
+  "context_mode": "embedded-first-lazy-extra",
+  "items": [
+    {
+      "uid": "zhcn:39663d4e0378cf2ca96cebfe",
+      "source_batch": 205,
+      "entry_index": 43,
+      "kind": "text_data",
+      "source_path": "text_data_dict.json",
+      "json_path": [
+        "155",
+        "20005"
+      ],
+      "key": null,
+      "source_text": "友情加成&初始力量提升",
+      "source_fingerprint": "a631e3098410d10d0230202a54cf86026b87538c9a67a39d5369ddde2f123fd5",
+      "current_text": "Friendship Bonus & Tăng Power ban đầu",
+      "current_fingerprint": "5397846e2e20881bf86a8c77446253e33a977972fbb9e852784ce3ac86463dd8",
+      "risk_flags": [
+        "very_long_target",
+        "community_term"
+      ],
+      "risk_score": 5,
+      "locked_terms": [],
+      "community_terms": [
+        {
+          "id": "common.stat.power",
+          "preferred": "Power",
+          "accepted": [
+            "Power"
+          ],
+          "forbidden": [
+            "Sức mạnh"
+          ],
+          "matched_aliases": [
+            "力量"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Common EN-version Power stat label. The zh-CN alias 力量 is ambiguous in ordinary prose and can also occur inside proper names such as 莱茵力量 (Rhein Kraft); known non-stat compounds, names, descriptive titles, and narrative/metaphorical phrases are explicitly excluded so physical or emotional strength is not normalized to the stat label."
+        },
+        {
+          "id": "support.friendship_bonus.effect155",
+          "preferred": "Friendship Bonus",
+          "accepted": [
+            "Friendship Bonus"
+          ],
+          "forbidden": [
+            "Thưởng tình bạn",
+            "thưởng tình bạn"
+          ],
+          "matched_aliases": [
+            "友情加成"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Support Effect label in category 155; scope prevents ordinary friendship prose from matching."
+        }
+      ],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [],
+      "item_context_sha256": "e85f5ecc3378b0e1abe1c729e584921565f4f6d762ffa8de9411af7e4ae624be"
+    },
+    {
+      "uid": "zhcn:1d4eb098c22df52e20252943",
+      "source_batch": 205,
+      "entry_index": 48,
+      "kind": "text_data",
+      "source_path": "text_data_dict.json",
+      "json_path": [
+        "155",
+        "20010"
+      ],
+      "key": null,
+      "source_text": "干劲效果提升&比赛加成",
+      "source_fingerprint": "b3e061fcd638ddc5072dd4eb0ed1b36de411b9c73ca3e756a2b5bcc8894f0d0d",
+      "current_text": "Mood Effect & Thưởng cuộc đua",
+      "current_fingerprint": "eeede1c9fe81833e15eb9c2a887fb0394c21340cd8813a3ce026c6337a968287",
+      "risk_flags": [
+        "community_term",
+        "source_bridge_term",
+        "increase_direction_risk"
+      ],
+      "risk_score": 10,
+      "locked_terms": [
+        {
+          "id": "race.generic",
+          "target_vi": "Cuộc đua",
+          "matched_aliases": [
+            "比赛"
+          ],
+          "present": true
+        }
+      ],
+      "community_terms": [
+        {
+          "id": "common.state.mood",
+          "preferred": "Mood",
+          "accepted": [
+            "Mood"
+          ],
+          "forbidden": [
+            "Tinh thần",
+            "Hứng khởi"
+          ],
+          "matched_aliases": [
+            "干劲"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Mood is the generic player-facing やる気 / 干劲 state. The exact zh-CN Skill title 干劲十足 (JP 意気込み十分) is a distinct Skill identity and must not inherit the generic Mood matcher by substring."
+        },
+        {
+          "id": "support.mood_effect.effect155",
+          "preferred": "Mood Effect",
+          "accepted": [
+            "Mood Effect"
+          ],
+          "forbidden": [
+            "Tăng hiệu ứng hứng khởi",
+            "tăng hiệu ứng hứng khởi",
+            "Hiệu ứng hứng khởi",
+            "Thưởng Hứng khởi",
+            "Thưởng hứng khởi"
+          ],
+          "matched_aliases": [
+            "干劲效果提升"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Established Support Effect label; narrower than the already-canonical generic Mood state."
+        }
+      ],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [
+        {
+          "id": "state.mood",
+          "preferred": "Mood",
+          "accepted": [
+            "Mood"
+          ],
+          "forbidden": [
+            "Tinh thần",
+            "Hứng khởi"
+          ],
+          "matched_aliases": [
+            "干劲"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "ja": [
+            "やる気"
+          ],
+          "note": "干劲 is the zh-CN bridge for the player-facing Mood state. Do not normalize it to generic Vietnamese wording such as 'Tinh thần' or 'Hứng khởi'."
+        }
+      ],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": "c42f21f04ee9cb206637e3ffe79ea0932701ee94f39273dc9b466b6fbbfd69af",
+      "canonical_findings": [],
+      "item_context_sha256": "4beecfb53e48e5f08a1234f0f54854c50dd86ed60d6ea37300e18df52570d6f2"
+    },
+    {
+      "uid": "zhcn:f86622af40a552eff5be584a",
+      "source_batch": 205,
+      "entry_index": 53,
+      "kind": "text_data",
+      "source_path": "text_data_dict.json",
+      "json_path": [
+        "155",
+        "20015"
+      ],
+      "key": null,
+      "source_text": "干劲效果提升&初始智力提升",
+      "source_fingerprint": "f4668ebfd223b4aab20d7b1d7cc4ec1b8d0570b943761e041f886441417de048",
+      "current_text": "Mood Effect & Tăng Wit ban đầu",
+      "current_fingerprint": "329726247436b71c0012ac5322a0212a33b74dea521dc92b1a87e0e78917d363",
+      "risk_flags": [
+        "community_term",
+        "source_bridge_term"
+      ],
+      "risk_score": 5,
+      "locked_terms": [],
+      "community_terms": [
+        {
+          "id": "common.state.mood",
+          "preferred": "Mood",
+          "accepted": [
+            "Mood"
+          ],
+          "forbidden": [
+            "Tinh thần",
+            "Hứng khởi"
+          ],
+          "matched_aliases": [
+            "干劲"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Mood is the generic player-facing やる気 / 干劲 state. The exact zh-CN Skill title 干劲十足 (JP 意気込み十分) is a distinct Skill identity and must not inherit the generic Mood matcher by substring."
+        },
+        {
+          "id": "common.stat.wit",
+          "preferred": "Wit",
+          "accepted": [
+            "Wit"
+          ],
+          "forbidden": [
+            "Trí tuệ"
+          ],
+          "matched_aliases": [
+            "智力"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Common EN-version Wit stat label. The zh-CN alias 智力 is context-sensitive and must not canonicalize ordinary compounds such as 智力扣 (a disentanglement puzzle/toy)."
+        },
+        {
+          "id": "support.mood_effect.effect155",
+          "preferred": "Mood Effect",
+          "accepted": [
+            "Mood Effect"
+          ],
+          "forbidden": [
+            "Tăng hiệu ứng hứng khởi",
+            "tăng hiệu ứng hứng khởi",
+            "Hiệu ứng hứng khởi",
+            "Thưởng Hứng khởi",
+            "Thưởng hứng khởi"
+          ],
+          "matched_aliases": [
+            "干劲效果提升"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Established Support Effect label; narrower than the already-canonical generic Mood state."
+        }
+      ],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [
+        {
+          "id": "state.mood",
+          "preferred": "Mood",
+          "accepted": [
+            "Mood"
+          ],
+          "forbidden": [
+            "Tinh thần",
+            "Hứng khởi"
+          ],
+          "matched_aliases": [
+            "干劲"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "ja": [
+            "やる気"
+          ],
+          "note": "干劲 is the zh-CN bridge for the player-facing Mood state. Do not normalize it to generic Vietnamese wording such as 'Tinh thần' or 'Hứng khởi'."
+        }
+      ],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": "c42f21f04ee9cb206637e3ffe79ea0932701ee94f39273dc9b466b6fbbfd69af",
+      "canonical_findings": [],
+      "item_context_sha256": "5d6bee39f1e78146e8569bddf6ac0023c17e22ecf83536b47a28196bb597f0ae"
+    },
+    {
+      "uid": "zhcn:a853180912b779d37d6e6a99",
+      "source_batch": 205,
+      "entry_index": 54,
+      "kind": "text_data",
+      "source_path": "text_data_dict.json",
+      "json_path": [
+        "155",
+        "20016"
+      ],
+      "key": null,
+      "source_text": "友情加成&初始牵绊值提升",
+      "source_fingerprint": "7213b2df432b8822d509913bc8f7bf8372ffb281ad6610f11dd4d8f5dade0be2",
+      "current_text": "Friendship Bonus & Initial Friendship",
+      "current_fingerprint": "d179604fe43aa4bd1f49b5944ebdd8270ad547a084727a7731b3a390b521e325",
+      "risk_flags": [
+        "very_long_target",
+        "community_term",
+        "community_term_mismatch",
+        "increase_direction_risk"
+      ],
+      "risk_score": 16,
+      "locked_terms": [],
+      "community_terms": [
+        {
+          "id": "common.friendship_gauge.support_effects",
+          "preferred": "Friendship Gauge",
+          "accepted": [
+            "Friendship Gauge"
+          ],
+          "forbidden": [
+            "Gắn kết",
+            "gắn kết",
+            "Giá trị liên kết",
+            "giá trị liên kết",
+            "Điểm liên kết",
+            "điểm liên kết"
+          ],
+          "matched_aliases": [
+            "牵绊值"
+          ],
+          "accepted_present": false,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Category 155 support-effect descriptions use 羁绊值/牵绊值 for the Support Card Friendship Gauge. The category guard prevents ordinary friendship/bond prose from being normalized to this mechanic."
+        },
+        {
+          "id": "support.friendship_bonus.effect155",
+          "preferred": "Friendship Bonus",
+          "accepted": [
+            "Friendship Bonus"
+          ],
+          "forbidden": [
+            "Thưởng tình bạn",
+            "thưởng tình bạn"
+          ],
+          "matched_aliases": [
+            "友情加成"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Support Effect label in category 155; scope prevents ordinary friendship prose from matching."
+        },
+        {
+          "id": "support.initial_friendship.effect155",
+          "preferred": "Initial Friendship",
+          "accepted": [
+            "Initial Friendship"
+          ],
+          "forbidden": [
+            "Liên kết ban đầu",
+            "liên kết ban đầu",
+            "Gắn kết ban đầu",
+            "gắn kết ban đầu"
+          ],
+          "matched_aliases": [
+            "初始牵绊值"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Support Effect starting Friendship value; category scope avoids generic relationship prose."
+        }
+      ],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [],
+      "item_context_sha256": "ddf2fb87e1f3d6d278931243344165d836179b880ad433a128771e72521643d0"
+    },
+    {
+      "uid": "zhcn:49c0c4f43ed437b34117618d",
+      "source_batch": 205,
+      "entry_index": 56,
+      "kind": "text_data",
+      "source_path": "text_data_dict.json",
+      "json_path": [
+        "155",
+        "20018"
+      ],
+      "key": null,
+      "source_text": "训练效果提升&初始智力提升",
+      "source_fingerprint": "2871dba91f5b2a02555b48977c2f373237ef07be6463b2b8a0be6a7bf9e25f1d",
+      "current_text": "Training Effectiveness & Tăng Wit ban đầu",
+      "current_fingerprint": "2accd0a7325d5ca3891f0bc02ee6b2bd8671e1cbb0311c230886d7cf0f441694",
+      "risk_flags": [
+        "very_long_target",
+        "community_term"
+      ],
+      "risk_score": 5,
+      "locked_terms": [],
+      "community_terms": [
+        {
+          "id": "common.stat.wit",
+          "preferred": "Wit",
+          "accepted": [
+            "Wit"
+          ],
+          "forbidden": [
+            "Trí tuệ"
+          ],
+          "matched_aliases": [
+            "智力"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Common EN-version Wit stat label. The zh-CN alias 智力 is context-sensitive and must not canonicalize ordinary compounds such as 智力扣 (a disentanglement puzzle/toy)."
+        },
+        {
+          "id": "support.training_effectiveness.effect155",
+          "preferred": "Training Effectiveness",
+          "accepted": [
+            "Training Effectiveness"
+          ],
+          "forbidden": [
+            "Tăng hiệu quả huấn luyện",
+            "tăng hiệu quả huấn luyện",
+            "Hiệu quả huấn luyện"
+          ],
+          "matched_aliases": [
+            "训练效果提升"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Established Support Effect label for training effectiveness, limited to support-effect category 155."
+        }
+      ],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [],
+      "item_context_sha256": "a90c3d13f18595218cd26d527b0460dafbf9672113213f8b711bec062666c9bc"
+    },
+    {
+      "uid": "zhcn:b2e07cdbcb95579766a1f61f",
+      "source_batch": 205,
+      "entry_index": 58,
+      "kind": "text_data",
+      "source_path": "text_data_dict.json",
+      "json_path": [
+        "155",
+        "20020"
+      ],
+      "key": null,
+      "source_text": "速度加成&初始速度提升",
+      "source_fingerprint": "8f0929feb1594a5e02cbca2ecc3aa03dff644bef3d2a6e7db96fda602b290c38",
+      "current_text": "Speed Bonus & Tăng Speed ban đầu",
+      "current_fingerprint": "fe321d05f0cefc5ef06ddb75ff6643801d269c41be4120a4d7396959bd290dc9",
+      "risk_flags": [
+        "community_term"
+      ],
+      "risk_score": 2,
+      "locked_terms": [],
+      "community_terms": [
+        {
+          "id": "common.stat.speed.context",
+          "preferred": "Speed",
+          "accepted": [
+            "Speed"
+          ],
+          "forbidden": [],
+          "matched_aliases": [
+            "速度加成"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Narrow player-facing Speed stat contexts. No global forbidden Tốc độ token is used here because the same sentence may also describe literal/max/running speed."
+        },
+        {
+          "id": "support.speed_bonus.effect155",
+          "preferred": "Speed Bonus",
+          "accepted": [
+            "Speed Bonus"
+          ],
+          "forbidden": [
+            "Thưởng Tốc độ",
+            "Thưởng tốc độ"
+          ],
+          "matched_aliases": [
+            "速度加成"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Repeated player-facing Support Effect bonus label in category 155; ordinary stat prose remains unscoped."
+        }
+      ],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [],
+      "item_context_sha256": "18f2ec04cb200fb62e434212950eb4ce42f503a2ba0131fadcc09576572a35c6"
+    },
+    {
+      "uid": "zhcn:8e3b3b55fb0147eac6641268",
+      "source_batch": 205,
+      "entry_index": 63,
+      "kind": "text_data",
+      "source_path": "text_data_dict.json",
+      "json_path": [
+        "155",
+        "20025"
+      ],
+      "key": null,
+      "source_text": "智力加成&得意率提升",
+      "source_fingerprint": "dfdb0fb4ea1d49abc7ea83bb54f500b6bd00d18e4420285531116d2c001f895c",
+      "current_text": "Wit Bonus & Specialty Priority",
+      "current_fingerprint": "fc49090bbcf4984fb8b1fe81f445908311bcdc9544f360c31ba72917f50aef60",
+      "risk_flags": [
+        "community_term",
+        "increase_direction_risk"
+      ],
+      "risk_score": 7,
+      "locked_terms": [],
+      "community_terms": [
+        {
+          "id": "common.stat.wit",
+          "preferred": "Wit",
+          "accepted": [
+            "Wit"
+          ],
+          "forbidden": [
+            "Trí tuệ"
+          ],
+          "matched_aliases": [
+            "智力"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Common EN-version Wit stat label. The zh-CN alias 智力 is context-sensitive and must not canonicalize ordinary compounds such as 智力扣 (a disentanglement puzzle/toy)."
+        },
+        {
+          "id": "support.specialty_priority.effect155",
+          "preferred": "Specialty Priority",
+          "accepted": [
+            "Specialty Priority"
+          ],
+          "forbidden": [
+            "Tăng tỷ lệ sở trường",
+            "tăng tỷ lệ sở trường",
+            "Tỷ lệ sở trường"
+          ],
+          "matched_aliases": [
+            "得意率提升"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Established Support Effect label for increased appearance at the card's specialty training."
+        },
+        {
+          "id": "support.wit_bonus.effect155",
+          "preferred": "Wit Bonus",
+          "accepted": [
+            "Wit Bonus"
+          ],
+          "forbidden": [
+            "Thưởng Trí tuệ",
+            "Thưởng trí tuệ"
+          ],
+          "matched_aliases": [
+            "智力加成"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Repeated player-facing Support Effect bonus label in category 155; ordinary stat prose remains unscoped."
+        }
+      ],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [],
+      "item_context_sha256": "9bb2f5188014a217c6beb64d1ba5a2995b62627577c8585b15a2d5cf70d3aaad"
+    },
+    {
+      "uid": "zhcn:b3b1dde7329d237bf772397e",
+      "source_batch": 205,
+      "entry_index": 64,
+      "kind": "text_data",
+      "source_path": "text_data_dict.json",
+      "json_path": [
+        "155",
+        "20026"
+      ],
+      "key": null,
+      "source_text": "训练效果提升&初始智力提升",
+      "source_fingerprint": "2871dba91f5b2a02555b48977c2f373237ef07be6463b2b8a0be6a7bf9e25f1d",
+      "current_text": "Training Effectiveness & Tăng Wit ban đầu",
+      "current_fingerprint": "2accd0a7325d5ca3891f0bc02ee6b2bd8671e1cbb0311c230886d7cf0f441694",
+      "risk_flags": [
+        "very_long_target",
+        "community_term"
+      ],
+      "risk_score": 5,
+      "locked_terms": [],
+      "community_terms": [
+        {
+          "id": "common.stat.wit",
+          "preferred": "Wit",
+          "accepted": [
+            "Wit"
+          ],
+          "forbidden": [
+            "Trí tuệ"
+          ],
+          "matched_aliases": [
+            "智力"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Common EN-version Wit stat label. The zh-CN alias 智力 is context-sensitive and must not canonicalize ordinary compounds such as 智力扣 (a disentanglement puzzle/toy)."
+        },
+        {
+          "id": "support.training_effectiveness.effect155",
+          "preferred": "Training Effectiveness",
+          "accepted": [
+            "Training Effectiveness"
+          ],
+          "forbidden": [
+            "Tăng hiệu quả huấn luyện",
+            "tăng hiệu quả huấn luyện",
+            "Hiệu quả huấn luyện"
+          ],
+          "matched_aliases": [
+            "训练效果提升"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Established Support Effect label for training effectiveness, limited to support-effect category 155."
+        }
+      ],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [],
+      "item_context_sha256": "a90c3d13f18595218cd26d527b0460dafbf9672113213f8b711bec062666c9bc"
+    },
+    {
+      "uid": "zhcn:c146bcfc4e4b8e7cbfa4eac1",
+      "source_batch": 205,
+      "entry_index": 67,
+      "kind": "text_data",
+      "source_path": "text_data_dict.json",
+      "json_path": [
+        "155",
+        "20029"
+      ],
+      "key": null,
+      "source_text": "友情加成&初始牵绊值提升",
+      "source_fingerprint": "7213b2df432b8822d509913bc8f7bf8372ffb281ad6610f11dd4d8f5dade0be2",
+      "current_text": "Friendship Bonus & Initial Friendship",
+      "current_fingerprint": "d179604fe43aa4bd1f49b5944ebdd8270ad547a084727a7731b3a390b521e325",
+      "risk_flags": [
+        "very_long_target",
+        "community_term",
+        "community_term_mismatch",
+        "increase_direction_risk"
+      ],
+      "risk_score": 16,
+      "locked_terms": [],
+      "community_terms": [
+        {
+          "id": "common.friendship_gauge.support_effects",
+          "preferred": "Friendship Gauge",
+          "accepted": [
+            "Friendship Gauge"
+          ],
+          "forbidden": [
+            "Gắn kết",
+            "gắn kết",
+            "Giá trị liên kết",
+            "giá trị liên kết",
+            "Điểm liên kết",
+            "điểm liên kết"
+          ],
+          "matched_aliases": [
+            "牵绊值"
+          ],
+          "accepted_present": false,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Category 155 support-effect descriptions use 羁绊值/牵绊值 for the Support Card Friendship Gauge. The category guard prevents ordinary friendship/bond prose from being normalized to this mechanic."
+        },
+        {
+          "id": "support.friendship_bonus.effect155",
+          "preferred": "Friendship Bonus",
+          "accepted": [
+            "Friendship Bonus"
+          ],
+          "forbidden": [
+            "Thưởng tình bạn",
+            "thưởng tình bạn"
+          ],
+          "matched_aliases": [
+            "友情加成"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Support Effect label in category 155; scope prevents ordinary friendship prose from matching."
+        },
+        {
+          "id": "support.initial_friendship.effect155",
+          "preferred": "Initial Friendship",
+          "accepted": [
+            "Initial Friendship"
+          ],
+          "forbidden": [
+            "Liên kết ban đầu",
+            "liên kết ban đầu",
+            "Gắn kết ban đầu",
+            "gắn kết ban đầu"
+          ],
+          "matched_aliases": [
+            "初始牵绊值"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Support Effect starting Friendship value; category scope avoids generic relationship prose."
+        }
+      ],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [],
+      "item_context_sha256": "ddf2fb87e1f3d6d278931243344165d836179b880ad433a128771e72521643d0"
+    },
+    {
+      "uid": "zhcn:50f22707f434b340ffc8f07c",
+      "source_batch": 205,
+      "entry_index": 69,
+      "kind": "text_data",
+      "source_path": "text_data_dict.json",
+      "json_path": [
+        "155",
+        "20031"
+      ],
+      "key": null,
+      "source_text": "友情加成&初始牵绊值提升",
+      "source_fingerprint": "7213b2df432b8822d509913bc8f7bf8372ffb281ad6610f11dd4d8f5dade0be2",
+      "current_text": "Friendship Bonus & Initial Friendship",
+      "current_fingerprint": "d179604fe43aa4bd1f49b5944ebdd8270ad547a084727a7731b3a390b521e325",
+      "risk_flags": [
+        "very_long_target",
+        "community_term",
+        "community_term_mismatch",
+        "increase_direction_risk"
+      ],
+      "risk_score": 16,
+      "locked_terms": [],
+      "community_terms": [
+        {
+          "id": "common.friendship_gauge.support_effects",
+          "preferred": "Friendship Gauge",
+          "accepted": [
+            "Friendship Gauge"
+          ],
+          "forbidden": [
+            "Gắn kết",
+            "gắn kết",
+            "Giá trị liên kết",
+            "giá trị liên kết",
+            "Điểm liên kết",
+            "điểm liên kết"
+          ],
+          "matched_aliases": [
+            "牵绊值"
+          ],
+          "accepted_present": false,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Category 155 support-effect descriptions use 羁绊值/牵绊值 for the Support Card Friendship Gauge. The category guard prevents ordinary friendship/bond prose from being normalized to this mechanic."
+        },
+        {
+          "id": "support.friendship_bonus.effect155",
+          "preferred": "Friendship Bonus",
+          "accepted": [
+            "Friendship Bonus"
+          ],
+          "forbidden": [
+            "Thưởng tình bạn",
+            "thưởng tình bạn"
+          ],
+          "matched_aliases": [
+            "友情加成"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Support Effect label in category 155; scope prevents ordinary friendship prose from matching."
+        },
+        {
+          "id": "support.initial_friendship.effect155",
+          "preferred": "Initial Friendship",
+          "accepted": [
+            "Initial Friendship"
+          ],
+          "forbidden": [
+            "Liên kết ban đầu",
+            "liên kết ban đầu",
+            "Gắn kết ban đầu",
+            "gắn kết ban đầu"
+          ],
+          "matched_aliases": [
+            "初始牵绊值"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Support Effect starting Friendship value; category scope avoids generic relationship prose."
+        }
+      ],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [],
+      "item_context_sha256": "ddf2fb87e1f3d6d278931243344165d836179b880ad433a128771e72521643d0"
+    },
+    {
+      "uid": "zhcn:11a4436b031f9681aeec3d18",
+      "source_batch": 205,
+      "entry_index": 71,
+      "kind": "text_data",
+      "source_path": "text_data_dict.json",
+      "json_path": [
+        "155",
+        "20033"
+      ],
+      "key": null,
+      "source_text": "速度加成&得意率提升",
+      "source_fingerprint": "2c83656944833fa3a1d85201bd3b227e941b72eba55eec89304cbf035a7e2c90",
+      "current_text": "Speed Bonus & Specialty Priority",
+      "current_fingerprint": "e76f59e3324c34286b23c569e022fa35507a6a7e0c34980abddfb37820b7a5f8",
+      "risk_flags": [
+        "very_long_target",
+        "community_term",
+        "increase_direction_risk"
+      ],
+      "risk_score": 10,
+      "locked_terms": [],
+      "community_terms": [
+        {
+          "id": "common.stat.speed.context",
+          "preferred": "Speed",
+          "accepted": [
+            "Speed"
+          ],
+          "forbidden": [],
+          "matched_aliases": [
+            "速度加成"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Narrow player-facing Speed stat contexts. No global forbidden Tốc độ token is used here because the same sentence may also describe literal/max/running speed."
+        },
+        {
+          "id": "support.specialty_priority.effect155",
+          "preferred": "Specialty Priority",
+          "accepted": [
+            "Specialty Priority"
+          ],
+          "forbidden": [
+            "Tăng tỷ lệ sở trường",
+            "tăng tỷ lệ sở trường",
+            "Tỷ lệ sở trường"
+          ],
+          "matched_aliases": [
+            "得意率提升"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Established Support Effect label for increased appearance at the card's specialty training."
+        },
+        {
+          "id": "support.speed_bonus.effect155",
+          "preferred": "Speed Bonus",
+          "accepted": [
+            "Speed Bonus"
+          ],
+          "forbidden": [
+            "Thưởng Tốc độ",
+            "Thưởng tốc độ"
+          ],
+          "matched_aliases": [
+            "速度加成"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Repeated player-facing Support Effect bonus label in category 155; ordinary stat prose remains unscoped."
+        }
+      ],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [],
+      "item_context_sha256": "046d735a53a67cc5397f65f86c322ca6e0650a10cd152cfd1f16b928bd7e2b82"
+    },
+    {
+      "uid": "zhcn:20696f9902595e1f85ccbb05",
+      "source_batch": 205,
+      "entry_index": 75,
+      "kind": "text_data",
+      "source_path": "text_data_dict.json",
+      "json_path": [
+        "155",
+        "20037"
+      ],
+      "key": null,
+      "source_text": "力量加成&初始牵绊值提升",
+      "source_fingerprint": "9e02ec338154664f126fc8a063400826602a0d6afb823648d4d9c72257daae83",
+      "current_text": "Power Bonus & Initial Friendship",
+      "current_fingerprint": "4e02be7c418049ae65e8e62ab5f2aa24d89dc370054bce57d090c5840f0d74f8",
+      "risk_flags": [
+        "community_term",
+        "community_term_mismatch",
+        "increase_direction_risk"
+      ],
+      "risk_score": 13,
+      "locked_terms": [],
+      "community_terms": [
+        {
+          "id": "common.stat.power",
+          "preferred": "Power",
+          "accepted": [
+            "Power"
+          ],
+          "forbidden": [
+            "Sức mạnh"
+          ],
+          "matched_aliases": [
+            "力量"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Common EN-version Power stat label. The zh-CN alias 力量 is ambiguous in ordinary prose and can also occur inside proper names such as 莱茵力量 (Rhein Kraft); known non-stat compounds, names, descriptive titles, and narrative/metaphorical phrases are explicitly excluded so physical or emotional strength is not normalized to the stat label."
+        },
+        {
+          "id": "common.friendship_gauge.support_effects",
+          "preferred": "Friendship Gauge",
+          "accepted": [
+            "Friendship Gauge"
+          ],
+          "forbidden": [
+            "Gắn kết",
+            "gắn kết",
+            "Giá trị liên kết",
+            "giá trị liên kết",
+            "Điểm liên kết",
+            "điểm liên kết"
+          ],
+          "matched_aliases": [
+            "牵绊值"
+          ],
+          "accepted_present": false,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Category 155 support-effect descriptions use 羁绊值/牵绊值 for the Support Card Friendship Gauge. The category guard prevents ordinary friendship/bond prose from being normalized to this mechanic."
+        },
+        {
+          "id": "support.initial_friendship.effect155",
+          "preferred": "Initial Friendship",
+          "accepted": [
+            "Initial Friendship"
+          ],
+          "forbidden": [
+            "Liên kết ban đầu",
+            "liên kết ban đầu",
+            "Gắn kết ban đầu",
+            "gắn kết ban đầu"
+          ],
+          "matched_aliases": [
+            "初始牵绊值"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Support Effect starting Friendship value; category scope avoids generic relationship prose."
+        },
+        {
+          "id": "support.power_bonus.effect155",
+          "preferred": "Power Bonus",
+          "accepted": [
+            "Power Bonus"
+          ],
+          "forbidden": [
+            "Thưởng Sức mạnh",
+            "Thưởng sức mạnh"
+          ],
+          "matched_aliases": [
+            "力量加成"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Repeated player-facing Support Effect bonus label in category 155; ordinary stat prose remains unscoped."
+        }
+      ],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [],
+      "item_context_sha256": "f8ae74eb9c224bcd614c7c8a83d6913376e40756f9394a7363dffaf303255802"
+    },
+    {
+      "uid": "zhcn:fcfe14018c5cf2f2534acf14",
+      "source_batch": 205,
+      "entry_index": 76,
+      "kind": "text_data",
+      "source_path": "text_data_dict.json",
+      "json_path": [
+        "155",
+        "20038"
+      ],
+      "key": null,
+      "source_text": "训练效果提升&初始速度提升",
+      "source_fingerprint": "d1adc68bcdb63f9edd32eb3e407fe7efc59c4633775ac63ca6406d24b5d6eca0",
+      "current_text": "Training Effectiveness & Tăng Speed ban đầu",
+      "current_fingerprint": "fddae7f55a24be3c71d60c4e39dd43774ec1c6f56395d2325c9b5645986acf44",
+      "risk_flags": [
+        "very_long_target",
+        "community_term"
+      ],
+      "risk_score": 5,
+      "locked_terms": [],
+      "community_terms": [
+        {
+          "id": "support.training_effectiveness.effect155",
+          "preferred": "Training Effectiveness",
+          "accepted": [
+            "Training Effectiveness"
+          ],
+          "forbidden": [
+            "Tăng hiệu quả huấn luyện",
+            "tăng hiệu quả huấn luyện",
+            "Hiệu quả huấn luyện"
+          ],
+          "matched_aliases": [
+            "训练效果提升"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Established Support Effect label for training effectiveness, limited to support-effect category 155."
+        }
+      ],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [],
+      "item_context_sha256": "031a34ec3788f8b14a02487d9812dbed1689b7f6279e13e7a9e8eb9321f1bccc"
+    },
+    {
+      "uid": "zhcn:27fec9f8d9fe29eea45758aa",
+      "source_batch": 205,
+      "entry_index": 79,
+      "kind": "text_data",
+      "source_path": "text_data_dict.json",
+      "json_path": [
+        "155",
+        "20041"
+      ],
+      "key": null,
+      "source_text": "速度加成&比赛加成",
+      "source_fingerprint": "6ddab7bd9007f2da94f17c4ca67059f60736d146cd8f7e6ebd9cb1d27d7e45d4",
+      "current_text": "Speed Bonus & Thưởng cuộc đua",
+      "current_fingerprint": "fbde177faf2f9c78f73dd2d682a0fbd552e9e78918253578bfb447e8c66edfd7",
+      "risk_flags": [
+        "very_long_target",
+        "community_term"
+      ],
+      "risk_score": 5,
+      "locked_terms": [
+        {
+          "id": "race.generic",
+          "target_vi": "Cuộc đua",
+          "matched_aliases": [
+            "比赛"
+          ],
+          "present": true
+        }
+      ],
+      "community_terms": [
+        {
+          "id": "common.stat.speed.context",
+          "preferred": "Speed",
+          "accepted": [
+            "Speed"
+          ],
+          "forbidden": [],
+          "matched_aliases": [
+            "速度加成"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Narrow player-facing Speed stat contexts. No global forbidden Tốc độ token is used here because the same sentence may also describe literal/max/running speed."
+        },
+        {
+          "id": "support.speed_bonus.effect155",
+          "preferred": "Speed Bonus",
+          "accepted": [
+            "Speed Bonus"
+          ],
+          "forbidden": [
+            "Thưởng Tốc độ",
+            "Thưởng tốc độ"
+          ],
+          "matched_aliases": [
+            "速度加成"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Repeated player-facing Support Effect bonus label in category 155; ordinary stat prose remains unscoped."
+        }
+      ],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [],
+      "item_context_sha256": "28887c71e941fd82d0acb947789d0604d9f4af29fbf822338ce54f9af23e4fd6"
+    },
+    {
+      "uid": "zhcn:39b424f9955e6332d46dcd9d",
+      "source_batch": 206,
+      "entry_index": 1,
+      "kind": "text_data",
+      "source_path": "text_data_dict.json",
+      "json_path": [
+        "155",
+        "20043"
+      ],
+      "key": null,
+      "source_text": "训练效果提升&初始力量提升",
+      "source_fingerprint": "4c79bc07a082d4444c2051749ca6028350066f93275a11f65615ff275fca9f1e",
+      "current_text": "Training Effectiveness & Tăng Power ban đầu",
+      "current_fingerprint": "5b1c1fc34ec7d8d39392a4479de965f50c660160b34b43aae1f614d5cf74093a",
+      "risk_flags": [
+        "very_long_target",
+        "community_term"
+      ],
+      "risk_score": 5,
+      "locked_terms": [],
+      "community_terms": [
+        {
+          "id": "common.stat.power",
+          "preferred": "Power",
+          "accepted": [
+            "Power"
+          ],
+          "forbidden": [
+            "Sức mạnh"
+          ],
+          "matched_aliases": [
+            "力量"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Common EN-version Power stat label. The zh-CN alias 力量 is ambiguous in ordinary prose and can also occur inside proper names such as 莱茵力量 (Rhein Kraft); known non-stat compounds, names, descriptive titles, and narrative/metaphorical phrases are explicitly excluded so physical or emotional strength is not normalized to the stat label."
+        },
+        {
+          "id": "support.training_effectiveness.effect155",
+          "preferred": "Training Effectiveness",
+          "accepted": [
+            "Training Effectiveness"
+          ],
+          "forbidden": [
+            "Tăng hiệu quả huấn luyện",
+            "tăng hiệu quả huấn luyện",
+            "Hiệu quả huấn luyện"
+          ],
+          "matched_aliases": [
+            "训练效果提升"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Established Support Effect label for training effectiveness, limited to support-effect category 155."
+        }
+      ],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [],
+      "item_context_sha256": "2cd9659cf99f7f60c12d513c8a73db09b93ceaa36e0581f2fd074f262e6f111a"
+    },
+    {
+      "uid": "zhcn:30894f68594b35e037a1c7a8",
+      "source_batch": 206,
+      "entry_index": 3,
+      "kind": "text_data",
+      "source_path": "text_data_dict.json",
+      "json_path": [
+        "155",
+        "20045"
+      ],
+      "key": null,
+      "source_text": "训练效果提升&初始力量提升",
+      "source_fingerprint": "4c79bc07a082d4444c2051749ca6028350066f93275a11f65615ff275fca9f1e",
+      "current_text": "Training Effectiveness & Tăng Power ban đầu",
+      "current_fingerprint": "5b1c1fc34ec7d8d39392a4479de965f50c660160b34b43aae1f614d5cf74093a",
+      "risk_flags": [
+        "very_long_target",
+        "community_term"
+      ],
+      "risk_score": 5,
+      "locked_terms": [],
+      "community_terms": [
+        {
+          "id": "common.stat.power",
+          "preferred": "Power",
+          "accepted": [
+            "Power"
+          ],
+          "forbidden": [
+            "Sức mạnh"
+          ],
+          "matched_aliases": [
+            "力量"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Common EN-version Power stat label. The zh-CN alias 力量 is ambiguous in ordinary prose and can also occur inside proper names such as 莱茵力量 (Rhein Kraft); known non-stat compounds, names, descriptive titles, and narrative/metaphorical phrases are explicitly excluded so physical or emotional strength is not normalized to the stat label."
+        },
+        {
+          "id": "support.training_effectiveness.effect155",
+          "preferred": "Training Effectiveness",
+          "accepted": [
+            "Training Effectiveness"
+          ],
+          "forbidden": [
+            "Tăng hiệu quả huấn luyện",
+            "tăng hiệu quả huấn luyện",
+            "Hiệu quả huấn luyện"
+          ],
+          "matched_aliases": [
+            "训练效果提升"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Established Support Effect label for training effectiveness, limited to support-effect category 155."
+        }
+      ],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [],
+      "item_context_sha256": "2cd9659cf99f7f60c12d513c8a73db09b93ceaa36e0581f2fd074f262e6f111a"
+    },
+    {
+      "uid": "zhcn:1fbf523af69258c285dc589e",
+      "source_batch": 206,
+      "entry_index": 4,
+      "kind": "text_data",
+      "source_path": "text_data_dict.json",
+      "json_path": [
+        "155",
+        "20046"
+      ],
+      "key": null,
+      "source_text": "训练效果提升&初始智力提升",
+      "source_fingerprint": "2871dba91f5b2a02555b48977c2f373237ef07be6463b2b8a0be6a7bf9e25f1d",
+      "current_text": "Training Effectiveness & Tăng Wit ban đầu",
+      "current_fingerprint": "2accd0a7325d5ca3891f0bc02ee6b2bd8671e1cbb0311c230886d7cf0f441694",
+      "risk_flags": [
+        "very_long_target",
+        "community_term"
+      ],
+      "risk_score": 5,
+      "locked_terms": [],
+      "community_terms": [
+        {
+          "id": "common.stat.wit",
+          "preferred": "Wit",
+          "accepted": [
+            "Wit"
+          ],
+          "forbidden": [
+            "Trí tuệ"
+          ],
+          "matched_aliases": [
+            "智力"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Common EN-version Wit stat label. The zh-CN alias 智力 is context-sensitive and must not canonicalize ordinary compounds such as 智力扣 (a disentanglement puzzle/toy)."
+        },
+        {
+          "id": "support.training_effectiveness.effect155",
+          "preferred": "Training Effectiveness",
+          "accepted": [
+            "Training Effectiveness"
+          ],
+          "forbidden": [
+            "Tăng hiệu quả huấn luyện",
+            "tăng hiệu quả huấn luyện",
+            "Hiệu quả huấn luyện"
+          ],
+          "matched_aliases": [
+            "训练效果提升"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Established Support Effect label for training effectiveness, limited to support-effect category 155."
+        }
+      ],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [],
+      "item_context_sha256": "a90c3d13f18595218cd26d527b0460dafbf9672113213f8b711bec062666c9bc"
+    },
+    {
+      "uid": "zhcn:88c529b67c3958ddac41be6d",
+      "source_batch": 206,
+      "entry_index": 6,
+      "kind": "text_data",
+      "source_path": "text_data_dict.json",
+      "json_path": [
+        "155",
+        "20048"
+      ],
+      "key": null,
+      "source_text": "力量加成&比赛加成",
+      "source_fingerprint": "02401c530940b0b3dcd3e22865af6df95030aa8fb8c621a9cf2b04955a6fb1ec",
+      "current_text": "Power Bonus & Thưởng Cuộc đua",
+      "current_fingerprint": "d0f5d4ae1832146f2c42d2aeba98be0b522352a5f21a004763f9d17bf4a5188f",
+      "risk_flags": [
+        "very_long_target",
+        "community_term"
+      ],
+      "risk_score": 5,
+      "locked_terms": [
+        {
+          "id": "race.generic",
+          "target_vi": "Cuộc đua",
+          "matched_aliases": [
+            "比赛"
+          ],
+          "present": true
+        }
+      ],
+      "community_terms": [
+        {
+          "id": "common.stat.power",
+          "preferred": "Power",
+          "accepted": [
+            "Power"
+          ],
+          "forbidden": [
+            "Sức mạnh"
+          ],
+          "matched_aliases": [
+            "力量"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Common EN-version Power stat label. The zh-CN alias 力量 is ambiguous in ordinary prose and can also occur inside proper names such as 莱茵力量 (Rhein Kraft); known non-stat compounds, names, descriptive titles, and narrative/metaphorical phrases are explicitly excluded so physical or emotional strength is not normalized to the stat label."
+        },
+        {
+          "id": "support.power_bonus.effect155",
+          "preferred": "Power Bonus",
+          "accepted": [
+            "Power Bonus"
+          ],
+          "forbidden": [
+            "Thưởng Sức mạnh",
+            "Thưởng sức mạnh"
+          ],
+          "matched_aliases": [
+            "力量加成"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Repeated player-facing Support Effect bonus label in category 155; ordinary stat prose remains unscoped."
+        }
+      ],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [],
+      "item_context_sha256": "86e3786a6f198bbc476758525f7e1ba7ad838e161fcfcc9ac052ff83e6249a18"
+    },
+    {
+      "uid": "zhcn:fb656f1ebfa919677d4d7206",
+      "source_batch": 206,
+      "entry_index": 7,
+      "kind": "text_data",
+      "source_path": "text_data_dict.json",
+      "json_path": [
+        "155",
+        "20049"
+      ],
+      "key": null,
+      "source_text": "速度加成&初始智力提升",
+      "source_fingerprint": "af25217d9e49f133d2dd97739812c82b2c57e238ba276593079f81a17ea510e8",
+      "current_text": "Speed Bonus & Tăng Wit ban đầu",
+      "current_fingerprint": "15383fce09a2dd3aadad2a352c5a8032a90131a0eac2365ce01f6c8aabb3cdbf",
+      "risk_flags": [
+        "community_term"
+      ],
+      "risk_score": 2,
+      "locked_terms": [],
+      "community_terms": [
+        {
+          "id": "common.stat.speed.context",
+          "preferred": "Speed",
+          "accepted": [
+            "Speed"
+          ],
+          "forbidden": [],
+          "matched_aliases": [
+            "速度加成"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Narrow player-facing Speed stat contexts. No global forbidden Tốc độ token is used here because the same sentence may also describe literal/max/running speed."
+        },
+        {
+          "id": "common.stat.wit",
+          "preferred": "Wit",
+          "accepted": [
+            "Wit"
+          ],
+          "forbidden": [
+            "Trí tuệ"
+          ],
+          "matched_aliases": [
+            "智力"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Common EN-version Wit stat label. The zh-CN alias 智力 is context-sensitive and must not canonicalize ordinary compounds such as 智力扣 (a disentanglement puzzle/toy)."
+        },
+        {
+          "id": "support.speed_bonus.effect155",
+          "preferred": "Speed Bonus",
+          "accepted": [
+            "Speed Bonus"
+          ],
+          "forbidden": [
+            "Thưởng Tốc độ",
+            "Thưởng tốc độ"
+          ],
+          "matched_aliases": [
+            "速度加成"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Repeated player-facing Support Effect bonus label in category 155; ordinary stat prose remains unscoped."
+        }
+      ],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [],
+      "item_context_sha256": "90eeeea71bf14517c5afb233954ea3a657195724f15ea1adb804e2956c147d43"
+    },
+    {
+      "uid": "zhcn:7d3103892bd58079e37b31b8",
+      "source_batch": 206,
+      "entry_index": 13,
+      "kind": "text_data",
+      "source_path": "text_data_dict.json",
+      "json_path": [
+        "155",
+        "20055"
+      ],
+      "key": null,
+      "source_text": "友情加成&速度加成",
+      "source_fingerprint": "4f01424b4a08d27be6d5d5020c8b9284187161187cc993bdd388ef672d56b9b0",
+      "current_text": "Friendship Bonus & Speed Bonus",
+      "current_fingerprint": "5fd2a69946dd3824a6c2dc844092e58d908d945cfc6fcd691cf74e3dda677359",
+      "risk_flags": [
+        "very_long_target",
+        "community_term"
+      ],
+      "risk_score": 5,
+      "locked_terms": [],
+      "community_terms": [
+        {
+          "id": "common.stat.speed.context",
+          "preferred": "Speed",
+          "accepted": [
+            "Speed"
+          ],
+          "forbidden": [],
+          "matched_aliases": [
+            "速度加成"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Narrow player-facing Speed stat contexts. No global forbidden Tốc độ token is used here because the same sentence may also describe literal/max/running speed."
+        },
+        {
+          "id": "support.friendship_bonus.effect155",
+          "preferred": "Friendship Bonus",
+          "accepted": [
+            "Friendship Bonus"
+          ],
+          "forbidden": [
+            "Thưởng tình bạn",
+            "thưởng tình bạn"
+          ],
+          "matched_aliases": [
+            "友情加成"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Support Effect label in category 155; scope prevents ordinary friendship prose from matching."
+        },
+        {
+          "id": "support.speed_bonus.effect155",
+          "preferred": "Speed Bonus",
+          "accepted": [
+            "Speed Bonus"
+          ],
+          "forbidden": [
+            "Thưởng Tốc độ",
+            "Thưởng tốc độ"
+          ],
+          "matched_aliases": [
+            "速度加成"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Repeated player-facing Support Effect bonus label in category 155; ordinary stat prose remains unscoped."
+        }
+      ],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [],
+      "item_context_sha256": "1c28e9fe0c3711b0186a0f832661d0b201a6a1a93cc374b261b3e6911e3deb1b"
+    }
+  ]
+}

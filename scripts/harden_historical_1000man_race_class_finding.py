@@ -21,14 +21,14 @@ TERM = {
     "accepted": [TARGET],
     "forbidden": ["Dưới 10 triệu"],
     "require_accepted": True,
-    "invalidation_scope": "item",
+    "invalidation_scope": "source_path",
     "source_paths": ["localize_dict.json"],
-    "key_exact": ["Race0027"],
     "match_mode": "exact",
     "basis": (
         "1000万下 is the historical JRA earnings-based race-class label that was renamed to the "
-        "modern 2-win class (2勝クラス). Preserve the historical label in this UI entry rather than "
-        "modernizing it, and make the omitted yen unit explicit in Vietnamese."
+        "modern 2-win class (2勝クラス). Preserve the historical label wherever this exact system "
+        "label appears in localize_dict.json rather than modernizing it, and make the omitted yen "
+        "unit explicit in Vietnamese."
     ),
 }
 

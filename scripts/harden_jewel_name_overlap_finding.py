@@ -7,7 +7,7 @@ from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
 TERM_ID = "currency.jewel"
-EXCLUSION = "第一红宝石"
+EXCLUSIONS = ("第一红宝石", "绿宝石", "蓝宝石")
 
 
 def _load(path: Path) -> dict[str, Any]:
@@ -34,10 +34,10 @@ def harden(repo_root: Path = ROOT) -> bool:
             continue
         matched = True
         exclusions = [str(value) for value in term.get("exclude_source_contains", []) if str(value)]
-        term["exclude_source_contains"] = list(dict.fromkeys([*exclusions, EXCLUSION]))
+        term["exclude_source_contains"] = list(dict.fromkeys([*exclusions, *EXCLUSIONS]))
         term["context_note"] = (
             "宝石 is the Jewel currency only in actual currency context. Do not match the substring 宝石 "
-            "inside the character name 第一红宝石 (Daiichi Ruby)."
+            "inside character name 第一红宝石 (Daiichi Ruby) or gemstone compounds such as 绿宝石 and 蓝宝石."
         )
         break
     if not matched:

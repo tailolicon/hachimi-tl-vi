@@ -43,5 +43,21 @@ def test_jewel_hardener_preserves_currency_and_excludes_character_name(tmp_path:
         source_path="text_data_dict.json",
         json_path=["10", "10148"],
     )
+    emerald = locked_term_matches(
+        "碧波间的绿宝石",
+        "Ngọc Lục Bảo Giữa Sóng Biếc",
+        terms,
+        source_path="text_data_dict.json",
+        json_path=["14", "100230"],
+    )
+    sapphire = locked_term_matches(
+        "假日・蓝宝石",
+        "Ngày nghỉ・Sapphire",
+        terms,
+        source_path="text_data_dict.json",
+        json_path=["14", "105923"],
+    )
     assert currency[0]["id"] == TERM_ID
     assert character == []
+    assert emerald == []
+    assert sapphire == []

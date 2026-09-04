@@ -1,13 +1,22 @@
-# Canonical findings maintenance checkpoint — Monthly Twinkle investigation
+# Canonical findings maintenance checkpoint — Monthly Twinkle implementation
 
-After completing `cf-627cff2f8a91fb3f` (`光(NPC)`), the next useful proper-name investigation selected from live `active_findings` is the recurring in-world publication source `月刊Twinkle`.
+The recurring in-world publication `月刊Twinkle` is represented by two live proper-name findings:
+- `cf-3f76c45986ceefe6`, scoped to `localize_dict.json` key `Champions187003`.
+- `cf-fc0ace892355f4ce`, scoped to `localize_dict.json` key `Champions0507`.
 
-Live canonical findings currently contain two separate open findings for the same publication concept:
-- `cf-3f76c45986ceefe6`, scoped to `localize_dict.json` key `Champions187003`, source text `月刊Twinkle 号外`, current Vietnamese `Đặc san Twinkle`.
-- `cf-fc0ace892355f4ce`, scoped to key `Champions0507`, source text `月刊Twinkle 增刊`, current Vietnamese `Twinkle - Đặc san`.
+Both findings' canonical source is the base alias `月刊Twinkle` with `match_mode=contains`; the surrounding `号外` / `增刊` text is edition wording and is not part of the canonical publication identity. Historical review results consistently deferred both entries pending this canonical decision.
 
-Repository metadata marks both as the same concept, `Twinkle monthly publication title`, and says the recurring title needs one canonical rendering. This should therefore be resolved once at the canonical source rather than by two isolated rewrites.
+Evidence and decision:
+- Cygames' official JP portal identifies Otonashi Etsuko as a reporter for the magazine `月刊トゥインクル`, establishing this as a recurring proper publication title rather than generic prose.
+- The pinned zh-CN UI preserves the title element `Twinkle` as `月刊Twinkle`.
+- Established English-language Umamusume references render the publication as `Monthly Twinkle`.
+- Canonical target selected: `Monthly Twinkle`, at the community/proper-name layer. This is a deliberate project canonical rendering, not a claim that an official Global localization was found.
+- Matcher is item-scoped to `localize_dict.json` keys `Champions0507` and `Champions187003`; it locks only the base title and leaves edition suffix wording to the containing UI item.
 
-External identity check: the official Uma Musume JP portal describes Otonashi Etsuko as a reporter for `月刊トゥインクル`, confirming that this is an in-world magazine title rather than generic prose. A secondary English-language source renders the publication as `Monthly Twinkle`, but that secondary rendering is not sufficient by itself to lock an English/Vietnamese canonical target. Before implementation, check whether the repository has an authoritative Global/source-bridge title or established project convention for this publication; if absent, choose a documented canonical rendering deliberately rather than inferring from the two current localized strings.
+Durable implementation on `main`:
+- `scripts/harden_monthly_twinkle_finding.py` at commit `94ecd3f92f8d16e51642d772052b22ee177022b1`.
+- `tests/test_monthly_twinkle_finding_hardening.py` at commit `9f6f5cad5c84c9856514a548afa43195a110c2b4`.
+- Rule id: `publication.monthly_twinkle`; review decision id: `audit.finding.publication-monthly-twinkle`.
+- Regression coverage asserts both findings resolve through the same key-scoped contains rule, remain idempotent, and do not match an unrelated key.
 
-No canonical mutation has been made for this finding in this checkpoint.
+Production acceptance is still pending. Push-triggered `Validate`, `Sync translation context`, and `Sync translation review plan` runs for the implementation/test commits must succeed before incrementing the maintenance completion counter or claiming the findings closed. The context sync workflow automatically executes all `scripts/harden_*_finding.py` hardeners before applying review locks and persists generated glossary changes back to `main`.

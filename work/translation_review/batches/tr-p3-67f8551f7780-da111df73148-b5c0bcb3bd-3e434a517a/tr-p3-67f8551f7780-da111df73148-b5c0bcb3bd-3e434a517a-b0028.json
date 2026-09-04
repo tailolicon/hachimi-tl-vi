@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "policy_version": 3,
-  "plan_id": "tr-p3-67f8551f7780-8c44b931ab72-b5c0bcb3bd-44e8f58dff",
-  "batch_id": "tr-p3-67f8551f7780-8c44b931ab72-b5c0bcb3bd-44e8f58dff-b0028",
+  "plan_id": "tr-p3-67f8551f7780-da111df73148-b5c0bcb3bd-3e434a517a",
+  "batch_id": "tr-p3-67f8551f7780-da111df73148-b5c0bcb3bd-3e434a517a-b0028",
   "context_snapshot_sha256": "b5c0bcb3bd9ee5c45e7bedf49c8f8d6ad35c3ceb3c35f528c6381a63c684a967",
   "source_bridge_policy_sha256": "c42f21f04ee9cb206637e3ffe79ea0932701ee94f39273dc9b466b6fbbfd69af",
   "review_generation": "retrospective-canonical-full-review",
@@ -836,12 +836,33 @@
       "current_text": "Dưới 10 triệu",
       "current_fingerprint": "cd79b4580e80e703cb74e4a09ad03dadc4c180903b91dbe4448f41c4cbfea0e8",
       "risk_flags": [
+        "community_term",
+        "community_calque_risk",
+        "community_term_mismatch",
         "numeric_token_mismatch",
         "canonical_finding"
       ],
-      "risk_score": 45,
+      "risk_score": 61,
       "locked_terms": [],
-      "community_terms": [],
+      "community_terms": [
+        {
+          "id": "race.class.historical.1000man_below",
+          "preferred": "Hạng dưới 10 triệu yên",
+          "accepted": [
+            "Hạng dưới 10 triệu yên"
+          ],
+          "forbidden": [
+            "Dưới 10 triệu"
+          ],
+          "matched_aliases": [
+            "1000万下"
+          ],
+          "accepted_present": false,
+          "forbidden_present": true,
+          "require_accepted": true,
+          "basis": "1000万下 is the historical JRA earnings-based race-class label that was renamed to the modern 2-win class (2勝クラス). Preserve the historical label wherever this exact system label appears in localize_dict.json rather than modernizing it, and make the omitted yen unit explicit in Vietnamese."
+        }
+      ],
       "skill_name_canonical": null,
       "source_bridge_terms": [],
       "source_bridge_risks": [],

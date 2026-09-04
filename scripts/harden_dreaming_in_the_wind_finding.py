@@ -95,21 +95,21 @@ def harden(repo_root: Path = ROOT) -> bool:
         _write(reviews_path, reviews)
         changed = True
 
+    # The generated findings ledger may legitimately stop carrying this finding
+    # once another concurrent canonical refresh has already resolved/retired it.
+    # The permanent community rule + terminology decision must remain replay-safe
+    # in that state rather than turning every subsequent sync into a failure.
     findings_path = repo_root / "glossary" / "canonical_findings.json"
     findings = _load(findings_path, {"schema_version": 1, "findings": []})
     before = json.dumps(findings, ensure_ascii=False, sort_keys=True)
-    found = False
     for finding in findings.get("findings", []):
         if not isinstance(finding, dict) or finding.get("finding_id") != FINDING_ID:
             continue
-        found = True
         suggestions = [str(value) for value in finding.get("suggested_targets_vi", []) if str(value)]
         if TARGET not in suggestions:
             suggestions.append(TARGET)
         finding["suggested_targets_vi"] = suggestions
         break
-    if not found:
-        raise ValueError(f"missing canonical finding {FINDING_ID}")
     if before != json.dumps(findings, ensure_ascii=False, sort_keys=True):
         _write(findings_path, findings)
         changed = True

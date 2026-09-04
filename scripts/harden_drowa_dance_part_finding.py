@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-"""Resolve the one-off ドロワダンスパート finding without inventing a Latin title."""
+"""Resolve one-off Drowa dance-part findings without inventing Latin titles."""
 
 import json
 from pathlib import Path
@@ -8,6 +8,7 @@ from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE = "ドロワダンスパート"
+YEAR_SOURCE = "ドロワダンスパート2024"
 
 DECISION = {
     "decision_id": "audit.finding.drowa-dance-part-unverified-title",
@@ -24,6 +25,24 @@ DECISION = {
         "authoritative official/catalog Latin rendering for the complete Japanese string. Do not "
         "invent Drowa Dance Part (or a year-suffixed variant) as reusable canonical terminology; "
         "leave the item to ordinary translation review instead of keeping a project-wide blocker."
+    ),
+}
+
+YEAR_DECISION = {
+    "decision_id": "audit.finding.drowa-dance-part-2024-unverified-title",
+    "source_zh_cn": YEAR_SOURCE,
+    "action": "ignore",
+    "kind": "proper_name",
+    "category": "proper_name",
+    "invalidation_scope": "item",
+    "source_paths": ["text_data_dict.json"],
+    "json_path_prefixes": [["16", "1091"]],
+    "match_mode": "exact",
+    "note": (
+        "This year-suffixed one-off title is covered by the same repository research as the adjacent "
+        "Drowa dance-part item: no sufficiently authoritative official/catalog Latin rendering was "
+        "found. Do not promote a guessed Drowa Dance Part 2024 rendering to reusable canonical "
+        "terminology; leave this exact item to ordinary translation review."
     ),
 }
 
@@ -61,6 +80,7 @@ def harden(repo_root: Path = ROOT) -> bool:
 
     before = json.dumps(reviews, ensure_ascii=False, sort_keys=True)
     _upsert(decisions, DECISION, id_field="decision_id")
+    _upsert(decisions, YEAR_DECISION, id_field="decision_id")
     after = json.dumps(reviews, ensure_ascii=False, sort_keys=True)
     if before == after:
         return False

@@ -46,11 +46,11 @@ def test_hardener_locks_historical_race_class_and_is_idempotent(tmp_path: Path) 
     assert term["key_exact"] == ["Race0027"]
 
     matches = community_term_matches(
+        "Race0027",
         SOURCE,
         TARGET,
         load_community_terms(tmp_path),
         source_path="localize_dict.json",
-        key="Race0027",
         json_path=["Race0027"],
     )
     assert [row["id"] for row in matches] == [TERM_ID]

@@ -2,12 +2,13 @@
   "schema_version": 2,
   "task_id": "canonical-findings-maintenance",
   "stage": "domain_work",
-  "status": "active",
+  "status": "released",
   "claim_id": "canonical-findings-maintenance-sol-claude-w5-20260904T113738Z",
   "worker_id": "sol-claude-w5-20260904T113445Z",
   "claimed_at": "2026-09-04T11:34:45Z",
-  "heartbeat_at": "2026-09-04T11:37:38Z",
-  "lease_expires_at": "2026-09-04T11:43:38Z",
+  "heartbeat_at": "2026-09-04T11:40:07Z",
+  "released_at": "2026-09-04T11:40:07Z",
+  "lease_expires_at": "2026-09-04T11:40:07Z",
   "branch": "main",
   "handoff_from_claim_id": "canonical-findings-maintenance-gpt56sol-20260904T110834Z",
   "progress_token": "e6931350bd1b",
@@ -16,5 +17,5 @@
   "last_progress_at": "2026-09-04T11:37:38Z",
   "completed_count": 92,
   "partial_result_path": "work/orchestration/checkpoints/canonical-findings-20260904-prepared-resolvers-batch.md",
-  "continuation": "Ran the 4 prepared-but-unexecuted resolver scripts (initial-friendship, aoharu-ignition, super-long-distance-context, running-style-narrative); each only writes canonical_resolution after re-verifying its own evidence match. active_findings dropped 153->149. No other remaining open finding has a matching unexecuted resolver script in scripts/ (checked by grepping every finding_id). cf-3a460c751596bfac stays deferred until 2026-09-06 per prior checkpoint. Next: research a fresh open finding (NPC display name or skill-title class) from the ledger and add a lock/ignore decision to glossary/terminology_reviews.json with real JP/canonical evidence before touching term_registry."
+  "continuation": "Ran all 4 prepared-but-unexecuted resolver scripts found in scripts/ (initial-friendship, aoharu-ignition, super-long-distance-context, running-style-narrative); active_findings dropped 153->149. Investigated cf-0ed1b3254699aa40 (进(NPC)/Susumu): repository already carries a deliberate, consistent defer policy across an entire family of ambiguous single-kanji NPC given names (明人/进/彻/望/正人 etc., all lacking furigana) — do NOT lock Susumu alone without also revisiting that whole family; leave deferred as-is to preserve the existing consistent standard. Investigated cf-17893bf4fbdc7e87 (马娘计划 / Character608001, current text 'Gói Umamusume'): web search could not confirm an authoritative official EN 'Uma Musume Plan' product name with enough confidence to lock; left open rather than guessing. Releasing the shared lane clean with no further unexecuted ready-made resolver scripts outstanding; remaining 149 open findings each need fresh per-item JP/canonical research before a lock/ignore decision is safe."
 }

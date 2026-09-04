@@ -16,6 +16,13 @@ This category-16 entry is Gold City's named solo song from STARTING GATE 08. Rel
 - `tests/test_sugao_no_kokoro_song_finding_hardening.py` proves positive resolution inside category 16 and non-resolution outside the song table.
 - Regression commit: `4de29e147644953fb5b4b8b4a3be2da479fc614d`.
 
+## Production progress
+
+- Hardener-head Validate `33930404566`: **success**.
+- Regression-inclusive Validate `33930417964`: **success**, including pytest, `tlvi validate`, and index generation.
+- Context Sync `33930404538`: running.
+- Translation Review Plan `33930404567`: running.
+
 ## Acceptance pending
 
-Do not increment maintenance above 128 until production Validate, Context Sync, and Translation Review Plan succeed for the implementation/regression head and live generated context shows `cf-c83afa810e490d16` resolved and absent from worker-facing blockers.
+Do not increment maintenance above 128 until Context Sync and Translation Review Plan succeed and live generated context shows `cf-c83afa810e490d16` resolved and absent from worker-facing blockers.

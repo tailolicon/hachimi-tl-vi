@@ -1,4 +1,4 @@
-# Canonical findings maintenance checkpoint — Sota NPC item ignore pending acceptance
+# Canonical findings maintenance checkpoint — Sota NPC item ignore accepted
 
 Finding `cf-ad719284aacc4b7f` covers source `宗太(NPC)`. Existing localized data uses `Sota (NPC)`, but the Japanese given-name spelling can admit reading/romanization ambiguity and repository evidence does not establish a reusable canonical reading authoritatively.
 
@@ -13,7 +13,7 @@ The stable `text_data_dict.json` category-152 NPC layout repeats this identity a
 - `152/142`
 - `152/176`
 
-Review artifacts directly expose later repeated positions including `108`, `142`, and the current live active-plan item `176`; the fixed 34-item NPC block cycle supplies the corresponding exact repeated positions rather than a category-wide semantic rule.
+Review artifacts directly expose later repeated positions including `108`, `142`, and live item `176`; the fixed 34-item NPC block cycle supplies the corresponding exact repeated positions rather than a category-wide semantic rule.
 
 ## Resolution implemented
 
@@ -24,6 +24,13 @@ Review artifacts directly expose later repeated positions including `108`, `142`
 
 This deliberately does **not** canonize `Sota` and does not broaden the ignore to category `152`.
 
-## Acceptance gate
+## Production acceptance
 
-Production acceptance is pending. Require successful Validate, Sync translation context, and Sync translation review plan runs for/after regression head `c9ebdb29d5348f04b4ac3b4d5294a0826b4257fa`, then verify regenerated worker-facing items no longer carry `cf-ad719284aacc4b7f`. Completion sequencing remains ordered: Koji must first advance maintenance 108->109 after its own acceptance, then Sota may advance 109->110.
+For regression head `c9ebdb29d5348f04b4ac3b4d5294a0826b4257fa`:
+
+- Validate run `33894728379` completed successfully.
+- Sync translation context run `33894728431` completed successfully.
+- Sync translation review plan run `33894728359` completed successfully.
+- Live active-plan batch `b0137` shows source `宗太(NPC)` at `text_data_dict.json` path `152/176` with `canonical_findings: []`.
+
+Result: finding `cf-ad719284aacc4b7f` is production-accepted as an exact item-scoped ignore. Maintenance completion advances from 109 to 110. Continue with `cf-2d11e8b41c5d8527` (`太郎(NPC)`), whose exact-scoped hardener and regression are already implemented and awaiting production acceptance.

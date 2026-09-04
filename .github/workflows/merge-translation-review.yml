@@ -179,11 +179,17 @@ jobs:
 
             python scripts/build_translation_regression_memory.py --repo-root .
             python scripts/canonical_findings.py --repo-root . --refresh
-            # canonical_findings --refresh reconstructs the worker ledger and can
-            # clear generated context_guard resolutions. Reapply those guards in
-            # the same transaction before queue generation/validation so review
-            # merges cannot roll back canonical-maintenance progress.
+            # canonical_findings --refresh reconstructs the worker ledger. Reapply
+            # every production resolver that repairs generated finding resolutions
+            # before queue generation/validation, matching the context-sync path so
+            # retrospective review merges cannot reopen already accepted blockers.
+            python scripts/resolve_scoped_canonical_overrides.py --repo-root .
             python scripts/resolve_context_guard_findings.py
+            python scripts/resolve_running_style_narrative_finding.py
+            python scripts/resolve_regenerated_super_long_distance_context_finding.py
+            python scripts/resolve_regenerated_aoharu_ignition_finding.py
+            python scripts/resolve_regenerated_initial_friendship_finding.py
+            python scripts/resolve_regenerated_grand_live_performance_stats_findings.py
             python scripts/build_terminology_review_queue.py
             pytest -q
             tlvi --db /tmp/tlvi-translation-review.db validate

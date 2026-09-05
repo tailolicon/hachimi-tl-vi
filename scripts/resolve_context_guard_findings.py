@@ -254,6 +254,15 @@ POSITIVE_EVIDENCE_GUARDS = {
         "term_id": "common.friendship_gauge.support_effects",
         "target_vi": "Friendship Gauge",
     },
+    # Review can report the narrower Initial Friendship compound with source-path
+    # scope only, while every evidence row still proves category 155. Resolve that
+    # regenerated finding from the evidence against the existing scoped canonical
+    # rule instead of broadening Initial Friendship into unrelated text_data prose.
+    "cf-375c57aaf697bbff": {
+        "layer": "community",
+        "term_id": "support.initial_friendship.effect155",
+        "target_vi": "Initial Friendship",
+    },
 }
 
 

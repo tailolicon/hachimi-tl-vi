@@ -9,13 +9,13 @@
     "growth": "Every accepted retrospective translation revise and accepted UI revise is folded into this file automatically by both review merge workflows."
   },
   "summary": {
-    "merged_markers_scanned": 2841,
-    "translation_merged_markers_scanned": 2741,
+    "merged_markers_scanned": 2848,
+    "translation_merged_markers_scanned": 2748,
     "ui_merged_markers_scanned": 100,
-    "accepted_revision_events": 8202,
-    "accepted_translation_revision_events": 6713,
+    "accepted_revision_events": 8212,
+    "accepted_translation_revision_events": 6723,
     "accepted_ui_revision_events": 1489,
-    "regression_identity_count": 6437,
+    "regression_identity_count": 6442,
     "skipped_incomplete_markers": 0,
     "translation_skipped_incomplete_markers": 0,
     "ui_skipped_incomplete_markers": 0
@@ -27039,6 +27039,31 @@
       ]
     },
     {
+      "id": "review.regression.f4218bece6b1a11d",
+      "uid": "zhcn:23a7099255f079ed48d03db0",
+      "scope": "uid",
+      "source_text": "由于在主赛段中进入了前96名，\n<color=#ff9900>您可以获得特别奖励！</color>\n\n领取指南将于日后发布，\n请在那之后进行确认！",
+      "source_fingerprint": "b0936aa8f5d511c4a78ad3ab28c0da820cd870ccb57126301db225bb4ed2582d",
+      "rejected_targets": [
+        "Vì đã lọt vào top 96 ở Giai đoạn chính,\n<color=#ff9900>bạn có thể nhận phần thưởng đặc biệt!</color>\n\nHướng dẫn nhận thưởng sẽ được công bố sau,\nvui lòng kiểm tra khi đó!"
+      ],
+      "approved_target": "Vì đã lọt vào top 96 ở Main Stage,\n<color=#ff9900>bạn có thể nhận phần thưởng đặc biệt!</color>\n\nHướng dẫn nhận thưởng sẽ được công bố sau,\nvui lòng kiểm tra khi đó!",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-ac19b5d9dc03-b5c0bcb3bd-8d48ae7a7e",
+          "batch_id": "tr-p3-67f8551f7780-ac19b5d9dc03-b5c0bcb3bd-8d48ae7a7e-b0012",
+          "claim_id": "trc-gpt56sol-20260905-070200-b0012-a11",
+          "merged_at": "2026-09-05T07:15:03.148625Z",
+          "reason": "The current text uses forbidden Giai đoạn chính for the named League of Heroes stage. Replace only that term while preserving 96, color tags, and newline structure."
+        }
+      ]
+    },
+    {
       "id": "review.regression.fcb8d2ca3cc1137a",
       "uid": "zhcn:23bbe3046e1a889d5f2d4de0",
       "scope": "uid",
@@ -37012,10 +37037,12 @@
       "source_text": "距离开始接受马赞还有{0}天",
       "source_fingerprint": "b09479c18aa796ace042fb5880bb83e9d277e1c27e594ce4a2c4665f0035b17e",
       "rejected_targets": [
-        "Còn {0} ngày đến khi bắt đầu tiếp nhận Uma Like!"
+        "Còn {0} ngày đến khi bắt đầu tiếp nhận Uma Like!",
+        "Còn {0} ngày đến khi mở nhận Uma Like!"
       ],
-      "approved_target": "Còn {0} ngày đến khi mở nhận Uma Like!",
+      "approved_target": "Còn {0} ngày nữa sẽ bắt đầu nhận Uma Like!",
       "origins": [
+        "translation_review",
         "ui_review"
       ],
       "ui_contexts": [
@@ -37038,6 +37065,14 @@
           "reason": "The current countdown is overly verbose; 'mở nhận' compactly preserves that Uma Like! acceptance has not started yet.",
           "ui_key": "Heroes511072",
           "control_type": "counter"
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-ac19b5d9dc03-b5c0bcb3bd-8d48ae7a7e",
+          "batch_id": "tr-p3-67f8551f7780-ac19b5d9dc03-b5c0bcb3bd-8d48ae7a7e-b0014",
+          "claim_id": "trc-gpt56sol-20260905-071200-b0014-a11",
+          "merged_at": "2026-09-05T07:15:03.160294Z",
+          "reason": "The current phrase mở nhận is awkward Vietnamese. Preserve placeholder {0} and the named Uma Like! feature while making the countdown natural."
         }
       ]
     },
@@ -48139,6 +48174,31 @@
       ]
     },
     {
+      "id": "review.regression.9300093e3f854ecb",
+      "uid": "zhcn:40a589ed87fd826b077f6c0f",
+      "scope": "uid",
+      "source_text": "距离接受马赞结束还有{0}小时",
+      "source_fingerprint": "e71f352806e40c11a249e0f49f1f45f5228f767e68db98176cb315ae36d24078",
+      "rejected_targets": [
+        "Còn {0} giờ đến khi kết thúc tiếp nhận Uma Like!"
+      ],
+      "approved_target": "Còn {0} giờ nữa là hết thời gian nhận Uma Like!",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-ac19b5d9dc03-b5c0bcb3bd-8d48ae7a7e",
+          "batch_id": "tr-p3-67f8551f7780-ac19b5d9dc03-b5c0bcb3bd-8d48ae7a7e-b0014",
+          "claim_id": "trc-gpt56sol-20260905-071200-b0014-a11",
+          "merged_at": "2026-09-05T07:15:03.160294Z",
+          "reason": "The current kết thúc tiếp nhận construction is unnatural. Preserve placeholder {0} and the named feature while stating the reception-period endpoint clearly."
+        }
+      ]
+    },
+    {
       "id": "review.regression.c0013b228b74fb54",
       "uid": "zhcn:40a81e4355d5b547f4502f20",
       "scope": "uid",
@@ -54039,6 +54099,31 @@
           "claim_id": "trc-chatgpt-sol-auto-20260830T071400Z-b0477",
           "merged_at": "2026-08-30T11:29:02.996843Z",
           "reason": "Apply locked Nở rộ terminology and hard audit policy for generic Mã Nương."
+        }
+      ]
+    },
+    {
+      "id": "review.regression.c1eb4a633bfe3d0b",
+      "uid": "zhcn:4944c8325edba688b549c09b",
+      "scope": "uid",
+      "source_text": "距离开始接受马赞还有{0}小时",
+      "source_fingerprint": "45051b3934e0d6d98b627339a436b068c26b4d7654ac358effb6341534a2933b",
+      "rejected_targets": [
+        "Còn {0} giờ đến khi bắt đầu tiếp nhận Uma Like!"
+      ],
+      "approved_target": "Còn {0} giờ nữa sẽ bắt đầu nhận Uma Like!",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-ac19b5d9dc03-b5c0bcb3bd-8d48ae7a7e",
+          "batch_id": "tr-p3-67f8551f7780-ac19b5d9dc03-b5c0bcb3bd-8d48ae7a7e-b0014",
+          "claim_id": "trc-gpt56sol-20260905-071200-b0014-a11",
+          "merged_at": "2026-09-05T07:15:03.160294Z",
+          "reason": "The current bắt đầu tiếp nhận wording is stiff. Preserve placeholder {0} and Uma Like! while using natural countdown phrasing."
         }
       ]
     },
@@ -75760,6 +75845,31 @@
           "claim_id": "trc-gpt56sol-20260831T012800Z-b0226",
           "merged_at": "2026-08-31T01:17:16.437219Z",
           "reason": "Generic 赛马娘 is currently rendered with the explicitly forbidden Uma Musume term; the line break and imperative structure must be preserved."
+        }
+      ]
+    },
+    {
+      "id": "review.regression.261b54d4a5c7e3b2",
+      "uid": "zhcn:662d97c4c5243b217ca0073e",
+      "scope": "uid",
+      "source_text": "可通过观看A-B集团各自的主要比赛的第11场比赛来获得",
+      "source_fingerprint": "70b55337217696353221175d9c177ec37dc9810b3e424efe091b648ee898b77c",
+      "rejected_targets": [
+        "Có thể nhận bằng cách xem Cuộc đua thứ 11, là Cuộc đua chính của từng Bảng A và B"
+      ],
+      "approved_target": "Có thể nhận bằng cách xem Cuộc đua thứ 11, là Cuộc đua chính của mỗi Nhóm A và B",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-ac19b5d9dc03-b5c0bcb3bd-8d48ae7a7e",
+          "batch_id": "tr-p3-67f8551f7780-ac19b5d9dc03-b5c0bcb3bd-8d48ae7a7e-b0014",
+          "claim_id": "trc-gpt56sol-20260905-071200-b0014-a11",
+          "merged_at": "2026-09-05T07:15:03.160294Z",
+          "reason": "The same Heroes UI family renders 集团 as Nhóm; Bảng is inconsistent here. Preserve race number 11 and both generic race occurrences."
         }
       ]
     },
@@ -112733,10 +112843,12 @@
       "source_text": "距离接受马赞结束还有{0}天",
       "source_fingerprint": "221ee942885bc84ab31737ef31e4f5490611ba53adc49a38bf72b80e62f09ef5",
       "rejected_targets": [
-        "Còn {0} ngày đến khi kết thúc tiếp nhận Uma Like!"
+        "Còn {0} ngày đến khi kết thúc tiếp nhận Uma Like!",
+        "Còn {0} ngày để nhận Uma Like!"
       ],
-      "approved_target": "Còn {0} ngày để nhận Uma Like!",
+      "approved_target": "Còn {0} ngày nữa là hết thời gian nhận Uma Like!",
       "origins": [
+        "translation_review",
         "ui_review"
       ],
       "ui_contexts": [
@@ -112759,6 +112871,14 @@
           "reason": "The compact countdown preserves {0} and the remaining acceptance window without the repeated 'kết thúc tiếp nhận' phrasing.",
           "ui_key": "Heroes511076",
           "control_type": "counter"
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-ac19b5d9dc03-b5c0bcb3bd-8d48ae7a7e",
+          "batch_id": "tr-p3-67f8551f7780-ac19b5d9dc03-b5c0bcb3bd-8d48ae7a7e-b0014",
+          "claim_id": "trc-gpt56sol-20260905-071200-b0014-a11",
+          "merged_at": "2026-09-05T07:15:03.160294Z",
+          "reason": "The source is a countdown until the reception period ends; make that endpoint explicit while preserving placeholder {0} and Uma Like!."
         }
       ]
     },
@@ -130057,6 +130177,31 @@
           "claim_id": "trc-sol-20260830T013642Z-b0796",
           "merged_at": "2026-08-30T01:39:35.880324Z",
           "reason": "训练效果提升 phải dùng Training Effectiveness; Guts hiện đúng stat label."
+        }
+      ]
+    },
+    {
+      "id": "review.regression.a212a8964e748cfa",
+      "uid": "zhcn:ada00ed47de6e99191d65b57",
+      "scope": "uid",
+      "source_text": "与马赞的次数无关，\n在A-B集团各可获得1次",
+      "source_fingerprint": "c013f8846368fedb539275183c1f8f573772955a1f296473c69e5443562e03e3",
+      "rejected_targets": [
+        "Không phụ thuộc vào số lần Uma Like!,\nmỗi Bảng A và B chỉ có thể nhận 1 lần"
+      ],
+      "approved_target": "Không phụ thuộc vào số lần Uma Like!,\ncó thể nhận 1 lần ở mỗi Nhóm A và B",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-ac19b5d9dc03-b5c0bcb3bd-8d48ae7a7e",
+          "batch_id": "tr-p3-67f8551f7780-ac19b5d9dc03-b5c0bcb3bd-8d48ae7a7e-b0013",
+          "claim_id": "trc-gpt56sol-20260905-070700-b0013-a11",
+          "merged_at": "2026-09-05T07:15:03.154232Z",
+          "reason": "The current second line is grammatically awkward and uses Bảng for 集团 despite the same UI family using Nhóm. Preserve the one-per-A/B-group meaning, the count 1, newline, and Uma Like! term."
         }
       ]
     },
@@ -174750,10 +174895,11 @@
       "source_text": "速度加成&初始速度提升",
       "source_fingerprint": "8f0929feb1594a5e02cbca2ecc3aa03dff644bef3d2a6e7db96fda602b290c38",
       "rejected_targets": [
+        "Speed Bonus & Tăng Speed ban đầu",
         "Speed Bonus&Tăng Speed ban đầu",
         "Thưởng Tốc độ&Tăng Tốc độ ban đầu"
       ],
-      "approved_target": "Speed Bonus & Tăng Speed ban đầu",
+      "approved_target": "Speed Bonus & Initial Speed",
       "origins": [
         "translation_review"
       ],
@@ -174774,6 +174920,14 @@
           "claim_id": "trc-gpt56sol-hourly-20260901T115926Z-r3-b0210",
           "merged_at": "2026-09-01T12:40:31.171975Z",
           "reason": "Canonical terms are correct; add the missing spacing around '&' for consistent readable UI text."
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-ac19b5d9dc03-b5c0bcb3bd-8d48ae7a7e",
+          "batch_id": "tr-p3-67f8551f7780-ac19b5d9dc03-b5c0bcb3bd-8d48ae7a7e-b0152",
+          "claim_id": "trc-gpt56sol-20260905-0715-b0152-a11",
+          "merged_at": "2026-09-05T07:15:03.191327Z",
+          "reason": "Normalize the mixed-language Support Effect label while preserving canonical Speed Bonus and source meaning."
         }
       ]
     },
@@ -178989,9 +179143,10 @@
       "source_text": "速度加成&初始速度提升",
       "source_fingerprint": "8f0929feb1594a5e02cbca2ecc3aa03dff644bef3d2a6e7db96fda602b290c38",
       "rejected_targets": [
+        "Speed Bonus & Tăng Speed ban đầu",
         "Thưởng Tốc độ & Tăng Tốc độ ban đầu"
       ],
-      "approved_target": "Speed Bonus & Tăng Speed ban đầu",
+      "approved_target": "Speed Bonus & Initial Speed",
       "origins": [
         "translation_review"
       ],
@@ -179004,6 +179159,14 @@
           "claim_id": "trc-chatgpt-auto2-20260829T194700Z-b0824",
           "merged_at": "2026-08-30T00:48:53.660695Z",
           "reason": "Chuẩn hóa Speed Bonus và stat Speed."
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-ac19b5d9dc03-b5c0bcb3bd-8d48ae7a7e",
+          "batch_id": "tr-p3-67f8551f7780-ac19b5d9dc03-b5c0bcb3bd-8d48ae7a7e-b0152",
+          "claim_id": "trc-gpt56sol-20260905-0715-b0152-a11",
+          "merged_at": "2026-09-05T07:15:03.191327Z",
+          "reason": "Normalize the mixed-language Support Effect label while preserving canonical Speed Bonus and the source's initial-Speed increase."
         }
       ]
     },
@@ -180953,10 +181116,11 @@
       "source_text": "速度加成&初始速度提升",
       "source_fingerprint": "8f0929feb1594a5e02cbca2ecc3aa03dff644bef3d2a6e7db96fda602b290c38",
       "rejected_targets": [
+        "Speed Bonus & Tăng Speed ban đầu",
         "Thưởng Speed & Tăng Speed ban đầu",
         "Thưởng Tốc độ&Tăng Tốc độ ban đầu"
       ],
-      "approved_target": "Speed Bonus & Tăng Speed ban đầu",
+      "approved_target": "Speed Bonus & Initial Speed",
       "origins": [
         "translation_review"
       ],
@@ -180977,6 +181141,14 @@
           "claim_id": "trc-chatgpt-sol-20260830-1800-b0768",
           "merged_at": "2026-08-30T11:29:03.495494Z",
           "reason": "The scoped Support Effect label 速度加成 must be Speed Bonus; the initial-Speed clause already preserves the canonical stat label."
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-ac19b5d9dc03-b5c0bcb3bd-8d48ae7a7e",
+          "batch_id": "tr-p3-67f8551f7780-ac19b5d9dc03-b5c0bcb3bd-8d48ae7a7e-b0152",
+          "claim_id": "trc-gpt56sol-20260905-0715-b0152-a11",
+          "merged_at": "2026-09-05T07:15:03.191327Z",
+          "reason": "Normalize the mixed-language Support Effect label while preserving canonical Speed Bonus and source meaning."
         }
       ]
     },

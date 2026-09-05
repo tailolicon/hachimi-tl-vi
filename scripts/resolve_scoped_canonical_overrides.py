@@ -35,15 +35,62 @@ def _is_scoped(rule: dict[str, Any]) -> bool:
     )
 
 
+def _rule_covers_all_evidence(rule: dict[str, Any], finding: dict[str, Any]) -> bool:
+    """Return true only when every concrete finding report is inside the scoped rule.
+
+    Worker findings can be semantically broader than the item that produced them. A narrow
+    canonical rule must never be promoted to source-wide coverage merely to close such a
+    finding. When an explicit reviewed lock already agrees with the narrow rule, however, the
+    observed finding can be considered resolved if every durable evidence row is demonstrably
+    inside that rule's scope. A later report outside the scope will make this predicate false on
+    the next refresh/resolution pass and reopen the finding.
+    """
+
+    evidence_rows = [row for row in finding.get("evidence", []) if isinstance(row, dict)]
+    if not evidence_rows:
+        return False
+
+    for evidence in evidence_rows:
+        source_path = str(evidence.get("source_path") or "").strip()
+        json_path = evidence.get("json_path") if isinstance(evidence.get("json_path"), list) else []
+        key = str(evidence.get("key") or "").strip()
+        if not key and source_path == "localize_dict.json" and json_path:
+            # localize_dict entries are top-level keyed records; historic evidence rows did not
+            # persist the separate item key, but their one-element JSON path is the same key.
+            key = str(json_path[0])
+
+        evidence_scope = {
+            "source_paths": [source_path] if source_path else [],
+            "key_exact": [key] if key else [],
+            "json_path_prefixes": [[str(value) for value in json_path]] if json_path else [],
+        }
+        if not _rule_covers_finding(rule, evidence_scope):
+            return False
+
+        evidence_source = str(evidence.get("source_text") or finding.get("source_zh_cn") or "")
+        if not _rule_matches_finding_source(
+            rule,
+            "source_aliases",
+            {"source_zh_cn": evidence_source},
+        ):
+            return False
+
+    return True
+
+
 def resolve_scoped_canonical_overrides(repo_root: Path, ledger: dict[str, Any] | None = None) -> dict[str, Any]:
     """Resolve findings from explicit context-scoped community canonical rules.
 
     The normal resolver intentionally requires exactly one reviewed/suggested target before a
     canonical rule may resolve a finding. Some polysemous source aliases cannot safely receive
     a source-wide reviewed lock at all, but can still be canonical inside a narrow proven UI
-    scope. This pass accepts only community rules with an explicit item/category scope that
-    fully covers the finding. Unscoped rules are never eligible, and explicit defer/ignore
-    decisions remain blocking/ignored rather than being overridden here.
+    scope. This pass accepts only community rules with an explicit item/category scope.
+
+    Normally the rule must fully cover the finding's declared scope. One conservative fallback
+    exists for overbroad worker findings: if an explicit review lock agrees with the scoped rule
+    and *every* captured evidence item is covered by that rule, the observed finding may be
+    resolved without pretending the rule is source-wide. Unscoped rules are never eligible, and
+    explicit defer/ignore decisions remain blocking/ignored rather than being overridden here.
     """
     if ledger is None:
         ledger = read_json(repo_root / "glossary/canonical_findings.json", {}) or {}
@@ -74,15 +121,31 @@ def resolve_scoped_canonical_overrides(repo_root: Path, ledger: dict[str, Any] |
         )
 
         for rule in rules:
-            if not _rule_covers_finding(rule, finding):
-                continue
             if not _rule_matches_finding_source(rule, "source_aliases", finding):
                 continue
             preferred = str(rule.get("preferred") or "").strip()
             if not preferred:
                 continue
-            if reviewed_target and preferred.casefold() == reviewed_target:
+
+            declared_scope_covered = _rule_covers_finding(rule, finding)
+            evidence_only_covered = False
+            if not declared_scope_covered:
+                # Never let a narrower rule silently broaden an unreviewed or conflicting
+                # finding. The fallback is valid only when the explicit reviewed target agrees
+                # and every concrete report is inside the narrow rule.
+                if not reviewed_target or preferred.casefold() != reviewed_target:
+                    continue
+                if not _rule_covers_all_evidence(rule, finding):
+                    continue
+                evidence_only_covered = True
+
+            # When the declared finding scope is already covered and the review target agrees,
+            # the ordinary canonical resolver owns this case. Preserve the historical scoped-
+            # override behavior only for a conflicting generic review lock. The evidence-only
+            # path above is the exception that closes an overbroad worker finding safely.
+            if reviewed_target and preferred.casefold() == reviewed_target and not evidence_only_covered:
                 continue
+
             finding["canonical_resolution"] = {
                 "layer": "community",
                 "term_id": str(rule.get("id") or ""),

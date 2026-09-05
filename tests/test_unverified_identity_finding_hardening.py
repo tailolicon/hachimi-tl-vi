@@ -21,6 +21,7 @@ def test_unverified_identity_defers_are_idempotent() -> None:
         "スタホTV", "热血誓言", "英雄的光辉", "待春之蕾",
         "空(NPC)", "光(NPC)", "明人(NPC)", "进(NPC)",
         "彻(NPC)", "望(NPC)", "正人(NPC)", "佳子(NPC)",
+        "激昂锐意",
     }
     assert all(item["action"] == "defer" and item["target_vi"] == "" for item in DEFERRED_IDENTITIES)
 

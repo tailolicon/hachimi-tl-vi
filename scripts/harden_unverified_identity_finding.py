@@ -35,7 +35,7 @@ DEFERRED_IDENTITIES = [
         "note": "Current evidence is insufficient to distinguish a stable named player-facing identity from a zh-CN semantic rendering. Keep blocking until JP/Global identity is verified.",
     },
     {
-        "decision_id": "audit.finding-awaiting-spring-bud-defer",
+        "decision_id": "audit.finding.awaiting-spring-bud-defer",
         "source_zh_cn": "待春之蕾",
         "action": "defer",
         "target_vi": "",
@@ -114,6 +114,15 @@ DEFERRED_IDENTITIES = [
         "kind": "proper_name",
         "category": "npc_name",
         "note": "佳子 has multiple real Japanese readings including Yoshiko and Kako. The zh-CN source lacks furigana, so do not lock Yoshiko without stronger identity evidence.",
+    },
+    {
+        "decision_id": "audit.finding-eiki-allegro-defer",
+        "source_zh_cn": "激昂锐意",
+        "action": "defer",
+        "target_vi": "",
+        "kind": "proper_name",
+        "category": "skill_name",
+        "note": "JP identity is verified as Win Variation's unique Skill 鋭気のアレグロ. Current reference evidence still marks the Skill JP-only and does not establish an official Global/player-facing title, so preserve the finding as blocking rather than canonize a literal Vietnamese calque from the zh-CN bridge.",
     },
 ]
 

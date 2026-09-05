@@ -1,0 +1,17 @@
+{
+  "schema_version":1,
+  "status":"partial",
+  "plan_id":"tr-p3-67f8551f7780-2d66b69ad6e8-b5c0bcb3bd-036a464857",
+  "batch_id":"tr-p3-67f8551f7780-2d66b69ad6e8-b5c0bcb3bd-036a464857-b0069",
+  "claim_id":"trc-gpt56sol-hourly-20260905T100257Z-b0069",
+  "worker_id":"gpt56sol-hourly-20260905T100257Z-review",
+  "reviewed_at":"2026-09-05T10:04:00Z",
+  "completed_count":5,
+  "decisions":[
+    {"uid":"zhcn:641276b654c2149fc19af23e","current_fingerprint":"9568cee42708f5a243711a3dc0f555c38cbab4f225dc52147e848d17b21bf0ed","action":"revise","proposed_text":"Nakayama Uma Musume Stakes","reason":"This is the in-game 中山ウマ娘S identity, not the real-racing Nakayama Himba Stakes. The race-specific Uma Musume Stakes component overrides generic species matching.","terminology_basis":"race.uma_musume_stakes.component131; race.nakayama_uma_musume_stakes","confidence":"high"},
+    {"uid":"zhcn:a4cf28ceac99545b9e204f3c","current_fingerprint":"61f052d806ff1623a45c7571cb6cd5dd9c6edf9d7d4ba1d5f1db5db277be6107","action":"keep","reason":"Current text exactly matches the reviewed canonical race name Lord Derby Challenge Trophy.","terminology_basis":"reviewed.race_name.2adcab1469fc","confidence":"high"},
+    {"uid":"zhcn:77cad3e4656d8ef341f7cc40","current_fingerprint":"601a1a05647ec81fffe6e89562f175cc1cc45223abd30ebb526898fca3d26827","action":"revise","proposed_text":"Mảnh của Mã Nương đã chọn","reason":"Generic 赛马娘 requires the project world term Mã Nương rather than forbidden Uma Musume.","terminology_basis":"common.world.umamusume","confidence":"high"},
+    {"uid":"zhcn:b41f3be602471fae27ddc365","current_fingerprint":"480774fb1dc69a0b1f4d5403a3a5ec27c67ce7518bef0ab5d74d0eba8c13265d","action":"defer","reason":"Current Mejiro Bright identity is correct, but the reviewed Skill alias 光明 is overmatching inside the character name 目白光明. Do not inject Ánh sáng into a character-name fragment.","canonical_finding":{"kind":"context_rule","source_zh_cn":"目白光明的碎片","suggested_target_vi":"Mảnh Mejiro Bright","concept":"Character Piece label for Mejiro Bright; 光明 is part of the character name, not a Skill title","match_mode":"exact","scope":"auto","reason":"Exclude this exact Character Piece label from the standalone Skill alias 光明 so character.mejiro_bright remains authoritative.","confidence":"high"},"confidence":"high"},
+    {"uid":"zhcn:e18838e8066d7ae1f15b19b8","current_fingerprint":"480774fb1dc69a0b1f4d5403a3a5ec27c67ce7518bef0ab5d74d0eba8c13265d","action":"defer","reason":"Same systemic overmatch: 目白光明 is the canonical character Mejiro Bright; standalone Skill alias 光明 must not rewrite this Character Piece label.","canonical_finding":{"kind":"context_rule","source_zh_cn":"目白光明的碎片","suggested_target_vi":"Mảnh Mejiro Bright","concept":"Character Piece label for Mejiro Bright; 光明 is part of the character name, not a Skill title","match_mode":"exact","scope":"auto","reason":"Exclude this exact Character Piece label from the standalone Skill alias 光明 so character.mejiro_bright remains authoritative.","confidence":"high"},"confidence":"high"}
+  ]
+}

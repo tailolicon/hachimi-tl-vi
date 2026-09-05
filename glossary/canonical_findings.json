@@ -30672,6 +30672,106 @@
       "last_seen_at": "2026-09-01T19:27:00Z"
     },
     {
+      "finding_id": "cf-d4d7f252ccfed57f",
+      "status": "open",
+      "source_zh_cn": "育成赛马娘",
+      "match_mode": "contains",
+      "source_paths": [
+        "localize_dict.json"
+      ],
+      "key_exact": [],
+      "json_path_prefixes": [],
+      "kinds": [
+        "context_rule"
+      ],
+      "concepts": [
+        "Trainee in event-bonus localize UI"
+      ],
+      "suggested_targets_vi": [
+        "Trainee"
+      ],
+      "confidence_levels": [
+        "high"
+      ],
+      "reasons": [
+        "The project already uses Trainee for the 育成赛马娘 concept in canonicalized contexts, while repeated localize_dict event-bonus labels still fall outside that matcher. Extend the canonical context rather than patching isolated event labels.",
+        "Repeated localize_dict event-bonus labels need the existing Trainee concept extended into this context before item-level revision.",
+        "Repeated localize_dict event-bonus labels and prose use the same Trainee concept; canonical coverage should be extended once and then regenerate review context.",
+        "Repeated localize_dict event-bonus labels use the existing player-facing Trainee concept but are outside the current canonical matcher. Extend canonical coverage once rather than patching each occurrence."
+      ],
+      "evidence_count": 4,
+      "evidence": [
+        {
+          "uid": "zhcn:4ffb8d349ffa1896bebfeb0c",
+          "plan_id": "tr-p3-67f8551f7780-2d66b69ad6e8-b5c0bcb3bd-036a464857",
+          "batch_id": "tr-p3-67f8551f7780-2d66b69ad6e8-b5c0bcb3bd-036a464857-b0056",
+          "claim_id": "trc-gpt56sol-auto11-20260905T143400Z-b0056",
+          "worker_id": "gpt56sol-auto11-20260905T143400Z-review",
+          "source_path": "localize_dict.json",
+          "json_path": [
+            "StoryEvent0006"
+          ],
+          "source_text": "育成赛马娘活动加成",
+          "current_text": "Thưởng sự kiện từ Mã Nương được huấn luyện",
+          "proposed_text": null,
+          "reported_at": "2026-09-05T14:38:00Z"
+        },
+        {
+          "uid": "zhcn:4b8c96b94a560bdffa70d9c1",
+          "plan_id": "tr-p3-67f8551f7780-2d66b69ad6e8-b5c0bcb3bd-036a464857",
+          "batch_id": "tr-p3-67f8551f7780-2d66b69ad6e8-b5c0bcb3bd-036a464857-b0056",
+          "claim_id": "trc-gpt56sol-auto11-20260905T143400Z-b0056",
+          "worker_id": "gpt56sol-auto11-20260905T143400Z-review",
+          "source_path": "localize_dict.json",
+          "json_path": [
+            "StoryEvent0033"
+          ],
+          "source_text": "活动加成育成赛马娘",
+          "current_text": "Mã Nương huấn luyện có thưởng sự kiện",
+          "proposed_text": null,
+          "reported_at": "2026-09-05T14:38:00Z"
+        },
+        {
+          "uid": "zhcn:bd067c8c0380815534012b84",
+          "plan_id": "tr-p3-67f8551f7780-2d66b69ad6e8-b5c0bcb3bd-036a464857",
+          "batch_id": "tr-p3-67f8551f7780-2d66b69ad6e8-b5c0bcb3bd-036a464857-b0056",
+          "claim_id": "trc-gpt56sol-auto11-20260905T143400Z-b0056",
+          "worker_id": "gpt56sol-auto11-20260905T143400Z-review",
+          "source_path": "localize_dict.json",
+          "json_path": [
+            "StoryEvent0035"
+          ],
+          "source_text": "・活动期间，用活动加成育成赛马娘进行育成的话，\n　育成结束时可获得的活动点数将得到加成。",
+          "current_text": "・Trong thời gian sự kiện, khi huấn luyện bằng Mã Nương có thưởng sự kiện,\n　Điểm sự kiện nhận được khi kết thúc huấn luyện sẽ được cộng thêm.",
+          "proposed_text": null,
+          "reported_at": "2026-09-05T14:38:00Z"
+        },
+        {
+          "uid": "zhcn:920645d4c666b5d48c13b073",
+          "plan_id": "tr-p3-67f8551f7780-2d66b69ad6e8-b5c0bcb3bd-036a464857",
+          "batch_id": "tr-p3-67f8551f7780-2d66b69ad6e8-b5c0bcb3bd-036a464857-b0057",
+          "claim_id": "trc-gpt56sol-auto11-20260905T143900Z-b0057",
+          "worker_id": "gpt56sol-auto11-20260905T143900Z-review",
+          "source_path": "localize_dict.json",
+          "json_path": [
+            "StoryEvent124009"
+          ],
+          "source_text": "没有活动加成育成赛马娘",
+          "current_text": "Không có Mã Nương huấn luyện có thưởng sự kiện",
+          "proposed_text": null,
+          "reported_at": "2026-09-05T14:43:00Z"
+        }
+      ],
+      "canonical_resolution": null,
+      "review_resolution": {
+        "decision_id": "audit.finding.trainee-text-data",
+        "action": "lock",
+        "target_vi": "Trainee"
+      },
+      "first_seen_at": "2026-09-05T14:38:00Z",
+      "last_seen_at": "2026-09-05T14:43:00Z"
+    },
+    {
       "finding_id": "cf-d719946b98da34d8",
       "status": "open",
       "source_zh_cn": "马娘",

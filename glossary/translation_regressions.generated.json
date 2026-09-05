@@ -9,13 +9,13 @@
     "growth": "Every accepted retrospective translation revise and accepted UI revise is folded into this file automatically by both review merge workflows."
   },
   "summary": {
-    "merged_markers_scanned": 2995,
-    "translation_merged_markers_scanned": 2895,
+    "merged_markers_scanned": 2999,
+    "translation_merged_markers_scanned": 2899,
     "ui_merged_markers_scanned": 100,
-    "accepted_revision_events": 8274,
-    "accepted_translation_revision_events": 6785,
+    "accepted_revision_events": 8281,
+    "accepted_translation_revision_events": 6792,
     "accepted_ui_revision_events": 1489,
-    "regression_identity_count": 6486,
+    "regression_identity_count": 6487,
     "skipped_incomplete_markers": 0,
     "translation_skipped_incomplete_markers": 0,
     "ui_skipped_incomplete_markers": 0
@@ -11668,11 +11668,12 @@
       "source_text": "拥有的活动加成赛马娘",
       "source_fingerprint": "daca2f843abd30621a3782707683ca353fac3f28a4d7c6a616d57c81419e1e01",
       "rejected_targets": [
+        "Mã Nương có thưởng sự kiện đã sở hữu",
         "Mã Nương đang sở hữu có Thưởng sự kiện",
         "Uma Musume có Thưởng sự kiện đang sở hữu",
         "Uma sở hữu có Thưởng sự kiện"
       ],
-      "approved_target": "Mã Nương có Thưởng sự kiện đã sở hữu",
+      "approved_target": "Mã Nương có thưởng sự kiện đang sở hữu",
       "origins": [
         "translation_review",
         "ui_review"
@@ -11713,6 +11714,14 @@
           "claim_id": "trc-gpt56sol-20260831T132630Z-b0230",
           "merged_at": "2026-08-31T13:41:31.771286Z",
           "reason": "拥有的 marks the character as owned by the player; current word order reverses the relation."
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-2d66b69ad6e8-b5c0bcb3bd-036a464857",
+          "batch_id": "tr-p3-67f8551f7780-2d66b69ad6e8-b5c0bcb3bd-036a464857-b0057",
+          "claim_id": "trc-gpt56sol-auto11-20260905T143900Z-b0057",
+          "merged_at": "2026-09-05T14:45:13.778855Z",
+          "reason": "Preserve the owned event-bonus Mã Nương meaning while replacing the awkward completed-aspect phrase đã sở hữu with the natural inventory-state phrase đang sở hữu."
         }
       ]
     },
@@ -14678,9 +14687,10 @@
       "source_fingerprint": "446cf62530efdbf872fd9905fddafb1543767cc66a53888e2a42dbfbbd759f18",
       "rejected_targets": [
         "Tăng giới hạn Speed và Guts,\\nNhân tố giúp nhận giảm giá Skill 「Into High Gear!」",
+        "Tăng giới hạn Speed và Guts,\\nSpark giúp nhận giảm giá Skill 「Into High Gear!」",
         "Tăng giới hạn Tốc độ và Ý chí ,\\nNhân tố giúp nhận giảm giá kỹ năng 「Into High Gear!」"
       ],
-      "approved_target": "Tăng giới hạn Speed và Guts,\\nSpark giúp nhận giảm giá Skill 「Into High Gear!」",
+      "approved_target": "Tăng giới hạn Speed và Guts,\\nSpark giúp giảm giá Skill 「Into High Gear!」",
       "origins": [
         "translation_review"
       ],
@@ -14701,6 +14711,14 @@
           "claim_id": "trc-chatgpt-sol-20260830-104637-b0944",
           "merged_at": "2026-08-30T03:50:18.901217Z",
           "reason": "Category 172 requires Spark; other embedded labels and locked Skill are canonical."
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-2d66b69ad6e8-b5c0bcb3bd-036a464857",
+          "batch_id": "tr-p3-67f8551f7780-2d66b69ad6e8-b5c0bcb3bd-036a464857-b0161",
+          "claim_id": "trc-gpt56sol-auto11-20260905T143900Z-b0161",
+          "merged_at": "2026-09-05T14:45:13.803961Z",
+          "reason": "Current 'giúp nhận giảm giá' is unnatural; use the direct Skill-discount construction."
         }
       ]
     },
@@ -16825,6 +16843,31 @@
           "reason": "Route context makes the leading phrase redundant; preserves one newline and the low-cost/more-Hints tradeoff.",
           "ui_key": "SingleModeScenarioPioneer585030",
           "control_type": "short_system_label"
+        }
+      ]
+    },
+    {
+      "id": "review.regression.98579d29a213493c",
+      "uid": "zhcn:162e33a7ad378c2101fa20ea",
+      "scope": "uid",
+      "source_text": "比赛对手选择",
+      "source_fingerprint": "32c5b04ca9b40ec3d2649a142dab4070b92a5663c2dc100bca2e6ea8a5f7b583",
+      "rejected_targets": [
+        "Chọn đối thủ cuộc đua"
+      ],
+      "approved_target": "Chọn đối thủ cho cuộc đua",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-2d66b69ad6e8-b5c0bcb3bd-036a464857",
+          "batch_id": "tr-p3-67f8551f7780-2d66b69ad6e8-b5c0bcb3bd-036a464857-b0057",
+          "claim_id": "trc-gpt56sol-auto11-20260905T143900Z-b0057",
+          "merged_at": "2026-09-05T14:45:13.778855Z",
+          "reason": "Preserve the race-opponent selection meaning while making the Vietnamese relationship explicit and natural."
         }
       ]
     },
@@ -24080,9 +24123,10 @@
       "source_text": "赛马娘名鉴",
       "source_fingerprint": "203e204d9ccb5b4c1342ecffc53b50025254961c9a82cf7ea13686632996574f",
       "rejected_targets": [
+        "Danh mục Mã Nương",
         "Danh mục Uma Musume"
       ],
-      "approved_target": "Danh mục Mã Nương",
+      "approved_target": "Archive Mã Nương",
       "origins": [
         "translation_review"
       ],
@@ -24095,6 +24139,14 @@
           "claim_id": "trc-chatgpt-sol-20260830-1156-b0405",
           "merged_at": "2026-08-30T05:58:49.855096Z",
           "reason": "Generic 赛马娘 phải dùng Mã Nương, không dùng Uma Musume."
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-2d66b69ad6e8-b5c0bcb3bd-036a464857",
+          "batch_id": "tr-p3-67f8551f7780-2d66b69ad6e8-b5c0bcb3bd-036a464857-b0057",
+          "claim_id": "trc-gpt56sol-auto11-20260905T143900Z-b0057",
+          "merged_at": "2026-09-05T14:45:13.778855Z",
+          "reason": "Current text misses the embedded locked system label Archive. The revision restores Archive while retaining the required generic Mã Nương term embedded for this item."
         }
       ]
     },
@@ -36396,9 +36448,10 @@
       "source_text": "将保存所选赛马娘的CM视频，\n确定吗？",
       "source_fingerprint": "d85693b865d81aeb3fc75571b092a8b1c198dc8492c74b2276fd78cf951e9e06",
       "rejected_targets": [
+        "Sẽ lưu video CM của Mã Nương đã chọn,\nbạn có chắc không?",
         "Sẽ lưu video CM của Uma Musume đã chọn,\nbạn có chắc không?"
       ],
-      "approved_target": "Sẽ lưu video CM của Mã Nương đã chọn,\nbạn có chắc không?",
+      "approved_target": "Sẽ lưu video CM của Mã Nương đã chọn.\nBạn có chắc không?",
       "origins": [
         "translation_review"
       ],
@@ -36411,6 +36464,14 @@
           "claim_id": "trc-chatgpt-gpt56sol-20260831T150600Z-b0224",
           "merged_at": "2026-08-31T15:14:17.292187Z",
           "reason": "Generic 赛马娘 phải dùng canonical Mã Nương thay vì Uma Musume; newline được giữ nguyên."
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-2d66b69ad6e8-b5c0bcb3bd-036a464857",
+          "batch_id": "tr-p3-67f8551f7780-2d66b69ad6e8-b5c0bcb3bd-036a464857-b0056",
+          "claim_id": "trc-gpt56sol-auto11-20260905T143400Z-b0056",
+          "merged_at": "2026-09-05T14:45:11.926617Z",
+          "reason": "Preserve the confirmation meaning and newline while replacing the comma splice with natural Vietnamese sentence punctuation/capitalization."
         }
       ]
     },
@@ -110581,9 +110642,10 @@
       "source_fingerprint": "446cf62530efdbf872fd9905fddafb1543767cc66a53888e2a42dbfbbd759f18",
       "rejected_targets": [
         "Tăng giới hạn Speed và Guts,\\nNhân tố giúp nhận giảm giá Skill 「Into High Gear!」",
+        "Tăng giới hạn Speed và Guts,\\nSpark giúp nhận giảm giá Skill 「Into High Gear!」",
         "Tăng giới hạn Tốc độ và Ý chí ,\\nNhân tố giúp nhận giảm giá kỹ năng 「Into High Gear!」"
       ],
-      "approved_target": "Tăng giới hạn Speed và Guts,\\nSpark giúp nhận giảm giá Skill 「Into High Gear!」",
+      "approved_target": "Tăng giới hạn Speed và Guts,\\nSpark giúp giảm giá Skill 「Into High Gear!」",
       "origins": [
         "translation_review"
       ],
@@ -110604,6 +110666,14 @@
           "claim_id": "trc-chatgpt-sol-20260830-104637-b0944",
           "merged_at": "2026-08-30T03:50:18.901217Z",
           "reason": "Category 172 requires Spark; other embedded labels and locked Skill are canonical."
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-2d66b69ad6e8-b5c0bcb3bd-036a464857",
+          "batch_id": "tr-p3-67f8551f7780-2d66b69ad6e8-b5c0bcb3bd-036a464857-b0161",
+          "claim_id": "trc-gpt56sol-auto11-20260905T143900Z-b0161",
+          "merged_at": "2026-09-05T14:45:13.803961Z",
+          "reason": "Current 'giúp nhận giảm giá' is unnatural; use the direct Skill-discount construction."
         }
       ]
     },
@@ -126927,11 +126997,12 @@
       "source_text": "拥有的活动加成支援卡",
       "source_fingerprint": "ff2a8ead47e14ee178c7fdf975b78e963cdb4f653d651630eba5327c60c16d72",
       "rejected_targets": [
+        "Support Card có Thưởng sự kiện đã sở hữu",
         "Support Card đang sở hữu có Thưởng sự kiện",
         "Thẻ hỗ trợ có Thưởng sự kiện đang sở hữu",
         "Thẻ sở hữu có Thưởng sự kiện"
       ],
-      "approved_target": "Support Card có Thưởng sự kiện đã sở hữu",
+      "approved_target": "Support Card có thưởng sự kiện đang sở hữu",
       "origins": [
         "translation_review",
         "ui_review"
@@ -126972,6 +127043,14 @@
           "claim_id": "trc-gpt56sol-20260831T132630Z-b0230",
           "merged_at": "2026-08-31T13:41:31.771286Z",
           "reason": "拥有的 marks the card as owned by the player; current word order reverses the relation."
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-2d66b69ad6e8-b5c0bcb3bd-036a464857",
+          "batch_id": "tr-p3-67f8551f7780-2d66b69ad6e8-b5c0bcb3bd-036a464857-b0057",
+          "claim_id": "trc-gpt56sol-auto11-20260905T143900Z-b0057",
+          "merged_at": "2026-09-05T14:45:13.778855Z",
+          "reason": "Preserve ownership and event-bonus meaning while normalizing Vietnamese word order/capitalization; Support Card remains canonical."
         }
       ]
     },

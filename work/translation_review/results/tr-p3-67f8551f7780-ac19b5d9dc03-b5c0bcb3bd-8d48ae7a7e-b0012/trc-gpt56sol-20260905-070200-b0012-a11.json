@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "status": "partial",
+  "status": "complete",
   "plan_id": "tr-p3-67f8551f7780-ac19b5d9dc03-b5c0bcb3bd-8d48ae7a7e",
   "batch_id": "tr-p3-67f8551f7780-ac19b5d9dc03-b5c0bcb3bd-8d48ae7a7e-b0012",
   "claim_id": "trc-gpt56sol-20260905-070200-b0012-a11",
   "worker_id": "gpt56sol-20260905-070200-a11",
-  "reviewed_at": "2026-09-05T07:05:00Z",
-  "completed_count": 15,
+  "reviewed_at": "2026-09-05T07:06:00Z",
+  "completed_count": 20,
   "decisions": [
     {"uid":"zhcn:fb64d6e08e1c566d39530c0b","current_fingerprint":"1e050b4d7e6a98fc78f3cb67722d4caa625c44991895fdafcbcb14aef9d8ad34","action":"keep","reason":"Meaning is preserved and the UI wording is clear; the embedded race.generic lock is already satisfied.","terminology_basis":"race.generic = Cuộc đua.","confidence":"high"},
     {"uid":"zhcn:2ee6a37d968e2370ffb13720","current_fingerprint":"cb65386bccaa8918e2cd431811a504b14b4b6850ce581d812e5613f9d60f3c5d","action":"keep","reason":"The instruction preserves the required count of 3 and is natural enough for UI text; generic 赛马娘 is correctly rendered as Mã Nương.","terminology_basis":"common.world.umamusume = Mã Nương.","confidence":"high"},
@@ -22,6 +22,11 @@
     {"uid":"zhcn:fde982c91a5752a15bc4a28d","current_fingerprint":"3f5f48fd1e304cf49ceafee32f363562cc2abbe03e4b95cff6b9a2f33481b00e","action":"keep","reason":"The viewing prompt preserves both placeholders, blank-line layout, race number, and generic race terminology.","terminology_basis":"race.generic = Cuộc đua.","confidence":"high"},
     {"uid":"zhcn:fdd1569203a83410219259d7","current_fingerprint":"9bdb45f4d023902e07669599a0c1a0cb9bfe6e93beb74f104548deba216891e2","action":"defer","reason":"Embedded open canonical finding cf-61d905f4d2327086 blocks the 英雄联赛 event-name alias; Extra Stage and race terms must not be used to bypass that blocker.","confidence":"high"},
     {"uid":"zhcn:825f0a78f078e00baf94751e","current_fingerprint":"3c7ccc2730a470443a0d4a93a1c2e1ce489bb022b6c422fa3f6ddbd144722045","action":"defer","reason":"Embedded open canonical finding cf-61d905f4d2327086 blocks the 英雄联赛 event-name alias; Extra Stage and race terms must not be used to bypass that blocker.","confidence":"high"},
-    {"uid":"zhcn:b41eb0577a4563804aa16823","current_fingerprint":"5c2134c181705d5115324090328260c2e4fd99618cdff0c6401e8b1561f6988a","action":"keep","reason":"The instruction is semantically faithful and the embedded generic race term is satisfied.","terminology_basis":"race.generic = Cuộc đua.","confidence":"high"}
+    {"uid":"zhcn:b41eb0577a4563804aa16823","current_fingerprint":"5c2134c181705d5115324090328260c2e4fd99618cdff0c6401e8b1561f6988a","action":"keep","reason":"The instruction is semantically faithful and the embedded generic race term is satisfied.","terminology_basis":"race.generic = Cuộc đua.","confidence":"high"},
+    {"uid":"zhcn:356df33871e4cdac312a0677","current_fingerprint":"17eb953e150f7bebebbebbc27b28d82e3d23db2268dac86d5d4a537951938c84","action":"keep","reason":"The setting label accurately describes race-presentation settings for participants and satisfies the generic race terminology.","terminology_basis":"race.generic = Cuộc đua.","confidence":"high"},
+    {"uid":"zhcn:93667d67dd9997f14f16d524","current_fingerprint":"be42469a5ea46f2ccf89644e3e098fe4837bd280243c198362005c339717ac5b","action":"keep","reason":"The label faithfully names the participant-specific race presentation and satisfies the embedded race terminology.","terminology_basis":"race.generic = Cuộc đua.","confidence":"high"},
+    {"uid":"zhcn:dd3f6798c558e06a9267f73d","current_fingerprint":"44644cae637e60dad3721172933e652a5149070732b5b60d4ad9fd539d7a8096","action":"keep","reason":"The ON-setting behavior and newline structure are preserved, with generic race terminology already satisfied.","terminology_basis":"race.generic = Cuộc đua.","confidence":"high"},
+    {"uid":"zhcn:50b92d2531df9fe6e4f298a9","current_fingerprint":"88e5fd2341abefeab00ee22ce4898888864e187e383e5ffbfc007aab9092dcae","action":"defer","reason":"Embedded open canonical finding cf-61d905f4d2327086 blocks the 英雄联赛 event-name alias until canonical identity is resolved.","confidence":"high"},
+    {"uid":"zhcn:23a7099255f079ed48d03db0","current_fingerprint":"c829836df9f85b30e01d9b5bf4d86195389f557475ac2b917c3a02ebc97fc414","action":"revise","proposed_text":"Vì đã lọt vào top 96 ở Main Stage,\n<color=#ff9900>bạn có thể nhận phần thưởng đặc biệt!</color>\n\nHướng dẫn nhận thưởng sẽ được công bố sau,\nvui lòng kiểm tra khi đó!","reason":"The current text uses forbidden Giai đoạn chính for the named League of Heroes stage. Replace only that term while preserving 96, color tags, and newline structure.","terminology_basis":"event.loh.main_stage = Main Stage; event.loh.main_stage.main_segment_alias maps 主赛段 to Main Stage.","confidence":"high"}
   ]
 }

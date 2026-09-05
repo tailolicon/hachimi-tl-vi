@@ -10,12 +10,14 @@
   "source_queue_git_commit": "ba3815ed06a2a9bb3fddb38a6e1ea7ca64506da2",
   "claimed_at": "2026-09-05T13:30:00Z",
   "heartbeat_at": "2026-09-05T13:30:00Z",
-  "lease_expires_at": "2026-09-05T13:36:00Z",
-  "status": "active",
+  "lease_expires_at": "2026-09-05T13:34:00Z",
+  "status": "released",
+  "released_at": "2026-09-05T13:34:00Z",
   "handoff_from_claim_id": "tr-gpt56sol-auto11-20260905T100118Z-b01022s03",
   "partial_result_path": "work/parallel/zhcn-67f8551f7780/results/b0010/batch-01022-s03.json",
   "translated_count": 20,
   "progress_token": "b01022s03-20of20-pending-qa",
   "progress_kind": "result_checkpoint",
-  "progress_ref": "work/parallel/zhcn-67f8551f7780/results/b0010/batch-01022-s03.json"
+  "progress_ref": "work/parallel/zhcn-67f8551f7780/results/b0010/batch-01022-s03.json",
+  "release_reason": "Takeover verified the durable 20/20 checkpoint against the pinned source identity and inspected the current TranslationQualityGuard implementation. Shiro execution remained unavailable with repeated transient MCP tunnel 404/429 responses, so the guard was not falsely declared passed and no completion marker was created. Next worker should immediately take over this released claim, run TranslationQualityGuard against the task-stable result, correct any reported issue, then create the completion marker only on a real pass."
 }

@@ -35,6 +35,14 @@ Therefore the canonical identity is `Tucker Bryne`; the historical `Tako Brian` 
 - `ab173b338af6e199fbfd2044ab616dadd3aadbba` adds `scripts/harden_tucker_bryne_finding.py` with scoped rule `proper_name.tucker_bryne.scenario120` and explicit lock `audit.finding.tucker-bryne-scenario120`.
 - `b35f6fdbc1f78c555dcf57b1d37a1e8496802b39` adds regression coverage for idempotence, canonical/review resolution, active-finding clearance, and category-120 containment.
 
-## Verification state
+## Production verification
 
-At this checkpoint hardener and regression are on live `main`. Validate, Context Sync, and Review Plan Sync must all pass, and production sync must materialize the canonical/review lock before this finding may increment maintenance `completed_count`.
+All required production checks completed successfully for `b35f6fdbc1f78c555dcf57b1d37a1e8496802b39`:
+
+- Validate: GitHub Actions run `33985852172` — success.
+- Sync translation context: run `33985852142` — success.
+- Sync translation review plan: run `33985852145` — success.
+- Live generated context contains `proper_name.tucker_bryne.scenario120` with preferred `Tucker Bryne` and propagated review-plan context.
+- Live `glossary/canonical_findings.json` is empty after production refresh, so `cf-7b242406970feaef` is no longer an active blocker.
+
+Maintenance resolution is complete for Tucker Bryne. This finding increments the canonical-findings maintenance completed count from 140 to 141.

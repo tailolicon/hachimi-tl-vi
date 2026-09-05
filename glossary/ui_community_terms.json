@@ -8490,6 +8490,33 @@
       "json_path_prefixes": [],
       "match_mode": "exact",
       "basis": "Pinned in-game race 32/3020 and display 33/3020 are JP 中山ウマ娘S, not real-racing 中山牝馬S. The project already canonizes the reusable ウマ娘ステークス component as Uma Musume Stakes, so the full player-facing identity is Nakayama Uma Musume Stakes."
+    },
+    {
+      "id": "skill.oshikiri_junbi.final_push",
+      "category": "skill_name",
+      "source_aliases": [
+        "一逃到底"
+      ],
+      "preferred": "Final Push",
+      "compact": [],
+      "accepted": [
+        "Final Push"
+      ],
+      "forbidden": [
+        "Dẫn đầu tới cùng"
+      ],
+      "require_accepted": true,
+      "invalidation_scope": "item",
+      "source_paths": [
+        "text_data_dict.json"
+      ],
+      "json_path_prefixes": [
+        [
+          "147"
+        ]
+      ],
+      "match_mode": "exact",
+      "basis": "Pinned Skill 200552 is Japanese 押し切り準備. Current Global-reference data names this exact skill 'Final Push' and its gold upgrade 逃亡者 'Unrestrained'. Repository curation already flags zh-CN 一逃到底 as a lossy/non-title-equivalent bridge. Lock the player-facing Global title instead of preserving the Chinese-derived Vietnamese calque; scope exactly to Skill category 147."
     }
   ]
 }

@@ -17,16 +17,16 @@ Target: `Fully Charged`
 - `tests/test_fully_charged_finding_hardening.py` proves positive canonical resolution on `Race9467001`, idempotence, and negative non-resolution on a neighboring localize key.
 - Regression commit: `d575c97fb7d2de51e95903ffbc6664e4059ad014`.
 
-## Production gate state — 2026-09-05T00:05Z
+## Production gate state — verified 2026-09-05
 
-Maintenance takeover verified the production workflows triggered by the regression commit. The finding is **not accepted yet** and `completed_count` remains `129`.
+The finding is **not accepted yet** and `completed_count` remains `129`.
 
-- Sync translation context run `33931287046`: `pending`, conclusion `null` at latest read.
-- Sync translation review plan run `33931287106`: `pending`, conclusion `null` at latest read.
-- Validate remains a mandatory gate and must be explicitly verified successful before acceptance.
-- After Context Sync succeeds, read back live generated canonical/terminology artifacts and confirm `脚色十分` / `Race9467001` materializes as `Fully Charged` and the terminology review queue no longer carries this unresolved finding.
-- After the successor Translation Review Plan succeeds, re-read `work/translation_review/active_plan.json` and verify `cf-642f6b7fcbe6af58` is no longer a worker-facing blocker.
+- Validate run `33931287087`: `completed`, conclusion `success`.
+- Sync translation context run `33931287046`: `completed`, conclusion `success`.
+- Sync translation review plan run `33931287106`: still `in_progress` at latest read.
+- Context materialization/read-back still must be verified from live generated worker-facing artifacts: `脚色十分` / `Race9467001` must resolve as `Fully Charged`, and the terminology review queue must no longer carry this unresolved finding.
+- After Translation Review Plan succeeds, re-read `work/translation_review/active_plan.json` and verify `cf-642f6b7fcbe6af58` is no longer a worker-facing blocker.
 
 ## Acceptance pending
 
-Do **not** increment `129 -> 130` until all required production gates above are successful and live read-back verifies materialization plus blocker removal.
+Do **not** increment `129 -> 130` until live materialization and successor-plan blocker removal are verified in addition to the successful production workflows above.

@@ -5,8 +5,8 @@
   "batch_id": "tr-p3-67f8551f7780-f0cd7bb52a8f-b5c0bcb3bd-762d392196-b0062",
   "claim_id": "trc-gpt56sol-auto11-20260905T213220Z-b0062",
   "worker_id": "gpt56sol-auto11-20260905T213220Z-review",
-  "reviewed_at": "2026-09-05T21:36:00Z",
-  "completed_count": 5,
+  "reviewed_at": "2026-09-05T21:38:00Z",
+  "completed_count": 10,
   "decisions": [
     {
       "uid": "zhcn:082c951d547d52abdfc82222",
@@ -49,6 +49,58 @@
       "proposed_text": "Điều đã thề trong tim chỉ có hai chữ 『nhanh nhất』!　Cho đến tận cùng giới hạn,\\nnhững Mã Nương lao vun vút cất tiếng gào theo bản năng!!",
       "reason": "Generic 赛马娘 must be Mã Nương; the current Uma Musume form is forbidden while the rest of the translation is sound.",
       "terminology_basis": "common.world.umamusume",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:ee32e23a310b8ee70df2f7b0",
+      "current_fingerprint": "d9a15aff09d40349e0d09588a6c2bf003d64e509e8e6c878c6feab26ae24fad1",
+      "action": "revise",
+      "proposed_text": "Tiếp tục chạy――cho đến ngày giấc mơ thành hiện thực!\\nMột ca khúc dệt nên tuổi trẻ của các Mã Nương bằng nụ cười và nước mắt.",
+      "reason": "Generic 赛马娘 is Mã Nương in prose; the current Uma Musume form is forbidden.",
+      "terminology_basis": "common.world.umamusume",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:46a04059ea36edd214d1cc99",
+      "current_fingerprint": "50c274cdfaa8e781a0132b9d2ca7b0072f0fc8d8a1c3d117cae71781fd6aaf96",
+      "action": "revise",
+      "proposed_text": "Có cãi vã, cũng có hòa thuận! Một khúc ca học viện nhẹ nhàng♪ nhét đầy những khoảng thời gian mềm mại～ của các Mã Nương\\ntrong từng giai điệu đung đưa♪",
+      "reason": "Replace forbidden generic Uma Musume with Mã Nương while preserving the source structure and playful register.",
+      "terminology_basis": "common.world.umamusume",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:c8d6742ae7d923a6662edbac",
+      "current_fingerprint": "bcedbb854fa69d820a190236c49028dc9bca263251b65fdf5ceafbea9de89e27",
+      "action": "revise",
+      "proposed_text": "Minh chứng cho việc giành được Classic Triple Crown.\\nPhiên bản Club Arrange của ca khúc mà mọi Mã Nương đều hằng ao ước!",
+      "reason": "Use the locked Classic Triple Crown label and replace generic Uma Musume with Mã Nương.",
+      "terminology_basis": "reviewed.system_label.296c3252778e; reviewed.system_label.1e2d530a6eb9; common.world.umamusume",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:0aea32c1f25ea5facb70c2bb",
+      "current_fingerprint": "4e7aa2d8fbf4dd0b8688ceae511af37f5b64845b301e47093a7456ef5706a032",
+      "action": "revise",
+      "proposed_text": "Các Mã Nương gyaru, quẩy hết mình nào! Một ca khúc sinh ra vì gyaru!\\nChúng ta là forever☆ hội bạn Mã Nương mạnh nhất!",
+      "reason": "Both generic 赛马娘 occurrences require Mã Nương rather than the forbidden Uma Musume form.",
+      "terminology_basis": "common.world.umamusume",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:361d65ed54a0c08234044841",
+      "current_fingerprint": "d9148fb5754e555c843f26fcb0cdb98f643791160bd30189332e634a2e29e290",
+      "action": "defer",
+      "reason": "焦躁 is ordinary prose here, but the embedded context still overmatches it to the Rushed system label. Resolve the context rule before accepting a final decision.",
+      "canonical_finding": {
+        "kind": "context_rule",
+        "source_zh_cn": "如同阳光一般温暖你的心。不用焦躁，慢慢来──\\n一步一脚印地前进，梦想正在彼方等着我们。",
+        "concept": "Exclude ordinary prose 焦躁 from Rushed system-label matching",
+        "match_mode": "exact",
+        "scope": "source_path",
+        "reason": "This song-description prose means not to be anxious/rushed and is not a named Condition/system label.",
+        "confidence": "high"
+      },
       "confidence": "high"
     }
   ]

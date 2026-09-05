@@ -45,4 +45,4 @@ All required production checks completed successfully for `b35f6fdbc1f78c555dcf5
 - Live generated context contains `proper_name.tucker_bryne.scenario120` with preferred `Tucker Bryne` and propagated review-plan context.
 - Live `glossary/canonical_findings.json` is empty after production refresh, so `cf-7b242406970feaef` is no longer an active blocker.
 
-Maintenance resolution is complete for Tucker Bryne. This finding increments the canonical-findings maintenance completed count from 140 to 141.
+Maintenance resolution is complete for Tucker Bryne. The prior verified maintenance handoff already counted this finding in `completed_count = 140`; this checkpoint reconfirms that evidence and MUST NOT increment the count again.

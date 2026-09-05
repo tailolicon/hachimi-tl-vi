@@ -13929,18 +13929,24 @@
         "context_rule"
       ],
       "concepts": [
-        "Power stat alias must not overmatch Rhein Kraft character name"
+        "Power stat alias must not overmatch Rhein Kraft character name",
+        "Prevent stat.power alias 力量 from overmatching inside the character proper name Rhein Kraft"
       ],
-      "suggested_targets_vi": [],
+      "suggested_targets_vi": [
+        "Rhein Kraft"
+      ],
       "confidence_levels": [
         "high"
       ],
       "reasons": [
         "力量 is lexical content inside the zh-CN proper name 莱茵力量 here, not the Power gameplay stat.",
         "力量 inside 莱茵力量 is part of the character proper name, not a stat mention.",
-        "The proper name contains 力量 lexically; this occurrence is not the gameplay Power stat."
+        "The proper name contains 力量 lexically; this occurrence is not the gameplay Power stat.",
+        "The proper-name lock and generic Power lock overlap on the same characters; canonical context must exempt the character name before review can resolve safely.",
+        "The proper-name lock and generic Power lock overlap on the same characters and should be resolved canonically rather than patched per item.",
+        "Canonical proper-name handling must win over the generic Power substring match; then this item can safely normalize to Rhein Kraft."
       ],
-      "evidence_count": 3,
+      "evidence_count": 6,
       "evidence": [
         {
           "uid": "zhcn:cce8f8c0881b45ee673a9e5b",
@@ -13989,6 +13995,54 @@
           "current_text": "Thường phục (Line Kraft)",
           "proposed_text": null,
           "reported_at": "2026-09-01T02:06:00Z"
+        },
+        {
+          "uid": "zhcn:cce8f8c0881b45ee673a9e5b",
+          "plan_id": "tr-p3-67f8551f7780-f0cd7bb52a8f-b5c0bcb3bd-762d392196",
+          "batch_id": "tr-p3-67f8551f7780-f0cd7bb52a8f-b5c0bcb3bd-762d392196-b0093",
+          "claim_id": "trc-gpt56sol-auto11-20260905T214530Z-b0093",
+          "worker_id": "gpt56sol-auto11-20260905T214530Z-review",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "14",
+            "110901"
+          ],
+          "source_text": "决胜服（莱茵力量）",
+          "current_text": "Trang phục chiến thắng (Rhein Kraft)",
+          "proposed_text": null,
+          "reported_at": "2026-09-05T21:52:00Z"
+        },
+        {
+          "uid": "zhcn:d7c20444d444302801e3e2e9",
+          "plan_id": "tr-p3-67f8551f7780-f0cd7bb52a8f-b5c0bcb3bd-762d392196",
+          "batch_id": "tr-p3-67f8551f7780-f0cd7bb52a8f-b5c0bcb3bd-762d392196-b0093",
+          "claim_id": "trc-gpt56sol-auto11-20260905T214530Z-b0093",
+          "worker_id": "gpt56sol-auto11-20260905T214530Z-review",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "14",
+            "110902"
+          ],
+          "source_text": "主线故事决胜服（莱茵力量）",
+          "current_text": "Trang phục chiến thắng cốt truyện chính (Rhein Kraft)",
+          "proposed_text": null,
+          "reported_at": "2026-09-05T21:52:00Z"
+        },
+        {
+          "uid": "zhcn:fde8bb1f452c5037c19ff7ca",
+          "plan_id": "tr-p3-67f8551f7780-f0cd7bb52a8f-b5c0bcb3bd-762d392196",
+          "batch_id": "tr-p3-67f8551f7780-f0cd7bb52a8f-b5c0bcb3bd-762d392196-b0093",
+          "claim_id": "trc-gpt56sol-auto11-20260905T214530Z-b0093",
+          "worker_id": "gpt56sol-auto11-20260905T214530Z-review",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "14",
+            "901109"
+          ],
+          "source_text": "私服（莱茵力量）",
+          "current_text": "Thường phục (Line Kraft)",
+          "proposed_text": null,
+          "reported_at": "2026-09-05T21:52:00Z"
         }
       ],
       "canonical_resolution": {
@@ -14002,7 +14056,7 @@
         "target_vi": "Rhein Kraft"
       },
       "first_seen_at": "2026-09-01T02:06:00Z",
-      "last_seen_at": "2026-09-01T02:06:00Z"
+      "last_seen_at": "2026-09-05T21:52:00Z"
     },
     {
       "finding_id": "cf-69b86b4ce3b871d1",

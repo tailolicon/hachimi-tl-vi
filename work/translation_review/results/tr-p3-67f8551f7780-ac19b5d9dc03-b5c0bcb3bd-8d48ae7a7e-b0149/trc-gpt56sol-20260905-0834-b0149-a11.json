@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "status": "partial",
+  "plan_id": "tr-p3-67f8551f7780-ac19b5d9dc03-b5c0bcb3bd-8d48ae7a7e",
+  "batch_id": "tr-p3-67f8551f7780-ac19b5d9dc03-b5c0bcb3bd-8d48ae7a7e-b0149",
+  "claim_id": "trc-gpt56sol-20260905-0834-b0149-a11",
+  "worker_id": "gpt56sol-20260905-0834-a11",
+  "reviewed_at": "2026-09-05T08:36:00Z",
+  "completed_count": 5,
+  "decisions": [
+    {"uid":"zhcn:95029392f66c88f486c117ae","current_fingerprint":"688a770a239a8517778f7c60fc79447be1ee63ab28326b59cfb182380179aa0e","action":"keep","reason":"The initial Speed effect is accurate and concise for the support-effect label.","confidence":"high"},
+    {"uid":"zhcn:eaced8302efc23913cef4b9b","current_fingerprint":"cb8d303c7ed73672694b3591f9079ef7e91a3b25ff33f6358b7aea421d2d5f98","action":"keep","reason":"The label preserves both effects and uses the required player-facing Skill Pt and Wit terminology.","terminology_basis":"Embedded common.skill_points requires Skill Pt and common.stat.wit requires Wit; generic Skill remains English.","confidence":"high"},
+    {"uid":"zhcn:34cf2c742e9266cdab5d7632","current_fingerprint":"f278701dbc933fb5c7c2f22f01b442771dce72eee116680bb3253a3119ef17b1","action":"defer","reason":"Embedded category-155 context imposes conflicting requirements: the narrower 初始牵绊值 rule correctly requires Initial Friendship, while the broader 牵绊值 rule simultaneously requires Friendship Gauge. A one-off rewrite cannot safely satisfy both.","canonical_finding":{"kind":"context_rule","source_zh_cn":"初始牵绊值","suggested_target_vi":"Initial Friendship","concept":"Initial Friendship support-effect compound must override generic Friendship Gauge substring matching","match_mode":"contains","scope":"source_path","reason":"Category 155 currently overmatches generic 牵绊值 inside the narrower canonical compound 初始牵绊值, producing impossible dual terminology requirements.","confidence":"high"},"confidence":"high"},
+    {"uid":"zhcn:ab7cf8cd9bd0c55f67839d61","current_fingerprint":"eeede1c9fe81833e15eb9c2a887fb0394c21340cd8813a3ce026c6337a968287","action":"keep","reason":"Both support effects are preserved; Mood Effect is canonical and the race-bonus wording retains the locked Cuộc đua term.","terminology_basis":"Embedded support.mood_effect.effect155 requires Mood Effect; race.generic locks Cuộc đua.","confidence":"high"},
+    {"uid":"zhcn:39663d4e0378cf2ca96cebfe","current_fingerprint":"5397846e2e20881bf86a8c77446253e33a977972fbb9e852784ce3ac86463dd8","action":"keep","reason":"The two support effects are accurately represented with canonical Friendship Bonus and Power terminology.","terminology_basis":"Embedded support.friendship_bonus.effect155 requires Friendship Bonus and common.stat.power requires Power.","confidence":"high"}
+  ]
+}

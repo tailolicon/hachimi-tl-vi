@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "policy_version": 3,
-  "plan_id": "tr-p3-67f8551f7780-1c10cf952358-b5c0bcb3bd-ba5642134a",
-  "batch_id": "tr-p3-67f8551f7780-1c10cf952358-b5c0bcb3bd-ba5642134a-b0072",
+  "plan_id": "tr-p3-67f8551f7780-ac19b5d9dc03-b5c0bcb3bd-8d48ae7a7e",
+  "batch_id": "tr-p3-67f8551f7780-ac19b5d9dc03-b5c0bcb3bd-8d48ae7a7e-b0072",
   "context_snapshot_sha256": "b5c0bcb3bd9ee5c45e7bedf49c8f8d6ad35c3ceb3c35f528c6381a63c684a967",
   "source_bridge_policy_sha256": "170207b6502a0e5fe37d5ccd0c203a16d03fd5b13673712f81ddf5555d563c6e",
   "review_generation": "retrospective-canonical-full-review",
@@ -26,10 +26,10 @@
       "risk_flags": [
         "locked_term_mismatch",
         "community_term",
-        "community_term_mismatch",
-        "canonical_finding"
+        "community_calque_risk",
+        "community_term_mismatch"
       ],
-      "risk_score": 56,
+      "risk_score": 24,
       "locked_terms": [
         {
           "id": "world.umamusume",
@@ -38,14 +38,6 @@
             "赛马娘"
           ],
           "present": false
-        },
-        {
-          "id": "race.nakayama_himba_stakes",
-          "target_vi": "Nakayama Himba Stakes",
-          "matched_aliases": [
-            "中山赛马娘锦标"
-          ],
-          "present": true
         }
       ],
       "community_terms": [
@@ -67,6 +59,23 @@
           "forbidden_present": false,
           "require_accepted": true,
           "basis": "The generated finding is source-path scoped rather than category scoped. 赛马娘锦标 is the game-specific race-name component JP ウマ娘ステークス wherever it occurs in text_data_dict.json. Existing locked race names such as 府中ウマ娘ステークス -> Fuchu Uma Musume Stakes and 福島ウマ娘ステークス -> Fukushima Uma Musume Stakes establish the project convention: preserve Uma Musume and Stakes rather than applying generic Mã Nương."
+        },
+        {
+          "id": "race.nakayama_uma_musume_stakes",
+          "preferred": "Nakayama Uma Musume Stakes",
+          "accepted": [
+            "Nakayama Uma Musume Stakes"
+          ],
+          "forbidden": [
+            "Nakayama Himba Stakes"
+          ],
+          "matched_aliases": [
+            "中山赛马娘锦标"
+          ],
+          "accepted_present": false,
+          "forbidden_present": true,
+          "require_accepted": true,
+          "basis": "Pinned in-game race 32/3020 and display 33/3020 are JP 中山ウマ娘S, not real-racing 中山牝馬S. The project already canonizes the reusable ウマ娘ステークス component as Uma Musume Stakes, so the full player-facing identity is Nakayama Uma Musume Stakes."
         }
       ],
       "skill_name_canonical": null,

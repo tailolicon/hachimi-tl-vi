@@ -33,5 +33,14 @@
     {"entry_index":79,"uid":"zhcn:a07eab455e5720624155e30c","kind":"text_data","source_text":"【天皇赏（春）】在养成中获得5次GⅠ赛事胜利","source_fingerprint":"47920b6c18b2e049eea727e96d2d6a069949cf8a5f9597afccaf404ab4ff17a8","source_path":"text_data_dict.json","json_path":["67","1002537"],"target_text":"【Tenno Sho (Spring)】Giành chiến thắng 5 lần tại các cuộc đua G1 trong Career","reviewed":true}
   ],
   "blocked_at_entry_index": null,
-  "block_reason": "All 20 translations are durably checkpointed, but TranslationQualityGuard execution is still pending because the local execution backend returned repeated transient MCP/tunnel errors. Do not create a completion marker until the guard is actually run and passes."
+  "block_reason": "All 20 translations are durably checkpointed. This takeover re-verified source identity and cross-checked Kawasaki Kinen, Satsuki Sho, and Tenno Sho (Spring) against QA-passed batch-00747-s03 plus the same mission-template wording in adjacent shards. Structural/numeric review found no visible mismatch. TranslationQualityGuard execution remains pending because repeated execution-backend attempts returned transient 404/429 tunnel failures; no completion marker may be created until an actual guard pass is obtained.",
+  "validation_evidence": {
+    "checked_by": "gpt56sol-auto11-20260905T142647Z-translation",
+    "source_identity_verified": true,
+    "race_name_reference_task": "batch-00747-s03",
+    "race_name_reference_qa_passed": true,
+    "adjacent_template_reference_task": "batch-01023-s00",
+    "structural_numeric_review": "pass_by_inspection",
+    "persistent_guard": "pending_execution_backend"
+  }
 }

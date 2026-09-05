@@ -124,6 +124,15 @@ DEFERRED_IDENTITIES = [
         "category": "skill_name",
         "note": "JP identity is verified as Win Variation's unique Skill 鋭気のアレグロ. Current reference evidence still marks the Skill JP-only and does not establish an official Global/player-facing title, so preserve the finding as blocking rather than canonize a literal Vietnamese calque from the zh-CN bridge.",
     },
+    {
+        "decision_id": "audit.finding-bubble-gum-fellow-unique-defer",
+        "source_zh_cn": "志如鸿鹄 先驱通途",
+        "action": "defer",
+        "target_vi": "",
+        "kind": "proper_name",
+        "category": "skill_name",
+        "note": "JP identity is verified as Bubble Gum Fellow's unique Skill ふくらむ夢、先駆の途 (Skill 101241). Current reference evidence marks the Skill JP-only and does not establish an official Global/player-facing title, so preserve the finding as blocking rather than canonize a literal Vietnamese calque from the zh-CN semantic bridge.",
+    },
 ]
 
 

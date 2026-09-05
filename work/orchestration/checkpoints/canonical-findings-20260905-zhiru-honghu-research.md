@@ -22,15 +22,14 @@ Independent Uma Musume references identify `ふくらむ夢、先駆の途` as S
 
 No official Global/player-facing title is currently established by the checked references. Following the live repository precedent used for `激昂锐意` / `鋭気のアレグロ`, the safe action is an explicit evidence-backed `defer`, not a literal Vietnamese title derived from the zh-CN semantic bridge.
 
-## Durable hardening
+## Durable hardening and verification
 
 - Commit `e356438ccc959d18db4888fc37ca9e2bb0e069da` adds `志如鸿鹄 先驱通途` to `scripts/harden_unverified_identity_finding.py`, recording verified JP identity `ふくらむ夢、先駆の途` / Skill `101241` and the JP-only reason for defer.
 - Commit `778c8cbc92fd2ea2931dce14763443d36d4451d1` extends `tests/test_unverified_identity_finding_hardening.py` so this finding participates in permanent idempotence/defer regression coverage.
-- The GitHub Actions `test` check for the regression commit was queued when this checkpoint was refreshed.
+- The GitHub Actions `test` check for the regression commit completed successfully.
+- Live `glossary/canonical_findings.json` now materializes the durable review decision as `review_resolution.action = defer`, `decision_id = audit.finding-bubble-gum-fellow-unique-defer`, while correctly leaving `canonical_resolution = null`.
+- This is intentionally still an active blocker under `scripts/canonical_findings.py::active_findings`; defer is a durable, evidence-backed identity state for future revisit, not a fabricated canonical title.
 
 ## Continuation
 
-1. Verify the regression commit's `test` check succeeds.
-2. Verify production context sync materializes `review_resolution.action = defer` for `cf-60fe48548cb0a68a` and the successor review-plan sync succeeds.
-3. Do not invent or lock a Vietnamese title while the Skill remains JP-only without an official Global/player-facing identity.
-4. Because live `active_findings` semantics intentionally keep `defer` findings blocking, do not claim that this finding is canonically resolved; the durable result is a verified identity plus explicit defer state for future revisit.
+Continue systemic canonical maintenance from the current live review evidence. Do not increment `completed_count` for this defer: the finding remains active by policy until an official/verified player-facing title is available or repository governance explicitly changes its disposition.

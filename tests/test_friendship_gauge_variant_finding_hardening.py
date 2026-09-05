@@ -6,6 +6,7 @@ from pathlib import Path
 from scripts.harden_friendship_gauge_variant_finding import (
     COMMUNITY_TERM_ID,
     FINDING_ID,
+    INITIAL_FRIENDSHIP_COMPOUNDS,
     LOCKED_TERM_ID,
     SOURCE_ALIAS,
     harden,
@@ -96,6 +97,17 @@ def test_variant_is_scoped_and_resolves_only_while_all_evidence_is_covered(tmp_p
     gauge = next(match for match in matches if match["id"] == COMMUNITY_TERM_ID)
     assert gauge["accepted_present"] is False
     assert gauge["forbidden_present"] is True
+
+    for compound in INITIAL_FRIENDSHIP_COMPOUNDS:
+        initial = community_term_matches(
+            None,
+            f"友情加成&{compound}提升",
+            "Friendship Bonus & Initial Friendship",
+            terms,
+            source_path="text_data_dict.json",
+            json_path=["155", "20016"],
+        )
+        assert not any(match["id"] == COMMUNITY_TERM_ID for match in initial)
 
     outside = community_term_matches(
         None,

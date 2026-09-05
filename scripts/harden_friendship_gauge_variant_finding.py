@@ -11,6 +11,7 @@ FINDING_ID = "cf-55673a272df0aaae"
 LOCKED_TERM_ID = "progress.friendship_gauge.support_effects"
 COMMUNITY_TERM_ID = "common.friendship_gauge.support_effects"
 SOURCE_ALIAS = "牵绊值"
+INITIAL_FRIENDSHIP_COMPOUNDS = ["初始牵绊值", "初始羁绊值", "初始羁绊槽上升"]
 GENERIC_CALQUES = [
     "Điểm liên kết",
     "điểm liên kết",
@@ -59,9 +60,13 @@ def harden(repo_root: Path = ROOT) -> bool:
     locked["json_path_prefixes"] = [["155"]]
     locked["match_mode"] = "contains"
     locked["invalidation_scope"] = "item"
+    locked["exclude_source_contains"] = _append_unique(
+        locked.get("exclude_source_contains", []), INITIAL_FRIENDSHIP_COMPOUNDS
+    )
     locked["note"] = (
         "Support-effect descriptions in text_data category 155 use 羁绊值/牵绊值 for the "
-        "Support Card Friendship Gauge. Do not generalize bare friendship/bond prose to this system label."
+        "Support Card Friendship Gauge. The narrower Initial Friendship compounds are excluded so "
+        "bare gauge terminology cannot overmatch them. Do not generalize ordinary friendship/bond prose."
     )
 
     term = _find(community.get("terms", []), COMMUNITY_TERM_ID)
@@ -71,9 +76,13 @@ def harden(repo_root: Path = ROOT) -> bool:
     term["json_path_prefixes"] = [["155"]]
     term["match_mode"] = "contains"
     term["invalidation_scope"] = "item"
+    term["exclude_source_contains"] = _append_unique(
+        term.get("exclude_source_contains", []), INITIAL_FRIENDSHIP_COMPOUNDS
+    )
     term["basis"] = (
         "Category 155 support-effect descriptions use 羁绊值/牵绊值 for the Support Card Friendship Gauge. "
-        "The category guard prevents ordinary friendship/bond prose from being normalized to this mechanic."
+        "The category guard prevents ordinary friendship/bond prose from being normalized to this mechanic, "
+        "and narrower Initial Friendship compounds are explicitly excluded to avoid substring overmatching."
     )
 
     changed = before != json.dumps([registry, community], ensure_ascii=False, sort_keys=True)

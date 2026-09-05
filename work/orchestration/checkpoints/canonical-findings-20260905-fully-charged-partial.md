@@ -1,45 +1,37 @@
-# Canonical finding checkpoint — 脚色十分
+# Canonical finding acceptance — 脚色十分
 
 Finding: `cf-642f6b7fcbe6af58`
 Source: `脚色十分`
 Key: `localize_dict.json` / `Race9467001`
-Observed current target: `Dư lực dồi dào`
-Target: `Fully Charged`
+Observed source target before review: `Dư lực dồi dào`
+Canonical target: `Fully Charged`
 
-## Diagnosis
+## Diagnosis and durable repair
 
-`脚色十分` is the named race mechanic/state whose English/Global terminology is `Fully Charged`. The canonical rule is deliberately key-scoped to `Race9467001` rather than generalized to unrelated prose.
+`脚色十分` is the named race mechanic/state whose English/Global terminology is `Fully Charged`. The canonical rule remains deliberately key-scoped to `Race9467001` rather than generalized to unrelated prose.
 
-The first production Context Sync correctly materialized the scoped community term, but the active review plan still carried `cf-642f6b7fcbe6af58`. Root cause: the historic worker finding was emitted as an exact `localize_dict.json` finding with `key_exact=[]` (source-wide declaration), while `scripts/canonical_findings.py::_rule_covers_finding` correctly refuses to claim that a narrower `key_exact=[Race9467001]` rule covers a source-wide finding. Thus the rule was safe but the observed finding could not close.
+The historic worker finding was emitted with source-wide declared scope (`key_exact=[]`) even though its sole durable evidence row was `Race9467001`. The safe narrow rule therefore could not close the finding under ordinary scope coverage. `scripts/resolve_scoped_canonical_overrides.py` now permits an evidence-bounded resolution only when an explicit review lock agrees with the scoped rule and every durable evidence row is demonstrably covered. This does not broaden the rule; any later out-of-scope evidence prevents the fallback.
 
-## Durable implementation
+Durable commits:
+- Fully Charged hardener: `d698be10b27bc242631c2d5b0a2969a5e6673bf5`.
+- Initial hardener tests: `d575c97fb7d2de51e95903ffbc6664e4059ad014`.
+- Evidence-bounded resolver repair: `4c6e9c1cdde4f389ad7dd5bd5e20b59df6067afc`.
+- Resolver regression tests: `5975b27128b9b5e361d7314080a2487fc16bfa75`.
 
-- `scripts/harden_fully_charged_finding.py` adds exact item-scoped community rule `race_state.fully_charged` and terminology decision `audit.finding.race-state-fully-charged`, restricted to `localize_dict.json` key `Race9467001`.
-- Hardener commit: `d698be10b27bc242631c2d5b0a2969a5e6673bf5`.
-- Initial hardener regression commit: `d575c97fb7d2de51e95903ffbc6664e4059ad014`.
-- `scripts/resolve_scoped_canonical_overrides.py` now has a conservative evidence-bounded fallback: a narrower scoped community rule may close an overbroad worker finding only when an explicit review lock agrees with the rule target and every durable evidence row is inside the scoped rule. It does not broaden the canonical rule; any later evidence outside scope prevents this resolution on refresh. Resolver commit: `4c6e9c1cdde4f389ad7dd5bd5e20b59df6067afc`.
-- `tests/test_scoped_canonical_override_resolution.py` adds positive coverage for the Fully Charged-shaped case and negatives for outside-scope evidence and missing evidence. Regression commit: `5975b27128b9b5e361d7314080a2487fc16bfa75`.
+## Production acceptance — 2026-09-05
 
-## Live read-back
+All required gates are satisfied:
 
-- `glossary/ui_community_terms.json` on live main contains `race_state.fully_charged`, preferred/accepted `Fully Charged`, forbidden old Vietnamese calques, source `脚色十分`, exact key `Race9467001`.
-- `glossary/terminology_review_queue.json` is empty on live main.
-- Active plan `tr-p3-67f8551f7780-116121e718ef-b5c0bcb3bd-6fad1b114f` still contains the finding in batch `b0032`; this plan predates the resolver-repair production sync and is the evidence that motivated the resolver fix.
+- Validate run `33931908274`: completed successfully. Pytest, `tlvi validate`, and `tlvi index` all passed.
+- Sync translation context run `33931888711`: completed successfully. Its generated commit `93befa2e7f4cbcfe723944d5d03c92d877457b31` materialized:
+  - `canonical_resolution.layer = community`
+  - `canonical_resolution.term_id = race_state.fully_charged`
+  - `canonical_resolution.target_vi = Fully Charged`
+  - open canonical findings reduced `114 -> 113`
+  - `脚色十分` was removed from the terminology review queue.
+- Successor Sync translation review plan run `33931888754`: completed successfully after the resolver repair/context materialization.
+- Live worker-facing batch `tr-p3-67f8551f7780-116121e718ef-b5c0bcb3bd-6fad1b114f-b0032` now shows `Race9467001 / 脚色十分` with community canonical `Fully Charged` and `canonical_findings: []`.
 
-## Production gate state — verified 2026-09-05
+## Accepted
 
-The finding is **not accepted yet** and `completed_count` remains `129`.
-
-Earlier generation:
-- Validate run `33931287087`: `completed`, conclusion `success`.
-- Sync translation context run `33931287046`: `completed`, conclusion `success`.
-- Sync translation review plan run `33931287106`: still `in_progress` at the last read; it is not sufficient because the pre-repair plan still exposed the blocker.
-
-Resolver-repair generation:
-- Validate run `33931908274` for commit `5975b27128b9b5e361d7314080a2487fc16bfa75`: `in_progress` at latest read.
-- Sync translation context run `33931908035`: `pending` at latest read.
-- After those pass, verify live `glossary/canonical_findings.json` / worker-facing batch no longer treats `cf-642f6b7fcbe6af58` as active, then require a successor Translation Review Plan generated from the repaired context to succeed.
-
-## Acceptance pending
-
-Do **not** increment `129 -> 130` until repaired Validate + Context Sync succeed, live canonical read-back proves the finding resolved under evidence-bounded scope, and a successor review plan no longer exposes the blocker.
+`cf-642f6b7fcbe6af58` is production-accepted. Maintenance `completed_count` may advance `129 -> 130`. The translated payload itself remains untouched here; retrospective review workers can now revise the current `Dư lực dồi dào` text to `Fully Charged` using the canonical context without being blocked by an unresolved finding.

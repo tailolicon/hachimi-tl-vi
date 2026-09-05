@@ -2045,7 +2045,12 @@
       ],
       "match_mode": "contains",
       "invalidation_scope": "item",
-      "basis": "Category 155 support-effect descriptions use 羁绊值/牵绊值 for the Support Card Friendship Gauge. The category guard prevents ordinary friendship/bond prose from being normalized to this mechanic."
+      "basis": "Category 155 support-effect descriptions use 羁绊值/牵绊值 for the Support Card Friendship Gauge. The category guard prevents ordinary friendship/bond prose from being normalized to this mechanic, and narrower Initial Friendship compounds are explicitly excluded to avoid substring overmatching.",
+      "exclude_source_contains": [
+        "初始牵绊值",
+        "初始羁绊值",
+        "初始羁绊槽上升"
+      ]
     },
     {
       "id": "common.support_points.common0160",

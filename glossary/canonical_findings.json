@@ -17284,6 +17284,67 @@
       "last_seen_at": "2026-09-04T05:14:30Z"
     },
     {
+      "finding_id": "cf-7c0bd6c517c25bcb",
+      "status": "open",
+      "source_zh_cn": "莱茵力量",
+      "match_mode": "contains",
+      "source_paths": [
+        "text_data_dict.json"
+      ],
+      "key_exact": [],
+      "json_path_prefixes": [
+        [
+          "170"
+        ]
+      ],
+      "kinds": [
+        "context_rule"
+      ],
+      "concepts": [
+        "Prevent stat.power alias 力量 from overmatching inside Rhein Kraft"
+      ],
+      "suggested_targets_vi": [
+        "Rhein Kraft"
+      ],
+      "confidence_levels": [
+        "high"
+      ],
+      "reasons": [
+        "Character proper-name matching must take precedence over the generic stat substring within 莱茵力量."
+      ],
+      "evidence_count": 1,
+      "evidence": [
+        {
+          "uid": "zhcn:c17c25ff6f6f473ba91423c6",
+          "plan_id": "tr-p3-67f8551f7780-f0cd7bb52a8f-b5c0bcb3bd-762d392196",
+          "batch_id": "tr-p3-67f8551f7780-f0cd7bb52a8f-b5c0bcb3bd-762d392196-b0133",
+          "claim_id": "trc-gpt56sol-auto11-20260905T220530Z-b0133",
+          "worker_id": "gpt56sol-auto11-20260905T220530Z-review",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "170",
+            "1109"
+          ],
+          "source_text": "莱茵力量",
+          "current_text": "Rhein Kraft",
+          "proposed_text": null,
+          "reported_at": "2026-09-05T22:13:00Z"
+        }
+      ],
+      "canonical_resolution": {
+        "layer": "locked",
+        "term_id": "character.rhein_kraft",
+        "target_vi": "Rhein Kraft"
+      },
+      "review_resolution": {
+        "decision_id": "parallel.ctx-67f8551f77807292-v1.term-0231.19",
+        "action": "lock",
+        "target_vi": "Rhein Kraft"
+      },
+      "first_seen_at": "2026-09-05T22:13:00Z",
+      "last_seen_at": "2026-09-05T22:13:00Z"
+    },
+    {
       "finding_id": "cf-7c8c0e941a72423e",
       "status": "open",
       "source_zh_cn": "アコガレChallenge Dash!!",
@@ -31511,6 +31572,65 @@
       "review_resolution": null,
       "first_seen_at": "2026-08-31T11:21:00Z",
       "last_seen_at": "2026-09-01T04:48:00Z"
+    },
+    {
+      "finding_id": "cf-dae17683dc3fd50f",
+      "status": "open",
+      "source_zh_cn": "至高无上",
+      "match_mode": "contains",
+      "source_paths": [
+        "text_data_dict.json"
+      ],
+      "key_exact": [],
+      "json_path_prefixes": [
+        [
+          "144"
+        ]
+      ],
+      "kinds": [
+        "context_rule"
+      ],
+      "concepts": [
+        "Prevent the Skill-title rule Hãy Là Tối Thượng from matching ordinary adjectival prose"
+      ],
+      "suggested_targets_vi": [],
+      "confidence_levels": [
+        "high"
+      ],
+      "reasons": [
+        "This category-144 profile uses 至高无上 compositionally inside a longer sentence, not as an individual Skill name; canonical context needs a negative/non-Skill guard."
+      ],
+      "evidence_count": 1,
+      "evidence": [
+        {
+          "uid": "zhcn:c0f9775e5bec53c171fa5783",
+          "plan_id": "tr-p3-67f8551f7780-f0cd7bb52a8f-b5c0bcb3bd-762d392196",
+          "batch_id": "tr-p3-67f8551f7780-f0cd7bb52a8f-b5c0bcb3bd-762d392196-b0098",
+          "claim_id": "trc-gpt56sol-auto11-20260905T215500Z-b0098",
+          "worker_id": "gpt56sol-auto11-20260905T215500Z-review",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "144",
+            "1086"
+          ],
+          "source_text": "将至高无上的爱献给比赛……\\n绝世独立，绽放于顶点的魔性之花",
+          "current_text": "Dâng tình yêu tối thượng cho những cuộc đua...\\nĐộc nhất vô song, đóa hoa ma mị nở trên đỉnh cao",
+          "proposed_text": null,
+          "reported_at": "2026-09-05T22:03:30Z"
+        }
+      ],
+      "canonical_resolution": {
+        "layer": "locked",
+        "term_id": "reviewed.skill_name.129dce8a1fe3",
+        "target_vi": "Hãy Là Tối Thượng"
+      },
+      "review_resolution": {
+        "decision_id": "audit.finding.skill-supreme-be",
+        "action": "lock",
+        "target_vi": "Hãy Là Tối Thượng"
+      },
+      "first_seen_at": "2026-09-05T22:03:30Z",
+      "last_seen_at": "2026-09-05T22:03:30Z"
     },
     {
       "finding_id": "cf-daf04fbb58b7375b",

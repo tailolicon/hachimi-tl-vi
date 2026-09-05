@@ -11,11 +11,13 @@
   "claimed_at": "2026-09-05T14:26:47Z",
   "heartbeat_at": "2026-09-05T14:26:47Z",
   "lease_expires_at": "2026-09-05T14:32:47Z",
-  "status": "active",
+  "status": "released",
+  "released_at": "2026-09-05T14:31:30Z",
   "handoff_from_claim_id": "tr-gpt56sol-auto11-20260905T133000Z-b01022s03",
   "partial_result_path": "work/parallel/zhcn-67f8551f7780/results/b0010/batch-01022-s03.json",
   "translated_count": 20,
-  "progress_token": "b01022s03-20of20-pending-qa",
-  "progress_kind": "result_checkpoint",
-  "progress_ref": "work/parallel/zhcn-67f8551f7780/results/b0010/batch-01022-s03.json"
+  "progress_token": "c77e9085c19591716f9df92461aff9b5e3c2a427",
+  "progress_kind": "qa_evidence_checkpoint",
+  "progress_ref": "work/parallel/zhcn-67f8551f7780/results/b0010/batch-01022-s03.json",
+  "release_reason": "20/20 translations remain durable. This run added source/race/template/structural QA evidence at commit c77e9085c19591716f9df92461aff9b5e3c2a427, but repeated TranslationQualityGuard execution attempts still failed transiently at the execution backend (404/429). No completion marker was created. Releasing this task-specific blocked unit so this worker can continue protocol-valid work on another eligible shard; successor should run the actual guard and complete only on a real pass."
 }

@@ -54,6 +54,64 @@ def _finding(prefix: str = "131") -> dict:
     }
 
 
+def _seed_matching_key_scoped_review(tmp_path: Path) -> None:
+    glossary = tmp_path / "glossary"
+    glossary.mkdir()
+    (glossary / "ui_community_terms.json").write_text(
+        json.dumps({
+            "schema_version": 1,
+            "terms": [{
+                "id": "race_state.fully_charged",
+                "source_aliases": ["脚色十分"],
+                "preferred": "Fully Charged",
+                "accepted": ["Fully Charged"],
+                "match_mode": "exact",
+                "source_paths": ["localize_dict.json"],
+                "key_exact": ["Race9467001"],
+            }],
+        }),
+        encoding="utf-8",
+    )
+    (glossary / "terminology_reviews.json").write_text(
+        json.dumps({
+            "schema_version": 1,
+            "decisions": [{
+                "decision_id": "audit.finding.race-state-fully-charged",
+                "source_zh_cn": "脚色十分",
+                "action": "lock",
+                "target_vi": "Fully Charged",
+                "kind": "system_label",
+            }],
+        }),
+        encoding="utf-8",
+    )
+    (glossary / "term_registry.json").write_text(json.dumps({"terms": []}), encoding="utf-8")
+    (glossary / "source_bridge_terms.json").write_text(json.dumps({"terms": []}), encoding="utf-8")
+
+
+def _overbroad_localize_finding(evidence_keys: list[str]) -> dict:
+    return {
+        "finding_id": "cf-test-fully-charged",
+        "status": "open",
+        "source_zh_cn": "脚色十分",
+        "match_mode": "exact",
+        "source_paths": ["localize_dict.json"],
+        "key_exact": [],
+        "json_path_prefixes": [],
+        "suggested_targets_vi": [],
+        "canonical_resolution": None,
+        "review_resolution": None,
+        "evidence": [
+            {
+                "source_path": "localize_dict.json",
+                "json_path": [key],
+                "source_text": "脚色十分",
+            }
+            for key in evidence_keys
+        ],
+    }
+
+
 def test_scoped_community_rule_can_override_generic_review_lock(tmp_path: Path) -> None:
     _seed(tmp_path)
     ledger = refresh_canonical_resolutions(tmp_path, {"schema_version": 1, "findings": [_finding()]})
@@ -100,6 +158,37 @@ def test_scoped_override_must_cover_finding_scope(tmp_path: Path) -> None:
 def test_unscoped_community_rule_cannot_resolve_finding(tmp_path: Path) -> None:
     _seed(tmp_path, scoped=False, review_action=None)
     ledger = refresh_canonical_resolutions(tmp_path, {"schema_version": 1, "findings": [_finding()]})
+    ledger = resolve_scoped_canonical_overrides(tmp_path, ledger)
+    assert ledger["findings"][0]["canonical_resolution"] is None
+
+
+def test_matching_review_lock_resolves_overbroad_finding_when_all_evidence_is_scoped(tmp_path: Path) -> None:
+    _seed_matching_key_scoped_review(tmp_path)
+    finding = _overbroad_localize_finding(["Race9467001"])
+    ledger = refresh_canonical_resolutions(tmp_path, {"schema_version": 1, "findings": [finding]})
+    assert ledger["findings"][0]["review_resolution"]["target_vi"] == "Fully Charged"
+    assert ledger["findings"][0]["canonical_resolution"] is None
+
+    ledger = resolve_scoped_canonical_overrides(tmp_path, ledger)
+    assert ledger["findings"][0]["canonical_resolution"] == {
+        "layer": "community",
+        "term_id": "race_state.fully_charged",
+        "target_vi": "Fully Charged",
+    }
+
+
+def test_matching_review_lock_does_not_resolve_when_any_evidence_is_outside_scope(tmp_path: Path) -> None:
+    _seed_matching_key_scoped_review(tmp_path)
+    finding = _overbroad_localize_finding(["Race9467001", "Race9999999"])
+    ledger = refresh_canonical_resolutions(tmp_path, {"schema_version": 1, "findings": [finding]})
+    ledger = resolve_scoped_canonical_overrides(tmp_path, ledger)
+    assert ledger["findings"][0]["canonical_resolution"] is None
+
+
+def test_matching_review_lock_does_not_resolve_overbroad_finding_without_evidence(tmp_path: Path) -> None:
+    _seed_matching_key_scoped_review(tmp_path)
+    finding = _overbroad_localize_finding([])
+    ledger = refresh_canonical_resolutions(tmp_path, {"schema_version": 1, "findings": [finding]})
     ledger = resolve_scoped_canonical_overrides(tmp_path, ledger)
     assert ledger["findings"][0]["canonical_resolution"] is None
 

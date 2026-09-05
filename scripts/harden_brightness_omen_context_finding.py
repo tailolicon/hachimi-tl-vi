@@ -10,9 +10,24 @@ ROOT = Path(__file__).resolve().parents[1]
 FINDING_ID = "cf-36f01160a6498749"
 TERM_ID = "reviewed.skill_name.6b9641d2417b"
 EXCLUSIONS = ["光明的征兆", "目白光明"]
+DECISION = {
+    "decision_id": "audit.finding-brightness-omen-overmatch-ignore",
+    "source_zh_cn": "光明的征兆",
+    "action": "ignore",
+    "target_vi": "",
+    "kind": "context_rule",
+    "category": "skill_name",
+    "note": (
+        "The finding reports a false substring match from standalone Skill 光明. The live term is "
+        "hardened to exclude the distinct compound 光明的征兆, so this context finding should no "
+        "longer block review. This decision does not canonize a Vietnamese title for 光明的征兆."
+    ),
+}
 
 
-def _load(path: Path) -> dict[str, Any]:
+def _load(path: Path, default: dict[str, Any] | None = None) -> dict[str, Any]:
+    if not path.exists():
+        return dict(default or {})
     payload = json.loads(path.read_text(encoding="utf-8"))
     if not isinstance(payload, dict):
         raise ValueError(f"{path} must contain a JSON object")
@@ -24,13 +39,13 @@ def _write(path: Path, payload: dict[str, Any]) -> None:
 
 
 def harden(repo_root: Path = ROOT) -> bool:
-    path = repo_root / "glossary" / "term_registry.json"
-    payload = _load(path)
-    terms = payload.get("terms", [])
+    registry_path = repo_root / "glossary" / "term_registry.json"
+    registry = _load(registry_path)
+    terms = registry.get("terms", [])
     if not isinstance(terms, list):
         raise ValueError("glossary/term_registry.json terms must be a list")
 
-    before = json.dumps(payload, ensure_ascii=False, sort_keys=True)
+    registry_before = json.dumps(registry, ensure_ascii=False, sort_keys=True)
     matched = False
     for term in terms:
         if not isinstance(term, dict) or term.get("id") != TERM_ID:
@@ -48,10 +63,29 @@ def harden(repo_root: Path = ROOT) -> bool:
     if not matched:
         raise ValueError(f"missing canonical term {TERM_ID}")
 
-    changed = before != json.dumps(payload, ensure_ascii=False, sort_keys=True)
+    changed = registry_before != json.dumps(registry, ensure_ascii=False, sort_keys=True)
     if changed:
-        _write(path, payload)
-    return changed
+        _write(registry_path, registry)
+
+    reviews_path = repo_root / "glossary" / "terminology_reviews.json"
+    reviews = _load(reviews_path, {"schema_version": 1, "decisions": []})
+    decisions = reviews.setdefault("decisions", [])
+    if not isinstance(decisions, list):
+        raise ValueError("glossary/terminology_reviews.json decisions must be a list")
+    reviews_before = json.dumps(reviews, ensure_ascii=False, sort_keys=True)
+    for index, item in enumerate(decisions):
+        if isinstance(item, dict) and item.get("decision_id") == DECISION["decision_id"]:
+            merged = dict(item)
+            merged.update(DECISION)
+            decisions[index] = merged
+            break
+    else:
+        decisions.append(dict(DECISION))
+    reviews_changed = reviews_before != json.dumps(reviews, ensure_ascii=False, sort_keys=True)
+    if reviews_changed:
+        _write(reviews_path, reviews)
+
+    return changed or reviews_changed
 
 
 def main() -> int:

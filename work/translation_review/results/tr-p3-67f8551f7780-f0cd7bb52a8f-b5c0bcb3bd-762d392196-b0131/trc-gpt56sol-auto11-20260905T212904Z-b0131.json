@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "status": "partial",
+  "plan_id": "tr-p3-67f8551f7780-f0cd7bb52a8f-b5c0bcb3bd-762d392196",
+  "batch_id": "tr-p3-67f8551f7780-f0cd7bb52a8f-b5c0bcb3bd-762d392196-b0131",
+  "claim_id": "trc-gpt56sol-auto11-20260905T212904Z-b0131",
+  "worker_id": "gpt56sol-auto11-20260905T212904Z-review",
+  "reviewed_at": "2026-09-05T21:29:04Z",
+  "completed_count": 5,
+  "decisions": [
+    {
+      "uid": "zhcn:8e07f4a9e5f7805b0ffe4328",
+      "current_fingerprint": "d1967a6d8ad6e3e426c7d7b038befcd812179fd2bc5cbc871af43fc30cb955b2",
+      "action": "revise",
+      "proposed_text": "Tôi là Grass Wonder.\\nChính vì đang hiện diện ở đây với tư cách một Mã Nương,\\ntôi mới muốn đi đến tận cùng con “đường” này. Hô hô♪",
+      "reason": "Generic 赛马娘 must use the canonical world/species term Mã Nương; character name and structure are otherwise sound.",
+      "terminology_basis": "character.grass_wonder = Grass Wonder; common.world.umamusume = Mã Nương.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:39a95b65e6e041336fdfee26",
+      "current_fingerprint": "0bc32c35fac0e107d51d9fcec22bf313994a09c39514a1d0c5f456070758be3f",
+      "action": "revise",
+      "proposed_text": "Tôi là Symboli Rudolf. Tôi là người đứng trên đỉnh mọi Mã Nương, dẫn dắt họ tiến bước và được gọi là “Hoàng Đế”.\\nTrainer cùng chung chí hướng, hãy cùng dũng mãnh tiến lên và chinh phục tất cả.",
+      "reason": "Replace forbidden generic Uma Musume with canonical Mã Nương while preserving Symboli Rudolf and Trainer terminology.",
+      "terminology_basis": "character.symboli_rudolf = Symboli Rudolf; common.trainer = Trainer; common.world.umamusume = Mã Nương.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:7a2546ef26ef9bbfdf4a15f9",
+      "current_fingerprint": "0a7972829368e6be5fbdbc19e73c431d01fabf6cc5d5ce556efbed079daa4615",
+      "action": "revise",
+      "proposed_text": "Chào bạn đã vất vả! Digital-tan đây!\\nTôi đang hết mình ủng hộ những Mã Nương lấp lánh!\\nNgày nào cũng hạnh phúc! Sinh ra làm otaku thật tuyệt～♪",
+      "reason": "Generic 赛马娘 must be Mã Nương; the rest preserves the speaker's otaku register and formatting.",
+      "terminology_basis": "common.world.umamusume = Mã Nương.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:e837deb220b7be97d6a32405",
+      "current_fingerprint": "a5cb94462d242754ed5f852ab542020947520fbbf8bce86742d6f5be065a205f",
+      "action": "defer",
+      "reason": "Embedded context treats 心动 as the Skill title Nhịp tim rộn ràng, but here 心动不已 is ordinary emotional prose ('heart pounding/excited'). Applying the Skill title would make the dialogue unnatural and indicates a reusable context-overmatch problem that should be corrected canonically first.",
+      "terminology_basis": "reviewed.skill_name.3346bd209f49 is embedded, but its 心动 alias appears inside generic prose rather than a Skill-name context.",
+      "canonical_finding": {
+        "kind": "context_rule",
+        "source_zh_cn": "心动",
+        "concept": "Skill-name alias 心动 overmatching ordinary dialogue prose",
+        "match_mode": "contains",
+        "scope": "auto",
+        "reason": "The reusable alias is embedded inside longer ordinary prose 心动不已; forcing the Skill title here would corrupt natural dialogue. Skill-name matching needs narrower contextual scope.",
+        "confidence": "high"
+      },
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:a20cb89b2ee439cd8f07f4f7",
+      "current_fingerprint": "b64ce3dd89a234890f409fd286e27c60041d945737eb4676e89be0f01fe7cd39",
+      "action": "revise",
+      "proposed_text": "Tôi là Mihono Bourbon.\\nMục tiêu được thiết lập là “trở thành Mã Nương Triple Crown”.\\nThông tin như chiến thuật chạy vui lòng tham khảo dữ liệu khác.",
+      "reason": "Use canonical Mihono Bourbon, Triple Crown, and generic Mã Nương terminology; preserve the terse data-like register.",
+      "terminology_basis": "character.mihono_bourbon = Mihono Bourbon; reviewed.system_label.1e2d530a6eb9 = Triple Crown; common.world.umamusume = Mã Nương.",
+      "confidence": "high"
+    }
+  ]
+}

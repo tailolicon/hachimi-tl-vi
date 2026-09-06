@@ -30,6 +30,14 @@ Implementation commits:
 - hardener: `93cc436c608487d1c2bd0f02458018e258c8738e`
 - regression test: `97c2a6ad939dfcf8f181fc4f728d8d9c236a3586`
 
-## Validation status
+## Production acceptance
 
-Validate and production Sync translation context must succeed before this finding is counted complete. Shared maintenance completed count remains 157 until generated live context clears `cf-2f9d7a7320e1c5db`.
+- Validate run `34060057600`: success, including repository pytest and `tlvi validate`.
+- Production Sync translation context run `34060057638`: success, including all finding hardeners and context-pipeline tests.
+- Generated live main after Sync observed at `81f780dc2a9adaf1cc3f86c31a012902ca8e27f7`.
+- Live `cf-2f9d7a7320e1c5db` resolves to locked term `reviewed.skill_name.858afd324e21` with target `Lệ Ảnh Phi Trì! Đạo Ramen` and review decision `audit.finding.fine-motion-reisou-ichoku-ramen-do` action `lock`.
+- `active_findings` no longer returns this finding; active canonical blockers reduced from 151 to 150.
+
+## Status
+
+Accepted complete. This finding increments the shared maintenance completed count from 157 to 158. Re-route from live state after recording completion.

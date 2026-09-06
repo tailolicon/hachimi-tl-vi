@@ -1,6 +1,6 @@
-# Canonical finding checkpoint — 灯穂 / Inari One Global prelaunch recheck
+# Canonical finding checkpoint — 灯穂 / Inari One Global recheck
 
-Claim: `canonical-findings-maintenance-gpt56sol-auto11-20260904T141305Z`
+Claim: `canonical-findings-maintenance-gpt56sol-auto11-20260906T213948Z`
 Finding: `cf-3a460c751596bfac`
 
 ## Live repository state
@@ -9,20 +9,28 @@ Finding: `cf-3a460c751596bfac`
 - The prior research checkpoint records this finding as `open`, `canonical_resolution: null`, review action `defer`, scoped to `text_data_dict.json` category `172`.
 - `active_findings` therefore continues to treat it as an active blocker until a canonical resolution is locked or an explicit `ignore` is recorded.
 
-## Fresh Global availability check — 2026-09-04
+## Global availability history
 
-Current community Global schedule data updated 2026-09-04 places `[Fields of Gold] Inari One` on the Global character banner beginning **2026-09-06**, paired with `[Ferocious Thunder] Tamamo Cross`.
+The 2026-09-04 checkpoint recorded community Global schedule data placing `[Fields of Gold] Inari One` on the Global character banner beginning **2026-09-06**, paired with `[Ferocious Thunder] Tamamo Cross`.
 
-Reference: https://www.utra.top/
+Reference used by that checkpoint: https://www.utra.top/
 
-This means the alternate Inari One content is still pre-release on Global at the time of this check. There is therefore no newly verifiable official Global player-facing title for Skill `灯穂` available today. The older JP identity evidence remains valid, but it does not justify inventing a Global/Vietnamese canonical Skill title.
+At that time the alternate Inari One content was still pre-release, so there was no newly verifiable official Global player-facing title for Skill `灯穂`.
+
+## Post-launch recheck — 2026-09-07
+
+Fresh web verification was performed after the scheduled Global banner date. Search did not surface a trustworthy official Global source exposing an English player-facing title for Skill `灯穂`. The accessible Umamusume Wiki entry for the alternate Inari One still labels the character/version and evolution material as Japanese-version-only rather than providing a confirmed current Global Skill title.
+
+Reference: https://umamusu.wiki/Game%3AInari_One_%28%E5%A4%A2%E3%83%8E%E9%87%91%E5%8E%9F%29
+
+This is insufficient evidence to lock a new canonical title. A schedule date or community costume label is not a substitute for an observed official in-game Skill name.
 
 ## Decision
 
-Keep `cf-3a460c751596bfac` deferred and unresolved. Do not lock `Bông lúa ánh sáng`, `Lantern`, a romanization, or another semantic translation before the Global content is actually live and its in-game Skill title can be verified.
+Keep `cf-3a460c751596bfac` deferred and unresolved. Do not lock `Bông lúa ánh sáng`, `Lantern`, a romanization, or another semantic translation without a verifiable player-facing identity.
 
 ## Continuation
 
-Re-check this finding after the Global `[Fields of Gold] Inari One` banner/content becomes live on or after **2026-09-06**. If an official Global Skill title is then observable, implement the normal narrow canonical hardener + regression and require production Validate, Sync translation context, and Sync translation review plan acceptance before incrementing maintenance completion.
+Re-check when an official/current Global data source exposes the exact Skill title, or when repository evidence gains a verified authoritative mapping. If a title becomes verifiable, implement the normal narrow canonical hardener + regression and require production Validate, Sync translation context, and Sync translation review plan acceptance before incrementing maintenance completion.
 
 No completion increment is warranted by this research-only checkpoint.

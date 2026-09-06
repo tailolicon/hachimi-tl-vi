@@ -9,13 +9,13 @@
     "growth": "Every accepted retrospective translation revise and accepted UI revise is folded into this file automatically by both review merge workflows."
   },
   "summary": {
-    "merged_markers_scanned": 3220,
-    "translation_merged_markers_scanned": 3120,
+    "merged_markers_scanned": 3227,
+    "translation_merged_markers_scanned": 3127,
     "ui_merged_markers_scanned": 100,
-    "accepted_revision_events": 8450,
-    "accepted_translation_revision_events": 6961,
+    "accepted_revision_events": 8463,
+    "accepted_translation_revision_events": 6974,
     "accepted_ui_revision_events": 1489,
-    "regression_identity_count": 6523,
+    "regression_identity_count": 6525,
     "skipped_incomplete_markers": 0,
     "translation_skipped_incomplete_markers": 0,
     "ui_skipped_incomplete_markers": 0
@@ -1045,10 +1045,11 @@
       "source_text": "羁绊值在80以上时，\\n训练效果提升",
       "source_fingerprint": "de1b9062dab2eb66f62b9000f4cbe371a7d3ac8a7320f50cb29129a1c31f3531",
       "rejected_targets": [
+        "Khi Friendship Gauge đạt 80 trở lên,\\nTraining Effectiveness",
         "Khi giá trị liên kết đạt 80 trở lên,\\nTăng hiệu quả huấn luyện",
         "Khi Gắn kết đạt 80 trở lên,\\nTăng hiệu quả huấn luyện"
       ],
-      "approved_target": "Khi Friendship Gauge đạt 80 trở lên,\\nTraining Effectiveness",
+      "approved_target": "Khi Friendship Gauge đạt 80 trở lên,\\nTraining Effectiveness tăng",
       "origins": [
         "translation_review"
       ],
@@ -1069,6 +1070,14 @@
           "claim_id": "trc-chatgpt-20260829T2239Z-b0837",
           "merged_at": "2026-08-30T00:48:53.673233Z",
           "reason": "Use canonical Support Effect labels."
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-b3f529125469-b5c0bcb3bd-234ec2f6e2",
+          "batch_id": "tr-p3-67f8551f7780-b3f529125469-b5c0bcb3bd-234ec2f6e2-b0099",
+          "claim_id": "trc-gpt56sol-auto11-20260906T071300Z-b0099",
+          "merged_at": "2026-09-06T07:20:19.103168Z",
+          "reason": "Bản hiện tại đã đúng Friendship Gauge nhưng làm mất hướng tăng của 训练效果提升."
         }
       ]
     },
@@ -10067,9 +10076,10 @@
       "source_text": "要使用{0}，\n兑换为所选支援卡吗？",
       "source_fingerprint": "71c4641b310f78da5098084d9fa45820771c12bd4b36cf062b37b3def7ee48df",
       "rejected_targets": [
+        "Bạn có muốn dùng {0},\nđể đổi lấy Support Card đã chọn không?",
         "Bạn có muốn dùng {0},\nđể đổi lấy thẻ hỗ trợ đã chọn không?"
       ],
-      "approved_target": "Bạn có muốn dùng {0},\nđể đổi lấy Support Card đã chọn không?",
+      "approved_target": "Bạn có muốn dùng {0}\nđể đổi lấy Support Card đã chọn không?",
       "origins": [
         "translation_review"
       ],
@@ -10082,6 +10092,14 @@
           "claim_id": "trc-gpt56sol-20260901T034000Z-b0152",
           "merged_at": "2026-09-01T03:46:04.281895Z",
           "reason": "支援卡 phải giữ player-facing term Support Card; giữ placeholder và xuống dòng."
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-b3f529125469-b5c0bcb3bd-234ec2f6e2",
+          "batch_id": "tr-p3-67f8551f7780-b3f529125469-b5c0bcb3bd-234ec2f6e2-b0016",
+          "claim_id": "trc-gpt56sol-auto11-20260906T070245Z-b0016",
+          "merged_at": "2026-09-06T07:20:19.084719Z",
+          "reason": "Bỏ dấu phẩy thừa trước newline, giữ nguyên placeholder và cấu trúc hai dòng."
         }
       ]
     },
@@ -15180,6 +15198,31 @@
           "claim_id": "trc-chatgpt-sol-auto-restart2-20260830T1204Z-b0161",
           "merged_at": "2026-08-30T12:10:44.389524Z",
           "reason": "技能 is the generic gameplay label Skill; the current Kỹ năng wording is noncanonical."
+        }
+      ]
+    },
+    {
+      "id": "review.regression.fe104b19189fd6c7",
+      "uid": "zhcn:1347633fa37bfa246bd84069",
+      "scope": "uid",
+      "source_text": "将此项设为ON后，如果通过出赛比赛获得的碎片已可\n解锁或觉醒马娘，则在每日传奇赛跳过时会显示确认画面",
+      "source_fingerprint": "d9b63545d0a791d134e55dab4cb05fa74c1429aa7185161aa8de47319986361e",
+      "rejected_targets": [
+        "Khi đặt mục này thành ON, nếu mảnh nhận được từ cuộc đua đã đủ để\nmở khóa hoặc thức tỉnh Uma Musume, màn hình xác nhận sẽ hiển thị khi bỏ qua Đua Huyền Thoại Hằng Ngày"
+      ],
+      "approved_target": "Khi đặt mục này thành ON, nếu mảnh nhận được từ cuộc đua đã đủ để\nmở khóa hoặc thức tỉnh Mã Nương, màn hình xác nhận sẽ hiển thị khi bỏ qua Đua Huyền Thoại Hằng Ngày",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-b3f529125469-b5c0bcb3bd-234ec2f6e2",
+          "batch_id": "tr-p3-67f8551f7780-b3f529125469-b5c0bcb3bd-234ec2f6e2-b0016",
+          "claim_id": "trc-gpt56sol-auto11-20260906T070245Z-b0016",
+          "merged_at": "2026-09-06T07:20:19.084719Z",
+          "reason": "Sửa thuật ngữ shorthand 马娘 thành Mã Nương và giữ nguyên newline/cấu trúc còn lại."
         }
       ]
     },
@@ -22857,9 +22900,10 @@
       "source_fingerprint": "3515aa512d46700b008ea9d2b7671f9e78e83359864ba7de73760093baafd038",
       "rejected_targets": [
         "Do số lần đổi đã vượt quá {0},\nsố lượng cần để đổi từng Support Card đã chọn đã thay đổi",
-        "Do số lần đổi đã vượt quá {0},\nsố lượng cần để đổi từng Thẻ hỗ trợ đã chọn đã thay đổi"
+        "Do số lần đổi đã vượt quá {0},\nsố lượng cần để đổi từng Thẻ hỗ trợ đã chọn đã thay đổi",
+        "Vì số lần đổi đã vượt quá {0},\nsố lượng cần cho mỗi lần đổi Support Card đã chọn đã thay đổi"
       ],
-      "approved_target": "Vì số lần đổi đã vượt quá {0},\nsố lượng cần cho mỗi lần đổi Support Card đã chọn đã thay đổi",
+      "approved_target": "Do số lần đổi vượt quá {0},\nsố lượng cần thiết cho mỗi lần đổi Support Card đã chọn đã thay đổi",
       "origins": [
         "translation_review"
       ],
@@ -22880,6 +22924,14 @@
           "claim_id": "trc-gpt56sol-auto11-20260905T165300Z-b0039",
           "merged_at": "2026-09-05T16:56:36.775340Z",
           "reason": "Current wording is understandable but overly literal/repetitive; recast into natural Vietnamese while preserving {0} and the two-line structure."
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-b3f529125469-b5c0bcb3bd-234ec2f6e2",
+          "batch_id": "tr-p3-67f8551f7780-b3f529125469-b5c0bcb3bd-234ec2f6e2-b0016",
+          "claim_id": "trc-gpt56sol-auto11-20260906T070245Z-b0016",
+          "merged_at": "2026-09-06T07:20:19.084719Z",
+          "reason": "Loại bỏ lặp 'đã' ở vế đầu và làm câu tự nhiên hơn, giữ placeholder/newline."
         }
       ]
     },
@@ -87052,6 +87104,31 @@
       ]
     },
     {
+      "id": "review.regression.bc72a1a0bd9f6308",
+      "uid": "zhcn:73120fd5750866138401b79b",
+      "scope": "uid",
+      "source_text": "可解锁或觉醒马娘时进行确认",
+      "source_fingerprint": "e3de023e3eb433a2134bc8e7b8b13dc7fde58d2e8fb53ea9dd9bfd3b54c755d8",
+      "rejected_targets": [
+        "Xác nhận khi có thể mở khóa hoặc thức tỉnh Uma Musume"
+      ],
+      "approved_target": "Xác nhận khi có thể mở khóa hoặc thức tỉnh Mã Nương",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-b3f529125469-b5c0bcb3bd-234ec2f6e2",
+          "batch_id": "tr-p3-67f8551f7780-b3f529125469-b5c0bcb3bd-234ec2f6e2-b0016",
+          "claim_id": "trc-gpt56sol-auto11-20260906T070245Z-b0016",
+          "merged_at": "2026-09-06T07:20:19.084719Z",
+          "reason": "ScheduleBook shorthand 马娘 phải dùng Mã Nương, không dùng Uma Musume."
+        }
+      ]
+    },
+    {
       "id": "review.regression.eaeaf05dc2b70fcd",
       "uid": "zhcn:731928fb63101cd6742f8ce4",
       "scope": "uid",
@@ -93374,10 +93451,11 @@
       "source_text": "羁绊值在60以上时，训练\\n效果提升和体力消耗降低",
       "source_fingerprint": "cb810781fb3b78e95d5f294b8a43b9822660e347371ec718f0fcef476946584a",
       "rejected_targets": [
+        "Khi Friendship Gauge đạt 60 trở lên,\\nTraining Effectiveness & giảm tiêu hao Năng lượng",
         "Khi giá trị liên kết đạt 60 trở lên,\\nTăng hiệu quả huấn luyện & giảm tiêu hao thể lực",
         "Khi Gắn kết đạt 60 trở lên,\\nTăng hiệu quả huấn luyện & giảm tiêu hao Năng lượng"
       ],
-      "approved_target": "Khi Friendship Gauge đạt 60 trở lên,\\nTraining Effectiveness & giảm tiêu hao Năng lượng",
+      "approved_target": "Khi Friendship Gauge đạt 60 trở lên,\\nTraining Effectiveness tăng & giảm tiêu hao Năng lượng",
       "origins": [
         "translation_review"
       ],
@@ -93398,6 +93476,14 @@
           "claim_id": "trc-chatgpt-20260829T2239Z-b0837",
           "merged_at": "2026-08-30T00:48:53.673233Z",
           "reason": "Correct the scoped Friendship Gauge and Support Effect label while preserving the unscoped energy-consumption wording."
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-b3f529125469-b5c0bcb3bd-234ec2f6e2",
+          "batch_id": "tr-p3-67f8551f7780-b3f529125469-b5c0bcb3bd-234ec2f6e2-b0100",
+          "claim_id": "trc-gpt56sol-auto11-20260906T071800Z-b0100",
+          "merged_at": "2026-09-06T07:20:19.111945Z",
+          "reason": "Bản hiện tại làm mất hướng tăng của 训练效果提升; giữ nguyên điều kiện Friendship Gauge và hướng giảm của tiêu hao thể lực/energy."
         }
       ]
     },
@@ -95964,9 +96050,10 @@
       "source_text": "将此项设为ON后，参加胜利必获得奖励的比赛时\n将自动使用干劲提升甜点。\n<color=#ff911c>若未持有干劲提升甜点，则不会使用</color>",
       "source_fingerprint": "7637b75ca6fe2bb0e67eac94ef4a93f8560d95edc8126b0f309ca2903a40a644",
       "rejected_targets": [
+        "Khi bật mục này, lúc tham gia Cuộc đua chắc chắn nhận thưởng khi thắng\nsẽ tự động dùng bánh ngọt tăng Mood.\n<color=#ff911c>Nếu không có bánh ngọt tăng Mood thì sẽ không sử dụng</color>",
         "Khi đặt mục này thành ON, lúc tham gia cuộc đua có phần thưởng chắc chắn khi chiến thắng\nsẽ tự động dùng Bánh ngọt tăng động lực.\n<color=#ff911c>Nếu không sở hữu Bánh ngọt tăng động lực thì sẽ không sử dụng</color>"
       ],
-      "approved_target": "Khi bật mục này, lúc tham gia Cuộc đua chắc chắn nhận thưởng khi thắng\nsẽ tự động dùng bánh ngọt tăng Mood.\n<color=#ff911c>Nếu không có bánh ngọt tăng Mood thì sẽ không sử dụng</color>",
+      "approved_target": "Khi bật mục này, nếu tham gia Cuộc đua có phần thưởng chắc chắn khi thắng,\nsẽ tự động dùng bánh ngọt tăng Mood.\n<color=#ff911c>Nếu không có bánh ngọt tăng Mood thì sẽ không sử dụng</color>",
       "origins": [
         "translation_review"
       ],
@@ -95979,6 +96066,14 @@
           "claim_id": "trc-gpt56sol-hourly-20260901T073200Z-b0103",
           "merged_at": "2026-09-01T07:33:48.039308Z",
           "reason": "Preserve all three lines and color tag while applying canonical Cuộc đua and Mood terminology and smoothing the toggle wording."
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-b3f529125469-b5c0bcb3bd-234ec2f6e2",
+          "batch_id": "tr-p3-67f8551f7780-b3f529125469-b5c0bcb3bd-234ec2f6e2-b0016",
+          "claim_id": "trc-gpt56sol-auto11-20260906T070245Z-b0016",
+          "merged_at": "2026-09-06T07:20:19.084719Z",
+          "reason": "Làm rõ quan hệ điều kiện của câu và giữ nguyên ba dòng cùng thẻ màu."
         }
       ]
     },
@@ -100486,10 +100581,11 @@
       "source_text": "羁绊值在80以上时，训练\\n效果提升和提示获得数提升",
       "source_fingerprint": "90e8a662d8c7aef09ff7933aea8ef60ae1fb1d60489fa9af7fc16ae9d765bd19",
       "rejected_targets": [
+        "Khi Friendship Gauge đạt 80 trở lên,\\nTraining Effectiveness & tăng số Gợi ý nhận được",
         "Khi giá trị liên kết đạt 80 trở lên,\\nTăng hiệu quả huấn luyện & tăng số Gợi ý nhận được",
         "Khi Gắn kết đạt 80 trở lên,\\nTăng hiệu quả huấn luyện & tăng số Gợi ý nhận được"
       ],
-      "approved_target": "Khi Friendship Gauge đạt 80 trở lên,\\nTraining Effectiveness & tăng số Gợi ý nhận được",
+      "approved_target": "Khi Friendship Gauge đạt 80 trở lên,\\nTraining Effectiveness tăng & tăng số Gợi ý nhận được",
       "origins": [
         "translation_review"
       ],
@@ -100510,6 +100606,14 @@
           "claim_id": "trc-chatgpt-20260830T0058Z-b0813",
           "merged_at": "2026-08-30T01:27:15.637881Z",
           "reason": "Chuẩn hóa Friendship Gauge và Support Effect Training Effectiveness; giữ phần tăng số gợi ý theo embedded text vì không có canonical override khác."
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-b3f529125469-b5c0bcb3bd-234ec2f6e2",
+          "batch_id": "tr-p3-67f8551f7780-b3f529125469-b5c0bcb3bd-234ec2f6e2-b0100",
+          "claim_id": "trc-gpt56sol-auto11-20260906T071800Z-b0100",
+          "merged_at": "2026-09-06T07:20:19.111945Z",
+          "reason": "Bản hiện tại làm mất hướng tăng của 训练效果提升; phần tăng số Gợi ý đã bảo toàn đúng source."
         }
       ]
     },
@@ -113555,10 +113659,11 @@
       "source_text": "羁绊值在80以上时，\\n训练效果提升",
       "source_fingerprint": "de1b9062dab2eb66f62b9000f4cbe371a7d3ac8a7320f50cb29129a1c31f3531",
       "rejected_targets": [
+        "Khi Friendship Gauge đạt 80 trở lên,\\nTraining Effectiveness",
         "Khi giá trị liên kết đạt 80 trở lên,\\nTăng hiệu quả huấn luyện",
         "Khi Gắn kết đạt 80 trở lên,\\nTăng hiệu quả huấn luyện"
       ],
-      "approved_target": "Khi Friendship Gauge đạt 80 trở lên,\\nTraining Effectiveness",
+      "approved_target": "Khi Friendship Gauge đạt 80 trở lên,\\nTraining Effectiveness tăng",
       "origins": [
         "translation_review"
       ],
@@ -113579,6 +113684,14 @@
           "claim_id": "trc-chatgpt-20260829T2239Z-b0837",
           "merged_at": "2026-08-30T00:48:53.673233Z",
           "reason": "Use canonical Support Effect labels."
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-b3f529125469-b5c0bcb3bd-234ec2f6e2",
+          "batch_id": "tr-p3-67f8551f7780-b3f529125469-b5c0bcb3bd-234ec2f6e2-b0100",
+          "claim_id": "trc-gpt56sol-auto11-20260906T071800Z-b0100",
+          "merged_at": "2026-09-06T07:20:19.111945Z",
+          "reason": "Bản hiện tại làm mất hướng tăng của 训练效果提升."
         }
       ]
     },
@@ -116555,10 +116668,11 @@
       "source_text": "羁绊值在80以上时，\\n训练效果提升",
       "source_fingerprint": "de1b9062dab2eb66f62b9000f4cbe371a7d3ac8a7320f50cb29129a1c31f3531",
       "rejected_targets": [
+        "Khi Friendship Gauge đạt 80 trở lên,\\nTraining Effectiveness",
         "Khi giá trị liên kết đạt 80 trở lên,\\nTăng hiệu quả huấn luyện",
         "Khi Gắn kết đạt 80 trở lên,\\nTăng hiệu quả huấn luyện"
       ],
-      "approved_target": "Khi Friendship Gauge đạt 80 trở lên,\\nTraining Effectiveness",
+      "approved_target": "Khi Friendship Gauge đạt 80 trở lên,\\nTraining Effectiveness tăng",
       "origins": [
         "translation_review"
       ],
@@ -116579,6 +116693,14 @@
           "claim_id": "trc-chatgpt-20260830T0058Z-b0813",
           "merged_at": "2026-08-30T01:27:15.637881Z",
           "reason": "Chuẩn hóa Friendship Gauge và Training Effectiveness theo category 155."
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-b3f529125469-b5c0bcb3bd-234ec2f6e2",
+          "batch_id": "tr-p3-67f8551f7780-b3f529125469-b5c0bcb3bd-234ec2f6e2-b0100",
+          "claim_id": "trc-gpt56sol-auto11-20260906T071800Z-b0100",
+          "merged_at": "2026-09-06T07:20:19.111945Z",
+          "reason": "Bản hiện tại làm mất hướng tăng của 训练效果提升."
         }
       ]
     },
@@ -119374,10 +119496,11 @@
       "source_text": "试用赛马娘无法报名",
       "source_fingerprint": "8cbd02b5696f26bc9626754c8b0789f005d7a41c608cf66094e08fd43b34f1b2",
       "rejected_targets": [
+        "Mã Nương dùng thử không thể đăng ký",
         "Uma dùng thử không đăng ký được",
         "Uma Musume dùng thử không thể đăng ký"
       ],
-      "approved_target": "Mã Nương dùng thử không thể đăng ký",
+      "approved_target": "Không thể đăng ký Mã Nương dùng thử",
       "origins": [
         "translation_review",
         "ui_review"
@@ -119410,6 +119533,14 @@
           "claim_id": "trc-gpt56sol-auto6-b0213",
           "merged_at": "2026-08-30T12:10:44.398126Z",
           "reason": "Generic 赛马娘 must use Mã Nương while preserving the source inability/registration meaning."
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-b3f529125469-b5c0bcb3bd-234ec2f6e2",
+          "batch_id": "tr-p3-67f8551f7780-b3f529125469-b5c0bcb3bd-234ec2f6e2-b0016",
+          "claim_id": "trc-gpt56sol-auto11-20260906T070245Z-b0016",
+          "merged_at": "2026-09-06T07:20:19.084719Z",
+          "reason": "Đảo cấu trúc câu để thành thông báo UI tự nhiên hơn mà không đổi nghĩa."
         }
       ]
     },
@@ -131742,9 +131873,10 @@
       "source_fingerprint": "471a5bdabd005af7daa171b6f6ad932ecd4416829d967e2cf1bc6d820e37a415",
       "rejected_targets": [
         "Danh sách Mã Nương thi đấu có đăng ký Mã Nương dùng thử đã hết hạn",
-        "Danh sách Uma Musume thi đấu có đăng ký Uma Musume dùng thử đã hết hạn"
+        "Danh sách Uma Musume thi đấu có đăng ký Uma Musume dùng thử đã hết hạn",
+        "Trong danh sách Mã Nương dự thi có Mã Nương dùng thử đã hết hạn"
       ],
-      "approved_target": "Trong danh sách Mã Nương dự thi có Mã Nương dùng thử đã hết hạn",
+      "approved_target": "Danh sách Mã Nương dự thi có Mã Nương dùng thử đã hết hạn",
       "origins": [
         "translation_review"
       ],
@@ -131765,6 +131897,14 @@
           "claim_id": "trc-gpt56sol-hourly-20260901T072550Z-b0102",
           "merged_at": "2026-09-01T07:33:47.236883Z",
           "reason": "Current wording is understandable but awkward; revise to natural Vietnamese while preserving both generic Mã Nương references."
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-b3f529125469-b5c0bcb3bd-234ec2f6e2",
+          "batch_id": "tr-p3-67f8551f7780-b3f529125469-b5c0bcb3bd-234ec2f6e2-b0016",
+          "claim_id": "trc-gpt56sol-auto11-20260906T070245Z-b0016",
+          "merged_at": "2026-09-06T07:20:19.084719Z",
+          "reason": "Rút cấu trúc 'Trong danh sách... có...' thành thông báo UI tự nhiên, trực tiếp hơn."
         }
       ]
     },
@@ -164600,9 +164740,10 @@
       "source_text": "因试用赛马娘已过使用期限，\n已从我的出赛名单中移除",
       "source_fingerprint": "1895eaceb37a5f47f3d5d5a484313d69c2dd6cb43ed47d5c2f11305f732899f2",
       "rejected_targets": [
+        "Do Mã Nương dùng thử đã hết thời hạn sử dụng,\nđã bị xóa khỏi danh sách thi đấu của tôi",
         "Do Uma Musume dùng thử đã hết thời hạn sử dụng,\nđã bị xóa khỏi danh sách thi đấu của tôi"
       ],
-      "approved_target": "Do Mã Nương dùng thử đã hết thời hạn sử dụng,\nđã bị xóa khỏi danh sách thi đấu của tôi",
+      "approved_target": "Do Mã Nương dùng thử đã hết hạn sử dụng,\nMã Nương đó đã bị xóa khỏi danh sách dự thi của tôi",
       "origins": [
         "translation_review"
       ],
@@ -164615,6 +164756,14 @@
           "claim_id": "trc-gpt56sol-auto6-b0213",
           "merged_at": "2026-08-30T12:10:44.398126Z",
           "reason": "Generic 赛马娘 must use Mã Nương; the removal meaning and newline are preserved."
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-b3f529125469-b5c0bcb3bd-234ec2f6e2",
+          "batch_id": "tr-p3-67f8551f7780-b3f529125469-b5c0bcb3bd-234ec2f6e2-b0016",
+          "claim_id": "trc-gpt56sol-auto11-20260906T070245Z-b0016",
+          "merged_at": "2026-09-06T07:20:19.084719Z",
+          "reason": "Bổ sung chủ ngữ ở vế sau và dùng 'danh sách dự thi' tự nhiên hơn, giữ nguyên cấu trúc xuống dòng."
         }
       ]
     },

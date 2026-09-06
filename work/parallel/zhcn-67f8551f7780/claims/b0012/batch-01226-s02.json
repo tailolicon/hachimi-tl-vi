@@ -9,11 +9,15 @@
   "source_commit": "67f8551f77807292cebd2b20b2c752b652393835",
   "source_queue_git_commit": "ba3815ed06a2a9bb3fddb38a6e1ea7ca64506da2",
   "claimed_at": "2026-09-06T23:11:00Z",
-  "heartbeat_at": "2026-09-06T23:11:00Z",
-  "lease_expires_at": "2026-09-06T23:17:00Z",
-  "status": "active",
+  "heartbeat_at": "2026-09-06T23:14:00Z",
+  "lease_expires_at": "2026-09-06T23:14:00Z",
+  "status": "released",
+  "released_at": "2026-09-06T23:14:00Z",
   "handoff_from_claim_id": "pt-gpt56sol-chat-20260907-0359-b01226s02",
   "partial_result_path": "work/parallel/zhcn-67f8551f7780/results/b0012/batch-01226-s02.json",
   "translated_count": 20,
-  "continuation": "Revalidate the stable 20/20 result against the live TranslationQualityGuard and pinned source. Complete only if all 20 entries now pass."
+  "qa_guard": "TranslationQualityGuard",
+  "qa_passed": false,
+  "release_reason": "Live main revalidation still reports locked_term_required:reviewed.skill_name.129dce8a1fe3 on zhcn:97735a74eacc5479187cd951. The stable semantic target must not be changed merely to satisfy a mis-scoped Skill-title rule.",
+  "continuation": "Resume only after canonical/guard scope for reviewed.skill_name.129dce8a1fe3 is corrected. Then revalidate all 20 pinned entries and create completion only if TranslationQualityGuard returns zero errors."
 }

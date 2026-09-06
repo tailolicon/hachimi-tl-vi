@@ -133,6 +133,15 @@ DEFERRED_IDENTITIES = [
         "category": "skill_name",
         "note": "JP identity is verified as Bubble Gum Fellow's unique Skill ふくらむ夢、先駆の途 (Skill 101241). Current reference evidence marks the Skill JP-only and does not establish an official Global/player-facing title, so preserve the finding as blocking rather than canonize a literal Vietnamese calque from the zh-CN semantic bridge.",
     },
+    {
+        "decision_id": "audit.finding-gourmet-festival-jp-only-defer",
+        "source_zh_cn": "大丰食祭",
+        "action": "defer",
+        "target_vi": "",
+        "kind": "proper_name",
+        "category": "system",
+        "note": "JP identity is verified as the training scenario 収穫ッ！満腹ッ！大豊食祭 (Shuukaku! Manpaku! Daihoushokusai), released in JP on 2024-06-26. Current reference evidence still marks the scenario unavailable in Global and does not establish an official Global/player-facing title, so preserve the finding as blocking rather than canonize the current Vietnamese semantic calque or a community English label.",
+    },
 ]
 
 

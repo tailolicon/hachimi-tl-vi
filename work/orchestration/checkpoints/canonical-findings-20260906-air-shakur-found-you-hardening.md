@@ -8,7 +8,7 @@ Finding: `cf-2c4b6d109aaf229d`
 
 The finding occurs in inheritance descriptions for trainee `103602`, `[Belphegor's Prime] Air Shakur`, and refers to unique Skill id `110361`.
 
-The earlier evidence checkpoint correctly rejected promoting the zh-CN semantic calque without verified identity. Fresh verification now establishes that the Japanese-game Skill title itself is the English text `…found you.`. Multiple JP references list Air Shakur's unique skill using that exact title; therefore preserving `…found you.` is identity-preserving rather than importing an English fan translation.
+The earlier evidence checkpoint correctly rejected promoting the zh-CN semantic calque without verified identity. Fresh verification establishes that the Japanese-game Skill title itself is the English text `…found you.`. Preserving `…found you.` is therefore identity-preserving rather than importing an English fan translation.
 
 ## Hardening implemented
 
@@ -32,10 +32,18 @@ Implementation commits:
 - hardener: `2ee16863157ae394e53eafb6b995ac99db5359f4`
 - regression test: `c8d99daff521c4c66079b401c888a9a706675eb3`
 
-## Validation status
+## Validation / integration
 
-Repository Actions were triggered from the regression-test commit. `Sync translation context`, `Sync translation review plan`, and `Validate` must complete successfully before this finding is counted complete. The local Shiro checkout could not run pytest because that isolated runtime lacks the pytest module; this is a backend-local limitation, so GitHub Actions remains the acceptance path.
+- Validate run `34059358492`: success.
+- Production Sync translation context run `34059358557`: success, including all finding hardeners and context-pipeline tests.
+- Generated live main after Sync: `c49996f19488d9b07ef1f6e17c37c94694abc725`.
+- Live `cf-2c4b6d109aaf229d` now has:
+  - `suggested_targets_vi: ["…found you."]`
+  - `canonical_resolution.target_vi: "…found you."`
+  - review decision `audit.finding.skill-air-shakur-found-you`, action `lock`.
+- `scripts/canonical_findings.py::active_findings` no longer returns this finding; active blocker count reduced from 153 to 152.
+- A direct standard-library smoke run also proved the hardener is idempotent and resolves the finding in isolation. The local environment lacked pytest, but repository Validate supplied the required pytest acceptance evidence.
 
 ## Status
 
-Hardening implemented; production acceptance pending. Do not increment the shared maintenance completed count until Validate + production Sync prove the generated finding resolves and the historical calque is rejected.
+Complete. This maintenance unit may increment the shared maintenance completed count from 155 to 156. Other active canonical findings remain; re-route from live `WORKER_START.md` after recording completion.

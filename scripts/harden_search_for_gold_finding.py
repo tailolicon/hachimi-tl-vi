@@ -22,7 +22,7 @@ RULE = {
     "accepted": [TARGET],
     "forbidden": [HISTORICAL_TARGET],
     "require_accepted": True,
-    "invalidation_scope": "source_path",
+    "invalidation_scope": "item",
     "source_paths": ["text_data_dict.json"],
     "match_mode": "exact",
     "basis": (
@@ -41,7 +41,7 @@ DECISION = {
     "kind": "skill_name",
     "category": "skill_name",
     "ja": [SOURCE_JA],
-    "invalidation_scope": "source_path",
+    "invalidation_scope": "item",
     "source_paths": ["text_data_dict.json"],
     "match_mode": "exact",
     "note": (

@@ -41,6 +41,11 @@ Implementation commits:
 - hardener: `73811049e9243bd41f3ad84fa72f11347b213cad`
 - regression test: `d29e2ff0f5656264b5581bf7a3876889c443a96a`
 
+## Validation
+
+- Validate workflow run `34057890523` for commit `d29e2ff0f5656264b5581bf7a3876889c443a96a` completed successfully.
+- Production `Sync translation context` run `34057890507` and `Sync translation review plan` run `34057890465` were triggered by the same push and are queued/pending at the time of this checkpoint.
+
 ## Completion gate
 
-Do not increment maintenance `completed_count` yet. Completion requires validation plus production context regeneration/Sync so live `glossary/canonical_findings.json` records a non-null canonical resolution for `cf-cb0e0393aa8c140c` and the blocker disappears from newly generated review context.
+Do not increment maintenance `completed_count` yet. Completion requires production context regeneration/Sync so live `glossary/canonical_findings.json` records a non-null canonical resolution for `cf-cb0e0393aa8c140c` and the blocker disappears from newly generated review context.

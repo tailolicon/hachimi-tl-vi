@@ -29,10 +29,12 @@ Implementation commits:
 - hardener: `d308bd0467a118b1f252c43d2953e30ce207b34c`
 - regression test: `246f8f0505aaa156e0607b88c93f1b31f2fee049`
 
-## Validation status
+## Production acceptance
 
-Repository Validate and production Sync triggered by the regression-test commit must succeed before this finding is counted complete.
+- Validate run `34059677210` for `246f8f0505aaa156e0607b88c93f1b31f2fee049`: `success`.
+- Production Sync translation-context run `34059677251` for the same regression-test commit: `success`.
+- Generated context commit `87eb82f3e872ea6b7a9fcd4ec4efb5b888a19d97` resolves `cf-2d359ed052159dea` with locked target `Shunsuke Tanaka`, adds reviewed locked term `reviewed.proper_name.b2b77974dbbd`, removes the finding from the actionable terminology-review queue, and reduces open canonical findings by one.
 
 ## Status
 
-Hardening implemented; production acceptance pending. Shared maintenance completed count remains 156 until generated live context resolves `cf-2d359ed052159dea` to `Shunsuke Tanaka`.
+Accepted complete. Generated live context resolves `cf-2d359ed052159dea` to `Shunsuke Tanaka`; this finding may now increment the shared maintenance completed count from 156 to 157.

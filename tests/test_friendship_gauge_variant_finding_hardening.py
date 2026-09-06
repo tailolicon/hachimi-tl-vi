@@ -144,3 +144,50 @@ def test_variant_is_scoped_and_resolves_only_while_all_evidence_is_covered(tmp_p
     assert resolve(tmp_path) is False
     reopened = json.loads((tmp_path / "glossary" / "canonical_findings.json").read_text(encoding="utf-8"))
     assert reopened["findings"][0]["canonical_resolution"] is None
+
+
+def test_regenerated_initial_friendship_overmatch_resolves_as_context_guard(tmp_path: Path) -> None:
+    _write(tmp_path)
+    assert harden(tmp_path) is True
+
+    payload = json.loads((tmp_path / "glossary" / "canonical_findings.json").read_text(encoding="utf-8"))
+    payload["findings"] = [{
+        "finding_id": "cf-375c57aaf697bbff",
+        "status": "open",
+        "source_zh_cn": "初始牵绊值",
+        "suggested_targets_vi": ["Initial Friendship"],
+        "canonical_resolution": None,
+        "evidence": [{
+            "source_path": "text_data_dict.json",
+            "json_path": ["155", "20016"],
+            "source_text": "友情加成&初始牵绊值提升",
+            "current_text": "Friendship Bonus & Initial Friendship",
+        }],
+    }]
+    (tmp_path / "glossary" / "canonical_findings.json").write_text(
+        json.dumps(payload, ensure_ascii=False), encoding="utf-8"
+    )
+
+    assert resolve(tmp_path) is True
+    resolved = json.loads((tmp_path / "glossary" / "canonical_findings.json").read_text(encoding="utf-8"))
+    assert resolved["findings"][0]["canonical_resolution"] == {
+        "layer": "context_guard",
+        "term_id": COMMUNITY_TERM_ID,
+        "target_vi": "Friendship Gauge",
+    }
+
+    # If the exclusion regresses and the generic gauge term matches again, the
+    # regenerated finding must stay open rather than being auto-closed.
+    community = json.loads((tmp_path / "glossary" / "ui_community_terms.json").read_text(encoding="utf-8"))
+    term = next(item for item in community["terms"] if item["id"] == COMMUNITY_TERM_ID)
+    term["exclude_source_contains"] = []
+    (tmp_path / "glossary" / "ui_community_terms.json").write_text(
+        json.dumps(community, ensure_ascii=False), encoding="utf-8"
+    )
+    resolved["findings"][0]["canonical_resolution"] = None
+    (tmp_path / "glossary" / "canonical_findings.json").write_text(
+        json.dumps(resolved, ensure_ascii=False), encoding="utf-8"
+    )
+    assert resolve(tmp_path) is False
+    reopened = json.loads((tmp_path / "glossary" / "canonical_findings.json").read_text(encoding="utf-8"))
+    assert reopened["findings"][0]["canonical_resolution"] is None

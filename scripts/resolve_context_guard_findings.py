@@ -184,6 +184,15 @@ GUARDS = {
         "term_id": "reviewed.skill_name.b10fa1bb5f44",
         "target_vi": "Cự ly tiêu chuẩn ○",
     },
+    # Regenerated Initial Friendship overmatch. The finding is about the generic
+    # Friendship Gauge matcher leaking into the narrower 初始牵绊值 compound; the
+    # permanent hardener excludes that compound. Resolve only while live evidence
+    # proves the generic gauge term no longer matches it.
+    "cf-375c57aaf697bbff": {
+        "layer": "community",
+        "term_id": "common.friendship_gauge.support_effects",
+        "target_vi": "Friendship Gauge",
+    },
     # Regenerated review findings may key the same overmatch by the excluded
     # compound (超长距离) rather than by the nested generic alias (长距离). Keep
     # both semantic incarnations tied to the same proven context guard.

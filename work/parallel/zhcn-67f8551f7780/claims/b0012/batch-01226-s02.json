@@ -4,24 +4,16 @@
   "task_id": "batch-01226-s02",
   "batch": 1226,
   "shard": 2,
-  "worker_id": "gpt56sol-chat-20260907-0359",
-  "claim_id": "pt-gpt56sol-chat-20260907-0359-b01226s02",
+  "worker_id": "gpt56sol-auto11-20260906T231100Z-translation",
+  "claim_id": "pt-gpt56sol-auto11-20260906T231100Z-b01226s02",
   "source_commit": "67f8551f77807292cebd2b20b2c752b652393835",
   "source_queue_git_commit": "ba3815ed06a2a9bb3fddb38a6e1ea7ca64506da2",
-  "claimed_at": "2026-09-06T21:12:24Z",
-  "heartbeat_at": "2026-09-06T21:17:55Z",
-  "lease_expires_at": "2026-09-06T21:17:55Z",
-  "status": "released",
-  "released_at": "2026-09-06T21:17:55Z",
+  "claimed_at": "2026-09-06T23:11:00Z",
+  "heartbeat_at": "2026-09-06T23:11:00Z",
+  "lease_expires_at": "2026-09-06T23:17:00Z",
+  "status": "active",
+  "handoff_from_claim_id": "pt-gpt56sol-chat-20260907-0359-b01226s02",
   "partial_result_path": "work/parallel/zhcn-67f8551f7780/results/b0012/batch-01226-s02.json",
   "translated_count": 20,
-  "qa_guard": "TranslationQualityGuard",
-  "qa_passed": false,
-  "release_reason": "Live TranslationQualityGuard revalidation confirms 19/20 entries pass; entry 54 still fails locked_term_required:reviewed.skill_name.129dce8a1fe3. The source is ordinary character prose (将至高无上的荣誉和感谢献给你。), while the canonical/community Skill rule for 至高无上 is exact and scoped to text_data_dict.json category 147. Injecting Hãy Là Tối Thượng here would change meaning, so the semantic target is preserved and no completion marker is fabricated.",
-  "continuation": "Resume the stable 20/20 result only after the locked term / TranslationQualityGuard scope for reviewed.skill_name.129dce8a1fe3 is corrected so descriptive 至高无上 prose no longer contains-matches the standalone Skill title. Then rerun structural QA + TranslationQualityGuard and create completion only if all 20 pass.",
-  "takeover_from": {
-    "worker_id": "gpt56sol-auto11-20260906T004400Z-translation",
-    "released_at": "2026-09-06T00:51:00Z",
-    "note": "Resume exact 20/20 result after guard/canonical scope correction, rerun TranslationQualityGuard, then create completion marker if pass."
-  }
+  "continuation": "Revalidate the stable 20/20 result against the live TranslationQualityGuard and pinned source. Complete only if all 20 entries now pass."
 }

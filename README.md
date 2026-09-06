@@ -12,11 +12,11 @@ Pipeline dịch tiếng Việt độc lập cho **Uma Musume Pretty Derby JP** t
 | Current phase | **retrospective_translation_review** |
 | Primary integration lane | **Retrospective translation Audit Round 1** — stage **mass_review** (`main`) |
 | Canonical parallelism | **ON** — domain work parallel / integration serial; 0 active-or-claimable domain lanes, 0 ready for integration, 7 canonical domains complete; configured domain-worker cap 5 |
-| Pinned source coverage | **28,660 / 1,158,825 (2.47%)** — 1,130,165 remaining |
-| Current translation wave | **28,660 / 131,560 (21.78%)** — 102,900 queued remaining |
+| Pinned source coverage | **28,720 / 1,158,825 (2.48%)** — 1,130,105 remaining |
+| Current translation wave | **28,720 / 131,560 (21.83%)** — 102,840 queued remaining |
 | Deferred pinned entries | **1,027,265** — these must be promoted in later deterministic waves, not ignored |
-| Translation Audit Round 1 | **19,520 / 19,520 entries reviewed at least once (100.00%)** — ledger keep/revise/defer **14,782/2,345/2,393**; 16,905 / 19,520 currently resolved (86.60%); current generation **32 / 131 batches (24.43%)**, 480 merged decisions; 2,615 unresolved; gate **REVIEW ACTIVE / TRANSLATION OPEN** |
-| Audit merge backlog | **8 completed batch** awaiting bounded reconciliation (normally ≤5 min) |
+| Translation Audit Round 1 | **19,520 / 19,520 entries reviewed at least once (100.00%)** — ledger keep/revise/defer **14,782/2,345/2,393**; 16,905 / 19,520 currently resolved (86.60%); current generation **33 / 131 batches (25.19%)**, 480 merged decisions; 2,615 unresolved; gate **REVIEW ACTIVE / TRANSLATION OPEN** |
+| Audit merge backlog | **9 completed batch** awaiting bounded reconciliation (normally ≤5 min) |
 | UI review | **0 / 6,459 reviewed items (0.00%)** |
 | Context curation | Speech **100.00%**, terminology **94.72%** |
 | Active worker claims | **6** |

@@ -2,7 +2,7 @@
   "schema_version": 2,
   "task_id": "canonical-findings-maintenance",
   "stage": "domain_work",
-  "status": "active",
+  "status": "released",
   "claim_id": "canonical-findings-maintenance-gpt56sol-auto11-20260906T034647Z",
   "worker_id": "gpt56sol-auto11-20260906T034647Z-maintenance",
   "claimed_at": "2026-09-06T03:46:47Z",
@@ -10,11 +10,11 @@
   "lease_expires_at": "2026-09-06T03:52:47Z",
   "branch": "worker-gpt56sol-auto11-20260906-1046",
   "handoff_from_claim_id": "canonical-findings-maintenance-gpt56sol-20260906T033532Z",
-  "progress_token": "claim-takeover-live-ledger-20260906T034647Z",
-  "progress_kind": "claim_acquired_after_expired_lease",
-  "progress_ref": "work/orchestration/maintenance_claim.json@56d648ddf207ef75677542fe51fb181746edf5b8",
-  "last_progress_at": "2026-09-06T03:46:47Z",
+  "progress_token": "checkpoint-b54c7111a7d2b81eb3060126af57d969e6a04d53",
+  "progress_kind": "connector_enumeration_handoff_checkpoint",
+  "progress_ref": "work/orchestration/checkpoints/canonical-findings-20260906T0346Z-connector-enumeration-handoff.md@b54c7111a7d2b81eb3060126af57d969e6a04d53",
+  "last_progress_at": "2026-09-06T03:50:00Z",
   "completed_count": 140,
-  "partial_result_path": "work/orchestration/checkpoints/canonical-findings-20260905-tucker-bryne.md",
-  "continuation": "Took over expired maintenance lane from live main. Preserve completed_count=140 and Tucker Bryne checkpoint; continue active findings using scripts/canonical_findings.py::active_findings semantics."
+  "partial_result_path": "work/orchestration/checkpoints/canonical-findings-20260906T0346Z-connector-enumeration-handoff.md",
+  "continuation": "Released after durable connector-enumeration checkpoint. Preserve completed_count=140. A successor with full-ledger execution should run scripts/canonical_findings.py::active_findings against the current live ledger and continue the next true active blocker; do not count the intentionally deferred Bubble Gum Fellow unique Skill finding as complete."
 }

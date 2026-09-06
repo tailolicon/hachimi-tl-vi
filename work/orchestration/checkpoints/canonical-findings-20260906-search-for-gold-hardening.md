@@ -26,26 +26,32 @@ Older curation attempts deferred the title before the Japanese identity was veri
 
 - `scripts/harden_search_for_gold_finding.py`
   - exact source alias `寻访黄金`
-  - source-path scope `text_data_dict.json`
+  - source-path coverage `text_data_dict.json`
   - canonical target `Tìm kiếm hoàng kim`
   - historical alternate `Đi tìm hoàng kim` forbidden
+  - supported `invalidation_scope: item`
   - terminology review decision locks JP `黄金を訪ねて`
   - appends the canonical target to finding suggestions so `refresh_canonical_resolutions` can resolve the blocker.
 - `tests/test_search_for_gold_finding_hardening.py`
   - proves hardener idempotence
+  - pins the supported `item` invalidation scope in both community rule and review decision
   - proves the live source-path-scoped finding resolves through community + review layers
   - proves the exact rule does not overmatch another source path or longer prose containing the source phrase.
 
 Implementation commits:
 
-- hardener: `73811049e9243bd41f3ad84fa72f11347b213cad`
-- regression test: `d29e2ff0f5656264b5581bf7a3876889c443a96a`
+- initial hardener: `73811049e9243bd41f3ad84fa72f11347b213cad`
+- initial regression test: `d29e2ff0f5656264b5581bf7a3876889c443a96a`
+- integration fix (`source_path` invalidation scope -> supported `item`): `7dab4bcfdbda8cdad15f393dcd5457f9dfaba4ce`
+- regression assertion for supported scope: `b00d6d56cc87cd096859223c0f6986a21d81e51f`
 
-## Validation
+## Validation / integration
 
-- Validate workflow run `34057890523` for commit `d29e2ff0f5656264b5581bf7a3876889c443a96a` completed successfully.
-- Production `Sync translation context` run `34057890507` and `Sync translation review plan` run `34057890465` were triggered by the same push and are queued/pending at the time of this checkpoint.
+- Validate workflow run `34057890523` for the initial test commit completed successfully.
+- Production `Sync translation context` run `34057890507` executed the new hardener successfully (`search_for_gold_hardening_changed=true`) but then failed in `apply_terminology_reviews.py` because the initial review decision used unsupported `invalidation_scope: source_path`.
+- `scripts/apply_terminology_reviews.py` accepts only `global` or `item`; the hardener and regression test are now corrected to `item`. Source-path coverage remains represented independently by `source_paths: ["text_data_dict.json"]` for canonical-finding matching.
+- The fix commits trigger a fresh production validation/sync cycle; live canonical resolution is still pending verification.
 
 ## Completion gate
 
-Do not increment maintenance `completed_count` yet. Completion requires production context regeneration/Sync so live `glossary/canonical_findings.json` records a non-null canonical resolution for `cf-cb0e0393aa8c140c` and the blocker disappears from newly generated review context.
+Do not increment maintenance `completed_count` yet. Completion requires a successful fresh production context regeneration/Sync so live `glossary/canonical_findings.json` records a non-null canonical resolution for `cf-cb0e0393aa8c140c` and the blocker disappears from newly generated review context.

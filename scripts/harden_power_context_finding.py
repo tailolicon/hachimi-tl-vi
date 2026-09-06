@@ -7,6 +7,7 @@ from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
 TERM_ID = "common.stat.power"
+LOCKED_TERM_ID = "stat.power"
 NARRATIVE_EXCLUSIONS = [
     "强大力量",
     "商品的力量",
@@ -34,18 +35,26 @@ def _write(path: Path, payload: dict[str, Any]) -> None:
 
 
 def harden(repo_root: Path = ROOT) -> bool:
-    path = repo_root / "glossary" / "ui_community_terms.json"
-    payload = _load(path)
-    terms = payload.get("terms", [])
-    if not isinstance(terms, list):
+    community_path = repo_root / "glossary" / "ui_community_terms.json"
+    community_payload = _load(community_path)
+    community_terms = community_payload.get("terms", [])
+    if not isinstance(community_terms, list):
         raise ValueError("glossary/ui_community_terms.json terms must be a list")
 
-    before = json.dumps(payload, ensure_ascii=False, sort_keys=True)
-    matched = False
-    for term in terms:
+    registry_path = repo_root / "glossary" / "term_registry.json"
+    registry_payload = _load(registry_path)
+    registry_terms = registry_payload.get("terms", [])
+    if not isinstance(registry_terms, list):
+        raise ValueError("glossary/term_registry.json terms must be a list")
+
+    community_before = json.dumps(community_payload, ensure_ascii=False, sort_keys=True)
+    registry_before = json.dumps(registry_payload, ensure_ascii=False, sort_keys=True)
+
+    community_matched = False
+    for term in community_terms:
         if not isinstance(term, dict) or term.get("id") != TERM_ID:
             continue
-        matched = True
+        community_matched = True
         existing = [str(value) for value in term.get("exclude_source_contains", []) if str(value)]
         term["exclude_source_contains"] = list(dict.fromkeys([*existing, *NARRATIVE_EXCLUSIONS]))
         term["basis"] = (
@@ -55,13 +64,27 @@ def harden(repo_root: Path = ROOT) -> bool:
             "is not normalized to the stat label."
         )
         break
-    if not matched:
+    if not community_matched:
         raise ValueError(f"missing canonical community term {TERM_ID}")
 
-    changed = before != json.dumps(payload, ensure_ascii=False, sort_keys=True)
-    if changed:
-        _write(path, payload)
-    return changed
+    registry_matched = False
+    for term in registry_terms:
+        if not isinstance(term, dict) or term.get("id") != LOCKED_TERM_ID:
+            continue
+        registry_matched = True
+        existing = [str(value) for value in term.get("exclude_source_contains", []) if str(value)]
+        term["exclude_source_contains"] = list(dict.fromkeys([*existing, *NARRATIVE_EXCLUSIONS]))
+        break
+    if not registry_matched:
+        raise ValueError(f"missing canonical locked term {LOCKED_TERM_ID}")
+
+    community_changed = community_before != json.dumps(community_payload, ensure_ascii=False, sort_keys=True)
+    registry_changed = registry_before != json.dumps(registry_payload, ensure_ascii=False, sort_keys=True)
+    if community_changed:
+        _write(community_path, community_payload)
+    if registry_changed:
+        _write(registry_path, registry_payload)
+    return community_changed or registry_changed
 
 
 def main() -> int:

@@ -108,6 +108,14 @@ def test_power_context_hardening_preserves_stat_and_excludes_narrative(tmp_path:
         source_path="text_data_dict.json",
         json_path=["10", "144"],
     )
+    gold_limit_break = community_term_matches(
+        None,
+        "据说是可以激发出超越极限力量的\\n金色力量石。\\n可解锁SR支援卡的上限。",
+        "Người ta nói đây là viên đá sức mạnh màu vàng\\ncó thể khơi dậy sức mạnh vượt qua giới hạn.\\nCó thể dùng để phá giới hạn thẻ hỗ trợ SR.",
+        terms,
+        source_path="text_data_dict.json",
+        json_path=["10", "145"],
+    )
     assert stat[0]["id"] == TERM_ID
     assert stat[0]["preferred"] == "Power"
     assert strong_power == []
@@ -115,6 +123,7 @@ def test_power_context_hardening_preserves_stat_and_excludes_narrative(tmp_path:
     assert narrative_item == []
     assert physical_strength == []
     assert rainbow_limit_break == []
+    assert gold_limit_break == []
 
 
 def test_regenerated_power_context_ids_resolve_only_after_matcher_is_neutralized(tmp_path: Path) -> None:
@@ -158,6 +167,18 @@ def test_regenerated_power_context_ids_resolve_only_after_matcher_is_neutralized
             }],
         },
         {
+            "finding_id": "cf-315321f8842a0d81",
+            "status": "open",
+            "source_zh_cn": "据说是可以激发出超越极限力量的\\n金色力量石。\\n可解锁SR支援卡的上限。",
+            "canonical_resolution": None,
+            "evidence": [{
+                "source_path": "text_data_dict.json",
+                "json_path": ["10", "145"],
+                "source_text": "据说是可以激发出超越极限力量的\\n金色力量石。\\n可解锁SR支援卡的上限。",
+                "current_text": "Người ta nói đây là viên đá sức mạnh màu vàng\\ncó thể khơi dậy sức mạnh vượt qua giới hạn.\\nCó thể dùng để phá giới hạn thẻ hỗ trợ SR.",
+            }],
+        },
+        {
             "finding_id": "cf-1fb0ec7c1c77dfb1",
             "status": "open",
             "source_zh_cn": "精神力量",
@@ -178,7 +199,7 @@ def test_regenerated_power_context_ids_resolve_only_after_matcher_is_neutralized
     assert resolve(tmp_path) is True
     payload = json.loads((tmp_path / "glossary" / "canonical_findings.json").read_text(encoding="utf-8"))
     by_id = {row["finding_id"]: row for row in payload["findings"]}
-    for finding_id in {"cf-df66d1828a60839c", "cf-1606ab03065110f0", "cf-202e7752f9b0d511"}:
+    for finding_id in {"cf-df66d1828a60839c", "cf-1606ab03065110f0", "cf-202e7752f9b0d511", "cf-315321f8842a0d81"}:
         assert finding_id in POWER_CONTEXT_GUARD_IDS
         assert by_id[finding_id]["canonical_resolution"] == {
             "layer": "context_guard",

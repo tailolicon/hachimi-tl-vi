@@ -11,7 +11,8 @@
   "claimed_at": "2026-09-06T03:02:10Z",
   "heartbeat_at": "2026-09-06T03:02:10Z",
   "lease_expires_at": "2026-09-06T03:08:10Z",
-  "status": "active",
+  "status": "released",
+  "released_at": "2026-09-06T03:08:10Z",
   "handoff_from_claim_id": "tr-gpt56sol-auto11-20260906T015809Z-b01630s01",
   "translated_count": 20,
   "partial_result_path": "work/parallel/zhcn-67f8551f7780/results/b0016/batch-01630-s01.json",
@@ -19,5 +20,6 @@
   "progress_kind": "result_checkpoint",
   "progress_ref": "work/parallel/zhcn-67f8551f7780/results/b0016/batch-01630-s01.json",
   "last_progress_at": "2026-09-06T02:04:11Z",
-  "continuation": "Take over the durable 20/20 checkpoint, validate against pinned source, run the live persistent TranslationQualityGuard, fix deterministic findings if any, then complete only after QA passes."
+  "release_reason": "Durable 20/20 checkpoint was revalidated against the pinned source and current canonical evidence. TranslationQualityGuard source was re-read, but the connected execution backend repeatedly returned transient HTTP 429, so no qa_passed flag or completion marker was fabricated.",
+  "continuation": "Take over this released 20/20 checkpoint. Run TranslationQualityGuard against live main glossary; current spot checks confirm Kawakami Princess and Hot Topic canonical mappings and Menu CLB reviewed UI usage. Fix any deterministic finding if present, then mark result complete and create completion marker only after the guard passes."
 }

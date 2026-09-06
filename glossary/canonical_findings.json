@@ -23960,7 +23960,8 @@
       "concepts": [
         "Race-state mechanic occurring during a race",
         "Ordinary anxiety/impatience prose must not automatically normalize to the Rushed system label",
-        "Generic Rushed alias must not overmatch the named Epiphaneia Condition 传至双腿的焦躁"
+        "Generic Rushed alias must not overmatch the named Epiphaneia Condition 传至双腿的焦躁",
+        "Generic Rushed alias must not overmatch Epiphaneia Condition 传至双腿的焦躁"
       ],
       "suggested_targets_vi": [],
       "confidence_levels": [
@@ -23969,9 +23970,10 @@
       "reasons": [
         "Repeated player-facing race-state/mechanic needs one verified canonical label instead of literal per-line translation.",
         "The same source token can occur in natural profile prose, so system-label matching needs a context guard.",
-        "Exact Condition identity is established as I Won't Hold Back!!, while the generic Rushed substring rule incorrectly flags the longer Condition name."
+        "Exact Condition identity is established as I Won't Hold Back!!, while the generic Rushed substring rule incorrectly flags the longer Condition name.",
+        "Generic system-label matcher fires inside a verified named Condition and conflicts with its condition-specific canonical identity."
       ],
-      "evidence_count": 3,
+      "evidence_count": 4,
       "evidence": [
         {
           "uid": "zhcn:9fabd1ed50d8948e19ffcf4e",
@@ -24020,6 +24022,22 @@
           "current_text": "I Won't Hold Back!!",
           "proposed_text": null,
           "reported_at": "2026-09-04T09:02:00Z"
+        },
+        {
+          "uid": "zhcn:1fe5fc43972725a8afc5883d",
+          "plan_id": "tr-p3-67f8551f7780-66d47b2047b7-b5c0bcb3bd-3f77b5c85c",
+          "batch_id": "tr-p3-67f8551f7780-66d47b2047b7-b5c0bcb3bd-3f77b5c85c-b0070",
+          "claim_id": "trc-gpt56sol-auto11-20260906T140238Z-b0070",
+          "worker_id": "gpt56sol-auto11-20260906T140238Z-review",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "142",
+            "44"
+          ],
+          "source_text": "传至双腿的焦躁",
+          "current_text": "I Won't Hold Back!!",
+          "proposed_text": null,
+          "reported_at": "2026-09-06T14:06:10Z"
         }
       ],
       "canonical_resolution": {
@@ -24033,7 +24051,7 @@
         "target_vi": "Rushed"
       },
       "first_seen_at": "2026-08-31T11:19:30Z",
-      "last_seen_at": "2026-09-04T09:02:00Z"
+      "last_seen_at": "2026-09-06T14:06:10Z"
     },
     {
       "finding_id": "cf-9c3a9ad76cae6fe6",
@@ -26345,7 +26363,8 @@
       ],
       "concepts": [
         "Exclude ordinary descriptive prose from standalone 至高无上 Skill-title matching",
-        "Skill-name alias 至高无上 overmatching ordinary descriptive prose in character introduction"
+        "Skill-name alias 至高无上 overmatching ordinary descriptive prose in character introduction",
+        "Skill-name alias 至高无上 must not overmatch ordinary narrative adjective phrase 至高无上的爱"
       ],
       "suggested_targets_vi": [],
       "confidence_levels": [
@@ -26353,9 +26372,10 @@
       ],
       "reasons": [
         "Here it describes becoming a supreme Mã Nương, not a Skill title.",
-        "Phrase appears inside 成为至高无上的赛马娘 as an adjective, not a Skill title; matcher needs narrower context."
+        "Phrase appears inside 成为至高无上的赛马娘 as an adjective, not a Skill title; matcher needs narrower context.",
+        "A reviewed Skill-name matcher is firing inside ordinary profile prose where the phrase means 'supreme love', not the Skill identity."
       ],
-      "evidence_count": 2,
+      "evidence_count": 3,
       "evidence": [
         {
           "uid": "zhcn:8000bca260849022c06be772",
@@ -26388,6 +26408,22 @@
           "current_text": "Tên tôi là Daiichi Ruby.\\n“Trở thành Uma Musume tối cao” là nghĩa vụ của gia tộc tôi.\\nĐể hoàn thành trách nhiệm mình gánh vác, tôi sẽ tiếp tục tiến bước.",
           "proposed_text": null,
           "reported_at": "2026-09-06T13:18:00Z"
+        },
+        {
+          "uid": "zhcn:c0f9775e5bec53c171fa5783",
+          "plan_id": "tr-p3-67f8551f7780-66d47b2047b7-b5c0bcb3bd-3f77b5c85c",
+          "batch_id": "tr-p3-67f8551f7780-66d47b2047b7-b5c0bcb3bd-3f77b5c85c-b0071",
+          "claim_id": "trc-gpt56sol-auto11-20260906T140706Z-b0071",
+          "worker_id": "gpt56sol-auto11-20260906T140706Z-review",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "144",
+            "1086"
+          ],
+          "source_text": "将至高无上的爱献给比赛……\\n绝世独立，绽放于顶点的魔性之花",
+          "current_text": "Dâng tình yêu tối thượng cho những cuộc đua...\\nĐộc nhất vô song, đóa hoa ma mị nở trên đỉnh cao",
+          "proposed_text": null,
+          "reported_at": "2026-09-06T14:10:44Z"
         }
       ],
       "canonical_resolution": {
@@ -26401,7 +26437,7 @@
         "target_vi": "Hãy Là Tối Thượng"
       },
       "first_seen_at": "2026-09-05T09:54:30Z",
-      "last_seen_at": "2026-09-06T13:18:00Z"
+      "last_seen_at": "2026-09-06T14:10:44Z"
     },
     {
       "finding_id": "cf-abda2b1124d162ff",

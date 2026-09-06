@@ -5151,16 +5151,18 @@
         "context_rule"
       ],
       "concepts": [
-        "Skill-name alias must not overmatch inside support unique-effect title Mission『心灵的营养补给』"
+        "Skill-name alias must not overmatch inside support unique-effect title Mission『心灵的营养补给』",
+        "Generic Skill alias 营养补给 must not overmatch support unique-effect title Mission『心灵的营养补给』"
       ],
       "suggested_targets_vi": [],
       "confidence_levels": [
         "high"
       ],
       "reasons": [
-        "The full support title has its own reviewed translation and must not be rewritten by the shorter standalone Skill-title mapping."
+        "The full support title has its own reviewed translation and must not be rewritten by the shorter standalone Skill-title mapping.",
+        "The generic Skill matcher fires inside a distinct exact player-facing support title and creates a false locked-term mismatch."
       ],
-      "evidence_count": 1,
+      "evidence_count": 2,
       "evidence": [
         {
           "uid": "zhcn:eca19b6fa146ea5980f009fb",
@@ -5177,6 +5179,22 @@
           "current_text": "Mission『Tiếp tế dinh dưỡng cho tâm hồn』",
           "proposed_text": null,
           "reported_at": "2026-09-01T19:27:00Z"
+        },
+        {
+          "uid": "zhcn:eca19b6fa146ea5980f009fb",
+          "plan_id": "tr-p3-67f8551f7780-66d47b2047b7-b5c0bcb3bd-3f77b5c85c",
+          "batch_id": "tr-p3-67f8551f7780-66d47b2047b7-b5c0bcb3bd-3f77b5c85c-b0089",
+          "claim_id": "trc-gpt56sol-auto11-20260906T144230Z-b0089",
+          "worker_id": "gpt56sol-auto11-20260906T144230Z-review",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "150",
+            "30141"
+          ],
+          "source_text": "Mission『心灵的营养补给』",
+          "current_text": "Mission『Tiếp tế dinh dưỡng cho tâm hồn』",
+          "proposed_text": null,
+          "reported_at": "2026-09-06T14:47:20Z"
         }
       ],
       "canonical_resolution": {
@@ -5190,7 +5208,7 @@
         "target_vi": "Bổ sung dinh dưỡng"
       },
       "first_seen_at": "2026-09-01T19:27:00Z",
-      "last_seen_at": "2026-09-01T19:27:00Z"
+      "last_seen_at": "2026-09-06T14:47:20Z"
     },
     {
       "finding_id": "cf-1c047ac10a89e52a",
@@ -10325,6 +10343,61 @@
       },
       "first_seen_at": "2026-09-01T02:44:00Z",
       "last_seen_at": "2026-09-01T02:44:00Z"
+    },
+    {
+      "finding_id": "cf-41862be303730e64",
+      "status": "open",
+      "source_zh_cn": "这就是我的赛马娘偶像道☆",
+      "match_mode": "exact",
+      "source_paths": [
+        "text_data_dict.json"
+      ],
+      "key_exact": [],
+      "json_path_prefixes": [],
+      "kinds": [
+        "context_rule"
+      ],
+      "concepts": [
+        "Support unique-effect title must reconcile legacy Uma Musume wording with canonical Mã Nương world term"
+      ],
+      "suggested_targets_vi": [],
+      "confidence_levels": [
+        "high"
+      ],
+      "reasons": [
+        "An exact legacy lock requires Uma Musume while newer world/source-bridge canonical rules forbid it for the same player-facing title."
+      ],
+      "evidence_count": 1,
+      "evidence": [
+        {
+          "uid": "zhcn:669369eaa9f28ec63b8ab152",
+          "plan_id": "tr-p3-67f8551f7780-66d47b2047b7-b5c0bcb3bd-3f77b5c85c",
+          "batch_id": "tr-p3-67f8551f7780-66d47b2047b7-b5c0bcb3bd-3f77b5c85c-b0089",
+          "claim_id": "trc-gpt56sol-auto11-20260906T144230Z-b0089",
+          "worker_id": "gpt56sol-auto11-20260906T144230Z-review",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "150",
+            "30017"
+          ],
+          "source_text": "这就是我的赛马娘偶像道☆",
+          "current_text": "Đây chính là con đường idol Uma Musume của tôi☆",
+          "proposed_text": null,
+          "reported_at": "2026-09-06T14:47:20Z"
+        }
+      ],
+      "canonical_resolution": {
+        "layer": "locked",
+        "term_id": "reviewed.support_unique_effect_name.8976e3f9943d",
+        "target_vi": "Đây chính là con đường idol Uma Musume của tôi☆"
+      },
+      "review_resolution": {
+        "decision_id": "parallel.ctx-67f8551f77807292-v1.term-0149.16",
+        "action": "lock",
+        "target_vi": "Đây chính là con đường idol Uma Musume của tôi☆"
+      },
+      "first_seen_at": "2026-09-06T14:47:20Z",
+      "last_seen_at": "2026-09-06T14:47:20Z"
     },
     {
       "finding_id": "cf-418e723cca9d411b",

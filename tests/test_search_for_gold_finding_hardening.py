@@ -66,6 +66,7 @@ def test_hardener_resolves_search_for_gold_and_is_idempotent(tmp_path: Path) -> 
     assert rule["accepted"] == [TARGET]
     assert HISTORICAL_TARGET in rule["forbidden"]
     assert rule["match_mode"] == "exact"
+    assert rule["invalidation_scope"] == "item"
     assert rule["source_paths"] == ["text_data_dict.json"]
     assert "json_path_prefixes" not in rule
 
@@ -78,6 +79,7 @@ def test_hardener_resolves_search_for_gold_and_is_idempotent(tmp_path: Path) -> 
     )
     assert decision["ja"] == [SOURCE_JA]
     assert decision["target_vi"] == TARGET
+    assert decision["invalidation_scope"] == "item"
     assert decision["source_paths"] == ["text_data_dict.json"]
 
     ledger = json.loads(

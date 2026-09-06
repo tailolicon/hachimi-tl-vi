@@ -98,6 +98,16 @@ def _seed(tmp_path: Path) -> None:
             ],
         },
         {
+            "finding_id": "cf-09030893aa309ee4",
+            "status": "open",
+            "source_zh_cn": "私服（莱茵力量）",
+            "canonical_resolution": None,
+            "review_resolution": None,
+            "evidence": [
+                {"source_path": "text_data_dict.json", "json_path": ["14", "901109"], "source_text": "私服（莱茵力量）", "current_text": "Thường phục (Line Kraft)"},
+            ],
+        },
+        {
             "finding_id": "cf-5204eca8a2e00ad5",
             "status": "open",
             "source_zh_cn": "莱茵力量的特殊服装",

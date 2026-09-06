@@ -36,6 +36,19 @@ Implementation commits:
 - hardener: `a831149ab38ac3fdc839fdcefd7e520beca5b3b8`
 - regression test: `e932100c3022c07ca6226dd124c892bde8bede3e`
 
-## Completion gate
+## Validation / integration
 
-Do not increment the maintenance completed count yet. Validate the implementation and require a successful production context Sync that records a non-null canonical resolution for `cf-46f8fab03950e013` on live `main` and removes it from newly generated review context.
+- Validate run `34058392625` completed successfully for the hardener commit.
+- Production Sync translation context run `34058392626` completed successfully.
+- Generated context commit: `3dcb083e6f849838dab9cf8cdf7d000ae1569107`.
+- Live `glossary/canonical_findings.json` now records for `cf-46f8fab03950e013`:
+  - `suggested_targets_vi: ["Tưởng tượng×Sáng tạo＝∞"]`
+  - `canonical_resolution.layer: locked`
+  - `canonical_resolution.target_vi: "Tưởng tượng×Sáng tạo＝∞"`
+  - review decision `audit.finding.skill-imagination-creation-infinity`, action `lock`.
+- The generated context summary reduced `open_canonical_findings` from 156 to 155.
+- Current active review-plan search contains no reference to `cf-46f8fab03950e013`.
+
+## Status
+
+Complete. This maintenance unit may increment the shared maintenance completed count from 152 to 153. Re-route from live `WORKER_START.md`; other canonical findings and retrospective review work remain.

@@ -176,13 +176,36 @@ jobs:
               exit 0
             fi
             git commit -m "Translation review: restore progress and sync active plan"
+            generated_base="$(git rev-parse HEAD^)"
 
-            # Review workers frequently append isolated claim/result commits to main.
-            # Rebase this already-validated generated commit over that harmless churn
-            # before rebuilding the full plan. If a true generated-state conflict is
-            # encountered, abort and let the outer loop rebuild from fresh main.
+            # A generated commit is only safe to rebase over genuinely harmless
+            # worker churn. If canonical inputs or resolver code changed after the
+            # snapshot was validated, rebuild from fresh main instead of carrying
+            # stale generated state across the newer rules.
             for push_attempt in 1 2 3 4 5 6 7 8; do
               git fetch origin main
+              if ! git diff --quiet "$generated_base" origin/main -- \
+                glossary/term_registry.json \
+                glossary/ui_community_terms.json \
+                glossary/source_bridge_terms.json \
+                glossary/canonical_findings.json \
+                glossary/terminology_reviews.json \
+                scripts/canonical_findings.py \
+                scripts/resolve_scoped_canonical_overrides.py \
+                scripts/resolve_context_guard_findings.py \
+                scripts/resolve_running_style_narrative_finding.py \
+                scripts/resolve_regenerated_super_long_distance_context_finding.py \
+                scripts/resolve_regenerated_aoharu_ignition_finding.py \
+                scripts/resolve_regenerated_initial_friendship_finding.py \
+                scripts/resolve_regenerated_grand_live_performance_stats_findings.py \
+                ':(glob)scripts/harden_*_finding.py' \
+                scripts/translation_review_common.py \
+                scripts/build_translation_review_plan.py \
+                scripts/refresh_translation_review_batch_findings.py \
+                .github/workflows/sync-translation-review-plan.yml; then
+                echo "Canonical generation inputs changed concurrently; rebuild from fresh main."
+                break
+              fi
               if ! git rebase origin/main; then
                 git rebase --abort || true
                 break

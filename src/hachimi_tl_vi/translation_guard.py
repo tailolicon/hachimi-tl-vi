@@ -12,6 +12,7 @@ from typing import Any
 # suppress numbers embedded in ASCII identifiers/placeholders while allowing
 # normal CJK-adjacent gameplay values.
 _NUMBER_RE = re.compile(r"(?<![A-Za-z0-9_{])\d+(?:\.\d+)?%?")
+_IGNORABLE_NAME_SEPARATORS = {"\u200b", "\u200c", "\u200d", "\ufeff"}
 
 
 def _load_json(path: Path, default: Any) -> Any:
@@ -27,6 +28,11 @@ def _normalize(text: str) -> str:
 def _contains_any(text: str, values: list[str]) -> bool:
     normalized = _normalize(text)
     return any(_normalize(value) in normalized for value in values if value)
+
+
+def _normalize_character_name(value: str) -> str:
+    """Drop invisible generated separators without weakening visible name matching."""
+    return "".join(ch for ch in str(value) if ch not in _IGNORABLE_NAME_SEPARATORS)
 
 
 def _alias_matches(source: str, alias: str, mode: str = "contains") -> bool:
@@ -253,7 +259,7 @@ class TranslationQualityGuard:
             for char_id, raw in character_map.items():
                 if not isinstance(raw, dict) or raw.get("identity_status") != "verified_game_id":
                     continue
-                canonical = str(raw.get("canonical", "")).strip()
+                canonical = _normalize_character_name(str(raw.get("canonical", "")).strip())
                 if not canonical:
                     continue
                 aliases = _strings(raw.get("zh_cn"))

@@ -19,6 +19,7 @@ def _guard(tmp_path: Path) -> TranslationQualityGuard:
             "terms": [
                 {"id": "legacy.speed", "locked": True, "zh_cn": ["速度"], "target_vi": "Tốc độ"},
                 {"id": "locked.foo", "locked": True, "zh_cn": ["术语"], "target_vi": "Chuẩn"},
+                {"id": "character.matikanefukukitaru", "locked": True, "zh_cn": ["待兼福来"], "target_vi": "Matikanefukukitaru"},
             ]
         },
     )
@@ -49,6 +50,11 @@ def _guard(tmp_path: Path) -> TranslationQualityGuard:
                     "identity_status": "verified_game_id",
                     "canonical": "Gold Ship",
                     "zh_cn": ["黄金船"],
+                },
+                "1056": {
+                    "identity_status": "verified_game_id",
+                    "canonical": "Matikane\u200bfukukitaru",
+                    "zh_cn": ["待兼福来"],
                 }
             }
         },
@@ -141,6 +147,12 @@ def test_character_name_cannot_be_literalized(tmp_path: Path) -> None:
     guard = _guard(tmp_path)
     assert "character_name_required:1007" in guard.validate("黄金船来了", "Con tàu vàng tới rồi")
     assert guard.validate("黄金船来了", "Gold Ship tới rồi") == []
+
+
+def test_character_name_ignores_generated_zero_width_separator(tmp_path: Path) -> None:
+    guard = _guard(tmp_path)
+    assert guard.validate("待兼福来", "Matikanefukukitaru") == []
+    assert "character_name_required:1056" in guard.validate("待兼福来", "Tên khác")
 
 
 def test_reviewed_bad_translation_cannot_recur(tmp_path: Path) -> None:

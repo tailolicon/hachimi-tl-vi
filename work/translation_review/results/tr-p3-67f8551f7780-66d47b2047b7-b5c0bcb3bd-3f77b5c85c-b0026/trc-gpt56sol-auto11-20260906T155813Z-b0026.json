@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "status": "partial",
+  "plan_id": "tr-p3-67f8551f7780-66d47b2047b7-b5c0bcb3bd-3f77b5c85c",
+  "batch_id": "tr-p3-67f8551f7780-66d47b2047b7-b5c0bcb3bd-3f77b5c85c-b0026",
+  "claim_id": "trc-gpt56sol-auto11-20260906T155813Z-b0026",
+  "worker_id": "gpt56sol-auto11-20260906T155813Z-review",
+  "reviewed_at": "2026-09-06T16:00:00Z",
+  "completed_count": 5,
+  "decisions": [
+    {
+      "uid": "zhcn:6bf106ef284b2cb923317651",
+      "current_fingerprint": "063deba4d7e2a15e66612b0bba043c1bc1e83e66c9d254cc076463a6ad28caa8",
+      "action": "keep",
+      "reason": "Nhãn UI truyền đạt đúng ý thẻ hỗ trợ nhận bonus sự kiện và đã dùng đúng thuật ngữ player-facing.",
+      "terminology_basis": "Embedded community/source-bridge rule requires 支援卡 → Support Card and forbids Thẻ hỗ trợ.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:bd067c8c0380815534012b84",
+      "current_fingerprint": "7994d9da4233bfa629eb557fec918d87451149a64834cd9f121a365158b643a3",
+      "action": "revise",
+      "proposed_text": "・Trong thời gian sự kiện, khi huấn luyện bằng Trainee có thưởng sự kiện,\n　Điểm sự kiện nhận được khi kết thúc huấn luyện sẽ được cộng thêm.",
+      "reason": "Trong ngữ cảnh localize UI này, 育成赛马娘 là khái niệm Trainee, không phải generic Mã Nương; giữ nguyên hai dòng và toàn bộ ý nghĩa bonus.",
+      "terminology_basis": "Embedded context finding cf-d4d7f252ccfed57f has review_action=lock and review_target_vi=Trainee for 育成赛马娘 in localize_dict.json.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:793c9e3f636faec06079d92c",
+      "current_fingerprint": "becfb668619bd554d955bee64efe51f66ee78466f39a29d4ab059e0e4002c28a",
+      "action": "keep",
+      "reason": "Bản hiện tại đúng nghĩa, tự nhiên đủ cho mô tả UI và bảo toàn cấu trúc hai dòng.",
+      "terminology_basis": "Embedded community/source-bridge rule requires 支援卡 → Support Card; current text satisfies it.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:d23cd4eb6a89b5f0e9acd5b4",
+      "current_fingerprint": "92fcbf7d83ad915b2113aec1cd72ec0b05b3d78152653503753cd135464f33cb",
+      "action": "keep",
+      "reason": "Nhãn ưu tiên đúng nghĩa và gọn cho UI.",
+      "terminology_basis": "Embedded community/source-bridge rule requires 支援卡 → Support Card; current text satisfies it.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:5676c8640be0526d68a5d659",
+      "current_fingerprint": "a8f13c3535d2e7d3394014dd2454a55af4b9ccd5cbefecf636e7bd886c4985f6",
+      "action": "keep",
+      "reason": "Mô tả bảo toàn đúng cách tính bonus cao nhất theo từng Mã Nương rồi cộng tổng, đồng thời giữ nguyên CRLF.",
+      "terminology_basis": "Embedded rules require 支援卡 → Support Card and generic 赛马娘/马娘 → Mã Nương; current text uses both correctly.",
+      "confidence": "high"
+    }
+  ]
+}

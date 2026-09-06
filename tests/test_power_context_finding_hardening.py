@@ -3,7 +3,7 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-from scripts.harden_power_context_finding import TERM_ID, harden
+from scripts.harden_power_context_finding import LOCKED_TERM_ID, TERM_ID, harden
 from scripts.resolve_context_guard_findings import POWER_CONTEXT_GUARD_IDS, resolve
 from scripts.translation_review_common import community_term_matches, load_community_terms
 
@@ -23,6 +23,26 @@ def _write_terms(root: Path) -> None:
                         "accepted": ["Power"],
                         "forbidden": ["Sức mạnh"],
                         "require_accepted": True,
+                    }
+                ]
+            },
+            ensure_ascii=False,
+            indent=2,
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+    (glossary / "term_registry.json").write_text(
+        json.dumps(
+            {
+                "terms": [
+                    {
+                        "id": LOCKED_TERM_ID,
+                        "category": "stat",
+                        "ja": ["パワー"],
+                        "zh_cn": ["力量"],
+                        "target_vi": "Power",
+                        "locked": True,
                     }
                 ]
             },
@@ -80,12 +100,21 @@ def test_power_context_hardening_preserves_stat_and_excludes_narrative(tmp_path:
         source_path="text_data_dict.json",
         json_path=["167", "1026"],
     )
+    rainbow_limit_break = community_term_matches(
+        None,
+        "据说是可以激发出超越极限力量的\\n彩虹色力量石。\\n可解锁SSR支援卡的上限。",
+        "Người ta nói đây là viên đá sức mạnh màu cầu vồng\\ncó thể khơi dậy sức mạnh vượt qua giới hạn.\\nCó thể dùng để phá giới hạn thẻ hỗ trợ SSR.",
+        terms,
+        source_path="text_data_dict.json",
+        json_path=["10", "144"],
+    )
     assert stat[0]["id"] == TERM_ID
     assert stat[0]["preferred"] == "Power"
     assert strong_power == []
     assert narrative_title == []
     assert narrative_item == []
     assert physical_strength == []
+    assert rainbow_limit_break == []
 
 
 def test_regenerated_power_context_ids_resolve_only_after_matcher_is_neutralized(tmp_path: Path) -> None:
@@ -117,6 +146,18 @@ def test_regenerated_power_context_ids_resolve_only_after_matcher_is_neutralized
             }],
         },
         {
+            "finding_id": "cf-202e7752f9b0d511",
+            "status": "open",
+            "source_zh_cn": "据说是可以激发出超越极限力量的\\n彩虹色力量石。\\n可解锁SSR支援卡的上限。",
+            "canonical_resolution": None,
+            "evidence": [{
+                "source_path": "text_data_dict.json",
+                "json_path": ["10", "144"],
+                "source_text": "据说是可以激发出超越极限力量的\\n彩虹色力量石。\\n可解锁SSR支援卡的上限。",
+                "current_text": "Người ta nói đây là viên đá sức mạnh màu cầu vồng\\ncó thể khơi dậy sức mạnh vượt qua giới hạn.\\nCó thể dùng để phá giới hạn thẻ hỗ trợ SSR.",
+            }],
+        },
+        {
             "finding_id": "cf-1fb0ec7c1c77dfb1",
             "status": "open",
             "source_zh_cn": "精神力量",
@@ -137,7 +178,7 @@ def test_regenerated_power_context_ids_resolve_only_after_matcher_is_neutralized
     assert resolve(tmp_path) is True
     payload = json.loads((tmp_path / "glossary" / "canonical_findings.json").read_text(encoding="utf-8"))
     by_id = {row["finding_id"]: row for row in payload["findings"]}
-    for finding_id in {"cf-df66d1828a60839c", "cf-1606ab03065110f0"}:
+    for finding_id in {"cf-df66d1828a60839c", "cf-1606ab03065110f0", "cf-202e7752f9b0d511"}:
         assert finding_id in POWER_CONTEXT_GUARD_IDS
         assert by_id[finding_id]["canonical_resolution"] == {
             "layer": "context_guard",

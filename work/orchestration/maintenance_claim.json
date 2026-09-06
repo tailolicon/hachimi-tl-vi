@@ -6,15 +6,15 @@
   "claim_id": "canonical-findings-maintenance-gpt56sol-chat-20260906T222525Z",
   "worker_id": "gpt56sol-chat-20260906T222525Z-maintenance",
   "claimed_at": "2026-09-06T22:25:25Z",
-  "heartbeat_at": "2026-09-06T22:31:13Z",
-  "lease_expires_at": "2026-09-06T22:37:13Z",
+  "heartbeat_at": "2026-09-06T22:43:06Z",
+  "lease_expires_at": "2026-09-06T22:49:06Z",
   "branch": "main",
   "handoff_from_claim_id": "canonical-findings-maintenance-chatgpt-sol-20260906T221248Z",
-  "progress_token": "0195b010e851727428dd31edafb39757ee7883ba",
-  "progress_kind": "implementation_checkpoint",
-  "progress_ref": "work/orchestration/checkpoints/canonical-findings-20260906T2229Z-power-gold-sr-implementation.md@0195b010e851727428dd31edafb39757ee7883ba",
-  "last_progress_at": "2026-09-06T22:31:13Z",
+  "progress_token": "8a64d275f70580a864074b4ab9c7c45f4d413c08",
+  "progress_kind": "ci_diagnosis_checkpoint",
+  "progress_ref": "work/orchestration/checkpoints/canonical-findings-20260906T2240Z-power-gold-sr-ci-diagnosis.md@8a64d275f70580a864074b4ab9c7c45f4d413c08",
+  "last_progress_at": "2026-09-06T22:43:06Z",
   "completed_count": 159,
-  "partial_result_path": "work/orchestration/checkpoints/canonical-findings-20260906T2229Z-power-gold-sr-implementation.md",
-  "continuation": "Implementation is durable on main: cf-315321f8842a0d81 is registered in the evidence-verified Power context-guard resolver, exact gold SR regression passes manually, hardener is idempotent, and TranslationQualityGuard is clean. Run production validation/context sync, verify the live finding resolves and leaves active_findings(), then increment completed_count once, release this claim, and stop."
+  "partial_result_path": "work/orchestration/checkpoints/canonical-findings-20260906T2240Z-power-gold-sr-ci-diagnosis.md",
+  "continuation": "Production resolver already reported context_guard_resolutions_changed=true for cf-315321f8842a0d81; the prior Validate and Sync failures were solely the stale implementation snapshot lacking claim progress evidence. Re-run acceptance against live main with this non-null progress evidence, verify the finding resolves and leaves active_findings(), then persist completion, increment completed_count exactly once, release this claim, and stop."
 }

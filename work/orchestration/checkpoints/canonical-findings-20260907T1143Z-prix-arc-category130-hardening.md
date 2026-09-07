@@ -14,6 +14,7 @@ The finding itself has source-path scope but no json-path prefix, so merely addi
 - `7d74dae648a64ce898091e3394be3c0017671517` adds `scripts/harden_prix_arc_category130_finding.py` with the supplemental reference rule and reviewed lock.
 - `4d74917f27a9c63fd2c2ecc957e8eb1341c7dda9` adds `tests/test_prix_arc_category130_finding_hardening.py`.
 - Targeted local regression run from live `main` archive: `18 passed` across the new finding test plus `tests/test_race_hardening.py`.
+- Full local repository test run from the same live archive: **827 passed**.
 
 ## Acceptance status
 

@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-"""Resolve the inheritance-description alias for Believe's unique Skill 念い、信ずればこそ."""
+"""Resolve the alternate zh-CN alias for Believe's unique Skill 念い、信ずればこそ."""
 
 import json
 from pathlib import Path
@@ -16,6 +16,7 @@ FINDING_ID = "cf-b20a7a534f5b700b"
 SOURCE_ZH = "正因心怀信念"
 TERM_ID = "skill.believe.omoi_shinzureba_koso.inheritance_alias"
 DECISION_ID = "audit.finding.skill-believe-omoi-shinzureba-koso-inheritance-alias"
+SKILL_PREFIXES = [["47"], ["172"]]
 
 RULE = {
     "id": TERM_ID,
@@ -28,13 +29,14 @@ RULE = {
     "require_accepted": True,
     "invalidation_scope": "item",
     "source_paths": ["text_data_dict.json"],
-    "json_path_prefixes": [["172"]],
+    "json_path_prefixes": SKILL_PREFIXES,
     "match_mode": "contains",
     "basis": (
-        "The inheritance row key 10950101 belongs to Believe (game ID 1095). Believe's verified "
-        "JP unique Skill is 念い、信ずればこそ, already canonically rendered as 'Tâm Niệm, Chính Vì Tin'. "
-        "The zh-CN inheritance bridge uses the alternate embedded alias 正因心怀信念. Scope this alias "
-        "only to text_data category 172 so ordinary prose about belief is not canonicalized as a Skill."
+        "The zh-CN Skill registry contains 正因心怀信念 at category 47 / skill ID 100951, and the "
+        "inheritance row 10950101 embeds the same title in category 172. Both identify Believe (game ID "
+        "1095), whose verified JP unique Skill is 念い、信ずればこそ and whose canonical Vietnamese title "
+        "is 'Tâm Niệm, Chính Vì Tin'. Scope the alternate bridge alias only to Skill-title category 47 and "
+        "inheritance category 172 so ordinary prose about belief is not canonicalized as a Skill."
     ),
 }
 
@@ -48,11 +50,11 @@ DECISION = {
     "ja": [SOURCE_JA],
     "invalidation_scope": "item",
     "source_paths": ["text_data_dict.json"],
-    "json_path_prefixes": [["172"]],
+    "json_path_prefixes": SKILL_PREFIXES,
     "match_mode": "contains",
     "note": (
-        "Inheritance-only zh-CN alias for Believe's already verified unique Skill 念い、信ずればこそ. "
-        "Reuse the existing canonical Vietnamese title and keep the bridge rule confined to category 172."
+        "Alternate zh-CN alias for Believe's already verified unique Skill 念い、信ずればこそ. Reuse the "
+        "existing canonical Vietnamese title in the Skill registry (47) and inheritance descriptions (172) only."
     ),
 }
 

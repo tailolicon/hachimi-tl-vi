@@ -31,6 +31,8 @@ def _seed(tmp_path: Path) -> None:
 
 def test_full_kyoto_race_wins_over_component_and_hardener_is_idempotent(tmp_path: Path) -> None:
     _seed(tmp_path)
+    seeded = json.loads((tmp_path / "glossary" / "canonical_findings.json").read_text(encoding="utf-8"))
+    assert seeded["findings"][0]["suggested_targets_vi"] == [TARGET]
     assert harden(tmp_path) is True
     assert harden(tmp_path) is False
     community = json.loads((tmp_path / "glossary" / "ui_community_terms.json").read_text(encoding="utf-8"))

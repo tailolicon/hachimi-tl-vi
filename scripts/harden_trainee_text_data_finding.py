@@ -22,6 +22,22 @@ TRAINEE_TEXT_DATA = {
     "basis": "The repository already defines the full compound 育成赛马娘 / 育成ウマ娘 as the player-facing Trainee concept and explicitly excludes it from generic Umamusume matching. Extend that same full-compound identity to text_data descriptions. This does not map bare 育成 or bare 赛马娘 and therefore avoids the ambiguity that required the original localize_dict key scoping.",
 }
 
+TRAINEE_LOCALIZE = {
+    "id": "career.ui.trainee.localize",
+    "category": "career_ui",
+    "source_aliases": ["育成赛马娘"],
+    "preferred": "Trainee",
+    "compact": [],
+    "accepted": ["Trainee"],
+    "forbidden": ["Uma Musume huấn luyện", "Uma Musume Huấn luyện", "Mã Nương huấn luyện", "Mã Nương đang huấn luyện"],
+    "require_accepted": True,
+    "invalidation_scope": "item",
+    "source_paths": ["localize_dict.json"],
+    "json_path_prefixes": [],
+    "match_mode": "contains",
+    "basis": "The full compound 育成赛马娘 denotes the established player-facing Trainee concept throughout localize UI labels and descriptions. Scope remains on the complete compound only, so bare 育成 and bare 赛马娘 keep their distinct Career/world meanings.",
+}
+
 TRAINEE_TEXT_DATA_DECISION = {
     "decision_id": "audit.finding.trainee-text-data",
     "source_zh_cn": "育成赛马娘",
@@ -29,7 +45,7 @@ TRAINEE_TEXT_DATA_DECISION = {
     "target_vi": "Trainee",
     "kind": "system_label",
     "category": "career_ui",
-    "note": "Reuse the already-established full-compound Trainee identity in text_data; bare 育成 and bare 赛马娘 remain outside this lock.",
+    "note": "Reuse the already-established full-compound Trainee identity in text_data and localize UI; bare 育成 and bare 赛马娘 remain outside this lock.",
 }
 
 
@@ -66,6 +82,7 @@ def harden(repo_root: Path = ROOT) -> bool:
         raise ValueError("glossary/ui_community_terms.json terms must be a list")
     before = json.dumps(community, ensure_ascii=False, sort_keys=True)
     _upsert(terms, TRAINEE_TEXT_DATA, id_field="id")
+    _upsert(terms, TRAINEE_LOCALIZE, id_field="id")
     if before != json.dumps(community, ensure_ascii=False, sort_keys=True):
         _write(community_path, community)
         changed = True

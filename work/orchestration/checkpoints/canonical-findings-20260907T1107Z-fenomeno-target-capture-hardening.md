@@ -17,8 +17,10 @@ The finding uses `match_mode=contains` because the alias appears both as a stand
 ## Acceptance evidence
 
 - Validate run `34114898468`: `completed/success`.
-- Context Sync run `34114898429`: still in progress at latest observation; checkout/setup/install/extract/observed-terms are complete and the workflow is continuing through terminology restoration/hardening.
-- Review-plan Sync run `34114898387` was cancelled by GitHub workflow concurrency after newer `main` pushes. This is not an acceptance failure; a descendant-main review-plan run must succeed before completion.
-- A later descendant `main` head also contains the Fenomeno commits and has Context Sync `34115081532` plus review-plan Sync `34115081507` queued, so acceptance can complete on a descendant run without losing this hardener.
+- Production Context Sync run `34114898429`: `completed/success`; every hardening/context/test/commit-if-changed step succeeded.
+- That production Sync generated canonical-context commit `b44cd1acb0948d586ea03d59853bbe1fe224f3c6`.
+- Live `main` now records `cf-547f1a03893d2440` with canonical resolution target `対象捕捉！正義遂行！`, reviewed lock `audit.finding.skill-fenomeno-target-capture-justice`, and suggested target `対象捕捉！正義遂行！`. Under `active_findings` semantics it is therefore non-active.
+- Review-plan Sync run `34114898387` was cancelled by workflow concurrency after newer `main` pushes; descendant-main review-plan run `34115081507` contains the Fenomeno commits and is queued.
+- Descendant Context Sync `34115081532` is also queued. Because later maintenance changes exist on `main`, completion still requires a successful unchanged/no-op Context Sync after those generated changes settle.
 
-Keep maintenance `completed_count=192` until production Context Sync, descendant review-plan Sync, live finding resolution/inactivation, and the required second unchanged Context Sync semantic no-op all pass.
+Keep maintenance `completed_count=192` until a descendant review-plan Sync succeeds and the required second unchanged Context Sync semantic no-op is proven.

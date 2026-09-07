@@ -7,8 +7,15 @@ from typing import Any
 ROOT = Path(__file__).resolve().parents[1]
 TERM_ID = "support.unique_effect.label"
 DECISION_ID = "audit.finding.support-unique-effect-label"
+REVIEWED_TERM_ID = "reviewed.source_bridge.826d2de05670"
 ALIAS = "固有加成"
 TARGET = "Unique Effect"
+SCOPE = {
+    "invalidation_scope": "item",
+    "source_paths": ["localize_dict.json"],
+    "key_exact": ["Character0050", "Character0196"],
+    "match_mode": "contains",
+}
 
 TERM = {
     "id": TERM_ID,
@@ -19,20 +26,19 @@ TERM = {
     "accepted": [TARGET],
     "forbidden": ["Bonus riêng", "Hiệu ứng riêng", "Unique Bonus"],
     "require_accepted": True,
-    "invalidation_scope": "item",
-    "source_paths": ["localize_dict.json"],
-    "key_exact": ["Character0050", "Character0196"],
-    "match_mode": "contains",
+    **SCOPE,
     "basis": "JP support-card UI labels this section 固有ボーナス and released English/Global-facing support-card references render it as Unique Effect. Repository canonical policy prefers verified Global-facing game terminology for player-facing identities. The zh-CN bridge 固有加成 is reused in 固有加成详情, so the alias remains contains-matched but is restricted to the two known localize UI keys; category-150 individual unique-effect names and unrelated prose stay outside scope.",
 }
 
 REVIEW = {
     "decision_id": DECISION_ID,
+    "term_id": REVIEWED_TERM_ID,
     "source_zh_cn": ALIAS,
     "action": "lock",
     "target_vi": TARGET,
     "kind": "source_bridge",
     "category": "system_label",
+    **SCOPE,
     "note": "固有加成 is the generic Support-card Unique Effect section label. Preserve the verified Global-facing label Unique Effect; keep the reusable alias contains-scoped to Character0050/Character0196 so named support unique effects and unrelated prose are untouched.",
 }
 
@@ -60,6 +66,34 @@ def _upsert(rows: list[Any], key: str, value: str, payload: dict[str, Any]) -> N
     rows.append(dict(payload))
 
 
+def _migrate_reviewed_registry_term(repo_root: Path) -> bool:
+    registry_path = repo_root / "glossary" / "term_registry.json"
+    registry = _load(registry_path, {"schema_version": 1, "terms": []})
+    terms = registry.get("terms")
+    if not isinstance(terms, list):
+        raise ValueError("glossary/term_registry.json terms must be a list")
+    for item in terms:
+        if not isinstance(item, dict) or item.get("id") != REVIEWED_TERM_ID:
+            continue
+        if ALIAS not in (item.get("zh_cn") or []):
+            raise ValueError(f"{REVIEWED_TERM_ID} exists but does not represent {ALIAS}")
+        before = json.dumps(registry, ensure_ascii=False, sort_keys=True)
+        item["target_vi"] = TARGET
+        item["category"] = "system_label"
+        item["locked"] = True
+        item.update(SCOPE)
+        item["review"] = {
+            "decision_id": DECISION_ID,
+            "source": "glossary/terminology_reviews.json",
+        }
+        item["note"] = REVIEW["note"]
+        if before != json.dumps(registry, ensure_ascii=False, sort_keys=True):
+            _write(registry_path, registry)
+            return True
+        return False
+    return False
+
+
 def harden(repo_root: Path = ROOT) -> bool:
     changed = False
     community_path = repo_root / "glossary" / "ui_community_terms.json"
@@ -82,6 +116,9 @@ def harden(repo_root: Path = ROOT) -> bool:
     _upsert(decisions, "decision_id", DECISION_ID, REVIEW)
     if before != json.dumps(reviews, ensure_ascii=False, sort_keys=True):
         _write(reviews_path, reviews)
+        changed = True
+
+    if _migrate_reviewed_registry_term(repo_root):
         changed = True
     return changed
 

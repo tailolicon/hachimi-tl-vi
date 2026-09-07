@@ -26,7 +26,7 @@ def _seed(tmp_path: Path) -> None:
     _write(glossary / "terminology_reviews.json", {"schema_version": 1, "decisions": [{"decision_id": COMPONENT_DECISION_ID, "source_zh_cn": "赛马娘锦标", "action": "lock", "target_vi": "Uma Musume Stakes", "source_paths": ["text_data_dict.json"], "json_path_prefixes": [], "match_mode": "contains"}]})
     _write(glossary / "term_registry.json", {"terms": [{"id": FULL_TERM_ID, "category": "race", "zh_cn": [SOURCE], "ja": ["京都牝馬ステークス"], "target_vi": TARGET, "locked": True, "source_paths": ["text_data_dict.json"], "json_path_prefixes": [["32"], ["33"], ["111"]], "match_mode": "contains", "invalidation_scope": "item"}]})
     _write(glossary / "source_bridge_terms.json", {"terms": []})
-    _write(glossary / "canonical_findings.json", {"schema_version": 1, "findings": [{"finding_id": FINDING_ID, "status": "open", "source_zh_cn": SOURCE, "match_mode": "exact", "source_paths": ["text_data_dict.json"], "key_exact": [], "json_path_prefixes": [["111"]], "suggested_targets_vi": [], "canonical_resolution": None, "review_resolution": {"decision_id": "legacy.defer", "action": "defer", "target_vi": None}}]})
+    _write(glossary / "canonical_findings.json", {"schema_version": 1, "findings": [{"finding_id": FINDING_ID, "status": "open", "source_zh_cn": SOURCE, "match_mode": "exact", "source_paths": ["text_data_dict.json"], "key_exact": [], "json_path_prefixes": [["111"]], "suggested_targets_vi": [TARGET], "canonical_resolution": None, "review_resolution": {"decision_id": "legacy.defer", "action": "defer", "target_vi": None}}]})
 
 
 def test_full_kyoto_race_wins_over_component_and_hardener_is_idempotent(tmp_path: Path) -> None:

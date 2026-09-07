@@ -32,6 +32,7 @@ POWER_CONTEXT_GUARD_IDS = {
     "cf-2549c5753263451d",
     "cf-40320a059fe422c5",
     "cf-418e723cca9d411b",
+    "cf-47c737cc38fc1f48",
     "cf-53deea84a131c5c1",
     "cf-9acf7ae6c0c968ce",
     "cf-9e20bab99a663608",

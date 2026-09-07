@@ -1,13 +1,115 @@
 {
   "schema_version": 1,
   "policy_version": 3,
-  "plan_id": "tr-p3-67f8551f7780-e32dfe6de18c-b5c0bcb3bd-3929728990",
-  "batch_id": "tr-p3-67f8551f7780-e32dfe6de18c-b5c0bcb3bd-3929728990-b0076",
+  "plan_id": "tr-p3-67f8551f7780-cc36ed4d35d6-b5c0bcb3bd-c74ac85928",
+  "batch_id": "tr-p3-67f8551f7780-cc36ed4d35d6-b5c0bcb3bd-c74ac85928-b0069",
   "context_snapshot_sha256": "b5c0bcb3bd9ee5c45e7bedf49c8f8d6ad35c3ceb3c35f528c6381a63c684a967",
   "source_bridge_policy_sha256": "9f9f705179544c3cecdd73584192cae63915f47b04e090e4e9096bd49f97bcb8",
   "review_generation": "retrospective-canonical-full-review",
   "context_mode": "embedded-first-lazy-extra",
   "items": [
+    {
+      "uid": "zhcn:597a99a714f7e61386e47a76",
+      "source_batch": 137,
+      "entry_index": 63,
+      "kind": "text_data",
+      "source_path": "text_data_dict.json",
+      "json_path": [
+        "130",
+        "128"
+      ],
+      "key": null,
+      "source_text": "重赏赛马娘",
+      "source_fingerprint": "9669bfdc6b09db01e91dc5c6c16838f9d85b638b3bc9aa642be74ca3ec56d749",
+      "current_text": "Uma Musume trọng thưởng",
+      "current_fingerprint": "ef14f4dfc8a2cb1cd874daca44c80113f57760c3fb9ba2efa65a765e043a1bb2",
+      "risk_flags": [
+        "very_long_target",
+        "community_term",
+        "community_calque_risk",
+        "community_term_mismatch"
+      ],
+      "risk_score": 19,
+      "locked_terms": [],
+      "community_terms": [
+        {
+          "id": "common.world.umamusume",
+          "preferred": "Mã Nương",
+          "accepted": [
+            "Mã Nương"
+          ],
+          "forbidden": [
+            "Uma Musume"
+          ],
+          "matched_aliases": [
+            "赛马娘"
+          ],
+          "accepted_present": false,
+          "forbidden_present": true,
+          "require_accepted": true,
+          "basis": "Generic 赛马娘 is the project world/species term Mã Nương, but it must not fire inside established ウマ娘ステークス race-name forms represented by 赛马娘锦标."
+        },
+        {
+          "id": "race.graded",
+          "preferred": "graded",
+          "accepted": [
+            "graded",
+            "Graded"
+          ],
+          "forbidden": [
+            "trọng thưởng",
+            "Trọng thưởng"
+          ],
+          "matched_aliases": [
+            "重赏"
+          ],
+          "accepted_present": false,
+          "forbidden_present": true,
+          "require_accepted": true,
+          "basis": "In Uma Musume/Japanese racing, 重赏 denotes the graded-race category (G1/G2/G3), not a literal 'heavy reward'. Global/community player-facing English consistently calls these graded races. Keep the canonical alias as the modifier 'graded' so it composes naturally with the project's generic Cuộc đua label in longer Vietnamese strings."
+        },
+        {
+          "id": "world.umamusume.shorthand.text130",
+          "preferred": "Mã Nương",
+          "accepted": [
+            "Mã Nương"
+          ],
+          "forbidden": [
+            "Uma Musume"
+          ],
+          "matched_aliases": [
+            "马娘"
+          ],
+          "accepted_present": false,
+          "forbidden_present": true,
+          "require_accepted": true,
+          "basis": "Generic zh-CN shorthand 马娘 refers to the same world/species concept as 赛马娘 in this text-data category. Reuse the repository's established Vietnamese world term Mã Nương, but keep the rule category-scoped so unrelated proper-name or source-bridge uses elsewhere are not broadened automatically."
+        },
+        {
+          "id": "common.world.umamusume.training_shorthand",
+          "preferred": "Mã Nương",
+          "accepted": [
+            "Mã Nương"
+          ],
+          "forbidden": [
+            "Uma Musume"
+          ],
+          "matched_aliases": [
+            "马娘"
+          ],
+          "accepted_present": false,
+          "forbidden_present": true,
+          "require_accepted": true,
+          "basis": "Category 130 uses 马娘 inside generic horse-girl/training labels such as 自主训练赛马娘. Resolve the short-token finding to Mã Nương only in this category, while keeping the collision-prone 马娘 alias out of global scope."
+        }
+      ],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [],
+      "item_context_sha256": "6e838df708471918334eeb169d0ca2b7c38ba53ac4253ffa915f4196a0bca546"
+    },
     {
       "uid": "zhcn:fe03399b2bf62ad98a11afd5",
       "source_batch": 137,
@@ -81,6 +183,23 @@
           "forbidden_present": true,
           "require_accepted": true,
           "basis": "Generic zh-CN shorthand 马娘 refers to the same world/species concept as 赛马娘 in this text-data category. Reuse the repository's established Vietnamese world term Mã Nương, but keep the rule category-scoped so unrelated proper-name or source-bridge uses elsewhere are not broadened automatically."
+        },
+        {
+          "id": "common.world.umamusume.training_shorthand",
+          "preferred": "Mã Nương",
+          "accepted": [
+            "Mã Nương"
+          ],
+          "forbidden": [
+            "Uma Musume"
+          ],
+          "matched_aliases": [
+            "马娘"
+          ],
+          "accepted_present": false,
+          "forbidden_present": true,
+          "require_accepted": true,
+          "basis": "Category 130 uses 马娘 inside generic horse-girl/training labels such as 自主训练赛马娘. Resolve the short-token finding to Mã Nương only in this category, while keeping the collision-prone 马娘 alias out of global scope."
         }
       ],
       "skill_name_canonical": null,
@@ -163,6 +282,23 @@
           "forbidden_present": true,
           "require_accepted": true,
           "basis": "Generic zh-CN shorthand 马娘 refers to the same world/species concept as 赛马娘 in this text-data category. Reuse the repository's established Vietnamese world term Mã Nương, but keep the rule category-scoped so unrelated proper-name or source-bridge uses elsewhere are not broadened automatically."
+        },
+        {
+          "id": "common.world.umamusume.training_shorthand",
+          "preferred": "Mã Nương",
+          "accepted": [
+            "Mã Nương"
+          ],
+          "forbidden": [
+            "Uma Musume"
+          ],
+          "matched_aliases": [
+            "马娘"
+          ],
+          "accepted_present": false,
+          "forbidden_present": true,
+          "require_accepted": true,
+          "basis": "Category 130 uses 马娘 inside generic horse-girl/training labels such as 自主训练赛马娘. Resolve the short-token finding to Mã Nương only in this category, while keeping the collision-prone 马娘 alias out of global scope."
         }
       ],
       "skill_name_canonical": null,
@@ -229,6 +365,23 @@
           "forbidden_present": true,
           "require_accepted": true,
           "basis": "Generic zh-CN shorthand 马娘 refers to the same world/species concept as 赛马娘 in this text-data category. Reuse the repository's established Vietnamese world term Mã Nương, but keep the rule category-scoped so unrelated proper-name or source-bridge uses elsewhere are not broadened automatically."
+        },
+        {
+          "id": "common.world.umamusume.training_shorthand",
+          "preferred": "Mã Nương",
+          "accepted": [
+            "Mã Nương"
+          ],
+          "forbidden": [
+            "Uma Musume"
+          ],
+          "matched_aliases": [
+            "马娘"
+          ],
+          "accepted_present": false,
+          "forbidden_present": true,
+          "require_accepted": true,
+          "basis": "Category 130 uses 马娘 inside generic horse-girl/training labels such as 自主训练赛马娘. Resolve the short-token finding to Mã Nương only in this category, while keeping the collision-prone 马娘 alias out of global scope."
         }
       ],
       "skill_name_canonical": null,
@@ -295,6 +448,23 @@
           "forbidden_present": true,
           "require_accepted": true,
           "basis": "Generic zh-CN shorthand 马娘 refers to the same world/species concept as 赛马娘 in this text-data category. Reuse the repository's established Vietnamese world term Mã Nương, but keep the rule category-scoped so unrelated proper-name or source-bridge uses elsewhere are not broadened automatically."
+        },
+        {
+          "id": "common.world.umamusume.training_shorthand",
+          "preferred": "Mã Nương",
+          "accepted": [
+            "Mã Nương"
+          ],
+          "forbidden": [
+            "Uma Musume"
+          ],
+          "matched_aliases": [
+            "马娘"
+          ],
+          "accepted_present": false,
+          "forbidden_present": true,
+          "require_accepted": true,
+          "basis": "Category 130 uses 马娘 inside generic horse-girl/training labels such as 自主训练赛马娘. Resolve the short-token finding to Mã Nương only in this category, while keeping the collision-prone 马娘 alias out of global scope."
         }
       ],
       "skill_name_canonical": null,
@@ -361,6 +531,23 @@
           "forbidden_present": true,
           "require_accepted": true,
           "basis": "Generic zh-CN shorthand 马娘 refers to the same world/species concept as 赛马娘 in this text-data category. Reuse the repository's established Vietnamese world term Mã Nương, but keep the rule category-scoped so unrelated proper-name or source-bridge uses elsewhere are not broadened automatically."
+        },
+        {
+          "id": "common.world.umamusume.training_shorthand",
+          "preferred": "Mã Nương",
+          "accepted": [
+            "Mã Nương"
+          ],
+          "forbidden": [
+            "Uma Musume"
+          ],
+          "matched_aliases": [
+            "马娘"
+          ],
+          "accepted_present": false,
+          "forbidden_present": true,
+          "require_accepted": true,
+          "basis": "Category 130 uses 马娘 inside generic horse-girl/training labels such as 自主训练赛马娘. Resolve the short-token finding to Mã Nương only in this category, while keeping the collision-prone 马娘 alias out of global scope."
         }
       ],
       "skill_name_canonical": null,
@@ -427,6 +614,23 @@
           "forbidden_present": true,
           "require_accepted": true,
           "basis": "Generic zh-CN shorthand 马娘 refers to the same world/species concept as 赛马娘 in this text-data category. Reuse the repository's established Vietnamese world term Mã Nương, but keep the rule category-scoped so unrelated proper-name or source-bridge uses elsewhere are not broadened automatically."
+        },
+        {
+          "id": "common.world.umamusume.training_shorthand",
+          "preferred": "Mã Nương",
+          "accepted": [
+            "Mã Nương"
+          ],
+          "forbidden": [
+            "Uma Musume"
+          ],
+          "matched_aliases": [
+            "马娘"
+          ],
+          "accepted_present": false,
+          "forbidden_present": true,
+          "require_accepted": true,
+          "basis": "Category 130 uses 马娘 inside generic horse-girl/training labels such as 自主训练赛马娘. Resolve the short-token finding to Mã Nương only in this category, while keeping the collision-prone 马娘 alias out of global scope."
         }
       ],
       "skill_name_canonical": null,
@@ -573,6 +777,23 @@
           "forbidden_present": false,
           "require_accepted": true,
           "basis": "Generic zh-CN shorthand 马娘 refers to the same world/species concept as 赛马娘 in this text-data category. Reuse the repository's established Vietnamese world term Mã Nương, but keep the rule category-scoped so unrelated proper-name or source-bridge uses elsewhere are not broadened automatically."
+        },
+        {
+          "id": "common.world.umamusume.training_shorthand",
+          "preferred": "Mã Nương",
+          "accepted": [
+            "Mã Nương"
+          ],
+          "forbidden": [
+            "Uma Musume"
+          ],
+          "matched_aliases": [
+            "马娘"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Category 130 uses 马娘 inside generic horse-girl/training labels such as 自主训练赛马娘. Resolve the short-token finding to Mã Nương only in this category, while keeping the collision-prone 马娘 alias out of global scope."
         }
       ],
       "skill_name_canonical": null,
@@ -637,6 +858,23 @@
           "forbidden_present": false,
           "require_accepted": true,
           "basis": "Generic zh-CN shorthand 马娘 refers to the same world/species concept as 赛马娘 in this text-data category. Reuse the repository's established Vietnamese world term Mã Nương, but keep the rule category-scoped so unrelated proper-name or source-bridge uses elsewhere are not broadened automatically."
+        },
+        {
+          "id": "common.world.umamusume.training_shorthand",
+          "preferred": "Mã Nương",
+          "accepted": [
+            "Mã Nương"
+          ],
+          "forbidden": [
+            "Uma Musume"
+          ],
+          "matched_aliases": [
+            "马娘"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Category 130 uses 马娘 inside generic horse-girl/training labels such as 自主训练赛马娘. Resolve the short-token finding to Mã Nương only in this category, while keeping the collision-prone 马娘 alias out of global scope."
         }
       ],
       "skill_name_canonical": null,
@@ -701,6 +939,23 @@
           "forbidden_present": false,
           "require_accepted": true,
           "basis": "Generic zh-CN shorthand 马娘 refers to the same world/species concept as 赛马娘 in this text-data category. Reuse the repository's established Vietnamese world term Mã Nương, but keep the rule category-scoped so unrelated proper-name or source-bridge uses elsewhere are not broadened automatically."
+        },
+        {
+          "id": "common.world.umamusume.training_shorthand",
+          "preferred": "Mã Nương",
+          "accepted": [
+            "Mã Nương"
+          ],
+          "forbidden": [
+            "Uma Musume"
+          ],
+          "matched_aliases": [
+            "马娘"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Category 130 uses 马娘 inside generic horse-girl/training labels such as 自主训练赛马娘. Resolve the short-token finding to Mã Nương only in this category, while keeping the collision-prone 马娘 alias out of global scope."
         }
       ],
       "skill_name_canonical": null,
@@ -765,6 +1020,23 @@
           "forbidden_present": false,
           "require_accepted": true,
           "basis": "Generic zh-CN shorthand 马娘 refers to the same world/species concept as 赛马娘 in this text-data category. Reuse the repository's established Vietnamese world term Mã Nương, but keep the rule category-scoped so unrelated proper-name or source-bridge uses elsewhere are not broadened automatically."
+        },
+        {
+          "id": "common.world.umamusume.training_shorthand",
+          "preferred": "Mã Nương",
+          "accepted": [
+            "Mã Nương"
+          ],
+          "forbidden": [
+            "Uma Musume"
+          ],
+          "matched_aliases": [
+            "马娘"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Category 130 uses 马娘 inside generic horse-girl/training labels such as 自主训练赛马娘. Resolve the short-token finding to Mã Nương only in this category, while keeping the collision-prone 马娘 alias out of global scope."
         }
       ],
       "skill_name_canonical": null,
@@ -829,6 +1101,23 @@
           "forbidden_present": false,
           "require_accepted": true,
           "basis": "Generic zh-CN shorthand 马娘 refers to the same world/species concept as 赛马娘 in this text-data category. Reuse the repository's established Vietnamese world term Mã Nương, but keep the rule category-scoped so unrelated proper-name or source-bridge uses elsewhere are not broadened automatically."
+        },
+        {
+          "id": "common.world.umamusume.training_shorthand",
+          "preferred": "Mã Nương",
+          "accepted": [
+            "Mã Nương"
+          ],
+          "forbidden": [
+            "Uma Musume"
+          ],
+          "matched_aliases": [
+            "马娘"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Category 130 uses 马娘 inside generic horse-girl/training labels such as 自主训练赛马娘. Resolve the short-token finding to Mã Nương only in this category, while keeping the collision-prone 马娘 alias out of global scope."
         }
       ],
       "skill_name_canonical": null,
@@ -893,6 +1182,23 @@
           "forbidden_present": false,
           "require_accepted": true,
           "basis": "Generic zh-CN shorthand 马娘 refers to the same world/species concept as 赛马娘 in this text-data category. Reuse the repository's established Vietnamese world term Mã Nương, but keep the rule category-scoped so unrelated proper-name or source-bridge uses elsewhere are not broadened automatically."
+        },
+        {
+          "id": "common.world.umamusume.training_shorthand",
+          "preferred": "Mã Nương",
+          "accepted": [
+            "Mã Nương"
+          ],
+          "forbidden": [
+            "Uma Musume"
+          ],
+          "matched_aliases": [
+            "马娘"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Category 130 uses 马娘 inside generic horse-girl/training labels such as 自主训练赛马娘. Resolve the short-token finding to Mã Nương only in this category, while keeping the collision-prone 马娘 alias out of global scope."
         }
       ],
       "skill_name_canonical": null,
@@ -901,6 +1207,198 @@
       "source_bridge_policy_sha256": null,
       "canonical_findings": [],
       "item_context_sha256": "09aad0542b433119ea4118d141c9bffd6cbabe039e5978716dd8328e674d395b"
+    },
+    {
+      "uid": "zhcn:038791a6c57e781c67c70ec8",
+      "source_batch": 138,
+      "entry_index": 56,
+      "kind": "text_data",
+      "source_path": "text_data_dict.json",
+      "json_path": [
+        "130",
+        "198"
+      ],
+      "key": null,
+      "source_text": "马娘女皇",
+      "source_fingerprint": "805119b4762fd4268ee3a41d2d2f1573a87bffb97f0bdb0a71176d6fa611784c",
+      "current_text": "Nữ hoàng Mã Nương",
+      "current_fingerprint": "ce0fc38c9be95f695cf1bb35f08fa961b26a71e2bac96cb3bdac76339cd41162",
+      "risk_flags": [
+        "very_long_target",
+        "community_term"
+      ],
+      "risk_score": 5,
+      "locked_terms": [],
+      "community_terms": [
+        {
+          "id": "world.umamusume.shorthand.text130",
+          "preferred": "Mã Nương",
+          "accepted": [
+            "Mã Nương"
+          ],
+          "forbidden": [
+            "Uma Musume"
+          ],
+          "matched_aliases": [
+            "马娘"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Generic zh-CN shorthand 马娘 refers to the same world/species concept as 赛马娘 in this text-data category. Reuse the repository's established Vietnamese world term Mã Nương, but keep the rule category-scoped so unrelated proper-name or source-bridge uses elsewhere are not broadened automatically."
+        },
+        {
+          "id": "common.world.umamusume.training_shorthand",
+          "preferred": "Mã Nương",
+          "accepted": [
+            "Mã Nương"
+          ],
+          "forbidden": [
+            "Uma Musume"
+          ],
+          "matched_aliases": [
+            "马娘"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Category 130 uses 马娘 inside generic horse-girl/training labels such as 自主训练赛马娘. Resolve the short-token finding to Mã Nương only in this category, while keeping the collision-prone 马娘 alias out of global scope."
+        }
+      ],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [],
+      "item_context_sha256": "a0b7dfd18c805c559af740df59847188966b98a013f82cc61abf4299ec8ac203"
+    },
+    {
+      "uid": "zhcn:80ab075ba55bd4a5e1177e08",
+      "source_batch": 138,
+      "entry_index": 57,
+      "kind": "text_data",
+      "source_path": "text_data_dict.json",
+      "json_path": [
+        "130",
+        "199"
+      ],
+      "key": null,
+      "source_text": "马娘公主",
+      "source_fingerprint": "ac56de8cff19ace91e9bbe5c86189996f6622f7fedb5b4c30d411018babfb4ed",
+      "current_text": "Công chúa Mã Nương",
+      "current_fingerprint": "0d46742ec2a051b3b6bef0d9df30914f1a632828a3453e284846040119fd49d6",
+      "risk_flags": [
+        "very_long_target",
+        "community_term"
+      ],
+      "risk_score": 5,
+      "locked_terms": [],
+      "community_terms": [
+        {
+          "id": "world.umamusume.shorthand.text130",
+          "preferred": "Mã Nương",
+          "accepted": [
+            "Mã Nương"
+          ],
+          "forbidden": [
+            "Uma Musume"
+          ],
+          "matched_aliases": [
+            "马娘"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Generic zh-CN shorthand 马娘 refers to the same world/species concept as 赛马娘 in this text-data category. Reuse the repository's established Vietnamese world term Mã Nương, but keep the rule category-scoped so unrelated proper-name or source-bridge uses elsewhere are not broadened automatically."
+        },
+        {
+          "id": "common.world.umamusume.training_shorthand",
+          "preferred": "Mã Nương",
+          "accepted": [
+            "Mã Nương"
+          ],
+          "forbidden": [
+            "Uma Musume"
+          ],
+          "matched_aliases": [
+            "马娘"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Category 130 uses 马娘 inside generic horse-girl/training labels such as 自主训练赛马娘. Resolve the short-token finding to Mã Nương only in this category, while keeping the collision-prone 马娘 alias out of global scope."
+        }
+      ],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [],
+      "item_context_sha256": "a0b7dfd18c805c559af740df59847188966b98a013f82cc61abf4299ec8ac203"
+    },
+    {
+      "uid": "zhcn:7da0b4e606ddca8e4db08425",
+      "source_batch": 138,
+      "entry_index": 60,
+      "kind": "text_data",
+      "source_path": "text_data_dict.json",
+      "json_path": [
+        "130",
+        "200"
+      ],
+      "key": null,
+      "source_text": "马娘女主角",
+      "source_fingerprint": "e1506a316a37c34f947def0e45c47e286cff10f356e05d97b5c22816223e9a13",
+      "current_text": "Nữ chính Mã Nương",
+      "current_fingerprint": "e1fcab4c675e08c94655b97ecd9ba3596de3258b7722d2bc44e8cd1a3d9b52fe",
+      "risk_flags": [
+        "very_long_target",
+        "community_term"
+      ],
+      "risk_score": 5,
+      "locked_terms": [],
+      "community_terms": [
+        {
+          "id": "world.umamusume.shorthand.text130",
+          "preferred": "Mã Nương",
+          "accepted": [
+            "Mã Nương"
+          ],
+          "forbidden": [
+            "Uma Musume"
+          ],
+          "matched_aliases": [
+            "马娘"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Generic zh-CN shorthand 马娘 refers to the same world/species concept as 赛马娘 in this text-data category. Reuse the repository's established Vietnamese world term Mã Nương, but keep the rule category-scoped so unrelated proper-name or source-bridge uses elsewhere are not broadened automatically."
+        },
+        {
+          "id": "common.world.umamusume.training_shorthand",
+          "preferred": "Mã Nương",
+          "accepted": [
+            "Mã Nương"
+          ],
+          "forbidden": [
+            "Uma Musume"
+          ],
+          "matched_aliases": [
+            "马娘"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Category 130 uses 马娘 inside generic horse-girl/training labels such as 自主训练赛马娘. Resolve the short-token finding to Mã Nương only in this category, while keeping the collision-prone 马娘 alias out of global scope."
+        }
+      ],
+      "skill_name_canonical": null,
+      "source_bridge_terms": [],
+      "source_bridge_risks": [],
+      "source_bridge_policy_sha256": null,
+      "canonical_findings": [],
+      "item_context_sha256": "a0b7dfd18c805c559af740df59847188966b98a013f82cc61abf4299ec8ac203"
     },
     {
       "uid": "zhcn:dd0bd468d3603691d86beb9e",
@@ -959,6 +1457,23 @@
           "forbidden_present": true,
           "require_accepted": true,
           "basis": "Generic zh-CN shorthand 马娘 refers to the same world/species concept as 赛马娘 in this text-data category. Reuse the repository's established Vietnamese world term Mã Nương, but keep the rule category-scoped so unrelated proper-name or source-bridge uses elsewhere are not broadened automatically."
+        },
+        {
+          "id": "common.world.umamusume.training_shorthand",
+          "preferred": "Mã Nương",
+          "accepted": [
+            "Mã Nương"
+          ],
+          "forbidden": [
+            "Uma Musume"
+          ],
+          "matched_aliases": [
+            "马娘"
+          ],
+          "accepted_present": false,
+          "forbidden_present": true,
+          "require_accepted": true,
+          "basis": "Category 130 uses 马娘 inside generic horse-girl/training labels such as 自主训练赛马娘. Resolve the short-token finding to Mã Nương only in this category, while keeping the collision-prone 马娘 alias out of global scope."
         }
       ],
       "skill_name_canonical": null,
@@ -1025,58 +1540,9 @@
           "forbidden_present": true,
           "require_accepted": true,
           "basis": "Generic zh-CN shorthand 马娘 refers to the same world/species concept as 赛马娘 in this text-data category. Reuse the repository's established Vietnamese world term Mã Nương, but keep the rule category-scoped so unrelated proper-name or source-bridge uses elsewhere are not broadened automatically."
-        }
-      ],
-      "skill_name_canonical": null,
-      "source_bridge_terms": [],
-      "source_bridge_risks": [],
-      "source_bridge_policy_sha256": null,
-      "canonical_findings": [],
-      "item_context_sha256": "09aad0542b433119ea4118d141c9bffd6cbabe039e5978716dd8328e674d395b"
-    },
-    {
-      "uid": "zhcn:a7994a37130a30651d6e58c5",
-      "source_batch": 138,
-      "entry_index": 75,
-      "kind": "text_data",
-      "source_path": "text_data_dict.json",
-      "json_path": [
-        "130",
-        "214"
-      ],
-      "key": null,
-      "source_text": "初级赛马娘",
-      "source_fingerprint": "8582e55b8a6e43819e0fe230e56421ac47ad0b550c605ce4fe61542b2e7a8a91",
-      "current_text": "Uma Musume sơ cấp",
-      "current_fingerprint": "94d5cc0b399c9ab222d4cdbf4584663c6d81eae3beb6c8c52939e16b56d2ec9e",
-      "risk_flags": [
-        "very_long_target",
-        "community_term",
-        "community_calque_risk",
-        "community_term_mismatch"
-      ],
-      "risk_score": 19,
-      "locked_terms": [],
-      "community_terms": [
-        {
-          "id": "common.world.umamusume",
-          "preferred": "Mã Nương",
-          "accepted": [
-            "Mã Nương"
-          ],
-          "forbidden": [
-            "Uma Musume"
-          ],
-          "matched_aliases": [
-            "赛马娘"
-          ],
-          "accepted_present": false,
-          "forbidden_present": true,
-          "require_accepted": true,
-          "basis": "Generic 赛马娘 is the project world/species term Mã Nương, but it must not fire inside established ウマ娘ステークス race-name forms represented by 赛马娘锦标."
         },
         {
-          "id": "world.umamusume.shorthand.text130",
+          "id": "common.world.umamusume.training_shorthand",
           "preferred": "Mã Nương",
           "accepted": [
             "Mã Nương"
@@ -1090,205 +1556,7 @@
           "accepted_present": false,
           "forbidden_present": true,
           "require_accepted": true,
-          "basis": "Generic zh-CN shorthand 马娘 refers to the same world/species concept as 赛马娘 in this text-data category. Reuse the repository's established Vietnamese world term Mã Nương, but keep the rule category-scoped so unrelated proper-name or source-bridge uses elsewhere are not broadened automatically."
-        }
-      ],
-      "skill_name_canonical": null,
-      "source_bridge_terms": [],
-      "source_bridge_risks": [],
-      "source_bridge_policy_sha256": null,
-      "canonical_findings": [],
-      "item_context_sha256": "09aad0542b433119ea4118d141c9bffd6cbabe039e5978716dd8328e674d395b"
-    },
-    {
-      "uid": "zhcn:1668d39a16800b207367ab50",
-      "source_batch": 138,
-      "entry_index": 76,
-      "kind": "text_data",
-      "source_path": "text_data_dict.json",
-      "json_path": [
-        "130",
-        "215"
-      ],
-      "key": null,
-      "source_text": "知名赛马娘",
-      "source_fingerprint": "d18a85bc610c679d7a88fdb45e07ae8d9269818b72b7d2b66d2cefc156460078",
-      "current_text": "Uma Musume nổi tiếng",
-      "current_fingerprint": "53f64fbed2adb0538309b5c8dffbc1d37884aeabe3be0a2bd2817ceb9f986c6b",
-      "risk_flags": [
-        "very_long_target",
-        "community_term",
-        "community_calque_risk",
-        "community_term_mismatch"
-      ],
-      "risk_score": 19,
-      "locked_terms": [],
-      "community_terms": [
-        {
-          "id": "common.world.umamusume",
-          "preferred": "Mã Nương",
-          "accepted": [
-            "Mã Nương"
-          ],
-          "forbidden": [
-            "Uma Musume"
-          ],
-          "matched_aliases": [
-            "赛马娘"
-          ],
-          "accepted_present": false,
-          "forbidden_present": true,
-          "require_accepted": true,
-          "basis": "Generic 赛马娘 is the project world/species term Mã Nương, but it must not fire inside established ウマ娘ステークス race-name forms represented by 赛马娘锦标."
-        },
-        {
-          "id": "world.umamusume.shorthand.text130",
-          "preferred": "Mã Nương",
-          "accepted": [
-            "Mã Nương"
-          ],
-          "forbidden": [
-            "Uma Musume"
-          ],
-          "matched_aliases": [
-            "马娘"
-          ],
-          "accepted_present": false,
-          "forbidden_present": true,
-          "require_accepted": true,
-          "basis": "Generic zh-CN shorthand 马娘 refers to the same world/species concept as 赛马娘 in this text-data category. Reuse the repository's established Vietnamese world term Mã Nương, but keep the rule category-scoped so unrelated proper-name or source-bridge uses elsewhere are not broadened automatically."
-        }
-      ],
-      "skill_name_canonical": null,
-      "source_bridge_terms": [],
-      "source_bridge_risks": [],
-      "source_bridge_policy_sha256": null,
-      "canonical_findings": [],
-      "item_context_sha256": "09aad0542b433119ea4118d141c9bffd6cbabe039e5978716dd8328e674d395b"
-    },
-    {
-      "uid": "zhcn:2675511f8ccb5ac136f20349",
-      "source_batch": 138,
-      "entry_index": 77,
-      "kind": "text_data",
-      "source_path": "text_data_dict.json",
-      "json_path": [
-        "130",
-        "216"
-      ],
-      "key": null,
-      "source_text": "达人赛马娘",
-      "source_fingerprint": "a984d2152299566f98bdd0d49bb7731e7f2eb5161741be6c87bd5b036d4d41b6",
-      "current_text": "Uma Musume cao thủ",
-      "current_fingerprint": "c303afd4baad401b14d88507db1195895b982c15a6bf05387a95b4987030db2a",
-      "risk_flags": [
-        "very_long_target",
-        "community_term",
-        "community_calque_risk",
-        "community_term_mismatch"
-      ],
-      "risk_score": 19,
-      "locked_terms": [],
-      "community_terms": [
-        {
-          "id": "common.world.umamusume",
-          "preferred": "Mã Nương",
-          "accepted": [
-            "Mã Nương"
-          ],
-          "forbidden": [
-            "Uma Musume"
-          ],
-          "matched_aliases": [
-            "赛马娘"
-          ],
-          "accepted_present": false,
-          "forbidden_present": true,
-          "require_accepted": true,
-          "basis": "Generic 赛马娘 is the project world/species term Mã Nương, but it must not fire inside established ウマ娘ステークス race-name forms represented by 赛马娘锦标."
-        },
-        {
-          "id": "world.umamusume.shorthand.text130",
-          "preferred": "Mã Nương",
-          "accepted": [
-            "Mã Nương"
-          ],
-          "forbidden": [
-            "Uma Musume"
-          ],
-          "matched_aliases": [
-            "马娘"
-          ],
-          "accepted_present": false,
-          "forbidden_present": true,
-          "require_accepted": true,
-          "basis": "Generic zh-CN shorthand 马娘 refers to the same world/species concept as 赛马娘 in this text-data category. Reuse the repository's established Vietnamese world term Mã Nương, but keep the rule category-scoped so unrelated proper-name or source-bridge uses elsewhere are not broadened automatically."
-        }
-      ],
-      "skill_name_canonical": null,
-      "source_bridge_terms": [],
-      "source_bridge_risks": [],
-      "source_bridge_policy_sha256": null,
-      "canonical_findings": [],
-      "item_context_sha256": "09aad0542b433119ea4118d141c9bffd6cbabe039e5978716dd8328e674d395b"
-    },
-    {
-      "uid": "zhcn:22d8702b150c1cd792f3140b",
-      "source_batch": 138,
-      "entry_index": 78,
-      "kind": "text_data",
-      "source_path": "text_data_dict.json",
-      "json_path": [
-        "130",
-        "217"
-      ],
-      "key": null,
-      "source_text": "资深赛马娘",
-      "source_fingerprint": "ac8f3b6dbfda6d4f76b41d465dfa65504081a4bd29f357ae95a5efd308211777",
-      "current_text": "Uma Musume kỳ cựu",
-      "current_fingerprint": "91af0d2a777362fa692ceb93c53cf00dfa9a598d50b1a4630dc588412579bec8",
-      "risk_flags": [
-        "very_long_target",
-        "community_term",
-        "community_calque_risk",
-        "community_term_mismatch"
-      ],
-      "risk_score": 19,
-      "locked_terms": [],
-      "community_terms": [
-        {
-          "id": "common.world.umamusume",
-          "preferred": "Mã Nương",
-          "accepted": [
-            "Mã Nương"
-          ],
-          "forbidden": [
-            "Uma Musume"
-          ],
-          "matched_aliases": [
-            "赛马娘"
-          ],
-          "accepted_present": false,
-          "forbidden_present": true,
-          "require_accepted": true,
-          "basis": "Generic 赛马娘 is the project world/species term Mã Nương, but it must not fire inside established ウマ娘ステークス race-name forms represented by 赛马娘锦标."
-        },
-        {
-          "id": "world.umamusume.shorthand.text130",
-          "preferred": "Mã Nương",
-          "accepted": [
-            "Mã Nương"
-          ],
-          "forbidden": [
-            "Uma Musume"
-          ],
-          "matched_aliases": [
-            "马娘"
-          ],
-          "accepted_present": false,
-          "forbidden_present": true,
-          "require_accepted": true,
-          "basis": "Generic zh-CN shorthand 马娘 refers to the same world/species concept as 赛马娘 in this text-data category. Reuse the repository's established Vietnamese world term Mã Nương, but keep the rule category-scoped so unrelated proper-name or source-bridge uses elsewhere are not broadened automatically."
+          "basis": "Category 130 uses 马娘 inside generic horse-girl/training labels such as 自主训练赛马娘. Resolve the short-token finding to Mã Nương only in this category, while keeping the collision-prone 马娘 alias out of global scope."
         }
       ],
       "skill_name_canonical": null,

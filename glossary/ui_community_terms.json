@@ -9332,6 +9332,31 @@
       ],
       "match_mode": "contains",
       "basis": "Great Food Festival uses the recurring JP system label お料理Pt/料理Pt for the scenario's cooking score. Established English scenario references consistently call the same mechanic Cooking Points. Bridge only the explicit 料理Pt alias in localize_dict.json; generic cooking prose remains unaffected."
+    },
+    {
+      "id": "skill.believe.omoi_shinzureba_koso.inheritance_alias",
+      "category": "skill_name",
+      "source_aliases": [
+        "正因心怀信念"
+      ],
+      "preferred": "Tâm Niệm, Chính Vì Tin",
+      "compact": [],
+      "accepted": [
+        "Tâm Niệm, Chính Vì Tin"
+      ],
+      "forbidden": [],
+      "require_accepted": true,
+      "invalidation_scope": "item",
+      "source_paths": [
+        "text_data_dict.json"
+      ],
+      "json_path_prefixes": [
+        [
+          "172"
+        ]
+      ],
+      "match_mode": "contains",
+      "basis": "The inheritance row key 10950101 belongs to Believe (game ID 1095). Believe's verified JP unique Skill is 念い、信ずればこそ, already canonically rendered as 'Tâm Niệm, Chính Vì Tin'. The zh-CN inheritance bridge uses the alternate embedded alias 正因心怀信念. Scope this alias only to text_data category 172 so ordinary prose about belief is not canonicalized as a Skill."
     }
   ]
 }

@@ -3,9 +3,10 @@ from __future__ import annotations
 """Canonicalize Mejiro Palmer's unique Skill 冠绝之路 / ぶっちぎりロード.
 
 The older curation pass correctly rejected the zh-CN title as an interpretive
-rewrite. The English release now provides the stable title "Keep Pushing Ahead"
-for Mejiro Palmer [Line Breakthrough]'s unique Skill, so preserve that official
-localization instead of translating backward from 冠绝之路.
+rewrite. The English release provides the stable title "Keep Pushing Ahead"
+for Mejiro Palmer [Line Breakthrough]'s unique Skill. Preserve that official
+localization both for the category-147 Skill title and category-172 inheritance
+descriptions, without broadening the alias across unrelated text-data categories.
 """
 
 import json
@@ -14,6 +15,7 @@ from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
 FINDING_ID = "cf-c54e95a392368cab"
+INHERITANCE_FINDING_ID = "cf-70b5883f9b7068e2"
 SOURCE_ZH = "冠绝之路"
 SOURCE_JA = "ぶっちぎりロード"
 PREFERRED = "Keep Pushing Ahead"
@@ -39,6 +41,26 @@ RULE = {
     ),
 }
 
+INHERITANCE_RULE = {
+    "id": "skill.mejiro_palmer.keep_pushing_ahead.inheritance172",
+    "category": "skill_name",
+    "source_aliases": [SOURCE_ZH],
+    "preferred": PREFERRED,
+    "compact": [],
+    "accepted": [PREFERRED],
+    "forbidden": ["Con đường độc tôn"],
+    "require_accepted": True,
+    "invalidation_scope": "item",
+    "source_paths": ["text_data_dict.json"],
+    "json_path_prefixes": [["172"]],
+    "match_mode": "contains",
+    "basis": (
+        "Category 172 contains inheritance/Spark descriptions embedding the same unique Skill title "
+        "冠绝之路. Resolve only those descriptions to the official Keep Pushing Ahead identity; "
+        "do not turn the alias into an unscoped text-data substring matcher."
+    ),
+}
+
 DECISION = {
     "decision_id": "audit.finding.skill-mejiro-palmer-keep-pushing-ahead",
     "source_zh_cn": SOURCE_ZH,
@@ -52,7 +74,7 @@ DECISION = {
     "json_path_prefixes": [["147"]],
     "match_mode": "exact",
     "note": (
-        "JP-backed Skill 100641 / ぶっちぎりロード now has the stable English-release title "
+        "JP-backed Skill 100641 / ぶっちぎりロード has the stable English-release title "
         "Keep Pushing Ahead; replace the zh-CN-derived Vietnamese calque rather than inventing a title."
     ),
 }
@@ -96,6 +118,7 @@ def harden(repo_root: Path = ROOT) -> bool:
         raise ValueError("glossary/ui_community_terms.json terms must be a list")
     before = json.dumps(community, ensure_ascii=False, sort_keys=True)
     _upsert(terms, RULE, id_field="id")
+    _upsert(terms, INHERITANCE_RULE, id_field="id")
     if before != json.dumps(community, ensure_ascii=False, sort_keys=True):
         _write(community_path, community)
         changed = True
@@ -114,17 +137,26 @@ def harden(repo_root: Path = ROOT) -> bool:
     findings_path = repo_root / "glossary" / "canonical_findings.json"
     findings = _load(findings_path, {"schema_version": 1, "findings": []})
     before = json.dumps(findings, ensure_ascii=False, sort_keys=True)
-    found = False
+    found_title = False
     for finding in findings.get("findings", []):
-        if not isinstance(finding, dict) or finding.get("finding_id") != FINDING_ID:
+        if not isinstance(finding, dict):
             continue
-        found = True
+        finding_id = str(finding.get("finding_id") or "")
+        if finding_id not in {FINDING_ID, INHERITANCE_FINDING_ID}:
+            continue
+        if finding_id == FINDING_ID:
+            found_title = True
         suggestions = [str(value) for value in finding.get("suggested_targets_vi", []) if str(value)]
         if PREFERRED not in suggestions:
             suggestions.append(PREFERRED)
         finding["suggested_targets_vi"] = suggestions
-        break
-    if not found:
+        if finding_id == INHERITANCE_FINDING_ID:
+            # The worker reported a source-path-wide substring finding, but every
+            # piece of evidence is a category-172 inheritance description. Narrow
+            # the finding to that real context before resolving it.
+            finding["json_path_prefixes"] = [["172"]]
+            finding["match_mode"] = "contains"
+    if not found_title:
         raise ValueError(f"missing canonical finding {FINDING_ID}")
     if before != json.dumps(findings, ensure_ascii=False, sort_keys=True):
         _write(findings_path, findings)

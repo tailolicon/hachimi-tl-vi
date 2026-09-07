@@ -59,6 +59,14 @@ GUARDS = {
         "term_id": "race_state.rushed.text131",
         "target_vi": "Rushed",
     },
+    # Regenerated profile-prose equivalent of the same Rushed overmatch. The
+    # gameplay rule is already restricted to category 131; category 167 profile
+    # prose must stay ordinary Vietnamese instead of inheriting the system label.
+    "cf-47277b7ddd4be78f": {
+        "layer": "community",
+        "term_id": "race_state.rushed.text131",
+        "target_vi": "Rushed",
+    },
     "cf-15798cd76b70746c": {
         "layer": "locked",
         "term_id": "reviewed.race_name.b4e4d79a5f98",

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "policy_version": 3,
-  "plan_id": "tr-p3-67f8551f7780-0b2ef9bb9947-b5c0bcb3bd-a36a3eaf90",
-  "batch_id": "tr-p3-67f8551f7780-0b2ef9bb9947-b5c0bcb3bd-a36a3eaf90-b0093",
+  "plan_id": "tr-p3-67f8551f7780-ea707f87887e-b5c0bcb3bd-f891a9e30c",
+  "batch_id": "tr-p3-67f8551f7780-ea707f87887e-b5c0bcb3bd-f891a9e30c-b0093",
   "context_snapshot_sha256": "b5c0bcb3bd9ee5c45e7bedf49c8f8d6ad35c3ceb3c35f528c6381a63c684a967",
   "source_bridge_policy_sha256": "9f9f705179544c3cecdd73584192cae63915f47b04e090e4e9096bd49f97bcb8",
   "review_generation": "retrospective-canonical-full-review",
@@ -25,11 +25,31 @@
       "current_fingerprint": "f17fae22e6f87bdd4933c781b9e3d146c6cb01ccc12ebdc7364c6981c59e691d",
       "risk_flags": [
         "very_long_target",
-        "canonical_finding"
+        "community_term",
+        "community_calque_risk",
+        "community_term_mismatch"
       ],
-      "risk_score": 43,
+      "risk_score": 19,
       "locked_terms": [],
-      "community_terms": [],
+      "community_terms": [
+        {
+          "id": "skill.ranzen_kappo.preserve_japanese_title",
+          "preferred": "爛然闊歩",
+          "accepted": [
+            "爛然闊歩"
+          ],
+          "forbidden": [
+            "Sải bước rạng ngời"
+          ],
+          "matched_aliases": [
+            "灿然阔步"
+          ],
+          "accepted_present": false,
+          "forbidden_present": true,
+          "require_accepted": true,
+          "basis": "Verified identity: zh-CN 灿然阔步 at Skill title/factor ID 10570203 maps to JP 爛然闊歩, the unique Skill of New Year Mr. C.B. Public JP references consistently display the exact title 爛然闊歩 and matching long-spurt description. No official Global title is verified, so preserve the exact Japanese player-facing title rather than retaining the historical zh-CN-derived Vietnamese calque. The source-path scope is safe because matching is exact."
+        }
+      ],
       "skill_name_canonical": null,
       "source_bridge_terms": [],
       "source_bridge_risks": [],

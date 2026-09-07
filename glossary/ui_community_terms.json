@@ -9557,6 +9557,34 @@
       ],
       "match_mode": "contains",
       "basis": "凯旋门赏 is the established Prix de l'Arc de Triomphe race identity. The exact race-name alias is safe in text_data references, including category 130, while source-path scoping prevents unrelated localize_dict matching."
+    },
+    {
+      "id": "skill.jidai_wo_kaeru_mono.preserve_japanese_title",
+      "category": "skill_name",
+      "source_aliases": [
+        "世代变革者"
+      ],
+      "preferred": "時代を変える者",
+      "compact": [],
+      "accepted": [
+        "時代を変える者"
+      ],
+      "forbidden": [
+        "Người cải cách thế hệ",
+        "Người thay đổi thế hệ"
+      ],
+      "require_accepted": true,
+      "invalidation_scope": "item",
+      "source_paths": [
+        "text_data_dict.json"
+      ],
+      "json_path_prefixes": [
+        [
+          "147"
+        ]
+      ],
+      "match_mode": "exact",
+      "basis": "Verified identity: zh-CN 世代变革者 at Skill/factor IDs 2103501-2103503 maps to JP 時代を変える者 (Skill ID 210352). Current references mark this Skill JP-only, so preserve the exact Japanese player-facing title until an official Global title exists instead of retaining zh-CN-derived Vietnamese calques."
     }
   ]
 }

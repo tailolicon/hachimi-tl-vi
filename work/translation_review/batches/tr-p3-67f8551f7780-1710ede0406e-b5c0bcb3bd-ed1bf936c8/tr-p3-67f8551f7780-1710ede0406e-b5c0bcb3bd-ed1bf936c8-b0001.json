@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "policy_version": 3,
-  "plan_id": "tr-p3-67f8551f7780-ea707f87887e-b5c0bcb3bd-f891a9e30c",
-  "batch_id": "tr-p3-67f8551f7780-ea707f87887e-b5c0bcb3bd-f891a9e30c-b0001",
+  "plan_id": "tr-p3-67f8551f7780-1710ede0406e-b5c0bcb3bd-ed1bf936c8",
+  "batch_id": "tr-p3-67f8551f7780-1710ede0406e-b5c0bcb3bd-ed1bf936c8-b0001",
   "context_snapshot_sha256": "b5c0bcb3bd9ee5c45e7bedf49c8f8d6ad35c3ceb3c35f528c6381a63c684a967",
   "source_bridge_policy_sha256": "9f9f705179544c3cecdd73584192cae63915f47b04e090e4e9096bd49f97bcb8",
   "review_generation": "retrospective-canonical-full-review",
@@ -456,9 +456,11 @@
       "current_fingerprint": "d6999a7a6ecf7d734025897b4efabed24cc07d8427f9d7118ac14259428a6207",
       "risk_flags": [
         "locked_term_mismatch",
-        "canonical_finding"
+        "community_term",
+        "community_calque_risk",
+        "community_term_mismatch"
       ],
-      "risk_score": 48,
+      "risk_score": 24,
       "locked_terms": [
         {
           "id": "reviewed.system_label.79ccba4482c3",
@@ -469,7 +471,46 @@
           "present": false
         }
       ],
-      "community_terms": [],
+      "community_terms": [
+        {
+          "id": "support.unique_effect.label",
+          "preferred": "Unique Effect",
+          "accepted": [
+            "Unique Effect"
+          ],
+          "forbidden": [
+            "Bonus riêng",
+            "Hiệu ứng riêng",
+            "Unique Bonus"
+          ],
+          "matched_aliases": [
+            "固有加成"
+          ],
+          "accepted_present": false,
+          "forbidden_present": true,
+          "require_accepted": true,
+          "basis": "JP support-card UI labels this section 固有ボーナス and released English/Global-facing support-card references render it as Unique Effect. Repository canonical policy prefers verified Global-facing game terminology for player-facing identities. The zh-CN bridge 固有加成 is reused in 固有加成详情, so the alias remains contains-matched but is restricted to the two known localize UI keys; category-150 individual unique-effect names and unrelated prose stay outside scope."
+        },
+        {
+          "id": "common.character.unique_bonus",
+          "preferred": "Hiệu ứng riêng",
+          "accepted": [
+            "Hiệu ứng riêng"
+          ],
+          "forbidden": [
+            "Bonus riêng",
+            "bonus riêng",
+            "Unique Bonus"
+          ],
+          "matched_aliases": [
+            "固有加成"
+          ],
+          "accepted_present": false,
+          "forbidden_present": true,
+          "require_accepted": true,
+          "basis": "Fresh identity verification maps the JP generic support-card section 固有ボーナス to the Global-facing label Unique Effect. The zh-CN bridge 固有加成 is therefore a generic unique-effect UI label, and Hiệu ứng riêng is the clear Vietnamese canonical form. Scope the alias to localize_dict.json so category-150 proper/display names and unrelated generic 固有 wording elsewhere are untouched."
+        }
+      ],
       "skill_name_canonical": null,
       "source_bridge_terms": [],
       "source_bridge_risks": [],
@@ -793,9 +834,11 @@
       "risk_flags": [
         "very_long_target",
         "locked_term_mismatch",
-        "canonical_finding"
+        "community_term",
+        "community_calque_risk",
+        "community_term_mismatch"
       ],
-      "risk_score": 51,
+      "risk_score": 27,
       "locked_terms": [
         {
           "id": "reviewed.system_label.79ccba4482c3",
@@ -806,7 +849,46 @@
           "present": false
         }
       ],
-      "community_terms": [],
+      "community_terms": [
+        {
+          "id": "support.unique_effect.label",
+          "preferred": "Unique Effect",
+          "accepted": [
+            "Unique Effect"
+          ],
+          "forbidden": [
+            "Bonus riêng",
+            "Hiệu ứng riêng",
+            "Unique Bonus"
+          ],
+          "matched_aliases": [
+            "固有加成"
+          ],
+          "accepted_present": false,
+          "forbidden_present": true,
+          "require_accepted": true,
+          "basis": "JP support-card UI labels this section 固有ボーナス and released English/Global-facing support-card references render it as Unique Effect. Repository canonical policy prefers verified Global-facing game terminology for player-facing identities. The zh-CN bridge 固有加成 is reused in 固有加成详情, so the alias remains contains-matched but is restricted to the two known localize UI keys; category-150 individual unique-effect names and unrelated prose stay outside scope."
+        },
+        {
+          "id": "common.character.unique_bonus",
+          "preferred": "Hiệu ứng riêng",
+          "accepted": [
+            "Hiệu ứng riêng"
+          ],
+          "forbidden": [
+            "Bonus riêng",
+            "bonus riêng",
+            "Unique Bonus"
+          ],
+          "matched_aliases": [
+            "固有加成"
+          ],
+          "accepted_present": false,
+          "forbidden_present": true,
+          "require_accepted": true,
+          "basis": "Fresh identity verification maps the JP generic support-card section 固有ボーナス to the Global-facing label Unique Effect. The zh-CN bridge 固有加成 is therefore a generic unique-effect UI label, and Hiệu ứng riêng is the clear Vietnamese canonical form. Scope the alias to localize_dict.json so category-150 proper/display names and unrelated generic 固有 wording elsewhere are untouched."
+        }
+      ],
       "skill_name_canonical": null,
       "source_bridge_terms": [],
       "source_bridge_risks": [],

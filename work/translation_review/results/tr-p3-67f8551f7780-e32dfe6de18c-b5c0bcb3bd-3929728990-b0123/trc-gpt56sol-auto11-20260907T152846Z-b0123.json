@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "status": "partial",
+  "plan_id": "tr-p3-67f8551f7780-e32dfe6de18c-b5c0bcb3bd-3929728990",
+  "batch_id": "tr-p3-67f8551f7780-e32dfe6de18c-b5c0bcb3bd-3929728990-b0123",
+  "claim_id": "trc-gpt56sol-auto11-20260907T152846Z-b0123",
+  "worker_id": "gpt56sol-auto11-20260907T152846Z-review",
+  "reviewed_at": "2026-09-07T15:29:30Z",
+  "completed_count": 5,
+  "decisions": [
+    {
+      "uid": "zhcn:8000bca260849022c06be772",
+      "current_fingerprint": "fb214ae3409e6fe93469d2383c597c9bfaa996cbed8f9b4e7a7c70fc06e10777",
+      "action": "defer",
+      "reason": "The generic prose phrase 至高无上 is being matched as a Skill-title lock; applying Hãy Là Tối Thượng inside this sentence would corrupt meaning. Canonical context must exclude this prose use while generic 赛马娘 remains Mã Nương.",
+      "canonical_finding": {
+        "kind": "context_rule",
+        "source_zh_cn": "至高无上",
+        "concept": "Skill-title alias 至高无上 overmatching ordinary prose",
+        "match_mode": "contains",
+        "scope": "source_path",
+        "reason": "This reusable alias appears inside ordinary character-introduction prose and must not force the Skill title there.",
+        "confidence": "high"
+      },
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:d283a8858523a0d1bcd52f5d",
+      "current_fingerprint": "5d288d934959a630549f5ddb2f8cbe9c6975b4a3f0c9fba7321fc3e665e9d9ec",
+      "action": "defer",
+      "reason": "Embedded open canonical finding cf-8609a00e781fea4a identifies 力量 as a context-rule overmatch in narrative/metaphorical strength; this line must not be normalized to the Power stat until maintenance resolves the matcher.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:916c6952c3e44fa9aa0d663d",
+      "current_fingerprint": "e78618448660afe4bc46dc082dd67885d88dc98ce47f4c9a71688295e4f92768",
+      "action": "revise",
+      "proposed_text": "Tôi chỉ có một ước nguyện――đó là giành được danh hiệu “mạnh nhất”!\\nTôi muốn trở thành Mã Nương khắc sâu trong ký ức mọi người!\\nĐể đạt được mục tiêu ấy, thứ không thể thiếu… đúng, là tự quảng bá!",
+      "reason": "Meaning and structure are sound, but generic 赛马娘 must use the project world term Mã Nương rather than Uma Musume.",
+      "terminology_basis": "common.world.umamusume → Mã Nương",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:cea3f4bcc6cccb938efbec4c",
+      "current_fingerprint": "27afc08cf8111525fb90683e8c1e0befafe069b3812399942c9b5b002df6c20a",
+      "action": "defer",
+      "reason": "Embedded open canonical finding cf-8609a00e781fea4a explicitly covers 力量 inside the proper name 莱茵力量 (Rhein Kraft). The character name is correct, but the item remains blocked until the overmatch is resolved canonically.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:ec34efee253c4a588e4612c5",
+      "current_fingerprint": "14376ae4d390f1b44613f7bc3dcb39b07e64316b47a9216b7633772cb1792c88",
+      "action": "keep",
+      "reason": "Gran Alegria is preserved, both numeric distances are preserved, and Mile uses the required player-facing term; the Vietnamese reads naturally.",
+      "terminology_basis": "character.gran_alegria → Gran Alegria; common.distance.mile → Mile",
+      "confidence": "high"
+    }
+  ]
+}

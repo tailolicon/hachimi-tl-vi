@@ -14,6 +14,8 @@ from scripts.harden_kyoto_himba_precedence_finding import (
     harden,
 )
 
+ROOT = Path(__file__).resolve().parents[1]
+
 
 def _write(path: Path, payload: object) -> None:
     path.write_text(json.dumps(payload, ensure_ascii=False), encoding="utf-8")
@@ -51,3 +53,11 @@ def test_component_rule_still_covers_plain_component(tmp_path: Path) -> None:
     assert harden(tmp_path) is True
     payload = refresh_canonical_resolutions(tmp_path, {"schema_version": 1, "findings": [{"finding_id": "component-positive", "status": "open", "source_zh_cn": "赛马娘锦标", "match_mode": "contains", "source_paths": ["text_data_dict.json"], "key_exact": [], "json_path_prefixes": [], "suggested_targets_vi": [], "canonical_resolution": None, "review_resolution": None}]})
     assert payload["findings"][0]["canonical_resolution"] == {"layer": "community", "term_id": COMPONENT_TERM_ID, "target_vi": "Uma Musume Stakes"}
+
+
+def test_live_kyoto_finding_is_locked_and_inactive() -> None:
+    payload = json.loads((ROOT / "glossary" / "canonical_findings.json").read_text(encoding="utf-8"))
+    finding = next(x for x in payload["findings"] if x.get("finding_id") == FINDING_ID)
+    assert finding["suggested_targets_vi"] == [TARGET]
+    assert finding["canonical_resolution"] == {"layer": "locked", "term_id": FULL_TERM_ID, "target_vi": TARGET}
+    assert FINDING_ID not in {x.get("finding_id") for x in active_findings(payload)}

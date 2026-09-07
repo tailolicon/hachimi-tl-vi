@@ -3,7 +3,7 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-from scripts.harden_power_context_finding import TERM_ID, harden
+from scripts.harden_power_context_finding import LOCKED_TERM_ID, TERM_ID, harden
 from scripts.resolve_context_guard_findings import POWER_CONTEXT_GUARD_IDS, resolve
 from scripts.translation_review_common import community_term_matches, load_community_terms
 
@@ -26,7 +26,17 @@ def test_rhein_kraft_name_does_not_trigger_power_stat(tmp_path: Path) -> None:
         }]}, ensure_ascii=False),
         encoding="utf-8",
     )
-    (glossary / "term_registry.json").write_text(json.dumps({"terms": []}), encoding="utf-8")
+    (glossary / "term_registry.json").write_text(
+        json.dumps({"terms": [{
+            "id": LOCKED_TERM_ID,
+            "category": "stat",
+            "ja": ["パワー"],
+            "zh_cn": ["力量"],
+            "target_vi": "Power",
+            "locked": True,
+        }]}, ensure_ascii=False),
+        encoding="utf-8",
+    )
     (glossary / "canonical_findings.json").write_text(
         json.dumps({"findings": [{
             "finding_id": FINDING_ID,

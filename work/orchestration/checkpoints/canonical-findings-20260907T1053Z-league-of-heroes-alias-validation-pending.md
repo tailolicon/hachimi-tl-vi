@@ -1,4 +1,4 @@
-# Canonical findings maintenance checkpoint — 英雄联赛 validation pending
+# Canonical findings maintenance checkpoint — 英雄联赛 complete
 
 Finding: `cf-61d905f4d2327086` (`英雄联赛`)
 Target: `League of Heroes`
@@ -18,7 +18,9 @@ To preserve the established canonical identity without broadening matching globa
 
 - Validate `34113675197`: `completed/success`.
 - Sync translation review plan `34113675253`: `completed/success`.
-- Sync translation context `34113675254` attempt 1: `completed/success` (previous durable evidence).
-- Sync translation context `34113675254` attempt 2: explicitly rerun unchanged and currently in progress. At the latest observed job state, checkout/setup/install and canonical prep steps through `Harden support-effect labels` have succeeded; `Run all finding hardeners` is in progress.
+- Sync translation context `34113675254` attempt 1: `completed/success` and produced the canonical context refresh.
+- Sync translation context `34113675254` attempt 2: explicit unchanged rerun, `completed/success` at `2026-09-07T11:02:23Z`; all context pipeline and commit-if-changed steps succeeded.
+- The latest commit touching `glossary/canonical_findings.json` remains bot commit `4d69c1da92838fee784a5601f8a8c64f7366929f` from attempt 1 (`2026-09-07T10:54:57Z`). No later generated-context commit was created by attempt 2, proving the required semantic no-op.
+- Prior durable state already verified the live finding has canonical resolution `League of Heroes` and is absent from `active_findings`.
 
-Keep maintenance `completed_count=191` until attempt 2 completes successfully, proves unchanged semantic no-op (`Context is already current.` / no generated-context change), and live finding resolution remains `League of Heroes` and inactive.
+Maintenance completion counter may advance from 191 to 192.

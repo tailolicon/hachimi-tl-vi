@@ -62,13 +62,12 @@ def _write(path: Path, payload: dict[str, Any]) -> None:
     path.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8", newline="\n")
 
 
-def _upsert(items: list[Any], record: dict[str, Any], id_field: str) -> None:
+def _replace(items: list[Any], record: dict[str, Any], id_field: str) -> None:
+    """Replace owned records exactly so removed legacy scope fields cannot survive a hardening update."""
     record_id = str(record[id_field])
     for index, item in enumerate(items):
         if isinstance(item, dict) and str(item.get(id_field) or "") == record_id:
-            merged = dict(item)
-            merged.update(record)
-            items[index] = merged
+            items[index] = dict(record)
             return
     items.append(dict(record))
 
@@ -79,7 +78,7 @@ def harden(repo_root: Path = ROOT) -> bool:
     community_path = repo_root / "glossary" / "ui_community_terms.json"
     community = _load(community_path, {"schema_version": 1, "terms": []})
     before = json.dumps(community, ensure_ascii=False, sort_keys=True)
-    _upsert(community.setdefault("terms", []), RULE, "id")
+    _replace(community.setdefault("terms", []), RULE, "id")
     if before != json.dumps(community, ensure_ascii=False, sort_keys=True):
         _write(community_path, community)
         changed = True
@@ -87,7 +86,7 @@ def harden(repo_root: Path = ROOT) -> bool:
     reviews_path = repo_root / "glossary" / "terminology_reviews.json"
     reviews = _load(reviews_path, {"schema_version": 1, "decisions": []})
     before = json.dumps(reviews, ensure_ascii=False, sort_keys=True)
-    _upsert(reviews.setdefault("decisions", []), DECISION, "decision_id")
+    _replace(reviews.setdefault("decisions", []), DECISION, "decision_id")
     if before != json.dumps(reviews, ensure_ascii=False, sort_keys=True):
         _write(reviews_path, reviews)
         changed = True

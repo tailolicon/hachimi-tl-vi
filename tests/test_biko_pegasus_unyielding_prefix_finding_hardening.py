@@ -63,10 +63,10 @@ def test_unyielding_prefix_is_ignored_without_collapsing_exact_variants(tmp_path
     assert exact_targets["不可动摇的热血誓言・英里"] == "Unyielding Vow - Mile"
 
 
-def test_unrelated_path_does_not_receive_ignore_resolution(tmp_path: Path) -> None:
+def test_distinct_full_variant_source_does_not_receive_prefix_ignore(tmp_path: Path) -> None:
     _seed(tmp_path)
     assert harden(tmp_path) is True
     finding = _finding()
-    finding["source_paths"] = ["localize_dict.json"]
+    finding["source_zh_cn"] = "不可动摇的热血誓言・短距离"
     resolved = refresh_canonical_resolutions(tmp_path, {"schema_version": 1, "findings": [finding]})
     assert resolved["findings"][0]["review_resolution"] is None

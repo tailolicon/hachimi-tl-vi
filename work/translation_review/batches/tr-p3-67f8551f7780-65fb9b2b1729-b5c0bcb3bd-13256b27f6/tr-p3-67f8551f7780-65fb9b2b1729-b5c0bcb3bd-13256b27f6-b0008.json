@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "policy_version": 3,
-  "plan_id": "tr-p3-67f8551f7780-d24c9ffe0189-b5c0bcb3bd-5a9c21a702",
-  "batch_id": "tr-p3-67f8551f7780-d24c9ffe0189-b5c0bcb3bd-5a9c21a702-b0008",
+  "plan_id": "tr-p3-67f8551f7780-65fb9b2b1729-b5c0bcb3bd-13256b27f6",
+  "batch_id": "tr-p3-67f8551f7780-65fb9b2b1729-b5c0bcb3bd-13256b27f6-b0008",
   "context_snapshot_sha256": "b5c0bcb3bd9ee5c45e7bedf49c8f8d6ad35c3ceb3c35f528c6381a63c684a967",
   "source_bridge_policy_sha256": "9f9f705179544c3cecdd73584192cae63915f47b04e090e4e9096bd49f97bcb8",
   "review_generation": "retrospective-canonical-full-review",
@@ -380,11 +380,31 @@
       "current_fingerprint": "9c1df0a5828237f3b8121b66fee6c77a8fc5b6f977ac965c1022acecaf7c52d4",
       "risk_flags": [
         "very_long_target",
-        "canonical_finding"
+        "community_term"
       ],
-      "risk_score": 43,
+      "risk_score": 5,
       "locked_terms": [],
-      "community_terms": [],
+      "community_terms": [
+        {
+          "id": "event.league_of_heroes.hero_league_alias",
+          "preferred": "League of Heroes",
+          "accepted": [
+            "League of Heroes",
+            "LoH"
+          ],
+          "forbidden": [
+            "Hero League",
+            "Liên minh Anh hùng"
+          ],
+          "matched_aliases": [
+            "英雄联赛"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Worker evidence uses zh-CN 英雄联赛 for the same named event already canonicalized as League of Heroes. Keep the established global event rule unchanged and bridge this alias only within localize_dict.json so generic 英雄/联赛 prose cannot inherit the event name."
+        }
+      ],
       "skill_name_canonical": null,
       "source_bridge_terms": [],
       "source_bridge_risks": [],
@@ -407,11 +427,33 @@
       "current_text": "Hãy để {0} thể hiện trong Hero League khiến mọi người\ncông nhận là Anh hùng {1} lần",
       "current_fingerprint": "25463109975790e8fdb143e9e324d5862ed8025fd130eb72d5ad13117d6278bb",
       "risk_flags": [
-        "canonical_finding"
+        "community_term",
+        "community_calque_risk",
+        "community_term_mismatch"
       ],
-      "risk_score": 40,
+      "risk_score": 16,
       "locked_terms": [],
-      "community_terms": [],
+      "community_terms": [
+        {
+          "id": "event.league_of_heroes.hero_league_alias",
+          "preferred": "League of Heroes",
+          "accepted": [
+            "League of Heroes",
+            "LoH"
+          ],
+          "forbidden": [
+            "Hero League",
+            "Liên minh Anh hùng"
+          ],
+          "matched_aliases": [
+            "英雄联赛"
+          ],
+          "accepted_present": false,
+          "forbidden_present": true,
+          "require_accepted": true,
+          "basis": "Worker evidence uses zh-CN 英雄联赛 for the same named event already canonicalized as League of Heroes. Keep the established global event rule unchanged and bridge this alias only within localize_dict.json so generic 英雄/联赛 prose cannot inherit the event name."
+        }
+      ],
       "skill_name_canonical": null,
       "source_bridge_terms": [],
       "source_bridge_risks": [],
@@ -435,9 +477,10 @@
       "current_fingerprint": "9bdb45f4d023902e07669599a0c1a0cb9bfe6e93beb74f104548deba216891e2",
       "risk_flags": [
         "community_term",
-        "canonical_finding"
+        "community_calque_risk",
+        "community_term_mismatch"
       ],
-      "risk_score": 42,
+      "risk_score": 16,
       "locked_terms": [
         {
           "id": "race.generic",
@@ -465,6 +508,25 @@
           "forbidden_present": false,
           "require_accepted": true,
           "basis": "Named League of Heroes stage."
+        },
+        {
+          "id": "event.league_of_heroes.hero_league_alias",
+          "preferred": "League of Heroes",
+          "accepted": [
+            "League of Heroes",
+            "LoH"
+          ],
+          "forbidden": [
+            "Hero League",
+            "Liên minh Anh hùng"
+          ],
+          "matched_aliases": [
+            "英雄联赛"
+          ],
+          "accepted_present": false,
+          "forbidden_present": true,
+          "require_accepted": true,
+          "basis": "Worker evidence uses zh-CN 英雄联赛 for the same named event already canonicalized as League of Heroes. Keep the established global event rule unchanged and bridge this alias only within localize_dict.json so generic 英雄/联赛 prose cannot inherit the event name."
         }
       ],
       "skill_name_canonical": null,
@@ -490,9 +552,10 @@
       "current_fingerprint": "3c7ccc2730a470443a0d4a93a1c2e1ce489bb022b6c422fa3f6ddbd144722045",
       "risk_flags": [
         "community_term",
-        "canonical_finding"
+        "community_calque_risk",
+        "community_term_mismatch"
       ],
-      "risk_score": 42,
+      "risk_score": 16,
       "locked_terms": [
         {
           "id": "race.generic",
@@ -520,6 +583,25 @@
           "forbidden_present": false,
           "require_accepted": true,
           "basis": "Named League of Heroes stage."
+        },
+        {
+          "id": "event.league_of_heroes.hero_league_alias",
+          "preferred": "League of Heroes",
+          "accepted": [
+            "League of Heroes",
+            "LoH"
+          ],
+          "forbidden": [
+            "Hero League",
+            "Liên minh Anh hùng"
+          ],
+          "matched_aliases": [
+            "英雄联赛"
+          ],
+          "accepted_present": false,
+          "forbidden_present": true,
+          "require_accepted": true,
+          "basis": "Worker evidence uses zh-CN 英雄联赛 for the same named event already canonicalized as League of Heroes. Keep the established global event rule unchanged and bridge this alias only within localize_dict.json so generic 英雄/联赛 prose cannot inherit the event name."
         }
       ],
       "skill_name_canonical": null,
@@ -544,11 +626,33 @@
       "current_text": "Hero League\n<color=#ff9900>Hạn chót nhận</color> phần thưởng đặc biệt sắp đến",
       "current_fingerprint": "88e5fd2341abefeab00ee22ce4898888864e187e383e5ffbfc007aab9092dcae",
       "risk_flags": [
-        "canonical_finding"
+        "community_term",
+        "community_calque_risk",
+        "community_term_mismatch"
       ],
-      "risk_score": 40,
+      "risk_score": 16,
       "locked_terms": [],
-      "community_terms": [],
+      "community_terms": [
+        {
+          "id": "event.league_of_heroes.hero_league_alias",
+          "preferred": "League of Heroes",
+          "accepted": [
+            "League of Heroes",
+            "LoH"
+          ],
+          "forbidden": [
+            "Hero League",
+            "Liên minh Anh hùng"
+          ],
+          "matched_aliases": [
+            "英雄联赛"
+          ],
+          "accepted_present": false,
+          "forbidden_present": true,
+          "require_accepted": true,
+          "basis": "Worker evidence uses zh-CN 英雄联赛 for the same named event already canonicalized as League of Heroes. Keep the established global event rule unchanged and bridge this alias only within localize_dict.json so generic 英雄/联赛 prose cannot inherit the event name."
+        }
+      ],
       "skill_name_canonical": null,
       "source_bridge_terms": [],
       "source_bridge_risks": [],
@@ -572,12 +676,34 @@
       "current_fingerprint": "bb0c5935ad70a9a15a70dc4858a64c8ef8073963e07f9a19dead8bd87b2c8234",
       "risk_flags": [
         "very_long_target",
-        "absence_risk",
-        "canonical_finding"
+        "community_term",
+        "community_calque_risk",
+        "community_term_mismatch",
+        "absence_risk"
       ],
-      "risk_score": 48,
+      "risk_score": 24,
       "locked_terms": [],
-      "community_terms": [],
+      "community_terms": [
+        {
+          "id": "event.league_of_heroes.hero_league_alias",
+          "preferred": "League of Heroes",
+          "accepted": [
+            "League of Heroes",
+            "LoH"
+          ],
+          "forbidden": [
+            "Hero League",
+            "Liên minh Anh hùng"
+          ],
+          "matched_aliases": [
+            "英雄联赛"
+          ],
+          "accepted_present": false,
+          "forbidden_present": true,
+          "require_accepted": true,
+          "basis": "Worker evidence uses zh-CN 英雄联赛 for the same named event already canonicalized as League of Heroes. Keep the established global event rule unchanged and bridge this alias only within localize_dict.json so generic 英雄/联赛 prose cannot inherit the event name."
+        }
+      ],
       "skill_name_canonical": null,
       "source_bridge_terms": [],
       "source_bridge_risks": [],
@@ -601,11 +727,31 @@
       "current_fingerprint": "c530526a1a94286788eac08d35b15c6c2ac02db141c5acd9591d526ae58b2501",
       "risk_flags": [
         "very_long_target",
-        "canonical_finding"
+        "community_term"
       ],
-      "risk_score": 43,
+      "risk_score": 5,
       "locked_terms": [],
-      "community_terms": [],
+      "community_terms": [
+        {
+          "id": "event.league_of_heroes.hero_league_alias",
+          "preferred": "League of Heroes",
+          "accepted": [
+            "League of Heroes",
+            "LoH"
+          ],
+          "forbidden": [
+            "Hero League",
+            "Liên minh Anh hùng"
+          ],
+          "matched_aliases": [
+            "英雄联赛"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Worker evidence uses zh-CN 英雄联赛 for the same named event already canonicalized as League of Heroes. Keep the established global event rule unchanged and bridge this alias only within localize_dict.json so generic 英雄/联赛 prose cannot inherit the event name."
+        }
+      ],
       "skill_name_canonical": null,
       "source_bridge_terms": [],
       "source_bridge_risks": [],
@@ -743,12 +889,32 @@
       "current_fingerprint": "e1b8e781d3fb7c322bc5f013a1f4624a4ba37630303e90ec25114d9089ced948",
       "risk_flags": [
         "very_long_target",
-        "absence_risk",
-        "canonical_finding"
+        "community_term",
+        "absence_risk"
       ],
-      "risk_score": 48,
+      "risk_score": 10,
       "locked_terms": [],
-      "community_terms": [],
+      "community_terms": [
+        {
+          "id": "event.league_of_heroes.hero_league_alias",
+          "preferred": "League of Heroes",
+          "accepted": [
+            "League of Heroes",
+            "LoH"
+          ],
+          "forbidden": [
+            "Hero League",
+            "Liên minh Anh hùng"
+          ],
+          "matched_aliases": [
+            "英雄联赛"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Worker evidence uses zh-CN 英雄联赛 for the same named event already canonicalized as League of Heroes. Keep the established global event rule unchanged and bridge this alias only within localize_dict.json so generic 英雄/联赛 prose cannot inherit the event name."
+        }
+      ],
       "skill_name_canonical": null,
       "source_bridge_terms": [],
       "source_bridge_risks": [],

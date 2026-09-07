@@ -74186,6 +74186,24 @@
       "note": "Skill 100831 is the JP-only Symboli Kris S unique Skill whose display title is exactly 'Mission: Triumph'. Lock the exact display title rather than the historical Vietnamese calque."
     },
     {
+      "decision_id": "audit.finding.condition-biko-pegasus-unyielding-vow-prefix",
+      "source_zh_cn": "不可动摇的热血誓言",
+      "action": "ignore",
+      "kind": "context_rule",
+      "category": "condition",
+      "invalidation_scope": "item",
+      "source_paths": [
+        "text_data_dict.json"
+      ],
+      "json_path_prefixes": [
+        [
+          "142"
+        ]
+      ],
+      "match_mode": "contains",
+      "note": "This worker-reported source is a lexical prefix shared by the exact Biko Pegasus Conditions 不可动摇的热血誓言・短距离 and 不可动摇的热血誓言・英里. Those full labels are already canonically locked as Unyielding Vow - Sprint and Unyielding Vow - Mile by the Biko Pegasus vow hardener. There is no standalone player-facing Condition represented by this prefix, so treating it as an independent canonical term would reintroduce the substring-family conflict. Ignore only this finding scope and preserve the exact full-label locks."
+    },
+    {
       "decision_id": "audit.finding.nakayama-uma-musume-stakes",
       "source_zh_cn": "中山赛马娘锦标",
       "action": "lock",

@@ -9668,6 +9668,32 @@
         "Character0050",
         "Character0196"
       ]
+    },
+    {
+      "id": "common.world.umamusume.training_shorthand",
+      "category": "world_term",
+      "source_aliases": [
+        "马娘"
+      ],
+      "preferred": "Mã Nương",
+      "accepted": [
+        "Mã Nương"
+      ],
+      "forbidden": [
+        "Uma Musume"
+      ],
+      "require_accepted": true,
+      "invalidation_scope": "item",
+      "source_paths": [
+        "text_data_dict.json"
+      ],
+      "json_path_prefixes": [
+        [
+          "130"
+        ]
+      ],
+      "match_mode": "contains",
+      "basis": "Category 130 uses 马娘 inside generic horse-girl/training labels such as 自主训练赛马娘. Resolve the short-token finding to Mã Nương only in this category, while keeping the collision-prone 马娘 alias out of global scope."
     }
   ]
 }

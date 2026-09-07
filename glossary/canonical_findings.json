@@ -24553,7 +24553,8 @@
         "Race-state mechanic occurring during a race",
         "Ordinary anxiety/impatience prose must not automatically normalize to the Rushed system label",
         "Generic Rushed alias must not overmatch the named Epiphaneia Condition 传至双腿的焦躁",
-        "Generic Rushed alias must not overmatch Epiphaneia Condition 传至双腿的焦躁"
+        "Generic Rushed alias must not overmatch Epiphaneia Condition 传至双腿的焦躁",
+        "System-label alias 焦躁 overmatching ordinary descriptive prose"
       ],
       "suggested_targets_vi": [],
       "confidence_levels": [
@@ -24563,9 +24564,10 @@
         "Repeated player-facing race-state/mechanic needs one verified canonical label instead of literal per-line translation.",
         "The same source token can occur in natural profile prose, so system-label matching needs a context guard.",
         "Exact Condition identity is established as I Won't Hold Back!!, while the generic Rushed substring rule incorrectly flags the longer Condition name.",
-        "Generic system-label matcher fires inside a verified named Condition and conflicts with its condition-specific canonical identity."
+        "Generic system-label matcher fires inside a verified named Condition and conflicts with its condition-specific canonical identity.",
+        "This reusable alias appears in a character profile sentence where it means ordinary anxiety/impatience, not the Rushed system label."
       ],
-      "evidence_count": 4,
+      "evidence_count": 5,
       "evidence": [
         {
           "uid": "zhcn:9fabd1ed50d8948e19ffcf4e",
@@ -24630,6 +24632,22 @@
           "current_text": "I Won't Hold Back!!",
           "proposed_text": null,
           "reported_at": "2026-09-06T14:06:10Z"
+        },
+        {
+          "uid": "zhcn:94c4d8986397fe8d462dc682",
+          "plan_id": "tr-p3-67f8551f7780-e32dfe6de18c-b5c0bcb3bd-3929728990",
+          "batch_id": "tr-p3-67f8551f7780-e32dfe6de18c-b5c0bcb3bd-3929728990-b0123",
+          "claim_id": "trc-gpt56sol-auto11-20260907T152846Z-b0123",
+          "worker_id": "gpt56sol-auto11-20260907T152846Z-review",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "167",
+            "1070"
+          ],
+          "source_text": "有焦躁时就会缩起来的习惯",
+          "current_text": "Có thói quen co đuôi lại khi sốt ruột",
+          "proposed_text": null,
+          "reported_at": "2026-09-07T15:32:30Z"
         }
       ],
       "canonical_resolution": {
@@ -24643,7 +24661,7 @@
         "target_vi": "Rushed"
       },
       "first_seen_at": "2026-08-31T11:19:30Z",
-      "last_seen_at": "2026-09-06T14:06:10Z"
+      "last_seen_at": "2026-09-07T15:32:30Z"
     },
     {
       "finding_id": "cf-9c3a9ad76cae6fe6",
@@ -25335,15 +25353,18 @@
       "kinds": [
         "context_rule"
       ],
-      "concepts": [],
+      "concepts": [
+        "Super-long-distance Skill labels"
+      ],
       "suggested_targets_vi": [],
       "confidence_levels": [
         "high"
       ],
       "reasons": [
-        "The generic 长距离→Long lock collides with the full-title canonical Skill mapping for 超长距离恢复○; canonical precedence for this compound needs to be explicit."
+        "The generic 长距离→Long lock collides with the full-title canonical Skill mapping for 超长距离恢复○; canonical precedence for this compound needs to be explicit.",
+        "The legacy distance.long mapping fires as a substring inside distinct 超长距离 Skill names, contradicting the audit rule that 长距离 must not match inside 超长距离; preserve exact reviewed Skill identities after adding the guard."
       ],
-      "evidence_count": 3,
+      "evidence_count": 4,
       "evidence": [
         {
           "uid": "zhcn:291054f3cc9c00403375d6f0",
@@ -25392,6 +25413,22 @@
           "current_text": "Hồi phục cự ly siêu dài ○",
           "proposed_text": null,
           "reported_at": "2026-09-03T06:26:13Z"
+        },
+        {
+          "uid": "zhcn:291054f3cc9c00403375d6f0",
+          "plan_id": "tr-p3-67f8551f7780-e32dfe6de18c-b5c0bcb3bd-3929728990",
+          "batch_id": "tr-p3-67f8551f7780-e32dfe6de18c-b5c0bcb3bd-3929728990-b0102",
+          "claim_id": "trc-gpt56sol-auto11-20260907T1550Z-b0102",
+          "worker_id": "gpt56sol-auto11-20260907T1550Z-review",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "147",
+            "2042901"
+          ],
+          "source_text": "超长距离恢复○",
+          "current_text": "Hồi phục cự ly siêu dài ○",
+          "proposed_text": null,
+          "reported_at": "2026-09-07T15:58:00Z"
         }
       ],
       "canonical_resolution": {
@@ -25401,7 +25438,7 @@
       },
       "review_resolution": null,
       "first_seen_at": "2026-09-03T06:26:13Z",
-      "last_seen_at": "2026-09-03T06:26:13Z"
+      "last_seen_at": "2026-09-07T15:58:00Z"
     },
     {
       "finding_id": "cf-a0c8767983424e78",
@@ -26983,7 +27020,8 @@
       "concepts": [
         "Exclude ordinary descriptive prose from standalone 至高无上 Skill-title matching",
         "Skill-name alias 至高无上 overmatching ordinary descriptive prose in character introduction",
-        "Skill-name alias 至高无上 must not overmatch ordinary narrative adjective phrase 至高无上的爱"
+        "Skill-name alias 至高无上 must not overmatch ordinary narrative adjective phrase 至高无上的爱",
+        "Skill-title alias 至高无上 overmatching ordinary prose"
       ],
       "suggested_targets_vi": [],
       "confidence_levels": [
@@ -26992,9 +27030,10 @@
       "reasons": [
         "Here it describes becoming a supreme Mã Nương, not a Skill title.",
         "Phrase appears inside 成为至高无上的赛马娘 as an adjective, not a Skill title; matcher needs narrower context.",
-        "A reviewed Skill-name matcher is firing inside ordinary profile prose where the phrase means 'supreme love', not the Skill identity."
+        "A reviewed Skill-name matcher is firing inside ordinary profile prose where the phrase means 'supreme love', not the Skill identity.",
+        "This reusable alias appears inside ordinary character-introduction prose and must not force the Skill title there."
       ],
-      "evidence_count": 3,
+      "evidence_count": 4,
       "evidence": [
         {
           "uid": "zhcn:8000bca260849022c06be772",
@@ -27043,6 +27082,22 @@
           "current_text": "Dâng tình yêu tối thượng cho những cuộc đua...\\nĐộc nhất vô song, đóa hoa ma mị nở trên đỉnh cao",
           "proposed_text": null,
           "reported_at": "2026-09-06T14:10:44Z"
+        },
+        {
+          "uid": "zhcn:8000bca260849022c06be772",
+          "plan_id": "tr-p3-67f8551f7780-e32dfe6de18c-b5c0bcb3bd-3929728990",
+          "batch_id": "tr-p3-67f8551f7780-e32dfe6de18c-b5c0bcb3bd-3929728990-b0123",
+          "claim_id": "trc-gpt56sol-auto11-20260907T152846Z-b0123",
+          "worker_id": "gpt56sol-auto11-20260907T152846Z-review",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "163",
+            "1085"
+          ],
+          "source_text": "我的名字是第一红宝石。\\n“成为至高无上的赛马娘”，是我家族的义务。\\n为了履行我身上背负的责任，我会继续向前。",
+          "current_text": "Tên tôi là Daiichi Ruby.\\n“Trở thành Uma Musume tối cao” là nghĩa vụ của gia tộc tôi.\\nĐể hoàn thành trách nhiệm mình gánh vác, tôi sẽ tiếp tục tiến bước.",
+          "proposed_text": null,
+          "reported_at": "2026-09-07T15:32:30Z"
         }
       ],
       "canonical_resolution": {
@@ -27056,7 +27111,7 @@
         "target_vi": "Hãy Là Tối Thượng"
       },
       "first_seen_at": "2026-09-05T09:54:30Z",
-      "last_seen_at": "2026-09-06T14:10:44Z"
+      "last_seen_at": "2026-09-07T15:32:30Z"
     },
     {
       "finding_id": "cf-abda2b1124d162ff",
@@ -35628,6 +35683,53 @@
       },
       "first_seen_at": "2026-08-31T06:56:02Z",
       "last_seen_at": "2026-08-31T06:56:02Z"
+    },
+    {
+      "finding_id": "cf-decb1c394ce1c982",
+      "status": "open",
+      "source_zh_cn": "ヤナガワタカオ",
+      "match_mode": "contains",
+      "source_paths": [
+        "text_data_dict.json"
+      ],
+      "key_exact": [],
+      "json_path_prefixes": [],
+      "kinds": [
+        "proper_name"
+      ],
+      "concepts": [
+        "Creator/staff credit name needs verified Latin/Roman spelling for Vietnamese release text"
+      ],
+      "suggested_targets_vi": [],
+      "confidence_levels": [
+        "high"
+      ],
+      "reasons": [
+        "The creator name remains CJK-only in a category-17 release credit and needs a verified Latin/Roman form before acceptance."
+      ],
+      "evidence_count": 1,
+      "evidence": [
+        {
+          "uid": "zhcn:2e90f87cb604eca48716feb4",
+          "plan_id": "tr-p3-67f8551f7780-e32dfe6de18c-b5c0bcb3bd-3929728990",
+          "batch_id": "tr-p3-67f8551f7780-e32dfe6de18c-b5c0bcb3bd-3929728990-b0124",
+          "claim_id": "trc-gpt56sol-auto11-20260907T153300Z-b0124",
+          "worker_id": "gpt56sol-auto11-20260907T153300Z-review",
+          "source_path": "text_data_dict.json",
+          "json_path": [
+            "17",
+            "1004"
+          ],
+          "source_text": "作词：磯谷佳江\\n作曲：ヤナガワタカオ 编曲：睦月周平\\n译：SinonJZH（萌娘百科）",
+          "current_text": "Lời: 磯谷佳江\\nSáng tác: ヤナガワタカオ  Phối khí: 睦月周平\\nDịch: SinonJZH（萌娘百科）",
+          "proposed_text": null,
+          "reported_at": "2026-09-07T15:37:00Z"
+        }
+      ],
+      "canonical_resolution": null,
+      "review_resolution": null,
+      "first_seen_at": "2026-09-07T15:37:00Z",
+      "last_seen_at": "2026-09-07T15:37:00Z"
     },
     {
       "finding_id": "cf-df66d1828a60839c",

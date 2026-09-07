@@ -6,15 +6,15 @@
   "claim_id": "canonical-findings-maintenance-gpt56sol-auto11-20260907T0357Z",
   "worker_id": "gpt56sol-auto11-20260907-1057-maintenance",
   "claimed_at": "2026-09-07T03:57:04Z",
-  "heartbeat_at": "2026-09-07T04:08:00Z",
-  "lease_expires_at": "2026-09-07T04:14:00Z",
+  "heartbeat_at": "2026-09-07T04:12:30Z",
+  "lease_expires_at": "2026-09-07T04:18:30Z",
   "branch": "main",
   "handoff_from_claim_id": "canonical-findings-maintenance-gpt56sol-auto11-20260907T0348Z",
-  "progress_token": "0b72038ba5a84d0af7b63bc541e61388f90a957a",
+  "progress_token": "6d1cd2b4ff74e29ca8f6c56062b8d4a207d56fce",
   "progress_kind": "canonical_finding_checkpoint",
-  "progress_ref": "scripts/harden_tanino_gimlet_v_row_source_bridge_finding.py@0b72038ba5a84d0af7b63bc541e61388f90a957a",
-  "last_progress_at": "2026-09-07T04:06:03Z",
+  "progress_ref": "tests/test_scoped_source_bridge_override_resolution.py@6d1cd2b4ff74e29ca8f6c56062b8d4a207d56fce",
+  "last_progress_at": "2026-09-07T04:12:00Z",
   "completed_count": 177,
-  "partial_result_path": "scripts/harden_tanino_gimlet_v_row_source_bridge_finding.py",
-  "continuation": "Resume cf-46c6157b0331a647. Existing Tanino Gimlet V-row source-bridge hardener/test were correct but the hardener filename was outside production Sync glob harden_*_finding.py. Commit 0b72038ba5a84d0af7b63bc541e61388f90a957a adds a production entry-point wrapper. Validate run 34081865465 and Sync translation context run 34081865411 were triggered; verify them, confirm regenerated finding resolves to the exact Tanino Gimlet profile bridge, then perform/confirm unchanged no-op Sync before completion."
+  "partial_result_path": "tests/test_scoped_source_bridge_override_resolution.py",
+  "continuation": "Resume cf-46c6157b0331a647. Production Sync attempt 1 on wiring commit 0b72038 succeeded with 794 tests; wrapper changed=true pre-apply then false on second pass, but live finding stayed active because its aggregate json_path_prefixes is empty while evidence retains [164,1084]. Commits ad94fc74858644f5f5f2a4f3dbbe3891d4333a09 and 6d1cd2b4ff74e29ca8f6c56062b8d4a207d56fce extend scoped canonical override resolution to source_bridge rules using all-evidence coverage and add regression tests. Validate run 34082214957 is queued/running. After validation, run production Sync from current main, verify cf-46c resolves to source_bridge.tanino_gimlet.v_row_profile, then unchanged no-op Sync before completion."
 }

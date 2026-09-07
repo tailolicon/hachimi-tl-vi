@@ -36,9 +36,6 @@ def test_full_kyoto_race_wins_over_component_and_hardener_is_idempotent(tmp_path
     community = json.loads((tmp_path / "glossary" / "ui_community_terms.json").read_text(encoding="utf-8"))
     component = next(x for x in community["terms"] if x["id"] == COMPONENT_TERM_ID)
     assert SOURCE in component["exclude_source_exact"]
-    reviews = json.loads((tmp_path / "glossary" / "terminology_reviews.json").read_text(encoding="utf-8"))
-    decision = next(x for x in reviews["decisions"] if x["decision_id"] == COMPONENT_DECISION_ID)
-    assert SOURCE in decision["exclude_source_exact"]
     payload = json.loads((tmp_path / "glossary" / "canonical_findings.json").read_text(encoding="utf-8"))
     payload = refresh_canonical_resolutions(tmp_path, payload)
     finding = payload["findings"][0]

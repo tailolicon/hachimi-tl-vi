@@ -245,6 +245,10 @@ def update_registry(repo_root: Path) -> bool:
         "style.nige": {"target_vi": "Front Runner"},
         "style.senko": {"target_vi": "Pace Chaser"},
         "style.sashi": {"target_vi": "Late Surger"},
+        "reviewed.skill_name.337707aae500": {
+            "target_vi": "Mẹo Late Surger○",
+            "note": "Verified 差しコツ○ / 居中诀窍○ Skill title aligned with the canonical Late Surger running-style vocabulary; supersedes the legacy Sashi lock.",
+        },
         "style.oikomi": {"target_vi": "End Closer"},
         "style.dai_nige": {
             "target_vi": "Runaway",

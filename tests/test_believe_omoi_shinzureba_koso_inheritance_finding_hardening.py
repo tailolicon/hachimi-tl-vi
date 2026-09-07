@@ -8,6 +8,7 @@ from scripts.harden_believe_omoi_shinzureba_koso_inheritance_finding import (
     DECISION_ID,
     FINDING_ID,
     RULE,
+    SKILL_PREFIXES,
     SOURCE_ZH,
     TARGET,
     TERM_ID,
@@ -54,12 +55,13 @@ def test_hardener_resolves_inheritance_alias_and_is_idempotent(tmp_path: Path) -
     assert rule["preferred"] == TARGET
     assert rule["source_aliases"] == [SOURCE_ZH]
     assert rule["source_paths"] == ["text_data_dict.json"]
-    assert rule["json_path_prefixes"] == [["172"]]
+    assert rule["json_path_prefixes"] == SKILL_PREFIXES == [["47"], ["172"]]
     assert rule["match_mode"] == "contains"
 
     reviews = json.loads((tmp_path / "glossary" / "terminology_reviews.json").read_text(encoding="utf-8"))
     decision = next(item for item in reviews["decisions"] if item["decision_id"] == DECISION_ID)
     assert decision["target_vi"] == TARGET
+    assert decision["json_path_prefixes"] == SKILL_PREFIXES
 
     ledger = json.loads((tmp_path / "glossary" / "canonical_findings.json").read_text(encoding="utf-8"))
     resolved_ledger = refresh_canonical_resolutions(tmp_path, ledger)
@@ -77,7 +79,23 @@ def test_hardener_resolves_inheritance_alias_and_is_idempotent(tmp_path: Path) -
     assert active_findings(resolved_ledger) == []
 
 
-def test_inheritance_alias_does_not_escape_category_172_or_text_data(tmp_path: Path) -> None:
+def test_alias_resolves_skill_registry_category_47(tmp_path: Path) -> None:
+    _seed(tmp_path)
+    assert harden(tmp_path) is True
+
+    skill_registry_finding = _finding(prefix="47")
+    skill_registry_finding["suggested_targets_vi"] = [TARGET]
+    resolved = refresh_canonical_resolutions(
+        tmp_path, {"schema_version": 1, "findings": [skill_registry_finding]}
+    )["findings"][0]
+    assert resolved["canonical_resolution"] == {
+        "layer": "community",
+        "term_id": TERM_ID,
+        "target_vi": TARGET,
+    }
+
+
+def test_alias_does_not_escape_skill_scopes_or_text_data(tmp_path: Path) -> None:
     _seed(tmp_path)
     assert harden(tmp_path) is True
 

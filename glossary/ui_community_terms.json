@@ -9216,6 +9216,28 @@
       ],
       "match_mode": "exact",
       "basis": "characters.json and character.rhein_kraft canonically identify 莱茵力量 as Rhein Kraft. In text_data category 113 this exact source is the Character Piece label, so 力量 is part of the proper name rather than the Power stat. Preserve the already-correct Vietnamese label."
+    },
+    {
+      "id": "skill.mission_triumph.unique",
+      "category": "skill_name",
+      "source_aliases": [
+        "任务：凯旋"
+      ],
+      "preferred": "Mission: Triumph",
+      "compact": [],
+      "accepted": [
+        "Mission: Triumph"
+      ],
+      "forbidden": [
+        "Nhiệm vụ: Khải hoàn"
+      ],
+      "require_accepted": true,
+      "invalidation_scope": "item",
+      "source_paths": [
+        "text_data_dict.json"
+      ],
+      "match_mode": "contains",
+      "basis": "Pinned curation identifies Skill 100831. Independent JP skill references verify its player-facing display title is already the English string 'Mission: Triumph'; the zh-CN bridge renders it as 任务：凯旋. Preserve the exact JP display title instead of translating the bridge semantics."
     }
   ]
 }

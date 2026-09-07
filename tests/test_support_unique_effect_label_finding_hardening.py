@@ -2,7 +2,14 @@ import json
 from pathlib import Path
 
 from scripts.canonical_findings import refresh_canonical_resolutions
-from scripts.harden_support_unique_effect_label_finding import ALIAS, DECISION_ID, TARGET, TERM_ID, harden
+from scripts.harden_support_unique_effect_label_finding import (
+    ALIAS,
+    DECISION_ID,
+    REVIEWED_TERM_ID,
+    TARGET,
+    TERM_ID,
+    harden,
+)
 
 
 def _write(path: Path, payload: dict) -> None:
@@ -57,6 +64,14 @@ def test_hardener_is_idempotent_and_resolves_known_localize_keys(tmp_path: Path)
     assert term["match_mode"] == "contains"
     assert "Bonus riêng" in term["forbidden"]
 
+    reviews = json.loads((glossary / "terminology_reviews.json").read_text(encoding="utf-8"))
+    decision = next(item for item in reviews["decisions"] if item["decision_id"] == DECISION_ID)
+    assert decision["term_id"] == REVIEWED_TERM_ID
+    assert decision["target_vi"] == TARGET
+    assert decision["source_paths"] == ["localize_dict.json"]
+    assert decision["key_exact"] == ["Character0050", "Character0196"]
+    assert decision["match_mode"] == "contains"
+
     for finding in (_finding(), _finding("固有加成详情", "Character0196")):
         resolved = refresh_canonical_resolutions(
             tmp_path,
@@ -72,6 +87,34 @@ def test_hardener_is_idempotent_and_resolves_known_localize_keys(tmp_path: Path)
             "term_id": TERM_ID,
             "target_vi": TARGET,
         }
+
+
+def test_hardener_migrates_stale_reviewed_registry_term(tmp_path: Path) -> None:
+    glossary = _seed(tmp_path)
+    _write(
+        glossary / "term_registry.json",
+        {
+            "schema_version": 1,
+            "terms": [
+                {
+                    "id": REVIEWED_TERM_ID,
+                    "category": "system_label",
+                    "zh_cn": [ALIAS],
+                    "target_vi": "Hiệu ứng riêng",
+                    "locked": True,
+                    "review": {"decision_id": DECISION_ID, "source": "glossary/terminology_reviews.json"},
+                }
+            ],
+        },
+    )
+    assert harden(tmp_path) is True
+    assert harden(tmp_path) is False
+    registry = json.loads((glossary / "term_registry.json").read_text(encoding="utf-8"))
+    term = registry["terms"][0]
+    assert term["target_vi"] == TARGET
+    assert term["source_paths"] == ["localize_dict.json"]
+    assert term["key_exact"] == ["Character0050", "Character0196"]
+    assert term["match_mode"] == "contains"
 
 
 def test_scope_does_not_touch_named_unique_effects_or_unrelated_localize_keys(tmp_path: Path) -> None:

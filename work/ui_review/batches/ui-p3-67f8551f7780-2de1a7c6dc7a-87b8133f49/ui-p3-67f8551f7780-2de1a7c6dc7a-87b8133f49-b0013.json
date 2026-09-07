@@ -1,0 +1,1204 @@
+{
+  "schema_version": 1,
+  "policy_version": 3,
+  "plan_id": "ui-p3-67f8551f7780-2de1a7c6dc7a-87b8133f49",
+  "batch_id": "ui-p3-67f8551f7780-2de1a7c6dc7a-87b8133f49-b0013",
+  "source_commit": "67f8551f77807292cebd2b20b2c752b652393835",
+  "source_queue_git_commit": "ba3815ed06a2a9bb3fddb38a6e1ea7ca64506da2",
+  "terminology_snapshot_sha256": "87b8133f498d975dde4c19896dabd59a10adbc77edf99c8c03dcb7ad0eafa8d8",
+  "review_generation": "full-semantic-community-reset",
+  "items": [
+    {
+      "key": "Gacha0064",
+      "path": [
+        "Gacha0064"
+      ],
+      "source_text": "可从<color=#ff911c>兑换阵容</color>中兑换支援卡",
+      "source_fingerprint": "85e8c4f9f89844f096b9da08160602bca509689764c9a2a808e3cee5e2c7b6dd",
+      "source_batch": 21,
+      "uid": "zhcn:1d49cbe7b8b39e1a8b6a51b4",
+      "current_text": "Có thể đổi Support Card từ <color=#ff911c>Danh sách đổi</color>",
+      "current_fingerprint": "e7d4f7dccba51873aba4ba985675f12818de7bd1b02de7cf24216ad3beb04770",
+      "source_visual_width": 12.0,
+      "current_visual_width": 21.2,
+      "risk_flags": [
+        "overflow_risk",
+        "wide_label",
+        "community_term"
+      ],
+      "risk_score": 8,
+      "community_terms": [
+        {
+          "id": "common.support_card",
+          "preferred": "Support Card",
+          "accepted": [
+            "Support Card"
+          ],
+          "forbidden": [
+            "Thẻ hỗ trợ"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Common player-facing Uma Musume term; preserve Support Card in English."
+        }
+      ]
+    },
+    {
+      "key": "Gacha0074",
+      "path": [
+        "Gacha0074"
+      ],
+      "source_text": "现在没有开放的奖池",
+      "source_fingerprint": "3d3d880064c1c0c076c65a5725e410d1737c2db25e1cc1cda1037120b5f551ea",
+      "source_batch": 21,
+      "uid": "zhcn:782cae85de906d3c4540c4fc",
+      "current_text": "Không có banner đang mở",
+      "current_fingerprint": "a247bbee56a999eeba23ebd257f9e56d7e4cf6cab1c5ecfb85dd56bc646c5f4d",
+      "source_visual_width": 9.0,
+      "current_visual_width": 12.34,
+      "risk_flags": [
+        "community_term",
+        "community_term_mismatch"
+      ],
+      "risk_score": 8,
+      "community_terms": [
+        {
+          "id": "common.scout.character0146",
+          "preferred": "Chiêu mộ",
+          "accepted": [
+            "Chiêu mộ"
+          ],
+          "forbidden": [
+            "Kho quà"
+          ],
+          "accepted_present": false,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Cross-locale identity maps Character0146 to Scout. The zh-CN surface 奖池 is lossy here, so this bridge is exact-key scoped and must not affect ordinary prize/gacha pool uses elsewhere."
+        }
+      ]
+    },
+    {
+      "key": "Gacha0093",
+      "path": [
+        "Gacha0093"
+      ],
+      "source_text": "育成赛马娘详情",
+      "source_fingerprint": "43e79332e830885779a621515bde65ba197ce1724ab78ed9668329a9e25cf51c",
+      "source_batch": 22,
+      "uid": "zhcn:808ab2bdd7fc1faea3cdf59f",
+      "current_text": "Chi tiết Trainee",
+      "current_fingerprint": "b1bcb782eb453418889d9e6bcac8a4184fed374bebacc84dcd894e949fb0e84f",
+      "source_visual_width": 7.0,
+      "current_visual_width": 8.78,
+      "risk_flags": [
+        "community_term",
+        "community_term_mismatch"
+      ],
+      "risk_score": 8,
+      "community_terms": [
+        {
+          "id": "common.world.umamusume",
+          "preferred": "Mã Nương",
+          "accepted": [
+            "Mã Nương"
+          ],
+          "forbidden": [
+            "Uma Musume"
+          ],
+          "accepted_present": false,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Generic 赛马娘 is the project world/species term Mã Nương, but it must not fire inside established ウマ娘ステークス race-name forms represented by 赛马娘锦标."
+        },
+        {
+          "id": "common_ui.details.roommatch0117",
+          "preferred": "Chi tiết",
+          "accepted": [
+            "Chi tiết"
+          ],
+          "forbidden": [],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "RoomMatch0117 is a standalone Details control. Exact-key scope avoids matching the same source word inside compound detail headings."
+        },
+        {
+          "id": "career.ui.trainee.text_data",
+          "preferred": "Trainee",
+          "accepted": [
+            "Trainee"
+          ],
+          "forbidden": [
+            "Uma Musume huấn luyện",
+            "Uma Musume Huấn luyện",
+            "Mã Nương huấn luyện"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "The repository already defines the full compound 育成赛马娘 / 育成ウマ娘 as the player-facing Trainee concept and explicitly excludes it from generic Umamusume matching. Extend that same full-compound identity to text_data descriptions. This does not map bare 育成 or bare 赛马娘 and therefore avoids the ambiguity that required the original localize_dict key scoping."
+        },
+        {
+          "id": "world.umamusume.shorthand.text130",
+          "preferred": "Mã Nương",
+          "accepted": [
+            "Mã Nương"
+          ],
+          "forbidden": [
+            "Uma Musume"
+          ],
+          "accepted_present": false,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Generic zh-CN shorthand 马娘 refers to the same world/species concept as 赛马娘 in this text-data category. Reuse the repository's established Vietnamese world term Mã Nương, but keep the rule category-scoped so unrelated proper-name or source-bridge uses elsewhere are not broadened automatically."
+        },
+        {
+          "id": "common.world.umamusume.profile_shorthand",
+          "preferred": "Mã Nương",
+          "accepted": [
+            "Mã Nương"
+          ],
+          "forbidden": [
+            "Uma Musume"
+          ],
+          "accepted_present": false,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Category 144 contains character-profile taglines that use 马娘 inside generic 赛马娘 species references. Resolve the worker-reported short-token finding to the project world term Mã Nương without making 马娘 a global alias."
+        },
+        {
+          "id": "world.umamusume.shorthand.schedulebook",
+          "preferred": "Mã Nương",
+          "accepted": [
+            "Mã Nương"
+          ],
+          "forbidden": [
+            "Uma Musume"
+          ],
+          "accepted_present": false,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "The six evidence-bearing ScheduleBook UI strings use zh-CN 马娘 as the generic Umamusume world/species shorthand. Reuse the established Vietnamese term Mã Nương, but keep this short alias restricted to the reviewed ScheduleBook keys so unrelated proper-name or source-bridge uses in localize_dict.json are not broadened automatically."
+        }
+      ]
+    },
+    {
+      "key": "Gacha124002",
+      "path": [
+        "Gacha124002"
+      ],
+      "source_text": "1日{0}免费抽奖机会({1}次)的\n<color=#ff9900>使用期限将至</color>",
+      "source_fingerprint": "915ef11261288ea41de0663dd9849385f53bb7e64bce35f7170b2f51f6bab1c9",
+      "source_batch": 22,
+      "uid": "zhcn:e0c853bb1ec2d4b9bcb3bb19",
+      "current_text": "Gacha miễn phí {0}/ngày ({1} lần)\n<color=#ff9900>sắp hết hạn</color>",
+      "current_fingerprint": "ce0ed001d9ae17fdbc689b6f1e911ef525295889d1cbd85e6f2dc9010d589fdc",
+      "source_visual_width": 11.5,
+      "current_visual_width": 14.97,
+      "risk_flags": [
+        "community_term",
+        "community_term_mismatch"
+      ],
+      "risk_score": 8,
+      "community_terms": [
+        {
+          "id": "common_ui.use.common0013",
+          "preferred": "Sử dụng",
+          "accepted": [
+            "Sử dụng",
+            "Dùng"
+          ],
+          "forbidden": [],
+          "accepted_present": false,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Common0013 is a generic Use control. Exact-key scope keeps ordinary prose about using an item outside this canonical UI rule."
+        }
+      ]
+    },
+    {
+      "key": "Gacha424005",
+      "path": [
+        "Gacha424005"
+      ],
+      "source_text": "选择中的赛马娘奖池",
+      "source_fingerprint": "a1a7ce14ca7d06389d38e9ef506c93d7e5f3d3daba7d39de8aaf497ffd6eb6f4",
+      "source_batch": 22,
+      "uid": "zhcn:f48c7fa94d1604fdb3d29ea1",
+      "current_text": "Banner Mã Nương đang chọn",
+      "current_fingerprint": "6240a037e33fcc3024e5d5954df406fa0d3c5b5502527a80d31d912d1a97dbdb",
+      "source_visual_width": 9.0,
+      "current_visual_width": 13.5,
+      "risk_flags": [
+        "community_term",
+        "community_term_mismatch"
+      ],
+      "risk_score": 8,
+      "community_terms": [
+        {
+          "id": "common.world.umamusume",
+          "preferred": "Mã Nương",
+          "accepted": [
+            "Mã Nương"
+          ],
+          "forbidden": [
+            "Uma Musume"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Generic 赛马娘 is the project world/species term Mã Nương, but it must not fire inside established ウマ娘ステークス race-name forms represented by 赛马娘锦标."
+        },
+        {
+          "id": "common_ui.selecting.common0005",
+          "preferred": "Đang chọn",
+          "accepted": [
+            "Đang chọn"
+          ],
+          "forbidden": [],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Common0005 is the generic Selecting status. Exact-key scope avoids treating selection prose as a fixed label."
+        },
+        {
+          "id": "world.umamusume.shorthand.text130",
+          "preferred": "Mã Nương",
+          "accepted": [
+            "Mã Nương"
+          ],
+          "forbidden": [
+            "Uma Musume"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Generic zh-CN shorthand 马娘 refers to the same world/species concept as 赛马娘 in this text-data category. Reuse the repository's established Vietnamese world term Mã Nương, but keep the rule category-scoped so unrelated proper-name or source-bridge uses elsewhere are not broadened automatically."
+        },
+        {
+          "id": "common.world.umamusume.profile_shorthand",
+          "preferred": "Mã Nương",
+          "accepted": [
+            "Mã Nương"
+          ],
+          "forbidden": [
+            "Uma Musume"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Category 144 contains character-profile taglines that use 马娘 inside generic 赛马娘 species references. Resolve the worker-reported short-token finding to the project world term Mã Nương without making 马娘 a global alias."
+        },
+        {
+          "id": "world.umamusume.shorthand.schedulebook",
+          "preferred": "Mã Nương",
+          "accepted": [
+            "Mã Nương"
+          ],
+          "forbidden": [
+            "Uma Musume"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "The six evidence-bearing ScheduleBook UI strings use zh-CN 马娘 as the generic Umamusume world/species shorthand. Reuse the established Vietnamese term Mã Nương, but keep this short alias restricted to the reviewed ScheduleBook keys so unrelated proper-name or source-bridge uses in localize_dict.json are not broadened automatically."
+        },
+        {
+          "id": "common.scout.character0146",
+          "preferred": "Chiêu mộ",
+          "accepted": [
+            "Chiêu mộ"
+          ],
+          "forbidden": [
+            "Kho quà"
+          ],
+          "accepted_present": false,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Cross-locale identity maps Character0146 to Scout. The zh-CN surface 奖池 is lossy here, so this bridge is exact-key scoped and must not affect ordinary prize/gacha pool uses elsewhere."
+        }
+      ]
+    },
+    {
+      "key": "Gacha424010",
+      "path": [
+        "Gacha424010"
+      ],
+      "source_text": "奖池\n切换",
+      "source_fingerprint": "825728174f2d037f9ead7d687236f914dccea54930545661c9f9bcf7462832b3",
+      "source_batch": 22,
+      "uid": "zhcn:59d05f084fd77e53b8434882",
+      "current_text": "Chuyển\nbanner",
+      "current_fingerprint": "8e333e3fe7e098decdce30d8be68cd6f31c11c857f04a990da826b90dd090ad2",
+      "source_visual_width": 2.0,
+      "current_visual_width": 3.48,
+      "risk_flags": [
+        "community_term",
+        "community_term_mismatch"
+      ],
+      "risk_score": 8,
+      "community_terms": [
+        {
+          "id": "common.scout.character0146",
+          "preferred": "Chiêu mộ",
+          "accepted": [
+            "Chiêu mộ"
+          ],
+          "forbidden": [
+            "Kho quà"
+          ],
+          "accepted_present": false,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Cross-locale identity maps Character0146 to Scout. The zh-CN surface 奖池 is lossy here, so this bridge is exact-key scoped and must not affect ordinary prize/gacha pool uses elsewhere."
+        }
+      ]
+    },
+    {
+      "key": "Gacha424012",
+      "path": [
+        "Gacha424012"
+      ],
+      "source_text": "选择中的奖池",
+      "source_fingerprint": "cdb204a18c08a50b2a82e86d768eed5aa655ed532c020c155a32274bd255ca3b",
+      "source_batch": 22,
+      "uid": "zhcn:3456b5ef8573950545289d42",
+      "current_text": "Banner đang chọn",
+      "current_fingerprint": "e88aefd1c3ef37befd5235895aad892588f4e55d0d969a6a1292e687fa2105dc",
+      "source_visual_width": 6.0,
+      "current_visual_width": 8.78,
+      "risk_flags": [
+        "community_term",
+        "community_term_mismatch"
+      ],
+      "risk_score": 8,
+      "community_terms": [
+        {
+          "id": "common_ui.selecting.common0005",
+          "preferred": "Đang chọn",
+          "accepted": [
+            "Đang chọn"
+          ],
+          "forbidden": [],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Common0005 is the generic Selecting status. Exact-key scope avoids treating selection prose as a fixed label."
+        },
+        {
+          "id": "common.scout.character0146",
+          "preferred": "Chiêu mộ",
+          "accepted": [
+            "Chiêu mộ"
+          ],
+          "forbidden": [
+            "Kho quà"
+          ],
+          "accepted_present": false,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Cross-locale identity maps Character0146 to Scout. The zh-CN surface 奖池 is lossy here, so this bridge is exact-key scoped and must not affect ordinary prize/gacha pool uses elsewhere."
+        }
+      ]
+    },
+    {
+      "key": "Gacha497006",
+      "path": [
+        "Gacha497006"
+      ],
+      "source_text": "选择中的券奖池",
+      "source_fingerprint": "1a5994c77edd99c660f46753fa2d260d3650c30f7f11b8c4e4eda61c53281bd0",
+      "source_batch": 22,
+      "uid": "zhcn:a21c5c5f8166f7ae8823a60f",
+      "current_text": "Banner Vé đang chọn",
+      "current_fingerprint": "5cefeb1a5e67a3c30d36f056f27d16a7ac5eda3beb6e8cbd6c207e5a349af401",
+      "source_visual_width": 7.0,
+      "current_visual_width": 10.27,
+      "risk_flags": [
+        "community_term",
+        "community_term_mismatch"
+      ],
+      "risk_score": 8,
+      "community_terms": [
+        {
+          "id": "common_ui.selecting.common0005",
+          "preferred": "Đang chọn",
+          "accepted": [
+            "Đang chọn"
+          ],
+          "forbidden": [],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Common0005 is the generic Selecting status. Exact-key scope avoids treating selection prose as a fixed label."
+        },
+        {
+          "id": "common.scout.character0146",
+          "preferred": "Chiêu mộ",
+          "accepted": [
+            "Chiêu mộ"
+          ],
+          "forbidden": [
+            "Kho quà"
+          ],
+          "accepted_present": false,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Cross-locale identity maps Character0146 to Scout. The zh-CN surface 奖池 is lossy here, so this bridge is exact-key scoped and must not affect ordinary prize/gacha pool uses elsewhere."
+        }
+      ]
+    },
+    {
+      "key": "Gacha539001",
+      "path": [
+        "Gacha539001"
+      ],
+      "source_text": "出现育成赛马娘选择",
+      "source_fingerprint": "cdb1474a62364fab8fe462460a2aa1a23033a332318e8e145e118cf83d0787ce",
+      "source_batch": 22,
+      "uid": "zhcn:0666c80e73ec2831b59507d7",
+      "current_text": "Chọn Trainee sẽ xuất hiện",
+      "current_fingerprint": "1d95d649fbc88ff817faa2e06b223ad958d935ee492167c24c5bd6b59fab7fe4",
+      "source_visual_width": 9.0,
+      "current_visual_width": 13.5,
+      "risk_flags": [
+        "community_term",
+        "community_term_mismatch"
+      ],
+      "risk_score": 8,
+      "community_terms": [
+        {
+          "id": "common.world.umamusume",
+          "preferred": "Mã Nương",
+          "accepted": [
+            "Mã Nương"
+          ],
+          "forbidden": [
+            "Uma Musume"
+          ],
+          "accepted_present": false,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Generic 赛马娘 is the project world/species term Mã Nương, but it must not fire inside established ウマ娘ステークス race-name forms represented by 赛马娘锦标."
+        },
+        {
+          "id": "career.ui.trainee.text_data",
+          "preferred": "Trainee",
+          "accepted": [
+            "Trainee"
+          ],
+          "forbidden": [
+            "Uma Musume huấn luyện",
+            "Uma Musume Huấn luyện",
+            "Mã Nương huấn luyện"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "The repository already defines the full compound 育成赛马娘 / 育成ウマ娘 as the player-facing Trainee concept and explicitly excludes it from generic Umamusume matching. Extend that same full-compound identity to text_data descriptions. This does not map bare 育成 or bare 赛马娘 and therefore avoids the ambiguity that required the original localize_dict key scoping."
+        },
+        {
+          "id": "world.umamusume.shorthand.text130",
+          "preferred": "Mã Nương",
+          "accepted": [
+            "Mã Nương"
+          ],
+          "forbidden": [
+            "Uma Musume"
+          ],
+          "accepted_present": false,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Generic zh-CN shorthand 马娘 refers to the same world/species concept as 赛马娘 in this text-data category. Reuse the repository's established Vietnamese world term Mã Nương, but keep the rule category-scoped so unrelated proper-name or source-bridge uses elsewhere are not broadened automatically."
+        },
+        {
+          "id": "common.world.umamusume.profile_shorthand",
+          "preferred": "Mã Nương",
+          "accepted": [
+            "Mã Nương"
+          ],
+          "forbidden": [
+            "Uma Musume"
+          ],
+          "accepted_present": false,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Category 144 contains character-profile taglines that use 马娘 inside generic 赛马娘 species references. Resolve the worker-reported short-token finding to the project world term Mã Nương without making 马娘 a global alias."
+        },
+        {
+          "id": "world.umamusume.shorthand.schedulebook",
+          "preferred": "Mã Nương",
+          "accepted": [
+            "Mã Nương"
+          ],
+          "forbidden": [
+            "Uma Musume"
+          ],
+          "accepted_present": false,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "The six evidence-bearing ScheduleBook UI strings use zh-CN 马娘 as the generic Umamusume world/species shorthand. Reuse the established Vietnamese term Mã Nương, but keep this short alias restricted to the reviewed ScheduleBook keys so unrelated proper-name or source-bridge uses in localize_dict.json are not broadened automatically."
+        }
+      ]
+    },
+    {
+      "key": "Gacha539002",
+      "path": [
+        "Gacha539002"
+      ],
+      "source_text": "请选择将从奖池中出现的\n★3育成赛马娘",
+      "source_fingerprint": "d2dbbb436c8eab768b1fc053319ece95153d28195c1e645c1b0b595899121def",
+      "source_batch": 23,
+      "uid": "zhcn:ed2871bc96662c0ecd9227a6",
+      "current_text": "Hãy chọn Trainee ★3\nsẽ xuất hiện trong Gacha",
+      "current_fingerprint": "8ba3bcadc90b854be4fa336583d69432e21705b988f2d9020d83e4512af6331b",
+      "source_visual_width": 11.0,
+      "current_visual_width": 12.92,
+      "risk_flags": [
+        "community_term",
+        "community_term_mismatch"
+      ],
+      "risk_score": 8,
+      "community_terms": [
+        {
+          "id": "common.world.umamusume",
+          "preferred": "Mã Nương",
+          "accepted": [
+            "Mã Nương"
+          ],
+          "forbidden": [
+            "Uma Musume"
+          ],
+          "accepted_present": false,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Generic 赛马娘 is the project world/species term Mã Nương, but it must not fire inside established ウマ娘ステークス race-name forms represented by 赛马娘锦标."
+        },
+        {
+          "id": "career.ui.trainee.text_data",
+          "preferred": "Trainee",
+          "accepted": [
+            "Trainee"
+          ],
+          "forbidden": [
+            "Uma Musume huấn luyện",
+            "Uma Musume Huấn luyện",
+            "Mã Nương huấn luyện"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "The repository already defines the full compound 育成赛马娘 / 育成ウマ娘 as the player-facing Trainee concept and explicitly excludes it from generic Umamusume matching. Extend that same full-compound identity to text_data descriptions. This does not map bare 育成 or bare 赛马娘 and therefore avoids the ambiguity that required the original localize_dict key scoping."
+        },
+        {
+          "id": "world.umamusume.shorthand.text130",
+          "preferred": "Mã Nương",
+          "accepted": [
+            "Mã Nương"
+          ],
+          "forbidden": [
+            "Uma Musume"
+          ],
+          "accepted_present": false,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Generic zh-CN shorthand 马娘 refers to the same world/species concept as 赛马娘 in this text-data category. Reuse the repository's established Vietnamese world term Mã Nương, but keep the rule category-scoped so unrelated proper-name or source-bridge uses elsewhere are not broadened automatically."
+        },
+        {
+          "id": "common.world.umamusume.profile_shorthand",
+          "preferred": "Mã Nương",
+          "accepted": [
+            "Mã Nương"
+          ],
+          "forbidden": [
+            "Uma Musume"
+          ],
+          "accepted_present": false,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Category 144 contains character-profile taglines that use 马娘 inside generic 赛马娘 species references. Resolve the worker-reported short-token finding to the project world term Mã Nương without making 马娘 a global alias."
+        },
+        {
+          "id": "world.umamusume.shorthand.schedulebook",
+          "preferred": "Mã Nương",
+          "accepted": [
+            "Mã Nương"
+          ],
+          "forbidden": [
+            "Uma Musume"
+          ],
+          "accepted_present": false,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "The six evidence-bearing ScheduleBook UI strings use zh-CN 马娘 as the generic Umamusume world/species shorthand. Reuse the established Vietnamese term Mã Nương, but keep this short alias restricted to the reviewed ScheduleBook keys so unrelated proper-name or source-bridge uses in localize_dict.json are not broadened automatically."
+        },
+        {
+          "id": "common.scout.character0146",
+          "preferred": "Chiêu mộ",
+          "accepted": [
+            "Chiêu mộ"
+          ],
+          "forbidden": [
+            "Kho quà"
+          ],
+          "accepted_present": false,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Cross-locale identity maps Character0146 to Scout. The zh-CN surface 奖池 is lossy here, so this bridge is exact-key scoped and must not affect ordinary prize/gacha pool uses elsewhere."
+        }
+      ]
+    },
+    {
+      "key": "Gacha539003",
+      "path": [
+        "Gacha539003"
+      ],
+      "source_text": "出现支援卡选择",
+      "source_fingerprint": "3e43a387e9b3294d1086d5edfaf22cd9174f79f91349bc8187f9c5d8eacfb4c5",
+      "source_batch": 23,
+      "uid": "zhcn:3d6b9617f58c910eb8f2889b",
+      "current_text": "Xuất hiện lựa chọn Support Card",
+      "current_fingerprint": "ce4f24b6fe16a4d790e3f8234c171258a47be82a04c026c96ec1cac616e67091",
+      "source_visual_width": 7.0,
+      "current_visual_width": 16.73,
+      "risk_flags": [
+        "overflow_risk",
+        "wide_label",
+        "community_term"
+      ],
+      "risk_score": 8,
+      "community_terms": [
+        {
+          "id": "common.support_card",
+          "preferred": "Support Card",
+          "accepted": [
+            "Support Card"
+          ],
+          "forbidden": [
+            "Thẻ hỗ trợ"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Common player-facing Uma Musume term; preserve Support Card in English."
+        }
+      ]
+    },
+    {
+      "key": "Gacha539004",
+      "path": [
+        "Gacha539004"
+      ],
+      "source_text": "请选择将从奖池中出现的\nSSR支援卡",
+      "source_fingerprint": "4d2699267d4aa7d3547409051940a7842e621b6abfe051138e8a6c9470dd12f9",
+      "source_batch": 23,
+      "uid": "zhcn:1a37eb296fe85d1fabb39d6e",
+      "current_text": "Hãy chọn Support Card SSR\nsẽ xuất hiện trong Gacha",
+      "current_fingerprint": "50311597f66df1f9250dd8a1ef2fd8214992a4efc5d17eb9f5c6b773f1ebac9a",
+      "source_visual_width": 11.0,
+      "current_visual_width": 13.5,
+      "risk_flags": [
+        "community_term",
+        "community_term_mismatch"
+      ],
+      "risk_score": 8,
+      "community_terms": [
+        {
+          "id": "common.support_card",
+          "preferred": "Support Card",
+          "accepted": [
+            "Support Card"
+          ],
+          "forbidden": [
+            "Thẻ hỗ trợ"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Common player-facing Uma Musume term; preserve Support Card in English."
+        },
+        {
+          "id": "common.scout.character0146",
+          "preferred": "Chiêu mộ",
+          "accepted": [
+            "Chiêu mộ"
+          ],
+          "forbidden": [
+            "Kho quà"
+          ],
+          "accepted_present": false,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Cross-locale identity maps Character0146 to Scout. The zh-CN surface 奖池 is lossy here, so this bridge is exact-key scoped and must not affect ordinary prize/gacha pool uses elsewhere."
+        }
+      ]
+    },
+    {
+      "key": "Gacha539009",
+      "path": [
+        "Gacha539009"
+      ],
+      "source_text": "设定中的★3育成赛马娘",
+      "source_fingerprint": "5e637d1b08e4eda93c2873c2310ede292c47d194bcd8a179662306950340cd6d",
+      "source_batch": 23,
+      "uid": "zhcn:1cc83635249665e6e7c472b1",
+      "current_text": "Trainee ★3 đã chọn",
+      "current_fingerprint": "056288f76421ee49a45515f01e9babef31f69966024eaddad920e0f7a7538bfb",
+      "source_visual_width": 9.96,
+      "current_visual_width": 9.49,
+      "risk_flags": [
+        "community_term",
+        "community_term_mismatch"
+      ],
+      "risk_score": 8,
+      "community_terms": [
+        {
+          "id": "common.world.umamusume",
+          "preferred": "Mã Nương",
+          "accepted": [
+            "Mã Nương"
+          ],
+          "forbidden": [
+            "Uma Musume"
+          ],
+          "accepted_present": false,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Generic 赛马娘 is the project world/species term Mã Nương, but it must not fire inside established ウマ娘ステークス race-name forms represented by 赛马娘锦标."
+        },
+        {
+          "id": "career.ui.trainee.text_data",
+          "preferred": "Trainee",
+          "accepted": [
+            "Trainee"
+          ],
+          "forbidden": [
+            "Uma Musume huấn luyện",
+            "Uma Musume Huấn luyện",
+            "Mã Nương huấn luyện"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "The repository already defines the full compound 育成赛马娘 / 育成ウマ娘 as the player-facing Trainee concept and explicitly excludes it from generic Umamusume matching. Extend that same full-compound identity to text_data descriptions. This does not map bare 育成 or bare 赛马娘 and therefore avoids the ambiguity that required the original localize_dict key scoping."
+        },
+        {
+          "id": "world.umamusume.shorthand.text130",
+          "preferred": "Mã Nương",
+          "accepted": [
+            "Mã Nương"
+          ],
+          "forbidden": [
+            "Uma Musume"
+          ],
+          "accepted_present": false,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Generic zh-CN shorthand 马娘 refers to the same world/species concept as 赛马娘 in this text-data category. Reuse the repository's established Vietnamese world term Mã Nương, but keep the rule category-scoped so unrelated proper-name or source-bridge uses elsewhere are not broadened automatically."
+        },
+        {
+          "id": "common.world.umamusume.profile_shorthand",
+          "preferred": "Mã Nương",
+          "accepted": [
+            "Mã Nương"
+          ],
+          "forbidden": [
+            "Uma Musume"
+          ],
+          "accepted_present": false,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Category 144 contains character-profile taglines that use 马娘 inside generic 赛马娘 species references. Resolve the worker-reported short-token finding to the project world term Mã Nương without making 马娘 a global alias."
+        },
+        {
+          "id": "world.umamusume.shorthand.schedulebook",
+          "preferred": "Mã Nương",
+          "accepted": [
+            "Mã Nương"
+          ],
+          "forbidden": [
+            "Uma Musume"
+          ],
+          "accepted_present": false,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "The six evidence-bearing ScheduleBook UI strings use zh-CN 马娘 as the generic Umamusume world/species shorthand. Reuse the established Vietnamese term Mã Nương, but keep this short alias restricted to the reviewed ScheduleBook keys so unrelated proper-name or source-bridge uses in localize_dict.json are not broadened automatically."
+        }
+      ]
+    },
+    {
+      "key": "Gacha539012",
+      "path": [
+        "Gacha539012"
+      ],
+      "source_text": "出现SSR支援卡一览",
+      "source_fingerprint": "43bf67f1f2841862fa9b1216220592ed9b05031c7c7614fbf6c5be0427cd2c5d",
+      "source_batch": 23,
+      "uid": "zhcn:4c283fdb5f42ecd1838dcbcf",
+      "current_text": "Danh sách Support Card SSR xuất hiện",
+      "current_fingerprint": "80ed1b352cc7f20209ce3c9a1c7bc08989207b0a2ffacc08e01bcfa3f2b8f893",
+      "source_visual_width": 8.74,
+      "current_visual_width": 19.38,
+      "risk_flags": [
+        "overflow_risk",
+        "wide_label",
+        "community_term"
+      ],
+      "risk_score": 8,
+      "community_terms": [
+        {
+          "id": "common.support_card",
+          "preferred": "Support Card",
+          "accepted": [
+            "Support Card"
+          ],
+          "forbidden": [
+            "Thẻ hỗ trợ"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Common player-facing Uma Musume term; preserve Support Card in English."
+        }
+      ]
+    },
+    {
+      "key": "Gacha539019",
+      "path": [
+        "Gacha539019"
+      ],
+      "source_text": "选择确定出现★3",
+      "source_fingerprint": "436039100c04118ffcf8d63c199aae1bd350ad3460e46b7937311d34daea7630",
+      "source_batch": 23,
+      "uid": "zhcn:0170babaca148ce9370a3119",
+      "current_text": "Chọn ★3 chắc chắn",
+      "current_fingerprint": "85882ce8cee291af1f275bf8dced7bf8da68cba5073f3d84494cb8e9d8ea822b",
+      "source_visual_width": 6.96,
+      "current_visual_width": 8.91,
+      "risk_flags": [
+        "community_term",
+        "community_term_mismatch"
+      ],
+      "risk_score": 8,
+      "community_terms": [
+        {
+          "id": "common_ui.confirm.common0001",
+          "preferred": "Xác nhận",
+          "accepted": [
+            "Xác nhận"
+          ],
+          "forbidden": [],
+          "accepted_present": false,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Common0001 is the primary generic Confirm control. Exact-key scope prevents the broad source verb from forcing prose."
+        }
+      ]
+    },
+    {
+      "key": "Gacha539021",
+      "path": [
+        "Gacha539021"
+      ],
+      "source_text": "选择确定出现SSR",
+      "source_fingerprint": "cb105b5271600a509243822687f4eb64a329da6df7c8f5d1a71e7eec49445628",
+      "source_batch": 23,
+      "uid": "zhcn:8e893913342e1d489b72f3ed",
+      "current_text": "Chọn SSR chắc chắn",
+      "current_fingerprint": "d8d2593e8426d8908cfd5349a208325671524f1d625e2026ebd82664b64f2970",
+      "source_visual_width": 7.74,
+      "current_visual_width": 9.69,
+      "risk_flags": [
+        "community_term",
+        "community_term_mismatch"
+      ],
+      "risk_score": 8,
+      "community_terms": [
+        {
+          "id": "common_ui.confirm.common0001",
+          "preferred": "Xác nhận",
+          "accepted": [
+            "Xác nhận"
+          ],
+          "forbidden": [],
+          "accepted_present": false,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Common0001 is the primary generic Confirm control. Exact-key scope prevents the broad source verb from forcing prose."
+        }
+      ]
+    },
+    {
+      "key": "Gacha539038",
+      "path": [
+        "Gacha539038"
+      ],
+      "source_text": "可选择育成赛马娘{0}人",
+      "source_fingerprint": "88dd9e57fafbe607df8ba86121bb5c7887e6d959d8168a3d8dfa40a7db7b18dd",
+      "source_batch": 23,
+      "uid": "zhcn:c4dd84c89eac9f1efefe0f32",
+      "current_text": "Có thể chọn {0} Trainee",
+      "current_fingerprint": "fd6d3e9f4a8fa4c88634fcfbcd7c1208be004e16f13438f331a2c059c511d6c2",
+      "source_visual_width": 9.58,
+      "current_visual_width": 11.18,
+      "risk_flags": [
+        "community_term",
+        "community_term_mismatch"
+      ],
+      "risk_score": 8,
+      "community_terms": [
+        {
+          "id": "common.world.umamusume",
+          "preferred": "Mã Nương",
+          "accepted": [
+            "Mã Nương"
+          ],
+          "forbidden": [
+            "Uma Musume"
+          ],
+          "accepted_present": false,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Generic 赛马娘 is the project world/species term Mã Nương, but it must not fire inside established ウマ娘ステークス race-name forms represented by 赛马娘锦标."
+        },
+        {
+          "id": "career.ui.trainee.text_data",
+          "preferred": "Trainee",
+          "accepted": [
+            "Trainee"
+          ],
+          "forbidden": [
+            "Uma Musume huấn luyện",
+            "Uma Musume Huấn luyện",
+            "Mã Nương huấn luyện"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "The repository already defines the full compound 育成赛马娘 / 育成ウマ娘 as the player-facing Trainee concept and explicitly excludes it from generic Umamusume matching. Extend that same full-compound identity to text_data descriptions. This does not map bare 育成 or bare 赛马娘 and therefore avoids the ambiguity that required the original localize_dict key scoping."
+        },
+        {
+          "id": "world.umamusume.shorthand.text130",
+          "preferred": "Mã Nương",
+          "accepted": [
+            "Mã Nương"
+          ],
+          "forbidden": [
+            "Uma Musume"
+          ],
+          "accepted_present": false,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Generic zh-CN shorthand 马娘 refers to the same world/species concept as 赛马娘 in this text-data category. Reuse the repository's established Vietnamese world term Mã Nương, but keep the rule category-scoped so unrelated proper-name or source-bridge uses elsewhere are not broadened automatically."
+        },
+        {
+          "id": "common.world.umamusume.profile_shorthand",
+          "preferred": "Mã Nương",
+          "accepted": [
+            "Mã Nương"
+          ],
+          "forbidden": [
+            "Uma Musume"
+          ],
+          "accepted_present": false,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Category 144 contains character-profile taglines that use 马娘 inside generic 赛马娘 species references. Resolve the worker-reported short-token finding to the project world term Mã Nương without making 马娘 a global alias."
+        },
+        {
+          "id": "world.umamusume.shorthand.schedulebook",
+          "preferred": "Mã Nương",
+          "accepted": [
+            "Mã Nương"
+          ],
+          "forbidden": [
+            "Uma Musume"
+          ],
+          "accepted_present": false,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "The six evidence-bearing ScheduleBook UI strings use zh-CN 马娘 as the generic Umamusume world/species shorthand. Reuse the established Vietnamese term Mã Nương, but keep this short alias restricted to the reviewed ScheduleBook keys so unrelated proper-name or source-bridge uses in localize_dict.json are not broadened automatically."
+        }
+      ]
+    },
+    {
+      "key": "Gacha539043",
+      "path": [
+        "Gacha539043"
+      ],
+      "source_text": "选择中的★3育成赛马娘",
+      "source_fingerprint": "c8ab07ef0e455b4c0bba9ed4c5aedd018c4449dcd5b95ecd4ac81ccaeecfaa5a",
+      "source_batch": 23,
+      "uid": "zhcn:cf5200b0a5bb1bf8dec4596d",
+      "current_text": "★3 Trainee đang chọn",
+      "current_fingerprint": "98a85c59826b03fe023d6a4623a6fb8e0a7b2c10712238182c70fcb0bc36fbf7",
+      "source_visual_width": 9.96,
+      "current_visual_width": 10.65,
+      "risk_flags": [
+        "community_term",
+        "community_term_mismatch"
+      ],
+      "risk_score": 8,
+      "community_terms": [
+        {
+          "id": "common.world.umamusume",
+          "preferred": "Mã Nương",
+          "accepted": [
+            "Mã Nương"
+          ],
+          "forbidden": [
+            "Uma Musume"
+          ],
+          "accepted_present": false,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Generic 赛马娘 is the project world/species term Mã Nương, but it must not fire inside established ウマ娘ステークス race-name forms represented by 赛马娘锦标."
+        },
+        {
+          "id": "common_ui.selecting.common0005",
+          "preferred": "Đang chọn",
+          "accepted": [
+            "Đang chọn"
+          ],
+          "forbidden": [],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Common0005 is the generic Selecting status. Exact-key scope avoids treating selection prose as a fixed label."
+        },
+        {
+          "id": "career.ui.trainee.text_data",
+          "preferred": "Trainee",
+          "accepted": [
+            "Trainee"
+          ],
+          "forbidden": [
+            "Uma Musume huấn luyện",
+            "Uma Musume Huấn luyện",
+            "Mã Nương huấn luyện"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "The repository already defines the full compound 育成赛马娘 / 育成ウマ娘 as the player-facing Trainee concept and explicitly excludes it from generic Umamusume matching. Extend that same full-compound identity to text_data descriptions. This does not map bare 育成 or bare 赛马娘 and therefore avoids the ambiguity that required the original localize_dict key scoping."
+        },
+        {
+          "id": "world.umamusume.shorthand.text130",
+          "preferred": "Mã Nương",
+          "accepted": [
+            "Mã Nương"
+          ],
+          "forbidden": [
+            "Uma Musume"
+          ],
+          "accepted_present": false,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Generic zh-CN shorthand 马娘 refers to the same world/species concept as 赛马娘 in this text-data category. Reuse the repository's established Vietnamese world term Mã Nương, but keep the rule category-scoped so unrelated proper-name or source-bridge uses elsewhere are not broadened automatically."
+        },
+        {
+          "id": "common.world.umamusume.profile_shorthand",
+          "preferred": "Mã Nương",
+          "accepted": [
+            "Mã Nương"
+          ],
+          "forbidden": [
+            "Uma Musume"
+          ],
+          "accepted_present": false,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Category 144 contains character-profile taglines that use 马娘 inside generic 赛马娘 species references. Resolve the worker-reported short-token finding to the project world term Mã Nương without making 马娘 a global alias."
+        },
+        {
+          "id": "world.umamusume.shorthand.schedulebook",
+          "preferred": "Mã Nương",
+          "accepted": [
+            "Mã Nương"
+          ],
+          "forbidden": [
+            "Uma Musume"
+          ],
+          "accepted_present": false,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "The six evidence-bearing ScheduleBook UI strings use zh-CN 马娘 as the generic Umamusume world/species shorthand. Reuse the established Vietnamese term Mã Nương, but keep this short alias restricted to the reviewed ScheduleBook keys so unrelated proper-name or source-bridge uses in localize_dict.json are not broadened automatically."
+        }
+      ]
+    },
+    {
+      "key": "Gacha539046",
+      "path": [
+        "Gacha539046"
+      ],
+      "source_text": "出现SSR支援卡候补一览",
+      "source_fingerprint": "8610dadbd45df6736169f025b30dc1b87579e9131be81bdebfcb50cafaf76777",
+      "source_batch": 23,
+      "uid": "zhcn:73ef7f14a134000aa5e36822",
+      "current_text": "Danh sách ứng viên Support Card SSR xuất hiện",
+      "current_fingerprint": "ae47f0c7c8a28fbd89b43a1a53121a571a3ed73654f1026faf85899e963602a1",
+      "source_visual_width": 10.74,
+      "current_visual_width": 24.1,
+      "risk_flags": [
+        "overflow_risk",
+        "wide_label",
+        "community_term"
+      ],
+      "risk_score": 8,
+      "community_terms": [
+        {
+          "id": "common.support_card",
+          "preferred": "Support Card",
+          "accepted": [
+            "Support Card"
+          ],
+          "forbidden": [
+            "Thẻ hỗ trợ"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Common player-facing Uma Musume term; preserve Support Card in English."
+        }
+      ]
+    },
+    {
+      "key": "Gacha570002",
+      "path": [
+        "Gacha570002"
+      ],
+      "source_text": "候选Pick Up支援卡一览",
+      "source_fingerprint": "08d37f6a35a9ebade8f283fbfd77f14aed4ce3a1f722fd472b0411825bb4e463",
+      "source_batch": 23,
+      "uid": "zhcn:2245572257000993baea3324",
+      "current_text": "Danh sách ứng viên Support Card Pick Up",
+      "current_fingerprint": "d85fc15c1c3fe81036e83555e52ffe328c9873f63bca28140357ba95bdbfc6d7",
+      "source_visual_width": 10.81,
+      "current_visual_width": 20.87,
+      "risk_flags": [
+        "overflow_risk",
+        "wide_label",
+        "community_term"
+      ],
+      "risk_score": 8,
+      "community_terms": [
+        {
+          "id": "common.support_card",
+          "preferred": "Support Card",
+          "accepted": [
+            "Support Card"
+          ],
+          "forbidden": [
+            "Thẻ hỗ trợ"
+          ],
+          "accepted_present": true,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "Common player-facing Uma Musume term; preserve Support Card in English."
+        }
+      ]
+    }
+  ]
+}

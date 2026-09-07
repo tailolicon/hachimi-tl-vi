@@ -6,7 +6,10 @@ import json
 from pathlib import Path
 from typing import Any
 
-from scripts.harden_believe_omoi_shinzureba_koso_finding import SOURCE_JA, TARGET
+try:  # package import under pytest / python -m
+    from scripts.harden_believe_omoi_shinzureba_koso_finding import SOURCE_JA, TARGET
+except ModuleNotFoundError:  # direct execution: python scripts/harden_*_finding.py
+    from harden_believe_omoi_shinzureba_koso_finding import SOURCE_JA, TARGET
 
 ROOT = Path(__file__).resolve().parents[1]
 FINDING_ID = "cf-b20a7a534f5b700b"

@@ -8,7 +8,7 @@ ROOT = Path(__file__).resolve().parents[1]
 TERM_ID = "support.unique_effect.label"
 DECISION_ID = "audit.finding.support-unique-effect-label"
 ALIAS = "固有加成"
-TARGET = "Hiệu ứng riêng"
+TARGET = "Unique Effect"
 
 TERM = {
     "id": TERM_ID,
@@ -17,13 +17,13 @@ TERM = {
     "preferred": TARGET,
     "compact": [TARGET],
     "accepted": [TARGET],
-    "forbidden": ["Bonus riêng"],
+    "forbidden": ["Bonus riêng", "Hiệu ứng riêng", "Unique Bonus"],
     "require_accepted": True,
     "invalidation_scope": "item",
     "source_paths": ["localize_dict.json"],
     "key_exact": ["Character0050", "Character0196"],
     "match_mode": "contains",
-    "basis": "JP support-card UI labels this section 固有ボーナス and current English/Global-facing references render it as Unique Effect. The zh-CN bridge 固有加成 is reused in 固有加成详情, so the rule is contains-scoped only to the two known localize UI keys and must not affect category-150 individual unique-effect names.",
+    "basis": "JP support-card UI labels this section 固有ボーナス and released English/Global-facing support-card references render it as Unique Effect. Repository canonical policy prefers verified Global-facing game terminology for player-facing identities. The zh-CN bridge 固有加成 is reused in 固有加成详情, so the alias remains contains-matched but is restricted to the two known localize UI keys; category-150 individual unique-effect names and unrelated prose stay outside scope.",
 }
 
 REVIEW = {
@@ -33,7 +33,7 @@ REVIEW = {
     "target_vi": TARGET,
     "kind": "source_bridge",
     "category": "system_label",
-    "note": "固有加成 is the generic Support-card Unique Effect section label. Use Hiệu ứng riêng; keep the contains matcher restricted to Character0050/Character0196 so named support unique effects and unrelated prose are untouched.",
+    "note": "固有加成 is the generic Support-card Unique Effect section label. Preserve the verified Global-facing label Unique Effect; keep the reusable alias contains-scoped to Character0050/Character0196 so named support unique effects and unrelated prose are untouched.",
 }
 
 

@@ -9488,6 +9488,28 @@
       ],
       "match_mode": "contains",
       "basis": "Worker evidence uses zh-CN 英雄联赛 for the same named event already canonicalized as League of Heroes. Keep the established global event rule unchanged and bridge this alias only within localize_dict.json so generic 英雄/联赛 prose cannot inherit the event name."
+    },
+    {
+      "id": "skill.fenomeno.target_capture_justice.preserve_japanese_title",
+      "category": "skill_name",
+      "source_aliases": [
+        "捕捉目标！正义执行！"
+      ],
+      "preferred": "対象捕捉！正義遂行！",
+      "compact": [],
+      "accepted": [
+        "対象捕捉！正義遂行！"
+      ],
+      "forbidden": [
+        "Bắt giữ mục tiêu! Thực thi chính nghĩa!"
+      ],
+      "require_accepted": true,
+      "invalidation_scope": "item",
+      "source_paths": [
+        "text_data_dict.json"
+      ],
+      "match_mode": "contains",
+      "basis": "Verified identity: zh-CN 捕捉目标！正义执行！ in Fenomeno Skill/inheritance IDs 11270101-11270103 maps to JP 対象捕捉！正義遂行！, the JP-only unique Skill of [義心の黒焔] Fenomeno. Preserve the exact Japanese display title until an official Global title exists instead of retaining the historical zh-CN-derived Vietnamese calque."
     }
   ]
 }

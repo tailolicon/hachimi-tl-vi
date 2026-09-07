@@ -17,9 +17,9 @@ KEPPARE_KAGAYAKI_STRAIGHT = {
     "require_accepted": True,
     "invalidation_scope": "item",
     "source_paths": ["text_data_dict.json"],
-    "json_path_prefixes": [["16"]],
+    "json_path_prefixes": [],
     "match_mode": "exact",
-    "basis": "Named Hokko Tarumae solo song title けっぱれ！輝きストレート. Preserve the stable Romanized identity Keppare! Kagayaki Straight in the song-title table instead of a Vietnamese semantic calque or an unofficial English rendering.",
+    "basis": "Named Hokko Tarumae solo song title けっぱれ！輝きストレート. Preserve the stable Romanized identity Keppare! Kagayaki Straight instead of a Vietnamese semantic calque or an unofficial English rendering. The exact title is unique, so source-file scope matches the live finding while remaining restricted to text_data_dict.json.",
 }
 
 KEPPARE_KAGAYAKI_STRAIGHT_DECISION = {

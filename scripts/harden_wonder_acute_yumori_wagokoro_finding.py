@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-"""Canonicalize Wonder Acute (Onsen)'s 湯守の和心 unique Skill."""
+"""Resolve alternate zh-CN alias for Wonder Acute's 湯守の和心 unique Skill."""
 
 import json
 from pathlib import Path
@@ -9,28 +9,31 @@ from typing import Any
 ROOT = Path(__file__).resolve().parents[1]
 FINDING_IDS = ("cf-4c728f45693525f7",)
 SOURCE_ZH = "汤守和心"
+SOURCE_ZH_PRIMARY = "汤守的和心"
 SOURCE_JA = "湯守の和心"
-TARGET = SOURCE_JA
+TARGET = "Tấm Lòng Người Giữ Suối Nóng"
 HISTORICAL_TARGET = "Giữ suối, hòa lòng"
+TERM_ID = "skill.wonder_acute.yumori_washin"
 
 RULE = {
-    "id": "skill.wonder_acute.yumori_no_wagokoro",
+    "id": TERM_ID,
     "category": "skill_name",
-    "source_aliases": [SOURCE_ZH],
+    "source_aliases": [SOURCE_ZH_PRIMARY, SOURCE_ZH],
     "preferred": TARGET,
     "compact": [],
     "accepted": [TARGET],
-    "forbidden": [HISTORICAL_TARGET],
+    "forbidden": [
+        "Tấm lòng hòa ái của người trông suối nước nóng",
+        HISTORICAL_TARGET,
+    ],
     "require_accepted": True,
     "invalidation_scope": "item",
     "source_paths": ["text_data_dict.json"],
-    "match_mode": "exact",
+    "match_mode": "contains",
     "basis": (
-        "The source entry 汤守和心 maps to Wonder Acute (Onsen)'s JP-only unique Skill "
-        "湯守の和心. Current JP references consistently identify the same title and character, "
-        "while no official Global localization is available. Preserve the exact Japanese Skill "
-        "identity instead of deriving another Vietnamese title from the zh-CN semantic bridge. "
-        "The exact source alias and text_data_dict.json scope keep this lock item-local."
+        "The zh-CN aliases 汤守的和心 and 汤守和心 identify the same Wonder Acute unique Skill "
+        "湯守の和心. The project already accepted the compact Vietnamese title Tấm Lòng Người Giữ Suối Nóng "
+        "for this exact JP identity. Reuse that canonical term instead of creating a second conflicting lock."
     ),
 }
 
@@ -46,9 +49,8 @@ DECISION = {
     "source_paths": ["text_data_dict.json"],
     "match_mode": "exact",
     "note": (
-        "Verified as Wonder Acute (Onsen)'s JP-only unique Skill 湯守の和心. Preserve the exact "
-        "JP title because no official Global localization was verified; reject the historical "
-        "Vietnamese calque Giữ suối, hòa lòng."
+        "Alternate zh-CN alias for the already-canonicalized Wonder Acute unique Skill 湯守の和心. "
+        "Reuse Tấm Lòng Người Giữ Suối Nóng and reject conflicting alternate calques."
     ),
 }
 

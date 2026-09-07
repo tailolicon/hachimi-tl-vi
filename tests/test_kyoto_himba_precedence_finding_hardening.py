@@ -109,7 +109,7 @@ def test_full_kyoto_race_wins_over_component_and_hardener_is_idempotent(tmp_path
     payload = refresh_canonical_resolutions(tmp_path, payload)
     finding = payload["findings"][0]
     assert finding["canonical_resolution"] == {
-        "layer": "registry",
+        "layer": "locked",
         "term_id": FULL_TERM_ID,
         "target_vi": TARGET,
     }

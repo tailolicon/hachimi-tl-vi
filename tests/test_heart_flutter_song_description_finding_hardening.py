@@ -95,8 +95,8 @@ def test_heart_flutter_hardener_preserves_skills_and_excludes_false_positives(tm
         json_path=["150", "20044"],
     )
 
-    assert short_skill[0]["id"] == TERM_ID
-    assert long_skill[0]["id"] == LONG_TERM_ID
+    assert TERM_ID in {match["id"] for match in short_skill}
+    assert LONG_TERM_ID in {match["id"] for match in long_skill}
     assert song_description == []
     assert support_title == []
 

@@ -7,6 +7,7 @@ from scripts.resolve_context_guard_findings import resolve
 from scripts.translation_review_common import community_term_matches, load_community_terms
 
 FINDING_ID = "cf-05ee17c3f625371f"
+PROFILE_FINDING_ID = "cf-47277b7ddd4be78f"
 TERM_ID = "race_state.rushed.text131"
 
 
@@ -33,27 +34,40 @@ def _write(root: Path) -> None:
     (glossary / "term_registry.json").write_text(json.dumps({"terms": []}), encoding="utf-8")
     (glossary / "canonical_findings.json").write_text(
         json.dumps({
-            "findings": [{
-                "finding_id": FINDING_ID,
-                "status": "open",
-                "canonical_resolution": None,
-                "evidence": [{
-                    "source_path": "text_data_dict.json",
-                    "json_path": ["128", "1103"],
-                    "source_text": "如同阳光一般温暖你的心。不用焦躁，慢慢来──\\n一步一脚印地前进，梦想正在彼方等着我们。",
-                    "current_text": "Ấm áp trái tim bạn như ánh mặt trời. Đừng vội, cứ từ từ thôi──\\nTiến từng bước vững chắc, giấc mơ đang chờ chúng ta ở phía trước.",
-                }],
-            }]
+            "findings": [
+                {
+                    "finding_id": FINDING_ID,
+                    "status": "open",
+                    "canonical_resolution": None,
+                    "evidence": [{
+                        "source_path": "text_data_dict.json",
+                        "json_path": ["128", "1103"],
+                        "source_text": "如同阳光一般温暖你的心。不用焦躁，慢慢来──\\n一步一脚印地前进，梦想正在彼方等着我们。",
+                        "current_text": "Ấm áp trái tim bạn như ánh mặt trời. Đừng vội, cứ từ từ thôi──\\nTiến từng bước vững chắc, giấc mơ đang chờ chúng ta ở phía trước.",
+                    }],
+                },
+                {
+                    "finding_id": PROFILE_FINDING_ID,
+                    "status": "open",
+                    "canonical_resolution": None,
+                    "evidence": [{
+                        "source_path": "text_data_dict.json",
+                        "json_path": ["167", "1070"],
+                        "source_text": "有焦躁时就会缩起来的习惯",
+                        "current_text": "Có thói quen co đuôi lại khi sốt ruột",
+                    }],
+                },
+            ]
         }, ensure_ascii=False),
         encoding="utf-8",
     )
 
 
-def test_rushed_system_label_does_not_fire_in_category_128_prose(tmp_path: Path) -> None:
+def test_rushed_system_label_does_not_fire_in_non_race_prose(tmp_path: Path) -> None:
     _write(tmp_path)
     terms = load_community_terms(tmp_path)
 
-    prose = community_term_matches(
+    narrative = community_term_matches(
         None,
         "不用焦躁，慢慢来",
         "Đừng vội, cứ từ từ thôi",
@@ -61,7 +75,16 @@ def test_rushed_system_label_does_not_fire_in_category_128_prose(tmp_path: Path)
         source_path="text_data_dict.json",
         json_path=["128", "1103"],
     )
-    assert not any(match["id"] == TERM_ID for match in prose)
+    profile = community_term_matches(
+        None,
+        "有焦躁时就会缩起来的习惯",
+        "Có thói quen co đuôi lại khi sốt ruột",
+        terms,
+        source_path="text_data_dict.json",
+        json_path=["167", "1070"],
+    )
+    assert not any(match["id"] == TERM_ID for match in narrative)
+    assert not any(match["id"] == TERM_ID for match in profile)
 
     race_state = community_term_matches(
         None,
@@ -75,8 +98,9 @@ def test_rushed_system_label_does_not_fire_in_category_128_prose(tmp_path: Path)
 
     assert resolve(tmp_path) is True
     payload = json.loads((tmp_path / "glossary" / "canonical_findings.json").read_text(encoding="utf-8"))
-    assert payload["findings"][0]["canonical_resolution"] == {
-        "layer": "context_guard",
-        "term_id": TERM_ID,
-        "target_vi": "Rushed",
-    }
+    for finding in payload["findings"]:
+        assert finding["canonical_resolution"] == {
+            "layer": "context_guard",
+            "term_id": TERM_ID,
+            "target_vi": "Rushed",
+        }

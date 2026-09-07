@@ -6,15 +6,15 @@
   "claim_id": "canonical-findings-maintenance-auto11-20260907T230714Z",
   "worker_id": "gpt56sol-auto11",
   "claimed_at": "2026-09-07T23:07:14Z",
-  "heartbeat_at": "2026-09-07T23:17:00Z",
-  "lease_expires_at": "2026-09-07T23:23:00Z",
+  "heartbeat_at": "2026-09-07T23:20:34Z",
+  "lease_expires_at": "2026-09-07T23:26:34Z",
   "branch": "main",
   "handoff_from_claim_id": "canonical-findings-maintenance-20260907T2301Z-gpt56sol",
-  "progress_token": "e34df4273c08cad858c692e4ea23f6f67c50dd26",
+  "progress_token": "5dc5f65fb8ef5550a633855feb099653b30f83c2",
   "progress_kind": "checkpoint",
   "progress_ref": "work/orchestration/checkpoints/canonical-findings-20260907T2317Z-heart-flutter-support-title-partial-auto11.md",
-  "last_progress_at": "2026-09-07T23:17:00Z",
+  "last_progress_at": "2026-09-07T23:20:34Z",
   "completed_count": 202,
   "partial_result_path": "work/orchestration/checkpoints/canonical-findings-20260907T2317Z-heart-flutter-support-title-partial-auto11.md",
-  "continuation": "Resume cf-34bb9869a98908b7. Source hardening, evidence-checked resolver, production workflow wiring, and regression coverage are durable through checkpoint e34df4273c08cad858c692e4ea23f6f67c50dd26. Do not count completion yet: verify CI on current main, run production Context Sync, confirm the finding is inactive on fresh main, then run the required unchanged/no-op Context Sync acceptance gate."
+  "continuation": "Resume cf-34bb9869a98908b7. Source hardening/resolver/workflow are durable. Validate run 34169564604 exposed an over-strict regression assertion (1 failed, 845 passed); fixed at 5dc5f65fb8ef5550a633855feb099653b30f83c2 by asserting matcher membership rather than ordering. Fresh Validate 34169681169 and production Context Sync 34169681166 are now running/pending. Do not count completion until fresh Validate succeeds, production Sync succeeds and makes the finding inactive, then unchanged/no-op Context Sync acceptance also succeeds."
 }

@@ -9,6 +9,7 @@ from typing import Any
 ROOT = Path(__file__).resolve().parents[1]
 FINDING_ID = "cf-141e1dbe5b4bc506"
 SOURCE_ZH = "汤守的和心"
+SOURCE_ZH_ALT = "汤守和心"
 SOURCE_JA = "湯守の和心"
 PREFERRED = "Tấm Lòng Người Giữ Suối Nóng"
 TERM_ID = "skill.wonder_acute.yumori_washin"
@@ -16,20 +17,24 @@ TERM_ID = "skill.wonder_acute.yumori_washin"
 TERM = {
     "id": TERM_ID,
     "category": "skill_name",
-    "source_aliases": [SOURCE_ZH],
+    "source_aliases": [SOURCE_ZH, SOURCE_ZH_ALT],
     "preferred": PREFERRED,
     "compact": [],
     "accepted": [PREFERRED],
-    "forbidden": ["Tấm lòng hòa ái của người trông suối nước nóng"],
+    "forbidden": [
+        "Tấm lòng hòa ái của người trông suối nước nóng",
+        "Giữ suối, hòa lòng",
+    ],
     "require_accepted": True,
     "invalidation_scope": "item",
     "source_paths": ["text_data_dict.json"],
     "match_mode": "contains",
     "basis": (
-        "Repository factor keys map zh-CN 汤守的和心 to Wonder Acute's JP-only unique Skill 湯守の和心. "
-        "Current JP game references independently identify the exact title, owner, and effect. Following the repository's "
-        "JP-only Skill policy, preserve the Japanese semantic identity in a compact Vietnamese game title: 湯守 is the "
-        "keeper/caretaker of the hot spring and 和心 is the harmonious/gentle heart."
+        "Repository source data uses both zh-CN aliases 汤守的和心 and 汤守和心 for Wonder Acute's "
+        "JP-only unique Skill 湯守の和心. Current JP game references independently identify the exact title, "
+        "owner, and effect. Following the repository's established JP-only Skill policy for this concept, use "
+        "the compact Vietnamese game title Tấm Lòng Người Giữ Suối Nóng. Keeping both source aliases on one "
+        "canonical term prevents duplicate findings from creating conflicting project-wide locks."
     ),
 }
 
@@ -46,7 +51,7 @@ DECISION = {
     "match_mode": "contains",
     "note": (
         "Verified JP identity is Wonder Acute's unique Skill 湯守の和心. Use the compact Vietnamese title "
-        "Tấm Lòng Người Giữ Suối Nóng rather than the existing sentence-like gloss."
+        "Tấm Lòng Người Giữ Suối Nóng rather than sentence-like or alternate calques."
     ),
 }
 

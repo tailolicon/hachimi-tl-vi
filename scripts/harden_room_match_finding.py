@@ -13,13 +13,13 @@ ROOM_MATCH = {
     "preferred": "Room Match",
     "compact": [],
     "accepted": ["Room Match"],
-    "forbidden": ["Đua phòng"],
+    "forbidden": ["Đua phòng", "Đua Phòng"],
     "require_accepted": True,
     "invalidation_scope": "item",
     "source_paths": ["localize_dict.json"],
-    "key_exact": ["RoomMatch0001"],
+    "key_exact": ["RoomMatch0001", "RoomMatch400029"],
     "match_mode": "contains",
-    "basis": "Established player-facing mode name. Keep the canonical rule narrowly scoped to the proven RoomMatch0001 label while related Room Match UI is audited independently.",
+    "basis": "Established player-facing Room Match mode name. Scope the canonical rule to the audited RoomMatch0001 label and RoomMatch400029 same-conditions replay prompt rather than matching generic room/race prose elsewhere.",
 }
 
 

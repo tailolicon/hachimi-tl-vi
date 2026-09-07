@@ -14,7 +14,7 @@ TERM_ID = "source_bridge.tanino_gimlet.v_row_profile"
 RULE = {
     "id": TERM_ID,
     "category": "source_bridge",
-    "source_aliases": [SOURCE],
+    "zh_cn": [SOURCE],
     "preferred": TARGET,
     "compact": [],
     "accepted": [TARGET],
@@ -68,6 +68,7 @@ def _upsert(rows: list[Any], record: dict[str, Any], id_field: str) -> None:
     for index, row in enumerate(rows):
         if isinstance(row, dict) and str(row.get(id_field) or "") == record_id:
             merged = dict(row)
+            merged.pop("source_aliases", None)
             merged.update(record)
             rows[index] = merged
             return

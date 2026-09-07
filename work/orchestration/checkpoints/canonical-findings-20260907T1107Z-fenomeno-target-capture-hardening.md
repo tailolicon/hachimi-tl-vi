@@ -14,10 +14,11 @@ The finding uses `match_mode=contains` because the alias appears both as a stand
 - `4b3488eacb6fc3bc4610ba03d57250adc3d9c423` adds `scripts/harden_fenomeno_target_capture_finding.py`.
 - `05b50d76b6311dd0f8149cee12b6140b1112a58f` adds `tests/test_fenomeno_target_capture_finding_hardening.py` covering idempotence, canonical resolution, inheritance-prose coverage, and a negative `localize_dict.json` source-path guard.
 
-Acceptance workflows triggered from `05b50d76b6311dd0f8149cee12b6140b1112a58f`:
+## Acceptance evidence
 
-- Validate: triggered/pending at latest observation.
-- Sync translation context: run `34114898429`, pending at latest observation.
-- Sync translation review plan: run `34114898387`, pending at latest observation.
+- Validate run `34114898468`: `completed/success`.
+- Context Sync run `34114898429`: still in progress at latest observation; checkout/setup/install/extract/observed-terms are complete and the workflow is continuing through terminology restoration/hardening.
+- Review-plan Sync run `34114898387` was cancelled by GitHub workflow concurrency after newer `main` pushes. This is not an acceptance failure; a descendant-main review-plan run must succeed before completion.
+- A later descendant `main` head also contains the Fenomeno commits and has Context Sync `34115081532` plus review-plan Sync `34115081507` queued, so acceptance can complete on a descendant run without losing this hardener.
 
-Keep maintenance `completed_count=192` until Validate, production Context Sync, review-plan Sync, live finding resolution/inactivation, and the required second unchanged Context Sync semantic no-op all pass.
+Keep maintenance `completed_count=192` until production Context Sync, descendant review-plan Sync, live finding resolution/inactivation, and the required second unchanged Context Sync semantic no-op all pass.

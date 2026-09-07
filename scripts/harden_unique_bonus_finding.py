@@ -6,7 +6,7 @@ from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
 ALIAS = "固有加成"
-TARGET = "Hiệu ứng riêng"
+TARGET = "Unique Effect"
 TERM_ID = "common.character.unique_bonus"
 DECISION_ID = "audit.finding.character-unique-bonus"
 
@@ -15,18 +15,19 @@ TERM = {
     "category": "system_label",
     "source_aliases": [ALIAS],
     "preferred": TARGET,
-    "compact": [],
+    "compact": [TARGET],
     "accepted": [TARGET],
-    "forbidden": ["Bonus riêng", "bonus riêng", "Unique Bonus"],
+    "forbidden": ["Bonus riêng", "bonus riêng", "Hiệu ứng riêng", "Unique Bonus"],
     "require_accepted": True,
     "invalidation_scope": "item",
     "source_paths": ["localize_dict.json"],
+    "key_exact": ["Character0050", "Character0196"],
     "match_mode": "contains",
     "basis": (
         "Fresh identity verification maps the JP generic support-card section 固有ボーナス to the "
-        "Global-facing label Unique Effect. The zh-CN bridge 固有加成 is therefore a generic "
-        "unique-effect UI label, and Hiệu ứng riêng is the clear Vietnamese canonical form. "
-        "Scope the alias to localize_dict.json so category-150 proper/display names and unrelated "
+        "verified Global-facing label Unique Effect. Repository canonical policy prefers that released "
+        "player-facing terminology over a locally invented Vietnamese synonym. Scope the reusable zh-CN "
+        "alias 固有加成 to the two known localize UI keys so category-150 proper/display names and unrelated "
         "generic 固有 wording elsewhere are untouched."
     ),
 }
@@ -39,8 +40,9 @@ REVIEW = {
     "kind": "system_label",
     "category": "system_label",
     "note": (
-        "Lock 固有加成 to Hiệu ứng riêng in localize UI. The contains-scoped canonical rule also "
-        "covers 固有加成详情 -> Chi tiết hiệu ứng riêng without treating unrelated 固有 text as this label."
+        "Legacy decision aligned with the verified Global-facing Support-card label Unique Effect. "
+        "Keep it consistent with audit.finding.support-unique-effect-label so pre-apply review-lock restoration "
+        "cannot recreate the superseded Hiệu ứng riêng mapping."
     ),
 }
 

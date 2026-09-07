@@ -22,7 +22,6 @@ RULE = {
     "require_accepted": True,
     "invalidation_scope": "item",
     "source_paths": ["localize_dict.json"],
-    "key_prefixes": ["SingleModeScenarioCook"],
     "match_mode": "contains",
     "basis": (
         "JP-only training scenario identity. Official JP material names the scenario "
@@ -41,7 +40,6 @@ DECISION = {
     "category": "scenario",
     "invalidation_scope": "item",
     "source_paths": ["localize_dict.json"],
-    "key_prefixes": ["SingleModeScenarioCook"],
     "match_mode": "contains",
     "note": (
         "Official JP identity is 収穫ッ！満腹ッ！大豊食祭, with 大豊食祭 used as the short scenario "

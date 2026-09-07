@@ -37,7 +37,10 @@ def _seed(tmp_path: Path) -> None:
     glossary.mkdir()
     (glossary / "ui_community_terms.json").write_text(json.dumps({"schema_version": 1, "terms": []}), encoding="utf-8")
     (glossary / "terminology_reviews.json").write_text(json.dumps({"schema_version": 1, "decisions": []}), encoding="utf-8")
-    (glossary / "canonical_findings.json").write_text(json.dumps({"schema_version": 1, "findings": [_finding(prefix=[])]}), encoding="utf-8")
+    # Seed the actual category-147 finding scope that the production rule is
+    # intentionally allowed to cover. Negative scope behavior is exercised
+    # separately below with category 172 and localize_dict.
+    (glossary / "canonical_findings.json").write_text(json.dumps({"schema_version": 1, "findings": [_finding()]}), encoding="utf-8")
     (glossary / "term_registry.json").write_text(json.dumps({"terms": []}), encoding="utf-8")
     (glossary / "source_bridge_terms.json").write_text(json.dumps({"terms": []}), encoding="utf-8")
     (glossary / "skill_name_style.json").write_text(json.dumps({"canonical_examples": []}), encoding="utf-8")

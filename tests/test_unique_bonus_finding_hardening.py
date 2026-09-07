@@ -48,11 +48,13 @@ def test_hardener_is_idempotent_and_resolves_exact_and_detail_findings(tmp_path:
     term = next(row for row in terms if row["id"] == TERM_ID)
     assert term["preferred"] == TARGET
     assert term["source_paths"] == ["localize_dict.json"]
+    assert term["key_exact"] == ["Character0050", "Character0196"]
     assert term["match_mode"] == "contains"
+    assert "Hiệu ứng riêng" in term["forbidden"]
     assert "Unique Bonus" in term["forbidden"]
 
     for finding in (
-        _finding(match_mode="exact"),
+        _finding(match_mode="exact", key_exact=["Character0050"]),
         _finding(match_mode="contains", key_exact=["Character0196"]),
     ):
         resolved = refresh_canonical_resolutions(
@@ -71,12 +73,13 @@ def test_hardener_is_idempotent_and_resolves_exact_and_detail_findings(tmp_path:
         }
 
 
-def test_rule_does_not_resolve_other_source_path_or_other_alias(tmp_path: Path) -> None:
+def test_rule_does_not_resolve_other_source_path_alias_or_key(tmp_path: Path) -> None:
     _seed(tmp_path)
     assert harden(tmp_path) is True
     for finding in (
-        _finding(source_path="text_data_dict.json"),
-        _finding(source="固有技能"),
+        _finding(source_path="text_data_dict.json", key_exact=["Character0050"]),
+        _finding(source="固有技能", key_exact=["Character0050"]),
+        _finding(key_exact=["OtherCharacter"]),
     ):
         resolved = refresh_canonical_resolutions(
             tmp_path,

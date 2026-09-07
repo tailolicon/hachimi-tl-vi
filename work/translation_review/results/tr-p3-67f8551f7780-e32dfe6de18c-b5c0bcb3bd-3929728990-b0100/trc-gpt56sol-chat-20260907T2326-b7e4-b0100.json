@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "status": "partial",
+  "plan_id": "tr-p3-67f8551f7780-e32dfe6de18c-b5c0bcb3bd-3929728990",
+  "batch_id": "tr-p3-67f8551f7780-e32dfe6de18c-b5c0bcb3bd-3929728990-b0100",
+  "claim_id": "trc-gpt56sol-chat-20260907T2326-b7e4-b0100",
+  "worker_id": "gpt56sol-chat-20260907T2326-b7e4-review",
+  "reviewed_at": "2026-09-07T16:36:10.735961Z",
+  "completed_count": 5,
+  "decisions": [
+    {
+      "uid": "zhcn:6f96864b3238efc083dcfc72",
+      "current_fingerprint": "55474af28b047d0486d30acedaa8e9911e34e05b0a7948f525896fe7245f1397",
+      "action": "defer",
+      "reason": "Whole-Skill lock requires “Nôn nóng Nige”, while embedded current policy requires Front Runner/Front and also maps 焦躁 to Rushed; defer rather than bypass a canonical conflict.",
+      "terminology_basis": "reviewed.skill_name.f69c83578f4d conflicts with common.style.front_runner and reviewed.system_label.841121610784.",
+      "confidence": "high",
+      "canonical_finding": {
+        "kind": "context_rule",
+        "source_zh_cn": "领放焦躁",
+        "concept": "Skill title must reconcile its whole-title lock with Front Runner and Rushed player-facing terminology",
+        "match_mode": "exact",
+        "scope": "auto",
+        "reason": "The exact reviewed Skill title cannot satisfy the newer running-style and system-label guards simultaneously.",
+        "confidence": "high"
+      }
+    },
+    {
+      "uid": "zhcn:5c680cfdbe50b7c446660a7e",
+      "current_fingerprint": "55474af28b047d0486d30acedaa8e9911e34e05b0a7948f525896fe7245f1397",
+      "action": "defer",
+      "reason": "Same exact 领放焦躁 canonical conflict as the preceding duplicate: locked “Nige/Nôn nóng” versus required Front Runner and Rushed.",
+      "terminology_basis": "reviewed.skill_name.f69c83578f4d conflicts with common.style.front_runner and reviewed.system_label.841121610784.",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:dfc3dc4d0a8a07d6a982b3e0",
+      "current_fingerprint": "d99fcdfb69133ce518856bb87c37def5ee87afbc32223a172f5cdcc6c6b6a982",
+      "action": "defer",
+      "reason": "Whole-Skill lock still contains forbidden Nige while current player-facing terminology requires Front Runner/Front; canonical Skill-title reconciliation is required before a resolved review decision.",
+      "terminology_basis": "reviewed whole-Skill lock conflicts with common.style.front_runner (Nige forbidden; Front Runner/Front required).",
+      "confidence": "high",
+      "canonical_finding": {
+        "kind": "terminology",
+        "source_zh_cn": "领放彷徨",
+        "concept": "Skill title must replace the legacy Nige running-style label through canonical context",
+        "match_mode": "exact",
+        "scope": "auto",
+        "reason": "The reviewed whole-Skill lock conflicts with the current Front Runner running-style rule.",
+        "confidence": "high"
+      }
+    },
+    {
+      "uid": "zhcn:68f112eb7e33bf2b0075b95a",
+      "current_fingerprint": "d99fcdfb69133ce518856bb87c37def5ee87afbc32223a172f5cdcc6c6b6a982",
+      "action": "defer",
+      "reason": "Same exact 领放彷徨 whole-Skill lock versus Front Runner community-term conflict as the preceding duplicate; defer for canonical reconciliation.",
+      "terminology_basis": "reviewed whole-Skill lock conflicts with common.style.front_runner (Nige forbidden; Front Runner/Front required).",
+      "confidence": "high"
+    },
+    {
+      "uid": "zhcn:314cd37aa4e2bc97e8081f1e",
+      "current_fingerprint": "d99fcdfb69133ce518856bb87c37def5ee87afbc32223a172f5cdcc6c6b6a982",
+      "action": "defer",
+      "reason": "Same exact 领放彷徨 whole-Skill lock versus Front Runner community-term conflict as the preceding duplicate; defer for canonical reconciliation.",
+      "terminology_basis": "reviewed whole-Skill lock conflicts with common.style.front_runner (Nige forbidden; Front Runner/Front required).",
+      "confidence": "high"
+    }
+  ]
+}

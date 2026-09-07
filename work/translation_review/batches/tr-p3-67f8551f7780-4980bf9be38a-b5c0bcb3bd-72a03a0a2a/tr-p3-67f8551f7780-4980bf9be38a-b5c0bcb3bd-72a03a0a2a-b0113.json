@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "policy_version": 3,
-  "plan_id": "tr-p3-67f8551f7780-2caa224e21ef-b5c0bcb3bd-a27b904663",
-  "batch_id": "tr-p3-67f8551f7780-2caa224e21ef-b5c0bcb3bd-a27b904663-b0113",
+  "plan_id": "tr-p3-67f8551f7780-4980bf9be38a-b5c0bcb3bd-72a03a0a2a",
+  "batch_id": "tr-p3-67f8551f7780-4980bf9be38a-b5c0bcb3bd-72a03a0a2a-b0113",
   "context_snapshot_sha256": "b5c0bcb3bd9ee5c45e7bedf49c8f8d6ad35c3ceb3c35f528c6381a63c684a967",
   "source_bridge_policy_sha256": "9f9f705179544c3cecdd73584192cae63915f47b04e090e4e9096bd49f97bcb8",
   "review_generation": "retrospective-canonical-full-review",
@@ -471,11 +471,30 @@
       "current_fingerprint": "5f4bbe4222ac88ec7f3a330b70debd81e72e90ca38fe4a89d35ed63ab0c36724",
       "risk_flags": [
         "very_long_target",
-        "canonical_finding"
+        "community_term",
+        "community_term_mismatch"
       ],
-      "risk_score": 43,
+      "risk_score": 11,
       "locked_terms": [],
-      "community_terms": [],
+      "community_terms": [
+        {
+          "id": "song.how_far_must_i_run",
+          "preferred": "How Far Must I Run?",
+          "accepted": [
+            "How Far Must I Run?"
+          ],
+          "forbidden": [
+            "奔跑到何处"
+          ],
+          "matched_aliases": [
+            "奔跑到何处"
+          ],
+          "accepted_present": false,
+          "forbidden_present": false,
+          "require_accepted": true,
+          "basis": "The live zh-CN title 奔跑到何处 maps to the Uma Musume song どこまで走れば. Official English storefront metadata for WINNING LIVE 22 publishes the track as How Far Must I Run?. Lock that English-facing proper-name identity only for the exact song-title row."
+        }
+      ],
       "skill_name_canonical": null,
       "source_bridge_terms": [],
       "source_bridge_risks": [],

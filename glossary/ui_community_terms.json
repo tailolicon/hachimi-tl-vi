@@ -9635,6 +9635,30 @@
       ],
       "match_mode": "contains",
       "basis": "JP support-card UI labels this section 固有ボーナス and current English/Global-facing references render it as Unique Effect. The zh-CN bridge 固有加成 is reused in 固有加成详情, so the rule is contains-scoped only to the two known localize UI keys and must not affect category-150 individual unique-effect names."
+    },
+    {
+      "id": "common.character.unique_bonus",
+      "category": "system_label",
+      "source_aliases": [
+        "固有加成"
+      ],
+      "preferred": "Hiệu ứng riêng",
+      "compact": [],
+      "accepted": [
+        "Hiệu ứng riêng"
+      ],
+      "forbidden": [
+        "Bonus riêng",
+        "bonus riêng",
+        "Unique Bonus"
+      ],
+      "require_accepted": true,
+      "invalidation_scope": "item",
+      "source_paths": [
+        "localize_dict.json"
+      ],
+      "match_mode": "contains",
+      "basis": "Fresh identity verification maps the JP generic support-card section 固有ボーナス to the Global-facing label Unique Effect. The zh-CN bridge 固有加成 is therefore a generic unique-effect UI label, and Hiệu ứng riêng is the clear Vietnamese canonical form. Scope the alias to localize_dict.json so category-150 proper/display names and unrelated generic 固有 wording elsewhere are untouched."
     }
   ]
 }

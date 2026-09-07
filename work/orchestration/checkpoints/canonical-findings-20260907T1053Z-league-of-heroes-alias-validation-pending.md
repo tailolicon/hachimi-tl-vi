@@ -14,10 +14,11 @@ To preserve the established canonical identity without broadening matching globa
 - it leaves the base `event.league_of_heroes` rule unchanged;
 - commit `9b9756cce46e8b7f7821235276d812c4187d8f12` adds regressions proving idempotence, canonical resolution inside `localize_dict.json`, and no canonical coverage for the same alias in another source path.
 
-Acceptance workflows triggered for the regression head:
+## Acceptance evidence
 
-- Validate `34113675197`;
-- Sync translation context `34113675254`;
-- Sync translation review plan `34113675253`.
+- Validate `34113675197`: `completed/success`.
+- Sync translation review plan `34113675253`: `completed/success`.
+- Sync translation context `34113675254` attempt 1: `completed/success` (previous durable evidence).
+- Sync translation context `34113675254` attempt 2: explicitly rerun unchanged and currently in progress. At the latest observed job state, checkout/setup/install and canonical prep steps through `Harden support-effect labels` have succeeded; `Run all finding hardeners` is in progress.
 
-Keep maintenance `completed_count=191` until validation, production syncs, live-ledger resolution, and the required unchanged semantic no-op Context Sync all pass.
+Keep maintenance `completed_count=191` until attempt 2 completes successfully, proves unchanged semantic no-op (`Context is already current.` / no generated-context change), and live finding resolution remains `League of Heroes` and inactive.

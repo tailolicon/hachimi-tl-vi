@@ -64,21 +64,6 @@ def harden(repo_root: Path = ROOT) -> bool:
         _write(reviews_path, reviews)
         changed = True
 
-    findings_path = repo_root / "glossary" / "canonical_findings.json"
-    findings = _load(findings_path, {"schema_version": 1, "findings": []})
-    before = json.dumps(findings, ensure_ascii=False, sort_keys=True)
-    finding = next(
-        (x for x in findings.get("findings", []) if isinstance(x, dict) and x.get("finding_id") == FINDING_ID),
-        None,
-    )
-    if finding is None:
-        raise ValueError(f"missing canonical finding {FINDING_ID}")
-    suggestions = [str(v) for v in finding.get("suggested_targets_vi", []) if str(v)]
-    finding["suggested_targets_vi"] = list(dict.fromkeys([*suggestions, TARGET]))
-    if before != json.dumps(findings, ensure_ascii=False, sort_keys=True):
-        _write(findings_path, findings)
-        changed = True
-
     return changed
 
 

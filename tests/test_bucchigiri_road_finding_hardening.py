@@ -29,13 +29,17 @@ def _title_finding(prefix: str = "147") -> dict[str, object]:
     }
 
 
-def _inheritance_finding(prefixes: list[list[str]] | None = None) -> dict[str, object]:
+def _inheritance_finding(
+    prefixes: list[list[str]] | None = None,
+    *,
+    source_path: str = "text_data_dict.json",
+) -> dict[str, object]:
     return {
         "finding_id": INHERITANCE_FINDING_ID,
         "status": "open",
         "source_zh_cn": "冠绝之路",
         "match_mode": "contains",
-        "source_paths": ["text_data_dict.json"],
+        "source_paths": [source_path],
         "key_exact": [],
         "json_path_prefixes": [] if prefixes is None else prefixes,
         "suggested_targets_vi": [],
@@ -125,6 +129,19 @@ def test_inheritance_rule_does_not_resolve_unrelated_category(tmp_path: Path) ->
     assert harden(tmp_path) is True
 
     ledger = {"schema_version": 1, "findings": [_inheritance_finding([["16"]])]}
+    finding = refresh_canonical_resolutions(tmp_path, ledger)["findings"][0]
+    assert finding["review_resolution"]["target_vi"] == "Keep Pushing Ahead"
+    assert finding["canonical_resolution"] is None
+
+
+def test_inheritance_rule_does_not_resolve_other_source_file(tmp_path: Path) -> None:
+    _seed(tmp_path)
+    assert harden(tmp_path) is True
+
+    ledger = {
+        "schema_version": 1,
+        "findings": [_inheritance_finding([["172"]], source_path="localize_dict.json")],
+    }
     finding = refresh_canonical_resolutions(tmp_path, ledger)["findings"][0]
     assert finding["review_resolution"]["target_vi"] == "Keep Pushing Ahead"
     assert finding["canonical_resolution"] is None

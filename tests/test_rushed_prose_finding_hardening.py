@@ -4,7 +4,7 @@ import json
 from pathlib import Path
 
 from scripts.canonical_findings import active_findings, refresh_canonical_resolutions
-from scripts.harden_rushed_prose_finding import DECISION_ID, FINDING_ID, SOURCE, harden
+from scripts.harden_rushed_prose_finding import DECISION, DECISION_ID, FINDING_ID, SOURCE, harden
 
 
 def _seed(tmp_path: Path) -> None:
@@ -58,6 +58,23 @@ def test_rushed_prose_ignore_is_exact_scoped_and_idempotent(tmp_path: Path) -> N
         "target_vi": None,
     }
     assert active_findings(refreshed) == []
+
+
+def test_hardener_collapses_same_id_duplicates_from_concurrent_rebases(tmp_path: Path) -> None:
+    _seed(tmp_path)
+    reviews_path = tmp_path / "glossary" / "terminology_reviews.json"
+    duplicate = dict(DECISION)
+    duplicate["note"] = "stale duplicate"
+    reviews_path.write_text(
+        json.dumps({"schema_version": 1, "decisions": [duplicate, dict(DECISION), duplicate]}, ensure_ascii=False),
+        encoding="utf-8",
+    )
+
+    assert harden(tmp_path) is True
+    reviews = json.loads(reviews_path.read_text(encoding="utf-8"))
+    matches = [item for item in reviews["decisions"] if item.get("decision_id") == DECISION_ID]
+    assert matches == [DECISION]
+    assert harden(tmp_path) is False
 
 
 def test_exact_ignore_does_not_cover_other_rushed_prose(tmp_path: Path) -> None:

@@ -20,12 +20,12 @@ def _seed(tmp_path: Path) -> None:
     (glossary / "source_bridge_terms.json").write_text(json.dumps({"terms": []}), encoding="utf-8")
 
 
-def _finding(source_path: str = "text_data_dict.json") -> dict:
+def _finding(source_path: str = "text_data_dict.json", source_zh_cn: str = "秋古马三冠") -> dict:
     return {
         "finding_id": "cf-97dd9d6e5657d6f9",
         "status": "open",
-        "source_zh_cn": "秋古马三冠",
-        "match_mode": "contains",
+        "source_zh_cn": source_zh_cn,
+        "match_mode": "contains" if source_zh_cn == "秋古马三冠" else "exact",
         "source_paths": [source_path],
         "key_exact": [],
         "json_path_prefixes": [],
@@ -44,6 +44,7 @@ def test_senior_autumn_triple_crown_resolves_live_finding_scope(tmp_path: Path) 
     term = next(item for item in community["terms"] if item["id"] == SENIOR_AUTUMN_TRIPLE_CROWN["id"])
     assert term["source_paths"] == ["text_data_dict.json"]
     assert term["match_mode"] == "contains"
+    assert "古马级秋三冠" in term["source_aliases"]
 
     reviews = json.loads((tmp_path / "glossary" / "terminology_reviews.json").read_text(encoding="utf-8"))
     decision = next(item for item in reviews["decisions"] if item["decision_id"] == SENIOR_AUTUMN_TRIPLE_CROWN_DECISION["decision_id"])
@@ -58,6 +59,20 @@ def test_senior_autumn_triple_crown_resolves_live_finding_scope(tmp_path: Path) 
         "action": "lock",
         "target_vi": "Senior Autumn Triple Crown",
     }
+    assert finding["canonical_resolution"] == {
+        "layer": "community",
+        "term_id": SENIOR_AUTUMN_TRIPLE_CROWN["id"],
+        "target_vi": "Senior Autumn Triple Crown",
+    }
+
+
+def test_senior_autumn_triple_crown_resolves_equivalent_zhcn_variant(tmp_path: Path) -> None:
+    _seed(tmp_path)
+    assert harden(tmp_path) is True
+    finding = refresh_canonical_resolutions(
+        tmp_path,
+        {"schema_version": 1, "findings": [_finding(source_zh_cn="古马级秋三冠")]},
+    )["findings"][0]
     assert finding["canonical_resolution"] == {
         "layer": "community",
         "term_id": SENIOR_AUTUMN_TRIPLE_CROWN["id"],

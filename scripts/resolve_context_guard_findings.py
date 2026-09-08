@@ -225,6 +225,12 @@ GUARDS = {
         "term_id": "common.stat.wit",
         "target_vi": "Wit",
     },
+    # Current exact-label incarnation of the same 解智力扣 puzzle overmatch.
+    "cf-745d26a40739b272": {
+        "layer": "community",
+        "term_id": "common.stat.wit",
+        "target_vi": "Wit",
+    },
 }
 
 for _finding_id in POWER_CONTEXT_GUARD_IDS:

@@ -9,13 +9,13 @@
     "growth": "Every accepted retrospective translation revise and accepted UI revise is folded into this file automatically by both review merge workflows."
   },
   "summary": {
-    "merged_markers_scanned": 3610,
-    "translation_merged_markers_scanned": 3510,
+    "merged_markers_scanned": 3614,
+    "translation_merged_markers_scanned": 3514,
     "ui_merged_markers_scanned": 100,
-    "accepted_revision_events": 8592,
-    "accepted_translation_revision_events": 7103,
+    "accepted_revision_events": 8629,
+    "accepted_translation_revision_events": 7140,
     "accepted_ui_revision_events": 1489,
-    "regression_identity_count": 6602,
+    "regression_identity_count": 6625,
     "skipped_incomplete_markers": 0,
     "translation_skipped_incomplete_markers": 0,
     "ui_skipped_incomplete_markers": 0
@@ -6031,6 +6031,31 @@
       ]
     },
     {
+      "id": "review.regression.1d55d39e7f1deb2d",
+      "uid": "zhcn:070214f3010c1d439c83fc7a",
+      "scope": "uid",
+      "source_text": "本组奖池，还可再抽奖{0}次",
+      "source_fingerprint": "93a5976c177472580f4dad84be5d5cc7c9b1ba54c7194dc900df05ae12f888a6",
+      "rejected_targets": [
+        "Banner nhóm này còn có thể quay {0} lần"
+      ],
+      "approved_target": "Nhóm Chiêu mộ này còn có thể quay {0} lần",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-1f98d80b6d12-b5c0bcb3bd-e2f120299d",
+          "batch_id": "tr-p3-67f8551f7780-1f98d80b6d12-b5c0bcb3bd-e2f120299d-b0005",
+          "claim_id": "trc-gpt56sol-auto11-20260908T082700Z-b0005",
+          "merged_at": "2026-09-08T08:39:15.874933Z",
+          "reason": "Current banner wording violates the embedded 奖池→Chiêu mộ lock; revised text preserves the {0} placeholder and source meaning."
+        }
+      ]
+    },
+    {
       "id": "review.regression.ce1f1760d5c73788",
       "uid": "zhcn:070af0bfc2ce5bcb4a5dad5c",
       "scope": "uid",
@@ -9024,9 +9049,10 @@
       "source_text": "赛马娘奖池切换",
       "source_fingerprint": "7bca62850b62f8a19c43bbba00da132c3846f2c4fb865ef4ecef390a0ba9feab",
       "rejected_targets": [
+        "Chuyển banner Mã Nương",
         "Chuyển banner Uma Musume"
       ],
-      "approved_target": "Chuyển banner Mã Nương",
+      "approved_target": "Chuyển Chiêu mộ Mã Nương",
       "origins": [
         "translation_review"
       ],
@@ -9039,6 +9065,14 @@
           "claim_id": "trc-gpt56sol-20260901T034600Z-b0058-7f3c",
           "merged_at": "2026-09-01T03:52:14.640445Z",
           "reason": "Generic 赛马娘 in this gacha label must use Mã Nương, not forbidden Uma Musume."
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-1f98d80b6d12-b5c0bcb3bd-e2f120299d",
+          "batch_id": "tr-p3-67f8551f7780-1f98d80b6d12-b5c0bcb3bd-e2f120299d-b0005",
+          "claim_id": "trc-gpt56sol-auto11-20260908T082700Z-b0005",
+          "merged_at": "2026-09-08T08:39:15.874933Z",
+          "reason": "Current text uses banner for 奖池; embedded reviewed lock requires Chiêu mộ while generic 赛马娘 remains Mã Nương."
         }
       ]
     },
@@ -15292,9 +15326,10 @@
       "source_text": "奖池开放时间结束后，兑换点数将转换为四叶草\n不能再兑换{0}",
       "source_fingerprint": "ac174097d5a1a90ea75ee95a4d70edd138bd824061549d76e104bc3e8243a291",
       "rejected_targets": [
+        "Sau khi thời gian mở Gacha kết thúc, Exchange Points sẽ được chuyển thành Clovers\nKhông thể đổi {0} nữa",
         "Sau khi thời gian mở Gacha kết thúc, Điểm đổi thưởng sẽ được chuyển thành Cỏ bốn lá\nKhông thể đổi {0} nữa"
       ],
-      "approved_target": "Sau khi thời gian mở Gacha kết thúc, Exchange Points sẽ được chuyển thành Clovers\nKhông thể đổi {0} nữa",
+      "approved_target": "Sau khi thời gian mở Chiêu mộ kết thúc, Exchange Points sẽ được chuyển thành Clovers\nKhông thể đổi {0} nữa",
       "origins": [
         "translation_review"
       ],
@@ -15307,6 +15342,14 @@
           "claim_id": "trc-chatgpt-auto3-20260829T195930Z-b0091",
           "merged_at": "2026-08-30T00:48:53.437518Z",
           "reason": "Current text uses forbidden calques for both the Gacha pity currency and the persistent Clovers resource."
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-1f98d80b6d12-b5c0bcb3bd-e2f120299d",
+          "batch_id": "tr-p3-67f8551f7780-1f98d80b6d12-b5c0bcb3bd-e2f120299d-b0008",
+          "claim_id": "trc-gpt56sol-auto11-20260908T084100Z-b0008",
+          "merged_at": "2026-09-08T08:39:15.887296Z",
+          "reason": "Exchange Points and Clovers are correct, but 奖池 must use canonical Chiêu mộ rather than Gacha; newline and {0} are preserved."
         }
       ]
     },
@@ -15452,9 +15495,10 @@
       "source_fingerprint": "6162f5aa83914bae2b6ded5cedcbae27c269c6db53124c7afd970885f0d0c39a",
       "rejected_targets": [
         "Các Mã Nương huấn luyện ★3 ở trên sẽ xuất hiện trong Gacha. Bạn có chắc không?",
+        "Các Trainee ★3 ở trên sẽ xuất hiện trong Gacha. Bạn có chắc không?",
         "Các ★3 Uma Musume huấn luyện trên sẽ xuất hiện trong Gacha. Bạn có chắc không?"
       ],
-      "approved_target": "Các Trainee ★3 ở trên sẽ xuất hiện trong Gacha. Bạn có chắc không?",
+      "approved_target": "Các Trainee ★3 ở trên sẽ xuất hiện trong Chiêu mộ. Bạn có chắc không?",
       "origins": [
         "translation_review"
       ],
@@ -15475,6 +15519,14 @@
           "claim_id": "trc-gpt56sol-auto10-20260901T035900Z-b0060",
           "merged_at": "2026-09-01T04:13:25.344067Z",
           "reason": "Replace the noncanonical 育成赛马娘 calque with Trainee while preserving the confirmation meaning."
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-1f98d80b6d12-b5c0bcb3bd-e2f120299d",
+          "batch_id": "tr-p3-67f8551f7780-1f98d80b6d12-b5c0bcb3bd-e2f120299d-b0006",
+          "claim_id": "trc-gpt56sol-auto11-20260908T083300Z-b0006",
+          "merged_at": "2026-09-08T08:39:15.882085Z",
+          "reason": "Replace Gacha with the canonical 奖池 label Chiêu mộ while preserving the confirmation meaning and Trainee terminology."
         }
       ]
     },
@@ -17886,6 +17938,31 @@
           "claim_id": "trc-gpt56sol-auto11-20260906T050000Z-b0066",
           "merged_at": "2026-09-06T05:14:11.795603Z",
           "reason": "Replace the mixed Vietnamese scenario subtitle with the established Global player-facing label while preserving existing meaning, numeric values, race names, and line structure."
+        }
+      ]
+    },
+    {
+      "id": "review.regression.4830fd4fac667658",
+      "uid": "zhcn:16c617be7a126eada0d95c00",
+      "scope": "uid",
+      "source_text": "本组奖池还剩{0}次！",
+      "source_fingerprint": "ca9de92ef77e73c923e342d4ed272ff2a16fb6f456ab8dccbd0c9d0b242ff67d",
+      "rejected_targets": [
+        "Banner nhóm này còn {0} lượt!"
+      ],
+      "approved_target": "Nhóm Chiêu mộ này còn {0} lượt!",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-1f98d80b6d12-b5c0bcb3bd-e2f120299d",
+          "batch_id": "tr-p3-67f8551f7780-1f98d80b6d12-b5c0bcb3bd-e2f120299d-b0005",
+          "claim_id": "trc-gpt56sol-auto11-20260908T082700Z-b0005",
+          "merged_at": "2026-09-08T08:39:15.874933Z",
+          "reason": "Current banner wording violates the embedded 奖池→Chiêu mộ lock; revised text preserves the {0} placeholder and natural Vietnamese order."
         }
       ]
     },
@@ -20523,9 +20600,10 @@
       "source_text": "请选择将从奖池中出现的\nSSR支援卡",
       "source_fingerprint": "4d2699267d4aa7d3547409051940a7842e621b6abfe051138e8a6c9470dd12f9",
       "rejected_targets": [
+        "Hãy chọn Support Card SSR\nsẽ xuất hiện trong Gacha",
         "Hãy chọn Thẻ Hỗ trợ SSR\nsẽ xuất hiện trong Gacha"
       ],
-      "approved_target": "Hãy chọn Support Card SSR\nsẽ xuất hiện trong Gacha",
+      "approved_target": "Hãy chọn Support Card SSR\nsẽ xuất hiện trong Chiêu mộ",
       "origins": [
         "translation_review"
       ],
@@ -20538,6 +20616,14 @@
           "claim_id": "trc-chatgpt-sol-20260830-1216-b0089",
           "merged_at": "2026-08-30T05:58:49.629723Z",
           "reason": "Current text calques Support Card; revision preserves SSR, gacha meaning, and newline structure."
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-1f98d80b6d12-b5c0bcb3bd-e2f120299d",
+          "batch_id": "tr-p3-67f8551f7780-1f98d80b6d12-b5c0bcb3bd-e2f120299d-b0006",
+          "claim_id": "trc-gpt56sol-auto11-20260908T083300Z-b0006",
+          "merged_at": "2026-09-08T08:39:15.882085Z",
+          "reason": "Support Card is correct, but 奖池 must use canonical Chiêu mộ rather than Gacha; newline structure is preserved."
         }
       ]
     },
@@ -38594,6 +38680,31 @@
       ]
     },
     {
+      "id": "review.regression.925ba2bccb801323",
+      "uid": "zhcn:31bbac9d140e7e22c55625f9",
+      "scope": "uid",
+      "source_text": "有奖池的开放时间已结束\\n返回主页",
+      "source_fingerprint": "7297c54c9ab6a925764d6b6a58920a1c47823dff88c4707580305d510e3adf11",
+      "rejected_targets": [
+        "Thời gian mở của một Gacha đã kết thúc\\nQuay về trang chủ"
+      ],
+      "approved_target": "Thời gian mở của một Chiêu mộ đã kết thúc\\nQuay về trang chủ",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-1f98d80b6d12-b5c0bcb3bd-e2f120299d",
+          "batch_id": "tr-p3-67f8551f7780-1f98d80b6d12-b5c0bcb3bd-e2f120299d-b0035",
+          "claim_id": "trc-gpt56sol-auto11-20260908T084800Z-b0035",
+          "merged_at": "2026-09-08T08:39:15.904822Z",
+          "reason": "Current Gacha wording violates the embedded 奖池→Chiêu mộ lock; preserve the two-line structure."
+        }
+      ]
+    },
+    {
       "id": "review.regression.1040471f1c76f57a",
       "uid": "zhcn:31cd7eca36c056b1274f1b5d",
       "scope": "uid",
@@ -40746,6 +40857,31 @@
           "reason": "The colon form is a compact status relationship that preserves the next-WIN promotion condition without the wide helper phrase.",
           "ui_key": "Champions0026",
           "control_type": "short_system_label"
+        }
+      ]
+    },
+    {
+      "id": "review.regression.6e526288a01e5fd8",
+      "uid": "zhcn:3456b5ef8573950545289d42",
+      "scope": "uid",
+      "source_text": "选择中的奖池",
+      "source_fingerprint": "cdb204a18c08a50b2a82e86d768eed5aa655ed532c020c155a32274bd255ca3b",
+      "rejected_targets": [
+        "Banner đang chọn"
+      ],
+      "approved_target": "Chiêu mộ đang chọn",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-1f98d80b6d12-b5c0bcb3bd-e2f120299d",
+          "batch_id": "tr-p3-67f8551f7780-1f98d80b6d12-b5c0bcb3bd-e2f120299d-b0005",
+          "claim_id": "trc-gpt56sol-auto11-20260908T082700Z-b0005",
+          "merged_at": "2026-09-08T08:39:15.874933Z",
+          "reason": "Current banner wording violates the embedded reviewed 奖池→Chiêu mộ lock."
         }
       ]
     },
@@ -47320,10 +47456,10 @@
       "source_text": "出现支援卡选择",
       "source_fingerprint": "3e43a387e9b3294d1086d5edfaf22cd9174f79f91349bc8187f9c5d8eacfb4c5",
       "rejected_targets": [
-        "Chọn Support Card sẽ xuất hiện",
-        "Chọn Thẻ Hỗ trợ sẽ xuất hiện"
+        "Chọn Thẻ Hỗ trợ sẽ xuất hiện",
+        "Xuất hiện lựa chọn Support Card"
       ],
-      "approved_target": "Xuất hiện lựa chọn Support Card",
+      "approved_target": "Chọn Support Card sẽ xuất hiện",
       "origins": [
         "translation_review"
       ],
@@ -47344,6 +47480,14 @@
           "claim_id": "trc-gpt56sol-auto11-20260905T175800Z-b0009",
           "merged_at": "2026-09-05T17:46:32.260505Z",
           "reason": "The source is a label/state that the Support Card selection appears; the current wording reverses it into an imperative-like construction."
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-1f98d80b6d12-b5c0bcb3bd-e2f120299d",
+          "batch_id": "tr-p3-67f8551f7780-1f98d80b6d12-b5c0bcb3bd-e2f120299d-b0006",
+          "claim_id": "trc-gpt56sol-auto11-20260908T083300Z-b0006",
+          "merged_at": "2026-09-08T08:39:15.882085Z",
+          "reason": "Current Vietnamese word order is unnatural; revised wording preserves the meaning of selecting the Support Card that will appear."
         }
       ]
     },
@@ -51122,6 +51266,31 @@
       ]
     },
     {
+      "id": "review.regression.b4558ead746d1f08",
+      "uid": "zhcn:4245a47e19422f3e7cf84194",
+      "scope": "uid",
+      "source_text": "「{0}」\n<color=#ff9900>可从分组中选择{1}次喜欢的奖池</color>\n并进行抽奖",
+      "source_fingerprint": "26597e8b37e31a7f3bd23f95e6b21c7dec21c6cdb91ede5826c0bf3b9f804795",
+      "rejected_targets": [
+        "「{0}」\n<color=#ff9900>Có thể chọn banner yêu thích từ nhóm {1} lần</color>\nrồi quay Gacha"
+      ],
+      "approved_target": "「{0}」\n<color=#ff9900>Có thể chọn Chiêu mộ yêu thích từ nhóm {1} lần</color>\nrồi tiến hành quay",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-1f98d80b6d12-b5c0bcb3bd-e2f120299d",
+          "batch_id": "tr-p3-67f8551f7780-1f98d80b6d12-b5c0bcb3bd-e2f120299d-b0006",
+          "claim_id": "trc-gpt56sol-auto11-20260908T083300Z-b0006",
+          "merged_at": "2026-09-08T08:39:15.882085Z",
+          "reason": "Replace banner with canonical Chiêu mộ while preserving {0}/{1}, color markup, three-line structure and the draw action."
+        }
+      ]
+    },
+    {
       "id": "review.regression.03fd3caa40eaea19",
       "uid": "zhcn:4246b5059c4f0198f7953a1b",
       "scope": "uid",
@@ -51246,6 +51415,31 @@
           "claim_id": "trc-chatgpt-sol-20260830-105800-b0953",
           "merged_at": "2026-08-30T03:57:37.549149Z",
           "reason": "Category 172 is inheritance/Spark description context; current text uses forbidden nhân tố and awkward discount phrasing."
+        }
+      ]
+    },
+    {
+      "id": "review.regression.f43222e0f4d70583",
+      "uid": "zhcn:427ad9e061f3b41779234072",
+      "scope": "uid",
+      "source_text": "现在没有开放的奖池。",
+      "source_fingerprint": "95bea03b30e186d37a1bcac44cb17dad2a8e8c58d76caa6ab8d11945c9d2bfb7",
+      "rejected_targets": [
+        "Hiện không có banner Gacha nào đang mở."
+      ],
+      "approved_target": "Hiện không có Chiêu mộ nào đang mở.",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-1f98d80b6d12-b5c0bcb3bd-e2f120299d",
+          "batch_id": "tr-p3-67f8551f7780-1f98d80b6d12-b5c0bcb3bd-e2f120299d-b0005",
+          "claim_id": "trc-gpt56sol-auto11-20260908T082700Z-b0005",
+          "merged_at": "2026-09-08T08:39:15.874933Z",
+          "reason": "Embedded reviewed lock requires 奖池 to be rendered as Chiêu mộ; current banner Gacha wording does not satisfy it."
         }
       ]
     },
@@ -54710,6 +54904,56 @@
           "claim_id": "trc-gpt56sol-auto11-20260906T005600Z-b0115",
           "merged_at": "2026-09-05T23:51:57.453968Z",
           "reason": "Source explicitly increases both effects."
+        }
+      ]
+    },
+    {
+      "id": "review.regression.39325677af9adafd",
+      "uid": "zhcn:47d616c2b963d97958bab35a",
+      "scope": "uid",
+      "source_text": "券奖池已切换",
+      "source_fingerprint": "1a3f84c4541ff29fd18acf9b44ca5bad97a65957abf363766a2f655c8916c2e5",
+      "rejected_targets": [
+        "Đã chuyển banner Vé"
+      ],
+      "approved_target": "Đã chuyển Chiêu mộ Vé",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-1f98d80b6d12-b5c0bcb3bd-e2f120299d",
+          "batch_id": "tr-p3-67f8551f7780-1f98d80b6d12-b5c0bcb3bd-e2f120299d-b0006",
+          "claim_id": "trc-gpt56sol-auto11-20260908T083300Z-b0006",
+          "merged_at": "2026-09-08T08:39:15.882085Z",
+          "reason": "Current banner wording violates the embedded 奖池→Chiêu mộ lock."
+        }
+      ]
+    },
+    {
+      "id": "review.regression.36906c64f1af2fc3",
+      "uid": "zhcn:47da4f9d7bfdd8181031f97b",
+      "scope": "uid",
+      "source_text": "相应奖池开放时间",
+      "source_fingerprint": "aacd72988d8c0aa9d6557e0473177e7aaf46fff2b32b5bb0da5001d65c871aec",
+      "rejected_targets": [
+        "Thời gian mở Gacha tương ứng"
+      ],
+      "approved_target": "Thời gian mở Chiêu mộ tương ứng",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-1f98d80b6d12-b5c0bcb3bd-e2f120299d",
+          "batch_id": "tr-p3-67f8551f7780-1f98d80b6d12-b5c0bcb3bd-e2f120299d-b0008",
+          "claim_id": "trc-gpt56sol-auto11-20260908T084100Z-b0008",
+          "merged_at": "2026-09-08T08:39:15.887296Z",
+          "reason": "Current Gacha wording violates the embedded 奖池→Chiêu mộ lock."
         }
       ]
     },
@@ -61871,6 +62115,31 @@
       ]
     },
     {
+      "id": "review.regression.5bfbb8e2d16a7516",
+      "uid": "zhcn:50b92d2531df9fe6e4f298a9",
+      "scope": "uid",
+      "source_text": "英雄联赛\n特别奖励的<color=#ff9900>领取截止日期临近</color>",
+      "source_fingerprint": "7161d10eefa7b8e4a81e777278e8cae92cb1e82be52e24397299dc6a9a833a60",
+      "rejected_targets": [
+        "Hero League\n<color=#ff9900>Hạn chót nhận</color> phần thưởng đặc biệt sắp đến"
+      ],
+      "approved_target": "League of Heroes\n<color=#ff9900>Hạn chót nhận</color> phần thưởng đặc biệt sắp đến",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-1f98d80b6d12-b5c0bcb3bd-e2f120299d",
+          "batch_id": "tr-p3-67f8551f7780-1f98d80b6d12-b5c0bcb3bd-e2f120299d-b0008",
+          "claim_id": "trc-gpt56sol-auto11-20260908T084100Z-b0008",
+          "merged_at": "2026-09-08T08:39:15.887296Z",
+          "reason": "Current text uses forbidden Hero League; preserve the color tag and notification meaning."
+        }
+      ]
+    },
+    {
       "id": "review.regression.99cb050750b44f3b",
       "uid": "zhcn:50dca27d8da0447af9d0381b",
       "scope": "uid",
@@ -62366,6 +62635,31 @@
           "claim_id": "trc-chatgpt-20260827T105110Z-5d9a31c7",
           "merged_at": "2026-08-27T10:53:16.093906Z",
           "reason": "Replace the translated generic Skill label while preserving the source meaning and runtime newline."
+        }
+      ]
+    },
+    {
+      "id": "review.regression.7fdfa9a1f0833fdf",
+      "uid": "zhcn:516a73dab58f0a9c1c653d44",
+      "scope": "uid",
+      "source_text": "奖池切换",
+      "source_fingerprint": "d6eb31cfa5b9c1b483000996c5bc9454988f3ca50abbe6591ad4173bb532fbec",
+      "rejected_targets": [
+        "Chuyển banner"
+      ],
+      "approved_target": "Chuyển Chiêu mộ",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-1f98d80b6d12-b5c0bcb3bd-e2f120299d",
+          "batch_id": "tr-p3-67f8551f7780-1f98d80b6d12-b5c0bcb3bd-e2f120299d-b0005",
+          "claim_id": "trc-gpt56sol-auto11-20260908T082700Z-b0005",
+          "merged_at": "2026-09-08T08:39:15.874933Z",
+          "reason": "Current banner wording violates the embedded reviewed 奖池→Chiêu mộ lock."
         }
       ]
     },
@@ -67695,6 +67989,31 @@
       ]
     },
     {
+      "id": "review.regression.1bfc9fa1d4fee1b6",
+      "uid": "zhcn:589c26496c4836773722e9bf",
+      "scope": "uid",
+      "source_text": "当前没有可使用的奖池\\n返回标题",
+      "source_fingerprint": "fbab37e54665f5c2d8da23fabb942a678944d99008917a385b57706223d87bdb",
+      "rejected_targets": [
+        "Hiện không có Gacha nào có thể sử dụng\\nQuay về màn hình tiêu đề"
+      ],
+      "approved_target": "Hiện không có Chiêu mộ nào có thể sử dụng\\nQuay về màn hình tiêu đề",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-1f98d80b6d12-b5c0bcb3bd-e2f120299d",
+          "batch_id": "tr-p3-67f8551f7780-1f98d80b6d12-b5c0bcb3bd-e2f120299d-b0035",
+          "claim_id": "trc-gpt56sol-auto11-20260908T084800Z-b0035",
+          "merged_at": "2026-09-08T08:39:15.904822Z",
+          "reason": "Current Gacha wording violates the embedded 奖池→Chiêu mộ lock; preserve the two-line structure."
+        }
+      ]
+    },
+    {
       "id": "review.regression.0349498cc59a3f81",
       "uid": "zhcn:58a1e5b9131a0bbda2070907",
       "scope": "uid",
@@ -68649,6 +68968,31 @@
       ]
     },
     {
+      "id": "review.regression.c1fa89029ffb7ab9",
+      "uid": "zhcn:59d05f084fd77e53b8434882",
+      "scope": "uid",
+      "source_text": "奖池\n切换",
+      "source_fingerprint": "825728174f2d037f9ead7d687236f914dccea54930545661c9f9bcf7462832b3",
+      "rejected_targets": [
+        "Chuyển\nbanner"
+      ],
+      "approved_target": "Chuyển\nChiêu mộ",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-1f98d80b6d12-b5c0bcb3bd-e2f120299d",
+          "batch_id": "tr-p3-67f8551f7780-1f98d80b6d12-b5c0bcb3bd-e2f120299d-b0005",
+          "claim_id": "trc-gpt56sol-auto11-20260908T082700Z-b0005",
+          "merged_at": "2026-09-08T08:39:15.874933Z",
+          "reason": "Replace banner with canonical Chiêu mộ while preserving the required single newline structure."
+        }
+      ]
+    },
+    {
       "id": "review.regression.f8684e107ce6b02c",
       "uid": "zhcn:59d0a89fc304974623541550",
       "scope": "uid",
@@ -68828,6 +69172,31 @@
           "claim_id": "trc-chatgpt-20260827T120840Z-5b1e7a43",
           "merged_at": "2026-08-28T03:27:25.748519Z",
           "reason": "Use the embedded locked terminology and naturalize the item description while preserving the runtime newline."
+        }
+      ]
+    },
+    {
+      "id": "review.regression.b8595d7949887e3c",
+      "uid": "zhcn:59fc130b4bcc3ac0b8287f79",
+      "scope": "uid",
+      "source_text": "奖池已切换",
+      "source_fingerprint": "d5d7563eec7c860e59f85b17c1f18cece82352f9cde0dc711f91912df2035ba6",
+      "rejected_targets": [
+        "Đã chuyển banner"
+      ],
+      "approved_target": "Đã chuyển Chiêu mộ",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-1f98d80b6d12-b5c0bcb3bd-e2f120299d",
+          "batch_id": "tr-p3-67f8551f7780-1f98d80b6d12-b5c0bcb3bd-e2f120299d-b0005",
+          "claim_id": "trc-gpt56sol-auto11-20260908T082700Z-b0005",
+          "merged_at": "2026-09-08T08:39:15.874933Z",
+          "reason": "Current banner wording violates the embedded reviewed 奖池→Chiêu mộ lock."
         }
       ]
     },
@@ -72098,6 +72467,31 @@
       ]
     },
     {
+      "id": "review.regression.a73fb2514aad126f",
+      "uid": "zhcn:5df9707fef22219d6167e11a",
+      "scope": "uid",
+      "source_text": "因正在维护中\\n当前没有可使用的奖池\\n返回标题",
+      "source_fingerprint": "f2383002a33b5b6f90f89f92c5a3e6429b6b52f06038dbbea8a5039ff6bc6438",
+      "rejected_targets": [
+        "Do đang bảo trì\\nhiện không có Gacha nào có thể sử dụng\\nQuay về màn hình tiêu đề"
+      ],
+      "approved_target": "Do đang bảo trì\\nhiện không có Chiêu mộ nào có thể sử dụng\\nQuay về màn hình tiêu đề",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-1f98d80b6d12-b5c0bcb3bd-e2f120299d",
+          "batch_id": "tr-p3-67f8551f7780-1f98d80b6d12-b5c0bcb3bd-e2f120299d-b0035",
+          "claim_id": "trc-gpt56sol-auto11-20260908T084800Z-b0035",
+          "merged_at": "2026-09-08T08:39:15.904822Z",
+          "reason": "Current Gacha wording violates the embedded 奖池→Chiêu mộ lock; preserve all three lines."
+        }
+      ]
+    },
+    {
       "id": "review.regression.23d788befb694501",
       "uid": "zhcn:5dfea77b27aa5c916a761d07",
       "scope": "uid",
@@ -72389,10 +72783,12 @@
       "source_text": "奖池开放时间结束",
       "source_fingerprint": "3deb1e3a43f1e79f1fb955d779f6fd38f2cf93fc5500a7b4c561f257da2d8069",
       "rejected_targets": [
+        "Hết thời gian Gacha",
         "Thời gian mở Gacha kết thúc"
       ],
-      "approved_target": "Hết thời gian Gacha",
+      "approved_target": "Hết thời gian mở Chiêu mộ",
       "origins": [
+        "translation_review",
         "ui_review"
       ],
       "ui_contexts": [
@@ -72414,6 +72810,14 @@
           "reason": "The compact phrase directly states that the Gacha availability period ends without the repeated opening-time construction.",
           "ui_key": "Gacha608004",
           "control_type": "short_system_label"
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-1f98d80b6d12-b5c0bcb3bd-e2f120299d",
+          "batch_id": "tr-p3-67f8551f7780-1f98d80b6d12-b5c0bcb3bd-e2f120299d-b0008",
+          "claim_id": "trc-gpt56sol-auto11-20260908T084100Z-b0008",
+          "merged_at": "2026-09-08T08:39:15.887296Z",
+          "reason": "Current Gacha wording violates the embedded 奖池→Chiêu mộ lock."
         }
       ]
     },
@@ -83890,6 +84294,31 @@
       ]
     },
     {
+      "id": "review.regression.b47190a965e1b690",
+      "uid": "zhcn:6d7dd4651775372ee2396bc8",
+      "scope": "uid",
+      "source_text": "由于已使用过初次限定奖池\\n无法抽奖\\n返回主页",
+      "source_fingerprint": "ed46352efccc8f0b3e136d1aa3e4f669761711644f65137faefec067b3556b71",
+      "rejected_targets": [
+        "Do đã sử dụng Gacha giới hạn lần đầu\\nkhông thể quay Gacha\\nQuay về trang chủ"
+      ],
+      "approved_target": "Do đã sử dụng Chiêu mộ giới hạn lần đầu\\nkhông thể quay\\nQuay về trang chủ",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-1f98d80b6d12-b5c0bcb3bd-e2f120299d",
+          "batch_id": "tr-p3-67f8551f7780-1f98d80b6d12-b5c0bcb3bd-e2f120299d-b0035",
+          "claim_id": "trc-gpt56sol-auto11-20260908T084800Z-b0035",
+          "merged_at": "2026-09-08T08:39:15.904822Z",
+          "reason": "Replace 奖池/Gacha with canonical Chiêu mộ and remove the unnecessary second Gacha calque while preserving the three-line structure and meaning."
+        }
+      ]
+    },
+    {
       "id": "review.regression.9d255f29fd9bd6ac",
       "uid": "zhcn:6d8a2880028f95895dcbb394",
       "scope": "uid",
@@ -84645,6 +85074,31 @@
           "claim_id": "trc-chatgpt-sol-20260830-104700-b0960",
           "merged_at": "2026-08-30T03:46:54.874493Z",
           "reason": "Category 172 requires Spark, and 技能灵感 is the canonical Skill Hint gameplay concept."
+        }
+      ]
+    },
+    {
+      "id": "review.regression.836ca1025010b9c7",
+      "uid": "zhcn:6e9a8606be242f5503bd455a",
+      "scope": "uid",
+      "source_text": "券奖池切换",
+      "source_fingerprint": "43e06fcd3498f6931f6f9db8bb8c7cee097f637e764e7dbe9e1650181732acd7",
+      "rejected_targets": [
+        "Chuyển banner Vé"
+      ],
+      "approved_target": "Chuyển Chiêu mộ Vé",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-1f98d80b6d12-b5c0bcb3bd-e2f120299d",
+          "batch_id": "tr-p3-67f8551f7780-1f98d80b6d12-b5c0bcb3bd-e2f120299d-b0006",
+          "claim_id": "trc-gpt56sol-auto11-20260908T083300Z-b0006",
+          "merged_at": "2026-09-08T08:39:15.882085Z",
+          "reason": "Current banner wording violates the embedded 奖池→Chiêu mộ lock."
         }
       ]
     },
@@ -89182,6 +89636,31 @@
       ]
     },
     {
+      "id": "review.regression.7149e3199112181a",
+      "uid": "zhcn:7447f9e3aedfddf18b3c78e5",
+      "scope": "uid",
+      "source_text": "因正在维护中\\n部分奖池不能使用\\n\\n可使用当前显示中的奖池",
+      "source_fingerprint": "60e1ca3503716ddb6c6025b71531b4d603b1a48192c3e651c0740a8a372584e1",
+      "rejected_targets": [
+        "Do đang bảo trì\\nmột số Gacha không thể sử dụng\\n\\nCó thể sử dụng Gacha hiện đang hiển thị"
+      ],
+      "approved_target": "Do đang bảo trì\\nmột số Chiêu mộ không thể sử dụng\\n\\nCó thể sử dụng Chiêu mộ hiện đang hiển thị",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-1f98d80b6d12-b5c0bcb3bd-e2f120299d",
+          "batch_id": "tr-p3-67f8551f7780-1f98d80b6d12-b5c0bcb3bd-e2f120299d-b0035",
+          "claim_id": "trc-gpt56sol-auto11-20260908T084800Z-b0035",
+          "merged_at": "2026-09-08T08:39:15.904822Z",
+          "reason": "Both 奖池 instances must use canonical Chiêu mộ; preserve the blank line and maintenance meaning."
+        }
+      ]
+    },
+    {
       "id": "review.regression.642fd8bc74ae39e1",
       "uid": "zhcn:744a7fcfa23b2ee18aa53df9",
       "scope": "uid",
@@ -91680,6 +92159,31 @@
           "claim_id": "trc-gpt56sol-20260903T204640Z-b0146",
           "merged_at": "2026-09-03T20:51:22.882831Z",
           "reason": "Pinned JP identity is ごぼう抜き, meaning passing rivals successively; Vọt thẳng lên is a lossy zh-CN calque and is explicitly forbidden."
+        }
+      ]
+    },
+    {
+      "id": "review.regression.25b98ff42979b5f9",
+      "uid": "zhcn:7759d2d44df13a1ef4873bcb",
+      "scope": "uid",
+      "source_text": "在英雄联赛中让{0}展现出令所有人\n都认同其英雄身份的表现{1}次吧",
+      "source_fingerprint": "300f59b3565bd2a2e0a8807c796569e1b36788d64cb46505f041c2353dd017ac",
+      "rejected_targets": [
+        "Hãy để {0} thể hiện trong Hero League khiến mọi người\ncông nhận là Anh hùng {1} lần"
+      ],
+      "approved_target": "Trong League of Heroes, hãy để {0} có màn thể hiện khiến mọi người\ncông nhận là Anh hùng {1} lần",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-1f98d80b6d12-b5c0bcb3bd-e2f120299d",
+          "batch_id": "tr-p3-67f8551f7780-1f98d80b6d12-b5c0bcb3bd-e2f120299d-b0008",
+          "claim_id": "trc-gpt56sol-auto11-20260908T084100Z-b0008",
+          "merged_at": "2026-09-08T08:39:15.887296Z",
+          "reason": "Current text uses forbidden Hero League; revised text restores the established League of Heroes event name while preserving {0}/{1} and the newline."
         }
       ]
     },
@@ -98651,10 +99155,12 @@
       "source_text": "奖池开放时间已结束",
       "source_fingerprint": "8b96bf3494d1d88394ae5499b7618d527dca73e327c7a857744b32e187f701c8",
       "rejected_targets": [
-        "Thời gian mở Gacha đã kết thúc"
+        "Thời gian mở Gacha đã kết thúc",
+        "Đã hết thời gian Gacha"
       ],
-      "approved_target": "Đã hết thời gian Gacha",
+      "approved_target": "Đã hết thời gian mở Chiêu mộ",
       "origins": [
+        "translation_review",
         "ui_review"
       ],
       "ui_contexts": [
@@ -98676,6 +99182,14 @@
           "reason": "The compact completed-state wording preserves that the Gacha availability period has already ended.",
           "ui_key": "Gacha608005",
           "control_type": "short_system_label"
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-1f98d80b6d12-b5c0bcb3bd-e2f120299d",
+          "batch_id": "tr-p3-67f8551f7780-1f98d80b6d12-b5c0bcb3bd-e2f120299d-b0008",
+          "claim_id": "trc-gpt56sol-auto11-20260908T084100Z-b0008",
+          "merged_at": "2026-09-08T08:39:15.887296Z",
+          "reason": "Current Gacha wording violates the embedded 奖池→Chiêu mộ lock."
         }
       ]
     },
@@ -101637,9 +102151,10 @@
       "source_text": "要播放\n\n英雄联赛 特别阶段\n\n{0}集团\n参加比赛（第{1}场比赛）吗？",
       "source_fingerprint": "75a47cfb7c586e825440ef63698eb647dfbd81d6a1701d2bf2d250801d589a1c",
       "rejected_targets": [
+        "Bạn muốn xem\n\nHero League Extra Stage\n\nNhóm {0}\nCuộc đua tham gia (Cuộc đua thứ {1}) không?",
         "Bạn muốn xem\n\nHero League Giai đoạn đặc biệt\n\nNhóm {0}\nCuộc đua tham gia (Cuộc đua thứ {1}) không?"
       ],
-      "approved_target": "Bạn muốn xem\n\nHero League Extra Stage\n\nNhóm {0}\nCuộc đua tham gia (Cuộc đua thứ {1}) không?",
+      "approved_target": "Bạn muốn xem\n\nLeague of Heroes Extra Stage\n\nNhóm {0}\nCuộc đua tham gia (Cuộc đua thứ {1}) không?",
       "origins": [
         "translation_review"
       ],
@@ -101652,6 +102167,14 @@
           "claim_id": "trc-chatgpt-gpt56sol-b0070-20260831T104033Z",
           "merged_at": "2026-08-31T10:46:02.518284Z",
           "reason": "Giữ nguyên cấu trúc, placeholder và các nhãn cuộc đua nhưng thay calque bị cấm “Giai đoạn đặc biệt” bằng canonical Extra Stage."
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-1f98d80b6d12-b5c0bcb3bd-e2f120299d",
+          "batch_id": "tr-p3-67f8551f7780-1f98d80b6d12-b5c0bcb3bd-e2f120299d-b0008",
+          "claim_id": "trc-gpt56sol-auto11-20260908T084100Z-b0008",
+          "merged_at": "2026-09-08T08:39:15.887296Z",
+          "reason": "Replace forbidden Hero League with League of Heroes while preserving Extra Stage, placeholders and newline structure."
         }
       ]
     },
@@ -109104,6 +109627,31 @@
           "claim_id": "trc-gpt56sol-auto11-20260905T144600Z-b0059",
           "merged_at": "2026-09-05T14:50:55.094953Z",
           "reason": "Bản hiện tại đảo thứ tự ba nhãn so với source. Khôi phục thứ tự 签约 / 赛马娘 / 排名 và giữ nguyên ba dòng."
+        }
+      ]
+    },
+    {
+      "id": "review.regression.012f0ec0ada9be72",
+      "uid": "zhcn:8c2dad18505f12365d5e84fc",
+      "scope": "uid",
+      "source_text": "已被编入英雄联赛中，无法移籍",
+      "source_fingerprint": "7d0b213c6692277fa2749ba752662cb8d722408d4515fc7beb69a27f0501340c",
+      "rejected_targets": [
+        "Đã được xếp vào Hero League nên không thể chuyển nhượng"
+      ],
+      "approved_target": "Đã được xếp vào League of Heroes nên không thể chuyển nhượng",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-1f98d80b6d12-b5c0bcb3bd-e2f120299d",
+          "batch_id": "tr-p3-67f8551f7780-1f98d80b6d12-b5c0bcb3bd-e2f120299d-b0008",
+          "claim_id": "trc-gpt56sol-auto11-20260908T084100Z-b0008",
+          "merged_at": "2026-09-08T08:39:15.887296Z",
+          "reason": "Current text uses forbidden Hero League; the rest of the meaning is correct."
         }
       ]
     },
@@ -125700,6 +126248,31 @@
       ]
     },
     {
+      "id": "review.regression.a2c69ac706b9ae02",
+      "uid": "zhcn:a21c5c5f8166f7ae8823a60f",
+      "scope": "uid",
+      "source_text": "选择中的券奖池",
+      "source_fingerprint": "1a5994c77edd99c660f46753fa2d260d3650c30f7f11b8c4e4eda61c53281bd0",
+      "rejected_targets": [
+        "Banner Vé đang chọn"
+      ],
+      "approved_target": "Chiêu mộ Vé đang chọn",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-1f98d80b6d12-b5c0bcb3bd-e2f120299d",
+          "batch_id": "tr-p3-67f8551f7780-1f98d80b6d12-b5c0bcb3bd-e2f120299d-b0006",
+          "claim_id": "trc-gpt56sol-auto11-20260908T083300Z-b0006",
+          "merged_at": "2026-09-08T08:39:15.882085Z",
+          "reason": "Current banner wording violates the embedded 奖池→Chiêu mộ lock."
+        }
+      ]
+    },
+    {
       "id": "review.regression.186a7fd59d44106a",
       "uid": "zhcn:a23adde35d4633ffe05ccd18",
       "scope": "uid",
@@ -128501,9 +129074,10 @@
       "source_text": "奖池中将出现以上SSR支援卡，确定吗？",
       "source_fingerprint": "d3ea6c1d6b83a8174548b6f9da720a0231ed98d1fc0ae42ea406792aa930f2a7",
       "rejected_targets": [
+        "Các Support Card SSR ở trên sẽ xuất hiện trong Gacha. Bạn có chắc không?",
         "Các Thẻ Hỗ trợ SSR trên sẽ xuất hiện trong Gacha. Bạn có chắc không?"
       ],
-      "approved_target": "Các Support Card SSR ở trên sẽ xuất hiện trong Gacha. Bạn có chắc không?",
+      "approved_target": "Các Support Card SSR ở trên sẽ xuất hiện trong Chiêu mộ. Bạn có chắc không?",
       "origins": [
         "translation_review"
       ],
@@ -128516,6 +129090,14 @@
           "claim_id": "trc-chatgpt-sol-20260830-1216-b0089",
           "merged_at": "2026-08-30T05:58:49.629723Z",
           "reason": "Current text calques Support Card; revision preserves SSR, gacha, and confirmation meaning."
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-1f98d80b6d12-b5c0bcb3bd-e2f120299d",
+          "batch_id": "tr-p3-67f8551f7780-1f98d80b6d12-b5c0bcb3bd-e2f120299d-b0006",
+          "claim_id": "trc-gpt56sol-auto11-20260908T083300Z-b0006",
+          "merged_at": "2026-09-08T08:39:15.882085Z",
+          "reason": "Replace Gacha with canonical Chiêu mộ while preserving Support Card terminology and the confirmation meaning."
         }
       ]
     },
@@ -136040,6 +136622,31 @@
       ]
     },
     {
+      "id": "review.regression.dce1ff61743cbdf9",
+      "uid": "zhcn:afae6bc65962acc4d7750c64",
+      "scope": "uid",
+      "source_text": "此奖池已被抽奖",
+      "source_fingerprint": "a898355da03a787e851ae69a03de72fbd35f1e77b3eec40b17b83138cf1127a4",
+      "rejected_targets": [
+        "Banner này đã được quay"
+      ],
+      "approved_target": "Đã quay Chiêu mộ này",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-1f98d80b6d12-b5c0bcb3bd-e2f120299d",
+          "batch_id": "tr-p3-67f8551f7780-1f98d80b6d12-b5c0bcb3bd-e2f120299d-b0005",
+          "claim_id": "trc-gpt56sol-auto11-20260908T082700Z-b0005",
+          "merged_at": "2026-09-08T08:39:15.874933Z",
+          "reason": "Replace banner with canonical Chiêu mộ while retaining the source meaning that this pool has already been drawn."
+        }
+      ]
+    },
+    {
       "id": "review.regression.446aa82edf83eb49",
       "uid": "zhcn:afb6bb51acb9f64df83a45e3",
       "scope": "uid",
@@ -139276,9 +139883,10 @@
       "source_text": "可确认奖池中登场的支援卡能力",
       "source_fingerprint": "13f2afa06f9788337e08664bb1ac2ff2116f5bb6965013d26dc92d16ffc03134",
       "rejected_targets": [
+        "Có thể kiểm tra chỉ số của Support Card xuất hiện trong banner",
         "Có thể kiểm tra chỉ số của Thẻ Hỗ trợ xuất hiện trong banner"
       ],
-      "approved_target": "Có thể kiểm tra chỉ số của Support Card xuất hiện trong banner",
+      "approved_target": "Có thể kiểm tra chỉ số của Support Card xuất hiện trong Chiêu mộ",
       "origins": [
         "translation_review"
       ],
@@ -139291,6 +139899,14 @@
           "claim_id": "trc-gpt56sol-20260901T033600Z-b0056-7f3c",
           "merged_at": "2026-09-01T03:46:04.267655Z",
           "reason": "Replace forbidden literal Thẻ Hỗ trợ with required Support Card while preserving the ability-check meaning."
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-1f98d80b6d12-b5c0bcb3bd-e2f120299d",
+          "batch_id": "tr-p3-67f8551f7780-1f98d80b6d12-b5c0bcb3bd-e2f120299d-b0005",
+          "claim_id": "trc-gpt56sol-auto11-20260908T082700Z-b0005",
+          "merged_at": "2026-09-08T08:39:15.874933Z",
+          "reason": "Current Support Card wording is correct, but the embedded reviewed source-bridge lock requires 奖池 to use Chiêu mộ rather than banner."
         }
       ]
     },
@@ -167849,9 +168465,10 @@
       "source_text": "赛马娘奖池已切换",
       "source_fingerprint": "2124ed035d28a7b432ca704d31c6c39e46b7b7e72bbb3f13e5614add89fba511",
       "rejected_targets": [
+        "Đã chuyển banner Mã Nương",
         "Đã chuyển banner Uma Musume"
       ],
-      "approved_target": "Đã chuyển banner Mã Nương",
+      "approved_target": "Đã chuyển Chiêu mộ Mã Nương",
       "origins": [
         "translation_review"
       ],
@@ -167864,6 +168481,14 @@
           "claim_id": "trc-gpt56sol-20260901T034600Z-b0058-7f3c",
           "merged_at": "2026-09-01T03:52:14.640445Z",
           "reason": "Generic 赛马娘 must use Mã Nương; switched-state meaning is otherwise correct."
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-1f98d80b6d12-b5c0bcb3bd-e2f120299d",
+          "batch_id": "tr-p3-67f8551f7780-1f98d80b6d12-b5c0bcb3bd-e2f120299d-b0005",
+          "claim_id": "trc-gpt56sol-auto11-20260908T082700Z-b0005",
+          "merged_at": "2026-09-08T08:39:15.874933Z",
+          "reason": "Replace banner with canonical Chiêu mộ; generic 赛马娘 remains Mã Nương."
         }
       ]
     },
@@ -172288,6 +172913,31 @@
           "claim_id": "trc-chatgpt-20260829T2035Z-b0625",
           "merged_at": "2026-08-30T00:48:53.524699Z",
           "reason": "Smart Falcon Condition family requires the established Fan Promise concept while preserving region."
+        }
+      ]
+    },
+    {
+      "id": "review.regression.f01d20e64469c769",
+      "uid": "zhcn:ddaaa9ed6bf60bcf429f83f4",
+      "scope": "uid",
+      "source_text": "此奖池的开放时间已结束\\n返回主页",
+      "source_fingerprint": "dbd0dc96f1265a899b7cb956cfac41879e6fcf5494b9e6feb9032d12a8fc8749",
+      "rejected_targets": [
+        "Thời gian mở của Gacha này đã kết thúc\\nQuay về trang chủ"
+      ],
+      "approved_target": "Thời gian mở của Chiêu mộ này đã kết thúc\\nQuay về trang chủ",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-1f98d80b6d12-b5c0bcb3bd-e2f120299d",
+          "batch_id": "tr-p3-67f8551f7780-1f98d80b6d12-b5c0bcb3bd-e2f120299d-b0035",
+          "claim_id": "trc-gpt56sol-auto11-20260908T084800Z-b0035",
+          "merged_at": "2026-09-08T08:39:15.904822Z",
+          "reason": "Current Gacha wording violates the embedded 奖池→Chiêu mộ lock; preserve the original line-break token."
         }
       ]
     },
@@ -184524,9 +185174,10 @@
       "source_fingerprint": "d2dbbb436c8eab768b1fc053319ece95153d28195c1e645c1b0b595899121def",
       "rejected_targets": [
         "Hãy chọn Mã Nương huấn luyện ★3\nsẽ xuất hiện trong Gacha",
+        "Hãy chọn Trainee ★3\nsẽ xuất hiện trong Gacha",
         "Hãy chọn ★3 Uma Musume huấn luyện\nsẽ xuất hiện trong Gacha"
       ],
-      "approved_target": "Hãy chọn Trainee ★3\nsẽ xuất hiện trong Gacha",
+      "approved_target": "Hãy chọn Trainee ★3\nsẽ xuất hiện trong Chiêu mộ",
       "origins": [
         "translation_review"
       ],
@@ -184547,6 +185198,14 @@
           "claim_id": "trc-gpt56sol-20260901T035100Z-b0059-7f3c",
           "merged_at": "2026-09-01T03:52:14.645623Z",
           "reason": "Replace full-compound calque with canonical Trainee while preserving ★3, newline and gacha-pool scope."
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-1f98d80b6d12-b5c0bcb3bd-e2f120299d",
+          "batch_id": "tr-p3-67f8551f7780-1f98d80b6d12-b5c0bcb3bd-e2f120299d-b0006",
+          "claim_id": "trc-gpt56sol-auto11-20260908T083300Z-b0006",
+          "merged_at": "2026-09-08T08:39:15.882085Z",
+          "reason": "Trainee is correct, but 奖池 must use canonical Chiêu mộ rather than Gacha; the newline and ★3 marker are preserved."
         }
       ]
     },
@@ -188200,6 +188859,31 @@
       ]
     },
     {
+      "id": "review.regression.b7412d75e5f43071",
+      "uid": "zhcn:f23b287e45f94c3c8700cfc9",
+      "scope": "uid",
+      "source_text": "分组选择奖池",
+      "source_fingerprint": "829b5b693c649df4c4af5564d3d1c94876bd6b1fe847a431154cc612601b02cc",
+      "rejected_targets": [
+        "Gacha chọn banner theo nhóm"
+      ],
+      "approved_target": "Chọn Chiêu mộ theo nhóm",
+      "origins": [
+        "translation_review"
+      ],
+      "ui_contexts": [],
+      "evidence": [
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-1f98d80b6d12-b5c0bcb3bd-e2f120299d",
+          "batch_id": "tr-p3-67f8551f7780-1f98d80b6d12-b5c0bcb3bd-e2f120299d-b0006",
+          "claim_id": "trc-gpt56sol-auto11-20260908T083300Z-b0006",
+          "merged_at": "2026-09-08T08:39:15.882085Z",
+          "reason": "Current text uses banner/Gacha wording for 奖池; the embedded reviewed lock requires the player-facing label Chiêu mộ."
+        }
+      ]
+    },
+    {
       "id": "review.regression.52cd78cd3fb22ca5",
       "uid": "zhcn:f23c85e0be90ac4ed4528720",
       "scope": "uid",
@@ -189975,9 +190659,10 @@
       "source_text": "选择中的赛马娘奖池",
       "source_fingerprint": "a1a7ce14ca7d06389d38e9ef506c93d7e5f3d3daba7d39de8aaf497ffd6eb6f4",
       "rejected_targets": [
+        "Banner Mã Nương đang chọn",
         "Banner Uma Musume đang chọn"
       ],
-      "approved_target": "Banner Mã Nương đang chọn",
+      "approved_target": "Chiêu mộ Mã Nương đang chọn",
       "origins": [
         "translation_review"
       ],
@@ -189990,6 +190675,14 @@
           "claim_id": "trc-gpt56sol-20260901T034600Z-b0058-7f3c",
           "merged_at": "2026-09-01T03:52:14.640445Z",
           "reason": "Generic 赛马娘 must use Mã Nương; selected-banner state is otherwise correct."
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-1f98d80b6d12-b5c0bcb3bd-e2f120299d",
+          "batch_id": "tr-p3-67f8551f7780-1f98d80b6d12-b5c0bcb3bd-e2f120299d-b0005",
+          "claim_id": "trc-gpt56sol-auto11-20260908T082700Z-b0005",
+          "merged_at": "2026-09-08T08:39:15.874933Z",
+          "reason": "Replace legacy banner wording with the embedded canonical Chiêu mộ label while preserving Mã Nương."
         }
       ]
     },
@@ -197773,9 +198466,10 @@
       "source_text": "要播放\n\n英雄联赛 特别阶段\n\n{0}集团\n主要比赛（第{1}场比赛）吗？",
       "source_fingerprint": "7ff8d09d2b09325b0e3fabf386c4b9d320e17ac7c4b2a89a97da171e97a55075",
       "rejected_targets": [
+        "Bạn muốn xem\n\nHero League Extra Stage\n\nNhóm {0}\nCuộc đua chính (Cuộc đua thứ {1}) không?",
         "Bạn muốn xem\n\nHero League Giai đoạn đặc biệt\n\nNhóm {0}\nCuộc đua chính (Cuộc đua thứ {1}) không?"
       ],
-      "approved_target": "Bạn muốn xem\n\nHero League Extra Stage\n\nNhóm {0}\nCuộc đua chính (Cuộc đua thứ {1}) không?",
+      "approved_target": "Bạn muốn xem\n\nLeague of Heroes Extra Stage\n\nNhóm {0}\nCuộc đua chính (Cuộc đua thứ {1}) không?",
       "origins": [
         "translation_review"
       ],
@@ -197788,6 +198482,14 @@
           "claim_id": "trc-chatgpt-gpt56sol-b0070-20260831T104033Z",
           "merged_at": "2026-08-31T10:46:02.518284Z",
           "reason": "Giữ nguyên cấu trúc, placeholder và các nhãn cuộc đua nhưng thay calque bị cấm “Giai đoạn đặc biệt” bằng canonical Extra Stage."
+        },
+        {
+          "origin": "translation_review",
+          "plan_id": "tr-p3-67f8551f7780-1f98d80b6d12-b5c0bcb3bd-e2f120299d",
+          "batch_id": "tr-p3-67f8551f7780-1f98d80b6d12-b5c0bcb3bd-e2f120299d-b0008",
+          "claim_id": "trc-gpt56sol-auto11-20260908T084100Z-b0008",
+          "merged_at": "2026-09-08T08:39:15.887296Z",
+          "reason": "Extra Stage and Cuộc đua are correct, but Hero League is explicitly forbidden; preserve all placeholders and newline grouping."
         }
       ]
     },

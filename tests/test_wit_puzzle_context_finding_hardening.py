@@ -8,7 +8,8 @@ from scripts.resolve_context_guard_findings import resolve
 from scripts.translation_review_common import community_term_matches, load_community_terms
 
 LEGACY_FINDING_ID = "cf-fbbcf5f4a79f6cf8"
-CURRENT_FINDING_ID = "cf-9758a6327ee17eae"
+CURRENT_FINDING_ID = "cf-745d26a40739b272"
+PREVIOUS_FINDING_ID = "cf-9758a6327ee17eae"
 
 
 def _seed(root: Path, finding_id: str = CURRENT_FINDING_ID) -> None:

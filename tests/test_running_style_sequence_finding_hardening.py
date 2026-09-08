@@ -55,6 +55,7 @@ def test_running_style_sequence_finding_resolves_only_after_all_canonical_aliase
     assert resolve(tmp_path) is False
     assert harden(tmp_path) is True
     assert resolve(tmp_path) is True
+    # Production acceptance depends on this second resolver pass being a no-op.
     assert resolve(tmp_path) is False
     finding = json.loads((glossary / "canonical_findings.json").read_text(encoding="utf-8"))["findings"][0]
     assert finding["canonical_resolution"] == {

@@ -42,15 +42,28 @@ def _write(path: Path, payload: dict[str, Any]) -> None:
     path.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8", newline="\n")
 
 
-def _upsert(items: list[Any], record: dict[str, Any], id_field: str) -> None:
+def _upsert_unique(items: list[Any], record: dict[str, Any], id_field: str) -> None:
+    """Upsert one record and collapse same-ID duplicates left by concurrent rebases."""
     record_id = str(record[id_field])
+    first_index: int | None = None
+    duplicates: list[int] = []
     for index, item in enumerate(items):
-        if isinstance(item, dict) and str(item.get(id_field) or "") == record_id:
-            merged = dict(item)
-            merged.update(record)
-            items[index] = merged
-            return
-    items.append(dict(record))
+        if not isinstance(item, dict) or str(item.get(id_field) or "") != record_id:
+            continue
+        if first_index is None:
+            first_index = index
+        else:
+            duplicates.append(index)
+
+    if first_index is None:
+        items.append(dict(record))
+        return
+
+    merged = dict(items[first_index])
+    merged.update(record)
+    items[first_index] = merged
+    for index in reversed(duplicates):
+        del items[index]
 
 
 def harden(repo_root: Path = ROOT) -> bool:
@@ -60,7 +73,7 @@ def harden(repo_root: Path = ROOT) -> bool:
     if not isinstance(decisions, list):
         raise ValueError("glossary/terminology_reviews.json decisions must be a list")
     before = json.dumps(reviews, ensure_ascii=False, sort_keys=True)
-    _upsert(decisions, DECISION, "decision_id")
+    _upsert_unique(decisions, DECISION, "decision_id")
     after = json.dumps(reviews, ensure_ascii=False, sort_keys=True)
     if before == after:
         return False

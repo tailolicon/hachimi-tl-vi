@@ -12,6 +12,7 @@ on:
       - "TRANSLATION_REVIEW.md"
       - "scripts/translation_review_common.py"
       - "scripts/canonical_findings.py"
+      - "scripts/resolve_heart_flutter_support_title_finding.py"
       - "scripts/build_translation_review_plan.py"
       - "scripts/merge_translation_review.py"
       - "scripts/build_translation_regression_memory.py"
@@ -185,6 +186,7 @@ jobs:
             # retrospective review merges cannot reopen already accepted blockers.
             python scripts/resolve_scoped_canonical_overrides.py --repo-root .
             python scripts/resolve_context_guard_findings.py
+            python scripts/resolve_heart_flutter_support_title_finding.py
             python scripts/resolve_running_style_narrative_finding.py
             python scripts/resolve_regenerated_super_long_distance_context_finding.py
             python scripts/resolve_regenerated_aoharu_ignition_finding.py

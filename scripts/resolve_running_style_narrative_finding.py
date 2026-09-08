@@ -5,8 +5,10 @@ from pathlib import Path
 from typing import Any
 
 try:
+    from scripts.resolve_running_style_sequence_finding import resolve as resolve_sequence
     from scripts.translation_review_common import community_term_matches, load_community_terms
 except ModuleNotFoundError:
+    from resolve_running_style_sequence_finding import resolve as resolve_sequence  # type: ignore[no-redef]
     from translation_review_common import community_term_matches, load_community_terms  # type: ignore[no-redef]
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -74,7 +76,8 @@ def resolve(repo_root: Path = ROOT) -> bool:
     changed = before != json.dumps(payload, ensure_ascii=False, sort_keys=True)
     if changed:
         _write(path, payload)
-    return changed
+    sequence_changed = resolve_sequence(repo_root)
+    return changed or sequence_changed
 
 
 def main() -> int:

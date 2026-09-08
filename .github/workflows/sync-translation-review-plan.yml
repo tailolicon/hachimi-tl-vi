@@ -30,6 +30,7 @@ on:
       - "scripts/canonical_findings.py"
       - "scripts/resolve_scoped_canonical_overrides.py"
       - "scripts/resolve_context_guard_findings.py"
+      - "scripts/resolve_heart_flutter_support_title_finding.py"
       - "scripts/resolve_running_style_narrative_finding.py"
       - "scripts/resolve_regenerated_super_long_distance_context_finding.py"
       - "scripts/resolve_regenerated_aoharu_ignition_finding.py"
@@ -105,6 +106,7 @@ jobs:
             # context Sync before worker-facing batch snapshots are refreshed.
             python scripts/resolve_scoped_canonical_overrides.py --repo-root .
             python scripts/resolve_context_guard_findings.py
+            python scripts/resolve_heart_flutter_support_title_finding.py
             python scripts/resolve_running_style_narrative_finding.py
             python scripts/resolve_regenerated_super_long_distance_context_finding.py
             python scripts/resolve_regenerated_aoharu_ignition_finding.py
@@ -193,6 +195,7 @@ jobs:
                 scripts/canonical_findings.py \
                 scripts/resolve_scoped_canonical_overrides.py \
                 scripts/resolve_context_guard_findings.py \
+                scripts/resolve_heart_flutter_support_title_finding.py \
                 scripts/resolve_running_style_narrative_finding.py \
                 scripts/resolve_regenerated_super_long_distance_context_finding.py \
                 scripts/resolve_regenerated_aoharu_ignition_finding.py \

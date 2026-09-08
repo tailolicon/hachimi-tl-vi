@@ -31,6 +31,16 @@ SENIOR_AUTUMN_TRIPLE_CROWN_DECISION = {
     "note": "Canonical player-facing Senior Autumn Triple Crown label; scoped to text_data_dict.json so both the embedded compound title and the equivalent zh-CN achievement label resolve without global alias leakage.",
 }
 
+SENIOR_AUTUMN_TRIPLE_CROWN_VARIANT_DECISION = {
+    "decision_id": "audit.finding.senior-autumn-triple-crown-variant",
+    "source_zh_cn": "古马级秋三冠",
+    "action": "lock",
+    "target_vi": "Senior Autumn Triple Crown",
+    "kind": "system_label",
+    "category": "achievement",
+    "note": "Equivalent zh-CN label for the same Senior Autumn Triple Crown achievement; lock the full target so canonical-finding refresh can resolve exact-source findings even when workers supplied no suggested target.",
+}
+
 
 def _load(path: Path, default: dict[str, Any] | None = None) -> dict[str, Any]:
     if not path.exists():
@@ -76,6 +86,7 @@ def harden(repo_root: Path = ROOT) -> bool:
         raise ValueError("glossary/terminology_reviews.json decisions must be a list")
     before = json.dumps(reviews, ensure_ascii=False, sort_keys=True)
     _upsert(decisions, SENIOR_AUTUMN_TRIPLE_CROWN_DECISION, id_field="decision_id")
+    _upsert(decisions, SENIOR_AUTUMN_TRIPLE_CROWN_VARIANT_DECISION, id_field="decision_id")
     if before != json.dumps(reviews, ensure_ascii=False, sort_keys=True):
         _write(reviews_path, reviews)
         changed = True

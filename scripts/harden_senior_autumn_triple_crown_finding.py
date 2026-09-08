@@ -9,16 +9,16 @@ ROOT = Path(__file__).resolve().parents[1]
 SENIOR_AUTUMN_TRIPLE_CROWN = {
     "id": "achievement.senior_autumn_triple_crown",
     "category": "achievement",
-    "source_aliases": ["秋古马三冠"],
+    "source_aliases": ["秋古马三冠", "古马级秋三冠"],
     "preferred": "Senior Autumn Triple Crown",
     "compact": [],
     "accepted": ["Senior Autumn Triple Crown"],
-    "forbidden": ["Tam quan Cổ mã Mùa thu", "Tam quán Cổ mã Mùa thu", "Autumn Senior Triple Crown"],
+    "forbidden": ["Tam quan Cổ mã Mùa thu", "Tam quán Cổ mã Mùa thu", "Autumn Senior Triple Crown", "Tam quán mùa thu Hạng Senior"],
     "require_accepted": True,
     "invalidation_scope": "item",
     "source_paths": ["text_data_dict.json"],
     "match_mode": "contains",
-    "basis": "Recurring player-facing autumn senior Triple Crown achievement label. The live finding occurs both as a standalone label and inside the compound 秋古马三冠赛马娘, so keep the rule scoped to text_data_dict.json while allowing contains matching. Preserve the established English achievement identity Senior Autumn Triple Crown rather than the existing mixed Vietnamese calque.",
+    "basis": "Recurring player-facing Senior Autumn Triple Crown achievement label. The zh-CN source surfaces it both as 秋古马三冠 (including the compound 秋古马三冠赛马娘) and as the equivalent standalone variant 古马级秋三冠. Keep the rule scoped to text_data_dict.json while allowing contains matching, and preserve the established English achievement identity Senior Autumn Triple Crown rather than mixed Vietnamese calques.",
 }
 
 SENIOR_AUTUMN_TRIPLE_CROWN_DECISION = {
@@ -28,7 +28,7 @@ SENIOR_AUTUMN_TRIPLE_CROWN_DECISION = {
     "target_vi": "Senior Autumn Triple Crown",
     "kind": "system_label",
     "category": "achievement",
-    "note": "Canonical player-facing autumn senior Triple Crown label; scoped to text_data_dict.json so the embedded compound title resolves without global alias leakage.",
+    "note": "Canonical player-facing Senior Autumn Triple Crown label; scoped to text_data_dict.json so both the embedded compound title and the equivalent zh-CN achievement label resolve without global alias leakage.",
 }
 
 

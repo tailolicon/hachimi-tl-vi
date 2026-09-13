@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "plan_id": "ctx-67f8551f77807292-v1",
+  "batch_id": "term-0245",
+  "claim_id": "cur-gpt56sol-20260913T080405Z-b527d164",
+  "worker_id": "chatgpt-sol-curation-20260913-080405-b527d164",
+  "decisions": [
+    {"source_zh_cn":"育成赛马娘","action":"lock","target_vi":"Trainee","kind":"system_label","term_id":"career.ui.trainee","category":"career_ui","ja":["育成ウマ娘"],"note":"Use the established full-compound Trainee identity; keep bare Career and generic Umamusume concepts distinct."},
+    {"source_zh_cn":"古马级秋三冠","action":"lock","target_vi":"Senior Autumn Triple Crown","kind":"system_label","term_id":"reviewed.system_label.ce6f725dd451","category":"achievement","note":"Matches the existing canonical Senior Autumn Triple Crown achievement label."},
+    {"source_zh_cn":"向光明的彼方前进！\\n冲向最速的直线组长","action":"ignore","note":"Ordinary profile prose; 光明 here means brightness/a bright future and must not trigger the standalone Skill-title matcher."},
+    {"source_zh_cn":"在复苏的故乡作为舞台的决战中，为了开拓大家的未来\\n怀揣着对船桥的热爱，展现出坚定不移的力量","action":"ignore","note":"Narrative prose describing unyielding strength; the embedded 力量 is not the gameplay Power stat and should not become terminology."},
+    {"source_zh_cn":"殿堂赛马娘","action":"defer","note":"High-confidence Hall-of-Fame trained Umamusume system concept, but repository evidence does not yet establish a verified player-facing canonical target; defer rather than guess."},
+    {"source_zh_cn":"目白光明的碎片","action":"lock","target_vi":"Mảnh Mejiro Bright","kind":"context_rule","term_id":"reviewed.context_rule.facb60f522bc","category":"character_piece_label","note":"Character Piece label using canonical Mejiro Bright; prevents embedded 光明 from matching the standalone Skill title."},
+    {"source_zh_cn":"神话、哲学、Vu行的发音、业余木工","action":"lock","target_vi":"Thần thoại, triết học, phát âm các âm V, làm đồ gỗ DIY","kind":"source_bridge","term_id":"reviewed.source_bridge.c8d713a79a6b","category":"source_bridge","note":"Exact-item bridge for Tanino Gimlet's strengths profile; matches the existing JP-backed clarification of ヴ行 and 日曜大工."},
+    {"source_zh_cn":"莱茵力量的碎片","action":"lock","target_vi":"Mảnh của Rhein Kraft","kind":"context_rule","term_id":"reviewed.context_rule.cc79738e2243","category":"character_piece_label","note":"Character Piece label using canonical Rhein Kraft; prevents embedded 力量 from matching the generic Power stat."}
+  ]
+}

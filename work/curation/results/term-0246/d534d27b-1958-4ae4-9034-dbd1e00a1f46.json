@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "plan_id": "ctx-67f8551f77807292-v1",
+  "batch_id": "term-0246",
+  "claim_id": "d534d27b-1958-4ae4-9034-dbd1e00a1f46",
+  "worker_id": "gpt56sol-curation-20260913-34fa8c21",
+  "decisions": [
+    {
+      "source_zh_cn": "主线故事决胜服（莱茵力量）",
+      "action": "ignore",
+      "note": "This is a costume label containing the verified character name Rhein Kraft (ラインクラフト), not a Power-stat term. Keep the character mapping/context guard; do not create canonical terminology from the whole label."
+    },
+    {
+      "source_zh_cn": "决胜服（莱茵力量）",
+      "action": "ignore",
+      "note": "This is a costume label containing Rhein Kraft, whose zh-CN alias 莱茵力量 must not be split so 力量 becomes the Power stat. The whole label should not become a terminology entry."
+    },
+    {
+      "source_zh_cn": "刚勇果断 烈火之刀",
+      "action": "defer",
+      "note": "The repo confirms a repeated individual Skill title in inheritance text but current main has no verified JP identity or reviewed canonical target for this exact source; defer rather than freeze the zh-CN-derived literary rendering."
+    },
+    {
+      "source_zh_cn": "天天晴晴 年年甜甜蜜蜜",
+      "action": "lock",
+      "target_vi": "もちっと・ハレハレ",
+      "kind": "skill_name",
+      "term_id": "reviewed.skill_name.9d1b4850c2ca",
+      "ja": ["もちっと・ハレハレ"],
+      "note": "Keep the existing reviewed lock: inheritance ID 10600301 verifies the JP-only unique Skill title もちっと・ハレハレ, so preserve its exact JP identity instead of the old semantic calque."
+    },
+    {
+      "source_zh_cn": "永世光辉 照耀那晦暝吧",
+      "action": "defer",
+      "note": "Repeated inheritance evidence shows an individual Skill title, but current main provides no verified JP identity or reviewed target for this exact source. Defer rather than canonize the semantic calque."
+    },
+    {
+      "source_zh_cn": "烈火缭乱 无敌之舞",
+      "action": "defer",
+      "note": "Current main has only inheritance evidence and the existing semantic Vietnamese rendering for this Skill title, without verified JP identity or a reviewed canonical target; defer."
+    },
+    {
+      "source_zh_cn": "私服（莱茵力量）",
+      "action": "ignore",
+      "note": "This private-clothes label contains the verified Rhein Kraft character name; 力量 is part of the proper name and must not trigger Power normalization. Keep it as context, not terminology."
+    }
+  ]
+}

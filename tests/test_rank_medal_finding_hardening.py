@@ -64,8 +64,9 @@ def test_rank_medal_ignore_is_exact_idempotent_and_nonblocking(tmp_path: Path) -
             }
         ],
     }
-    finding = refresh_canonical_resolutions(tmp_path, ledger)["findings"][0]
+    refreshed = refresh_canonical_resolutions(tmp_path, ledger)
+    finding = refreshed["findings"][0]
     assert finding["review_resolution"]["decision_id"] == RANK_MEDAL_IGNORE["decision_id"]
     assert finding["review_resolution"]["action"] == "ignore"
     assert finding["canonical_resolution"] is None
-    assert active_findings([finding]) == []
+    assert active_findings(refreshed) == []

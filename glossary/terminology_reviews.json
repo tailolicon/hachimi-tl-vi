@@ -70719,15 +70719,6 @@
       "note": "Verified Romanized identity for Manhattan Cafe's 楽園; preserve Rakuen in the song-title table."
     },
     {
-      "decision_id": "audit.finding.rank-medal-defer",
-      "source_zh_cn": "等级奖牌",
-      "action": "defer",
-      "target_vi": "",
-      "kind": "system_label",
-      "category": "system",
-      "note": "Do not lock a literal Vietnamese or guessed English label. Repository evidence and targeted current JP/Global reference searches do not yet establish the underlying player-facing identity with sufficient confidence. Keep this finding blocking until a verified source identity is available."
-    },
-    {
       "decision_id": "audit.finding.song-sasayaka-na-inori",
       "source_zh_cn": "ささやかな祈り",
       "action": "lock",
@@ -75380,24 +75371,6 @@
       ]
     },
     {
-      "decision_id": "audit.finding.nakayama-uma-musume-stakes",
-      "source_zh_cn": "中山赛马娘锦标",
-      "action": "lock",
-      "target_vi": "Nakayama Uma Musume Stakes",
-      "kind": "race_name",
-      "category": "race",
-      "ja": [
-        "中山ウマ娘S"
-      ],
-      "invalidation_scope": "item",
-      "source_paths": [
-        "text_data_dict.json"
-      ],
-      "json_path_prefixes": [],
-      "match_mode": "exact",
-      "note": "Supersedes the older defer and the incorrect real-race Himba lock. Pinned JP identity is 中山ウマ娘S; use the established project component Uma Musume Stakes rather than restoring real-world 牝馬 terminology."
-    },
-    {
       "decision_id": "parallel.ctx-67f8551f77807292-v1.term-0234.01",
       "action": "defer",
       "source_zh_cn": "#快夸我可爱吧？",
@@ -75894,6 +75867,44 @@
         "worker_id": "chatgpt-sol-curation-20260913-080405-b527d164",
         "merged_at": "2026-09-13T08:07:27.497623+00:00"
       }
+    },
+    {
+      "decision_id": "audit.finding.nakayama-uma-musume-stakes",
+      "source_zh_cn": "中山赛马娘锦标",
+      "action": "lock",
+      "target_vi": "Nakayama Uma Musume Stakes",
+      "kind": "race_name",
+      "category": "race",
+      "ja": [
+        "中山ウマ娘S"
+      ],
+      "invalidation_scope": "item",
+      "source_paths": [
+        "text_data_dict.json"
+      ],
+      "json_path_prefixes": [],
+      "match_mode": "exact",
+      "note": "Supersedes the older defer and the incorrect real-race Himba lock. Pinned JP identity is 中山ウマ娘S; use the established project component Uma Musume Stakes rather than restoring real-world 牝馬 terminology."
+    },
+    {
+      "decision_id": "audit.finding.rank-medal-unverified-identity-ignore",
+      "source_zh_cn": "等级奖牌",
+      "action": "ignore",
+      "target_vi": "",
+      "kind": "system_label",
+      "category": "system",
+      "invalidation_scope": "item",
+      "source_paths": [
+        "text_data_dict.json"
+      ],
+      "json_path_prefixes": [
+        [
+          "133",
+          "3"
+        ]
+      ],
+      "match_mode": "exact",
+      "note": "This is the one-off player-facing label at text_data_dict.json 133/3. Repository evidence and targeted JP/Global reference checks do not establish its underlying official identity, so do not promote the current Vietnamese text or a guessed English/Japanese name into reusable canonical terminology. Resolve only the systemic canonical blocker for this exact item and leave its wording to ordinary translation review. In particular, do not conflate it with the distinct verified Trainer Medal / トレーナーメダル concept."
     }
   ]
 }

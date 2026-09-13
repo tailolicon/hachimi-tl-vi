@@ -1,19 +1,33 @@
 from __future__ import annotations
 
+"""Resolve the one-off 等级奖牌 finding without inventing a reusable identity."""
+
 import json
 from pathlib import Path
 from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
+OLD_DECISION_ID = "audit.finding.rank-medal-defer"
 
-RANK_MEDAL_DEFER = {
-    "decision_id": "audit.finding.rank-medal-defer",
+RANK_MEDAL_IGNORE = {
+    "decision_id": "audit.finding.rank-medal-unverified-identity-ignore",
     "source_zh_cn": "等级奖牌",
-    "action": "defer",
+    "action": "ignore",
     "target_vi": "",
     "kind": "system_label",
     "category": "system",
-    "note": "Do not lock a literal Vietnamese or guessed English label. Repository evidence and targeted current JP/Global reference searches do not yet establish the underlying player-facing identity with sufficient confidence. Keep this finding blocking until a verified source identity is available.",
+    "invalidation_scope": "item",
+    "source_paths": ["text_data_dict.json"],
+    "json_path_prefixes": [["133", "3"]],
+    "match_mode": "exact",
+    "note": (
+        "This is the one-off player-facing label at text_data_dict.json 133/3. Repository evidence "
+        "and targeted JP/Global reference checks do not establish its underlying official identity, "
+        "so do not promote the current Vietnamese text or a guessed English/Japanese name into "
+        "reusable canonical terminology. Resolve only the systemic canonical blocker for this exact "
+        "item and leave its wording to ordinary translation review. In particular, do not conflate "
+        "it with the distinct verified Trainer Medal / トレーナーメダル concept."
+    ),
 }
 
 
@@ -47,8 +61,14 @@ def harden(repo_root: Path = ROOT) -> bool:
     decisions = reviews.setdefault("decisions", [])
     if not isinstance(decisions, list):
         raise ValueError("glossary/terminology_reviews.json decisions must be a list")
+
     before = json.dumps(reviews, ensure_ascii=False, sort_keys=True)
-    _upsert(decisions, RANK_MEDAL_DEFER, id_field="decision_id")
+    decisions[:] = [
+        item
+        for item in decisions
+        if not (isinstance(item, dict) and str(item.get("decision_id") or "") == OLD_DECISION_ID)
+    ]
+    _upsert(decisions, RANK_MEDAL_IGNORE, id_field="decision_id")
     if before == json.dumps(reviews, ensure_ascii=False, sort_keys=True):
         return False
     _write(reviews_path, reviews)
@@ -57,7 +77,7 @@ def harden(repo_root: Path = ROOT) -> bool:
 
 def main() -> int:
     changed = harden(ROOT)
-    print(f"rank_medal_defer_changed={str(changed).lower()}")
+    print(f"rank_medal_ignore_changed={str(changed).lower()}")
     return 0
 
 

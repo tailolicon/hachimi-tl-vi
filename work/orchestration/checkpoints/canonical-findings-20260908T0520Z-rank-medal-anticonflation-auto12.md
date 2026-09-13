@@ -23,3 +23,11 @@ Preserve the existing explicit defer enforced by `scripts/harden_rank_medal_find
 `completed_count` remains `210`; no production acceptance is claimed.
 
 Continuation: recompute live `active_findings` before a future maintenance claim. Preserve this blocker as deferred unless new authoritative source-identity evidence appears; specifically do not conflate it with `トレーナーメダル` / Trainer Medal.
+
+## 2026-09-13 live recheck
+
+- Re-read live routing and the current released maintenance continuation before taking the shared lane.
+- The rank-medal finding remains unresolved and evidence-blocked; no new authoritative source-identity evidence was found.
+- Trainer Medal remains a distinct confirmed concept and must not be conflated with this finding.
+- Preserve the existing defer. Do not guess a canonical target.
+- Route back to safe concurrent mass work after releasing this maintenance claim.

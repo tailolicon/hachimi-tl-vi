@@ -1,0 +1,158 @@
+{
+  "schema_version": 1,
+  "plan_id": "ctx-67f8551f77807292-v1",
+  "batch_id": "term-0234",
+  "claim_id": "gpt56sol-term0234-20260913T025823Z-d30b8032fc7c",
+  "worker_id": "gpt56sol-curation-20260913-d30b8032fc7c",
+  "decisions": [
+    {
+      "source_zh_cn": "#快夸我可爱吧？",
+      "action": "defer",
+      "note": "Named song-title finding has no verified Japanese alias or stable international/Romanized title in the required repository evidence; the observed Vietnamese sentence-like rendering is not sufficient canonical authority."
+    },
+    {
+      "source_zh_cn": "Hello 北极星",
+      "action": "lock",
+      "target_vi": "Hello Polaris",
+      "kind": "proper_name",
+      "term_id": "song.hello_polaris",
+      "ja": ["ハロー・ポラリス"],
+      "source_aliases": ["Hello 北极星"],
+      "note": "Current main already hardens the exact song-title row to the verified English-facing title Hello Polaris; reuse that canonical identity."
+    },
+    {
+      "source_zh_cn": "三冠",
+      "action": "lock",
+      "target_vi": "Triple Crown",
+      "kind": "system_label",
+      "term_id": "race.crown.generic_triple_crown_profile",
+      "source_aliases": ["三冠"],
+      "note": "Current main resolves the generic category-144 profile/title use as Triple Crown; keep it distinct from established compound crowns such as Classic/Senior Triple Crown variants."
+    },
+    {
+      "source_zh_cn": "不可动摇的热血誓言",
+      "action": "ignore",
+      "note": "Current main identifies this string as a lexical prefix shared by Biko Pegasus Condition variants, not a standalone Condition identity; the exact Sprint/Mile variants are canonicalized separately."
+    },
+    {
+      "source_zh_cn": "主赛段",
+      "action": "lock",
+      "target_vi": "Main Stage",
+      "kind": "terminology",
+      "term_id": "event.loh.main_stage.main_segment_alias",
+      "source_aliases": ["主赛段"],
+      "note": "Current main hardens this League of Heroes alias to Main Stage with event/UI scope; reuse that stable canonical wording."
+    },
+    {
+      "source_zh_cn": "以下为，勅令",
+      "action": "defer",
+      "note": "Category-16 named song title remains without a verified international/Romanized identity in repository evidence; do not canonize the literal Chinese-derived wording."
+    },
+    {
+      "source_zh_cn": "仰望即尊Mission!",
+      "action": "defer",
+      "note": "Category-16 named song title lacks a verified Japanese/international canonical identity in the required evidence; defer rather than preserve a semantic calque."
+    },
+    {
+      "source_zh_cn": "偏头痛",
+      "action": "lock",
+      "target_vi": "Migraine",
+      "kind": "condition",
+      "term_id": "condition.migraine",
+      "ja": ["片頭痛"],
+      "source_aliases": ["偏头痛"],
+      "note": "Named negative Condition; current main explicitly hardens 偏头痛 / 片頭痛 to the established player-facing label Migraine."
+    },
+    {
+      "source_zh_cn": "力量感",
+      "action": "ignore",
+      "note": "Narrative wording meaning a sense/impression of power; current main explicitly excludes 力量感 from the Power-stat matcher, so it must not become a canonical stat term."
+    },
+    {
+      "source_zh_cn": "印章",
+      "action": "lock",
+      "target_vi": "Stamp",
+      "kind": "system_label",
+      "term_id": "system.gacha_stamp",
+      "source_aliases": ["印章"],
+      "note": "Current main resolves the recurring gacha Stamp mechanic/resource as Stamp across the scoped gacha UI."
+    },
+    {
+      "source_zh_cn": "向在这个时代出生的所有人宣告——\n来吧，放声欢呼吧。你也将成为『传奇』的暴风眼！",
+      "action": "ignore",
+      "note": "Full narrative prose from a Gran Alegria text; the finding is an overmatch guard for an embedded canonical name, not a standalone terminology concept."
+    },
+    {
+      "source_zh_cn": "地热解放超驱动",
+      "action": "lock",
+      "target_vi": "Giải phóng địa nhiệt Overdrive",
+      "kind": "skill_name",
+      "term_id": "skill.transcend.geothermal_release_overdrive",
+      "ja": ["地熱解放オーヴァードライブ"],
+      "source_aliases": ["地热解放超驱动"],
+      "note": "Verified Transcend unique-Skill identity; preserve the distinctive Overdrive element and reuse the already hardened project canonical instead of the older generic 'Siêu tăng tốc' calque."
+    },
+    {
+      "source_zh_cn": "声音值",
+      "action": "lock",
+      "target_vi": "Vocal",
+      "kind": "system_label",
+      "term_id": "scenario.grand_live.performance.vocal.text_data",
+      "source_aliases": ["声音值"],
+      "note": "Grand Live named performance category; current main hardens 声音值 to the player-facing label Vocal."
+    },
+    {
+      "source_zh_cn": "大丰食祭",
+      "action": "lock",
+      "target_vi": "Daihoushokusai",
+      "kind": "scenario_name",
+      "term_id": "scenario.daihoushokusai.short",
+      "ja": ["大豊食祭", "収穫ッ！満腹ッ！大豊食祭"],
+      "source_aliases": ["大丰食祭"],
+      "note": "Current main resolves the JP-only scenario short identity to Daihoushokusai; use the stable romanized identity rather than a Chinese-derived semantic calque."
+    },
+    {
+      "source_zh_cn": "奔跑到何处",
+      "action": "lock",
+      "target_vi": "How Far Must I Run?",
+      "kind": "proper_name",
+      "term_id": "song.how_far_must_i_run",
+      "ja": ["どこまで走れば"],
+      "source_aliases": ["奔跑到何处"],
+      "note": "Current main verifies the exact song identity and hardens it to the official English-facing title How Far Must I Run?."
+    },
+    {
+      "source_zh_cn": "如同阳光一般温暖你的心。不用焦躁，慢慢来──\n一步一脚印地前进，梦想正在彼方等着我们。",
+      "action": "ignore",
+      "note": "Ordinary motivational prose; the finding exists to prevent embedded 焦躁 from being treated as the Rushed system label, so the full sentence is not a canonical terminology concept."
+    },
+    {
+      "source_zh_cn": "宝石",
+      "action": "lock",
+      "target_vi": "Jewel",
+      "kind": "currency",
+      "term_id": "currency.jewel",
+      "source_aliases": ["宝石"],
+      "note": "Keep the existing locked currency mapping Jewel only in actual currency context; current main explicitly excludes character-name and gemstone compounds such as 第一红宝石, 绿宝石 and 蓝宝石."
+    },
+    {
+      "source_zh_cn": "强大力量",
+      "action": "ignore",
+      "note": "Narrative phrase 'strong/great power'; current main explicitly excludes 强大力量 from the Power-stat matcher, so it must not become the canonical Power stat."
+    },
+    {
+      "source_zh_cn": "形象值",
+      "action": "lock",
+      "target_vi": "Visual",
+      "kind": "system_label",
+      "term_id": "scenario.grand_live.performance.visual.text_data",
+      "source_aliases": ["形象值"],
+      "note": "Grand Live named performance category; current main hardens 形象值 to the player-facing label Visual."
+    },
+    {
+      "source_zh_cn": "德比赛马娘",
+      "action": "ignore",
+      "note": "The active finding is a race-generic boundary case: current main excludes 德比赛马娘 from the generic 比赛/Race matcher. That boundary evidence does not establish a standalone canonical term mapping for this title phrase."
+    }
+  ]
+}

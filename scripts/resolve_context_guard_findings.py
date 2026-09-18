@@ -107,6 +107,14 @@ GUARDS = {
         "term_id": "reviewed.race_name.d7261f9f3232",
         "target_vi": "Challenge Cup",
     },
+    # St. Lite Kinen is a full race identity that contains the Saint Lite
+    # character alias. The hardener excludes the full race from the character
+    # matcher; this finding resolves only after that overmatch disappears.
+    "cf-6b9b893796ef90b5": {
+        "layer": "locked",
+        "term_id": "character.saint_lite",
+        "target_vi": "St. Lite Kinen",
+    },
     "cf-2b8709d527abc360": {
         "layer": "locked",
         "term_id": "race.generic",

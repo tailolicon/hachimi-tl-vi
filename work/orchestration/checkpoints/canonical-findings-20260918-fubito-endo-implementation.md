@@ -34,3 +34,19 @@ Verified Latin spelling: `Fubito Endo`
 - A whole-ledger manual refresh was intentionally not applied because unrelated stale context hashes would reopen other findings; production Sync remains the authority for global refresh.
 
 Production Sync verification is required before incrementing maintenance `completed_count`.
+
+## Production acceptance — complete
+
+- Implementation commit: `02d2196687fb6e0f2bd8c395b22187712fe2aaea`.
+- Validate run `35303464140`: success.
+- First production Sync `35303464131`: success.
+- Live canonical finding `cf-6ff2aa5d2b9f58ce` is non-active under `scripts/canonical_findings.py::active_findings` because it has locked canonical resolution `Fubito Endo`.
+- Live review lock: `audit.finding.fubito-endo-credit` → `Fubito Endo`.
+- Unchanged production Sync `35317741599`, job `105513018621`: success.
+- Fubito Endo hardener reported `fubito_endo_hardening_changed=false` in both hardener passes.
+- Full context pipeline: `878 passed`.
+- Exact no-op proof: `Context is already current.`
+
+## Accounting
+
+This finding is complete and is eligible to increment maintenance `completed_count` exactly once.

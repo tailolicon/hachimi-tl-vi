@@ -287,6 +287,15 @@ GUARDS.update({
 # by the named live term. Canonical refresh resets resolutions before this pass,
 # so any future evidence outside the proven scope automatically reopens the finding.
 POSITIVE_EVIDENCE_GUARDS = {
+    # Source-path-wide Fuchu race finding. The locked full-race rule is intentionally
+    # scoped to known race-name categories, so canonical refresh cannot cover a
+    # scope-wide finding directly. Prove every durable evidence row against the
+    # exact locked race before restoring the canonical resolution.
+    "cf-58532e4b9d8093de": {
+        "layer": "locked",
+        "term_id": "reviewed.race_name.bd3f8b5cf8a0",
+        "target_vi": "Fuchu Uma Musume Stakes",
+    },
     # Regenerated Kyoto race-identity finding. Canonical refresh cannot infer the
     # target from an empty suggestion set, so prove the full locked race against
     # every evidence row before restoring the resolution after stale review merges.

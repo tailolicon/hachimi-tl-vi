@@ -3,9 +3,15 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
+from scripts.canonical_findings import active_findings, refresh_canonical_resolutions
 from scripts.harden_fuchu_himba_context_finding import harden
 from scripts.resolve_context_guard_findings import resolve
 from scripts.translation_review_common import community_term_matches, load_community_terms
+
+FUCHU_FINDING_ID = "cf-58532e4b9d8093de"
+FUCHU_LOCKED_TERM_ID = "reviewed.race_name.bd3f8b5cf8a0"
+FUCHU_SOURCE = "府中赛马娘锦标"
+FUCHU_TARGET = "Fuchu Uma Musume Stakes"
 
 
 def _write(path: Path, payload: dict) -> None:
@@ -78,3 +84,77 @@ def test_fuchu_himba_guard_resolves_finding_but_preserves_generic_term(tmp_path:
     uma = next(match for match in generic if match["id"] == "common.world.umamusume")
     assert uma["accepted_present"] is True
     assert uma["forbidden_present"] is False
+
+
+def _seed_fuchu_full_race_finding(tmp_path: Path, *, category: str = "111") -> dict:
+    _seed(tmp_path)
+    _write(tmp_path / "glossary" / "term_registry.json", {"terms": [{
+        "id": FUCHU_LOCKED_TERM_ID,
+        "category": "race_name",
+        "zh_cn": [FUCHU_SOURCE],
+        "target_vi": FUCHU_TARGET,
+        "locked": True,
+        "source_paths": ["text_data_dict.json"],
+        "json_path_prefixes": [["32"], ["33"], ["111"]],
+        "match_mode": "contains",
+        "invalidation_scope": "item",
+    }]})
+    finding = {
+        "finding_id": FUCHU_FINDING_ID,
+        "status": "open",
+        "source_zh_cn": FUCHU_SOURCE,
+        "match_mode": "exact",
+        "source_paths": ["text_data_dict.json"],
+        "key_exact": [],
+        "json_path_prefixes": [],
+        "suggested_targets_vi": [FUCHU_TARGET],
+        "canonical_resolution": {
+            "layer": "locked",
+            "term_id": FUCHU_LOCKED_TERM_ID,
+            "target_vi": FUCHU_TARGET,
+        },
+        "review_resolution": {
+            "decision_id": "audit.finding.fuchu-uma-musume-stakes",
+            "action": "lock",
+            "target_vi": FUCHU_TARGET,
+        },
+        "evidence": [{
+            "source_path": "text_data_dict.json",
+            "json_path": [category, "67"],
+            "source_text": FUCHU_SOURCE,
+            "current_text": "Fuchu Himba Stakes",
+        }],
+    }
+    return {"schema_version": 1, "findings": [finding]}
+
+
+def test_source_wide_fuchu_finding_recovers_from_scoped_locked_evidence(tmp_path: Path) -> None:
+    payload = _seed_fuchu_full_race_finding(tmp_path)
+    refreshed = refresh_canonical_resolutions(tmp_path, payload)
+    assert refreshed["findings"][0]["canonical_resolution"] is None
+
+    _write(tmp_path / "glossary" / "canonical_findings.json", refreshed)
+    assert resolve(tmp_path) is True
+    assert resolve(tmp_path) is False
+
+    resolved = json.loads(
+        (tmp_path / "glossary" / "canonical_findings.json").read_text(encoding="utf-8")
+    )["findings"][0]
+    assert resolved["canonical_resolution"] == {
+        "layer": "locked",
+        "term_id": FUCHU_LOCKED_TERM_ID,
+        "target_vi": FUCHU_TARGET,
+    }
+    assert active_findings({"findings": [resolved]}) == []
+
+
+def test_source_wide_fuchu_finding_does_not_resolve_from_out_of_scope_evidence(tmp_path: Path) -> None:
+    payload = _seed_fuchu_full_race_finding(tmp_path, category="128")
+    refreshed = refresh_canonical_resolutions(tmp_path, payload)
+    assert refreshed["findings"][0]["canonical_resolution"] is None
+    _write(tmp_path / "glossary" / "canonical_findings.json", refreshed)
+    assert resolve(tmp_path) is False
+    unresolved = json.loads(
+        (tmp_path / "glossary" / "canonical_findings.json").read_text(encoding="utf-8")
+    )["findings"][0]
+    assert unresolved["canonical_resolution"] is None

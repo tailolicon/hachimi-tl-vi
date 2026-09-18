@@ -74,6 +74,11 @@ GUARDS = {
         "term_id": "reviewed.race_name.b4e4d79a5f98",
         "target_vi": "Queen Cup",
     },
+    "cf-082d75bb73b709c6": {
+        "layer": "locked",
+        "term_id": "reviewed.race_name.7f4db72c4873",
+        "target_vi": "Mainichi Hai",
+    },
     "cf-15798cd76b70746c": {
         "layer": "locked",
         "term_id": "reviewed.race_name.b4e4d79a5f98",

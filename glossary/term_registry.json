@@ -13792,7 +13792,7 @@
       "ja": [
         "毎日杯"
       ],
-      "note": "The in-game locator 3023 is verified as 毎日杯; preserve the established proper race name Mainichi Hai rather than translating 杯 generically.",
+      "note": "The in-game locator 3023 is verified as 毎日杯; preserve the established proper race name Mainichi Hai rather than translating 杯 generically. Context guard: the short Mainichi Hai alias 每日杯 must not match inside the distinct full race 每日杯新马锦标 / Daily Hai Junior Stakes.",
       "invalidation_scope": "item",
       "source_paths": [
         "text_data_dict.json"
@@ -13808,7 +13808,10 @@
           "111"
         ]
       ],
-      "match_mode": "contains"
+      "match_mode": "contains",
+      "exclude_source_contains": [
+        "每日杯新马锦标"
+      ]
     },
     {
       "id": "reviewed.race_name.3b5a9de8fcb3",

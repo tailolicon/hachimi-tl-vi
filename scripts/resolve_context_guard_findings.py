@@ -287,6 +287,14 @@ GUARDS.update({
 # by the named live term. Canonical refresh resets resolutions before this pass,
 # so any future evidence outside the proven scope automatically reopens the finding.
 POSITIVE_EVIDENCE_GUARDS = {
+    # Regenerated Kyoto race-identity finding. Canonical refresh cannot infer the
+    # target from an empty suggestion set, so prove the full locked race against
+    # every evidence row before restoring the resolution after stale review merges.
+    "cf-0993bf93e2686eab": {
+        "layer": "locked",
+        "term_id": "race.kyoto_himba_stakes",
+        "target_vi": "Kyoto Himba Stakes",
+    },
     "cf-55673a272df0aaae": {
         "layer": "community",
         "term_id": "common.friendship_gauge.support_effects",

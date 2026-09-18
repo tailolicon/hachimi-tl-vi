@@ -4,6 +4,7 @@ import json
 from pathlib import Path
 
 from scripts.canonical_findings import active_findings, refresh_canonical_resolutions
+from scripts.resolve_context_guard_findings import resolve as resolve_context_guards
 from scripts.translation_review_common import community_term_matches, load_community_terms
 from scripts.harden_kyoto_himba_precedence_finding import (
     COMPONENT_DECISION_ID,
@@ -16,6 +17,7 @@ from scripts.harden_kyoto_himba_precedence_finding import (
 )
 
 ROOT = Path(__file__).resolve().parents[1]
+REGENERATED_FINDING_ID = "cf-0993bf93e2686eab"
 
 
 def _write(path: Path, payload: object) -> None:
@@ -73,6 +75,42 @@ def test_component_rule_still_covers_plain_component(tmp_path: Path) -> None:
     assert harden(tmp_path) is True
     payload = refresh_canonical_resolutions(tmp_path, {"schema_version": 1, "findings": [{"finding_id": "component-positive", "status": "open", "source_zh_cn": "赛马娘锦标", "match_mode": "contains", "source_paths": ["text_data_dict.json"], "key_exact": [], "json_path_prefixes": [], "suggested_targets_vi": [], "canonical_resolution": None, "review_resolution": None}]})
     assert payload["findings"][0]["canonical_resolution"] == {"layer": "community", "term_id": COMPONENT_TERM_ID, "target_vi": "Uma Musume Stakes"}
+
+
+def test_regenerated_kyoto_finding_recovers_after_canonical_refresh(tmp_path: Path) -> None:
+    _seed(tmp_path)
+    assert harden(tmp_path) is True
+    path = tmp_path / "glossary" / "canonical_findings.json"
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    payload["findings"] = [{
+        "finding_id": REGENERATED_FINDING_ID,
+        "status": "open",
+        "source_zh_cn": SOURCE,
+        "match_mode": "exact",
+        "source_paths": ["text_data_dict.json"],
+        "key_exact": [],
+        "json_path_prefixes": [],
+        "suggested_targets_vi": [],
+        "canonical_resolution": {"layer": "locked", "term_id": FULL_TERM_ID, "target_vi": TARGET},
+        "review_resolution": {"decision_id": "legacy.defer", "action": "defer", "target_vi": None},
+        "evidence": [{
+            "source_path": "text_data_dict.json",
+            "json_path": ["111", "86"],
+            "source_text": SOURCE,
+            "current_text": TARGET,
+        }],
+    }]
+    refreshed = refresh_canonical_resolutions(tmp_path, payload)
+    assert refreshed["findings"][0]["canonical_resolution"] is None
+    _write(path, refreshed)
+    assert resolve_context_guards(tmp_path) is True
+    resolved = json.loads(path.read_text(encoding="utf-8"))["findings"][0]
+    assert resolved["canonical_resolution"] == {
+        "layer": "locked",
+        "term_id": FULL_TERM_ID,
+        "target_vi": TARGET,
+    }
+    assert active_findings({"findings": [resolved]}) == []
 
 
 def test_live_kyoto_finding_is_locked_and_inactive() -> None:

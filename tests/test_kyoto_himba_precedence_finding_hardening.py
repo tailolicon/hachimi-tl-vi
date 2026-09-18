@@ -4,6 +4,7 @@ import json
 from pathlib import Path
 
 from scripts.canonical_findings import active_findings, refresh_canonical_resolutions
+from scripts.translation_review_common import community_term_matches, load_community_terms
 from scripts.harden_kyoto_himba_precedence_finding import (
     COMPONENT_DECISION_ID,
     COMPONENT_TERM_ID,
@@ -40,6 +41,25 @@ def test_full_kyoto_race_wins_over_component_and_hardener_is_idempotent(tmp_path
     community = json.loads((tmp_path / "glossary" / "ui_community_terms.json").read_text(encoding="utf-8"))
     component = next(x for x in community["terms"] if x["id"] == COMPONENT_TERM_ID)
     assert SOURCE in component["exclude_source_exact"]
+    terms = load_community_terms(tmp_path)
+    exact = community_term_matches(
+        None,
+        SOURCE,
+        TARGET,
+        terms,
+        source_path="text_data_dict.json",
+        json_path=["111", "86"],
+    )
+    assert not any(item["id"] == COMPONENT_TERM_ID for item in exact)
+    plain = community_term_matches(
+        None,
+        "赛马娘锦标",
+        "Uma Musume Stakes",
+        terms,
+        source_path="text_data_dict.json",
+        json_path=["131", "211"],
+    )
+    assert any(item["id"] == COMPONENT_TERM_ID for item in plain)
     payload = json.loads((tmp_path / "glossary" / "canonical_findings.json").read_text(encoding="utf-8"))
     payload = refresh_canonical_resolutions(tmp_path, payload)
     finding = payload["findings"][0]

@@ -233,6 +233,15 @@ def _matched_aliases(source: str, aliases: list[str], term: dict[str, Any]) -> l
     return [alias for alias in aliases if _alias_matches(source, alias, mode)]
 
 
+def _source_is_excluded(source: str, term: dict[str, Any]) -> bool:
+    stripped = source.strip()
+    exact = [str(value) for value in term.get("exclude_source_exact", []) if str(value)]
+    if any(stripped == value.strip() for value in exact):
+        return True
+    contains = [str(value) for value in term.get("exclude_source_contains", []) if str(value)]
+    return any(value in source for value in contains)
+
+
 def item_scoped_context_hash(
     *,
     key: str | None,
@@ -249,6 +258,8 @@ def item_scoped_context_hash(
         ("community", community_terms, "source_aliases"),
     ):
         for term in terms:
+            if _source_is_excluded(source, term):
+                continue
             if not _context_matches(term, key=key, source_path=source_path, json_path=json_path):
                 continue
             aliases = _strings(term.get(alias_field))
@@ -283,8 +294,7 @@ def locked_term_matches(
 ) -> list[dict[str, Any]]:
     result: list[dict[str, Any]] = []
     for term in terms:
-        exclusions = [str(v) for v in term.get("exclude_source_contains", []) if str(v)]
-        if exclusions and any(value in source for value in exclusions):
+        if _source_is_excluded(source, term):
             continue
         if not _context_matches(term, key=key, source_path=source_path, json_path=json_path):
             continue
@@ -318,8 +328,7 @@ def community_term_matches(
 ) -> list[dict[str, Any]]:
     result: list[dict[str, Any]] = []
     for term in terms:
-        exclusions = [str(v) for v in term.get("exclude_source_contains", []) if str(v)]
-        if exclusions and any(value in source for value in exclusions):
+        if _source_is_excluded(source, term):
             continue
         if not _context_matches(term, key=key, source_path=source_path, json_path=json_path):
             continue

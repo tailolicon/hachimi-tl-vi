@@ -25,3 +25,18 @@ Implementation applied to live-main snapshot locally:
 - no existing `Shunryu` canonical mapping was present on the live context before this implementation.
 
 Next: publish implementation, run Validate, production Sync, live-resolution check, then unchanged no-op Sync before maintenance accounting.
+
+## Production acceptance — complete
+
+- Implementation commit: `c1e89e93d98bc58b7b6aecab45b635388effc525`.
+- Validate run `35306275605`: success.
+- Production Sync `35306275754`: success; published context commit `e6db04bf57438923b1f709f4577f95dc6702fd02`.
+- Live `active_findings`: 81; `cf-74b484f15fb579a7` is absent.
+- Live finding resolves to `Shunryu` under review lock `audit.finding.shunryu-credit`.
+- Second unchanged Sync `35306573130`: success.
+- Exact no-op proof: `Context is already current.`
+
+## Accounting
+
+Eligible to increment maintenance `completed_count` exactly once from `220` to `221`.
+Next prepared finding: `cf-9912f84bf82c3999` (`堀江晶太` -> `Shota Horie`).

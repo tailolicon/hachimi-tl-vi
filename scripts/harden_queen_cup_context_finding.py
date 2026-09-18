@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-"""Prevent Queen Cup's short zh-CN alias from overmatching TCK Jo-o Hai."""
+"""Prevent Queen Cup's short zh-CN alias from overmatching distinct full race names."""
 
 import json
 from pathlib import Path
@@ -9,6 +9,7 @@ from typing import Any
 ROOT = Path(__file__).resolve().parents[1]
 TERM_ID = "reviewed.race_name.b4e4d79a5f98"
 EXCLUSION = "TCK女王杯"
+QUEEN_ELIZABETH_EXCLUSION = "伊丽莎白女王杯"
 
 
 def _load(path: Path) -> dict[str, Any]:
@@ -36,11 +37,13 @@ def harden(repo_root: Path = ROOT) -> bool:
             continue
         matched = True
         exclusions = [str(value) for value in term.get("exclude_source_contains", []) if str(value)]
-        term["exclude_source_contains"] = list(dict.fromkeys([*exclusions, EXCLUSION]))
+        term["exclude_source_contains"] = list(
+            dict.fromkeys([*exclusions, EXCLUSION, QUEEN_ELIZABETH_EXCLUSION])
+        )
         prior_note = str(term.get("note") or "").strip()
         guard_note = (
-            "Context guard: the short Queen Cup alias 女王杯 must not match inside the distinct full race "
-            "TCK女王杯 / TCK Jo-o Hai."
+            "Context guard: the short Queen Cup alias 女王杯 must not match inside distinct full race names "
+            "such as TCK女王杯 / TCK Jo-o Hai or 伊丽莎白女王杯 / Queen Elizabeth II Cup."
         )
         term["note"] = f"{prior_note} {guard_note}".strip() if guard_note not in prior_note else prior_note
         break

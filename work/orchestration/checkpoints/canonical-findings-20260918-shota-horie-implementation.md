@@ -24,3 +24,19 @@ Implementation applied to live-main snapshot locally:
 - no direct localized-data patching.
 
 Next: publish implementation, run Validate, production Sync, verify live resolution, then second unchanged Sync before maintenance accounting.
+
+## Production acceptance — complete
+
+- Implementation commit: `f6276ed7e2a4afacd1bf74c9abe32eab7edc80aa`.
+- Validate run `35306882218`: success.
+- First production Sync `35306882296`: success.
+- Live `scripts/canonical_findings.py::active_findings`: `80` active; `cf-9912f84bf82c3999` is absent.
+- Live finding resolves to `Shota Horie` under locked review decision `audit.finding.shota-horie-credit`.
+- Second unchanged production Sync `35317741599`, job `105513018621`: success.
+- Shota Horie hardener reported `shota_horie_hardening_changed=false` in both hardener passes.
+- Full context pipeline: `878 passed`.
+- Exact no-op proof from `Commit generated context if changed`: `Context is already current.`
+
+## Accounting
+
+This finding is complete and is eligible to increment maintenance `completed_count` exactly once from `221` to `222`.
